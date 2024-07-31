@@ -1,6 +1,12 @@
 extends Node3D
 
 @onready
+var Player = $Player
+
+@onready
+var Enemy = $Enemy
+
+@onready
 var hpLabelPlayer = $UI/HPPlayer
 
 @onready
@@ -13,26 +19,27 @@ var buttonAttack = $UI/ButtonAttack
 var phaseText = $UI/PhaseText
 
 @onready
-var damageIndicator = $"UI/DamageIndicator"
+var endText = $UI/EndText
 
-# Stats: HP, Att, Def
-@export
-var playerStats = [45, 14, 6]
-@export
-var enemyStats = [30, 10, 3]
+@onready
+var damageIndicator = $"UI/DamageIndicator"
 
 var isPlayerPhase = true
 
-var playerHP = playerStats[0]
-var enemyHP = enemyStats[0]
+signal quitGame
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	buttonAttack.disabled = true
-	hpLabelEnemy.text = str(enemyHP)
-	hpLabelPlayer.text = str(playerHP)
+	hpLabelEnemy.text = str(Enemy.get_health())
+	hpLabelPlayer.text = str(Player.get_health())
 	change_phase()
+	
+func _input(event):
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		emit_signal("quitGame")
 
+	
 func change_phase():
 	buttonAttack.disabled = true
 	if isPlayerPhase:
@@ -53,30 +60,35 @@ func change_phase():
 
 
 func _on_button_attack_pressed():
-	enemyHP = await attack_calculation(enemyHP, hpLabelEnemy, playerStats[1], enemyStats[2])
-	if enemyHP > 0:
+	attack_calculation(Enemy, Player.get_attack(), hpLabelEnemy, true)
+	
+func enemy_attack():
+	attack_calculation(Player, Enemy.get_attack(), hpLabelPlayer, false)
+		
+func attack_calculation(defender, attack, label, isPlayer):
+	var finalHP = defender.get_health()
+	var damage = await damage_calculation(attack, defender.get_defense())
+	finalHP -= damage
+	defender.set_health(finalHP)
+	label.text = str(max(0,finalHP))
+	
+	if finalHP > 0:
 		change_phase()
 	else:
 		buttonAttack.disabled = true
-		phaseText.text = "VICTORY"
-		phaseText.show()
 		
-		await wait(2.0)
+		if isPlayer:
+			phaseText.text = "VICTORY"
+		else:
+			phaseText.text = "YOU LOST"
+			
+		phaseText.show()
+		defender.death(damage)
+		await wait(1.5)
+		endText.show()
+		await Signal(self,"quitGame")
 		get_tree().quit()
-
-
-func enemy_attack():
-	playerHP = await attack_calculation(playerHP, hpLabelPlayer, enemyStats[1], playerStats[2])
-	if enemyHP > 0:
-		change_phase()
-
-
-func attack_calculation(hp, label, att, def):
-	hp -= await damage_calculation(att, def)
-	label.text = str(hp)
-	return hp
-
-
+	
 func damage_calculation(att, def):
 	var damage = 0
 	damage = int(att * 0.1 * def + randi_range(0, 3))
@@ -86,5 +98,6 @@ func damage_calculation(att, def):
 	damageIndicator.hide()
 	return damage
 	
+# Utility functions
 func wait(time):
 	await get_tree().create_timer(time).timeout

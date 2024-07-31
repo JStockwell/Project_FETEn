@@ -1,4 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://mx0c7vkqcljs"]
+[gd_scene load_steps=7 format=3 uid="uid://mx0c7vkqcljs"]
+
+[ext_resource type="Script" path="res://Scripts/character.gd" id="1_ql2t4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xwhf4"]
 albedo_color = Color(0.117647, 0.721569, 0, 1)
@@ -16,7 +18,8 @@ size = Vector3(0.5, 0.5, 0.5)
 [sub_resource type="BoxShape3D" id="BoxShape3D_hv2j6"]
 size = Vector3(1.21082, 1.33252, 1)
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="RigidBody3D"]
+script = ExtResource("1_ql2t4")
 
 [node name="Pivot" type="Node3D" parent="."]
 

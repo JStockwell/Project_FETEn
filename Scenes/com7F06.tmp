@@ -1,11 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://bo6gfdcnsjsuy"]
+[gd_scene load_steps=14 format=3 uid="uid://bo6gfdcnsjsuy"]
 
 [ext_resource type="Script" path="res://Scripts/combat_proto.gd" id="1_d8x88"]
 [ext_resource type="PackedScene" uid="uid://mx0c7vkqcljs" path="res://Scenes/player.tscn" id="1_juobc"]
 [ext_resource type="PackedScene" uid="uid://cjm1mpto6o63g" path="res://Scenes/enemy.tscn" id="3_e42mq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_022bj"]
-size = Vector3(405.999, 1, 3.04644)
+size = Vector3(17, 1, 17)
 
 [sub_resource type="BoxMesh" id="BoxMesh_md5hv"]
 
@@ -14,12 +14,12 @@ sky_top_color = Color(0.625808, 0.918612, 1, 1)
 sky_horizon_color = Color(0.51, 0.689667, 1, 1)
 sky_curve = 0.0494816
 
-[sub_resource type="Sky" id="Sky_1jree"]
+[sub_resource type="Sky" id="Sky_pl1id"]
 sky_material = SubResource("ProceduralSkyMaterial_4ey01")
 
 [sub_resource type="Environment" id="Environment_5ldtc"]
 background_mode = 2
-sky = SubResource("Sky_1jree")
+sky = SubResource("Sky_pl1id")
 
 [sub_resource type="LabelSettings" id="LabelSettings_k2lqm"]
 font_color = Color(0, 0, 0, 1)
@@ -37,10 +37,6 @@ font_color = Color(0, 0, 0, 1)
 font_size = 100
 font_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_ft5el"]
-font_size = 32
-font_color = Color(0, 0, 0, 1)
-
 [node name="Combat_Proto" type="Node3D"]
 script = ExtResource("1_d8x88")
 
@@ -50,7 +46,6 @@ script = ExtResource("1_d8x88")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.308746, 0, 0.0161858)
 shape = SubResource("BoxShape3D_022bj")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D/StaticBody3D"]
@@ -71,14 +66,9 @@ fov = 50.0
 
 [node name="Player" parent="." instance=ExtResource("1_juobc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
-mass = 80.0
 
 [node name="Enemy" parent="." instance=ExtResource("3_e42mq")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3, 0, 0)
-mass = 80.0
-max_health = 25
-attack = 10
-defense = 3
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -133,8 +123,9 @@ text = "Attack"
 visible = false
 layout_mode = 0
 offset_left = 256.0
+offset_top = 192.0
 offset_right = 957.0
-offset_bottom = 137.0
+offset_bottom = 329.0
 text = "PLAYER PHASE"
 label_settings = SubResource("LabelSettings_s8dbo")
 horizontal_alignment = 1
@@ -144,16 +135,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.18784, 0)
 visible = false
 text = "999"
 font_size = 200
-
-[node name="EndText" type="Label" parent="UI"]
-visible = false
-layout_mode = 0
-offset_left = 520.0
-offset_top = 128.0
-offset_right = 699.0
-offset_bottom = 173.0
-text = "Click to exit"
-label_settings = SubResource("LabelSettings_ft5el")
-horizontal_alignment = 1
 
 [connection signal="pressed" from="UI/ButtonAttack" to="." method="_on_button_attack_pressed"]
