@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="Project_FETEn"
-config/version="proto_combat_v2"
-run/main_scene="res://Scenes/main_menu.tscn"
+config/version="proto_combat"
+run/main_scene="res://Scenes/character_select.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://uyxwfrd3r1ly"]
+[gd_scene load_steps=10 format=3 uid="uid://uyxwfrd3r1ly"]
 
 [ext_resource type="Script" path="res://Scripts/character_select.gd" id="1_ttntr"]
 [ext_resource type="PackedScene" uid="uid://mx0c7vkqcljs" path="res://Scenes/character.tscn" id="1_xjpq4"]
@@ -13,14 +13,18 @@ sky_top_color = Color(0.625808, 0.918612, 1, 1)
 sky_horizon_color = Color(0.51, 0.689667, 1, 1)
 sky_curve = 0.0494816
 
-[sub_resource type="Sky" id="Sky_1jree"]
+[sub_resource type="Sky" id="Sky_p61ro"]
 sky_material = SubResource("ProceduralSkyMaterial_rmue4")
 
 [sub_resource type="Environment" id="Environment_65n0s"]
 background_mode = 2
-sky = SubResource("Sky_1jree")
+sky = SubResource("Sky_p61ro")
 
 [sub_resource type="BoxMesh" id="BoxMesh_nx7rs"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3ajwh"]
+font_size = 32
+font_color = Color(0, 0, 0, 1)
 
 [node name="CharacterSelect" type="Node3D"]
 script = ExtResource("1_ttntr")
@@ -110,9 +114,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65495, 0)
 text = "CHOOSE YOUR CHARACTER"
 font_size = 64
 
+[node name="PartyText" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 460.0
+offset_top = 455.0
+offset_right = 692.0
+offset_bottom = 548.0
+text = "Member 1: null
+Member 2: null"
+label_settings = SubResource("LabelSettings_3ajwh")
+
+[node name="StartGame" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 476.0
+offset_top = 552.0
+offset_right = 676.0
+offset_bottom = 624.0
+text = "TO BATTLE!"
+
 [connection signal="mouse_entered" from="Characters/Dick" to="." method="_on_dick_mouse_entered"]
 [connection signal="mouse_exited" from="Characters/Dick" to="." method="_on_dick_mouse_exited"]
 [connection signal="mouse_entered" from="Characters/Samael" to="." method="_on_samael_mouse_entered"]
 [connection signal="mouse_exited" from="Characters/Samael" to="." method="_on_samael_mouse_exited"]
 [connection signal="mouse_entered" from="Characters/Azrael" to="." method="_on_azrael_mouse_entered"]
 [connection signal="mouse_exited" from="Characters/Azrael" to="." method="_on_azrael_mouse_exited"]
+[connection signal="pressed" from="UI/StartGame" to="." method="_on_start_game_pressed"]

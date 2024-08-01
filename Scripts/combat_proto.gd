@@ -32,8 +32,6 @@ var enemyStatsLabel = $UI/StatsLabel/EnemyStatsLabel
 
 var isPlayerPhase = true
 
-signal quitGame
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Player.set_stats(GameStatus.activePlayer)
@@ -72,6 +70,7 @@ func change_phase():
 
 
 func _on_button_attack_pressed():
+	buttonAttack.disabled = true
 	attack_calculation(Enemy, Player.get_attack(), hpLabelEnemy, true)
 	
 func enemy_attack():
@@ -85,21 +84,47 @@ func attack_calculation(defender, attack, label, isPlayer):
 	label.text = str(max(0,finalHP))
 	
 	if finalHP > 0:
+		if isPlayer:
+			GameStatus.set_active_enemy_hp(finalHP)
+		else:
+			GameStatus.set_active_player_hp(finalHP)
 		change_phase()
+		
 	else:
 		buttonAttack.disabled = true
 		
 		if isPlayer:
-			phaseText.text = "VICTORY"
+			phaseText.text = "ENEMY DEFEATED"
+			GameStatus.set_active_enemy_hp(0)
 		else:
 			phaseText.text = "YOU LOST"
+			GameStatus.set_active_player_hp(0)
 			
 		phaseText.show()
 		defender.death(damage)
+		save_result()
 		await wait(1.5)
-		endText.show()
-		await Signal(self,"quitGame")
-		get_tree().quit()
+
+		if isPlayer:
+			var enemyHealthPool = 0
+			for enemy in GameStatus.enemies:
+				enemyHealthPool += GameStatus.enemies[enemy]["current_health"]
+			
+			if enemyHealthPool <= 0:
+				get_tree().change_scene_to_file("res://Scenes/victory.tscn")
+			else:
+				get_tree().change_scene_to_file("res://Scenes/choose_combat.tscn")
+
+		else:
+			var playerHealthPool = 0
+			for player in GameStatus.party:
+				playerHealthPool += GameStatus.party[player]["current_health"]
+				
+			if playerHealthPool <= 0:
+				print("HELP")
+				get_tree().change_scene_to_file("res://Scenes/lose.tscn")
+			else:
+				get_tree().change_scene_to_file("res://Scenes/choose_combat.tscn")
 	
 func damage_calculation(att, def):
 	var damage = 0
@@ -112,7 +137,13 @@ func damage_calculation(att, def):
 	
 func setStatsLabel(label, statsSet):
 	label.text = "Name: {name}\nMax HP: {maxHP}\nAttack: {att}\nDefense: {def}".format({"name": statsSet["name"], "maxHP": statsSet["max_health"], "att": statsSet["attack"], "def": statsSet["defense"]})
-	
+
+func save_result():
+	GameStatus.party[GameStatus.activePlayer["name"]] = GameStatus.activePlayer
+	var enemyId = GameStatus.activeEnemy["id"]
+	GameStatus.activeEnemy.erase("id")
+	GameStatus.enemies[enemyId] = GameStatus.activeEnemy
+
 # Utility functions
 func wait(time):
 	await get_tree().create_timer(time).timeout
@@ -122,15 +153,12 @@ func _on_player_mouse_entered():
 	playerStatsLabel.show()
 
 
-
 func _on_player_mouse_exited():
 	playerStatsLabel.hide()
 
 
 func _on_enemy_mouse_entered():
 	enemyStatsLabel.show()
-	
-
 
 
 func _on_enemy_mouse_exited():
