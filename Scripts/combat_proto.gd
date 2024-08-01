@@ -103,7 +103,7 @@ func attack_calculation(defender, attack, label, isPlayer):
 	
 func damage_calculation(att, def):
 	var damage = 0
-	damage = int(att * 0.1 * def + randi_range(0, 3))
+	damage = int(att * (1 - 0.1 * def) + randi_range(0, 3))
 	damageIndicator.text = "-" + str(damage)
 	damageIndicator.show()
 	await wait(1.0)

@@ -30,5 +30,12 @@ var playerList = {
 		"current_health": 24,
 		"attack": 16,
 		"defense": 6
+	},
+	"Azrael": {
+		"name": "Azrael",
+		"max_health": 1,
+		"current_health": 1,
+		"attack": 1,
+		"defense": 0
 	}
 }
