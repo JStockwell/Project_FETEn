@@ -1,0 +1,102 @@
+[gd_scene load_steps=9 format=3 uid="uid://uyxwfrd3r1ly"]
+
+[ext_resource type="Script" path="res://Scripts/character_select.gd" id="1_ttntr"]
+[ext_resource type="PackedScene" uid="uid://mx0c7vkqcljs" path="res://Scenes/character.tscn" id="1_xjpq4"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_x0hg6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fxj1m"]
+size = Vector3(51, 1, 51)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rmue4"]
+sky_top_color = Color(0.625808, 0.918612, 1, 1)
+sky_horizon_color = Color(0.51, 0.689667, 1, 1)
+sky_curve = 0.0494816
+
+[sub_resource type="Sky" id="Sky_1jree"]
+sky_material = SubResource("ProceduralSkyMaterial_rmue4")
+
+[sub_resource type="Environment" id="Environment_65n0s"]
+background_mode = 2
+sky = SubResource("Sky_1jree")
+
+[sub_resource type="BoxMesh" id="BoxMesh_nx7rs"]
+
+[node name="CharacterSelect" type="Node3D"]
+script = ExtResource("1_ttntr")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1.01002, 0, 0, 0, 1.01002, 0, 0, 0, 1.01002, 0, -1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0)
+mesh = SubResource("BoxMesh_x0hg6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_fxj1m")
+
+[node name="Pivot" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.953491, 0.301422, 0, -0.301422, 0.953491, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 8.9407e-08, 0, -5.96046e-08, 1, 0, 0.310599, 3.94123)
+environment = SubResource("Environment_65n0s")
+fov = 50.0
+
+[node name="Wall" type="MeshInstance3D" parent="."]
+transform = Transform3D(19.488, 0, 0, 0, 10.1376, 0, 0, 0, 1, 0, 0, -4)
+mesh = SubResource("BoxMesh_nx7rs")
+skeleton = NodePath("")
+
+[node name="Characters" type="Node3D" parent="."]
+
+[node name="Dick" parent="Characters" instance=ExtResource("1_xjpq4")]
+transform = Transform3D(0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, -2, 0, 0)
+mass = 80.0
+
+[node name="Samael" parent="Characters" instance=ExtResource("1_xjpq4")]
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 2, 0, 0.068)
+
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights"]
+transform = Transform3D(0.965926, 0.183013, -0.183013, 0, 0.707107, 0.707107, 0.258819, -0.683013, 0.683013, 0, 3.84087, 0)
+shadow_enabled = true
+
+[node name="DickLight" type="SpotLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 0.306144, 0.951985, 0, -0.951985, 0.306144, -2, 3, 1)
+visible = false
+light_energy = 15.0
+spot_range = 4.82065
+spot_angle = 19.4382
+
+[node name="SamaelLight" type="SpotLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 0.306144, 0.951985, 0, -0.951985, 0.306144, 2, 3, 1)
+visible = false
+light_energy = 15.0
+spot_range = 4.82065
+spot_angle = 19.4382
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Title" type="Label3D" parent="UI"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65495, 0)
+text = "CHOOSE YOUR CHARACTER"
+font_size = 64
+
+[node name="DickTitle" type="Label3D" parent="UI"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.131, 0)
+text = "Dick"
+
+[node name="SamaelTitle" type="Label3D" parent="UI"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.131, 0)
+text = "Samael"
+
+[connection signal="mouse_entered" from="Characters/Dick" to="." method="_on_dick_mouse_entered"]
+[connection signal="mouse_exited" from="Characters/Dick" to="." method="_on_dick_mouse_exited"]
+[connection signal="mouse_entered" from="Characters/Samael" to="." method="_on_samael_mouse_entered"]
+[connection signal="mouse_exited" from="Characters/Samael" to="." method="_on_samael_mouse_exited"]

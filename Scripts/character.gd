@@ -1,27 +1,34 @@
 extends RigidBody3D
 
+var characterName
 @export
-var max_health = 30
-var current_health
+var maxHealth = 30
+var currentHealth
 @export
 var attack = 16
 @export
 var defense = 6
 
 func set_health(value):
-	current_health = value
+	currentHealth = value
 
 func get_health():
-	return current_health
+	return currentHealth
 
 func get_attack():
 	return attack
 
 func get_defense():
 	return defense
+	
+func set_stats(statsSet):
+	characterName = statsSet["name"]
+	maxHealth = statsSet["max_health"]
+	currentHealth = statsSet["current_health"]
+	attack = statsSet["attack"]
+	defense = statsSet["defense"]
 
 func _ready():
-	current_health = max_health
 	mass = 60
 
 func death(damage):

@@ -1,8 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://bo6gfdcnsjsuy"]
+[gd_scene load_steps=16 format=3 uid="uid://bo6gfdcnsjsuy"]
 
 [ext_resource type="Script" path="res://Scripts/combat_proto.gd" id="1_d8x88"]
-[ext_resource type="PackedScene" uid="uid://mx0c7vkqcljs" path="res://Scenes/player.tscn" id="1_juobc"]
-[ext_resource type="PackedScene" uid="uid://cjm1mpto6o63g" path="res://Scenes/enemy.tscn" id="3_e42mq"]
+[ext_resource type="PackedScene" uid="uid://mx0c7vkqcljs" path="res://Scenes/character.tscn" id="3_e42mq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_022bj"]
 size = Vector3(405.999, 1, 3.04644)
@@ -14,12 +13,12 @@ sky_top_color = Color(0.625808, 0.918612, 1, 1)
 sky_horizon_color = Color(0.51, 0.689667, 1, 1)
 sky_curve = 0.0494816
 
-[sub_resource type="Sky" id="Sky_1jree"]
+[sub_resource type="Sky" id="Sky_yy1ip"]
 sky_material = SubResource("ProceduralSkyMaterial_4ey01")
 
 [sub_resource type="Environment" id="Environment_5ldtc"]
 background_mode = 2
-sky = SubResource("Sky_1jree")
+sky = SubResource("Sky_yy1ip")
 
 [sub_resource type="LabelSettings" id="LabelSettings_k2lqm"]
 font_color = Color(0, 0, 0, 1)
@@ -41,6 +40,14 @@ font_color = Color(0, 0, 0, 1)
 font_size = 32
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_itw0l"]
+transparency = 1
+blend_mode = 2
+albedo_color = Color(0.355314, 0.355314, 0.355314, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_ritml"]
+material = SubResource("StandardMaterial3D_itw0l")
+
 [node name="Combat_Proto" type="Node3D"]
 script = ExtResource("1_d8x88")
 
@@ -61,24 +68,19 @@ mesh = SubResource("BoxMesh_md5hv")
 transform = Transform3D(0.965926, 0.183013, -0.183013, 0, 0.707107, 0.707107, 0.258819, -0.683013, 0.683013, 0, 3.84087, 0)
 shadow_enabled = true
 
-[node name="Pivot" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0)
-
-[node name="Camera3D" type="Camera3D" parent="Pivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, -0.32702, 7.35211)
-environment = SubResource("Environment_5ldtc")
-fov = 50.0
-
-[node name="Player" parent="." instance=ExtResource("1_juobc")]
+[node name="Player" parent="." instance=ExtResource("3_e42mq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
-mass = 80.0
 
 [node name="Enemy" parent="." instance=ExtResource("3_e42mq")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3, 0, 0)
-mass = 80.0
-max_health = 25
-attack = 10
-defense = 3
+
+[node name="Pivot" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 5.96046e-08, 0, -5.96046e-08, 1, 0, -0.25, 7.289)
+environment = SubResource("Environment_5ldtc")
+fov = 35.0
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -140,7 +142,7 @@ label_settings = SubResource("LabelSettings_s8dbo")
 horizontal_alignment = 1
 
 [node name="DamageIndicator" type="Label3D" parent="UI"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.18784, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.54295, 0)
 visible = false
 text = "999"
 font_size = 200
@@ -156,4 +158,39 @@ text = "Click to exit"
 label_settings = SubResource("LabelSettings_ft5el")
 horizontal_alignment = 1
 
+[node name="StatsLabel" type="Control" parent="UI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PlayerStatsLabel" type="Label3D" parent="UI/StatsLabel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.11359, 0.412115, 0)
+visible = false
+text = "Name: null
+Max HP: null
+Attack: null
+Defense: null"
+horizontal_alignment = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="UI/StatsLabel/PlayerStatsLabel"]
+transform = Transform3D(1.28815, 0, 0, 0, 0.939864, 0, 0, 0, 1, 0.550612, 0, -0.0527378)
+mesh = SubResource("QuadMesh_ritml")
+
+[node name="EnemyStatsLabel" type="Label3D" parent="UI/StatsLabel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.01846, 0.412, 0)
+visible = false
+text = "Name: null
+Max HP: null
+Attack: null
+Defense: null"
+horizontal_alignment = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="UI/StatsLabel/EnemyStatsLabel"]
+transform = Transform3D(1.28815, 0, 0, 0, 0.939864, 0, 0, 0, 1, 0.550612, 0, -0.0527378)
+mesh = SubResource("QuadMesh_ritml")
+
+[connection signal="mouse_entered" from="Player" to="." method="_on_player_mouse_entered"]
+[connection signal="mouse_exited" from="Player" to="." method="_on_player_mouse_exited"]
+[connection signal="mouse_entered" from="Enemy" to="." method="_on_enemy_mouse_entered"]
+[connection signal="mouse_exited" from="Enemy" to="." method="_on_enemy_mouse_exited"]
 [connection signal="pressed" from="UI/ButtonAttack" to="." method="_on_button_attack_pressed"]

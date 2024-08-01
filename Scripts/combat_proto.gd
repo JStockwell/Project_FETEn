@@ -24,12 +24,24 @@ var endText = $UI/EndText
 @onready
 var damageIndicator = $"UI/DamageIndicator"
 
+@onready
+var playerStatsLabel = $UI/StatsLabel/PlayerStatsLabel
+
+@onready
+var enemyStatsLabel = $UI/StatsLabel/EnemyStatsLabel
+
 var isPlayerPhase = true
 
 signal quitGame
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Player.set_stats(GameStatus.activePlayer)
+	Enemy.set_stats(GameStatus.activeEnemy)
+	
+	setStatsLabel(playerStatsLabel, GameStatus.activePlayer)
+	setStatsLabel(enemyStatsLabel, GameStatus.activeEnemy)
+	
 	buttonAttack.disabled = true
 	hpLabelEnemy.text = str(Enemy.get_health())
 	hpLabelPlayer.text = str(Player.get_health())
@@ -98,6 +110,28 @@ func damage_calculation(att, def):
 	damageIndicator.hide()
 	return damage
 	
+func setStatsLabel(label, statsSet):
+	label.text = "Name: {name}\nMax HP: {maxHP}\nAttack: {att}\nDefense: {def}".format({"name": statsSet["name"], "maxHP": statsSet["max_health"], "att": statsSet["attack"], "def": statsSet["defense"]})
+	
 # Utility functions
 func wait(time):
 	await get_tree().create_timer(time).timeout
+
+
+func _on_player_mouse_entered():
+	playerStatsLabel.show()
+
+
+
+func _on_player_mouse_exited():
+	playerStatsLabel.hide()
+
+
+func _on_enemy_mouse_entered():
+	enemyStatsLabel.show()
+	
+
+
+
+func _on_enemy_mouse_exited():
+	enemyStatsLabel.hide()
