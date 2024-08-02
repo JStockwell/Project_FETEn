@@ -88,7 +88,7 @@ func attack_calculation(defender, attack, label):
 		else:
 			GameStatus.set_active_player_hp(finalHP)
 			await wait(1.5)
-			get_tree().change_scene_to_file("res://Scenes/choose_combat.tscn")
+			get_tree().change_scene_to_file("res://Scenes/combat_map_proto.tscn")
 		
 	else:
 		buttonAttack.disabled = true
@@ -113,7 +113,7 @@ func attack_calculation(defender, attack, label):
 			if enemyHealthPool <= 0:
 				get_tree().change_scene_to_file("res://Scenes/victory.tscn")
 			else:
-				get_tree().change_scene_to_file("res://Scenes/choose_combat.tscn")
+				get_tree().change_scene_to_file("res://Scenes/combat_map_proto.tscn")
 
 		else:
 			var playerHealthPool = 0
@@ -124,7 +124,7 @@ func attack_calculation(defender, attack, label):
 				print("HELP")
 				get_tree().change_scene_to_file("res://Scenes/lose.tscn")
 			else:
-				get_tree().change_scene_to_file("res://Scenes/choose_combat.tscn")
+				get_tree().change_scene_to_file("res://Scenes/combat_map_proto.tscn")
 
 
 func damage_calculation(att, def):

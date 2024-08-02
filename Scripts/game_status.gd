@@ -36,26 +36,31 @@ var party = {
 }
 
 var enemies = {
-	"Goblin_1" = {
-		"name": "Goblin",
+	"Goblin_1": {
+		"name": "Goblin_1",
 		"max_health": 16,
 		"current_health": 16,
 		"attack": 5,
-		"defense": 3
+		"defense": 3,
+		"movement": 3
 	},
-	"Goblin_2" = {
-		"name": "Goblin",
+	"Goblin_2": {
+		"name": "Goblin_2",
 		"max_health": 16,
 		"current_health": 16,
 		"attack": 5,
-		"defense": 3
+		"defense": 3,
+		"movement": 3,
+		"map_position": null
 	},
-	"Orc_1" = {
-		"name": "Orc",
+	"Orc_1": {
+		"name": "Orc_1",
 		"max_health": 45,
 		"current_health": 45,
 		"attack": 10,
-		"defense": 6
+		"defense": 6,
+		"movement": 1,
+		"map_position": null
 	}
 }
 
@@ -66,7 +71,8 @@ var playerList = {
 		"current_health": 30,
 		"attack": 16,
 		"defense": 6,
-		"movement": 2
+		"movement": 2,
+		"map_position": null
 	},
 	"Samael": {
 		"name": "Samael",
@@ -74,7 +80,8 @@ var playerList = {
 		"current_health": 24,
 		"attack": 16,
 		"defense": 6,
-		"movement": 3
+		"movement": 3,
+		"map_position": null
 	},
 	"Azrael": {
 		"name": "Azrael",
@@ -82,6 +89,7 @@ var playerList = {
 		"current_health": 1,
 		"attack": 1,
 		"defense": 0,
-		"movement": 3
+		"movement": 3,
+		"map_position": null
 	}
 }

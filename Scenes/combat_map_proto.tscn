@@ -52,13 +52,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
 
 [node name="Character" parent="Mockup" instance=ExtResource("3_nhdyy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 0)
 
 [node name="Debug" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="DebugLabel" type="Label" parent="Debug"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 32.0
+offset_right = 175.0
+offset_bottom = 159.0
+text = "lastMapTile:
+inMapTile:
+selectedTile:
+playerPopulatedTiles:
+selectedPlayer:
+selectedEnemy:"
+horizontal_alignment = 2
 
 [node name="LastMapTileLabel" type="Label" parent="Debug"]
 layout_mode = 0
@@ -75,19 +89,6 @@ offset_top = 58.0
 offset_right = 216.0
 offset_bottom = 81.0
 text = "false"
-
-[node name="DebugLabel" type="Label" parent="Debug"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 32.0
-offset_right = 102.0
-offset_bottom = 81.0
-text = "lastMapTile:
-inMapTile:
-selectedTile:
-playerPopulatedTiles:
-selectedPlayer:"
-horizontal_alignment = 2
 
 [node name="SelectedTileLabel" type="Label" parent="Debug"]
 layout_mode = 0
@@ -111,6 +112,14 @@ offset_left = 176.0
 offset_top = 136.0
 offset_right = 216.0
 offset_bottom = 159.0
+text = "null"
+
+[node name="SelectedEnemyLabel" type="Label" parent="Debug"]
+layout_mode = 0
+offset_left = 176.0
+offset_top = 162.0
+offset_right = 216.0
+offset_bottom = 185.0
 text = "null"
 
 [node name="Floor" type="StaticBody3D" parent="."]
@@ -137,13 +146,25 @@ light_energy = 30.0
 spot_range = 3.37854
 spot_angle = 26.9969
 
-[node name="Characters" type="Node3D" parent="."]
-
 [node name="MoveButton" type="Button" parent="."]
-offset_left = 104.0
+visible = false
+offset_left = 103.0
 offset_top = 240.0
-offset_right = 155.0
+offset_right = 154.0
 offset_bottom = 271.0
 text = "Move"
 
+[node name="AttackButton" type="Button" parent="."]
+visible = false
+offset_left = 99.0
+offset_top = 280.0
+offset_right = 157.0
+offset_bottom = 311.0
+text = "Attack"
+
+[node name="Characters" type="Node3D" parent="."]
+
+[node name="Enemies" type="Node3D" parent="."]
+
 [connection signal="pressed" from="MoveButton" to="." method="_on_move_button_pressed"]
+[connection signal="pressed" from="AttackButton" to="." method="_on_attack_button_pressed"]

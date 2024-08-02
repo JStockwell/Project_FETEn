@@ -10,12 +10,19 @@ var playerPopulatedTiles = []
 var enemyPopulatedTiles = []
 
 var selectedPlayer = "null"
+var selectedEnemy = "null"
 
 func set_selected_player(name):
 	selectedPlayer = name
 
 func get_selected_player() -> String:
 	return selectedPlayer
+	
+func set_selected_enemy(name):
+	selectedEnemy = name
+
+func get_selected_enemy() -> String:
+	return selectedEnemy
 
 func set_last_map_tile(coords):
 	lastMapTile = coords
@@ -31,6 +38,12 @@ func populate_player_tile(tile):
 	
 func remove_player_tile(tile):
 	playerPopulatedTiles.remove_at(playerPopulatedTiles.find(tile))
+	
+func populate_enemy_tile(tile):
+	enemyPopulatedTiles.append(tile)
 
-func check_tile_player_populated(tile: Vector2) -> bool:
-	return playerPopulatedTiles.find(tile) == -1
+func remove_enemy_tile(tile):
+	enemyPopulatedTiles.remove_at(enemyPopulatedTiles.find(tile))
+
+func check_tile_populated(tile: Vector2) -> bool:
+	return playerPopulatedTiles.find(tile) == -1 and enemyPopulatedTiles.find(tile) == -1
