@@ -8,13 +8,6 @@ var currentHealth
 var attack = 16
 @export
 var defense = 6
-var mapPosition
-
-func get_map_position() -> Vector2:
-	return mapPosition
-	
-func set_map_position(coords: Vector2) -> void:
-	mapPosition = coords
 
 func set_health(value):
 	currentHealth = value

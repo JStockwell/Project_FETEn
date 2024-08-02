@@ -19,7 +19,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameStatus="*res://Scripts/game_status.gd"
-MapStatus="*res://Scripts/map_status.gd"
 
 [display]
 
