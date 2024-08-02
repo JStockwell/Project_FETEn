@@ -18,7 +18,8 @@ var activePlayer = {
 		"max_health": null,
 		"current_health": null,
 		"attack": null,
-		"defense": null
+		"defense": null,
+		"map_position": null
 	}
 
 var activeEnemy = {
@@ -64,20 +65,23 @@ var playerList = {
 		"max_health": 30,
 		"current_health": 30,
 		"attack": 16,
-		"defense": 6
+		"defense": 6,
+		"movement": 2
 	},
 	"Samael": {
 		"name": "Samael",
 		"max_health": 24,
 		"current_health": 24,
 		"attack": 16,
-		"defense": 6
+		"defense": 6,
+		"movement": 3
 	},
 	"Azrael": {
 		"name": "Azrael",
 		"max_health": 1,
 		"current_health": 1,
 		"attack": 1,
-		"defense": 0
+		"defense": 0,
+		"movement": 3
 	}
 }

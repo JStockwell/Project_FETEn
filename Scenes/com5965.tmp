@@ -140,10 +140,7 @@ spot_angle = 26.9969
 [node name="Characters" type="Node3D" parent="."]
 
 [node name="MoveButton" type="Button" parent="."]
-offset_left = 104.0
-offset_top = 240.0
-offset_right = 155.0
-offset_bottom = 271.0
-text = "Move"
+offset_right = 8.0
+offset_bottom = 8.0
 
 [connection signal="pressed" from="MoveButton" to="." method="_on_move_button_pressed"]

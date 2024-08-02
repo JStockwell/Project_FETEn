@@ -118,4 +118,4 @@ func _on_start_game_pressed():
 	if tempParty.count(null) == 0:
 		GameStatus.party[tempParty[0]] = GameStatus.playerList[tempParty[0]]
 		GameStatus.party[tempParty[1]] = GameStatus.playerList[tempParty[1]]
-		get_tree().change_scene_to_file("res://Scenes/choose_combat.tscn")
+		get_tree().change_scene_to_file("res://Scenes/combat_map_proto.tscn")

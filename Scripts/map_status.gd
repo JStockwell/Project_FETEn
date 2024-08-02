@@ -9,6 +9,14 @@ var selectedTile = null
 var playerPopulatedTiles = []
 var enemyPopulatedTiles = []
 
+var selectedPlayer = "null"
+
+func set_selected_player(name):
+	selectedPlayer = name
+
+func get_selected_player() -> String:
+	return selectedPlayer
+
 func set_last_map_tile(coords):
 	lastMapTile = coords
 	
