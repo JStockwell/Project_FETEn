@@ -26,7 +26,6 @@ offset_bottom = 256.0
 allow_reselect = true
 
 [node name="DropdownEnemy" type="OptionButton" parent="."]
-layout_mode = 0
 offset_left = 768.0
 offset_top = 192.0
 offset_right = 960.0
@@ -58,7 +57,6 @@ horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="ChooseEnemy" type="Label" parent="Labels"]
-layout_mode = 0
 offset_left = 768.0
 offset_top = 120.0
 offset_right = 960.0
@@ -77,7 +75,6 @@ offset_bottom = 376.0
 label_settings = SubResource("LabelSettings_n5p71")
 
 [node name="EnemyHP" type="Label" parent="Labels"]
-layout_mode = 0
 offset_left = 757.0
 offset_top = 256.0
 offset_right = 972.0
