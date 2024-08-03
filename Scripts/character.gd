@@ -47,7 +47,7 @@ func get_defense():
 func set_stats(statsSet):
 	characterName = statsSet["name"]
 	maxHealth = statsSet["max_health"]
-	currentHealth = statsSet["max_health"]
+	currentHealth = statsSet["current_health"]
 	attack = statsSet["attack"]
 	defense = statsSet["defense"]
 	movement = statsSet["movement"]

@@ -53,6 +53,8 @@ func change_phase():
 	
 	if playerAttacked:
 		phaseText.text = "Enemy Phase"
+		print(GameStatus.activeEnemy)
+		GameStatus.enemies[GameStatus.activeEnemy["id"]] = GameStatus.activeEnemy
 	else:
 		phaseText.text = "Player Phase"
 	
@@ -96,9 +98,11 @@ func attack_calculation(defender, attack, label):
 		if playerAttacked:
 			phaseText.text = "YOU LOST"
 			GameStatus.set_active_player_hp(0)
+			MapStatus.remove_player_tile(GameStatus.activePlayer["map_position"])
 		else:
 			phaseText.text = "ENEMY DEFEATED"
 			GameStatus.set_active_enemy_hp(0)
+			MapStatus.remove_enemy_tile(GameStatus.activeEnemy["map_position"])
 			
 		phaseText.show()
 		defender.death(damage)
@@ -121,7 +125,6 @@ func attack_calculation(defender, attack, label):
 				playerHealthPool += GameStatus.party[player]["current_health"]
 				
 			if playerHealthPool <= 0:
-				print("HELP")
 				get_tree().change_scene_to_file("res://Scenes/lose.tscn")
 			else:
 				get_tree().change_scene_to_file("res://Scenes/combat_map_proto.tscn")

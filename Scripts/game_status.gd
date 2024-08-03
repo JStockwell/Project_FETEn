@@ -42,14 +42,6 @@ var enemies = {
 		"current_health": 16,
 		"attack": 5,
 		"defense": 3,
-		"movement": 3
-	},
-	"Goblin_2": {
-		"name": "Goblin_2",
-		"max_health": 16,
-		"current_health": 16,
-		"attack": 5,
-		"defense": 3,
 		"movement": 3,
 		"map_position": null
 	},
@@ -77,7 +69,7 @@ var playerList = {
 	"Samael": {
 		"name": "Samael",
 		"max_health": 24,
-		"current_health": 24,
+		"current_health": 2,
 		"attack": 16,
 		"defense": 6,
 		"movement": 3,
