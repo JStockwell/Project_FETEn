@@ -23,3 +23,7 @@ GameStatus="*res://Scripts/game_status.gd"
 [display]
 
 window/size/resizable=false
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gut/plugin.cfg")
