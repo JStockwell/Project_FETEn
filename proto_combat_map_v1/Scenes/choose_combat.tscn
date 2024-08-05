@@ -1,0 +1,97 @@
+[gd_scene load_steps=4 format=3 uid="uid://gmeuxbhdj8gy"]
+
+[ext_resource type="Script" path="res://proto_combat_map_v1/Scripts/choose_combat.gd" id="1_rfwh3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_u80gp"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_n5p71"]
+font_size = 32
+
+[node name="ChooseCombat" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rfwh3")
+
+[node name="DropdownParty" type="OptionButton" parent="."]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 192.0
+offset_right = 384.0
+offset_bottom = 256.0
+allow_reselect = true
+
+[node name="DropdownEnemy" type="OptionButton" parent="."]
+layout_mode = 0
+offset_left = 768.0
+offset_top = 192.0
+offset_right = 960.0
+offset_bottom = 256.0
+allow_reselect = true
+
+[node name="StartBattle" type="Button" parent="."]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 448.0
+offset_right = 704.0
+offset_bottom = 576.0
+text = "TO BATTLE!"
+
+[node name="Labels" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ChooseParty" type="Label" parent="Labels"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 120.0
+offset_right = 384.0
+offset_bottom = 191.0
+text = "Choose Party Member"
+label_settings = SubResource("LabelSettings_u80gp")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ChooseEnemy" type="Label" parent="Labels"]
+layout_mode = 0
+offset_left = 768.0
+offset_top = 120.0
+offset_right = 960.0
+offset_bottom = 191.0
+text = "Choose Enemy"
+label_settings = SubResource("LabelSettings_u80gp")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="PartyHP" type="Label" parent="Labels"]
+layout_mode = 0
+offset_left = 181.0
+offset_top = 256.0
+offset_right = 396.0
+offset_bottom = 376.0
+label_settings = SubResource("LabelSettings_n5p71")
+
+[node name="EnemyHP" type="Label" parent="Labels"]
+layout_mode = 0
+offset_left = 757.0
+offset_top = 256.0
+offset_right = 972.0
+offset_bottom = 376.0
+label_settings = SubResource("LabelSettings_n5p71")
+
+[node name="ErrorLabel" type="Label" parent="Labels"]
+layout_mode = 0
+offset_left = 488.0
+offset_top = 392.0
+offset_right = 664.0
+offset_bottom = 441.0
+text = "Player or Enemy has already been defeated"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[connection signal="pressed" from="StartBattle" to="." method="_on_start_battle_pressed"]

@@ -13,3 +13,11 @@ config_version=5
 config/name="Project_FETEn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameStatus_v3="*res://proto_combat_v3/Scripts/game_status.gd"
+GameStatus_v4="*res://proto_combat_v4/Scripts/game_status.gd"
+GameStatus_v5="*res://proto_combat_v4/Scripts/game_status.gd"
+GameStatus_map_v1="*res://proto_combat_map_v1/Scripts/game_status.gd"
+MapStatus_map_v1="*res://proto_combat_map_v1/Scripts/map_status.gd"
