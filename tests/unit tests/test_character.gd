@@ -29,5 +29,3 @@ func test_get_stats():
 	var checker = char.get_stats()
 	
 	assert_eq(stats, checker, "Yo que se pibe v2")
-	
-	
