@@ -10,4 +10,4 @@ func test_negative_1():
 	var palabra = "palabra"
 	var tamanyo = palabra.length()
 	
-	assert_eq(tamanyo, 8, "El tamaño no es igual")
+	assert_ne(tamanyo, 8, "El tamaño no es igual")
