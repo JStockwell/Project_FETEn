@@ -256,6 +256,5 @@ func point_distance(vec1: Vector2, vec2: Vector2) -> int:
 
 func _on_attack_button_pressed():
 	GameStatus.set_active_player(GameStatus.party[MapStatus.get_selected_player()])
-	print(MapStatus.get_selected_enemy(), GameStatus.enemies[MapStatus.get_selected_enemy()])
 	GameStatus.set_active_enemy(MapStatus.get_selected_enemy(), GameStatus.enemies[MapStatus.get_selected_enemy()])
 	get_tree().change_scene_to_file("res://Scenes/combat_proto.tscn")
