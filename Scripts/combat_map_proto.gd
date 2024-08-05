@@ -37,7 +37,10 @@ var enemyStatsLabel = $UI/EnemyStatsLabel
 var debugMode = true
 
 @export
-var mapSize = 5
+var mapWidth = 11
+
+@export
+var mapHeight = 11
 
 func _ready():
 	attackButton.hide()
@@ -48,14 +51,10 @@ func _ready():
 	
 	if debugMode:
 		debugLabel.show()
-		
-	# Min map size
-	if mapSize < len(GameStatus.enemies.keys()):
-		mapSize = len(GameStatus.enemies.keys())
 
 	# Setup map size
-	for i in range(mapSize):
-		for j in range(mapSize):
+	for i in range(mapWidth):
+		for j in range(mapHeight):
 			var instance = mapTile.instantiate()
 			add_child(instance)
 			instance.position = Vector3(i * 2, 0, j * 2)
@@ -96,13 +95,13 @@ func _ready():
 			instance.rotation.y = PI
 			
 			if GameStatus.enemies[enemy]["map_position"] == null:
-				instance.position = Vector3((mapSize - 1) * 2, 1, (mapSize - 1 - enemyCounter) * 2)
+				instance.position = Vector3((mapWidth - 1) * 2, 1, (mapHeight - 1 - enemyCounter) * 2)
 				
-				GameStatus.enemies[enemy]["map_position"] = Vector2(mapSize - 1, mapSize - 1 - enemyCounter)
-				MapStatus.populate_enemy_tile(Vector2(mapSize - 1, mapSize - 1 - enemyCounter))
+				GameStatus.enemies[enemy]["map_position"] = Vector2(mapWidth - 1, mapHeight - 1 - enemyCounter)
+				MapStatus.populate_enemy_tile(Vector2(mapWidth - 1, mapHeight - 1 - enemyCounter))
 				
 				instance.set_stats(GameStatus.enemies[enemy])
-				instance.set_map_position(Vector2(mapSize - 1, mapSize - 1 - enemyCounter))
+				instance.set_map_position(Vector2(mapWidth - 1, mapHeight - 1 - enemyCounter))
 				
 			else:
 				var map_pos = GameStatus.enemies[enemy]["map_position"]
@@ -114,8 +113,8 @@ func _ready():
 		
 		enemyCounter += 1
 	
-	cameraPivot.position = Vector3(mapSize - 1, 0, mapSize - 0.9)
-	camera.position.z = mapSize * 2.5
+	cameraPivot.position = Vector3(mapWidth - 1, 0, mapHeight - 0.9)
+	camera.position.z = max(mapHeight, mapWidth) * 2.5
 
 func _process(delta):
 	if debugMode:
