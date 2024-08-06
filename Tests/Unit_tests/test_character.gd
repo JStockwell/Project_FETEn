@@ -1,7 +1,10 @@
 extends GutTest
 
+
 var Character = load("res://Scripts/character.gd")
+
 var char = null
+enum skills {SKILL_1, SKILL2}
 
 func before_each():
 	char = Character.new()
@@ -23,11 +26,12 @@ func test_set_stats():
 		"ini_magic": 5,
 		"max_magic": 20,
 		"reg_magic": 5,
-		"range": 4
+		"range": 4,
+		"skills": skills
 	}
 	
 	char.set_stats(stats)
 	
 	var checker = char.get_stats()
 	
-	assert_eq(stats, checker, "Yo que se pibe v2")
+	assert_eq(stats, checker, "The stats are not the same")
