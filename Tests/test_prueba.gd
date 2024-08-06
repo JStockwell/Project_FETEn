@@ -4,7 +4,7 @@ func test_positive_1():
 	var palabra = "palabra"
 	var tamanyo = palabra.length()
 	
-	assert_that(tamanyo).is_equal(8)
+	assert_that(tamanyo).is_equal(7)
 	
 func test_negative_1():
 	var palabra = "palabra"
