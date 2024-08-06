@@ -15,7 +15,8 @@ var stats = {
 	"max_magic": 20,
 	"reg_magic": 5,
 	"range": 4,
-	"skills": skills
+	"skills": skills,
+	"special": 5
 }
 
 func before_each():
@@ -61,6 +62,8 @@ func test_set_current_stats():
 	assert_eq(current_stats, checker, "The stats are not the same")
 	
 func test_current_not_bigger_than_max_stats():
+	char.set_stats(stats)
+	
 	var current_stats = {
 		"current_health": char.get_stats().get("max_health") + 1,
 		"current_magic": char.get_stats().get("max_magic") + 1
@@ -73,6 +76,8 @@ func test_current_not_bigger_than_max_stats():
 	assert_ne(current_stats, checker, "The current stats can not be bigger than the max")
 	
 func test_current_stats_not_negative():
+	char.set_stats(stats)
+
 	var current_stats = {
 		"current_health": char.get_stats().get("max_health") - 8000,
 		"current_magic": char.get_stats().get("max_magic") - 8000
