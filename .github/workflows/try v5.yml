@@ -33,7 +33,7 @@ jobs:
     name: "CI on Godot ${{ matrix.godot-version }}"
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Run GDUnit4 tests
         uses: MikeSchulze/gdUnit4-action@v1.1.1
