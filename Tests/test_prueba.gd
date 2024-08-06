@@ -1,4 +1,4 @@
-class_name test_prueba extends GdUnitTestSuite
+extends GdUnitTestSuite
 
 func test_positive_1():
 	var palabra = "palabra"
