@@ -41,7 +41,7 @@ jobs:
           godot-version: ${{ matrix.godot-version }}
           godot-status: "stable"
           timeout: 3
-          paths: "res://test"
+          paths: "res://Tests"
           version: "installed"
           publish-report: false
           report-name: report_Godot${{ matrix.godot-version }}_unit-tests
