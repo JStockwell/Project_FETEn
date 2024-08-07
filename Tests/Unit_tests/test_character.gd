@@ -20,11 +20,11 @@ var stats = {
 }
 var checker
 
-func before_each():
+func before_test():
 	char = Character.new()
 	
 	
-func after_each():
+func after_test():
 	char.free()
 
 
