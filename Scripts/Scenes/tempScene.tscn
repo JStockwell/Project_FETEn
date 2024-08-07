@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://vrdoeq06fi31"]
+
+[ext_resource type="PackedScene" uid="uid://t6qujnyj5c8y" path="res://Scenes/Character.tscn" id="1_2nn1b"]
+
+[node name="TempScene" type="Node3D"]
+
+[node name="Character" parent="." instance=ExtResource("1_2nn1b")]
+
+[node name="Camera" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.837414, 0.54657, 0, -0.54657, 0.837414, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.774658, 0.19485, -0.601614, 0, 0.951347, 0.30812, 0.632381, -0.238688, 0.736968, 0, 2.20993, 0)
