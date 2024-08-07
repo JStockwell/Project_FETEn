@@ -1,8 +1,8 @@
-extends GutTest
+extends GdUnitTestSuite
 
 var Character = load("res://Scripts/character.gd")
 
-var char = null
+var char
 enum skills {SKILL_1, SKILL2}
 var stats = {
 	"name": "Player1",
@@ -18,22 +18,27 @@ var stats = {
 	"skills": skills,
 	"special": 5
 }
+var checker
 
 func before_each():
 	char = Character.new()
 	
+	
 func after_each():
 	char.free()
 
+
 func test_not_null():
-	assert_not_null(char)
+	assert_that(char).is_not_null()
+	
 	
 func test_set_stats():
 	char.set_stats(stats)
 	
-	var checker = char.get_stats()
+	checker = char.get_stats()
 	
-	assert_eq(stats, checker, "The stats are not the same")
+	assert_that(stats).is_equal(checker)
+
 
 func test_set_initial_current_stats():
 	char.set_stats(stats)
@@ -45,9 +50,10 @@ func test_set_initial_current_stats():
 	
 	char.set_current_stats(initial_current_stats)
 	
-	var checker = char.get_current_stats()
+	checker = char.get_current_stats()
 	
-	assert_eq(initial_current_stats, checker, "The stats are not the same")
+	assert_that(initial_current_stats).is_equal(checker)
+	
 	
 func test_set_current_stats():
 	var current_stats = {
@@ -57,9 +63,10 @@ func test_set_current_stats():
 	
 	char.set_current_stats(current_stats)
 	
-	var checker = char.get_current_stats()
+	checker = char.get_current_stats()
 	
-	assert_eq(current_stats, checker, "The stats are not the same")
+	assert_that(current_stats).is_equal(checker)
+	
 	
 func test_current_not_bigger_than_max_stats():
 	char.set_stats(stats)
@@ -71,9 +78,10 @@ func test_current_not_bigger_than_max_stats():
 	
 	char.set_current_stats(current_stats)
 	
-	var checker = char.get_current_stats()
+	checker = char.get_current_stats()
 	
-	assert_ne(current_stats, checker, "The current stats can not be bigger than the max")
+	assert_that(current_stats).is_not_equal(checker)
+	
 	
 func test_current_stats_not_negative():
 	char.set_stats(stats)
@@ -85,6 +93,6 @@ func test_current_stats_not_negative():
 	
 	char.set_current_stats(current_stats)
 	
-	var checker = char.get_current_stats()
+	checker = char.get_current_stats()
 	
-	assert_ne(current_stats, checker, "The current stats can not be negative")
+	assert_that(current_stats).is_not_equal(checker)
