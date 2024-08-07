@@ -1,0 +1,60 @@
+name: automated-tests
+
+on:
+  push:
+    branches:
+      - "main"
+      - "develop"
+  pull_request:
+    branches:
+      - "main"
+      - "develop"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+      checks: write
+      contents: write
+      pull-requests: write
+      statuses: write
+
+    strategy:
+      fail-fast: false
+      max-parallel: 10
+      matrix:
+        godot-version: ["4.2.2"]
+
+    name: "CI on Godot ${{ matrix.godot-version }}"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run GDUnit4 tests
+        uses: MikeSchulze/gdUnit4-action@v1.1.1
+        with:
+          godot-version: ${{ matrix.godot-version }}
+          godot-status: "stable"
+          timeout: 3
+          paths: "res://Tests"
+          version: "installed"
+          publish-report: false
+          report-name: report_Godot${{ matrix.godot-version }}_unit-tests
+
+  finalize:
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    name: "Final Results"
+    needs: [unit-tests]
+    steps:
+      - run: exit 1
+        if: >-
+          ${{
+                 contains(needs.*.result, 'failure')
+              || contains(needs.*.result, 'cancelled')
+          }}
