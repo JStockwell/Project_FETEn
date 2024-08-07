@@ -3,12 +3,12 @@ name: automated-tests
 on:
   push:
     branches:
-      - "testing"
-      - "PFTN-7-Create-github-actions"
+      - "main"
+      - "develop"
   pull_request:
     branches:
-      - "testing"
-      - "PFTN-7-Create-github-actions"
+      - "main"
+      - "develop"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
