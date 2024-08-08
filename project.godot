@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="Project_FETEn"
+run/main_scene="res://Scenes/UI/mainMenu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameStatus="*res://Scripts/Global/gameStatus.gd"
 
 [editor_plugins]
 

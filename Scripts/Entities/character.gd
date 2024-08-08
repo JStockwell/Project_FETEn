@@ -24,15 +24,15 @@ func get_stats() -> Dictionary:
 
 func set_initial_stats(stats_set: Dictionary) -> void:
 	if validate_stats(stats_set):
-		if stats_set["mesh_path"] == null:
-			stats_set["mesh_path"] = "res://Assets/Characters/Placeholder/Placeholder_Char.glb"
-			
 		stats = stats_set
 		set_variable_stats()
 		set_mesh(stats["mesh_path"])
 		
 	else:
 		print("Incorrect stats set")
+		
+func set_void_initial_stats() -> void:
+	set_variable_stats()
 		
 func set_stats(stats_set: Dictionary) -> void:
 	if validate_stats(stats_set):
@@ -46,7 +46,10 @@ func set_variable_stats() -> void:
 	stats["current_health"] = stats["max_health"]
 	stats["current_mana"] = stats["ini_mana"]
 	
-func set_mesh(path: String):
+func set_mesh(path) -> void:
+	if path == null:
+		path = "res://Assets/Characters/Placeholder/Placeholder_Char.glb"
+			
 	add_child(load(path).instantiate())
 
 # Validators

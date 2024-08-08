@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://ct1jdv1dd3bkl"]
+
+[ext_resource type="Script" path="res://Scripts/UI/mainMenu.gd" id="1_w2wt5"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w2wt5")
+
+[node name="Debug" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DebugButton" type="Button" parent="Debug"]
+layout_mode = 0
+offset_left = 528.0
+offset_top = 304.0
+offset_right = 620.0
+offset_bottom = 335.0
+text = "To Combat"
+
+[connection signal="pressed" from="Debug/DebugButton" to="." method="_on_debug_button_pressed"]
