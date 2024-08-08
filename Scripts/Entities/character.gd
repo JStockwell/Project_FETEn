@@ -65,6 +65,12 @@ func cap_current_stats(stats_set: Dictionary) -> Dictionary:
 		
 	if stats_set["current_mana"] > stats_set["max_mana"]:
 		stats_set["current_mana"] = stats_set["max_mana"]
+		
+	if stats_set["current_health"] < 0:
+		stats_set["current_health"] = 0
+		
+	if stats_set["current_mana"] < 0:
+		stats_set["current_mana"] = 0
 	
 	return stats_set
 
