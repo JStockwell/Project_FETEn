@@ -67,3 +67,4 @@ func cap_current_stats(stats_set: Dictionary) -> Dictionary:
 		stats_set["current_mana"] = stats_set["max_mana"]
 	
 	return stats_set
+
