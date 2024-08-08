@@ -17,7 +17,7 @@ func _ready():
 		
 	init_characters()
 	# TODO Times and UI once Map is being used
-	#combat_round()
+	#combat_round(type)
 	
 func _process(delta):
 	update_debug_text()
@@ -31,15 +31,25 @@ func init_characters():
 	defender.set_mesh(GameStatus.get_defender_stats()["mesh_path"])
 	#defender.rotate_y(PI/4)
 
-func combat_round():
-	attack(attacker, defender, "phys")
-	await wait(1)
-	attack(defender, attacker, "phys")
-	await wait(1)
+# 4 types: melee, ranged, skill and mag
+func combat_round(type: String) -> void:
 	# TODO return to map
+	match type:
+		"melee":
+			attack(attacker, defender, "phys")
+			await wait(1)
+			attack(defender, attacker, "phys")
+			await wait(1)
+			
+		"ranged":
+			attack(attacker, defender, "phys")
+			await wait(1)
+			if defender.is_ranged():
+				attack(defender, attacker, "phys")
+				await wait(1)
 
 # Attack functions
-# TODO Map mod
+# TODO Map modifier
 # t_ -> temporary
 func attack(t_attacker, t_defender, type: String):
 	if calc_hit_chance(t_attacker.get_stats()["dexterity"], t_defender.get_stats()["agility"], 0):
@@ -103,14 +113,27 @@ var debugUI = $UI/Debug
 var debugText = $UI/Debug/DebugText
 
 @onready
-var debugPhysAttackButton = $UI/Debug/DebugPhysAttackButton
+var debugMeleeAttackButton = $UI/Debug/DebugMeleeAttackButton
+
+@onready
+var debugRangedAttackButton = $UI/Debug/DebugRangedAttackButton
+
+@onready
+var debugSkillAttackButton = $UI/Debug/DebugSkillAttackButton
+
+@onready
+var debugMagAttackButton = $UI/Debug/DebugMagAttackButton
 
 func _on_debug_phys_attack_pressed() -> void:
-	debugPhysAttackButton.disabled = true
-	combat_round()
-	debugPhysAttackButton.disabled = false
+	debugMeleeAttackButton.disabled = true
+	combat_round("melee")
+	debugMeleeAttackButton.disabled = false
+	
+func _on_debug_ranged_attack_button_pressed():
+	debugRangedAttackButton.disabled = true
+	combat_round("ranged")
+	debugRangedAttackButton.disabled = false
 	
 # Debug utilities
 func update_debug_text() -> void:
 	debugText.text = "attacker_hp: {att_hp}\ndefender_hp: {def_hp}".format({"att_hp": attacker.get_stats()["current_health"], "def_hp": defender.get_stats()["current_health"]})
-	

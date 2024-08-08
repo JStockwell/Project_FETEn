@@ -14,14 +14,15 @@ var stats = {
 	"reg_mana": 0,
 	"range": 0,
 	"skills": [],
+	"is_ranged": false,
 	"mesh_path": null
 }
 
 const variable_stats_keys = ["current_health", "current_mana"]
 
-const INITIAL_STATS_NUM = 13
+const INITIAL_STATS_NUM = 14
 
-# Getters and Setters
+# General getters and Setters
 func get_stats() -> Dictionary:
 	return stats
 
@@ -54,6 +55,13 @@ func set_mesh(path) -> void:
 		path = "res://Assets/Characters/Placeholder/Placeholder_Char.glb"
 			
 	add_child(load(path).instantiate())
+	
+# Stat getters TODO
+func is_ranged() -> bool:
+	return stats["is_ranged"]
+	
+func get_attack() -> int:
+	return stats["attack"]
 	
 # Functions
 func recieve_damage(dmg: int) -> void:
