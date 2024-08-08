@@ -87,12 +87,30 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="DebugMeleeAttack" type="Button" parent="UI/Debug"]
+[node name="DebugPhysAttackButton" type="Button" parent="UI/Debug"]
 layout_mode = 0
 offset_left = 496.0
-offset_top = 600.0
+offset_top = 592.0
 offset_right = 657.0
-offset_bottom = 631.0
+offset_bottom = 623.0
 text = "debug melee attack"
 
-[connection signal="pressed" from="UI/Debug/DebugMeleeAttack" to="." method="_on_debug_melee_attack_pressed"]
+[node name="DebugText" type="Label" parent="UI/Debug"]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 512.0
+offset_right = 640.0
+offset_bottom = 576.0
+text = "att_hp: 99
+def hp: 99"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DamageNumber" type="Label3D" parent="UI"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.75, 0)
+visible = false
+text = "-99
+"
+font_size = 200
+
+[connection signal="pressed" from="UI/Debug/DebugPhysAttackButton" to="." method="_on_debug_phys_attack_pressed"]

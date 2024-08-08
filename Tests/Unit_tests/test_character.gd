@@ -7,24 +7,6 @@ var initial_stats
 var checker
 var max_stats
 
-# var skills = ["SKILL_1", "SKILL2"] # ???
-#var max_stats = {
-	#"name": "Player1",
-	#"max_health": 24,
-	#"attack": 16,
-	#"dexterity": 16,
-	#"defense": 6,
-	#"movement": 5,
-	#"ini_mana": 5,
-	#"max_mana": 20,
-	#"reg_mana": 5,
-	#"range": 4,
-	#"skills": ["SKILL_ID_1", "SKILL_ID_2"], # GameStatus.get_ability_by_id("SKILL_ID_1") -> instance ability.gd
-	#"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb",
-	#"current_health": 24,
-	#"current_mana": 5
-#}
-
 func before_test():
 	test_char = Character.new()
 	
@@ -34,6 +16,7 @@ func before_test():
 		"attack": 16,
 		"dexterity": 16,
 		"defense": 6,
+		"agility": 7,
 		"movement": 5,
 		"ini_mana": 5,
 		"max_mana": 20,
@@ -49,6 +32,7 @@ func before_test():
 		"attack": 16,
 		"dexterity": 16,
 		"defense": 6,
+		"agility": 7,
 		"movement": 5,
 		"ini_mana": 5,
 		"max_mana": 20,
@@ -95,7 +79,8 @@ func test_set_initial_variable_stats():
 	
 	
 func test_set_stats():
-	test_char.set_initial_stats(initial_stats)
+	var temp_stats = initial_stats
+	test_char.set_initial_stats(temp_stats)
 	
 	var current_stats = {
 		"current_health": 12,
@@ -112,7 +97,6 @@ func test_set_stats():
 	
 	
 func test_cap_current_stats_max():
-	test_char.set_initial_stats(initial_stats)
 	test_char.set_stats(max_stats)
 	
 	var dict = {
@@ -129,7 +113,6 @@ func test_cap_current_stats_max():
 	
 
 func test_cap_current_stats_no_negatives():
-	test_char.set_initial_stats(initial_stats)
 	test_char.set_stats(max_stats)
 	
 	var dict = {
