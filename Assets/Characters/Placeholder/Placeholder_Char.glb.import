@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dvhci84k8le22"
-path="res://.godot/imported/Edgar Idle 1.glb-9e8792cb984177f99984567be6cfc15d.scn"
+uid="uid://bnmfhy73ds7s4"
+path="res://.godot/imported/Placeholder_Char.glb-9b4ce2f0a520fde98d09a1b2333cb5c5.scn"
 
 [deps]
 
-source_file="res://Assets/Characters/Party/Edgar Idle 1.glb"
-dest_files=["res://.godot/imported/Edgar Idle 1.glb-9e8792cb984177f99984567be6cfc15d.scn"]
+source_file="res://Assets/Characters/Placeholder/Placeholder_Char.glb"
+dest_files=["res://.godot/imported/Placeholder_Char.glb-9b4ce2f0a520fde98d09a1b2333cb5c5.scn"]
 
 [params]
 

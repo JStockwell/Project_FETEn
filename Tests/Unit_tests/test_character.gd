@@ -7,7 +7,7 @@ var initial_stats
 var checker
 
 # var skills = ["SKILL_1", "SKILL2"] # ???
-var stats = {
+var max_stats = {
 	"name": "Player1",
 	"max_health": 24,
 	"attack": 16,
@@ -19,6 +19,7 @@ var stats = {
 	"reg_mana": 5,
 	"range": 4,
 	"skills": ["SKILL_ID_1", "SKILL_ID_2"], # GameStatus.get_ability_by_id("SKILL_ID_1") -> instance ability.gd
+	"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb",
 	"current_health": 24,
 	"current_mana": 5
 }
@@ -35,7 +36,8 @@ func before_test():
 		"max_mana": 20,
 		"reg_mana": 5,
 		"range": 4,
-		"skills": ["SKILL_ID_1", "SKILL_ID_2"] # GameStatus.get_ability_by_id("SKILL_ID_1") -> instance ability.gd
+		"skills": ["SKILL_ID_1", "SKILL_ID_2"], # GameStatus.get_ability_by_id("SKILL_ID_1") -> instance ability.gd
+		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb"
 	}
 	
 	test_char = Character.new()
@@ -54,7 +56,7 @@ func test_set_initial_stats():
 	
 	checker = test_char.get_stats()
 	
-	assert_that(stats).is_equal(checker)
+	assert_that(max_stats).is_equal(checker)
 
 
 func test_set_initial_variable_stats():
@@ -75,16 +77,20 @@ func test_set_initial_variable_stats():
 	
 	
 func test_set_stats():
+	test_char.set_initial_stats(initial_stats)
+	
 	var current_stats = {
 		"current_health": 12,
 		"current_mana": 8
 	}
 	
-	test_char.set_current_stats(current_stats)
+	initial_stats.merge(current_stats)
 	
-	checker = test_char.get_current_stats()
+	test_char.set_stats(current_stats)
 	
-	assert_that(current_stats).is_equal(checker)
+	checker = test_char.get_stats()
+	
+	assert_that(initial_stats).is_equal(checker)
 	
 	
 func test_current_not_bigger_than_max_stats():
@@ -110,8 +116,10 @@ func test_current_stats_not_negative():
 		"current_mana": test_char.get_stats().get("max_mana") - 8000
 	}
 	
-	test_char.set_current_stats(current_stats)
+	initial_stats.merge(current_stats)
 	
-	checker = test_char.get_current_stats()
+	test_char.set_stats(initial_stats)
+	
+	checker = test_char.get_stats()
 	
 	assert_that(current_stats).is_not_equal(checker)
