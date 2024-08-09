@@ -24,7 +24,7 @@ func _process(delta):
 
 # Initialize characters
 func init_characters():
- attacker.set_stats(GameStatus.get_attacker_stats())
+	attacker.set_stats(GameStatus.get_attacker_stats())
 	attacker.set_mesh(GameStatus.get_attacker_stats()["mesh_path"])
 	
 	defender.set_stats(GameStatus.get_defender_stats())
@@ -35,32 +35,32 @@ func init_characters():
 func combat_round(type: String, spa: int = 0, sef: String = "") -> void:
 	# TODO return to map
 	match type:
-  "melee":
+		"melee":
 			attack(attacker, defender, "phys")
 			await wait(1)
 			attack(defender, attacker, "phys")
 			await wait(1)
 			
-  "ranged":
+		"ranged":
 			attack(attacker, defender, "phys")
 			await wait(1)
 			if defender.is_ranged() and defender.get_stats()["range"] >= attacker.get_stats()["range"]:
 				attack(defender, attacker, "phys")
 				await wait(1)
 
-  "skill":
-    attack(attacker, defender, type, spa, sef)
-    await wait(1)
+		"skill":
+			attack(attacker, defender, type, spa, sef)
+			await wait(1)
 
-  "mag":
-    attack(attacker, spa)
-    await wait(1)
-    
+		"mag":
+			attack(attacker, defender, type, spa)
+			await wait(1)
+	
 
 # Attack functions
 # TODO Map modifier
 # t_ -> temporary
-func attack(t_attacker, t_defender, type: String, spa: int = 0, sef):
+func attack(t_attacker, t_defender, type: String, spa: int = 0, sef=""):
 	if calc_hit_chance(t_attacker.get_stats()["dexterity"], t_defender.get_stats()["agility"], 0):
 		var crit = calc_crit(t_attacker.get_stats()["dexterity"], t_attacker.get_stats()["agility"], t_defender.get_stats()["agility"])
 		var dmg = 0
@@ -72,7 +72,7 @@ func attack(t_attacker, t_defender, type: String, spa: int = 0, sef):
 			"mag":
 				dmg = calc_mag_damage(t_attacker.get_stats()["attack"], spa)
 		
-		t_defender.recieve_damage(int(dmg * crit))
+		t_defender.modify_health(-int(dmg * crit))
 		update_damage_text(str(int(dmg * crit)))
 		
 		await wait(1.5)
@@ -101,9 +101,9 @@ func calc_phys_damage(att: int, def: int) -> int:
 	return att - def
 	
 func calc_skill_damage(att: int, def: int, spa: int, sef: String) -> int:
- if sef != "":
+	if sef != "":
    # TODO Execute sef
-   pass
+		pass
 	return att + spa - def
 	
 func calc_mag_damage(att: int, spa: int) -> int:
@@ -145,11 +145,11 @@ func _on_debug_ranged_attack_button_pressed():
 
 # TODO test with sef aswell
 func _on_debug_skill_attack_button_pressed():
- combat_round("skill", 6)
+	combat_round("skill", 6)
 
 func _on_debug_mag_attack_button_pressed():
  # TODO implement with skills
- combat_round("mag", 6)
+	combat_round("mag", 6)
 	
 # Debug utilities
 func update_debug_text() -> void:
