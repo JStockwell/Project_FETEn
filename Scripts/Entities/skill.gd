@@ -6,7 +6,7 @@ var range: int
 var cost: int
 var spa: int = 0
 # Find way to execute functions from string that isnt a match
-var specialEffectFunc: String = null
+var specialEffectFunc: String = ""
 var canTargetAllies: bool = false
 
 func init_skill(args: Dictionary) -> void:
