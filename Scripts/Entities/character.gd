@@ -64,8 +64,8 @@ func get_attack() -> int:
 	return stats["attack"]
 	
 # Functions
-func recieve_damage(dmg: int) -> void:
-	stats["current_health"] -= dmg
+func modify_health(hp_mod: int) -> void:
+	stats["current_health"] += hp_mod
 	cap_current_stats(stats)
 
 # Validators
