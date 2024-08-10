@@ -114,6 +114,10 @@ func update_damage_text(text: String) -> void:
 	damageNumber.text = text
 	damageNumber.show()
 	
+#TODO
+func roll_dice(upper: int = 100) -> int:
+	return randi_range(1, upper)
+
 func wait(seconds: float) -> void:
 	await get_tree().create_timer(seconds).timeout
 
