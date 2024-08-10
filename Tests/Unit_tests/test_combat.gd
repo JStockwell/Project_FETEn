@@ -68,54 +68,24 @@ func test_not_null():
 	assert_that(test_combat).is_not_null()
 	
 func test_init_characters():
-	GameStatus.set_characters(stats_atk, stats_def)
+	game_status.set_characters(stats_atk, stats_def)
 	
-	test_combat.init_characters()
+	Combat.init_characters()
 	
-	assert_that(GameStatus.get_attacker_stats().get("name")).is_equal(stats_atk.get("name"))
+	assert_that(game_status.get_attacker_stats()).is_equal(stats_atk)
+	assert_that(game_status.get_defender_stats()).is_equal(stats_def)
 	
-#func test_init_characters():
-	## Arrange
-	#var attacker = Character.new()
-	#var defender = Character.new()
-	#
-	## Act
-	#test_combat.init_characters()
-	#
-	## Assert
-	#assert_that(attacker.get_stats()["max_health"]).is_equal_to(stats_atk["max_health"])
-	#assert_that(attacker.get_stats()["attack"]).is_equal_to(stats_atk["attack"])
-	#assert_that(attacker.get_stats()["dexterity"]).is_equal_to(stats_atk["dexterity"])
-	#assert_that(attacker.get_stats()["defense"]).is_equal_to(stats_atk["defense"])
-	#assert_that(attacker.get_stats()["agility"]).is_equal_to(stats_atk["agility"])
-	#assert_that(attacker.get_stats()["movement"]).is_equal_to(stats_atk["movement"])
-	#assert_that(attacker.get_stats()["ini_mana"]).is_equal_to(stats_atk["ini_mana"])
-	#assert_that(attacker.get_stats()["max_mana"]).is_equal_to(stats_atk["max_mana"])
-	#assert_that(attacker.get_stats()["reg_mana"]).is_equal_to(stats_atk["reg_mana"])
-	#assert_that(attacker.get_stats()["range"]).is_equal_to(stats_atk["range"])
-	#assert_that(attacker.get_stats()["skills"]).is_equal_to(stats_atk["skills"])
-	#assert_that(attacker.get_stats()["is_ranged"]).is_equal_to(stats_atk["is_ranged"])
-	#assert_that(attacker.get_stats()["mesh_path"]).is_equal_to(stats_atk["mesh_path"])
-	#assert_that(attacker.get_stats()["current_health"]).is_equal_to(stats_atk["current_health"])
-	#assert_that(attacker.get_stats()["current_mana"]).is_equal_to(stats_atk["current_mana"])
-	#
-	#assert_that(defender.get_stats()["max_health"]).is_equal_to(stats_def["max_health"])
-	#assert_that(defender.get_stats()["attack"]).is_equal_to(stats_def["attack"])
-	#assert_that(defender.get_stats()["dexterity"]).is_equal_to(stats_def["dexterity"])
-	#assert_that(defender.get_stats()["defense"]).is_equal_to(stats_def["defense"])
-	#assert_that(defender.get_stats()["agility"]).is_equal_to(stats_def["agility"])
-	#assert_that(defender.get_stats()["movement"]).is_equal_to(stats_def["movement"])
-	#assert_that(defender.get_stats()["ini_mana"]).is_equal_to(stats_def["ini_mana"])
-	#assert_that(defender.get_stats()["max_mana"]).is_equal_to(stats_def["max_mana"])
-	#assert_that(defender.get_stats()["reg_mana"]).is_equal_to(stats_def["reg_mana"])
-	#assert_that(defender.get_stats()["range"]).is_equal_to(stats_def["range"])
-	#assert_that(defender.get_stats()["skills"]).is_equal_to(stats_def["skills"])
-	#assert_that(defender.get_stats()["is_ranged"]).is_equal_to(stats_def["is_ranged"])
-	#assert_that(defender.get_stats()["mesh_path"]).is_equal_to(stats_def["mesh_path"])
-	#assert_that(defender.get_stats()["current_health"]).is_equal_to(stats_def["current_health"])
-	#assert_that(defender.get_stats()["current_mana"]).is_equal_to(stats_def["current_mana"])
-	#
-	## Clean up
-	#attacker.free()
-	#defender.free()
-#
+func test_combat_round():
+	pass
+
+func test_attack_physical():
+	pass
+	
+func test_attack_skill():
+	pass
+	
+func test_attack_magic():
+	pass
+	
+func test_attack_miss():
+	pass
