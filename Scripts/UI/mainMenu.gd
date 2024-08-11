@@ -54,7 +54,7 @@ func combat_debug_test():
 			"range": 5,
 			"cost": 12,
 			"spa": 11,
-			"sef": false, # TODO Implement SEF
+			"sef": true, # TODO Implement SEF
 			"imd": 0
 		}
 	}

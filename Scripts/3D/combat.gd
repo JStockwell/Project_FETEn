@@ -56,32 +56,38 @@ func combat_round(type: String, rolls: Array, map_mod: int, skillName: String = 
 
 		"skill":
 			var skillSet = GameStatus.skillSet[skillName].get_skill()
-			print(skillSet)
-			attack(attacker, defender, type, rolls, skillSet["spa"], skillSet["sef"], skillSet["imd"])
-			await wait(1)
+			if skillSet["sef"]:
+				SEF.run(self, skillName, attacker, defender, skillSet["spa"], skillSet["imd"])
+			else:
+				attack(attacker, defender, type, rolls, map_mod, skillSet["spa"], skillSet["imd"])
+				await wait(1)
 	
 
 # Attack functions
 # TODO Map modifier
 # t_ -> temporary
-func attack(t_attacker, t_defender, type: String, rolls: Array, map_mod: int, spa: int = 0, sef: bool = false, imd: int = 1):
+func attack(t_attacker, t_defender, type: String, rolls: Array, map_mod: int, spa: int = 0, imd: int = 1):
 	if calc_hit_chance(t_attacker.get_stats()["dexterity"], t_defender.get_stats()["agility"], map_mod, rolls):
 		var crit = calc_crit(t_attacker.get_stats()["dexterity"], t_attacker.get_stats()["agility"], t_defender.get_stats()["agility"], rolls[3])
 		var dmg = 0
-		match type:
-			"phys":
-				dmg = calc_damage(t_attacker.get_stats()["attack"], t_defender.get_stats()["defense"])
-			"skill":
-				dmg = calc_damage(t_attacker.get_stats()["attack"], t_defender.get_stats()["defense"], spa, sef, imd)
 		
-		t_defender.modify_health(-int(dmg * crit))
-		update_damage_text(str(-int(dmg * crit)))
-		
-		await wait(1.5)
-		damageNumber.hide()
+		if type == "phys":
+			dmg = calc_damage(t_attacker.get_stats()["attack"], t_defender.get_stats()["defense"])
+		else:
+			print(imd)
+			dmg = calc_damage(t_attacker.get_stats()["attack"], t_defender.get_stats()["defense"], spa, imd)
+			
+		deal_damage(dmg, crit, t_defender)
 		
 	else:
 		update_damage_text("MISS")
+		
+func deal_damage(dmg: int, crit: int, t_defender):
+	t_defender.modify_health(-int(dmg * crit))
+	update_damage_text(str(-int(dmg * crit)))
+	
+	await wait(1.5)
+	damageNumber.hide()
 		
 # Attack Calculations
 func calc_hit_chance(att_dex: int, def_agi: int, map_mod: int, rolls: Array) -> bool:
@@ -99,12 +105,8 @@ func calc_crit(att_dex: int, att_agi: int, def_agi: int, crit_roll: int) -> int:
 	else:
 		return 1
 
-func calc_damage(att: int, def: int, spa: int = 0, sef: bool = false, imd: int = 1):
-	if sef:
-		# TODO Execute SEF
-		pass
-	else:
-		return att + spa - def * imd
+func calc_damage(att: int, def: int, spa: int = 0, imd: int = 1):
+	return att + spa - (def * imd)
 
 # Utility
 func update_damage_text(text: String) -> void:
@@ -152,8 +154,7 @@ func _on_debug_ranged_attack_button_pressed():
 
 # TODO test with sef aswell
 func _on_debug_skill_attack_button_pressed():
-	print(debugSkillOptions.get_item_text(debugSkillOptions.get_selected_id()))
-	combat_round("skill", generate_rolls(), debugSkillOptions.get_item_text(debugSkillOptions.get_selected_id()))
+	combat_round("skill", generate_rolls(), 0, debugSkillOptions.get_item_text(debugSkillOptions.get_selected_id()))
 	update_debug_buttons(true)
 	debugButtonTimer.start()
 	
