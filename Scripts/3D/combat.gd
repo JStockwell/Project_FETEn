@@ -74,7 +74,7 @@ func attack(t_attacker, t_defender, type: String, rolls: Array, spa: int = 0, se
 				dmg = calc_mag_damage(t_attacker.get_stats()["attack"], spa)
 		
 		t_defender.modify_health(-int(dmg * crit))
-		update_damage_text(str(int(dmg * crit)))
+		update_damage_text(str(-int(dmg * crit)))
 		
 		await wait(1.5)
 		damageNumber.hide()
@@ -130,32 +130,52 @@ var debugUI = $UI/Debug
 var debugText = $UI/Debug/DebugText
 
 @onready
-var debugMeleeAttackButton = $UI/Debug/DebugMeleeAttackButton
+var debugMeleeAttackButton = $UI/Debug/DebugButtons/DebugMeleeAttackButton
 
 @onready
-var debugRangedAttackButton = $UI/Debug/DebugRangedAttackButton
+var debugRangedAttackButton = $UI/Debug/DebugButtons/DebugRangedAttackButton
 
 @onready
-var debugSkillAttackButton = $UI/Debug/DebugSkillAttackButton
+var debugSkillAttackButton = $UI/Debug/DebugButtons/DebugSkillAttackButton
 
 @onready
-var debugMagAttackButton = $UI/Debug/DebugMagAttackButton
+var debugMagAttackButton = $UI/Debug/DebugButtons/DebugMagAttackButton
+
+@onready
+var debugButtonTimer = $UI/Debug/DebugButtons/DebugButtonTimer
 
 # TODO disable all buttons every time you press an attack
 func _on_debug_phys_attack_pressed() -> void:
 	combat_round("melee", generate_rolls())
+	update_debug_buttons(true)
+	debugButtonTimer.start()
 	
 func _on_debug_ranged_attack_button_pressed():
 	combat_round("ranged", generate_rolls())
+	update_debug_buttons(true)
+	debugButtonTimer.start()
 
 # TODO test with sef aswell
 func _on_debug_skill_attack_button_pressed():
 	combat_round("skill", generate_rolls(), 6)
+	update_debug_buttons(true)
+	debugButtonTimer.start()
 
 func _on_debug_mag_attack_button_pressed():
  # TODO implement with skills
 	combat_round("mag", generate_rolls(), 6)
+	update_debug_buttons(true)
+	debugButtonTimer.start()
 	
 # Debug utilities
 func update_debug_text() -> void:
 	debugText.text = "attacker_hp: {att_hp}\ndefender_hp: {def_hp}".format({"att_hp": attacker.get_stats()["current_health"], "def_hp": defender.get_stats()["current_health"]})
+
+func update_debug_buttons(value: bool) -> void:
+	debugMagAttackButton.disabled = value
+	debugMeleeAttackButton.disabled = value
+	debugRangedAttackButton.disabled = value
+	debugSkillAttackButton.disabled = value
+
+func _on_debug_button_timer_timeout():
+	update_debug_buttons(false)

@@ -98,7 +98,12 @@ def hp: 99"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DebugMeleeAttackButton" type="Button" parent="UI/Debug"]
+[node name="DebugButtons" type="Control" parent="UI/Debug"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DebugMeleeAttackButton" type="Button" parent="UI/Debug/DebugButtons"]
 layout_mode = 0
 offset_left = 496.0
 offset_top = 480.0
@@ -106,7 +111,7 @@ offset_right = 657.0
 offset_bottom = 511.0
 text = "debug phys attack"
 
-[node name="DebugRangedAttackButton" type="Button" parent="UI/Debug"]
+[node name="DebugRangedAttackButton" type="Button" parent="UI/Debug/DebugButtons"]
 layout_mode = 0
 offset_left = 488.0
 offset_top = 520.0
@@ -114,7 +119,7 @@ offset_right = 664.0
 offset_bottom = 551.0
 text = "debug ranged attack"
 
-[node name="DebugSkillAttackButton" type="Button" parent="UI/Debug"]
+[node name="DebugSkillAttackButton" type="Button" parent="UI/Debug/DebugButtons"]
 layout_mode = 0
 offset_left = 504.0
 offset_top = 560.0
@@ -122,13 +127,16 @@ offset_right = 648.0
 offset_bottom = 591.0
 text = "debug skill attack"
 
-[node name="DebugMagAttackButton" type="Button" parent="UI/Debug"]
+[node name="DebugMagAttackButton" type="Button" parent="UI/Debug/DebugButtons"]
 layout_mode = 0
 offset_left = 496.0
 offset_top = 600.0
 offset_right = 656.0
 offset_bottom = 631.0
 text = "debug mag attack"
+
+[node name="DebugButtonTimer" type="Timer" parent="UI/Debug/DebugButtons"]
+wait_time = 1.8
 
 [node name="DamageNumber" type="Label3D" parent="UI"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.75, 0)
@@ -137,5 +145,8 @@ text = "-99
 "
 font_size = 200
 
-[connection signal="pressed" from="UI/Debug/DebugMeleeAttackButton" to="." method="_on_debug_phys_attack_pressed"]
-[connection signal="pressed" from="UI/Debug/DebugRangedAttackButton" to="." method="_on_debug_ranged_attack_button_pressed"]
+[connection signal="pressed" from="UI/Debug/DebugButtons/DebugMeleeAttackButton" to="." method="_on_debug_phys_attack_pressed"]
+[connection signal="pressed" from="UI/Debug/DebugButtons/DebugRangedAttackButton" to="." method="_on_debug_ranged_attack_button_pressed"]
+[connection signal="pressed" from="UI/Debug/DebugButtons/DebugSkillAttackButton" to="." method="_on_debug_skill_attack_button_pressed"]
+[connection signal="pressed" from="UI/Debug/DebugButtons/DebugMagAttackButton" to="." method="_on_debug_mag_attack_button_pressed"]
+[connection signal="timeout" from="UI/Debug/DebugButtons/DebugButtonTimer" to="." method="_on_debug_button_timer_timeout"]
