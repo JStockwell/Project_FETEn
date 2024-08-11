@@ -30,6 +30,7 @@ func init_characters():
 	
 	defender.set_stats(GameStatus.get_defender_stats())
 	defender.set_mesh(GameStatus.get_defender_stats()["mesh_path"])
+	
 	#defender.rotate_y(PI/4)
 
 # 4 types: melee, ranged, skill and mag

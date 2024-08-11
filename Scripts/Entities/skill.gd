@@ -5,29 +5,10 @@ var skillName: String
 var range: int
 var cost: int
 var spa: int = 0
-# Find way to execute functions from string that isnt a match
-var specialEffectFunc: String = ""
+# TODO Find way to execute functions from string that isnt a match using the ID name
+var specialEffectFunc: bool = false
 var canTargetAllies: bool = false
-
-func init_skill(args: Dictionary) -> void:
-	var validator = true
-	for variable in ["skill_name", "range", "cost"]:
-		if variable not in args.keys():
-			validator = false
-
-	if validator:
-		skillName = args["skill_name"]
-		range = args["range"]
-		cost = args["cost"]
-	  
-		if "spa" in args.keys():
-			spa = args["spa"]
-	  
-		if "sef" in args.keys():
-			specialEffectFunc = args["sef"]
-		 
-		if "cta" in args.keys():
-			canTargetAllies = args["cta"] 
+var isMagicDamage: int = 1
 		 
 func get_skill() -> Dictionary:
 	return {
@@ -36,5 +17,6 @@ func get_skill() -> Dictionary:
 		"cost": cost,
 		"spa": spa,
 		"sef": specialEffectFunc,
-		"cta": canTargetAllies
+		"cta": canTargetAllies,
+		"imd": isMagicDamage
 	}        

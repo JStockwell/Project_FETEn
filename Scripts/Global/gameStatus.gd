@@ -2,6 +2,7 @@ extends Node
 
 var attackerStats
 var defenderStats
+var skillList = {}
 
 var debugMode = true
 

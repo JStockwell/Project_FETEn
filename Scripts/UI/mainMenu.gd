@@ -18,7 +18,7 @@ func combat_debug_test():
 		"max_mana": 25,
 		"reg_mana": 8,
 		"range": 5,
-		"skills": [],
+		"skills": ["shadow_ball", "nero_nero"],
 		"is_ranged": true,
 		"mesh_path": "res://Assets/Characters/Party/Edgar/Edgar Idle 1.glb"
 	}
@@ -40,6 +40,25 @@ func combat_debug_test():
 		"mesh_path": null
 	}
 	
+	# Skill: skillName, range, cost, spa, sef, cta, imd
+	var debug_skill_set = {
+		"shadow_ball": {
+			"skill_name": "Shadow Ball",
+			"range": 5,
+			"cost": 6,
+			"spa": 7,
+			"imd": 0
+		},
+		"nero_nero": {
+			"skill_name": "Death Beam",
+			"range": 5,
+			"cost": 12,
+			"spa": 11,
+			"sef": true,
+			"imd": 0
+		}
+	}
+	
 	var debug_attacker = Character.instantiate()
 	var debug_defender = Character.instantiate()
 	
@@ -47,6 +66,9 @@ func combat_debug_test():
 	debug_defender.set_initial_stats(debug_defender_stats)
 	
 	GameStatus.set_characters(debug_attacker.get_stats(), debug_defender.get_stats())
-
+	
+	for skillName in debug_skill_set:
+		GameStatus.skillList[skillName] = Factory.Skill.create(debug_skill_set[skillName])
+		
 func _on_debug_button_pressed():
 	get_tree().change_scene_to_file("res://Scenes/3D/combat.tscn")
