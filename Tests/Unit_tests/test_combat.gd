@@ -89,3 +89,26 @@ func test_attack_magic():
 	
 func test_attack_miss():
 	pass
+	
+func test_generate_rolls_1_2_and_1_100():
+	var dices = test_combat.generate_rolls()
+	var dice
+	
+	
+	for i in range(100):
+		for j in range(3):
+			dice = dices[j]
+			if j == 0:
+				assert_int(dice).is_between(1,2)
+			else:
+				assert_int(dice).is_between(1,100)
+	
+func test_generate_rolls_random():
+	var dices1 = []
+	var dices2 = []
+	
+	for i in range(8000):
+		dices1.append_array(test_combat.generate_rolls())
+		dices2.append_array(test_combat.generate_rolls())
+	
+	assert_that(dices1).is_not_equal(dices2)
