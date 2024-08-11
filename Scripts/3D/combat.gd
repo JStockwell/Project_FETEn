@@ -20,7 +20,8 @@ func _ready():
 	#combat_round(type)
 	
 func _process(delta):
-	update_debug_text()
+	if GameStatus.debugMode:
+		update_debug_text()
 
 # Initialize characters
 func init_characters():
@@ -32,37 +33,37 @@ func init_characters():
 	#defender.rotate_y(PI/4)
 
 # 4 types: melee, ranged, skill and mag
-func combat_round(type: String, spa: int = 0, sef: String = "") -> void:
+func combat_round(type: String, rolls: Array, spa: int = 0, sef: String = "") -> void:
 	# TODO return to map
 	match type:
 		"melee":
-			attack(attacker, defender, "phys")
+			attack(attacker, defender, "phys", rolls)
 			await wait(1)
-			attack(defender, attacker, "phys")
+			attack(defender, attacker, "phys", rolls)
 			await wait(1)
 			
 		"ranged":
-			attack(attacker, defender, "phys")
+			attack(attacker, defender, "phys", rolls)
 			await wait(1)
 			if defender.is_ranged() and defender.get_stats()["range"] >= attacker.get_stats()["range"]:
-				attack(defender, attacker, "phys")
+				attack(defender, attacker, "phys", rolls)
 				await wait(1)
 
 		"skill":
-			attack(attacker, defender, type, spa, sef)
+			attack(attacker, defender, type, rolls, spa, sef)
 			await wait(1)
 
 		"mag":
-			attack(attacker, defender, type, spa)
+			attack(attacker, defender, type, rolls, spa)
 			await wait(1)
 	
 
 # Attack functions
 # TODO Map modifier
 # t_ -> temporary
-func attack(t_attacker, t_defender, type: String, spa: int = 0, sef=""):
-	if calc_hit_chance(t_attacker.get_stats()["dexterity"], t_defender.get_stats()["agility"], 0):
-		var crit = calc_crit(t_attacker.get_stats()["dexterity"], t_attacker.get_stats()["agility"], t_defender.get_stats()["agility"])
+func attack(t_attacker, t_defender, type: String, rolls: Array, spa: int = 0, sef: String = ""):
+	if calc_hit_chance(t_attacker.get_stats()["dexterity"], t_defender.get_stats()["agility"], 0, rolls):
+		var crit = calc_crit(t_attacker.get_stats()["dexterity"], t_attacker.get_stats()["agility"], t_defender.get_stats()["agility"], rolls[3])
 		var dmg = 0
 		match type:
 			"phys":
@@ -82,17 +83,17 @@ func attack(t_attacker, t_defender, type: String, spa: int = 0, sef=""):
 		update_damage_text("MISS")
 		
 # Attack Calculations
-func calc_hit_chance(att_dex: int, def_agi: int, map_mod: int) -> bool:
+func calc_hit_chance(att_dex: int, def_agi: int, map_mod: int, rolls: Array) -> bool:
 	var chance = 50 + 5 * att_dex - 3 * def_agi - map_mod
 	# 1: True hit, 2: Bloated hit
-	if randi_range(1,2) == 1:
-		return randi_range(1,100) <= chance
+	if rolls[0] == 1:
+		return rolls[1] <= chance
 	else:
-		var roll = int((randi_range(1,100) + randi_range(1,100)) / 2)
+		var roll = int((rolls[1] + rolls[2]) / 2)
 		return roll <= chance
 		
-func calc_crit(att_dex: int, att_agi: int, def_agi: int) -> int:
-	if randi_range(1,100) <= (att_dex + att_agi) / 2 - def_agi / 2:
+func calc_crit(att_dex: int, att_agi: int, def_agi: int, crit_roll: int) -> int:
+	if crit_roll <= (att_dex + att_agi) / 2 - def_agi / 2:
 		return 1.5
 	else:
 		return 1
@@ -114,9 +115,9 @@ func update_damage_text(text: String) -> void:
 	damageNumber.text = text
 	damageNumber.show()
 	
-#TODO
-func roll_dice(upper: int = 100) -> int:
-	return randi_range(1, upper)
+func generate_rolls() -> Array:
+	# true_hit_flag, dice_1, dice_2, crit_roll
+	return [randi_range(1, 2), randi_range(1, 100), randi_range(1, 100), randi_range(1, 100)]
 
 func wait(seconds: float) -> void:
 	await get_tree().create_timer(seconds).timeout
@@ -142,18 +143,18 @@ var debugMagAttackButton = $UI/Debug/DebugMagAttackButton
 
 # TODO disable all buttons every time you press an attack
 func _on_debug_phys_attack_pressed() -> void:
-	combat_round("melee")
+	combat_round("melee", generate_rolls())
 	
 func _on_debug_ranged_attack_button_pressed():
-	combat_round("ranged")
+	combat_round("ranged", generate_rolls())
 
 # TODO test with sef aswell
 func _on_debug_skill_attack_button_pressed():
-	combat_round("skill", 6)
+	combat_round("skill", generate_rolls(), 6)
 
 func _on_debug_mag_attack_button_pressed():
  # TODO implement with skills
-	combat_round("mag", 6)
+	combat_round("mag", generate_rolls(), 6)
 	
 # Debug utilities
 func update_debug_text() -> void:
