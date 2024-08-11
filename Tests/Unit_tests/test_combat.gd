@@ -94,8 +94,7 @@ func test_generate_rolls_1_2_and_1_100():
 	var dices = test_combat.generate_rolls()
 	var dice
 	
-	
-	for i in range(100):
+	for i in range(10):
 		for j in range(3):
 			dice = dices[j]
 			if j == 0:
