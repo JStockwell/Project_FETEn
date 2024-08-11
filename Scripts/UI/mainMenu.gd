@@ -54,7 +54,7 @@ func combat_debug_test():
 			"range": 5,
 			"cost": 12,
 			"spa": 11,
-			"sef": true,
+			"sef": false, # TODO Implement SEF
 			"imd": 0
 		}
 	}
@@ -68,7 +68,7 @@ func combat_debug_test():
 	GameStatus.set_characters(debug_attacker.get_stats(), debug_defender.get_stats())
 	
 	for skillName in debug_skill_set:
-		GameStatus.skillList[skillName] = Factory.Skill.create(debug_skill_set[skillName])
+		GameStatus.skillSet[skillName] = Factory.Skill.create(debug_skill_set[skillName])
 		
 func _on_debug_button_pressed():
 	get_tree().change_scene_to_file("res://Scenes/3D/combat.tscn")

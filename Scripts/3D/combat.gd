@@ -15,6 +15,9 @@ func _ready():
 	if not GameStatus.debugMode:
 		debugUI.hide()
 		
+	else:
+		setup_debug_skill_options()
+		
 	init_characters()
 	# TODO Times and UI once Map is being used
 	#combat_round(type)
@@ -34,45 +37,42 @@ func init_characters():
 	#defender.rotate_y(PI/4)
 
 # 4 types: melee, ranged, skill and mag
-func combat_round(type: String, rolls: Array, spa: int = 0, sef: String = "") -> void:
+func combat_round(type: String, rolls: Array, map_mod: int, skillName: String = "") -> void:
 	# TODO return to map
 	match type:
 		"melee":
-			attack(attacker, defender, "phys", rolls)
+			attack(attacker, defender, "phys", rolls, map_mod)
 			await wait(1)
-			attack(defender, attacker, "phys", rolls)
+			attack(defender, attacker, "phys", rolls, map_mod)
 			await wait(1)
 			
 		"ranged":
-			attack(attacker, defender, "phys", rolls)
+			attack(attacker, defender, "phys", rolls, map_mod)
 			await wait(1)
+			# TODO see if you can retaliate from ranged attacks
 			if defender.is_ranged() and defender.get_stats()["range"] >= attacker.get_stats()["range"]:
-				attack(defender, attacker, "phys", rolls)
+				attack(defender, attacker, "phys", rolls, map_mod)
 				await wait(1)
 
 		"skill":
-			attack(attacker, defender, type, rolls, spa, sef)
-			await wait(1)
-
-		"mag":
-			attack(attacker, defender, type, rolls, spa)
+			var skillSet = GameStatus.skillSet[skillName].get_skill()
+			print(skillSet)
+			attack(attacker, defender, type, rolls, skillSet["spa"], skillSet["sef"], skillSet["imd"])
 			await wait(1)
 	
 
 # Attack functions
 # TODO Map modifier
 # t_ -> temporary
-func attack(t_attacker, t_defender, type: String, rolls: Array, spa: int = 0, sef: String = ""):
-	if calc_hit_chance(t_attacker.get_stats()["dexterity"], t_defender.get_stats()["agility"], 0, rolls):
+func attack(t_attacker, t_defender, type: String, rolls: Array, map_mod: int, spa: int = 0, sef: bool = false, imd: int = 1):
+	if calc_hit_chance(t_attacker.get_stats()["dexterity"], t_defender.get_stats()["agility"], map_mod, rolls):
 		var crit = calc_crit(t_attacker.get_stats()["dexterity"], t_attacker.get_stats()["agility"], t_defender.get_stats()["agility"], rolls[3])
 		var dmg = 0
 		match type:
 			"phys":
-				dmg = calc_phys_damage(t_attacker.get_stats()["attack"], t_defender.get_stats()["defense"])
+				dmg = calc_damage(t_attacker.get_stats()["attack"], t_defender.get_stats()["defense"])
 			"skill":
-				dmg = calc_skill_damage(t_attacker.get_stats()["attack"], t_defender.get_stats()["defense"], spa, sef)
-			"mag":
-				dmg = calc_mag_damage(t_attacker.get_stats()["attack"], spa)
+				dmg = calc_damage(t_attacker.get_stats()["attack"], t_defender.get_stats()["defense"], spa, sef, imd)
 		
 		t_defender.modify_health(-int(dmg * crit))
 		update_damage_text(str(-int(dmg * crit)))
@@ -99,17 +99,12 @@ func calc_crit(att_dex: int, att_agi: int, def_agi: int, crit_roll: int) -> int:
 	else:
 		return 1
 
-func calc_phys_damage(att: int, def: int) -> int:
-	return att - def
-	
-func calc_skill_damage(att: int, def: int, spa: int, sef: String) -> int:
-	if sef != "":
-   # TODO Execute sef
+func calc_damage(att: int, def: int, spa: int = 0, sef: bool = false, imd: int = 1):
+	if sef:
+		# TODO Execute SEF
 		pass
-	return att + spa - def
-	
-func calc_mag_damage(att: int, spa: int) -> int:
-	return att + spa
+	else:
+		return att + spa - def * imd
 
 # Utility
 func update_damage_text(text: String) -> void:
@@ -140,31 +135,25 @@ var debugRangedAttackButton = $UI/Debug/DebugButtons/DebugRangedAttackButton
 var debugSkillAttackButton = $UI/Debug/DebugButtons/DebugSkillAttackButton
 
 @onready
-var debugMagAttackButton = $UI/Debug/DebugButtons/DebugMagAttackButton
-
-@onready
 var debugButtonTimer = $UI/Debug/DebugButtons/DebugButtonTimer
 
-# TODO disable all buttons every time you press an attack
+@onready
+var debugSkillOptions = $UI/Debug/DebugSkillOptions
+
 func _on_debug_phys_attack_pressed() -> void:
-	combat_round("melee", generate_rolls())
+	combat_round("melee", generate_rolls(), 0)
 	update_debug_buttons(true)
 	debugButtonTimer.start()
 	
 func _on_debug_ranged_attack_button_pressed():
-	combat_round("ranged", generate_rolls())
+	combat_round("ranged", generate_rolls(), 0)
 	update_debug_buttons(true)
 	debugButtonTimer.start()
 
 # TODO test with sef aswell
 func _on_debug_skill_attack_button_pressed():
-	combat_round("skill", generate_rolls(), 6)
-	update_debug_buttons(true)
-	debugButtonTimer.start()
-
-func _on_debug_mag_attack_button_pressed():
- # TODO implement with skills
-	combat_round("mag", generate_rolls(), 6)
+	print(debugSkillOptions.get_item_text(debugSkillOptions.get_selected_id()))
+	combat_round("skill", generate_rolls(), debugSkillOptions.get_item_text(debugSkillOptions.get_selected_id()))
 	update_debug_buttons(true)
 	debugButtonTimer.start()
 	
@@ -173,10 +162,13 @@ func update_debug_text() -> void:
 	debugText.text = "attacker_hp: {att_hp}\ndefender_hp: {def_hp}".format({"att_hp": attacker.get_stats()["current_health"], "def_hp": defender.get_stats()["current_health"]})
 
 func update_debug_buttons(value: bool) -> void:
-	debugMagAttackButton.disabled = value
 	debugMeleeAttackButton.disabled = value
 	debugRangedAttackButton.disabled = value
 	debugSkillAttackButton.disabled = value
+	
+func setup_debug_skill_options() -> void:
+	for skillName in GameStatus.attackerStats["skills"]:
+		debugSkillOptions.add_item(skillName)
 
 func _on_debug_button_timer_timeout():
 	update_debug_buttons(false)
