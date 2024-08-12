@@ -47,7 +47,7 @@ func combat_debug_test():
 			"range": 5,
 			"cost": 6,
 			"spa": 7,
-			"imd": 0
+			"imd": 1
 		},
 		"nero_nero": {
 			"skill_name": "Death Beam",
@@ -55,15 +55,12 @@ func combat_debug_test():
 			"cost": 12,
 			"spa": 11,
 			"sef": true, # TODO Implement SEF
-			"imd": 0
+			"imd": 1
 		}
 	}
 	
-	var debug_attacker = Character.instantiate()
-	var debug_defender = Character.instantiate()
-	
-	debug_attacker.set_initial_stats(debug_attacker_stats)
-	debug_defender.set_initial_stats(debug_defender_stats)
+	var debug_attacker = Factory.Character.create(debug_attacker_stats)
+	var debug_defender = Factory.Character.create(debug_defender_stats)
 	
 	GameStatus.set_characters(debug_attacker.get_stats(), debug_defender.get_stats())
 	

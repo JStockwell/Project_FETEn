@@ -18,10 +18,11 @@ offset_bottom = 40.0
 
 [node name="DebugButton" type="Button" parent="Debug"]
 layout_mode = 0
-offset_left = 528.0
-offset_top = 304.0
-offset_right = 620.0
-offset_bottom = 335.0
+offset_left = 920.0
+offset_top = 496.0
+offset_right = 1012.0
+offset_bottom = 527.0
 text = "To Combat"
 
+[connection signal="button_up" from="Debug/DebugButton" to="." method="_on_debug_button_button_up"]
 [connection signal="pressed" from="Debug/DebugButton" to="." method="_on_debug_button_pressed"]

@@ -1,6 +1,6 @@
 class_name SkillFactory
 
-const Skill = preload("res://Scripts/Entities/skill.gd")
+const Skill = preload("res://Scripts/Classes/skill.gd")
 
 static func create(args: Dictionary):
 	var validator = true

@@ -35,7 +35,7 @@ static func create(args: Dictionary):
 		
 		var path = args["meshPath"]
 		if path == null:
-			path = "res://Assets/Characters/Placeholder/Placeholder_Char.glb"
+			path = "res://Assets/MapTiles/placeholder_tile.glb"
 			
 		myMapTile.add_child(load(path).instantiate())
 		

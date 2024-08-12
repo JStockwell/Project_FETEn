@@ -18,6 +18,13 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameStatus="*res://Scripts/Global/gameStatus.gd"
+CombatMapStatus="*res://Scripts/Global/combatMapStatus.gd"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/resizable=false
 
 [editor_plugins]
 

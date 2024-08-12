@@ -43,30 +43,27 @@ func combat_round(type: String, rolls: Array, map_mod: int, skillName: String = 
 		"melee":
 			attack(attacker, defender, "phys", rolls, map_mod)
 			await wait(1)
-			attack(defender, attacker, "phys", rolls, map_mod)
-			await wait(1)
-			
-		"ranged":
-			attack(attacker, defender, "phys", rolls, map_mod)
-			await wait(1)
-			# TODO see if you can retaliate from ranged attacks
-			if defender.is_ranged() and defender.get_stats()["range"] >= attacker.get_stats()["range"]:
+			if defender.get_stats()["current_health"] != 0:
 				attack(defender, attacker, "phys", rolls, map_mod)
 				await wait(1)
 
+		"ranged":
+			attack(attacker, defender, "phys", rolls, map_mod)
+			await wait(1)
+
 		"skill":
+			# TODO Melee skill retaliation
 			var skillSet = GameStatus.skillSet[skillName].get_skill()
 			if skillSet["sef"]:
 				SEF.run(self, skillName, attacker, defender, skillSet["spa"], skillSet["imd"])
 			else:
 				attack(attacker, defender, type, rolls, map_mod, skillSet["spa"], skillSet["imd"])
 				await wait(1)
-	
 
 # Attack functions
 # TODO Map modifier
 # t_ -> temporary
-func attack(t_attacker, t_defender, type: String, rolls: Array, map_mod: int, spa: int = 0, imd: int = 1):
+func attack(t_attacker, t_defender, type: String, rolls: Array, map_mod: int, spa: int = 0, imd: int = 1) -> void:
 	if calc_hit_chance(t_attacker.get_stats()["dexterity"], t_defender.get_stats()["agility"], map_mod, rolls):
 		var crit = calc_crit(t_attacker.get_stats()["dexterity"], t_attacker.get_stats()["agility"], t_defender.get_stats()["agility"], rolls[3])
 		var dmg = 0
@@ -74,7 +71,6 @@ func attack(t_attacker, t_defender, type: String, rolls: Array, map_mod: int, sp
 		if type == "phys":
 			dmg = calc_damage(t_attacker.get_stats()["attack"], t_defender.get_stats()["defense"])
 		else:
-			print(imd)
 			dmg = calc_damage(t_attacker.get_stats()["attack"], t_defender.get_stats()["defense"], spa, imd)
 			
 		deal_damage(dmg, crit, t_defender)
@@ -83,30 +79,33 @@ func attack(t_attacker, t_defender, type: String, rolls: Array, map_mod: int, sp
 		update_damage_text("MISS")
 		
 func deal_damage(dmg: int, crit: int, t_defender):
-	t_defender.modify_health(-int(dmg * crit))
-	update_damage_text(str(-int(dmg * crit)))
+	if dmg >= 0:
+		t_defender.modify_health(-int(dmg * crit))
+		update_damage_text(str(-int(dmg * crit)))
+	else:
+		update_damage_text("0")
 	
 	await wait(1.5)
 	damageNumber.hide()
-		
+
 # Attack Calculations
 func calc_hit_chance(att_dex: int, def_agi: int, map_mod: int, rolls: Array) -> bool:
-	var chance = 50 + 5 * att_dex - 3 * def_agi - map_mod
+	var chance = 50 + 5 * att_dex - 3 * def_agi + map_mod
 	# 1: True hit, 2: Bloated hit
 	if rolls[0] == 1:
 		return rolls[1] <= chance
 	else:
 		var roll = int((rolls[1] + rolls[2]) / 2)
 		return roll <= chance
-		
+
 func calc_crit(att_dex: int, att_agi: int, def_agi: int, crit_roll: int) -> int:
-	if crit_roll <= (att_dex + att_agi) / 2 - def_agi / 2:
+	if crit_roll <= (att_dex + att_agi) - def_agi / 2:
 		return 1.5
 	else:
 		return 1
 
-func calc_damage(att: int, def: int, spa: int = 0, imd: int = 1):
-	return att + spa - (def * imd)
+func calc_damage(att: int, def: int, spa: int = 0, imd: int = 0) -> int:
+	return att + spa - (def * (1 - imd))
 
 # Utility
 func update_damage_text(text: String) -> void:
