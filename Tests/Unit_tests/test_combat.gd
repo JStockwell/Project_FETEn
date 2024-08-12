@@ -3,9 +3,6 @@ extends GdUnitTestSuite
 #var Character = preload("res://Scripts/Entities/character.gd")
 #var Combat = preload("res://Scripts/3D/combat.gd")
 
-
-
-
 @onready
 var attacker = $Characters/Attacker
 @onready

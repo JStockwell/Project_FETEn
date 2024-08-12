@@ -47,7 +47,8 @@ func combat_debug_test():
 			"range": 5,
 			"cost": 6,
 			"spa": 7,
-			"imd": 1
+			"imd": 1,
+			"isMelee": false
 		},
 		"nero_nero": {
 			"skill_name": "Death Beam",
@@ -55,7 +56,8 @@ func combat_debug_test():
 			"cost": 12,
 			"spa": 11,
 			"sef": true, # TODO Implement SEF
-			"imd": 1
+			"imd": 1,
+			"isMelee": false
 		},
 		"boost_1": {
 			"skill_name": "Boost Lv 2",
@@ -63,7 +65,8 @@ func combat_debug_test():
 			"cost": 2,
 			"spa": 4,
 			"sef": true, # TODO Implement SEF
-			"imd": 0
+			"imd": 0,
+			"isMelee": true
 		},
 		"boost_2": {
 			"skill_name": "Boost Lv 2",
@@ -71,7 +74,8 @@ func combat_debug_test():
 			"cost": 2,
 			"spa": 4,
 			"sef": true, # TODO Implement SEF
-			"imd": 1
+			"imd": 1,
+			"isMelee": true
 		}
 	}
 	

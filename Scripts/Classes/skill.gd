@@ -9,6 +9,7 @@ var spa: int = 0
 var specialEffectFunc: bool = false
 var canTargetAllies: bool = false
 var isMagicDamage: int = 0
+var isMelee: bool
 
 func get_skill() -> Dictionary:
 	return {
@@ -18,5 +19,6 @@ func get_skill() -> Dictionary:
 		"spa": spa,
 		"sef": specialEffectFunc,
 		"cta": canTargetAllies,
-		"imd": isMagicDamage
+		"imd": isMagicDamage,
+		"isMelee": isMelee
 	}        

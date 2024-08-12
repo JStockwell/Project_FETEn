@@ -18,11 +18,7 @@ var stats = {
 	"mesh_path": null
 }
 
-const variable_stats_keys = ["current_health", "current_mana"]
-
-const INITIAL_STATS_NUM = 14
-
-# General getters and Setters
+# Getters
 func get_stats() -> Dictionary:
 	return stats
 
@@ -68,6 +64,7 @@ func is_ranged() -> bool:
 func get_mesh_path() -> String:
 	return stats["mesh_path"]
 
+# Setters
 func set_stats(stats_set: Dictionary) -> void:
 	if validate_stats(stats_set):
 		stats_set = cap_current_stats(stats_set)
@@ -81,7 +78,6 @@ func set_mesh(path) -> void:
 		path = "res://Assets/Characters/Placeholder/Placeholder_Char.glb"
 			
 	add_child(load(path).instantiate())
-	
 	
 # Functions
 func modify_health(hp_mod: int) -> void:
