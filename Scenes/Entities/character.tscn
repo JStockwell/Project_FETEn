@@ -23,4 +23,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.46158, 1.75049, -0.0008239
 shape = SubResource("BoxShape3D_047if")
 
 [node name="Placeholder_Char" parent="." instance=ExtResource("2_0dpv2")]
-visible = false
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
