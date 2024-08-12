@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://wvt31gswalxh"]
+
+[ext_resource type="Script" path="res://Scripts/3D/mapCombat.gd" id="1_rhc0y"]
+[ext_resource type="PackedScene" uid="uid://c11mh4mlt8853" path="res://Assets/MapTiles/placeholder_max_map.glb" id="2_tj2i2"]
+
+[node name="MapCombat" type="Node3D"]
+script = ExtResource("1_rhc0y")
+
+[node name="Utility" type="Node3D" parent="."]
+
+[node name="CameraPivot" type="Marker3D" parent="Utility"]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 5, 0, 6.7)
+
+[node name="Camera3D" type="Camera3D" parent="Utility/CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, -4.76837e-07, 7.21316)
+fov = 65.0
+
+[node name="Sun" type="DirectionalLight3D" parent="Utility"]
+transform = Transform3D(0.707107, -0.612373, 0.353553, 1.49012e-08, 0.5, 0.866025, -0.707107, -0.612372, 0.353553, 0, 7, 0)
+
+[node name="Debug" type="Node3D" parent="."]
+visible = false
+
+[node name="placeholder_max_map" parent="Debug" instance=ExtResource("2_tj2i2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)

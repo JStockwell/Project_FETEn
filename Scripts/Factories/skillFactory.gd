@@ -1,16 +1,15 @@
 class_name SkillFactory
 
-const Skill = preload("res://Scripts/Entities/skill.gd")
+const Skill = preload("res://Scripts/Classes/skill.gd")
 
 static func create(args: Dictionary):
-	var mySkill = Skill.new()
-	
 	var validator = true
 	for variable in ["skill_name", "range", "cost"]:
 		if variable not in args.keys():
 			validator = false
 
 	if validator:
+		var mySkill = Skill.new()
 		mySkill.skillName = args["skill_name"]
 		mySkill.range = args["range"]
 		mySkill.cost = args["cost"]
@@ -27,7 +26,7 @@ static func create(args: Dictionary):
 		if "imd" in args.keys():
 			mySkill.isMagicDamage = args["imd"]
 			
+		return mySkill
+			
 	else:
 		print("invalid skill set")
-	
-	return mySkill

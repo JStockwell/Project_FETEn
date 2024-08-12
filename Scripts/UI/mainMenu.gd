@@ -18,7 +18,7 @@ func combat_debug_test():
 		"max_mana": 25,
 		"reg_mana": 8,
 		"range": 5,
-		"skills": ["shadow_ball", "nero_nero"],
+		"skills": ["shadow_ball", "nero_nero", "boost_1", "boost_2"],
 		"is_ranged": true,
 		"mesh_path": "res://Assets/Characters/Party/Edgar/Edgar Idle 1.glb"
 	}
@@ -47,7 +47,7 @@ func combat_debug_test():
 			"range": 5,
 			"cost": 6,
 			"spa": 7,
-			"imd": 0
+			"imd": 1
 		},
 		"nero_nero": {
 			"skill_name": "Death Beam",
@@ -55,7 +55,23 @@ func combat_debug_test():
 			"cost": 12,
 			"spa": 11,
 			"sef": true, # TODO Implement SEF
+			"imd": 1
+		},
+		"boost_1": {
+			"skill_name": "Boost Lv 2",
+			"range": 1,
+			"cost": 2,
+			"spa": 4,
+			"sef": true, # TODO Implement SEF
 			"imd": 0
+		},
+		"boost_2": {
+			"skill_name": "Boost Lv 2",
+			"range": 1,
+			"cost": 2,
+			"spa": 4,
+			"sef": true, # TODO Implement SEF
+			"imd": 1
 		}
 	}
 	

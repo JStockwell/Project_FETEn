@@ -2,7 +2,9 @@ extends Node
 
 var attackerStats
 var defenderStats
+
 var skillSet = {}
+var party = {}
 
 var debugMode = true
 

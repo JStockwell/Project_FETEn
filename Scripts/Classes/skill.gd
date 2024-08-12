@@ -8,8 +8,8 @@ var spa: int = 0
 # TODO Find way to execute functions from string that isnt a match using the ID name
 var specialEffectFunc: bool = false
 var canTargetAllies: bool = false
-var isMagicDamage: int = 1
-		 
+var isMagicDamage: int = 0
+
 func get_skill() -> Dictionary:
 	return {
 		"skill_name": skillName,

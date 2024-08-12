@@ -40,6 +40,7 @@ static func create(args: Dictionary):
 			
 		character.stats = stats_set
 		character.add_child(load(mesh_path).instantiate())
+
 		return character
 		
 	else:
