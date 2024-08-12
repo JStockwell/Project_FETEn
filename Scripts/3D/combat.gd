@@ -37,13 +37,13 @@ func init_characters():
 	#defender.rotate_y(PI/4)
 
 # 4 types: melee, ranged, skill and mag
-func combat_round(type: String, rolls: Array, map_mod: int, skillName: String = "") -> void:
+func combat_round(type: String, rolls: Array, rolls_retaliate: Array, map_mod: int, skillName: String = "") -> void:
 	# TODO return to map
 	match type:
 		"melee":
 			attack(attacker, defender, "phys", rolls, map_mod)
 			await wait(1)
-			attack(defender, attacker, "phys", rolls, map_mod)
+			attack(defender, attacker, "phys", rolls_retaliate, map_mod)
 			await wait(1)
 			
 		"ranged":
@@ -51,7 +51,7 @@ func combat_round(type: String, rolls: Array, map_mod: int, skillName: String = 
 			await wait(1)
 			# TODO see if you can retaliate from ranged attacks
 			if defender.is_ranged() and defender.get_stats()["range"] >= attacker.get_stats()["range"]:
-				attack(defender, attacker, "phys", rolls, map_mod)
+				attack(defender, attacker, "phys", rolls_retaliate, map_mod)
 				await wait(1)
 
 		"skill":
@@ -143,18 +143,18 @@ var debugButtonTimer = $UI/Debug/DebugButtons/DebugButtonTimer
 var debugSkillOptions = $UI/Debug/DebugSkillOptions
 
 func _on_debug_phys_attack_pressed() -> void:
-	combat_round("melee", generate_rolls(), 0)
+	combat_round("melee", generate_rolls(), generate_rolls() , 0)
 	update_debug_buttons(true)
 	debugButtonTimer.start()
 	
 func _on_debug_ranged_attack_button_pressed():
-	combat_round("ranged", generate_rolls(), 0)
+	combat_round("ranged", generate_rolls(), generate_rolls(), 0)
 	update_debug_buttons(true)
 	debugButtonTimer.start()
 
 # TODO test with sef aswell
 func _on_debug_skill_attack_button_pressed():
-	combat_round("skill", generate_rolls(), 0, debugSkillOptions.get_item_text(debugSkillOptions.get_selected_id()))
+	combat_round("skill", generate_rolls(), generate_rolls(), 0, debugSkillOptions.get_item_text(debugSkillOptions.get_selected_id()))
 	update_debug_buttons(true)
 	debugButtonTimer.start()
 	
