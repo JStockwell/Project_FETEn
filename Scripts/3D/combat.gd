@@ -1,13 +1,16 @@
 extends Node3D
 
 @onready
-var attacker = $Characters/Attacker
+var attackerSpawn = $Characters/AttackerSpawn
 
 @onready
-var defender = $Characters/Defender
+var defenderSpawn  = $Characters/DefenderSpawn 
 
 @onready
 var damageNumber = $UI/DamageNumber
+
+var attacker
+var defender
 
 var Character = preload("res://Scenes/Entities/character.tscn")
 
@@ -18,7 +21,16 @@ func _ready():
 	else:
 		setup_debug_skill_options()
 		
-	init_characters()
+	# Create Attacker
+	attacker = Factory.Character.create(GameStatus.attackerStats)
+	defender = Factory.Character.create(GameStatus.defenderStats)
+	
+	attacker.translate(attackerSpawn.get_position())
+	defender.translate(defenderSpawn.get_position())
+	
+	add_child(attacker)
+	add_child(defender)
+	
 	# TODO Times and UI once Map is being used
 	#combat_round(type)
 	
@@ -26,27 +38,23 @@ func _process(delta):
 	if GameStatus.debugMode:
 		update_debug_text()
 
-# Initialize characters
-func init_characters():
-	attacker.set_stats(GameStatus.get_attacker_stats())
-	attacker.set_mesh(GameStatus.get_attacker_stats()["mesh_path"])
-	
-	defender.set_stats(GameStatus.get_defender_stats())
-	defender.set_mesh(GameStatus.get_defender_stats()["mesh_path"])
-	
-	#defender.rotate_y(PI/4)
-	
-# TODO add character ACC mod
-# TODO include crit mod from character
 # 4 types: melee, ranged, skill and mag
-func combat_round(type: String, rolls: Array, mapMod: int, skillName: String = "") -> void:
+func combat_round(type: String, rolls: Array, rolls_retaliate: Array, map_mod: int, skillName: String = "") -> void:
 	# TODO return to map
 	match type:
 		"melee":
 			attack(attacker, defender, rolls, mapMod)
 			await wait(1)
 			if defender.get_stats()["current_health"] != 0:
-				attack(defender, attacker, rolls, mapMod)
+				attack(defender, attacker, "phys", rolls_retaliate, map_mod)
+				await wait(1)
+			
+		"ranged":
+			attack(attacker, defender, "phys", rolls, map_mod)
+			await wait(1)
+			# TODO see if you can retaliate from ranged attacks
+			if defender.is_ranged() and defender.get_stats()["range"] >= attacker.get_stats()["range"]:
+				attack(defender, attacker, "phys", rolls_retaliate, map_mod)
 				await wait(1)
 
 		"ranged":
@@ -139,18 +147,18 @@ var debugButtonTimer = $UI/Debug/DebugButtons/DebugButtonTimer
 var debugSkillOptions = $UI/Debug/DebugSkillOptions
 
 func _on_debug_phys_attack_pressed() -> void:
-	combat_round("melee", generate_rolls(), 0)
+	combat_round("melee", generate_rolls(), generate_rolls() , 0)
 	update_debug_buttons(true)
 	debugButtonTimer.start()
 	
 func _on_debug_ranged_attack_button_pressed():
-	combat_round("ranged", generate_rolls(), 0)
+	combat_round("ranged", generate_rolls(), generate_rolls(), 0)
 	update_debug_buttons(true)
 	debugButtonTimer.start()
 
 # TODO test with sef aswell
 func _on_debug_skill_attack_button_pressed():
-	combat_round("skill", generate_rolls(), 0, debugSkillOptions.get_item_text(debugSkillOptions.get_selected_id()))
+	combat_round("skill", generate_rolls(), generate_rolls(), 0, debugSkillOptions.get_item_text(debugSkillOptions.get_selected_id()))
 	update_debug_buttons(true)
 	debugButtonTimer.start()
 	
