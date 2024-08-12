@@ -37,34 +37,34 @@ func init_characters():
 	#defender.rotate_y(PI/4)
 
 # 4 types: melee, ranged, skill and mag
-func combat_round(type: String, rolls: Array, map_mod: int, skillName: String = "") -> void:
+func combat_round(type: String, rolls: Array, mapMod: int, skillName: String = "") -> void:
 	# TODO return to map
 	match type:
 		"melee":
-			attack(attacker, defender, "phys", rolls, map_mod)
+			attack(attacker, defender, "phys", rolls, mapMod)
 			await wait(1)
 			if defender.get_stats()["current_health"] != 0:
-				attack(defender, attacker, "phys", rolls, map_mod)
+				attack(defender, attacker, "phys", rolls, mapMod)
 				await wait(1)
 
 		"ranged":
-			attack(attacker, defender, "phys", rolls, map_mod)
+			attack(attacker, defender, "phys", rolls, mapMod)
 			await wait(1)
 
 		"skill":
 			# TODO Melee skill retaliation
 			var skillSet = GameStatus.skillSet[skillName].get_skill()
 			if skillSet["sef"]:
-				SEF.run(self, skillName, attacker, defender, skillSet["spa"], skillSet["imd"])
+				SEF.run(self, skillName, attacker, defender, mapMod, skillSet["spa"], skillSet["imd"])
 			else:
-				attack(attacker, defender, type, rolls, map_mod, skillSet["spa"], skillSet["imd"])
+				attack(attacker, defender, type, rolls, mapMod, skillSet["spa"], skillSet["imd"])
 				await wait(1)
 
 # Attack functions
 # TODO Map modifier
 # t_ -> temporary
-func attack(t_attacker, t_defender, type: String, rolls: Array, map_mod: int, spa: int = 0, imd: int = 1) -> void:
-	if calc_hit_chance(t_attacker.get_stats()["dexterity"], t_defender.get_stats()["agility"], map_mod, rolls):
+func attack(t_attacker, t_defender, type: String, rolls: Array, mapMod: int, spa: int = 0, imd: int = 1) -> void:
+	if calc_hit_chance(t_attacker.get_stats()["dexterity"], t_defender.get_stats()["agility"], mapMod, rolls):
 		var crit = calc_crit(t_attacker.get_stats()["dexterity"], t_attacker.get_stats()["agility"], t_defender.get_stats()["agility"], rolls[3])
 		var dmg = 0
 		
@@ -89,8 +89,8 @@ func deal_damage(dmg: int, crit: int, t_defender):
 	damageNumber.hide()
 
 # Attack Calculations
-func calc_hit_chance(att_dex: int, def_agi: int, map_mod: int, rolls: Array) -> bool:
-	var chance = 50 + 5 * att_dex - 3 * def_agi + map_mod
+func calc_hit_chance(att_dex: int, def_agi: int, mapMod: int, rolls: Array) -> bool:
+	var chance = 50 + 5 * att_dex - 3 * def_agi + mapMod
 	# 1: True hit, 2: Bloated hit
 	if rolls[0] == 1:
 		return rolls[1] <= chance
