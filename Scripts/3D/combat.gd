@@ -33,28 +33,20 @@ func _ready():
 	
 	# TODO Times and UI once Map is being used
 	#combat_round(type)
-	
+
 func _process(delta):
 	if GameStatus.debugMode:
 		update_debug_text()
 
 # 4 types: melee, ranged, skill and mag
-func combat_round(type: String, rolls: Array, rolls_retaliate: Array, map_mod: int, skillName: String = "") -> void:
+func combat_round(type: String, rolls: Array, rolls_retaliate: Array, mapMod: int, skillName: String = "") -> void:
 	# TODO return to map
 	match type:
 		"melee":
 			attack(attacker, defender, rolls, mapMod)
 			await wait(1)
 			if defender.get_stats()["current_health"] != 0:
-				attack(defender, attacker, "phys", rolls_retaliate, map_mod)
-				await wait(1)
-			
-		"ranged":
-			attack(attacker, defender, "phys", rolls, map_mod)
-			await wait(1)
-			# TODO see if you can retaliate from ranged attacks
-			if defender.is_ranged() and defender.get_stats()["range"] >= attacker.get_stats()["range"]:
-				attack(defender, attacker, "phys", rolls_retaliate, map_mod)
+				attack(defender, attacker, "phys", rolls, mapMod, 0)
 				await wait(1)
 
 		"ranged":
