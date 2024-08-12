@@ -26,6 +26,48 @@ const INITIAL_STATS_NUM = 14
 func get_stats() -> Dictionary:
 	return stats
 
+func get_char_name() -> String:
+	return stats["name"]
+
+func get_max_health() -> int:
+	return stats["max_health"]
+
+func get_attack() -> int:
+	return stats["attack"]
+	
+func get_dexterity() -> int:
+	return stats["dexterity"]
+
+func get_defense() -> int:
+	return stats["defense"]
+
+func get_agility() -> int:
+	return stats["agility"]
+
+func get_movement() -> int:
+	return stats["movement"]
+
+func get_ini_mana() -> int:
+	return stats["ini_mana"]
+
+func get_max_mana() -> int:
+	return stats["max_mana"]
+
+func get_reg_mana() -> int:
+	return stats["reg_mana"]
+
+func get_range() -> int:
+	return stats["range"]
+
+func get_skills() -> Array:
+	return stats["skills"]
+
+func is_ranged() -> bool:
+	return stats["is_ranged"]
+
+func get_mesh_path() -> String:
+	return stats["mesh_path"]
+
 func set_stats(stats_set: Dictionary) -> void:
 	if validate_stats(stats_set):
 		stats_set = cap_current_stats(stats_set)
@@ -39,13 +81,7 @@ func set_mesh(path) -> void:
 		path = "res://Assets/Characters/Placeholder/Placeholder_Char.glb"
 			
 	add_child(load(path).instantiate())
-
-# Stat getters TODO
-func is_ranged() -> bool:
-	return stats["is_ranged"]
 	
-func get_attack() -> int:
-	return stats["attack"]
 	
 # Functions
 func modify_health(hp_mod: int) -> void:
