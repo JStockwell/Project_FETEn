@@ -7,34 +7,29 @@ var stats = {
 	"attack": 0,
 	"dexterity": 0,
 	"defense": 0,
+	"agility": 0,
 	"movement": 0,
 	"ini_mana": 0,
 	"max_mana": 0,
 	"reg_mana": 0,
 	"range": 0,
 	"skills": [],
+	"is_ranged": false,
 	"mesh_path": null
 }
 
-var variable_stats_keys = ["current_health", "current_mana"]
+const variable_stats_keys = ["current_health", "current_mana"]
 
-# Getters and Setters
+const INITIAL_STATS_NUM = 14
+
+# General getters and Setters
 func get_stats() -> Dictionary:
 	return stats
 
-func set_initial_stats(stats_set: Dictionary) -> void:
-	if validate_stats(stats_set):
-		if stats_set["mesh_path"] == null:
-			stats_set["mesh_path"] = "res://Assets/Characters/Placeholder/Placeholder_Char.glb"
-			
-		stats = stats_set
-		set_variable_stats()
-		set_mesh(stats["mesh_path"])
-		
-	else:
-		print("Incorrect stats set")
-		
 func set_stats(stats_set: Dictionary) -> void:
+	if len(stats.keys()) == INITIAL_STATS_NUM:
+		set_variable_stats()
+	
 	if validate_stats(stats_set):
 		stats_set = cap_current_stats(stats_set)
 		stats = stats_set
@@ -46,8 +41,23 @@ func set_variable_stats() -> void:
 	stats["current_health"] = stats["max_health"]
 	stats["current_mana"] = stats["ini_mana"]
 	
-func set_mesh(path: String):
+func set_mesh(path) -> void:
+	if path == null:
+		path = "res://Assets/Characters/Placeholder/Placeholder_Char.glb"
+			
 	add_child(load(path).instantiate())
+	
+# Stat getters TODO
+func is_ranged() -> bool:
+	return stats["is_ranged"]
+	
+func get_attack() -> int:
+	return stats["attack"]
+	
+# Functions
+func modify_health(hp_mod: int) -> void:
+	stats["current_health"] += hp_mod
+	cap_current_stats(stats)
 
 # Validators
 func validate_stats(stats_set) -> bool:
@@ -73,4 +83,3 @@ func cap_current_stats(stats_set: Dictionary) -> Dictionary:
 		stats_set["current_mana"] = 0
 	
 	return stats_set
-
