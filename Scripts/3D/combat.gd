@@ -1,13 +1,16 @@
 extends Node3D
 
 @onready
-var attacker = $Characters/Attacker
+var attackerSpawn = $Characters/AttackerSpawn
 
 @onready
-var defender = $Characters/Defender
+var defenderSpawn  = $Characters/DefenderSpawn 
 
 @onready
 var damageNumber = $UI/DamageNumber
+
+var attacker
+var defender
 
 var Character = preload("res://Scenes/Entities/character.tscn")
 
@@ -18,23 +21,22 @@ func _ready():
 	else:
 		setup_debug_skill_options()
 		
-	init_characters()
+	# Create Attacker
+	attacker = Factory.Character.create(GameStatus.attackerStats)
+	defender = Factory.Character.create(GameStatus.defenderStats)
+	
+	attacker.translate(attackerSpawn.get_position())
+	defender.translate(defenderSpawn.get_position())
+	
+	add_child(attacker)
+	add_child(defender)
+	
 	# TODO Times and UI once Map is being used
 	#combat_round(type)
 	
 func _process(delta):
 	if GameStatus.debugMode:
 		update_debug_text()
-
-# Initialize characters
-func init_characters():
-	attacker.set_stats(GameStatus.get_attacker_stats())
-	attacker.set_mesh(GameStatus.get_attacker_stats()["mesh_path"])
-	
-	defender.set_stats(GameStatus.get_defender_stats())
-	defender.set_mesh(GameStatus.get_defender_stats()["mesh_path"])
-	
-	#defender.rotate_y(PI/4)
 
 # 4 types: melee, ranged, skill and mag
 func combat_round(type: String, rolls: Array, rolls_retaliate: Array, map_mod: int, skillName: String = "") -> void:

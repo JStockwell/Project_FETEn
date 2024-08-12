@@ -26,15 +26,6 @@ const INITIAL_STATS_NUM = 14
 func get_stats() -> Dictionary:
 	return stats
 
-func set_initial_stats(stats_set: Dictionary) -> void:
-	if validate_stats(stats_set):
-		stats = stats_set
-		set_variable_stats()
-		set_mesh(stats["mesh_path"])
-		
-	else:
-		print("Incorrect stats set")
-
 func set_stats(stats_set: Dictionary) -> void:
 	if len(stats.keys()) == INITIAL_STATS_NUM:
 		set_variable_stats()

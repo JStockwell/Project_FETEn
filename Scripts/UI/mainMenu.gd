@@ -59,11 +59,8 @@ func combat_debug_test():
 		}
 	}
 	
-	var debug_attacker = Character.instantiate()
-	var debug_defender = Character.instantiate()
-	
-	debug_attacker.set_initial_stats(debug_attacker_stats)
-	debug_defender.set_initial_stats(debug_defender_stats)
+	var debug_attacker = Factory.Character.create(debug_attacker_stats)
+	var debug_defender = Factory.Character.create(debug_defender_stats)
 	
 	GameStatus.set_characters(debug_attacker.get_stats(), debug_defender.get_stats())
 	
