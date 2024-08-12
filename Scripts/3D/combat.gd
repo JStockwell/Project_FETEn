@@ -43,14 +43,14 @@ func combat_round(type: String, rolls: Array, mapMod: int, skillName: String = "
 	# TODO return to map
 	match type:
 		"melee":
-			attack(attacker, defender, "phys", rolls, mapMod, 0)
+			attack(attacker, defender, rolls, mapMod)
 			await wait(1)
 			if defender.get_stats()["current_health"] != 0:
-				attack(defender, attacker, "phys", rolls, mapMod, 0)
+				attack(defender, attacker, rolls, mapMod)
 				await wait(1)
 
 		"ranged":
-			attack(attacker, defender, "phys", rolls, mapMod, 0)
+			attack(attacker, defender, rolls, mapMod)
 			await wait(1)
 
 		"skill":
@@ -59,21 +59,16 @@ func combat_round(type: String, rolls: Array, mapMod: int, skillName: String = "
 			if skillSet["sef"]:
 				SEF.run(self, skillName, attacker, defender, mapMod, 0, skillSet["spa"], skillSet["imd"])
 			else:
-				attack(attacker, defender, type, rolls, mapMod, 0, skillSet["spa"], skillSet["imd"])
+				attack(attacker, defender, rolls, mapMod, skillSet["spa"], skillSet["imd"])
 				await wait(1)
 
 # Attack functions
 # TODO Map modifier
 # t_ -> temporary
-func attack(t_attacker, t_defender, type: String, rolls: Array, accMod: int, critMod:int, spa: int = 0, imd: int = 0) -> void:
-	if calc_hit_chance(t_attacker.get_stats()["dexterity"], t_defender.get_stats()["agility"], accMod, rolls):
-		var crit = calc_crit(t_attacker.get_stats()["dexterity"], t_attacker.get_stats()["agility"], t_defender.get_stats()["agility"], critMod, rolls[3])
-		var dmg = 0
-		
-		if type == "phys":
-			dmg = calc_damage(t_attacker.get_stats()["attack"], t_defender.get_stats()["defense"])
-		else:
-			dmg = calc_damage(t_attacker.get_stats()["attack"], t_defender.get_stats()["defense"], spa, imd)
+func attack(t_attacker, t_defender, rolls: Array, mapMod: int, spa: int = 0, imd: int = 0) -> void:
+	if calc_hit_chance(t_attacker.get_stats()["dexterity"], t_defender.get_stats()["agility"], mapMod, rolls):
+		var crit = calc_crit(t_attacker.get_stats()["dexterity"], t_attacker.get_stats()["agility"], t_defender.get_stats()["agility"], rolls[3])
+		var dmg = calc_damage(t_attacker.get_stats()["attack"], t_defender.get_stats()["defense"], spa, imd)
 			
 		deal_damage(dmg, crit, t_defender)
 		
