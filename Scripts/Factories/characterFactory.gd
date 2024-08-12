@@ -1,4 +1,4 @@
-class_name characterFactory
+class_name CharacterFactory
 
 const Character = preload("res://Scenes/Entities/character.tscn")
 
@@ -40,7 +40,7 @@ static func create(args: Dictionary):
 			
 		character.stats = stats_set
 		character.add_child(load(mesh_path).instantiate())
-		
+
 		return character
 		
 	else:
