@@ -46,7 +46,7 @@ func combat_round(type: String, rolls: Array, rolls_retaliate: Array, mapMod: in
 			attack(attacker, defender, rolls, mapMod)
 			await wait(1)
 			if defender.get_stats()["current_health"] != 0:
-				attack(defender, attacker, "phys", rolls, mapMod, 0)
+				attack(defender, attacker, rolls, mapMod, 0)
 				await wait(1)
 
 		"ranged":
@@ -67,7 +67,7 @@ func combat_round(type: String, rolls: Array, rolls_retaliate: Array, mapMod: in
 # t_ -> temporary
 func attack(t_attacker, t_defender, rolls: Array, mapMod: int, spa: int = 0, imd: int = 0) -> void:
 	if calc_hit_chance(t_attacker.get_stats()["dexterity"], t_defender.get_stats()["agility"], mapMod, rolls):
-		var crit = calc_crit(t_attacker.get_stats()["dexterity"], t_attacker.get_stats()["agility"], t_defender.get_stats()["agility"], rolls[3])
+		var crit = calc_crit(t_attacker.get_stats()["dexterity"], t_attacker.get_stats()["agility"], t_defender.get_stats()["agility"], 0, rolls[3])
 		var dmg = calc_damage(t_attacker.get_stats()["attack"], t_defender.get_stats()["defense"], spa, imd)
 			
 		deal_damage(dmg, crit, t_defender)
