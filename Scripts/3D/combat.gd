@@ -33,7 +33,7 @@ func _ready():
 	
 	# TODO Times and UI once Map is being used
 	#combat_round(type)
-	
+
 func _process(delta):
 	if GameStatus.debugMode:
 		update_debug_text()
@@ -47,11 +47,11 @@ func init_characters():
 	defender.set_mesh(GameStatus.get_defender_stats()["mesh_path"])
 	
 	#defender.rotate_y(PI/4)
-	
+
 # TODO add character ACC mod
 # TODO include crit mod from character
 # 4 types: melee, ranged, skill and mag
-func combat_round(type: String, rolls: Array, rolls_retaliate: Array, map_mod: int, skillName: String = "") -> void:
+func combat_round(type: String, rolls: Array, rolls_retaliate: Array, mapMod: int, skillName: String = "") -> void:
 	# TODO return to map
 	match type:
 		"melee":
