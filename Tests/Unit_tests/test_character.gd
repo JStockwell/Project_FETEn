@@ -83,8 +83,8 @@ func test_set_stats():
 	
 func test_cap_current_stats_max():
 	dict = {
-		"current_health": test_char.get_stats().get("max_health") + 1,
-		"current_mana": test_char.get_stats().get("max_mana") + 1
+		"current_health": test_char.get_max_health() + 1,
+		"current_mana": test_char.get_max_mana() + 1
 	}
 	max_stats.merge(dict, true)
 	
@@ -96,8 +96,8 @@ func test_cap_current_stats_max():
 	
 func test_cap_current_stats_no_negatives():
 	dict = {
-		"current_health": test_char.get_stats().get("max_health") - 8000,
-		"current_mana": test_char.get_stats().get("max_mana") - 8000
+		"current_health": test_char.get_max_health() - 8000,
+		"current_mana": test_char.get_max_mana() - 8000
 	}
 	max_stats.merge(dict, true)
 	
@@ -110,36 +110,36 @@ func test_cap_current_stats_no_negatives():
 func test_modify_health_damage_non_lethal():
 	test_char.modify_health(-1)
 	
-	assert_that(test_char.get_stats().get("current_health")).is_equal(test_char.get_stats().get("max_health") - 1)
+	assert_that(test_char.get_current_health()).is_equal(test_char.get_max_health() - 1)
 	
 	
 func test_modify_health_damage_lethal():
 	test_char.modify_health(-8000)
 	
-	assert_that(test_char.get_stats().get("current_health")).is_equal(0)
+	assert_that(test_char.get_current_health()).is_equal(0)
 	
 	
 #TODO Modifica el cambio de la current_health usando un setter cuando se pueda
 func test_modify_health_heal_under_cap():
 	dict = {
-		"current_health": test_char.get_stats().get("max_health") - 2,
+		"current_health": test_char.get_max_health() - 2,
 	}
 	max_stats.merge(dict, true)
 	test_char.set_stats(max_stats)
 	
 	test_char.modify_health(1)
 	
-	assert_that(test_char.get_stats().get("current_health")).is_equal(test_char.get_stats().get("max_health") - 1)
+	assert_that(test_char.get_current_health()).is_equal(test_char.get_max_health() - 1)
 	
 
 #TODO Modifica el cambio de la current_health usando un setter cuando se pueda
 func test_modify_health_heal_over_cap():
 	dict = {
-		"current_health": test_char.get_stats().get("max_health") - 2,
+		"current_health": test_char.get_max_health() - 2,
 	}
 	max_stats.merge(dict, true)
 	test_char.set_stats(max_stats)
 	
 	test_char.modify_health(8000)
 	
-	assert_that(test_char.get_stats().get("current_health")).is_equal(test_char.get_stats().get("max_health"))
+	assert_that(test_char.get_current_health()).is_equal(test_char.get_max_health())
