@@ -1,6 +1,5 @@
 extends GdUnitTestSuite
 
-#var Character = preload("res://Scripts/Entities/character.gd")
 var Character = preload("res://Scenes/Entities/character.tscn")
 var Factory_Char = load("res://Scripts/Factories/characterFactory.gd")
 
@@ -61,14 +60,17 @@ func after_test():
 ##############
 # Unit Tests #
 ##############
+
 func test_not_null():
 	assert_that(test_char).is_not_null()
 	assert_that(test_factory_char).is_not_null()
+	
 	
 func test_character_factory():
 	#Function called in before_test()
 	
 	assert_that(test_char.get_stats()).is_equal(max_stats)
+	
 	
 func test_set_stats():
 	var current_stats = {
@@ -82,6 +84,7 @@ func test_set_stats():
 	
 	assert_that(max_stats).is_equal(checker)
 	
+	
 func test_cap_current_stats_max():
 	dict = {
 		"current_health": test_char.get_stats().get("max_health") + 1,
@@ -94,7 +97,7 @@ func test_cap_current_stats_max():
 	assert_that(checker.get("current_health")).is_equal(checker.get("max_health"))
 	assert_that(checker.get("current_mana")).is_equal(checker.get("max_mana"))
 	
-
+	
 func test_cap_current_stats_no_negatives():
 	dict = {
 		"current_health": test_char.get_stats().get("max_health") - 8000,
@@ -107,15 +110,18 @@ func test_cap_current_stats_no_negatives():
 	assert_that(checker.get("current_health")).is_equal(0)
 	assert_that(checker.get("current_mana")).is_equal(0)
 	
+	
 func test_modify_health_damage_non_lethal():
 	test_char.modify_health(-1)
 	
 	assert_that(test_char.get_stats().get("current_health")).is_equal(test_char.get_stats().get("max_health") - 1)
 	
+	
 func test_modify_health_damage_lethal():
 	test_char.modify_health(-8000)
 	
 	assert_that(test_char.get_stats().get("current_health")).is_equal(0)
+	
 	
 #TODO Modifica el cambio de la current_health usando un setter cuando se pueda
 func test_modify_health_heal_under_cap():
@@ -141,4 +147,3 @@ func test_modify_health_heal_over_cap():
 	test_char.modify_health(8000)
 	
 	assert_that(test_char.get_stats().get("current_health")).is_equal(test_char.get_stats().get("max_health"))
-	
