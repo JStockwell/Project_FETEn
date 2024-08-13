@@ -92,7 +92,8 @@ func before_test():
 	attacker = Factory.Character.create(stats_atk)
 	defender = Factory.Character.create(stats_def)
 	ranged_attacker = Factory.Character.create(stats_range_atk)
-	GameStatus.set_active_characters(attacker.get_stats(), defender.get_stats())
+	CombatMapStatus.set_active_characters(attacker.get_stats(), defender.get_stats())
+	GameStatus.set_autorun_combat(false)
 	
 	test_combat = Combat.instantiate()
 	add_child(test_combat)
@@ -120,14 +121,14 @@ func test_not_null():
 
 func test_combat_round_melee():
 	test_combat.combat_round("melee", [1, 1, 1, 100], [1, 1, 1, 100], 0, "")
-	await test_combat.wait(1)
+	#await test_combat.wait(1)
 	
 	assert_int(defender.get_current_health()).is_less(defender.get_max_health())
 	assert_int(attacker.get_current_health()).is_less(attacker.get_max_health())
 
 	
 func test_combat_round_ranged():
-	GameStatus.set_active_characters(ranged_attacker.get_stats(), defender.get_stats())
+	CombatMapStatus.set_active_characters(ranged_attacker.get_stats(), defender.get_stats())
 	test_combat = Combat.instantiate()
 	add_child(test_combat)
 	
@@ -201,8 +202,8 @@ func test_deal_damage_negative():
 	
 	
 func test_calc_hit_chance_true_hit():
-	var attDex = GameStatus.get_attacker_stats().get("dexterity")
-	var defAgi = GameStatus.get_defender_stats().get("agility")
+	var attDex = CombatMapStatus.get_attacker_stats().get("dexterity")
+	var defAgi = CombatMapStatus.get_defender_stats().get("agility")
 	var rolls = [1, 71, 1, 1]
 	
 	var test_res = test_combat.calc_hit_chance(attDex, defAgi, 0, rolls)
@@ -211,8 +212,8 @@ func test_calc_hit_chance_true_hit():
 	
 	
 func test_calc_hit_chance_true_hit_fail():
-	var attDex = GameStatus.get_attacker_stats().get("dexterity")
-	var defAgi = GameStatus.get_defender_stats().get("agility")
+	var attDex = CombatMapStatus.get_attacker_stats().get("dexterity")
+	var defAgi = CombatMapStatus.get_defender_stats().get("agility")
 	var rolls = [1, 72, 1, 1]
 	
 	var test_res = test_combat.calc_hit_chance(attDex, defAgi, 0, rolls)
@@ -221,8 +222,8 @@ func test_calc_hit_chance_true_hit_fail():
 	
 	
 func test_calc_hit_chance_bloated_hit():
-	var attDex = GameStatus.get_attacker_stats().get("dexterity")
-	var defAgi = GameStatus.get_defender_stats().get("agility")
+	var attDex = CombatMapStatus.get_attacker_stats().get("dexterity")
+	var defAgi = CombatMapStatus.get_defender_stats().get("agility")
 	var rolls = [2, 43, 100, 1]
 	
 	var test_res = test_combat.calc_hit_chance(attDex, defAgi, 0, rolls)
@@ -231,8 +232,8 @@ func test_calc_hit_chance_bloated_hit():
 	
 	
 func test_calc_hit_chance_bloated_hit_fail():
-	var attDex = GameStatus.get_attacker_stats().get("dexterity")
-	var defAgi = GameStatus.get_defender_stats().get("agility")
+	var attDex = CombatMapStatus.get_attacker_stats().get("dexterity")
+	var defAgi = CombatMapStatus.get_defender_stats().get("agility")
 	var rolls = [2, 44, 100, 1]
 	
 	var test_res = test_combat.calc_hit_chance(attDex, defAgi, 0, rolls)
@@ -241,9 +242,9 @@ func test_calc_hit_chance_bloated_hit_fail():
 	
 	
 func test_calc_crit():
-	var attDex = GameStatus.get_attacker_stats().get("dexterity")
-	var attAgi = GameStatus.get_attacker_stats().get("agility")
-	var defAgi = GameStatus.get_defender_stats().get("agility")
+	var attDex = CombatMapStatus.get_attacker_stats().get("dexterity")
+	var attAgi = CombatMapStatus.get_attacker_stats().get("agility")
+	var defAgi = CombatMapStatus.get_defender_stats().get("agility")
 	var rolls = [1, 1, 1, 13]
 	
 	var test_res = test_combat.calc_crit(attDex, attAgi, defAgi, 0, rolls[3])
@@ -252,9 +253,9 @@ func test_calc_crit():
 	
 	
 func test_calc_crit_no():
-	var attDex = GameStatus.get_attacker_stats().get("dexterity")
-	var attAgi = GameStatus.get_attacker_stats().get("agility")
-	var defAgi = GameStatus.get_defender_stats().get("agility")
+	var attDex = CombatMapStatus.get_attacker_stats().get("dexterity")
+	var attAgi = CombatMapStatus.get_attacker_stats().get("agility")
+	var defAgi = CombatMapStatus.get_defender_stats().get("agility")
 	var rolls = [1, 1, 1, 14]
 	
 	var test_res = test_combat.calc_crit(attDex, attAgi, defAgi, 0, rolls[3])
@@ -265,8 +266,8 @@ func test_calc_crit_no():
 func test_calc_damage_no_magic():
 	var should_dmg = stats_atk.get("attack") - stats_def.get("defense")
 	
-	var attack = GameStatus.get_attacker_stats().get("attack")
-	var defense = GameStatus.get_defender_stats().get("defense")
+	var attack = CombatMapStatus.get_attacker_stats().get("attack")
+	var defense = CombatMapStatus.get_defender_stats().get("defense")
 	var test_res = test_combat.calc_damage(attack, defense, 0, 0)
 	
 	assert_that(test_res).is_equal(should_dmg)
@@ -275,8 +276,8 @@ func test_calc_damage_no_magic():
 func test_calc_damage_magic():
 	var should_dmg = stats_atk.get("attack")
 	
-	var attack = GameStatus.get_attacker_stats().get("attack")
-	var defense = GameStatus.get_defender_stats().get("defense")
+	var attack = CombatMapStatus.get_attacker_stats().get("attack")
+	var defense = CombatMapStatus.get_defender_stats().get("defense")
 	var test_res = test_combat.calc_damage(attack, defense, 0, 1)
 	
 	assert_that(test_res).is_equal(should_dmg)
@@ -285,8 +286,8 @@ func test_calc_damage_magic():
 func test_calc_damage_no_magic_SPA():
 	var should_dmg = stats_atk.get("attack") + 5 - stats_def.get("defense")
 	
-	var attack = GameStatus.get_attacker_stats().get("attack")
-	var defense = GameStatus.get_defender_stats().get("defense")
+	var attack = CombatMapStatus.get_attacker_stats().get("attack")
+	var defense = CombatMapStatus.get_defender_stats().get("defense")
 	var spa = 5
 	var test_res = test_combat.calc_damage(attack, defense, spa, 0)
 	
@@ -296,8 +297,8 @@ func test_calc_damage_no_magic_SPA():
 func test_calc_damage_magic_no_SPA():
 	var should_dmg = stats_atk.get("attack") + 5
 	
-	var attack = GameStatus.get_attacker_stats().get("attack")
-	var defense = GameStatus.get_defender_stats().get("defense")
+	var attack = CombatMapStatus.get_attacker_stats().get("attack")
+	var defense = CombatMapStatus.get_defender_stats().get("defense")
 	var spa = 5
 	var test_res = test_combat.calc_damage(attack, defense, spa, 1)
 	

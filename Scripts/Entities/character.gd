@@ -69,6 +69,7 @@ func is_ranged() -> bool:
 	
 func is_enemy() -> bool: 
 	return stats["is_enemy"]
+
 func get_current_health() -> int:
 	return stats["current_health"]
 	
@@ -91,7 +92,7 @@ func set_mesh(path) -> void:
 	add_child(load(path).instantiate())
 	
 func set_map_coords(coords: Vector2) -> void:
-	if int(coords.x) in range(0, GameStatus.get_map_x() + 1) and int(coords.y) in range(0, GameStatus.get_map_y() + 1):
+	if int(coords.x) in range(0, CombatMapStatus.get_map_x() + 1) and int(coords.y) in range(0, CombatMapStatus.get_map_y() + 1):
 		stats["map_coords"] = coords
 		
 	else:

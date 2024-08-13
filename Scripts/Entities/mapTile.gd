@@ -14,9 +14,20 @@ var isPopulated: bool
 var isTraversable: bool
 var isObstacle: bool
 
-var meshPath: String
+var meshPath: String = ""
 
 # Getters and setters
+func get_variables() -> Dictionary:
+	return {
+		"coords": coords,
+		"height": height,
+		"difficulty": difficulty,
+		"isPopulated": isPopulated,
+		"isTraversable": isTraversable,
+		"isObstacle": isObstacle,
+		"meshPath": meshPath
+	}
+
 func get_coords() -> Vector2:
 	return coords
 

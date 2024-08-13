@@ -8,7 +8,7 @@ func _ready():
 	GameStatus.set_playable_characters(playableCharacters)
 	GameStatus.set_party(["dick", "edgar"])
 	GameStatus.set_enemy_set(enemySet)
-	GameStatus.set_enemies(["phys_fodder", "phys_fodder"])
+	CombatMapStatus.set_enemies(["phys_fodder", "phys_fodder"])
 	
 	for skillName in skill_set:
 		GameStatus.skillSet[skillName] = Factory.Skill.create(skill_set[skillName])
@@ -17,10 +17,11 @@ func _ready():
 	debug_map_combat_test()
 
 func combat_debug_test():
-	GameStatus.set_active_characters(GameStatus.get_party_member("edgar").get_stats(), GameStatus.get_party_member("dick").get_stats())
+	CombatMapStatus.set_active_characters(GameStatus.get_party_member("edgar"), GameStatus.get_party_member("dick"))
 		
 func debug_map_combat_test():
-	GameStatus.set_map_size(6, 6)
+	CombatMapStatus.set_map_size(3, 3)
+	CombatMapStatus.set_is_start_combat(true)
 
 func _on_debug_button_pressed():
 	get_tree().change_scene_to_file("res://Scenes/3D/mapCombat.tscn")
