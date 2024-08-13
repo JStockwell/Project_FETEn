@@ -1,6 +1,9 @@
 extends Node
 
+# Map combat variables
 var selectedCharacter
+var selectedEnemy
+var selectedMapTile
 
 var attackerStats: Dictionary
 var defenderStats: Dictionary
@@ -65,3 +68,15 @@ func set_selected_character(character) -> void:
 
 func get_selected_character():
 	return selectedCharacter
+
+func set_selected_enemy(character) -> void:
+	selectedEnemy = character
+
+func get_selected_enemy():
+	return selectedEnemy
+
+func set_selected_map_tile(mapTile) -> void:
+	selectedMapTile = mapTile
+	
+func get_selected_map_tile():
+	return selectedMapTile

@@ -58,14 +58,17 @@ func get_range() -> int:
 func get_skills() -> Array:
 	return stats["skills"]
 
-func is_ranged() -> bool:
-	return stats["is_ranged"]
-
 func get_mesh_path() -> String:
 	return stats["mesh_path"]
 	
 func get_map_coords() -> Vector2:
 	return stats["map_coords"]
+	
+func is_ranged() -> bool:
+	return stats["is_ranged"]
+	
+func is_enemy() -> bool: 
+	return stats["is_enemy"]
 
 # Setters
 func set_stats(stats_set: Dictionary) -> void:
@@ -88,6 +91,9 @@ func set_map_coords(coords: Vector2) -> void:
 		
 	else:
 		print("invalid coords " + str(coords))
+		
+func set_is_enemy(flag: bool) -> void:
+	stats["is_enemy"] = flag
 	
 # Functions
 func modify_health(hp_mod: int) -> void:

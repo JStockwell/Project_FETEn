@@ -11,6 +11,9 @@ var isObstacle: bool
 var meshPath: String
 
 # Getters and setters
+func get_coords() -> Vector2:
+	return coords
+
 func get_is_populated() -> bool:
 	return isPopulated
 
@@ -25,3 +28,10 @@ func get_height() -> int:
 
 func get_difficulty() -> int:
 	return difficulty
+
+signal tile_selected(mapTile)
+
+func _on_input_event(camera, event, position, normal, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == 1 and event.pressed:
+			tile_selected.emit(self)
