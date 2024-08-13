@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://wvt31gswalxh"]
+[gd_scene load_steps=4 format=3 uid="uid://wvt31gswalxh"]
 
 [ext_resource type="Script" path="res://Scripts/3D/mapCombat.gd" id="1_rhc0y"]
 [ext_resource type="PackedScene" uid="uid://c11mh4mlt8853" path="res://Assets/MapTiles/placeholder_max_map.glb" id="2_tj2i2"]
+[ext_resource type="PackedScene" uid="uid://bnmfhy73ds7s4" path="res://Assets/Characters/Placeholder/Placeholder_Char.glb" id="3_wutxk"]
 
 [node name="MapCombat" type="Node3D"]
 script = ExtResource("1_rhc0y")
@@ -23,3 +24,23 @@ visible = false
 
 [node name="placeholder_max_map" parent="Debug" instance=ExtResource("2_tj2i2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+
+[node name="Placeholder_Char" parent="Debug" instance=ExtResource("3_wutxk")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.719222, 0.0864652, 0.0960734)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Debug" type="Control" parent="UI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DebugLabel" type="Label" parent="UI/Debug"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 48.0
+autowrap_mode = 3

@@ -18,11 +18,7 @@ var stats = {
 	"mesh_path": null
 }
 
-const variable_stats_keys = ["current_health", "current_mana"]
-
-const INITIAL_STATS_NUM = 14
-
-# General getters and Setters
+# Getters
 func get_stats() -> Dictionary:
 	return stats
 
@@ -67,7 +63,11 @@ func is_ranged() -> bool:
 
 func get_mesh_path() -> String:
 	return stats["mesh_path"]
+	
+func get_map_coords() -> Vector2:
+	return stats["map_coords"]
 
+# Setters
 func set_stats(stats_set: Dictionary) -> void:
 	if validate_stats(stats_set):
 		stats_set = cap_current_stats(stats_set)
@@ -82,6 +82,12 @@ func set_mesh(path) -> void:
 			
 	add_child(load(path).instantiate())
 	
+func set_map_coords(coords: Vector2) -> void:
+	if int(coords.x) in range(0, CombatMapStatus.get_map_x() + 1) and int(coords.y) in range(0, CombatMapStatus.get_map_y() + 1):
+		stats["map_coords"] = coords
+		
+	else:
+		print("invalid coords " + str(coords))
 	
 # Functions
 func modify_health(hp_mod: int) -> void:
@@ -112,3 +118,10 @@ func cap_current_stats(stats_set: Dictionary) -> Dictionary:
 		stats_set["current_mana"] = 0
 	
 	return stats_set
+
+signal character_selected(character)
+
+func _on_input_event(camera, event, position, normal, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == 1 and event.pressed:
+			character_selected.emit(self)

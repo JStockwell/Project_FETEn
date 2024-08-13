@@ -4,10 +4,11 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sxmdx"]
 
-[node name="MapTile" type="Node3D"]
+[node name="MapTile" type="StaticBody3D"]
 script = ExtResource("1_v7lvt")
 
-[node name="Tile" type="StaticBody3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Tile"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_sxmdx")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

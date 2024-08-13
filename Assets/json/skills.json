@@ -1,0 +1,37 @@
+{
+	"shadow_ball": {
+		"skill_name": "Shadow Ball",
+		"range": 5,
+		"cost": 6,
+		"spa": 7,
+		"imd": 1,
+		"isMelee": false
+	},
+	"nero_nero": {
+		"skill_name": "Death Beam",
+		"range": 5,
+		"cost": 12,
+		"spa": 11,
+		"sef": true,
+		"imd": 1,
+		"isMelee": false
+	},
+	"boost_1": {
+		"skill_name": "Boost Lv 2",
+		"range": 1,
+		"cost": 2,
+		"spa": 4,
+		"sef": true,
+		"imd": 0,
+		"isMelee": true
+	},
+	"boost_2": {
+		"skill_name": "Boost Lv 2",
+		"range": 1,
+		"cost": 2,
+		"spa": 4,
+		"sef": true,
+		"imd": 1,
+		"isMelee": true
+	}
+}

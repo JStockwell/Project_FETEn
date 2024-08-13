@@ -12,8 +12,6 @@ var damageNumber = $UI/DamageNumber
 var attacker
 var defender
 
-var Character = preload("res://Scenes/Entities/character.tscn")
-
 func _ready():
 	if not GameStatus.debugMode:
 		debugUI.hide()
@@ -25,12 +23,12 @@ func _ready():
 	attacker = Factory.Character.create(GameStatus.attackerStats)
 	defender = Factory.Character.create(GameStatus.defenderStats)
 	
-	attacker.translate(attackerSpawn.get_position())
-	defender.translate(defenderSpawn.get_position())
-	
 	add_child(attacker)
 	add_child(defender)
 	
+	attacker.translate(attackerSpawn.get_position())
+	defender.translate(defenderSpawn.get_position())
+
 	# TODO Times and UI once Map is being used
 	#combat_round(type)
 
@@ -38,31 +36,20 @@ func _process(delta):
 	if GameStatus.debugMode:
 		update_debug_text()
 
-# Initialize characters
-func init_characters():
-	attacker.set_stats(GameStatus.get_attacker_stats())
-	attacker.set_mesh(GameStatus.get_attacker_stats()["mesh_path"])
-	
-	defender.set_stats(GameStatus.get_defender_stats())
-	defender.set_mesh(GameStatus.get_defender_stats()["mesh_path"])
-	
-	#defender.rotate_y(PI/4)
-
-# TODO add character ACC mod
-# TODO include crit mod from character
 # 4 types: melee, ranged, skill and mag
 func combat_round(type: String, rolls: Array, rolls_retaliate: Array, mapMod: int, skillName: String = "") -> void:
 	# TODO return to map
+	# TODO implement character acc and crit modifiers
 	match type:
 		"melee":
-			attack(attacker, defender, "phys", rolls, mapMod, 0)
+			attack(attacker, defender, rolls, mapMod)
 			await wait(1)
 			if defender.get_stats()["current_health"] != 0:
-				attack(defender, attacker, "phys", rolls, mapMod, 0)
+				attack(defender, attacker, rolls_retaliate, mapMod)
 				await wait(1)
-
+			
 		"ranged":
-			attack(attacker, defender, "phys", rolls, mapMod, 0)
+			attack(attacker, defender, rolls, mapMod)
 			await wait(1)
 
 		"skill":
@@ -71,21 +58,21 @@ func combat_round(type: String, rolls: Array, rolls_retaliate: Array, mapMod: in
 			if skillSet["sef"]:
 				SEF.run(self, skillName, attacker, defender, mapMod, 0, skillSet["spa"], skillSet["imd"])
 			else:
-				attack(attacker, defender, type, rolls, mapMod, 0, skillSet["spa"], skillSet["imd"])
+				attack(attacker, defender, rolls, mapMod, skillSet["spa"], skillSet["imd"])
 				await wait(1)
+				
+				if skillSet["isMelee"] and defender.get_stats()["current_health"] != 0:
+					attack(defender, attacker, rolls_retaliate, mapMod)
+					await wait(1)
 
 # Attack functions
 # TODO Map modifier
 # t_ -> temporary
-func attack(t_attacker, t_defender, type: String, rolls: Array, accMod: int, critMod:int, spa: int = 0, imd: int = 0) -> void:
-	if calc_hit_chance(t_attacker.get_stats()["dexterity"], t_defender.get_stats()["agility"], accMod, rolls):
-		var crit = calc_crit(t_attacker.get_stats()["dexterity"], t_attacker.get_stats()["agility"], t_defender.get_stats()["agility"], critMod, rolls[3])
-		var dmg = 0
-		
-		if type == "phys":
-			dmg = calc_damage(t_attacker.get_stats()["attack"], t_defender.get_stats()["defense"])
-		else:
-			dmg = calc_damage(t_attacker.get_stats()["attack"], t_defender.get_stats()["defense"], spa, imd)
+func attack(t_attacker, t_defender, rolls: Array, mapMod: int, spa: int = 0, imd: int = 0) -> void:
+	# TODO Char mod
+	if calc_hit_chance(t_attacker.get_stats()["dexterity"], t_defender.get_stats()["agility"], mapMod, rolls):
+		var crit = calc_crit(t_attacker.get_stats()["dexterity"], t_attacker.get_stats()["agility"], t_defender.get_stats()["agility"], 0, rolls[3])
+		var dmg = calc_damage(t_attacker.get_stats()["attack"], t_defender.get_stats()["defense"], spa, imd)
 			
 		deal_damage(dmg, crit, t_defender)
 		
@@ -113,7 +100,7 @@ func calc_hit_chance(att_dex: int, def_agi: int, accMod: int, rolls: Array) -> b
 		return roll <= chance
 
 func calc_crit(att_dex: int, att_agi: int, def_agi: int, critMod: int, crit_roll: int) -> int:
-	if crit_roll <= (att_dex + att_agi) - def_agi / 2:
+	if crit_roll <= ((att_dex + att_agi) - def_agi / 2) + critMod:
 		return 1.5
 	else:
 		return 1
