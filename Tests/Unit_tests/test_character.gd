@@ -1,10 +1,8 @@
 extends GdUnitTestSuite
 
 var Character = preload("res://Scenes/Entities/character.tscn")
-var Factory_Char = load("res://Scripts/Factories/characterFactory.gd")
 
 var test_char
-var test_factory_char
 var initial_stats
 var checker
 var max_stats
@@ -13,7 +11,6 @@ var dict
 func before_test():
 	test_char = Character.instantiate()
 	add_child(test_char)
-	test_factory_char = Factory_Char.new()
 	
 	initial_stats = {
 		"name": "Player1",
@@ -51,7 +48,7 @@ func before_test():
 		"current_mana": 5
 	}
 	
-	test_char = test_factory_char.create(initial_stats)
+	test_char = Factory.Character.create(initial_stats)
 	
 	
 func after_test():
@@ -63,7 +60,6 @@ func after_test():
 
 func test_not_null():
 	assert_that(test_char).is_not_null()
-	assert_that(test_factory_char).is_not_null()
 	
 	
 func test_character_factory():
