@@ -1,3 +1,4 @@
 # Godot 4+ specific ignores
 .godot/
 addons/gdUnit4/GdUnitRunner.cfg
+addons/gdUnit4/GdUnitRunner.cfg
