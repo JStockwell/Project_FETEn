@@ -4,7 +4,7 @@ const Skill = preload("res://Scripts/Classes/skill.gd")
 
 static func create(args: Dictionary):
 	var validator = true
-	for variable in ["skill_name", "range", "cost"]:
+	for variable in ["skill_name", "range", "cost", "isMelee"]:
 		if variable not in args.keys():
 			validator = false
 
@@ -13,6 +13,7 @@ static func create(args: Dictionary):
 		mySkill.skillName = args["skill_name"]
 		mySkill.range = args["range"]
 		mySkill.cost = args["cost"]
+		mySkill.isMelee = args["isMelee"]
 	  
 		if "spa" in args.keys():
 			mySkill.spa = args["spa"]

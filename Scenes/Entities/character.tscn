@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://t6qujnyj5c8y"]
+[gd_scene load_steps=4 format=3 uid="uid://t6qujnyj5c8y"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/character.gd" id="1_gltqy"]
-[ext_resource type="PackedScene" uid="uid://bnmfhy73ds7s4" path="res://Assets/Characters/Placeholder/Placeholder_Char.glb" id="2_0dpv2"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_7yb5o"]
 height = 0.14749
@@ -22,5 +21,6 @@ shape = SubResource("CylinderShape3D_7yb5o")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.46158, 1.75049, -0.000823949)
 shape = SubResource("BoxShape3D_047if")
 
-[node name="Placeholder_Char" parent="." instance=ExtResource("2_0dpv2")]
-visible = false
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

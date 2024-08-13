@@ -1,4 +1,4 @@
-extends Node3D
+extends StaticBody3D
 
 var coords: Vector2
 var height: int
@@ -9,9 +9,6 @@ var isTraversable: bool
 var isObstacle: bool
 
 var meshPath: String
-
-@onready
-var placeholder = $Tile/Reference
 
 # Getters and setters
 func get_is_populated() -> bool:

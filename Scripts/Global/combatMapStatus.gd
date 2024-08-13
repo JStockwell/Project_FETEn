@@ -14,3 +14,7 @@ func get_map_y() -> int:
 
 func get_map_dimensions() -> Vector2:
 	return Vector2(mapX, mapY)
+
+func set_map_size(x: int, y: int) -> void:
+	mapX = x
+	mapY = y
