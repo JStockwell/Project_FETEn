@@ -99,7 +99,7 @@ func calc_hit_chance(att_dex: int, def_agi: int, accMod: int, rolls: Array) -> b
 		var roll = int((rolls[1] + rolls[2]) / 2)
 		return roll <= chance
 
-func calc_crit(att_dex: int, att_agi: int, def_agi: int, critMod: int, crit_roll: int) -> int:
+func calc_crit(att_dex: int, att_agi: int, def_agi: int, critMod: int, crit_roll: int) -> float:
 	if crit_roll <= ((att_dex + att_agi) - def_agi / 2) + critMod:
 		return 1.5
 	else:
