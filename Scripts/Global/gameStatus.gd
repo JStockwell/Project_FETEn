@@ -50,7 +50,7 @@ func get_enemy(charName: String):
 	else:
 		print("character {n} not in enemies".format({"n": charName}))
 
-func set_active_characters(attack, defend) -> void:
+func set_active_characters(attack: Dictionary, defend: Dictionary) -> void:
 	attackerStats = attack
 	defenderStats = defend
 	
