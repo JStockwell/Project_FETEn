@@ -23,25 +23,37 @@ func _ready():
 			
 			add_child(mapTile)
 			
-			mapTile.translate(Vector3(x, 0, y))
+			mapTile.translate(Vector3(x, mapTile.get_height(), y))
 	
 	var i = 0
 	for character in GameStatus.get_party():
 		var partyMember = GameStatus.get_party_member(character)
 		partyMember.scale *= Vector3(0.5, 0.5, 0.5)
 		# TODO remove adjust once Pablo fixes the fucking character models
-		partyMember.translate(Vector3(-1.465, 0.815, i * 2))
+		partyMember.translate(Vector3(-1.465, 0.815 + 1, i * 2))
 		add_child(partyMember)
+		
+		partyMember.connect("character_selected", Callable(self, "character_handler"))
 		i += 1
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	update_debug_label()
+	
+func character_handler(character) -> void:
+	if GameStatus.get_selected_character() == null:
+		GameStatus.set_selected_character(character)
+	elif GameStatus.get_selected_character().get_char_name() == character.get_char_name():
+		GameStatus.set_selected_character(null)
+	else:
+		GameStatus.set_selected_character(character)
 
 # Debug
 @onready
 var debugLabel = $UI/Debug/DebugLabel
 
 func update_debug_label():
-	debugLabel.text = str(GameStatus.get_highlighted_node())
-	
+	if GameStatus.get_selected_character() == null:
+		debugLabel.text = "selectedCharacter: null"
+	else:
+		debugLabel.text = "selectedCharacter: " + GameStatus.get_selected_character().get_char_name()

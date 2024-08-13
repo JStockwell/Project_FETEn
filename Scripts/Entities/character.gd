@@ -109,15 +109,9 @@ func cap_current_stats(stats_set: Dictionary) -> Dictionary:
 	
 	return stats_set
 
+signal character_selected(character)
 
-func _on_mouse_entered():
-	var highlightedInfo = {
-		"type": "character",
-		"name": stats["name"]
-	}
-	
-	GameStatus.set_highlighted_node(highlightedInfo)
-
-
-func _on_mouse_exited():
-	GameStatus.set_highlighted_node(null)
+func _on_input_event(camera, event, position, normal, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == 1 and event.pressed:
+			character_selected.emit(self)
