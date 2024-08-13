@@ -8,7 +8,7 @@ var party = {}
 
 var debugMode = true
 
-func set_characters(attack, defend) -> void:
+func set_characters(attack: Dictionary, defend: Dictionary) -> void:
 	attackerStats = attack
 	defenderStats = defend
 	
