@@ -44,3 +44,10 @@ layout_mode = 0
 offset_right = 448.0
 offset_bottom = 48.0
 autowrap_mode = 3
+
+[node name="MoveButton" type="Button" parent="UI/Debug"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[connection signal="pressed" from="UI/Debug/MoveButton" to="." method="_on_move_button_pressed"]

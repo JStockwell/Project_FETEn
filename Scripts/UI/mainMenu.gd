@@ -12,7 +12,7 @@ func _ready():
 	
 	for skillName in skill_set:
 		GameStatus.skillSet[skillName] = Factory.Skill.create(skill_set[skillName])
-		
+	
 	combat_debug_test()
 	debug_map_combat_test()
 

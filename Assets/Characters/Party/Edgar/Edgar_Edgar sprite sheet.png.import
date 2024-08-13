@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c01cc8lumkc0"
-path.s3tc="res://.godot/imported/Edgar Idle 1_Edgar sprite sheet.png-f25121d67827f1cc8bfcdb6f713a59aa.s3tc.ctex"
+uid="uid://dn11bfa2yclg4"
+path.s3tc="res://.godot/imported/Edgar_Edgar sprite sheet.png-d3ec99e334fb26e4be48158cd0b478f6.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://Assets/Characters/Party/Edgar/Edgar Idle 1_Edgar sprite sheet.png"
-dest_files=["res://.godot/imported/Edgar Idle 1_Edgar sprite sheet.png-f25121d67827f1cc8bfcdb6f713a59aa.s3tc.ctex"]
+source_file="res://Assets/Characters/Party/Edgar/Edgar_Edgar sprite sheet.png"
+dest_files=["res://.godot/imported/Edgar_Edgar sprite sheet.png-d3ec99e334fb26e4be48158cd0b478f6.s3tc.ctex"]
 
 [params]
 

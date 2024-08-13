@@ -29,8 +29,7 @@ func _ready():
 	for character in GameStatus.get_party():
 		var partyMember = GameStatus.get_party_member(character)
 		partyMember.scale *= Vector3(0.5, 0.5, 0.5)
-		# TODO remove adjust once Pablo fixes the fucking character models
-		partyMember.translate(Vector3(-1.465, 0.815 + 1, i * 2))
+		partyMember.position = Vector3(0, 0, i)
 		partyMember.set_map_coords(Vector2(0, i))
 		add_child(partyMember)
 		
@@ -42,9 +41,7 @@ func _ready():
 	for character in GameStatus.get_enemies():
 		var enemy = GameStatus.get_enemy(character)
 		enemy.scale *= Vector3(0.5, 0.5, 0.5)
-		# TODO remove adjust once Pablo fixes the fucking character models
-		# TODO fix position calculation
-		enemy.translate(Vector3(CombatMapStatus.get_map_x() + 2 - 1.465, 0.815 + 1, CombatMapStatus.get_map_y() + 2 - i * 2))
+		enemy.position = Vector3(CombatMapStatus.get_map_x() - 1, 0, CombatMapStatus.get_map_y() - i - 1)
 		enemy.set_map_coords(Vector2(CombatMapStatus.get_map_x(), CombatMapStatus.get_map_y() - i))
 		add_child(enemy)
 		
@@ -83,6 +80,16 @@ func tile_handler(mapTile) -> void:
 		GameStatus.set_selected_map_tile(null)
 	else:
 		GameStatus.set_selected_map_tile(mapTile)
+
+# Player movement
+@onready
+var moveButton = $UI/Debug/MoveButton
+
+func _on_move_button_pressed():
+	var sel_char = GameStatus.get_selected_character()
+	if sel_char != null and GameStatus.get_selected_map_tile() != null:
+		var tile_coords = GameStatus.get_selected_map_tile().get_coords()
+		sel_char.position = Vector3(tile_coords.x, 0, tile_coords.y)
 
 # Debug
 @onready
