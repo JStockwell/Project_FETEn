@@ -66,6 +66,12 @@ func get_mesh_path() -> String:
 	
 func get_map_coords() -> Vector2:
 	return stats["map_coords"]
+	
+func get_current_health() -> int:
+	return stats["current_health"]
+	
+func get_current_mana() -> int:
+	return stats["current_mana"]
 
 # Setters
 func set_stats(stats_set: Dictionary) -> void:
