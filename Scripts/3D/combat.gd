@@ -44,7 +44,7 @@ func combat_round(type: String, rolls: Array, rolls_retaliate: Array, mapMod: in
 		"melee":
 			attack(attacker, defender, rolls, mapMod)
 			await wait(1)
-			if defender.get_stats()["current_health"] != 0:
+			if defender.get_current_health() != 0:
 				attack(defender, attacker, rolls_retaliate, mapMod)
 				await wait(1)
 			
