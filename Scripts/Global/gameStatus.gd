@@ -15,6 +15,9 @@ var skillSet: Dictionary
 var party: Dictionary
 var enemies: Dictionary
 
+var mapX = 11
+var mapY = 11
+
 var debugMode = true
 
 func set_playable_characters(characterDict: Dictionary) -> void:
@@ -75,6 +78,20 @@ func set_selected_enemy(character) -> void:
 func get_selected_enemy():
 	return selectedEnemy
 
+# Combat map getters and Setters
+func get_map_x() -> int:
+	return mapX
+	
+func get_map_y() -> int:
+	return mapY
+
+func get_map_dimensions() -> Vector2:
+	return Vector2(mapX, mapY)
+
+func set_map_size(x: int, y: int) -> void:
+	mapX = x
+	mapY = y
+	
 func set_selected_map_tile(mapTile) -> void:
 	selectedMapTile = mapTile
 	

@@ -1,5 +1,8 @@
 extends StaticBody3D
 
+@onready
+var selected = $Selected
+
 var coords: Vector2
 var height: int
 var difficulty: int
@@ -14,7 +17,7 @@ var meshPath: String
 func get_coords() -> Vector2:
 	return coords
 
-func get_is_populated() -> bool:
+func is_populated() -> bool:
 	return isPopulated
 
 func get_is_traversable() -> bool:
@@ -28,6 +31,9 @@ func get_height() -> int:
 
 func get_difficulty() -> int:
 	return difficulty
+	
+func set_is_populated(value: bool) -> void:
+	isPopulated = value
 
 signal tile_selected(mapTile)
 
