@@ -63,6 +63,9 @@ func is_ranged() -> bool:
 
 func get_mesh_path() -> String:
 	return stats["mesh_path"]
+	
+func get_map_coords() -> Vector2:
+	return stats["map_coords"]
 
 # Setters
 func set_stats(stats_set: Dictionary) -> void:
@@ -78,6 +81,13 @@ func set_mesh(path) -> void:
 		path = "res://Assets/Characters/Placeholder/Placeholder_Char.glb"
 			
 	add_child(load(path).instantiate())
+	
+func set_map_coords(coords: Vector2) -> void:
+	if int(coords.x) in range(0, CombatMapStatus.get_map_x() + 1) and int(coords.y) in range(0, CombatMapStatus.get_map_y() + 1):
+		stats["map_coords"] = coords
+		
+	else:
+		print("invalid coords " + str(coords))
 	
 # Functions
 func modify_health(hp_mod: int) -> void:

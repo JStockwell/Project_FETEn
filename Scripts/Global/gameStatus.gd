@@ -5,9 +5,12 @@ var selectedCharacter
 var attackerStats: Dictionary
 var defenderStats: Dictionary
 
-var skillSet: Dictionary
 var playableCharacters: Dictionary
+var enemySet: Dictionary
+
+var skillSet: Dictionary
 var party: Dictionary
+var enemies: Dictionary
 
 var debugMode = true
 
@@ -18,6 +21,15 @@ func set_party(playerList: Array) -> void:
 	for member in playerList:
 		party[member] = Factory.Character.create(playableCharacters[member])
 		
+func set_enemy_set(enemyDict: Dictionary) -> void:
+	enemySet = enemyDict
+	
+func set_enemies(enemyList: Array) -> void:
+	var counter = 0
+	for enemy in enemyList:
+		enemies[enemy + "_" + str(counter)] = Factory.Character.create(enemySet[enemy]).duplicate()
+		counter += 1
+		
 func get_party() -> Dictionary:
 	return party
 	
@@ -27,6 +39,16 @@ func get_party_member(charName: String):
 		
 	else:
 		print("character {n} not in party".format({"n": charName}))
+
+func get_enemies() -> Dictionary:
+	return enemies
+	
+func get_enemy(charName: String):
+	if charName in enemies.keys():
+		return enemies[charName]
+		
+	else:
+		print("character {n} not in enemies".format({"n": charName}))
 
 func set_active_characters(attack, defend) -> void:
 	attackerStats = attack
