@@ -6,8 +6,10 @@ var Combat = preload("res://Scenes/3D/combat.tscn")
 var attacker
 var defender
 var test_combat
+var ranged_attacker
 
 var stats_atk
+var stats_range_atk
 var stats_def
 
 func before_test():
@@ -15,6 +17,9 @@ func before_test():
 	add_child(attacker)
 	defender = Character.instantiate()
 	add_child(defender)
+	ranged_attacker = Character.instantiate()
+	add_child(ranged_attacker)
+	
 	
 	var skill1dict = {
 			"skill_name": "Skill_1",
@@ -45,7 +50,26 @@ func before_test():
 		"current_health": 24,
 		"current_mana": 5
 	}
-	
+
+	stats_range_atk = {
+		"name": "Ranged_Attacker",
+		"max_health": 24,
+		"attack": 7,
+		"dexterity": 9,
+		"defense": 6,
+		"agility": 8,
+		"movement": 5,
+		"ini_mana": 5,
+		"max_mana": 20,
+		"reg_mana": 5,
+		"range": 4,
+		"skills": ["skill_1"], # GameStatus.get_ability_by_id("SKILL_ID_1") -> instance ability.gd
+		"is_ranged": true,
+		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb",
+		"current_health": 24,
+		"current_mana": 5
+	}
+
 	stats_def = {
 		"name": "Defender",
 		"max_health": 22,
@@ -67,6 +91,7 @@ func before_test():
 	
 	attacker = Factory.Character.create(stats_atk)
 	defender = Factory.Character.create(stats_def)
+	ranged_attacker = Factory.Character.create(stats_range_atk)
 	GameStatus.set_active_characters(attacker.get_stats(), defender.get_stats())
 	
 	test_combat = Combat.instantiate()
@@ -79,6 +104,8 @@ func after_test():
 	test_combat.free()
 	for test_skill in GameStatus.skillSet:
 		GameStatus.skillSet[test_skill].free()
+	ranged_attacker.free()
+	
 	
 ##############
 # UNIT TESTS #
@@ -88,59 +115,88 @@ func test_not_null():
 	assert_that(attacker).is_not_null()
 	assert_that(defender).is_not_null()
 	assert_that(test_combat).is_not_null()
+	assert_that(ranged_attacker).is_not_null()
 	
-#TODO ask llames
+
 func test_combat_round_melee():
-	pass
-	#Combat.combat_round("melee", [1, 1, 1, 1], [1, 1, 1, 1], 0, "")
+	test_combat.combat_round("melee", [1, 1, 1, 100], [1, 1, 1, 100], 0, "")
+	await test_combat.wait(1)
 	
-	#assert_that(game_status.get_attacker_stats().get("current_health")).is_not_equal(game_status.get_attacker_stats().get("max_health"))
-	#assert_that(game_status.get_defender_stats().get("current_health")).is_not_equal(game_status.get_defender_stats().get("max_health"))
-	
+	assert_int(defender.get_current_health()).is_less(defender.get_max_health())
+	assert_int(attacker.get_current_health()).is_less(attacker.get_max_health())
+
 	
 func test_combat_round_ranged():
+	GameStatus.set_active_characters(ranged_attacker.get_stats(), defender.get_stats())
+	test_combat = Combat.instantiate()
+	add_child(test_combat)
+	
+	test_combat.combat_round("ranged", [1, 1, 1, 100], [1, 1, 1, 100], 0, "")
+	
+	assert_int(defender.get_current_health()).is_less(defender.get_max_health())
+	
+	
+#	TODO Evalua shadow ball, esperar a que james programe la retaliation
+func test_combat_round_skill_no_SEF_retaliation():
 	pass
 	
 	
-#	TODO Evalua shadow ball
-func test_combat_round_skill_no_SEF():
+#	TODO Evalua boost lv1, esperar a que james programe la retaliation
+func test_combat_round_skill_no_SEF_no_retaliation():
 	pass
 	
 	
-#	TODO Evalua nero-nero
-func test_combat_round_skill_SEF():
+#	TODO Evalua nero-nero, esperar a que james programe la retaliation
+func test_combat_round_skill_SEF_retaliation():
 	pass
 	
 	
-func test_attack():
+#	TODO Evalua nero-nero, esperar a que james programe la retaliation
+func test_combat_round_skill_SEF_no_retaliation():
 	pass
 	
+	
+func test_attack_hit():
+	var rolls = [1, 1, 1, 1]
+	
+	test_combat.attack(attacker, defender, rolls, 0, 0, 0)
+	
+	assert_int(defender.get_current_health()).is_less(defender.get_max_health())
+
+
+func test_attack_miss():
+	var rolls = [1, 100, 1, 1]
+	
+	test_combat.attack(attacker, defender, rolls, 0, 0, 0)
+	
+	assert_that(defender.get_current_health()).is_equal(defender.get_max_health())
+	assert_that(test_combat.damageNumber.text).is_equal("MISS")
 	
 func test_deal_damage_positive_no_crit():
 	test_combat.deal_damage(2, 1., defender)
 	
-	assert_that(defender.get_stats().get("current_health")).is_equal(20)
+	assert_that(defender.get_current_health()).is_equal(20)
 	assert_that(test_combat.damageNumber.text).is_equal("-2")
 
 
 func test_deal_damage_positive_crit():
 	test_combat.deal_damage(2, 1.5, defender)
 	
-	assert_that(defender.get_stats().get("current_health")).is_equal(19)
+	assert_that(defender.get_current_health()).is_equal(19)
 	assert_that(test_combat.damageNumber.text).is_equal("-3")
 	
 	
 func test_deal_damage_0():
 	test_combat.deal_damage(0, 1., defender)
 	
-	assert_that(defender.get_stats().get("current_health")).is_equal(defender.get_max_health())
+	assert_that(defender.get_current_health()).is_equal(defender.get_max_health())
 	assert_that(test_combat.damageNumber.text).is_equal("0")
 	
 
 func test_deal_damage_negative():
 	test_combat.deal_damage(-1, 1., defender)
 	
-	assert_that(defender.get_stats().get("current_health")).is_equal(defender.get_max_health())
+	assert_that(defender.get_current_health()).is_equal(defender.get_max_health())
 	assert_that(test_combat.damageNumber.text).is_equal("0")
 	
 	
