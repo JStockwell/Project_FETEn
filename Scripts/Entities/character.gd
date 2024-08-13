@@ -69,6 +69,11 @@ func is_ranged() -> bool:
 	
 func is_enemy() -> bool: 
 	return stats["is_enemy"]
+func get_current_health() -> int:
+	return stats["current_health"]
+	
+func get_current_mana() -> int:
+	return stats["current_mana"]
 
 # Setters
 func set_stats(stats_set: Dictionary) -> void:

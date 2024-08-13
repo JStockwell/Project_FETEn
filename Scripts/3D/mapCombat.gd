@@ -8,6 +8,8 @@ var camera = $Utility/CameraPivot/Camera3D
 var mapTileGroup = $MapTileGroup
 @onready
 var moveButton = $UI/Debug/MoveButton
+@onready
+var physAttackButton = $UI/Debug/PhysAttackButton
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -41,7 +43,6 @@ func _ready():
 		partyMember.connect("character_selected", Callable(self, "character_handler"))
 		
 		set_tile_populated(Vector2(0, i), true)
-		
 		i += 1
 		
 	i = 0
@@ -49,14 +50,13 @@ func _ready():
 		var enemy = GameStatus.get_enemy(character)
 		enemy.scale *= Vector3(0.5, 0.5, 0.5)
 		enemy.position = Vector3(GameStatus.get_map_x() - 1, 0, GameStatus.get_map_y() - i - 1)
-		enemy.set_map_coords(Vector2(GameStatus.get_map_x(), GameStatus.get_map_y() - i))
+		enemy.set_map_coords(Vector2(GameStatus.get_map_x() - 1, GameStatus.get_map_y() - i - 1 ))
 		add_child(enemy)
 		
 		enemy.set_is_enemy(true)
 		enemy.connect("character_selected", Callable(self, "character_handler"))
 		
 		set_tile_populated(Vector2(GameStatus.get_map_x() - 1, GameStatus.get_map_y() - 1 - i), true)
-		
 		i += 1
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -117,6 +117,10 @@ func tile_handler(mapTile) -> void:
 
 # Buttons updater
 func update_buttons() -> void:
+	update_move_button()
+	update_phys_attack_button()
+
+func update_move_button() -> void:
 	if GameStatus.get_selected_character() == null or GameStatus.get_selected_map_tile() == null:
 		moveButton.disabled = true
 		
@@ -125,6 +129,14 @@ func update_buttons() -> void:
 		
 	else:
 		moveButton.disabled = true
+
+func update_phys_attack_button() -> void:
+	if GameStatus.get_selected_character() == null or GameStatus.get_selected_enemy() == null:
+		physAttackButton.disabled = true
+	elif calc_distance(GameStatus.get_selected_character().get_map_coords(), GameStatus.get_selected_enemy().get_map_coords()) == 1:
+		physAttackButton.disabled = false
+	else:
+		physAttackButton.disabled = true
 
 # Player movement
 func _on_move_button_pressed():
@@ -179,10 +191,15 @@ func highlight_movement(character) -> void:
 func remove_highlights() -> void:
 	for tile in mapTileGroup.get_children():
 		tile.highlighted.hide()
-		
+
 func remove_selected() -> void:
 	for tile in mapTileGroup.get_children():
 		tile.selected.hide()
+
+func _on_phys_attack_button_pressed():
+	GameStatus.set_active_characters(GameStatus.get_selected_character().get_stats(), GameStatus.get_selected_enemy().get_stats())
+	
+	get_tree().change_scene_to_file("res://Scenes/3D/combat.tscn")
 
 # Debug
 @onready

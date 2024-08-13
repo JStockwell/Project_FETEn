@@ -79,7 +79,7 @@ func attack(t_attacker, t_defender, rolls: Array, mapMod: int, spa: int = 0, imd
 	else:
 		update_damage_text("MISS")
 		
-func deal_damage(dmg: int, crit: int, t_defender):
+func deal_damage(dmg: int, crit: float, t_defender):
 	if dmg >= 0:
 		t_defender.modify_health(-int(dmg * crit))
 		update_damage_text(str(-int(dmg * crit)))

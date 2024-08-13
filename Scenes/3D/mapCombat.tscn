@@ -44,10 +44,19 @@ offset_bottom = 48.0
 
 [node name="MoveButton" type="Button" parent="UI/Debug"]
 layout_mode = 0
-offset_left = 64.0
-offset_top = 960.0
-offset_right = 115.0
-offset_bottom = 991.0
+offset_left = 104.0
+offset_top = 816.0
+offset_right = 155.0
+offset_bottom = 847.0
 text = "Move"
 
+[node name="PhysAttackButton" type="Button" parent="UI/Debug"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 864.0
+offset_right = 189.0
+offset_bottom = 895.0
+text = "Physical Attack"
+
 [connection signal="pressed" from="UI/Debug/MoveButton" to="." method="_on_move_button_pressed"]
+[connection signal="pressed" from="UI/Debug/PhysAttackButton" to="." method="_on_phys_attack_button_pressed"]

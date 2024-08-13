@@ -20,7 +20,7 @@ func combat_debug_test():
 	GameStatus.set_active_characters(GameStatus.get_party_member("edgar").get_stats(), GameStatus.get_party_member("dick").get_stats())
 		
 func debug_map_combat_test():
-	GameStatus.set_map_size(16,11)
+	GameStatus.set_map_size(6, 6)
 
 func _on_debug_button_pressed():
 	get_tree().change_scene_to_file("res://Scenes/3D/mapCombat.tscn")
