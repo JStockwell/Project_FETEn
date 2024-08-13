@@ -1,7 +1,7 @@
 extends GdUnitTestSuite
 
 var Character = preload("res://Scenes/Entities/character.tscn")
-var Factory_Char = load("res://Scripts/Factories/characterFactory.gd")
+var Factory_Char = preload("res://Scripts/Factories/characterFactory.gd")
 
 var test_char
 var test_factory_char
