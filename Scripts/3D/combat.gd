@@ -152,7 +152,6 @@ func _on_debug_ranged_attack_button_pressed():
 	update_debug_buttons(true)
 	debugButtonTimer.start()
 
-# TODO test with sef aswell
 func _on_debug_skill_attack_button_pressed():
 	combat_round("skill", generate_rolls(), generate_rolls(), 0, debugSkillOptions.get_item_text(debugSkillOptions.get_selected_id()))
 	update_debug_buttons(true)

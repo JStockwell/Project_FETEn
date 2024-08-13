@@ -1,6 +1,9 @@
 extends StaticBody3D
 
 @onready
+var highlighted = $Highlighted
+
+@onready
 var selected = $Selected
 
 var coords: Vector2

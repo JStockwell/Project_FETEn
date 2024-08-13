@@ -25,7 +25,7 @@ func _ready():
 				"meshPath": null
 			})
 			
-			mapTileGroup.add_child(mapTile)
+			mapTileGroup.add_child(mapTile, true)
 			mapTile.translate(Vector3(x, mapTile.get_height(), y))
 			mapTile.connect("tile_selected", Callable(self, "tile_handler"))
 	
@@ -95,13 +95,11 @@ func set_selected_character(character, isEnemy: bool) -> void:
 	else:
 		GameStatus.set_selected_character(character)
 
-# Set populated MapTile
 func get_tile_from_coords(coords: Vector2):
 	for tile in mapTileGroup.get_children():
 		if tile.get_coords() == coords:
 			return tile
-			
-	print("tile {tile} not found".format({"tile": str(coords)}))
+
 	return null
 
 func set_tile_populated(coords: Vector2, value: bool) -> void:
@@ -110,9 +108,12 @@ func set_tile_populated(coords: Vector2, value: bool) -> void:
 # Set selected MapTile
 func tile_handler(mapTile) -> void:
 	if GameStatus.get_selected_map_tile() == mapTile:
+		remove_selected()
 		GameStatus.set_selected_map_tile(null)
 	else:
 		GameStatus.set_selected_map_tile(mapTile)
+		remove_selected()
+		mapTile.selected.show()
 
 # Buttons updater
 func update_buttons() -> void:
@@ -129,15 +130,20 @@ func update_buttons() -> void:
 func _on_move_button_pressed():
 	if validate_move(GameStatus.get_selected_character(), GameStatus.get_selected_map_tile()):
 		var tile_coords = GameStatus.get_selected_map_tile().get_coords()
+		var old_char_coords = GameStatus.get_selected_character().get_map_coords()
+		
 		GameStatus.get_selected_character().position = Vector3(tile_coords.x, 0.5, tile_coords.y)
 		GameStatus.get_selected_character().set_map_coords(Vector2(tile_coords.x, tile_coords.y))
 		
 		# Deselect mapTile
 		GameStatus.set_selected_map_tile(null)
+		set_tile_populated(old_char_coords, false)
+		set_tile_populated(tile_coords, true)
 		# TODO Remove once movement is capped per round
 		GameStatus.set_selected_character(null)
 		# Remove highlights
 		remove_highlights()
+		remove_selected()
 
 func validate_move(character, mapTile) -> bool:
 	var result = true
@@ -147,7 +153,7 @@ func validate_move(character, mapTile) -> bool:
 	
 	if mapTile.is_populated():
 		result = false
-
+	
 	return result
 
 func calc_distance(vect_1: Vector2, vect_2: Vector2) -> int:
@@ -166,11 +172,15 @@ func highlight_movement(character) -> void:
 	for i in range(min_x, max_x + 1):
 		for j in range(min_y, max_y + 1):
 			if calc_distance(char_coords, Vector2(i,j)) <= mov:
-				var sel_tile =get_tile_from_coords(Vector2(i, j))
-				if sel_tile != null:
-					sel_tile.selected.show()
+				var sel_tile = get_tile_from_coords(Vector2(i, j))
+				if sel_tile != null and !sel_tile.is_populated():
+					sel_tile.highlighted.show()
 
 func remove_highlights() -> void:
+	for tile in mapTileGroup.get_children():
+		tile.highlighted.hide()
+		
+func remove_selected() -> void:
 	for tile in mapTileGroup.get_children():
 		tile.selected.hide()
 
@@ -199,3 +209,4 @@ func update_debug_label():
 	else:
 		debugLabel.text += "coords: " + str(GameStatus.get_selected_map_tile().get_coords())
 		debugLabel.text += "\nisPopulated: " + str(GameStatus.get_selected_map_tile().is_populated())
+		debugLabel.text += "\nname: " + str(GameStatus.get_selected_map_tile().get_name())
