@@ -58,15 +58,17 @@ func get_range() -> int:
 func get_skills() -> Array:
 	return stats["skills"]
 
-func is_ranged() -> bool:
-	return stats["is_ranged"]
-
 func get_mesh_path() -> String:
 	return stats["mesh_path"]
 	
 func get_map_coords() -> Vector2:
 	return stats["map_coords"]
 	
+func is_ranged() -> bool:
+	return stats["is_ranged"]
+	
+func is_enemy() -> bool: 
+	return stats["is_enemy"]
 func get_current_health() -> int:
 	return stats["current_health"]
 	
@@ -89,11 +91,14 @@ func set_mesh(path) -> void:
 	add_child(load(path).instantiate())
 	
 func set_map_coords(coords: Vector2) -> void:
-	if int(coords.x) in range(0, CombatMapStatus.get_map_x() + 1) and int(coords.y) in range(0, CombatMapStatus.get_map_y() + 1):
+	if int(coords.x) in range(0, GameStatus.get_map_x() + 1) and int(coords.y) in range(0, GameStatus.get_map_y() + 1):
 		stats["map_coords"] = coords
 		
 	else:
 		print("invalid coords " + str(coords))
+		
+func set_is_enemy(flag: bool) -> void:
+	stats["is_enemy"] = flag
 	
 # Functions
 func modify_health(hp_mod: int) -> void:

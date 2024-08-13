@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameStatus="*res://Scripts/Global/gameStatus.gd"
-CombatMapStatus="*res://Scripts/Global/combatMapStatus.gd"
 RigidBodyAutoScaler="*res://addons/rigidbody_auto_scaler/RigidBodyAutoScaler.gd"
 
 [display]

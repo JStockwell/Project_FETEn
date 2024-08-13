@@ -7,18 +7,17 @@ height = 0.14749
 radius = 0.839451
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_047if"]
-size = Vector3(1.36035, 1.58843, 0.0874634)
+size = Vector3(1.36035, 1.64431, 0.0874634)
 
 [node name="Character" type="RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46547, -0.814766, 0)
 script = ExtResource("1_gltqy")
 
 [node name="BaseCollision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.46547, 0.88996, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0731199, 0)
 shape = SubResource("CylinderShape3D_7yb5o")
 
 [node name="TopCollision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.46158, 1.75049, -0.000823949)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.919336, 0)
 shape = SubResource("BoxShape3D_047if")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

@@ -1,9 +1,0 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://6ijm1xbqk1p5"]
-
-[ext_resource type="Texture2D" uid="uid://c01cc8lumkc0" path="res://Assets/Characters/Party/Edgar/Edgar Idle 1_Edgar sprite sheet.png" id="1_c3vbg"]
-
-[resource]
-resource_name = "Material.001"
-cull_mode = 2
-albedo_texture = ExtResource("1_c3vbg")
-roughness = 0.5
