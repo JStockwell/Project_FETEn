@@ -9,6 +9,8 @@ var selectedCharacter
 var selectedEnemy
 var selectedMapTile
 
+var activeCharacter
+
 var attackerStats: Dictionary
 var defenderStats: Dictionary
 
@@ -17,6 +19,10 @@ var mapMod: int
 var attackSkill: String = ""
 
 var isStartCombat: bool
+var initiative: Array = []
+var currentIni: int
+
+var hasAttacked: bool
 
 var mapTileMatrix: Array = []
 
@@ -61,6 +67,18 @@ func is_start_combat() -> bool:
 
 func set_is_start_combat(value: bool) -> void:
 	isStartCombat = value
+	
+func set_initiative(array: Array) -> void:
+	initiative = array
+	currentIni = 0
+	
+func get_current_turn_char():
+	return initiative[currentIni]
+
+func advance_ini() -> void:
+	currentIni += 1
+	if currentIni >= len(initiative):
+		currentIni = 0
 
 # Selected Entities
 func set_selected_character(character) -> void:

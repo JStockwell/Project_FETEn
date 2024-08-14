@@ -8,7 +8,7 @@ func _ready():
 	GameStatus.set_playable_characters(playableCharacters)
 	GameStatus.set_party(["dick", "edgar"])
 	GameStatus.set_enemy_set(enemySet)
-	CombatMapStatus.set_enemies(["phys_fodder", "phys_fodder"])
+	CombatMapStatus.set_enemies(["goblin", "goblin"])
 	
 	for skillName in skill_set:
 		GameStatus.skillSet[skillName] = Factory.Skill.create(skill_set[skillName])

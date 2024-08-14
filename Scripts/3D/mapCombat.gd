@@ -22,8 +22,11 @@ func _ready():
 	
 	if CombatMapStatus.is_start_combat():
 		initial_map_load()
+		calculate_combat_initiative()
 	else:
 		reload_map()
+		
+	start_turn()
 	
 func initial_map_load() -> void:
 	for x in CombatMapStatus.get_map_x():
@@ -105,6 +108,44 @@ func reload_map():
 			enemy.connect("character_selected", Callable(self, "character_handler"))
 			
 			set_tile_populated(Vector2(enemy.get_map_coords().x, enemy.get_map_coords().y), true)
+
+func calculate_combat_initiative() -> void:
+	var res_dict = {}
+	var result = []
+	
+	for char in characterGroup.get_children():
+		var ini = char.calculate_initiative(randi_range(1, 20))
+		res_dict[char.get_instance_id()] = ini
+		
+	for enemy in enemyGroup.get_children():
+		var ini = enemy.calculate_initiative(randi_range(1, 20))
+		res_dict[enemy.get_instance_id()] = ini
+
+	# Order the results
+	var ordered_ini = res_dict.values()
+	ordered_ini.sort_custom(sort_descending)
+	
+	# Construct the array
+	for initiative in ordered_ini:
+		var char = res_dict.find_key(initiative)
+		result.append(char)
+		res_dict.erase(char)
+		
+	# Set result
+	CombatMapStatus.set_initiative(result)
+	
+func sort_descending(a: float, b: float) -> bool:
+	if a > b:
+		return true
+	return false
+
+func start_turn() -> void:
+	var currentChar = instance_from_id(CombatMapStatus.get_current_turn_char()).get_stats()
+	currentChar.modify_current_movement(999)
+	
+	CombatMapStatus.set_has_attacked(false)
+	CombatMapStatus.advance_ini()
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -202,24 +243,24 @@ func update_phys_attack_button() -> void:
 
 # Player movement
 func _on_move_button_pressed():
-	if validate_move(CombatMapStatus.get_selected_character(), CombatMapStatus.get_selected_map_tile()):
+	var selChar = CombatMapStatus.get_selected_character()
+	if validate_move(selChar, CombatMapStatus.get_selected_map_tile()):
 		var tile_coords = CombatMapStatus.get_selected_map_tile().get_coords()
 		var old_char_coords = CombatMapStatus.get_selected_character().get_map_coords()
 		
-		CombatMapStatus.get_selected_character().position = Vector3(tile_coords.x, 0.5, tile_coords.y)
-		CombatMapStatus.get_selected_character().set_map_coords(Vector2(tile_coords.x, tile_coords.y))
+		selChar.position = Vector3(tile_coords.x, 0.5, tile_coords.y)
+		selChar.set_map_coords(Vector2(tile_coords.x, tile_coords.y))
+		selChar.modify_current_movement(-calc_distance(old_char_coords, tile_coords))
 		
 		# Deselect mapTile
 		CombatMapStatus.set_selected_map_tile(null)
 		set_tile_populated(old_char_coords, false)
 		set_tile_populated(tile_coords, true)
-		# TODO Remove once movement is capped per round
-		CombatMapStatus.set_selected_character(null)
-		CombatMapStatus.set_selected_enemy(null)
 		# Remove highlights
-		remove_char_highlights()
-		remove_enemy_highlights()
+		#remove_char_highlights()
+		#remove_enemy_highlights()
 		remove_highlights()
+		highlight_movement(selChar)
 		remove_selected()
 
 func validate_move(character, mapTile) -> bool:
@@ -238,7 +279,7 @@ func calc_distance(vect_1: Vector2, vect_2: Vector2) -> int:
 
 func highlight_movement(character) -> void:
 	var char_coords = character.get_map_coords()
-	var mov = character.get_movement()
+	var mov = character.get_current_mov()
 	
 	var min_x = max(char_coords.x - mov, 0)
 	var max_x = min(char_coords.x + mov, CombatMapStatus.get_map_x())
@@ -287,6 +328,7 @@ func update_debug_label():
 		debugLabel.text += "name: " + CombatMapStatus.get_selected_character().get_char_name()
 		debugLabel.text += "\ncoords: " + str(CombatMapStatus.get_selected_character().get_map_coords())
 		debugLabel.text += "\nhealth: " + str(CombatMapStatus.get_selected_character().get_current_health())
+		debugLabel.text += "\ncurrentMov: " + str(CombatMapStatus.get_selected_character().get_current_mov())
 		
 	debugLabel.text += "\n--------------\nselectedEnemy\n"
 	if CombatMapStatus.get_selected_enemy() == null:
@@ -295,6 +337,7 @@ func update_debug_label():
 		debugLabel.text += "name: " + CombatMapStatus.get_selected_enemy().get_char_name()
 		debugLabel.text += "\ncoords: " + str(CombatMapStatus.get_selected_enemy().get_map_coords())
 		debugLabel.text += "\nhealth: " + str(CombatMapStatus.get_selected_enemy().get_current_health())
+		debugLabel.text += "\ncurrentMov: " + str(CombatMapStatus.get_selected_character().get_current_mov())
 		
 	debugLabel.text += "\n--------------\nselectedMapTile\n"
 	if CombatMapStatus.get_selected_map_tile() == null:

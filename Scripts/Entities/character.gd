@@ -81,6 +81,9 @@ func get_current_health() -> int:
 	
 func get_current_mana() -> int:
 	return stats["current_mana"]
+	
+func get_current_mov() -> int:
+	return stats["current_mov"]
 
 # Setters
 func set_stats(stats_set: Dictionary) -> void:
@@ -112,6 +115,18 @@ func modify_health(hp_mod: int) -> void:
 	stats["current_health"] += hp_mod
 	cap_current_stats(stats)
 
+func modify_mana(mana_mod: int) -> void:
+	stats["current_mana"] += mana_mod
+	cap_current_stats(stats)
+	
+func modify_current_movement(mov_mod: int) -> void:
+	stats["current_mov"] += mov_mod
+	cap_current_stats(stats)
+	
+# Roll is a D20
+func calculate_initiative(roll: int) -> float:
+	return roll + ((stats["agility"] + stats["dexterity"]) / 2) * 1.1
+
 # Validators
 func validate_stats(stats_set) -> bool:
 	var result = true
@@ -129,11 +144,17 @@ func cap_current_stats(stats_set: Dictionary) -> Dictionary:
 	if stats_set["current_mana"] > stats_set["max_mana"]:
 		stats_set["current_mana"] = stats_set["max_mana"]
 		
+	if stats_set["current_mov"] > stats_set["movement"]:
+		stats_set["current_mov"] = stats_set["movement"]
+		
 	if stats_set["current_health"] < 0:
 		stats_set["current_health"] = 0
 		
 	if stats_set["current_mana"] < 0:
 		stats_set["current_mana"] = 0
+		
+	if stats_set["current_mov"] < 0:
+		stats_set["currrent_mov"] = 0
 	
 	return stats_set
 
