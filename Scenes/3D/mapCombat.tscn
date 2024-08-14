@@ -18,6 +18,10 @@ fov = 65.0
 [node name="Sun" type="DirectionalLight3D" parent="Utility"]
 transform = Transform3D(0.707107, -0.612373, 0.353553, 1.49012e-08, 0.5, 0.866025, -0.707107, -0.612372, 0.353553, 0, 7, 0)
 
+[node name="CharacterGroup" type="Node3D" parent="."]
+
+[node name="EnemyGroup" type="Node3D" parent="."]
+
 [node name="MapTileGroup" type="Node3D" parent="."]
 
 [node name="Debug" type="Node3D" parent="."]

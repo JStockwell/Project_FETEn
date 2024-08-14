@@ -7,6 +7,10 @@ var camera = $Utility/CameraPivot/Camera3D
 @onready
 var mapTileGroup = $MapTileGroup
 @onready
+var characterGroup = $CharacterGroup
+@onready
+var enemyGroup = $EnemyGroup
+@onready
 var moveButton = $UI/Debug/MoveButton
 @onready
 var physAttackButton = $UI/Debug/PhysAttackButton
@@ -48,7 +52,7 @@ func initial_map_load() -> void:
 		partyMember.scale *= Vector3(0.5, 0.5, 0.5)
 		partyMember.position = Vector3(0, 0, i)
 		partyMember.set_map_coords(Vector2(0, i))
-		add_child(partyMember)
+		characterGroup.add_child(partyMember)
 		
 		partyMember.set_is_enemy(false)
 		partyMember.connect("character_selected", Callable(self, "character_handler"))
@@ -62,7 +66,7 @@ func initial_map_load() -> void:
 		enemy.scale *= Vector3(0.5, 0.5, 0.5)
 		enemy.position = Vector3(CombatMapStatus.get_map_x() - 1, 0, CombatMapStatus.get_map_y() - i - 1)
 		enemy.set_map_coords(Vector2(CombatMapStatus.get_map_x() - 1, CombatMapStatus.get_map_y() - i - 1 ))
-		add_child(enemy)
+		enemyGroup.add_child(enemy)
 		
 		enemy.set_is_enemy(true)
 		enemy.connect("character_selected", Callable(self, "character_handler"))
@@ -85,7 +89,7 @@ func reload_map():
 			var partyMember = Factory.Character.create(GameStatus.get_party_member(character))
 			partyMember.scale *= Vector3(0.5, 0.5, 0.5)
 			partyMember.position = Vector3(partyMember.get_map_coords().x, 0, partyMember.get_map_coords().y)
-			add_child(partyMember)
+			characterGroup.add_child(partyMember)
 			
 			partyMember.connect("character_selected", Callable(self, "character_handler"))
 			
@@ -96,7 +100,7 @@ func reload_map():
 			var enemy = Factory.Character.create(CombatMapStatus.get_enemy(character))
 			enemy.scale *= Vector3(0.5, 0.5, 0.5)
 			enemy.position = Vector3(enemy.get_map_coords().x, 0, enemy.get_map_coords().y)
-			add_child(enemy)
+			enemyGroup.add_child(enemy)
 			
 			enemy.connect("character_selected", Callable(self, "character_handler"))
 			
@@ -118,19 +122,34 @@ func character_handler(character) -> void:
 
 func selected_checker(character, combatMapStatusCharacter, isEnemy: bool) -> void:
 	if combatMapStatusCharacter == null:
-		set_selected_character(character, isEnemy)
 		if not isEnemy:
+			character.selectedChar.show()
 			highlight_movement(character)
+		else:
+			character.selectedEnemy.show()
+			
+		set_selected_character(character, isEnemy)
+			
 	elif combatMapStatusCharacter.get_name() == character.get_name():
 		if not isEnemy:
+			remove_char_highlights()
 			remove_highlights()
+		else:
+			remove_enemy_highlights()
+			
 		set_selected_character(null, isEnemy)
+		
 	else:
 		if not isEnemy:
+			remove_char_highlights()
 			remove_highlights()
-		set_selected_character(character, isEnemy)
-		if not isEnemy:
+			character.selectedChar.show()
 			highlight_movement(character)
+		else:
+			remove_enemy_highlights()
+			character.selectedEnemy.show()
+			
+		set_selected_character(character, isEnemy)
 		
 func set_selected_character(character, isEnemy: bool) -> void:
 	if isEnemy:
@@ -196,7 +215,10 @@ func _on_move_button_pressed():
 		set_tile_populated(tile_coords, true)
 		# TODO Remove once movement is capped per round
 		CombatMapStatus.set_selected_character(null)
+		CombatMapStatus.set_selected_enemy(null)
 		# Remove highlights
+		remove_char_highlights()
+		remove_enemy_highlights()
 		remove_highlights()
 		remove_selected()
 
@@ -238,6 +260,14 @@ func remove_highlights() -> void:
 func remove_selected() -> void:
 	for tile in mapTileGroup.get_children():
 		tile.selected.hide()
+		
+func remove_char_highlights() -> void:
+	for char in characterGroup.get_children():
+		char.selectedChar.hide()
+		
+func remove_enemy_highlights() -> void:
+	for enemy in enemyGroup.get_children():
+		enemy.selectedEnemy.hide()
 
 func _on_phys_attack_button_pressed():
 	# TODO Differenciate ranged and melee

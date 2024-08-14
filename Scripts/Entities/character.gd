@@ -18,6 +18,12 @@ var stats = {
 	"mesh_path": null
 }
 
+@onready
+var selectedChar = $SelectedChar
+
+@onready
+var selectedEnemy = $SelectedEnemy
+
 # Getters
 func get_stats() -> Dictionary:
 	return stats
