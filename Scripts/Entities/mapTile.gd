@@ -34,10 +34,10 @@ func get_coords() -> Vector2:
 func is_populated() -> bool:
 	return isPopulated
 
-func get_is_traversable() -> bool:
+func is_traversable() -> bool:
 	return isTraversable
 	
-func get_is_obstacle() -> bool:
+func is_obstacle() -> bool:
 	return isObstacle
 
 func get_height() -> int:

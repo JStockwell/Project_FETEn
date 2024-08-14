@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://t6qujnyj5c8y"]
+[gd_scene load_steps=10 format=3 uid="uid://t6qujnyj5c8y"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/character.gd" id="1_gltqy"]
 
@@ -31,6 +31,17 @@ top_radius = 0.74
 bottom_radius = 0.818
 height = 0.14
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uj50f"]
+transparency = 1
+blend_mode = 1
+albedo_color = Color(0, 1, 0, 0.196078)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rgxwc"]
+material = SubResource("StandardMaterial3D_uj50f")
+top_radius = 0.74
+bottom_radius = 0.818
+height = 0.14
+
 [node name="Character" type="RigidBody3D"]
 script = ExtResource("1_gltqy")
 
@@ -54,6 +65,11 @@ skeleton = NodePath("")
 transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 0.076, 0)
 visible = false
 mesh = SubResource("CylinderMesh_e465f")
+
+[node name="SelectedAlly" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0.076, 0)
+visible = false
+mesh = SubResource("CylinderMesh_rgxwc")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

@@ -7,9 +7,8 @@ var mapY = 11
 
 var selectedCharacter
 var selectedEnemy
+var selectedAlly
 var selectedMapTile
-
-var activeCharacter
 
 var attackerStats: Dictionary
 var defenderStats: Dictionary
@@ -80,6 +79,15 @@ func advance_ini() -> void:
 	if currentIni >= len(initiative):
 		currentIni = 0
 
+func set_has_attacked(value: bool) -> void:
+	hasAttacked = value
+	
+#func set_map_active_character(character) -> void:
+	#activeCharacter = character
+	#
+#func get_map_active_character():
+	#return activeCharacter
+
 # Selected Entities
 func set_selected_character(character) -> void:
 	selectedCharacter = character
@@ -92,6 +100,12 @@ func set_selected_enemy(character) -> void:
 
 func get_selected_enemy():
 	return selectedEnemy
+	
+func set_selected_ally(character) -> void:
+	selectedAlly = character
+	
+func get_selected_ally():
+	return selectedAlly
 	
 func set_selected_map_tile(mapTile) -> void:
 	selectedMapTile = mapTile

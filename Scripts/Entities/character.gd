@@ -24,6 +24,9 @@ var selectedChar = $SelectedChar
 @onready
 var selectedEnemy = $SelectedEnemy
 
+@onready
+var selectedAlly = $SelectedAlly
+
 # Getters
 func get_stats() -> Dictionary:
 	return stats

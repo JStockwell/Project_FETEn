@@ -20,7 +20,7 @@ func combat_debug_test():
 	CombatMapStatus.set_active_characters(GameStatus.get_party_member("edgar"), GameStatus.get_party_member("dick"))
 		
 func debug_map_combat_test():
-	CombatMapStatus.set_map_size(3, 3)
+	CombatMapStatus.set_map_size(6, 6)
 	CombatMapStatus.set_is_start_combat(true)
 
 func _on_debug_button_pressed():
