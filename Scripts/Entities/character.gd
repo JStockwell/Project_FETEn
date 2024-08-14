@@ -88,6 +88,12 @@ func get_current_mana() -> int:
 func get_current_mov() -> int:
 	return stats["current_mov"]
 
+func set_map_id(val: int) -> void:
+	stats["map_id"] = val
+	
+func get_map_id() -> int:
+	return stats["map_id"]
+
 # Setters
 func set_stats(stats_set: Dictionary) -> void:
 	if validate_stats(stats_set):

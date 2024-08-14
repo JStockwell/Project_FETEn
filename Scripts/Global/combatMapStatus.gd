@@ -74,6 +74,9 @@ func set_initiative(array: Array) -> void:
 func get_current_turn_char():
 	return initiative[currentIni]
 
+func get_initiative() -> Array:
+	return initiative
+
 func advance_ini() -> void:
 	currentIni += 1
 	if currentIni >= len(initiative):
@@ -81,12 +84,6 @@ func advance_ini() -> void:
 
 func set_has_attacked(value: bool) -> void:
 	hasAttacked = value
-	
-#func set_map_active_character(character) -> void:
-	#activeCharacter = character
-	#
-#func get_map_active_character():
-	#return activeCharacter
 
 # Selected Entities
 func set_selected_character(character) -> void:

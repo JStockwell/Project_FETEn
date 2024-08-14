@@ -28,7 +28,7 @@ func _ready():
 	else:
 		reload_map()
 		
-	start_turn()
+	await start_turn()
 	
 func initial_map_load() -> void:
 	for x in CombatMapStatus.get_map_x():
@@ -57,6 +57,7 @@ func initial_map_load() -> void:
 		partyMember.scale *= Vector3(0.5, 0.5, 0.5)
 		partyMember.position = Vector3(0, 0, i)
 		partyMember.set_map_coords(Vector2(0, i))
+		partyMember.set_map_id(i)
 		characterGroup.add_child(partyMember)
 		
 		partyMember.set_is_enemy(false)
@@ -65,19 +66,20 @@ func initial_map_load() -> void:
 		set_tile_populated(Vector2(0, i), true)
 		i += 1
 		
-	i = 0
+	var j = 0
 	for character in CombatMapStatus.get_enemies():
 		var enemy = Factory.Character.create(CombatMapStatus.get_enemy(character))
 		enemy.scale *= Vector3(0.5, 0.5, 0.5)
-		enemy.position = Vector3(CombatMapStatus.get_map_x() - 1, 0, CombatMapStatus.get_map_y() - i - 1)
-		enemy.set_map_coords(Vector2(CombatMapStatus.get_map_x() - 1, CombatMapStatus.get_map_y() - i - 1 ))
+		enemy.position = Vector3(CombatMapStatus.get_map_x() - 1, 0, CombatMapStatus.get_map_y() - j - 1)
+		enemy.set_map_coords(Vector2(CombatMapStatus.get_map_x() - 1, CombatMapStatus.get_map_y() - j - 1 ))
+		enemy.set_map_id(i + j)
 		enemyGroup.add_child(enemy)
 		
 		enemy.set_is_enemy(true)
 		enemy.connect("character_selected", Callable(self, "character_handler"))
 		
-		set_tile_populated(Vector2(CombatMapStatus.get_map_x() - 1, CombatMapStatus.get_map_y() - 1 - i), true)
-		i += 1
+		set_tile_populated(Vector2(CombatMapStatus.get_map_x() - 1, CombatMapStatus.get_map_y() - 1 - j), true)
+		j += 1
 		
 	CombatMapStatus.set_is_start_combat(false)
 
@@ -118,11 +120,11 @@ func calculate_combat_initiative() -> void:
 	
 	for char in characterGroup.get_children():
 		var ini = char.calculate_initiative(randi_range(1, 20))
-		res_dict[char.get_instance_id()] = ini
+		res_dict[char.get_map_id()] = ini
 		
 	for enemy in enemyGroup.get_children():
 		var ini = enemy.calculate_initiative(randi_range(1, 20))
-		res_dict[enemy.get_instance_id()] = ini
+		res_dict[enemy.get_map_id()] = ini
 
 	# Order the results
 	var ordered_ini = res_dict.values()
@@ -145,18 +147,31 @@ func sort_descending(a: float, b: float) -> bool:
 func start_turn() -> void:
 	reset_map_status()
 	
-	var currentChar = instance_from_id(CombatMapStatus.get_current_turn_char())
+	var currentChar
+	var flag = true
+	
+	for character in characterGroup.get_children():
+		if character.get_map_id() == CombatMapStatus.get_current_turn_char():
+			currentChar = character
+			flag = false
+			
+	if flag:
+		for enemy in enemyGroup.get_children():
+			if enemy.get_map_id() == CombatMapStatus.get_current_turn_char():
+				currentChar = enemy
+	
 	currentChar.modify_current_movement(999)
 	
 	CombatMapStatus.set_has_attacked(false)
-	CombatMapStatus.advance_ini()
 	CombatMapStatus.set_selected_character(currentChar)
 	
 	if currentChar.is_enemy():
-		start_turn()
+		currentChar.selectedEnemy.show()
+		await wait(2)
+		CombatMapStatus.advance_ini()
+		await start_turn()
 		
 	else:
-		CombatMapStatus.set_selected_character(currentChar)
 		currentChar.selectedChar.show()
 		highlight_movement(currentChar)
 	
@@ -357,7 +372,11 @@ func _on_phys_attack_button_pressed():
 	get_tree().change_scene_to_file("res://Scenes/3D/combat.tscn")
 
 func _on_end_turn_button_pressed():
-	start_turn()
+	CombatMapStatus.advance_ini()
+	await start_turn()
+
+func wait(seconds: float) -> void:
+	await get_tree().create_timer(seconds).timeout
 
 # Debug
 @onready
@@ -398,3 +417,8 @@ func update_debug_label():
 		debugLabel.text += "coords: " + str(CombatMapStatus.get_selected_map_tile().get_coords())
 		debugLabel.text += "\nisPopulated: " + str(CombatMapStatus.get_selected_map_tile().is_populated())
 		debugLabel.text += "\nname: " + str(CombatMapStatus.get_selected_map_tile().get_name())
+
+
+	debugLabel.text += "\n--------------\ncombatMapStatus\n"
+	debugLabel.text += "initiative: " + str(CombatMapStatus.get_initiative())
+	debugLabel.text += "\ncurrentInitative: " + str(CombatMapStatus.get_current_turn_char())
