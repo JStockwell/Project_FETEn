@@ -55,7 +55,7 @@
 		"creators_touch":{
 		"skill_name": "Touch of the Creator",
 		"range": 1,
-		"cost": 8,
+		"cost": 7,
 		"spa": 12,
 		"sef": true,
 		"cta": true, 
