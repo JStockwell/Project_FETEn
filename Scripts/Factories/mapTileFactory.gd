@@ -8,7 +8,7 @@ static func create(args: Dictionary):
 	
 	var coords: Vector2 = args["coords"]
 	var height: int = args["height"]
-	var difficulty: int = args["difficulty"]
+	var idt: int = args["idt"]
 	var isPopulated: bool = args["isPopulated"]
 	var isTraversable: bool = args["isTraversable"]
 	var isObstacle: bool = args["isObstacle"]
@@ -30,7 +30,7 @@ static func create(args: Dictionary):
 		
 		myMapTile.coords = coords
 		myMapTile.height = height
-		myMapTile.difficulty = difficulty
+		myMapTile.isDifficultTerrain = idt
 		myMapTile.isPopulated = isPopulated
 		myMapTile.isTraversable = isTraversable
 		myMapTile.isObstacle = isObstacle

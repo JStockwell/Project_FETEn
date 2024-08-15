@@ -33,14 +33,14 @@ func _ready():
 
 	# TODO Times and UI once Map is being used
 	if GameStatus.autorunCombat:
-		combat_round(generate_rolls(), generate_rolls(), CombatMapStatus.mapMod, CombatMapStatus.isMelee, CombatMapStatus.attackSkill)
+		combat_round(generate_rolls(), generate_rolls(), CombatMapStatus.mapMod, CombatMapStatus.attackRange, CombatMapStatus.attackSkill)
 
 #func _process(delta):
 	#if GameStatus.debugMode:
 		#update_debug_text()
 
 # 4 types: melee, ranged, skill and mag
-func combat_round(rolls: Array, rolls_retaliate: Array, mapMod: int, isMelee: bool, skillName: String = "") -> void:
+func combat_round(rolls: Array, rolls_retaliate: Array, mapMod: int, range: int, skillName: String = "") -> void:
 	# TODO implement character acc and crit modifiers
 	if skillName == "":
 		await attack(attacker, defender, rolls, mapMod)
@@ -51,10 +51,14 @@ func combat_round(rolls: Array, rolls_retaliate: Array, mapMod: int, isMelee: bo
 		else:
 			await attack(attacker, defender, rolls, mapMod, skillSet["spa"], skillSet["imd"])
 	
-	if isMelee and defender.get_stats()["current_health"] != 0:
-		# TODO check mapMod
+	if range == 1 and defender.get_stats()["current_health"] != 0:
+		# TODO check mapMod for enemy? No mapMod?
 		await attack(defender, attacker, rolls_retaliate, mapMod)
-	
+		
+	elif defender.get_stats()["current_health"] == 0:
+		CombatMapStatus.remove_character_ini(defender.get_map_id())
+		
+	CombatMapStatus.set_has_attacked(true)
 	get_tree().change_scene_to_file("res://Scenes/3D/mapCombat.tscn")
 
 # Attack functions

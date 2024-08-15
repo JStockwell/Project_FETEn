@@ -47,12 +47,10 @@ script = ExtResource("1_gltqy")
 
 [node name="BaseCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0731199, 0)
-visible = false
 shape = SubResource("CylinderShape3D_7yb5o")
 
 [node name="TopCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.919336, 0)
-visible = false
 shape = SubResource("BoxShape3D_047if")
 
 [node name="SelectedChar" type="MeshInstance3D" parent="."]

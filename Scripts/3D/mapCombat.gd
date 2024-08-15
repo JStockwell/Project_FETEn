@@ -36,7 +36,7 @@ func initial_map_load() -> void:
 			var mapTile = Factory.MapTile.create({
 				"coords": Vector2(x,y),
 				"height": 0,
-				"difficulty": 0,
+				"idt": false,
 				"isPopulated": false,
 				"isTraversable": true,
 				"isObstacle": false,
@@ -138,6 +138,7 @@ func reload_map():
 			set_tile_populated(Vector2(enemy.get_map_coords().x, enemy.get_map_coords().y), true)
 			
 	reset_map_status()
+	highlight_control_zones()
 	
 func sort_descending(a: float, b: float) -> bool:
 	if a >= b:
@@ -152,7 +153,7 @@ func start_turn() -> void:
 	currentChar.modify_current_movement(999)
 	
 	CombatMapStatus.set_has_attacked(false)
-	# TODO set_has_moved
+	CombatMapStatus.set_has_moved(false)
 	CombatMapStatus.set_selected_character(currentChar)
 	
 	if currentChar.is_enemy():
@@ -165,20 +166,20 @@ func start_turn() -> void:
 	else:
 		currentChar.selectedChar.show()
 		highlight_movement(currentChar)
+		highlight_control_zones()
 	
 func reset_map_status() -> void:
 	remove_ally_highlights()
 	remove_char_highlights()
 	remove_enemy_highlights()
 	remove_highlights()
+	remove_control_zones()
 	remove_selected()
 	
 	CombatMapStatus.set_selected_ally(null)
 	CombatMapStatus.set_selected_character(null)
 	CombatMapStatus.set_selected_enemy(null)
 	CombatMapStatus.set_selected_map_tile(null)
-	CombatMapStatus.hasAttacked = false
-	CombatMapStatus.hasMoved = false
 	
 	var currentChar
 	var flag = true
@@ -208,7 +209,7 @@ func character_handler(character) -> void:
 		if character.is_enemy():
 			selected_checker(character, CombatMapStatus.get_selected_enemy(), character.is_enemy())
 		elif character.get_instance_id() != CombatMapStatus.get_selected_character().get_instance_id():
-			selected_checker(character, CombatMapStatus.get_selected_character(), character.is_enemy())
+			selected_checker(character, CombatMapStatus.get_selected_ally(), character.is_enemy())
 
 func selected_checker(character, combatMapStatusCharacter, isEnemy: bool) -> void:
 	if combatMapStatusCharacter == null:
@@ -221,7 +222,6 @@ func selected_checker(character, combatMapStatusCharacter, isEnemy: bool) -> voi
 			
 	elif combatMapStatusCharacter.get_name() == character.get_name():
 		if not isEnemy:
-			# TODO Check why no work
 			remove_ally_highlights()
 		else:
 			remove_enemy_highlights()
@@ -309,20 +309,15 @@ func _on_move_button_pressed():
 		
 		selChar.position = Vector3(tile_coords.x, 0.5, tile_coords.y)
 		selChar.set_map_coords(Vector2(tile_coords.x, tile_coords.y))
-		# TODO Remove because you can only move once
-		selChar.modify_current_movement(-calc_distance(old_char_coords, tile_coords))
 		
 		# Deselect mapTile
 		CombatMapStatus.set_selected_map_tile(null)
 		set_tile_populated(old_char_coords, false)
 		set_tile_populated(tile_coords, true)
 		# Remove highlights
-		#remove_char_highlights()
-		#remove_enemy_highlights()
 		remove_highlights()
-		highlight_movement(selChar)
 		remove_selected()
-		CombatMapStatus.hasMoved = true
+		CombatMapStatus.set_has_moved(true)
 
 func validate_move(character, mapTile) -> bool:
 	var result = true
@@ -360,10 +355,44 @@ func highlight_movement(character) -> void:
 				var sel_tile = get_tile_from_coords(Vector2(i, j))
 				if sel_tile != null and !sel_tile.is_populated() and sel_tile.is_traversable():
 					sel_tile.highlighted.show()
+					sel_tile.set_is_control_zone(true)
+
+func highlight_control_zones() -> void:
+	for enemy in enemyGroup.get_children():
+		var enemyCoords = enemy.get_map_coords()
+		
+		for i in range(-1, 2):
+			for j in range(-1, 2):
+				if check_within_bounds(enemyCoords + Vector2(i,j), Vector2(i,j)):
+					var tile = get_tile_from_coords(enemyCoords + Vector2(i,j))
+					tile.enemy.show()
+					tile.set_is_control_zone(true)
+					
+func check_within_bounds(vector: Vector2, offset: Vector2) -> bool:
+	var result = true
+	
+	if abs(offset.x) + abs(offset.y) != 1:
+		result = false
+	
+	if vector.x < 0 or vector.y < 0:
+		result = false
+		
+	if vector.x >= CombatMapStatus.get_map_x() or vector.y >= CombatMapStatus.get_map_y():
+		result = false
+	
+	if result:
+		if get_tile_from_coords(vector).is_populated() :
+			return false
+	
+	return result
 
 func remove_highlights() -> void:
 	for tile in mapTileGroup.get_children():
 		tile.highlighted.hide()
+
+func remove_control_zones() -> void:
+	for tile in mapTileGroup.get_children():
+		tile.enemy.hide()
 
 func remove_selected() -> void:
 	for tile in mapTileGroup.get_children():
@@ -389,7 +418,7 @@ func _on_phys_attack_button_pressed():
 	
 	if calc_distance(attacker.get_map_coords(), defender.get_map_coords()) == 1 and attacker.is_ranged():
 		CombatMapStatus.mapMod -= 25
-		
+
 	CombatMapStatus.set_combat(attacker, defender, calc_distance(attacker.get_map_coords(), defender.get_map_coords()), 0)
 	get_tree().change_scene_to_file("res://Scenes/3D/combat.tscn")
 	CombatMapStatus.hasAttacked = true
@@ -440,8 +469,10 @@ func update_debug_label():
 		debugLabel.text += "coords: " + str(CombatMapStatus.get_selected_map_tile().get_coords())
 		debugLabel.text += "\nisPopulated: " + str(CombatMapStatus.get_selected_map_tile().is_populated())
 		debugLabel.text += "\nname: " + str(CombatMapStatus.get_selected_map_tile().get_name())
-
+		debugLabel.text += "\nisControlZone: " + str(CombatMapStatus.get_selected_map_tile().is_control_zone())
 
 	debugLabel.text += "\n--------------\ncombatMapStatus\n"
 	debugLabel.text += "initiative: " + str(CombatMapStatus.get_initiative())
 	debugLabel.text += "\ncurrentInitative: " + str(CombatMapStatus.get_current_turn_char())
+	debugLabel.text += "\nhasAttacked: " + str(CombatMapStatus.hasAttacked)
+	debugLabel.text += "\nhasMoved: " + str(CombatMapStatus.hasMoved)

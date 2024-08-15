@@ -14,7 +14,7 @@ var attackerStats: Dictionary
 var defenderStats: Dictionary
 
 var mapMod: int
-var isMelee: bool
+var attackRange: int
 var attackSkill: String = ""
 
 var isStartCombat: bool
@@ -57,8 +57,7 @@ func get_defender_stats() -> Dictionary:
 # Combat
 func set_combat(char, enem, ran: int, mm: int, attSkill: String = "") -> void:
 	set_active_characters(char.get_stats(), enem.get_stats())
-	if ran == 1: isMelee = true
-	else: isMelee = false
+	attackRange = ran
 	mapMod = mm
 	if attSkill != "":
 		attackSkill = attSkill
@@ -84,8 +83,14 @@ func advance_ini() -> void:
 	if currentIni >= len(initiative):
 		currentIni = 0
 
+func remove_character_ini(map_id: int) -> void:
+	initiative.remove_at(initiative.find(map_id))
+
 func set_has_attacked(value: bool) -> void:
 	hasAttacked = value
+	
+func set_has_moved(value: bool) -> void:
+	hasMoved = value
 
 # Selected Entities
 func set_selected_character(character) -> void:
