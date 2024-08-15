@@ -61,4 +61,21 @@
 		"cta": true, 
 		"isMelee": false
 	},
+		"anchoring_strike":{
+		"skill_name": "Anchoring Strike",
+		"range": 1,
+		"cost": 4,
+		"spa": 0,
+		"sef": true,
+		"imd": 0,
+		"isMelee": true
+	},
+		"fireball":{
+		"skill_name": "flaming dagger",
+		"range": 4,
+		"cost": 4,
+		"spa": -3,
+		"imd": 1,
+		"isMelee": false
+	}
 }
