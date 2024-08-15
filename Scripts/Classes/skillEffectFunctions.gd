@@ -8,10 +8,16 @@ static func run(Combat, sefName:String, attacker, defender, accMod: int, critMod
 			hello_world()
 		"nero_nero":
 			nero_nero(Combat, attacker, defender, spa, imd)
+		"mend_flesh":
+			healing_spell(attacker, defender, spa)
 		"boost_1":
 			boost(Combat, attacker, defender, accMod, critMod, spa, imd, 1)
 		"boost_2":
 			boost(Combat, attacker, defender, accMod, critMod, spa, imd, 2)
+		"healing_light":
+			healing_spell(attacker, defender, spa)
+		"radiant_restoration":
+			healing_spell(attacker, defender, spa)
 
 static func hello_world():
 	print("Hello World!")
@@ -36,3 +42,8 @@ static func boost(Combat, attacker, defender, accMod: int, critMod: int, spa: in
 	if defender.get_stats()["current_health"] != 0:
 		Combat.attack(defender, attacker, rolls_retaliate, accMod)
 		await Combat.wait(1)
+
+static func healing_spell(attacker, defender, spa:int): # The range comes from a previous check from what I understand from nero nero?
+	var amount_healed = attacker.get_attack() + spa
+	defender.modify_health(amount_healed)
+

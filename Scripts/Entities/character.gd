@@ -69,6 +69,7 @@ func is_ranged() -> bool:
 	
 func is_enemy() -> bool: 
 	return stats["is_enemy"]
+	
 func get_current_health() -> int:
 	return stats["current_health"]
 	
