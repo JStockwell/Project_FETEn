@@ -14,9 +14,9 @@ static func run(Combat, sefName:String, attacker, defender, accMod: int, critMod
 			boost(Combat, attacker, defender, accMod, critMod, spa, imd, 1)
 		"boost_2":
 			boost(Combat, attacker, defender, accMod, critMod, spa, imd, 2)
-		"healing_light":
+		"bestow_life":
 			healing_spell(attacker, defender, spa)
-		"radiant_restoration":
+		"creators_touch":
 			healing_spell(attacker, defender, spa)
 
 static func hello_world():
@@ -45,5 +45,5 @@ static func boost(Combat, attacker, defender, accMod: int, critMod: int, spa: in
 
 static func healing_spell(attacker, defender, spa:int): # The range comes from a previous check from what I understand from nero nero?
 	var amount_healed = attacker.get_attack() + spa
-	defender.modify_health(amount_healed)
+	defender.modify_health(-amount_healed)
 
