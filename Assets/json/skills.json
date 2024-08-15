@@ -16,8 +16,17 @@
 		"imd": 1,
 		"isMelee": false
 	},
+	"mend_flesh":{
+		"skill_name": "Mend Flesh",
+		"range": 2,
+		"cost": 8,
+		"spa": 9,
+		"sef": true,
+		"cta": true, 
+		"isMelee": false
+	},
 	"boost_1": {
-		"skill_name": "Boost Lv 2",
+		"skill_name": "Boost Lv 1",
 		"range": 1,
 		"cost": 2,
 		"spa": 4,
@@ -33,5 +42,23 @@
 		"sef": true,
 		"imd": 1,
 		"isMelee": true
-	}
+	},
+		"bestow_life":{
+		"skill_name": "Bestow Life",
+		"range": 5,
+		"cost": 5,
+		"spa": 5,
+		"sef": true,
+		"cta": true, 
+		"isMelee": false
+	},
+		"creators_touch":{
+		"skill_name": "Touch of the Creator",
+		"range": 1,
+		"cost": 7,
+		"spa": 12,
+		"sef": true,
+		"cta": true, 
+		"isMelee": false
+	},
 }
