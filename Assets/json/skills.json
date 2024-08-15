@@ -70,8 +70,8 @@
 		"imd": 0,
 		"isMelee": true
 	},
-		"fireball":{
-		"skill_name": "flaming dagger",
+		"flaming_daggers":{
+		"skill_name": "flaming daggers",
 		"range": 4,
 		"cost": 4,
 		"spa": -3,
