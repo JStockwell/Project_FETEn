@@ -33,37 +33,28 @@ func _ready():
 
 	# TODO Times and UI once Map is being used
 	if GameStatus.autorunCombat:
-		combat_round(CombatMapStatus.attackType, generate_rolls(), generate_rolls(), CombatMapStatus.mapMod, CombatMapStatus.attackSkill)
+		combat_round(generate_rolls(), generate_rolls(), CombatMapStatus.mapMod, CombatMapStatus.isMelee, CombatMapStatus.attackSkill)
 
 #func _process(delta):
 	#if GameStatus.debugMode:
 		#update_debug_text()
 
 # 4 types: melee, ranged, skill and mag
-func combat_round(type: String, rolls: Array, rolls_retaliate: Array, mapMod: int, skillName: String = "") -> void:
-	# TODO return to map
+func combat_round(rolls: Array, rolls_retaliate: Array, mapMod: int, isMelee: bool, skillName: String = "") -> void:
 	# TODO implement character acc and crit modifiers
-	match type:
-		"melee":
-			await attack(attacker, defender, rolls, mapMod)
-			
-			if defender.get_stats()["current_health"] != 0:
-				await attack(defender, attacker, rolls_retaliate, mapMod)
-			
-		"ranged":
-			await attack(attacker, defender, rolls, mapMod)
-
-		"skill":
-			# TODO Melee skill retaliation
-			var skillSet = GameStatus.skillSet[skillName].get_skill()
-			if skillSet["sef"]:
-				SEF.run(self, skillName, attacker, defender, mapMod, 0, skillSet["spa"], skillSet["imd"])
-			else:
-				await attack(attacker, defender, rolls, mapMod, skillSet["spa"], skillSet["imd"])
-				
-				if skillSet["isMelee"] and defender.get_stats()["current_health"] != 0:
-					await attack(defender, attacker, rolls_retaliate, mapMod)
-					
+	if skillName == "":
+		await attack(attacker, defender, rolls, mapMod)
+	else:
+		var skillSet = GameStatus.skillSet[skillName].get_skill()
+		if skillSet["sef"]:
+			SEF.run(self, skillName, attacker, defender, mapMod, 0, skillSet["spa"], skillSet["imd"])
+		else:
+			await attack(attacker, defender, rolls, mapMod, skillSet["spa"], skillSet["imd"])
+	
+	if isMelee and defender.get_stats()["current_health"] != 0:
+		# TODO check mapMod
+		await attack(defender, attacker, rolls_retaliate, mapMod)
+	
 	get_tree().change_scene_to_file("res://Scenes/3D/mapCombat.tscn")
 
 # Attack functions
@@ -145,20 +136,20 @@ var debugButtonTimer = $UI/Debug/DebugButtons/DebugButtonTimer
 @onready
 var debugSkillOptions = $UI/Debug/DebugSkillOptions
 
-func _on_debug_phys_attack_pressed() -> void:
-	combat_round("melee", generate_rolls(), generate_rolls() , 0)
-	update_debug_buttons(true)
-	debugButtonTimer.start()
-	
-func _on_debug_ranged_attack_button_pressed():
-	combat_round("ranged", generate_rolls(), generate_rolls(), 0)
-	update_debug_buttons(true)
-	debugButtonTimer.start()
-
-func _on_debug_skill_attack_button_pressed():
-	combat_round("skill", generate_rolls(), generate_rolls(), 0, debugSkillOptions.get_item_text(debugSkillOptions.get_selected_id()))
-	update_debug_buttons(true)
-	debugButtonTimer.start()
+#func _on_debug_phys_attack_pressed() -> void:
+	#combat_round("melee", generate_rolls(), generate_rolls() , 0)
+	#update_debug_buttons(true)
+	#debugButtonTimer.start()
+	#
+#func _on_debug_ranged_attack_button_pressed():
+	#combat_round("ranged", generate_rolls(), generate_rolls(), 0)
+	#update_debug_buttons(true)
+	#debugButtonTimer.start()
+#
+#func _on_debug_skill_attack_button_pressed():
+	#combat_round("skill", generate_rolls(), generate_rolls(), 0, debugSkillOptions.get_item_text(debugSkillOptions.get_selected_id()))
+	#update_debug_buttons(true)
+	#debugButtonTimer.start()
 	
 # Debug utilities
 func update_debug_text() -> void:

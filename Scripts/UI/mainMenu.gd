@@ -2,16 +2,17 @@ extends Control
 
 var playableCharacters = read_json("res://Assets/json/players.json")
 var enemySet = read_json("res://Assets/json/enemies.json")
-var skill_set = read_json("res://Assets/json/skills.json")
+var skillSet = read_json("res://Assets/json/skills.json")
 	
 func _ready():
 	GameStatus.set_playable_characters(playableCharacters)
-	GameStatus.set_party(["dick", "edgar"])
 	GameStatus.set_enemy_set(enemySet)
+	
+	GameStatus.set_party(["dick", "edgar"])
 	CombatMapStatus.set_enemies(["goblin", "goblin"])
 	
-	for skillName in skill_set:
-		GameStatus.skillSet[skillName] = Factory.Skill.create(skill_set[skillName])
+	for skillName in skillSet:
+		GameStatus.skillSet[skillName] = Factory.Skill.create(skillSet[skillName])
 	
 	combat_debug_test()
 	debug_map_combat_test()
@@ -20,7 +21,7 @@ func combat_debug_test():
 	CombatMapStatus.set_active_characters(GameStatus.get_party_member("edgar"), GameStatus.get_party_member("dick"))
 		
 func debug_map_combat_test():
-	CombatMapStatus.set_map_size(6, 6)
+	CombatMapStatus.set_map_size(5, 5)
 	CombatMapStatus.set_is_start_combat(true)
 
 func _on_debug_button_pressed():

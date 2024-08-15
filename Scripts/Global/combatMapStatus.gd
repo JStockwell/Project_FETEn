@@ -13,8 +13,8 @@ var selectedMapTile
 var attackerStats: Dictionary
 var defenderStats: Dictionary
 
-var attackType: String
 var mapMod: int
+var isMelee: bool
 var attackSkill: String = ""
 
 var isStartCombat: bool
@@ -22,6 +22,7 @@ var initiative: Array = []
 var currentIni: int
 
 var hasAttacked: bool
+var hasMoved: bool
 
 var mapTileMatrix: Array = []
 
@@ -54,9 +55,10 @@ func get_defender_stats() -> Dictionary:
 	return defenderStats
 
 # Combat
-func set_combat(char, enem, attType: String, mm: int, attSkill: String = "") -> void:
+func set_combat(char, enem, ran: int, mm: int, attSkill: String = "") -> void:
 	set_active_characters(char.get_stats(), enem.get_stats())
-	attackType = attType
+	if ran == 1: isMelee = true
+	else: isMelee = false
 	mapMod = mm
 	if attSkill != "":
 		attackSkill = attSkill

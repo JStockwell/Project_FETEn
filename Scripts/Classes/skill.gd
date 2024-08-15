@@ -5,7 +5,6 @@ var skillName: String
 var range: int
 var cost: int
 var spa: int = 0
-# TODO Find way to execute functions from string that isnt a match using the ID name
 var specialEffectFunc: bool = false
 var canTargetAllies: bool = false
 var isMagicDamage: int = 0
