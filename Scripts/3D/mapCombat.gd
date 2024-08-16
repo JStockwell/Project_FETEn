@@ -17,9 +17,9 @@ var physAttackButton = $UI/PhysAttackButton
 @onready
 var endTurnButton = $UI/EndTurnButton
 @onready
-var skillMenu = $UI/SkillMenu.get_popup()
-@onready
 var baseSkillMenu = $UI/SkillMenu
+@onready
+var skillMenu = $UI/SkillMenu.get_popup()
 @onready
 var skillError = $UI/SkillError
 
@@ -27,8 +27,7 @@ var skillError = $UI/SkillError
 func _ready():
 	cameraPivot.position = Vector3(CombatMapStatus.get_map_x()/2, 0, CombatMapStatus.get_map_y()/2)
 	camera.position = Vector3(0,0,CombatMapStatus.get_map_x())
-	
-	setup_skill_menu()
+	skillMenu.connect("id_pressed", Callable(self, "_on_skill_selected"))
 	
 	if CombatMapStatus.is_start_combat():
 		initial_map_load()
@@ -114,10 +113,10 @@ func calculate_combat_initiative() -> void:
 	CombatMapStatus.set_initiative(result)
 
 func setup_skill_menu() -> void:
-	for skill in GameStatus.skillSet:
-		skillMenu.add_item(GameStatus.skillSet[skill].get_skill_name(), GameStatus.skillSet[skill].get_skill_menu_id())
+	skillMenu.clear()
 	
-	skillMenu.connect("id_pressed", Callable(self, "_on_skill_selected"))
+	for skill in CombatMapStatus.get_selected_character().get_skills():
+		skillMenu.add_item(GameStatus.skillSet[skill].get_skill_name(), GameStatus.skillSet[skill].get_skill_menu_id())
 
 func reload_map():
 	for mapTileRow in CombatMapStatus.get_map_tile_matrix():
@@ -151,6 +150,7 @@ func reload_map():
 			
 	reset_map_status()
 	highlight_control_zones()
+	CombatMapStatus.get_selected_character().selectedChar.show()
 	
 func sort_descending(a: float, b: float) -> bool:
 	if a >= b:
@@ -182,6 +182,7 @@ func start_turn() -> void:
 		await start_turn()
 		
 	else:
+		setup_skill_menu()
 		currentChar.selectedChar.show()
 		highlight_movement(currentChar)
 		highlight_control_zones()
@@ -323,7 +324,6 @@ func validate_move(character, mapTile) -> bool:
 	return result
 
 func _on_phys_attack_button_pressed():
-	# TODO Differenciate ranged and melee
 	# TODO MapMod
 	var attacker = CombatMapStatus.get_selected_character()
 	var defender = CombatMapStatus.get_selected_enemy()
@@ -334,10 +334,6 @@ func _on_phys_attack_button_pressed():
 	CombatMapStatus.set_combat(attacker, defender, Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()), 0)
 	get_tree().change_scene_to_file("res://Scenes/3D/combat.tscn")
 	CombatMapStatus.hasAttacked = true
-
-func _on_end_turn_button_pressed():
-	CombatMapStatus.advance_ini()
-	await start_turn()
 	
 func _on_skill_selected(id: int):
 	skillError.hide()
@@ -356,18 +352,24 @@ func _on_skill_selected(id: int):
 		skillError.text = skillResult
 		skillError.show()
 		
-	elif GameStatus.skillSet[skillName].can_target_allies():
-		# Buffs and health?
-		pass
-		
 	else:
-		var attacker = CombatMapStatus.get_selected_character()
-		var defender = CombatMapStatus.get_selected_enemy()
-		
-		CombatMapStatus.set_combat(attacker, defender, Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()), 0, skillName)
-		get_tree().change_scene_to_file("res://Scenes/3D/combat.tscn")
-		CombatMapStatus.hasAttacked = true
 		CombatMapStatus.get_selected_character().modify_mana(-GameStatus.skillSet[skillName].get_cost())
+		
+		if GameStatus.skillSet[skillName].can_target_allies():
+			# Buffs and health?
+			pass
+			
+		else:
+			var attacker = CombatMapStatus.get_selected_character()
+			var defender = CombatMapStatus.get_selected_enemy()
+			
+			CombatMapStatus.set_combat(attacker, defender, Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()), 0, skillName)
+			get_tree().change_scene_to_file("res://Scenes/3D/combat.tscn")
+			CombatMapStatus.hasAttacked = true
+
+func _on_end_turn_button_pressed():
+	CombatMapStatus.advance_ini()
+	await start_turn()
 
 # Buttons updater
 func update_buttons() -> void:
@@ -401,7 +403,7 @@ func update_phys_attack_button() -> void:
 			physAttackButton.disabled = true
 			
 func update_skill_menu_button() -> void:
-	if CombatMapStatus.hasAttacked or CombatMapStatus.get_selected_character().is_enemy():
+	if CombatMapStatus.hasAttacked or CombatMapStatus.get_selected_character().is_enemy() or len(CombatMapStatus.get_selected_character().get_skills()) == 0:
 		baseSkillMenu.disabled = true
 	else:
 		baseSkillMenu.disabled = false
@@ -429,7 +431,6 @@ func highlight_movement(character) -> void:
 				var sel_tile = get_tile_from_coords(Vector2(i, j))
 				if sel_tile != null and !sel_tile.is_populated() and sel_tile.is_traversable():
 					sel_tile.highlighted.show()
-					sel_tile.set_is_control_zone(true)
 
 func highlight_control_zones() -> void:
 	for enemy in enemyGroup.get_children():
@@ -455,8 +456,9 @@ func check_within_bounds(vector: Vector2, offset: Vector2) -> bool:
 		result = false
 	
 	if result:
-		if get_tile_from_coords(vector).is_populated() :
-			return false
+		for enemy in enemyGroup.get_children():
+			if enemy.get_map_coords() == vector:
+				return false
 	
 	return result
 
