@@ -181,7 +181,7 @@ func start_turn() -> void:
 	if currentChar.is_enemy():
 		currentChar.selectedEnemy.show()
 		# TODO Enemy Logic
-		# EnemyLogic.execute(Map, currentChar...)
+		EnemyBehavior.dumb_melee_behavior(self)
 		await wait(2)
 		CombatMapStatus.advance_ini()
 		await start_turn()
