@@ -85,6 +85,12 @@ func advance_ini() -> void:
 	currentIni += 1
 	if currentIni >= len(initiative):
 		currentIni = 0
+		
+func get_current_ini() -> int:
+	return currentIni
+
+func set_current_ini(val: int) -> void:
+	currentIni = val
 
 func remove_character_ini(map_id: int) -> void:
 	initiative.remove_at(initiative.find(map_id))
