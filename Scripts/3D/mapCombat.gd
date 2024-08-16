@@ -16,11 +16,18 @@ var moveButton = $UI/MoveButton
 var physAttackButton = $UI/PhysAttackButton
 @onready
 var endTurnButton = $UI/EndTurnButton
+@onready
+var baseSkillMenu = $UI/SkillMenu
+@onready
+var skillMenu = $UI/SkillMenu.get_popup()
+@onready
+var skillIssue = $UI/SkillIssue
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	cameraPivot.position = Vector3(CombatMapStatus.get_map_x()/2, 0, CombatMapStatus.get_map_y()/2)
 	camera.position = Vector3(0,0,CombatMapStatus.get_map_x())
+	skillMenu.connect("id_pressed", Callable(self, "_on_skill_selected"))
 	
 	if CombatMapStatus.is_start_combat():
 		initial_map_load()
@@ -79,8 +86,6 @@ func initial_map_load() -> void:
 		
 		set_tile_populated(Vector2(CombatMapStatus.get_map_x() - 1, CombatMapStatus.get_map_y() - 1 - j), true)
 		j += 1
-		
-	CombatMapStatus.set_is_start_combat(false)
 
 func calculate_combat_initiative() -> void:
 	var res_dict = {}
@@ -106,6 +111,12 @@ func calculate_combat_initiative() -> void:
 		
 	# Set result
 	CombatMapStatus.set_initiative(result)
+
+func setup_skill_menu() -> void:
+	skillMenu.clear()
+	
+	for skill in CombatMapStatus.get_selected_character().get_skills():
+		skillMenu.add_item(GameStatus.skillSet[skill].get_skill_name(), GameStatus.skillSet[skill].get_skill_menu_id())
 
 func reload_map():
 	for mapTileRow in CombatMapStatus.get_map_tile_matrix():
@@ -139,6 +150,13 @@ func reload_map():
 			
 	reset_map_status()
 	highlight_control_zones()
+	skillIssue.hide()
+	
+	if not CombatMapStatus.get_selected_character().is_enemy():
+		CombatMapStatus.get_selected_character().selectedChar.show()
+		
+		if not CombatMapStatus.hasMoved:
+			highlight_movement(CombatMapStatus.get_selected_character())
 	
 func sort_descending(a: float, b: float) -> bool:
 	if a >= b:
@@ -146,24 +164,30 @@ func sort_descending(a: float, b: float) -> bool:
 	return false
 
 func start_turn() -> void:
+	if CombatMapStatus.get_current_turn_char() == CombatMapStatus.get_initiative()[0] and not CombatMapStatus.is_start_combat():
+		regen_mana()
+	else:
+		CombatMapStatus.set_is_start_combat(false)
+		
 	reset_map_status()
+	skillIssue.hide()
 	
 	var currentChar = CombatMapStatus.get_selected_character()
-	
-	currentChar.modify_current_movement(999)
 	
 	CombatMapStatus.set_has_attacked(false)
 	CombatMapStatus.set_has_moved(false)
 	CombatMapStatus.set_selected_character(currentChar)
 	
 	if currentChar.is_enemy():
-		# TODO Enemy Logic
 		currentChar.selectedEnemy.show()
+		# TODO Enemy Logic
+		# EnemyLogic.execute(Map, currentChar...)
 		await wait(2)
 		CombatMapStatus.advance_ini()
 		await start_turn()
 		
 	else:
+		setup_skill_menu()
 		currentChar.selectedChar.show()
 		highlight_movement(currentChar)
 		highlight_control_zones()
@@ -195,6 +219,11 @@ func reset_map_status() -> void:
 				currentChar = enemy
 				
 	CombatMapStatus.set_selected_character(currentChar)
+
+func regen_mana() -> void:
+	for char in characterGroup.get_children():
+		if char.get_max_mana() != 0:
+			char.modify_mana(char.get_reg_mana())
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -263,43 +292,6 @@ func tile_handler(mapTile) -> void:
 		remove_selected()
 		mapTile.selected.show()
 
-# Buttons updater
-func update_buttons() -> void:
-	update_move_button()
-	update_phys_attack_button()
-	update_end_turn_button()
-
-func update_move_button() -> void:
-	if CombatMapStatus.hasMoved or CombatMapStatus.get_selected_character().is_enemy():
-		moveButton.disabled = true
-	else:
-		if CombatMapStatus.get_selected_map_tile() == null:
-			moveButton.disabled = true
-			
-		elif validate_move(CombatMapStatus.get_selected_character(), CombatMapStatus.get_selected_map_tile()):
-			moveButton.disabled = false
-			
-		else:
-			moveButton.disabled = true
-
-func update_phys_attack_button() -> void:
-	if CombatMapStatus.hasAttacked or CombatMapStatus.get_selected_character().is_enemy():
-		physAttackButton.disabled = true
-	else:
-		if CombatMapStatus.get_selected_enemy() == null:
-			physAttackButton.disabled = true
-		elif calc_distance(CombatMapStatus.get_selected_character().get_map_coords(), CombatMapStatus.get_selected_enemy().get_map_coords()) <= CombatMapStatus.get_selected_character().get_range():
-			physAttackButton.disabled = false
-		else:
-			physAttackButton.disabled = true
-
-func update_end_turn_button() -> void:
-	if CombatMapStatus.get_selected_character().is_enemy():
-		endTurnButton.disabled = true
-		
-	else:
-		endTurnButton.disabled = false
-
 # Player movement
 func _on_move_button_pressed():
 	var selChar = CombatMapStatus.get_selected_character()
@@ -322,7 +314,7 @@ func _on_move_button_pressed():
 func validate_move(character, mapTile) -> bool:
 	var result = true
 	
-	if calc_distance(character.get_map_coords(), mapTile.get_coords()) > character.get_movement():
+	if Utils.calc_distance(character.get_map_coords(), mapTile.get_coords()) > character.get_movement():
 		result = false
 	
 	if mapTile.is_populated():
@@ -336,12 +328,101 @@ func validate_move(character, mapTile) -> bool:
 	
 	return result
 
-func calc_distance(vect_1: Vector2, vect_2: Vector2) -> int:
-	return abs(vect_1.x - vect_2.x) + abs(vect_1.y - vect_2.y)
+func _on_phys_attack_button_pressed():
+	# TODO MapMod
+	var attacker = CombatMapStatus.get_selected_character()
+	var defender = CombatMapStatus.get_selected_enemy()
+	
+	if Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()) == 1 and attacker.is_ranged():
+		CombatMapStatus.mapMod -= 25
+
+	CombatMapStatus.set_combat(attacker, defender, Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()), 0)
+	get_tree().change_scene_to_file("res://Scenes/3D/combat.tscn")
+	CombatMapStatus.hasAttacked = true
+	
+func _on_skill_selected(id: int):
+	skillIssue.hide()
+	var skillName
+	for skill in GameStatus.skillSet:
+		if GameStatus.skillSet[skill].get_skill_menu_id() == id:
+			skillName = skill
+	
+	var skillResult
+	if GameStatus.skillSet[skillName].can_target_allies():
+		skillResult = SkillMenu.handle_skill(skillName, CombatMapStatus.get_selected_character(), CombatMapStatus.get_selected_ally())
+	else:
+		skillResult = SkillMenu.handle_skill(skillName, CombatMapStatus.get_selected_character(), CombatMapStatus.get_selected_enemy())
+	
+	if skillResult != "":
+		skillIssue.text = skillResult
+		skillIssue.show()
+		
+	else:
+		CombatMapStatus.get_selected_character().modify_mana(-GameStatus.skillSet[skillName].get_cost())
+		
+		if GameStatus.skillSet[skillName].can_target_allies():
+			# Buffs and health?
+			pass
+			
+		else:
+			var attacker = CombatMapStatus.get_selected_character()
+			var defender = CombatMapStatus.get_selected_enemy()
+			
+			CombatMapStatus.set_combat(attacker, defender, Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()), 0, skillName)
+			get_tree().change_scene_to_file("res://Scenes/3D/combat.tscn")
+			CombatMapStatus.hasAttacked = true
+
+func _on_end_turn_button_pressed():
+	CombatMapStatus.advance_ini()
+	await start_turn()
+
+# Buttons updater
+func update_buttons() -> void:
+	update_move_button()
+	update_phys_attack_button()
+	update_end_turn_button()
+	update_skill_menu_button()
+
+func update_move_button() -> void:
+	if CombatMapStatus.hasMoved or CombatMapStatus.get_selected_character().is_enemy():
+		moveButton.disabled = true
+	else:
+		if CombatMapStatus.get_selected_map_tile() == null:
+			moveButton.disabled = true
+			
+		elif validate_move(CombatMapStatus.get_selected_character(), CombatMapStatus.get_selected_map_tile()):
+			moveButton.disabled = false
+			
+		else:
+			moveButton.disabled = true
+
+func update_phys_attack_button() -> void:
+	if CombatMapStatus.hasAttacked or CombatMapStatus.get_selected_character().is_enemy():
+		physAttackButton.disabled = true
+	else:
+		if CombatMapStatus.get_selected_enemy() == null:
+			physAttackButton.disabled = true
+		elif Utils.calc_distance(CombatMapStatus.get_selected_character().get_map_coords(), CombatMapStatus.get_selected_enemy().get_map_coords()) <= CombatMapStatus.get_selected_character().get_range():
+			physAttackButton.disabled = false
+		else:
+			physAttackButton.disabled = true
+			
+func update_skill_menu_button() -> void:
+	if CombatMapStatus.hasAttacked or CombatMapStatus.get_selected_character().is_enemy() or len(CombatMapStatus.get_selected_character().get_skills()) == 0:
+		baseSkillMenu.disabled = true
+	else:
+		baseSkillMenu.disabled = false
+
+func update_end_turn_button() -> void:
+	if CombatMapStatus.get_selected_character().is_enemy():
+		endTurnButton.disabled = true
+		
+	else:
+		endTurnButton.disabled = false
 
 func highlight_movement(character) -> void:
 	var char_coords = character.get_map_coords()
-	var mov = character.get_current_mov()
+	var mov = character.get_movement()
 	
 	var min_x = max(char_coords.x - mov, 0)
 	var max_x = min(char_coords.x + mov, CombatMapStatus.get_map_x())
@@ -351,11 +432,10 @@ func highlight_movement(character) -> void:
 	
 	for i in range(min_x, max_x + 1):
 		for j in range(min_y, max_y + 1):
-			if calc_distance(char_coords, Vector2(i,j)) <= mov:
+			if Utils.calc_distance(char_coords, Vector2(i,j)) <= mov:
 				var sel_tile = get_tile_from_coords(Vector2(i, j))
 				if sel_tile != null and !sel_tile.is_populated() and sel_tile.is_traversable():
 					sel_tile.highlighted.show()
-					sel_tile.set_is_control_zone(true)
 
 func highlight_control_zones() -> void:
 	for enemy in enemyGroup.get_children():
@@ -381,8 +461,9 @@ func check_within_bounds(vector: Vector2, offset: Vector2) -> bool:
 		result = false
 	
 	if result:
-		if get_tile_from_coords(vector).is_populated() :
-			return false
+		for enemy in enemyGroup.get_children():
+			if enemy.get_map_coords() == vector:
+				return false
 	
 	return result
 
@@ -410,23 +491,6 @@ func remove_enemy_highlights() -> void:
 	for enemy in enemyGroup.get_children():
 		enemy.selectedEnemy.hide()
 
-func _on_phys_attack_button_pressed():
-	# TODO Differenciate ranged and melee
-	# TODO MapMod
-	var attacker = CombatMapStatus.get_selected_character()
-	var defender = CombatMapStatus.get_selected_enemy()
-	
-	if calc_distance(attacker.get_map_coords(), defender.get_map_coords()) == 1 and attacker.is_ranged():
-		CombatMapStatus.mapMod -= 25
-
-	CombatMapStatus.set_combat(attacker, defender, calc_distance(attacker.get_map_coords(), defender.get_map_coords()), 0)
-	get_tree().change_scene_to_file("res://Scenes/3D/combat.tscn")
-	CombatMapStatus.hasAttacked = true
-
-func _on_end_turn_button_pressed():
-	CombatMapStatus.advance_ini()
-	await start_turn()
-
 func wait(seconds: float) -> void:
 	await get_tree().create_timer(seconds).timeout
 
@@ -434,42 +498,57 @@ func wait(seconds: float) -> void:
 @onready
 var debugLabel = $UI/Debug/DebugLabel
 
+var debugSelected
+var debugAlly
+var debugEnemy
+var debugTile
+
 func update_debug_label():
 	debugLabel.text = "selectedCharacter\n"
 	if CombatMapStatus.get_selected_character() == null:
 		debugLabel.text += "null"
 	else:
-		debugLabel.text += "name: " + CombatMapStatus.get_selected_character().get_char_name()
-		debugLabel.text += "\ncoords: " + str(CombatMapStatus.get_selected_character().get_map_coords())
-		debugLabel.text += "\nhealth: " + str(CombatMapStatus.get_selected_character().get_current_health())
-		debugLabel.text += "\ncurrentMov: " + str(CombatMapStatus.get_selected_character().get_current_mov())
+		debugSelected = CombatMapStatus.get_selected_character()
+		debugLabel.text += "name: " + debugSelected.get_char_name()
+		debugLabel.text += "\ncoords: " + str(debugSelected.get_map_coords())
+		debugLabel.text += "\nhealth: " + str(debugSelected.get_current_health())
+		debugLabel.text += "\ncurrentMov: " + str(debugSelected.get_movement())
+		if debugSelected.get_max_mana() != 0:
+			debugLabel.text += "\ncurrentMana: " + str(debugSelected.get_current_mana())
 		
 	debugLabel.text += "\n--------------\nselectedAlly\n"
 	if CombatMapStatus.get_selected_ally() == null:
 		debugLabel.text += "null"
 	else:
-		debugLabel.text += "name: " + CombatMapStatus.get_selected_ally().get_char_name()
-		debugLabel.text += "\ncoords: " + str(CombatMapStatus.get_selected_ally().get_map_coords())
-		debugLabel.text += "\nhealth: " + str(CombatMapStatus.get_selected_ally().get_current_health())
-		debugLabel.text += "\ncurrentMov: " + str(CombatMapStatus.get_selected_ally().get_current_mov())
+		debugAlly = CombatMapStatus.get_selected_ally()
+		debugLabel.text += "name: " + debugAlly.get_char_name()
+		debugLabel.text += "\ncoords: " + str(debugAlly.get_map_coords())
+		debugLabel.text += "\nhealth: " + str(debugAlly.get_current_health())
+		debugLabel.text += "\ncurrentMov: " + str(debugAlly.get_movement())
+		if debugAlly.get_max_mana() != 0:
+			debugLabel.text += "\ncurrentMana: " + str(debugAlly.get_current_mana())
 		
 	debugLabel.text += "\n--------------\nselectedEnemy\n"
 	if CombatMapStatus.get_selected_enemy() == null:
 		debugLabel.text += "null"
 	else:
-		debugLabel.text += "name: " + CombatMapStatus.get_selected_enemy().get_char_name()
-		debugLabel.text += "\ncoords: " + str(CombatMapStatus.get_selected_enemy().get_map_coords())
-		debugLabel.text += "\nhealth: " + str(CombatMapStatus.get_selected_enemy().get_current_health())
-		debugLabel.text += "\ncurrentMov: " + str(CombatMapStatus.get_selected_character().get_current_mov())
+		debugEnemy = CombatMapStatus.get_selected_enemy()
+		debugLabel.text += "name: " + debugEnemy.get_char_name()
+		debugLabel.text += "\ncoords: " + str(debugEnemy.get_map_coords())
+		debugLabel.text += "\nhealth: " + str(debugEnemy.get_current_health())
+		debugLabel.text += "\ncurrentMov: " + str(debugEnemy.get_movement())
+		if debugEnemy.get_max_mana() != 0:
+			debugLabel.text += "\ncurrentMana: " + str(debugEnemy.get_current_mana())
 		
 	debugLabel.text += "\n--------------\nselectedMapTile\n"
 	if CombatMapStatus.get_selected_map_tile() == null:
 		debugLabel.text += "null"
 	else:
-		debugLabel.text += "coords: " + str(CombatMapStatus.get_selected_map_tile().get_coords())
-		debugLabel.text += "\nisPopulated: " + str(CombatMapStatus.get_selected_map_tile().is_populated())
-		debugLabel.text += "\nname: " + str(CombatMapStatus.get_selected_map_tile().get_name())
-		debugLabel.text += "\nisControlZone: " + str(CombatMapStatus.get_selected_map_tile().is_control_zone())
+		debugTile = CombatMapStatus.get_selected_map_tile()
+		debugLabel.text += "coords: " + str(debugTile.get_coords())
+		debugLabel.text += "\nisPopulated: " + str(debugTile.is_populated())
+		debugLabel.text += "\nname: " + str(debugTile.get_name())
+		debugLabel.text += "\nisControlZone: " + str(debugTile.is_control_zone())
 
 	debugLabel.text += "\n--------------\ncombatMapStatus\n"
 	debugLabel.text += "initiative: " + str(CombatMapStatus.get_initiative())

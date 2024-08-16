@@ -7,18 +7,18 @@ static func run(Combat, sefName:String, attacker, defender, accMod: int, critMod
 		"hello_world":
 			hello_world()
 		"nero_nero":
-			nero_nero(Combat, attacker, defender, spa, imd)
+			await nero_nero(Combat, attacker, defender, spa, imd)
 		"boost_1":
-			boost(Combat, attacker, defender, accMod, critMod, spa, imd, 1)
+			await boost(Combat, attacker, defender, accMod, critMod, spa, imd, 1)
 		"boost_2":
-			boost(Combat, attacker, defender, accMod, critMod, spa, imd, 2)
+			await boost(Combat, attacker, defender, accMod, critMod, spa, imd, 2)
 
 static func hello_world():
 	print("Hello World!")
 
 static func nero_nero(Combat, attacker, defender, spa: int, imd: int):
 	var dmg = Combat.calc_damage(attacker.get_stats()["attack"], defender.get_stats()["defense"], spa, imd)
-	Combat.deal_damage(dmg,1,defender)
+	await Combat.deal_damage(dmg, 1, defender)
 
 static func boost(Combat, attacker, defender, accMod: int, critMod: int, spa: int, imd: int, level: int):
 	var rolls = Combat.generate_rolls()
@@ -28,11 +28,7 @@ static func boost(Combat, attacker, defender, accMod: int, critMod: int, spa: in
 		var crit = Combat.calc_crit(attacker.get_dexterity(), attacker.get_agility(), defender.get_agility(), critMod + (3 * level), rolls[3])
 		var dmg = Combat.calc_damage(attacker.get_attack(), defender.get_defense(), spa, imd)
 		
-		Combat.deal_damage(dmg, crit, defender)
+		await Combat.deal_damage(dmg, crit, defender)
 		
 	else:
-		Combat.update_damage_text("MISS")
-		
-	if defender.get_stats()["current_health"] != 0:
-		Combat.attack(defender, attacker, rolls_retaliate, accMod)
-		await Combat.wait(1)
+		await Combat.update_damage_text("MISS")
