@@ -1,20 +1,20 @@
 {
 	"shadow_ball": {
 		"skill_name": "Shadow Ball",
+		"description": "",
 		"range": 5,
 		"cost": 6,
 		"spa": 7,
-		"imd": 1,
-		"isMelee": false
+		"imd": 1
 	},
 	"nero_nero": {
 		"skill_name": "Death Beam",
+		"description": "",
 		"range": 5,
 		"cost": 12,
 		"spa": 11,
 		"sef": true,
-		"imd": 1,
-		"isMelee": false
+		"imd": 1
 	},
 	"mend_flesh":{
 		"skill_name": "Mend Flesh",
@@ -27,21 +27,21 @@
 	},
 	"boost_1": {
 		"skill_name": "Boost Lv 1",
+		"description": "",
 		"range": 1,
 		"cost": 2,
 		"spa": 4,
 		"sef": true,
-		"imd": 0,
-		"isMelee": true
+		"imd": 0
 	},
 	"boost_2": {
 		"skill_name": "Boost Lv 2",
+		"description": "",
 		"range": 1,
 		"cost": 2,
 		"spa": 4,
 		"sef": true,
-		"imd": 1,
-		"isMelee": true
+		"imd": 1
 	},
 		"bestow_life":{
 		"skill_name": "Bestow Life",
