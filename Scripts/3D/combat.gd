@@ -47,7 +47,7 @@ func combat_round(rolls: Array, rolls_retaliate: Array, mapMod: int, range: int,
 	else:
 		var skillSet = GameStatus.skillSet[skillName].get_skill()
 		if skillSet["sef"]:
-			SEF.run(self, skillName, attacker, defender, mapMod, 0, skillSet["spa"], skillSet["imd"])
+			await SEF.run(self, skillName, attacker, defender, mapMod, 0, skillSet["spa"], skillSet["imd"])
 		else:
 			await attack(attacker, defender, rolls, mapMod, skillSet["spa"], skillSet["imd"])
 	
@@ -57,6 +57,9 @@ func combat_round(rolls: Array, rolls_retaliate: Array, mapMod: int, range: int,
 		
 	elif defender.get_stats()["current_health"] == 0:
 		CombatMapStatus.remove_character_ini(defender.get_map_id())
+		
+		if CombatMapStatus.get_current_ini() > len(CombatMapStatus.get_initiative()) - 1:
+			CombatMapStatus.set_current_ini(CombatMapStatus.get_current_ini() - 1)
 		
 	CombatMapStatus.set_has_attacked(true)
 	get_tree().change_scene_to_file("res://Scenes/3D/mapCombat.tscn")
@@ -76,11 +79,20 @@ func attack(t_attacker, t_defender, rolls: Array, mapMod: int, spa: int = 0, imd
 		await update_damage_text("MISS")
 		
 func deal_damage(dmg: int, crit: float, t_defender):
+	var dmgText: String
 	if dmg >= 0:
 		t_defender.modify_health(-int(dmg * crit))
-		await update_damage_text(str(-int(dmg * crit)))
+		dmgText = str(-int(dmg * crit))
 	else:
-		await update_damage_text("0")
+		dmgText = "0"
+		
+	damageNumber.text = dmgText
+	
+	damageNumber.show()
+	await wait(0.75)
+	
+	damageNumber.hide()
+	await wait(0.3)
 
 # Attack Calculations
 func calc_hit_chance(att_dex: int, def_agi: int, accMod: int, rolls: Array) -> bool:

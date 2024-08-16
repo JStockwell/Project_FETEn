@@ -150,7 +150,12 @@ func reload_map():
 			
 	reset_map_status()
 	highlight_control_zones()
-	CombatMapStatus.get_selected_character().selectedChar.show()
+	
+	if not CombatMapStatus.get_selected_character().is_enemy():
+		CombatMapStatus.get_selected_character().selectedChar.show()
+		
+		if not CombatMapStatus.hasMoved:
+			highlight_movement(CombatMapStatus.get_selected_character())
 	
 func sort_descending(a: float, b: float) -> bool:
 	if a >= b:
