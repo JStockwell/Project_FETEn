@@ -1,64 +1,64 @@
 {
 	"shadow_ball": {
 		"skill_name": "Shadow Ball",
+		"description": "",
 		"range": 5,
 		"cost": 6,
 		"spa": 7,
-		"imd": 1,
-		"isMelee": false
+		"imd": 1
 	},
 	"nero_nero": {
 		"skill_name": "Death Beam",
+		"description": "",
 		"range": 5,
 		"cost": 12,
 		"spa": 11,
 		"sef": true,
-		"imd": 1,
-		"isMelee": false
+		"imd": 1
 	},
 	"mend_flesh":{
 		"skill_name": "Mend Flesh",
+		"description": "",
 		"range": 2,
 		"cost": 8,
 		"spa": 9,
 		"sef": true,
-		"cta": true, 
-		"isMelee": false
+		"cta": true
 	},
 	"boost_1": {
 		"skill_name": "Boost Lv 1",
+		"description": "",
 		"range": 1,
 		"cost": 2,
 		"spa": 4,
 		"sef": true,
-		"imd": 0,
-		"isMelee": true
+		"imd": 0
 	},
 	"boost_2": {
 		"skill_name": "Boost Lv 2",
+		"description": "",
 		"range": 1,
 		"cost": 2,
 		"spa": 4,
 		"sef": true,
-		"imd": 1,
-		"isMelee": true
+		"imd": 1
 	},
 		"bestow_life":{
 		"skill_name": "Bestow Life",
+		"description": "",
 		"range": 5,
 		"cost": 5,
 		"spa": 5,
 		"sef": true,
-		"cta": true, 
-		"isMelee": false
+		"cta": true
 	},
 		"creators_touch":{
 		"skill_name": "Touch of the Creator",
+		"description": "",
 		"range": 1,
 		"cost": 7,
 		"spa": 12,
 		"sef": true,
-		"cta": true, 
-		"isMelee": false
-	},
+		"cta": true
+	}
 }

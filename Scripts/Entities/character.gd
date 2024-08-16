@@ -18,6 +18,15 @@ var stats = {
 	"mesh_path": null
 }
 
+@onready
+var selectedChar = $SelectedChar
+
+@onready
+var selectedEnemy = $SelectedEnemy
+
+@onready
+var selectedAlly = $SelectedAlly
+
 # Getters
 func get_stats() -> Dictionary:
 	return stats
@@ -75,6 +84,15 @@ func get_current_health() -> int:
 	
 func get_current_mana() -> int:
 	return stats["current_mana"]
+	
+func get_current_mov() -> int:
+	return stats["current_mov"]
+
+func set_map_id(val: int) -> void:
+	stats["map_id"] = val
+	
+func get_map_id() -> int:
+	return stats["map_id"]
 
 # Setters
 func set_stats(stats_set: Dictionary) -> void:
@@ -92,7 +110,7 @@ func set_mesh(path) -> void:
 	add_child(load(path).instantiate())
 	
 func set_map_coords(coords: Vector2) -> void:
-	if int(coords.x) in range(0, GameStatus.get_map_x() + 1) and int(coords.y) in range(0, GameStatus.get_map_y() + 1):
+	if int(coords.x) in range(0, CombatMapStatus.get_map_x() + 1) and int(coords.y) in range(0, CombatMapStatus.get_map_y() + 1):
 		stats["map_coords"] = coords
 		
 	else:
@@ -105,6 +123,18 @@ func set_is_enemy(flag: bool) -> void:
 func modify_health(hp_mod: int) -> void:
 	stats["current_health"] += hp_mod
 	cap_current_stats(stats)
+
+func modify_mana(mana_mod: int) -> void:
+	stats["current_mana"] += mana_mod
+	cap_current_stats(stats)
+	
+func modify_current_movement(mov_mod: int) -> void:
+	stats["current_mov"] += mov_mod
+	cap_current_stats(stats)
+	
+# Roll is a D20
+func calculate_initiative(roll: int) -> float:
+	return roll + ((stats["agility"] + stats["dexterity"]) / 2) * 1.1
 
 # Validators
 func validate_stats(stats_set) -> bool:
@@ -123,11 +153,17 @@ func cap_current_stats(stats_set: Dictionary) -> Dictionary:
 	if stats_set["current_mana"] > stats_set["max_mana"]:
 		stats_set["current_mana"] = stats_set["max_mana"]
 		
+	if stats_set["current_mov"] > stats_set["movement"]:
+		stats_set["current_mov"] = stats_set["movement"]
+		
 	if stats_set["current_health"] < 0:
 		stats_set["current_health"] = 0
 		
 	if stats_set["current_mana"] < 0:
 		stats_set["current_mana"] = 0
+		
+	if stats_set["current_mov"] < 0:
+		stats_set["currrent_mov"] = 0
 	
 	return stats_set
 
