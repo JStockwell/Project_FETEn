@@ -137,6 +137,12 @@ func reload_map():
 			
 			set_tile_populated(Vector2(partyMember.get_map_coords().x, partyMember.get_map_coords().y), true)
 		
+		#TODO James revisa este pifostio plis :)
+		if GameStatus.get_party_member(character)["current_health"] == 0:
+			CombatMapStatus.remove_character_ini(character["map_id"])
+			if CombatMapStatus.get_current_ini() > len(CombatMapStatus.get_initiative()) - 1:
+				CombatMapStatus.set_current_ini(CombatMapStatus.get_current_ini() - 1)
+		
 	for character in CombatMapStatus.get_enemies():
 		if CombatMapStatus.get_enemy(character)["current_health"] > 0:
 			var enemy = Factory.Character.create(CombatMapStatus.get_enemy(character))
@@ -147,6 +153,12 @@ func reload_map():
 			enemy.connect("character_selected", Callable(self, "character_handler"))
 			
 			set_tile_populated(Vector2(enemy.get_map_coords().x, enemy.get_map_coords().y), true)
+			
+		#TODO James revisa este pifostio plis :)
+		if CombatMapStatus.get_enemy(character)["current_health"] == 0:
+			CombatMapStatus.remove_character_ini(character["map_id"])
+			if CombatMapStatus.get_current_ini() > len(CombatMapStatus.get_initiative()) - 1:
+				CombatMapStatus.set_current_ini(CombatMapStatus.get_current_ini() - 1)
 			
 	reset_map_status()
 	highlight_control_zones()
