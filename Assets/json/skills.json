@@ -1,7 +1,7 @@
 {
 	"shadow_ball": {
 		"skill_name": "Shadow Spheres",
-		"description": "Hurl 4 spheres of pure darkness dealing heavy magical damage the target",
+		"description": "Hurl 4 spheres of pure darkness dealing heavy magical damage the target\n DEBUG: DEALS 16 DMG RANGE 1-5",
 		"range": 5,
 		"cost": 6,
 		"spa": 7,
@@ -9,7 +9,7 @@
 	},
 	"nero_nero": {
 		"skill_name": "Death Beam",
-		"description": "Shoot an unavoidable beam of dark energies, dealing very heavy magical damage to the target",
+		"description": "Shoot an unavoidable beam of dark energies, dealing very heavy magical damage to the target\n DEBUG: DEALS 20 DAMAGE, SURE HIT RANGE 1-5",
 		"range": 5,
 		"cost": 12,
 		"spa": 11,
@@ -18,7 +18,7 @@
 	},
 	"mend_flesh":{
 		"skill_name": "Mend Flesh",
-		"description": "Stitch back wounds through the power of necromancy to restore a moderate amount of HP to the target",
+		"description": "Stitch back wounds through the power of necromancy to restore a moderate amount of HP to the target\n DEBUG: HEALS 18 HP RANGE 1-2",
 		"range": 2,
 		"cost": 8,
 		"spa": 9,
@@ -28,7 +28,7 @@
 	},
 	"boost_1": {
 		"skill_name": "Boost Lv 1",
-		"description": "Gather focus to unleash a more precise, heavier and deadlier strike",
+		"description": "Gather focus to unleash a more precise, heavier and deadlier strike\n DEBUG: DEALS ATK+4DMG TO THE TARGET AND HAS N+15% ACC AND M+3%CRIT RANGE 1",
 		"range": 1,
 		"cost": 2,
 		"spa": 4,
@@ -37,7 +37,7 @@
 	},
 	"boost_2": {
 		"skill_name": "Boost Lv 2",
-		"description": "Gather focus to unleash a more precise, heavier, deadlier AND armor piercing strike",
+		"description": "Gather focus to unleash a more precise, heavier, deadlier AND armor piercing strike\n DEBUG: DEALS ATK+4DMG TO THE TARGET AND HAS N+30% ACC AND M+6%CRIT RANGE 1, THE ATTACK BECOMES ARMOR PIERCING",
 		"range": 1,
 		"cost": 2,
 		"spa": 4,
@@ -46,17 +46,17 @@
 	},
 	"bestow_life":{
 		"skill_name": "Bestow Life",
-		"description": "Bestow a blessing of healing on a far away ally, treating their wounds with moderate eficacy",
+		"description": "Bestow a blessing of healing on a far away ally, treating their wounds with moderate eficacy\n DEBUG: HEALS 15HP TO THE TARGET RANGE 1-5",
 		"range": 5,
 		"cost": 5,
 		"spa": 5,
 		"sef": true,
-		"cta": true, 
+		"cta": true,
 		"isMelee": false
 	},
 	"creators_touch":{
 		"skill_name": "Touch of the Creator",
-		"description": "Bestow a blessing of healing on an ally in touch range, treating their wounds with a potent heal",
+		"description": "Bestow a blessing of healing on an ally in touch range, treating their wounds with a potent heal\n DEBUG: HEALS 22HP TO THE TARGET RANGE 1",
 		"range": 1,
 		"cost": 7,
 		"spa": 12,
@@ -66,7 +66,7 @@
 	},
 	"anchoring_strike":{
 		"skill_name": "Anchoring Strike",
-		"description": "Unleash a strike imbued with gravitational magic to root the enemy in place for 1 round",
+		"description": "Unleash a strike imbued with gravitational magic to root the enemy in place for 1 round\n DEBUG: SET A FLAG TO ROOT THE ENEMY, DEAL NORMAL ATK DMG",
 		"range": 1,
 		"cost": 4,
 		"spa": 0,
@@ -76,7 +76,7 @@
 	},
 	"flaming_daggers":{
 		"skill_name": "flaming daggers",
-		"description": "Launch several dagger like projectiles made out of arcane fire dealing light magic damage to the target",
+		"description": "Launch several dagger like projectiles made out of arcane fire dealing light magic damage to the target\n DEBUG: DEALS 10 DMG TO THE TARGET RANGE 1-4",
 		"range": 4,
 		"cost": 4,
 		"spa": -3,
