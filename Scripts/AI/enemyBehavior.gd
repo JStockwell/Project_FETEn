@@ -38,7 +38,7 @@ static func dumb_melee_behavior(map) -> void:
 	else:
 		var finalTargetId = randi_range(1,possibleTargets.len())
 		var finalTarget = possibleTargets[finalTargetId-1]
-		enemy.set_map_coords(finalTarget.get_map_coords()[0], finalTarget.get_map_coords()[1]+1)
+		enemy.set_map_coords(finalTarget.get_map_coords()[0]+1, finalTarget.get_map_coords()[1]) #not final move, probably should go to the furthest non populated tile reachable that allows attack
 		
 	
 	
