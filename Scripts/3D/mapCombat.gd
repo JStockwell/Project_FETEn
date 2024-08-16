@@ -181,8 +181,10 @@ func start_turn() -> void:
 	if currentChar.is_enemy():
 		currentChar.selectedEnemy.show()
 		# TODO Enemy Logic
-		EnemyBehavior.dumb_melee_behavior(self)
-		await wait(2)
+		var enemyAttack = EnemyBehavior.dumb_melee_behavior(self)
+		await wait(1)
+		if (enemyAttack):
+			phys_combat_round()
 		CombatMapStatus.advance_ini()
 		await start_turn()
 		
@@ -329,7 +331,9 @@ func validate_move(character, mapTile) -> bool:
 	return result
 
 func _on_phys_attack_button_pressed():
-	# TODO MapMod
+	phys_combat_round()
+	
+func phys_combat_round() -> void:
 	var attacker = CombatMapStatus.get_selected_character()
 	var defender = CombatMapStatus.get_selected_enemy()
 	

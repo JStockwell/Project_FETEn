@@ -1,6 +1,6 @@
 class_name EnemyBehavior
 
-static func dumb_melee_behavior(map) -> void:
+static func dumb_melee_behavior(map) -> bool:
 	var enemy = CombatMapStatus.get_selected_character()
 	var possibleTargets = check_players_in_range(map, enemy)
 	if (possibleTargets.is_empty()): # currently doesnt take into account root or a unit being in those tiles, but it will do for basic testing
@@ -34,15 +34,16 @@ static func dumb_melee_behavior(map) -> void:
 				posY = coordinates_y.min()+enemy.get_movement()
 			else:
 				posY = coordinates_y.max()-enemy.get_movement()
+		
+		enemy.set_map_coords(Vector2(posX, posY))
+		return false
 			
 	else:
-		var finalTargetId = randi_range(1,possibleTargets.len())
+		var finalTargetId = randi_range(1,len(possibleTargets))
 		var finalTarget = possibleTargets[finalTargetId-1]
-		enemy.set_map_coords(finalTarget.get_map_coords()[0]+1, finalTarget.get_map_coords()[1]) #not final move, probably should go to the furthest non populated tile reachable that allows attack
-		
-	
-	
-	pass
+		enemy.set_map_coords(Vector2(finalTarget.get_map_coords()[0]+1, finalTarget.get_map_coords()[1])) #not final move, probably should go to the furthest non populated tile reachable that allows attack
+		CombatMapStatus.set_selected_enemy(finalTarget)
+		return true
 
 static func check_players_in_range(map, enemy) -> Array:
 	var possible_Targets: Array
@@ -54,7 +55,7 @@ static func check_players_in_range(map, enemy) -> Array:
 
 	return possible_Targets
 
-static func check_closest_player(map, enemy):
+static func check_closest_player(map, enemy): #we can get everything in the mega if here if wanted and rename func to get_near_closest_player
 	var closestTargetDist = 100
 	var closestTarget
 	for character in map.characterGroup.get_children():
