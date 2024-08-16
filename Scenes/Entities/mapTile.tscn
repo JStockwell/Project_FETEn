@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://crcla4kf7cuxy"]
+[gd_scene load_steps=9 format=3 uid="uid://crcla4kf7cuxy"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/mapTile.gd" id="1_v7lvt"]
 
@@ -20,6 +20,14 @@ albedo_color = Color(1, 1, 1, 0.196078)
 [sub_resource type="BoxMesh" id="BoxMesh_iw0yw"]
 material = SubResource("StandardMaterial3D_76iah")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4kmtl"]
+transparency = 1
+blend_mode = 1
+albedo_color = Color(1, 0, 0, 0.196078)
+
+[sub_resource type="BoxMesh" id="BoxMesh_q7eie"]
+material = SubResource("StandardMaterial3D_4kmtl")
+
 [node name="MapTile" type="StaticBody3D"]
 script = ExtResource("1_v7lvt")
 
@@ -33,5 +41,9 @@ mesh = SubResource("BoxMesh_bid71")
 [node name="Selected" type="MeshInstance3D" parent="."]
 visible = false
 mesh = SubResource("BoxMesh_iw0yw")
+
+[node name="Enemy" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("BoxMesh_q7eie")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

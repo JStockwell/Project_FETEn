@@ -21,17 +21,7 @@ static func create(args: Dictionary):
 			stats_set["current_mana"] = stats_set["ini_mana"]
 		
 		else:
-			if stats_set["current_health"] > stats_set["max_health"]:
-				stats_set["current_health"] = stats_set["max_health"]
-				
-			if stats_set["current_mana"] > stats_set["max_mana"]:
-				stats_set["current_mana"] = stats_set["max_mana"]
-				
-			if stats_set["current_health"] < 0:
-				stats_set["current_health"] = 0
-				
-			if stats_set["current_mana"] < 0:
-				stats_set["current_mana"] = 0
+			character.cap_current_stats(stats_set)
 		
 		var mesh_path = args["mesh_path"]
 		

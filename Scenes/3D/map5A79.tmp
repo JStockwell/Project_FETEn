@@ -83,11 +83,12 @@ text = "Use Skill
 "
 flat = false
 
-[node name="SkillIssue" type="Label" parent="UI"]
+[node name="SkillError" type="Label" parent="UI"]
+visible = false
 layout_mode = 0
 offset_left = 192.0
 offset_top = 864.0
-offset_right = 336.0
+offset_right = 384.0
 offset_bottom = 896.0
 text = "Skill out of range"
 label_settings = SubResource("LabelSettings_3uv5b")

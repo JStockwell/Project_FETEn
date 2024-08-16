@@ -12,16 +12,18 @@ var damageNumber = $UI/DamageNumber
 var attacker
 var defender
 
+var debug: bool = false
+
 func _ready():
-	if not GameStatus.debugMode:
+	if not debug:
 		debugUI.hide()
 		
 	else:
 		setup_debug_skill_options()
 		
 	# Create Attacker
-	attacker = Factory.Character.create(GameStatus.attackerStats)
-	defender = Factory.Character.create(GameStatus.defenderStats)
+	attacker = Factory.Character.create(CombatMapStatus.attackerStats)
+	defender = Factory.Character.create(CombatMapStatus.defenderStats)
 	
 	add_child(attacker)
 	add_child(defender)
@@ -30,40 +32,37 @@ func _ready():
 	defender.translate(defenderSpawn.get_position())
 
 	# TODO Times and UI once Map is being used
-	#combat_round(type)
+	if GameStatus.autorunCombat:
+		combat_round(generate_rolls(), generate_rolls(), CombatMapStatus.mapMod, CombatMapStatus.attackRange, CombatMapStatus.attackSkill)
 
-func _process(delta):
-	if GameStatus.debugMode:
-		update_debug_text()
+#func _process(delta):
+	#if GameStatus.debugMode:
+		#update_debug_text()
 
 # 4 types: melee, ranged, skill and mag
-func combat_round(type: String, rolls: Array, rolls_retaliate: Array, mapMod: int, skillName: String = "") -> void:
-	# TODO return to map
+func combat_round(rolls: Array, rolls_retaliate: Array, mapMod: int, range: int, skillName: String = "") -> void:
 	# TODO implement character acc and crit modifiers
-	match type:
-		"melee":
-			attack(attacker, defender, rolls, mapMod)
-			await wait(1)
-			if defender.get_current_health() != 0:
-				attack(defender, attacker, rolls_retaliate, mapMod)
-				await wait(1)
-			
-		"ranged":
-			attack(attacker, defender, rolls, mapMod)
-			await wait(1)
-
-		"skill":
-			# TODO Melee skill retaliation
-			var skillSet = GameStatus.skillSet[skillName].get_skill()
-			if skillSet["sef"]:
-				SEF.run(self, skillName, attacker, defender, mapMod, 0, skillSet["spa"], skillSet["imd"])
-			else:
-				attack(attacker, defender, rolls, mapMod, skillSet["spa"], skillSet["imd"])
-				await wait(1)
-				
-				if skillSet["isMelee"] and defender.get_stats()["current_health"] != 0:
-					attack(defender, attacker, rolls_retaliate, mapMod)
-					await wait(1)
+	if skillName == "":
+		await attack(attacker, defender, rolls, mapMod)
+	else:
+		var skillSet = GameStatus.skillSet[skillName].get_skill()
+		if skillSet["sef"]:
+			await SEF.run(self, skillName, attacker, defender, mapMod, 0, skillSet["spa"], skillSet["imd"])
+		else:
+			await attack(attacker, defender, rolls, mapMod, skillSet["spa"], skillSet["imd"])
+	
+	if range == 1 and defender.get_stats()["current_health"] != 0:
+		# TODO check mapMod for enemy? No mapMod?
+		await attack(defender, attacker, rolls_retaliate, mapMod)
+		
+	elif defender.get_stats()["current_health"] == 0:
+		CombatMapStatus.remove_character_ini(defender.get_map_id())
+		
+		if CombatMapStatus.get_current_ini() > len(CombatMapStatus.get_initiative()) - 1:
+			CombatMapStatus.set_current_ini(CombatMapStatus.get_current_ini() - 1)
+		
+	CombatMapStatus.set_has_attacked(true)
+	get_tree().change_scene_to_file("res://Scenes/3D/mapCombat.tscn")
 
 # Attack functions
 # TODO Map modifier
@@ -74,20 +73,26 @@ func attack(t_attacker, t_defender, rolls: Array, mapMod: int, spa: int = 0, imd
 		var crit = calc_crit(t_attacker.get_stats()["dexterity"], t_attacker.get_stats()["agility"], t_defender.get_stats()["agility"], 0, rolls[3])
 		var dmg = calc_damage(t_attacker.get_stats()["attack"], t_defender.get_stats()["defense"], spa, imd)
 			
-		deal_damage(dmg, crit, t_defender)
+		await deal_damage(dmg, crit, t_defender)
 		
 	else:
-		update_damage_text("MISS")
+		await update_damage_text("MISS")
 		
 func deal_damage(dmg: int, crit: float, t_defender):
+	var dmgText: String
 	if dmg >= 0:
 		t_defender.modify_health(-int(dmg * crit))
-		update_damage_text(str(-int(dmg * crit)))
+		dmgText = str(-int(dmg * crit))
 	else:
-		update_damage_text("0")
+		dmgText = "0"
+		
+	damageNumber.text = dmgText
 	
-	await wait(1.5)
+	damageNumber.show()
+	await wait(0.75)
+	
 	damageNumber.hide()
+	await wait(0.3)
 
 # Attack Calculations
 func calc_hit_chance(att_dex: int, def_agi: int, accMod: int, rolls: Array) -> bool:
@@ -111,7 +116,12 @@ func calc_damage(att: int, def: int, spa: int = 0, imd: int = 0) -> int:
 # Utility
 func update_damage_text(text: String) -> void:
 	damageNumber.text = text
+	
 	damageNumber.show()
+	await wait(0.75)
+	
+	damageNumber.hide()
+	await wait(0.3)
 	
 func generate_rolls() -> Array:
 	# true_hit_flag, dice_1, dice_2, crit_roll
@@ -142,24 +152,25 @@ var debugButtonTimer = $UI/Debug/DebugButtons/DebugButtonTimer
 @onready
 var debugSkillOptions = $UI/Debug/DebugSkillOptions
 
-func _on_debug_phys_attack_pressed() -> void:
-	combat_round("melee", generate_rolls(), generate_rolls() , 0)
-	update_debug_buttons(true)
-	debugButtonTimer.start()
-	
-func _on_debug_ranged_attack_button_pressed():
-	combat_round("ranged", generate_rolls(), generate_rolls(), 0)
-	update_debug_buttons(true)
-	debugButtonTimer.start()
-
-func _on_debug_skill_attack_button_pressed():
-	combat_round("skill", generate_rolls(), generate_rolls(), 0, debugSkillOptions.get_item_text(debugSkillOptions.get_selected_id()))
-	update_debug_buttons(true)
-	debugButtonTimer.start()
+#func _on_debug_phys_attack_pressed() -> void:
+	#combat_round("melee", generate_rolls(), generate_rolls() , 0)
+	#update_debug_buttons(true)
+	#debugButtonTimer.start()
+	#
+#func _on_debug_ranged_attack_button_pressed():
+	#combat_round("ranged", generate_rolls(), generate_rolls(), 0)
+	#update_debug_buttons(true)
+	#debugButtonTimer.start()
+#
+#func _on_debug_skill_attack_button_pressed():
+	#combat_round("skill", generate_rolls(), generate_rolls(), 0, debugSkillOptions.get_item_text(debugSkillOptions.get_selected_id()))
+	#update_debug_buttons(true)
+	#debugButtonTimer.start()
 	
 # Debug utilities
 func update_debug_text() -> void:
 	debugText.text = "attacker_hp: {att_hp}\ndefender_hp: {def_hp}".format({"att_hp": attacker.get_stats()["current_health"], "def_hp": defender.get_stats()["current_health"]})
+	
 
 func update_debug_buttons(value: bool) -> void:
 	debugMeleeAttackButton.disabled = value

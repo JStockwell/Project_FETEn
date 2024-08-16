@@ -8,6 +8,7 @@ static func create(args: Dictionary):
 	
 	var coords: Vector2 = args["coords"]
 	var height: int = args["height"]
+	var idt: int = args["idt"]
 	var isPopulated: bool = args["isPopulated"]
 	var isTraversable: bool = args["isTraversable"]
 	var isObstacle: bool = args["isObstacle"]
@@ -29,12 +30,13 @@ static func create(args: Dictionary):
 		
 		myMapTile.coords = coords
 		myMapTile.height = height
+		myMapTile.isDifficultTerrain = idt
 		myMapTile.isPopulated = isPopulated
 		myMapTile.isTraversable = isTraversable
 		myMapTile.isObstacle = isObstacle
 		
 		var path = args["meshPath"]
-		if path == null:
+		if path == "":
 			path = "res://Assets/MapTiles/placeholder_tile.glb"
 			
 		myMapTile.add_child(load(path).instantiate())
