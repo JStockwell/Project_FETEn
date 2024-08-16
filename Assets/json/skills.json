@@ -23,8 +23,7 @@
 		"cost": 8,
 		"spa": 9,
 		"sef": true,
-		"cta": true, 
-		"isMelee": false
+		"cta": true
 	},
 	"boost_1": {
 		"skill_name": "Boost Lv 1",
@@ -51,8 +50,7 @@
 		"cost": 5,
 		"spa": 5,
 		"sef": true,
-		"cta": true,
-		"isMelee": false
+		"cta": true
 	},
 	"creators_touch":{
 		"skill_name": "Touch of the Creator",
@@ -61,8 +59,7 @@
 		"cost": 7,
 		"spa": 12,
 		"sef": true,
-		"cta": true, 
-		"isMelee": false
+		"cta": true
 	},
 	"anchoring_strike":{
 		"skill_name": "Anchoring Strike",
@@ -71,8 +68,7 @@
 		"cost": 4,
 		"spa": 0,
 		"sef": true,
-		"imd": 0,
-		"isMelee": true
+		"imd": 0
 	},
 	"flaming_daggers":{
 		"skill_name": "flaming daggers",
@@ -80,7 +76,6 @@
 		"range": 4,
 		"cost": 4,
 		"spa": -3,
-		"imd": 1,
-		"isMelee": false
+		"imd": 1
 	}
 }
