@@ -54,6 +54,9 @@ func get_attacker_stats() -> Dictionary:
 func get_defender_stats() -> Dictionary:
 	return defenderStats
 
+func set_attack_skill(skillName: String) -> void:
+	attackSkill = skillName
+
 # Combat
 func set_combat(char, enem, ran: int, mm: int, attSkill: String = "") -> void:
 	set_active_characters(char.get_stats(), enem.get_stats())
