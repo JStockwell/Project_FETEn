@@ -18,6 +18,8 @@ static func run(Combat, sefName:String, attacker, defender, accMod: int, critMod
 			healing_spell(attacker, defender, spa)
 		"creators_touch":
 			healing_spell(attacker, defender, spa)
+		"anchoring_strike":
+			anchoring_strike(Combat, attacker, defender, accMod, spa, imd)
 
 static func hello_world():
 	print("Hello World!")
@@ -46,4 +48,16 @@ static func boost(Combat, attacker, defender, accMod: int, critMod: int, spa: in
 static func healing_spell(attacker, defender, spa:int): # The range comes from a previous check from what I understand from nero nero?
 	var amount_healed = attacker.get_attack() + spa
 	defender.modify_health(-amount_healed)
+	
+static func anchoring_strike(Combat, attacker, defender, accMod: int, spa, imd):
+
+	var rolls = Combat.generate_rolls()
+	var rolls_retaliate = Combat.generate_rolls()
+	
+	Combat.attack(attacker, defender, rolls, accMod, spa, imd)
+		
+	if defender.get_stats()["current_health"] != 0:
+		Combat.attack(defender, attacker, rolls_retaliate, accMod)
+		await Combat.wait(1)
+		defender.set_is_rooted(true)
 
