@@ -46,8 +46,7 @@ func before_test():
 		"is_ranged": false,
 		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb",
 		"current_health": 24,
-		"current_mana": 5, 
-		"current_mov": 5,
+		"current_mana": 5,
 		"is_enemy": false
 	}
 	
@@ -192,43 +191,6 @@ func test_modify_mana_decrease_over_cap():
 	test_char.modify_mana(-8000)
 	
 	assert_int(test_char.get_current_mana()).is_zero()
-	
-	
-func test_modify_movement_increase_under_cap():
-	dict = {
-		"current_mov": test_char.get_movement() - 2,
-	}
-	max_stats.merge(dict, true)
-	test_char.set_stats(max_stats)
-	
-	test_char.modify_current_movement(1)
-	
-	assert_that(test_char.get_current_mov()).is_equal(test_char.get_movement() - 1)
-
-
-func test_modify_movement_increase_over_cap():
-	dict = {
-		"current_mov": test_char.get_movement() - 2,
-	}
-	max_stats.merge(dict, true)
-	test_char.set_stats(max_stats)
-	
-	test_char.modify_current_movement(8000)
-	
-	assert_that(test_char.get_current_mov()).is_equal(test_char.get_movement())
-	
-
-func test_modify_movement_decrease_under_cap():
-	test_char.modify_current_movement(-1)
-	
-	assert_that(test_char.get_current_mov()).is_equal(test_char.get_movement() - 1)
-	
-
-func test_modify_movement_decrease_over_cap():
-	test_char.modify_current_movement(-8000)
-	
-#	assert_int(test_char.get_current_mov()).is_zero()
-	pass
 
 
 func test_calculate_initiative():
