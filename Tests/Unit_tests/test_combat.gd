@@ -22,13 +22,13 @@ func before_test():
 	
 	
 	var skill1dict = {
-			"skill_name": "Skill_1",
-			"range": 5,
-			"cost": 6,
-			"spa": 7,
-			"imd": 1,
-			"isMelee": true,
-			"description": "meh"
+		"skill_name": "Skill_1",
+		"range": 5,
+		"cost": 6,
+		"spa": 7,
+		"imd": 1,
+		"isMelee": true,
+		"description": "meh"
 	}
 	
 	var skill2dict = {
