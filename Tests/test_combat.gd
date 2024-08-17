@@ -242,7 +242,6 @@ func test_generate_rolls_random():
 # Integration Tests #
 #####################
 
-#TODO test retaliation
 func test_combat_round_melee():
 	test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1,"")
 
