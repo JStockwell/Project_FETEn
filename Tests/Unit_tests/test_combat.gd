@@ -27,10 +27,23 @@ func before_test():
 			"cost": 6,
 			"spa": 7,
 			"imd": 1,
-			"isMelee": true
+			"isMelee": true,
+			"description": "meh"
+	}
+	
+	var skill2dict = {
+		"skill_name": "Death Beam",
+		"description": "",
+		"range": 5,
+		"cost": 12,
+		"spa": 11,
+		"sef": true,
+		"imd": 1
 	}
 	
 	GameStatus.skillSet["skill_1"] = Factory.Skill.create(skill1dict)
+	GameStatus.skillSet["nero_nero"] = Factory.Skill.create(skill2dict)
+	GameStatus.skillSet["nero_nero"].set_skill_menu_id(80085)
 	
 	stats_atk = {
 		"name": "Attacker",
@@ -48,7 +61,9 @@ func before_test():
 		"is_ranged": false,
 		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb",
 		"current_health": 24,
-		"current_mana": 5
+		"current_mana": 5,
+		"is_enemy": false,
+		"map_id": 0
 	}
 
 	stats_range_atk = {
@@ -67,7 +82,9 @@ func before_test():
 		"is_ranged": true,
 		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb",
 		"current_health": 24,
-		"current_mana": 5
+		"current_mana": 5,
+		"is_enemy": false,
+		"map_id": 1
 	}
 
 	stats_def = {
@@ -86,7 +103,9 @@ func before_test():
 		"is_ranged": false,
 		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb",
 		"current_health": 22,
-		"current_mana": 5
+		"current_mana": 5,
+		"is_enemy": true,
+		"map_id": 2
 	}
 	
 	attacker = Factory.Character.create(stats_atk)
@@ -103,10 +122,11 @@ func after_test():
 	attacker.free()
 	defender.free()
 	test_combat.free()
+	ranged_attacker.free()
 	for test_skill in GameStatus.skillSet:
 		GameStatus.skillSet[test_skill].free()
-	ranged_attacker.free()
-	
+
+
 	
 ##############
 # UNIT TESTS #
@@ -120,52 +140,57 @@ func test_not_null():
 	
 
 func test_combat_round_melee():
-	#test_combat.combat_round("melee", [1, 1, 1, 100], [1, 1, 1, 100], 0, "")
-	##await test_combat.wait(1)
+	test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1,"")
+
+	assert_int(defender.get_current_health()).is_less(defender.get_max_health())
+	await test_combat.wait(1.07)
+	assert_int(attacker.get_current_health()).is_less(attacker.get_max_health())
+
+	
+func test_combat_round_ranged():
+	test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 4,"")
+
+	assert_int(defender.get_current_health()).is_less(defender.get_max_health())
+	
+	
+#TODO Testear en mapcombat
+func test_combat_round_skill_no_SEF_retaliation():
+	#test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1,"skill_1")
+#
+	#assert_int(defender.get_current_health()).is_less(defender.get_max_health())
+	#await test_combat.wait(1.06)
+	#
+	#assert_int(CombatMapStatus.get_attacker_stats()["current_health"]).is_less(stats_atk["max_health"])
+	pass
+	
+
+func test_combat_round_skill_no_SEF_no_retaliation():
+	test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 4,"skill_1")
+
+	assert_int(defender.get_current_health()).is_less(defender.get_max_health())
+	
+	
+
+#TODO Testear en mapcombat
+func test_combat_round_skill_SEF_retaliation():
+	#test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1,"nero_nero")
 	#
 	#assert_int(defender.get_current_health()).is_less(defender.get_max_health())
+	#await test_combat.wait(1.07)
 	#assert_int(attacker.get_current_health()).is_less(attacker.get_max_health())
 	pass
 	
-func test_combat_round_ranged():
-	#CombatMapStatus.set_active_characters(ranged_attacker.get_stats(), defender.get_stats())
-	#test_combat = Combat.instantiate()
-	#add_child(test_combat)
-	#
-	#test_combat.combat_round("ranged", [1, 1, 1, 100], [1, 1, 1, 100], 0, "")
-	#
-	#assert_int(defender.get_current_health()).is_less(defender.get_max_health())
-	pass
-	
-	
-#	TODO Evalua shadow ball, esperar a que james programe la retaliation
-func test_combat_round_skill_no_SEF_retaliation():
-	pass
-	
-	
-#	TODO Evalua boost lv1, esperar a que james programe la retaliation
-func test_combat_round_skill_no_SEF_no_retaliation():
-	pass
-	
-	
-#	TODO Evalua nero-nero, esperar a que james programe la retaliation
-func test_combat_round_skill_SEF_retaliation():
-	pass
-	
-	
-#	TODO Evalua nero-nero, esperar a que james programe la retaliation
+
 func test_combat_round_skill_SEF_no_retaliation():
-	pass
+	test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 4,"nero_nero")
+
+	assert_int(defender.get_current_health()).is_less(defender.get_max_health())
 	
 	
 func test_attack_hit():
 	var rolls = [1, 1, 1, 1]
 	
-	#await test_combat.wait(0.75)
-	
 	test_combat.attack(attacker, defender, rolls, 0, 0, 0)
-
-	#await test_combat.wait(0.75)
 
 	assert_int(defender.get_current_health()).is_less(defender.get_max_health())
 
