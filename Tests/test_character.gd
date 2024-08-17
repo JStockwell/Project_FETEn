@@ -70,33 +70,6 @@ func test_character_factory():
 	assert_that(test_char.get_stats()).is_equal(max_stats)
 	
 	
-func test_set_map_coords_ok():
-	checker = Vector2(3, 3)
-	CombatMapStatus.set_map_size(3, 3)
-	
-	test_char.set_map_coords(checker)
-	
-	assert_that(test_char.get_stats().get("map_coords")).is_equal(checker)
-	
-	
-func test_set_map_coords_x_out_of_range():
-	checker = Vector2(4, 3)
-	CombatMapStatus.set_map_size(3, 3)
-	
-	test_char.set_map_coords(checker)
-	
-	assert_that(test_char.get_stats().get("map_coords")).is_null()
-	
-	
-func test_set_map_coords_y_out_of_range():
-	checker = Vector2(3, 4)
-	CombatMapStatus.set_map_size(3, 3)
-	
-	test_char.set_map_coords(checker)
-	
-	assert_that(test_char.get_stats().get("map_coords")).is_null()
-
-	
 func test_set_is_enemy():
 	test_char.set_is_enemy(true)
 	
@@ -138,8 +111,8 @@ func test_cap_current_stats_no_negatives():
 	
 	checker = test_char.cap_current_stats(max_stats)
 	
-	assert_that(checker.get("current_health")).is_equal(0)
-	assert_that(checker.get("current_mana")).is_equal(0)
+	assert_int(checker.get("current_health")).is_zero()
+	assert_int(checker.get("current_mana")).is_zero()
 	
 	
 #####################
@@ -157,7 +130,34 @@ func test_set_stats():
 	checker = test_char.get_stats()
 	
 	assert_that(max_stats).is_equal(checker)
+
+
+func test_set_map_coords_ok():
+	checker = Vector2(3, 3)
+	CombatMapStatus.set_map_size(3, 3)
 	
+	test_char.set_map_coords(checker)
+	
+	assert_that(test_char.get_stats().get("map_coords")).is_equal(checker)
+	
+	
+func test_set_map_coords_x_out_of_range():
+	checker = Vector2(4, 3)
+	CombatMapStatus.set_map_size(3, 3)
+	
+	test_char.set_map_coords(checker)
+	
+	assert_that(test_char.get_stats().get("map_coords")).is_null()
+	
+	
+func test_set_map_coords_y_out_of_range():
+	checker = Vector2(3, 4)
+	CombatMapStatus.set_map_size(3, 3)
+	
+	test_char.set_map_coords(checker)
+	
+	assert_that(test_char.get_stats().get("map_coords")).is_null()
+
 	
 func test_modify_health_damage_non_lethal():
 	test_char.modify_health(-1)
