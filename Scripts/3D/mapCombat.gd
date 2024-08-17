@@ -21,7 +21,7 @@ var baseSkillMenu = $UI/SkillMenu
 @onready
 var skillMenu = $UI/SkillMenu.get_popup()
 @onready
-var skillError = $UI/SkillError
+var skillIssue = $UI/SkillIssue
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -137,6 +137,12 @@ func reload_map():
 			
 			set_tile_populated(Vector2(partyMember.get_map_coords().x, partyMember.get_map_coords().y), true)
 		
+		#TODO James revisa este pifostio plis :)
+		if GameStatus.get_party_member(character)["current_health"] == 0:
+			CombatMapStatus.remove_character_ini(character["map_id"])
+			if CombatMapStatus.get_current_ini() > len(CombatMapStatus.get_initiative()) - 1:
+				CombatMapStatus.set_current_ini(CombatMapStatus.get_current_ini() - 1)
+		
 	for character in CombatMapStatus.get_enemies():
 		if CombatMapStatus.get_enemy(character)["current_health"] > 0:
 			var enemy = Factory.Character.create(CombatMapStatus.get_enemy(character))
@@ -148,8 +154,15 @@ func reload_map():
 			
 			set_tile_populated(Vector2(enemy.get_map_coords().x, enemy.get_map_coords().y), true)
 			
+		#TODO James revisa este pifostio plis :)
+		if CombatMapStatus.get_enemy(character)["current_health"] == 0:
+			CombatMapStatus.remove_character_ini(character["map_id"])
+			if CombatMapStatus.get_current_ini() > len(CombatMapStatus.get_initiative()) - 1:
+				CombatMapStatus.set_current_ini(CombatMapStatus.get_current_ini() - 1)
+			
 	reset_map_status()
 	highlight_control_zones()
+	skillIssue.hide()
 	
 	if not CombatMapStatus.get_selected_character().is_enemy():
 		CombatMapStatus.get_selected_character().selectedChar.show()
@@ -169,19 +182,18 @@ func start_turn() -> void:
 		CombatMapStatus.set_is_start_combat(false)
 		
 	reset_map_status()
-	skillError.hide()
+	skillIssue.hide()
 	
 	var currentChar = CombatMapStatus.get_selected_character()
-	
-	currentChar.modify_current_movement(999)
 	
 	CombatMapStatus.set_has_attacked(false)
 	CombatMapStatus.set_has_moved(false)
 	CombatMapStatus.set_selected_character(currentChar)
 	
 	if currentChar.is_enemy():
-		# TODO Enemy Logic
 		currentChar.selectedEnemy.show()
+		# TODO Enemy Logic
+		# EnemyLogic.execute(Map, currentChar...)
 		await wait(2)
 		CombatMapStatus.advance_ini()
 		await start_turn()
@@ -341,7 +353,7 @@ func _on_phys_attack_button_pressed():
 	CombatMapStatus.hasAttacked = true
 	
 func _on_skill_selected(id: int):
-	skillError.hide()
+	skillIssue.hide()
 	var skillName
 	for skill in GameStatus.skillSet:
 		if GameStatus.skillSet[skill].get_skill_menu_id() == id:
@@ -354,8 +366,8 @@ func _on_skill_selected(id: int):
 		skillResult = SkillMenu.handle_skill(skillName, CombatMapStatus.get_selected_character(), CombatMapStatus.get_selected_enemy())
 	
 	if skillResult != "":
-		skillError.text = skillResult
-		skillError.show()
+		skillIssue.text = skillResult
+		skillIssue.show()
 		
 	else:
 		CombatMapStatus.get_selected_character().modify_mana(-GameStatus.skillSet[skillName].get_cost())
@@ -422,7 +434,7 @@ func update_end_turn_button() -> void:
 
 func highlight_movement(character) -> void:
 	var char_coords = character.get_map_coords()
-	var mov = character.get_current_mov()
+	var mov = character.get_movement()
 	
 	var min_x = max(char_coords.x - mov, 0)
 	var max_x = min(char_coords.x + mov, CombatMapStatus.get_map_x())
@@ -512,7 +524,7 @@ func update_debug_label():
 		debugLabel.text += "name: " + debugSelected.get_char_name()
 		debugLabel.text += "\ncoords: " + str(debugSelected.get_map_coords())
 		debugLabel.text += "\nhealth: " + str(debugSelected.get_current_health())
-		debugLabel.text += "\ncurrentMov: " + str(debugSelected.get_current_mov())
+		debugLabel.text += "\ncurrentMov: " + str(debugSelected.get_movement())
 		if debugSelected.get_max_mana() != 0:
 			debugLabel.text += "\ncurrentMana: " + str(debugSelected.get_current_mana())
 		
@@ -524,7 +536,7 @@ func update_debug_label():
 		debugLabel.text += "name: " + debugAlly.get_char_name()
 		debugLabel.text += "\ncoords: " + str(debugAlly.get_map_coords())
 		debugLabel.text += "\nhealth: " + str(debugAlly.get_current_health())
-		debugLabel.text += "\ncurrentMov: " + str(debugAlly.get_current_mov())
+		debugLabel.text += "\ncurrentMov: " + str(debugAlly.get_movement())
 		if debugAlly.get_max_mana() != 0:
 			debugLabel.text += "\ncurrentMana: " + str(debugAlly.get_current_mana())
 		
@@ -536,7 +548,7 @@ func update_debug_label():
 		debugLabel.text += "name: " + debugEnemy.get_char_name()
 		debugLabel.text += "\ncoords: " + str(debugEnemy.get_map_coords())
 		debugLabel.text += "\nhealth: " + str(debugEnemy.get_current_health())
-		debugLabel.text += "\ncurrentMov: " + str(debugEnemy.get_current_mov())
+		debugLabel.text += "\ncurrentMov: " + str(debugEnemy.get_movement())
 		if debugEnemy.get_max_mana() != 0:
 			debugLabel.text += "\ncurrentMana: " + str(debugEnemy.get_current_mana())
 		

@@ -83,7 +83,7 @@ text = "Use Skill
 "
 flat = false
 
-[node name="SkillError" type="Label" parent="UI"]
+[node name="SkillIssue" type="Label" parent="UI"]
 layout_mode = 0
 offset_left = 192.0
 offset_top = 864.0
