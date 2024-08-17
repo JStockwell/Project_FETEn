@@ -130,12 +130,12 @@ func test_not_null():
 func test_combat_round_shadow_ball():
 	test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 4, "shadow_ball")
 	var spa = GameStatus.skillSet["shadow_ball"].get_spa()
-	assert_int(defender.get_current_health()).is_equal(defender.get_max_health()-(attacker.get_attack()+spa))
+	assert_int(defender.get_current_health()).is_equal(defender.get_max_health()-(attacker.get_attack()+spa)) # No crit or miss, should dela normal damage
 
 func test_combat_round_flaming_daggers():
 	test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 4, "flaming_daggers")
 	var spa = GameStatus.skillSet["flaming_daggers"].get_spa()
-	assert_int(defender.get_current_health()).is_equal(defender.get_max_health()-(attacker.get_attack()+spa))
+	assert_int(defender.get_current_health()).is_equal(defender.get_max_health()-(attacker.get_attack()+spa)) # No crit or miss, should dela normal damage
 
 func test_combat_round_nero_nero():
 	test_combat.combat_round([2, 100, 100, 0], [1, 1, 1, 100], 0, 4, "nero_nero") # double roll, double 100 to hit (cant hit) 0 to crit (always crit) but shouldnt deal 1.5 damage since it doesnt check for crits
