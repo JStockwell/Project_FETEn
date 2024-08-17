@@ -140,7 +140,7 @@ func test_combat_round_flaming_daggers():
 func test_combat_round_nero_nero():
 	test_combat.combat_round([2, 100, 100, 0], [1, 1, 1, 100], 0, 4, "nero_nero") # double roll, double 100 to hit (cant hit) 0 to crit (always crit) but shouldnt deal 1.5 damage since it doesnt check for crits
 	var spa = GameStatus.skillSet["nero_nero"].get_spa()
-	assert_int(defender.get_current_health()).is_equal(defender.get_max_health()-(attacker.get_attack()+spa))
+	assert_int(defender.get_current_health()).is_equal(defender.get_max_health()-(attacker.get_attack()+spa)) # Should deal normal dmg despite the previous pre and crit
 
 #func test_combat_round_bestow_life():
 	#CombatMapStatus.set_active_characters(attacker.get_stats(), ally.get_stats())
@@ -148,14 +148,12 @@ func test_combat_round_nero_nero():
 	#var spa = GameStatus.skillSet["bestow_life"].get_spa()
 	#assert_int(ally.get_current_health()).is_equal(ally.get_max_health()-25+(attacker.get_attack()+spa))
 
-
 #func test_combat_round_creators_touch():
 	#CombatMapStatus.set_active_characters(attacker.get_stats(), ally.get_stats())
 	#test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1, "creators_touch")
 	#var spa = GameStatus.skillSet["creators_touch"].get_spa()
 	#assert_int(ally.get_current_health()).is_equal(ally.get_max_health()-25+(attacker.get_attack()+spa))
 
-	
 #func test_combat_round_mend_flesh():
 	#CombatMapStatus.set_active_characters(attacker.get_stats(), ally.get_stats())
 	#test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1, "mend_flesh")
