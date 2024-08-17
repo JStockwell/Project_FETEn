@@ -154,7 +154,8 @@ func reload_map():
 			
 			set_tile_populated(Vector2(enemy.get_map_coords().x, enemy.get_map_coords().y), true)
 			
-		#TODO James revisa este pifostio plis :)
+		#TODO James revisa este pifostio plis fdo: Alex :)
+		
 		if CombatMapStatus.get_enemy(character)["current_health"] == 0:
 			CombatMapStatus.remove_character_ini(character["map_id"])
 			if CombatMapStatus.get_current_ini() > len(CombatMapStatus.get_initiative()) - 1:
@@ -164,6 +165,7 @@ func reload_map():
 	highlight_control_zones()
 	skillIssue.hide()
 	
+	#TODO James revisa este pifostio plis fdo: Pablo :)
 	if not CombatMapStatus.get_selected_character().is_enemy():
 		CombatMapStatus.get_selected_character().selectedChar.show()
 		

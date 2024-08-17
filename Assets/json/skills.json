@@ -1,6 +1,6 @@
 {
 	"shadow_ball": {
-		"skill_name": "Shadow Spheres",
+		"skill_name": "Darkness Spheres",
 		"description": "Hurl 4 spheres of pure darkness dealing heavy magical damage the target\n DEBUG: DEALS 16 DMG RANGE 1-5",
 		"range": 5,
 		"cost": 6,

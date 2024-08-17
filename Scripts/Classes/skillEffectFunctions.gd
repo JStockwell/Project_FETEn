@@ -44,7 +44,7 @@ static func boost(Combat, attacker, defender, accMod: int, critMod: int, spa: in
 
 static func healing_spell(attacker, defender, spa:int):
 	var amount_healed = attacker.get_attack() + spa
-	defender.modify_health(-amount_healed)
+	defender.modify_health(amount_healed)
 	
 static func anchoring_strike(Combat, attacker, defender, accMod: int, spa, imd):
 
