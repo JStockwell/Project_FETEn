@@ -67,21 +67,7 @@ func test_not_null():
 	
 func test_character_factory():
 	#Function called in before_test()
-	
 	assert_that(test_char.get_stats()).is_equal(max_stats)
-	
-	
-func test_set_stats():
-	var current_stats = {
-		"current_health": 12,
-		"current_mana": 8
-	}
-	max_stats.merge(current_stats, true)
-	
-	test_char.set_stats(max_stats)
-	checker = test_char.get_stats()
-	
-	assert_that(max_stats).is_equal(checker)
 	
 	
 func test_set_map_coords_ok():
@@ -115,6 +101,62 @@ func test_set_is_enemy():
 	test_char.set_is_enemy(true)
 	
 	assert_bool(test_char.get_stats().get("is_enemy")).is_true()
+	
+	
+func test_calculate_initiative():
+	var random_roll = randi_range(1, 20)
+	var no_random_roll = 6
+	var checker_ini_random = random_roll + ((test_char.get_agility() + test_char.get_dexterity()) / 2) * 1.1
+	var checker_ini_no_random = no_random_roll + ((test_char.get_agility() + test_char.get_dexterity()) / 2) * 1.1
+	
+	var initiative_random = test_char.calculate_initiative(random_roll)
+	var initiative_no_random = test_char.calculate_initiative(no_random_roll)
+	
+	assert_that(initiative_random).is_equal(checker_ini_random)
+	assert_that(initiative_no_random).is_equal(checker_ini_no_random)
+	
+	
+func test_cap_current_stats_max():
+	dict = {
+		"current_health": test_char.get_max_health() + 1,
+		"current_mana": test_char.get_max_mana() + 1
+	}
+	max_stats.merge(dict, true)
+	
+	checker = test_char.cap_current_stats(max_stats)
+	
+	assert_that(checker.get("current_health")).is_equal(checker.get("max_health"))
+	assert_that(checker.get("current_mana")).is_equal(checker.get("max_mana"))
+	
+	
+func test_cap_current_stats_no_negatives():
+	dict = {
+		"current_health": test_char.get_max_health() - 8000,
+		"current_mana": test_char.get_max_mana() - 8000
+	}
+	max_stats.merge(dict, true)
+	
+	checker = test_char.cap_current_stats(max_stats)
+	
+	assert_that(checker.get("current_health")).is_equal(0)
+	assert_that(checker.get("current_mana")).is_equal(0)
+	
+	
+#####################
+# Integration Tests #
+#####################
+
+func test_set_stats():
+	var current_stats = {
+		"current_health": 12,
+		"current_mana": 8
+	}
+	max_stats.merge(current_stats, true)
+	
+	test_char.set_stats(max_stats)
+	checker = test_char.get_stats()
+	
+	assert_that(max_stats).is_equal(checker)
 	
 	
 func test_modify_health_damage_non_lethal():
@@ -191,44 +233,3 @@ func test_modify_mana_decrease_over_cap():
 	test_char.modify_mana(-8000)
 	
 	assert_int(test_char.get_current_mana()).is_zero()
-	
-	
-func test_calculate_initiative():
-	var random_roll = randi_range(1, 20)
-	var no_random_roll = 6
-	var checker_ini_random = random_roll + ((test_char.get_agility() + test_char.get_dexterity()) / 2) * 1.1
-	var checker_ini_no_random = no_random_roll + ((test_char.get_agility() + test_char.get_dexterity()) / 2) * 1.1
-	
-	var initiative_random = test_char.calculate_initiative(random_roll)
-	var initiative_no_random = test_char.calculate_initiative(no_random_roll)
-	
-	assert_that(initiative_random).is_equal(checker_ini_random)
-	assert_that(initiative_no_random).is_equal(checker_ini_no_random)
-	
-	
-func test_cap_current_stats_max():
-	dict = {
-		"current_health": test_char.get_max_health() + 1,
-		"current_mana": test_char.get_max_mana() + 1
-	}
-	max_stats.merge(dict, true)
-	
-	checker = test_char.cap_current_stats(max_stats)
-	
-	assert_that(checker.get("current_health")).is_equal(checker.get("max_health"))
-	assert_that(checker.get("current_mana")).is_equal(checker.get("max_mana"))
-	
-	
-func test_cap_current_stats_no_negatives():
-	dict = {
-		"current_health": test_char.get_max_health() - 8000,
-		"current_mana": test_char.get_max_mana() - 8000
-	}
-	max_stats.merge(dict, true)
-	
-	checker = test_char.cap_current_stats(max_stats)
-	
-	assert_that(checker.get("current_health")).is_equal(0)
-	assert_that(checker.get("current_mana")).is_equal(0)
-	
-	
