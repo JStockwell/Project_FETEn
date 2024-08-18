@@ -15,3 +15,7 @@ static func read_json(jsonPath: String):
 			
 	else:
 		print("File {path} doesn't exist!".format({"path": jsonPath}))
+		
+static func generate_rolls() -> Array:
+	# true_hit_flag, dice_1, dice_2, crit_roll
+	return [randi_range(1, 2), randi_range(1, 100), randi_range(1, 100), randi_range(1, 100)]
