@@ -261,7 +261,7 @@ func test_combat_round_skill_no_SEF_retaliation():
 	#test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1,"skill_1")
 #
 	#assert_int(defender.get_current_health()).is_less(defender.get_max_health())
-	#await test_combat.wait(1.06)
+	#await test_combat.wait(1.1)
 	#
 	#assert_int(CombatMapStatus.get_attacker_stats()["current_health"]).is_less(stats_atk["max_health"])
 	pass
@@ -284,7 +284,7 @@ func test_combat_round_skill_SEF_retaliation():
 	
 
 func test_combat_round_skill_SEF_no_retaliation():
-	test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 4,"nero_nero")
+	test_combat.combat_round([1, 100, 1, 100], [1, 1, 1, 100], 0, 4,"nero_nero")
 
 	assert_int(defender.get_current_health()).is_less(defender.get_max_health())
 	

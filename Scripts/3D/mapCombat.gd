@@ -139,7 +139,7 @@ func reload_map():
 		
 		#TODO James revisa este pifostio plis :)
 		if GameStatus.get_party_member(character)["current_health"] == 0:
-			CombatMapStatus.remove_character_ini(character["map_id"])
+			CombatMapStatus.remove_character_ini(GameStatus.get_party_member(character)["map_id"])
 			if CombatMapStatus.get_current_ini() > len(CombatMapStatus.get_initiative()) - 1:
 				CombatMapStatus.set_current_ini(CombatMapStatus.get_current_ini() - 1)
 		
@@ -156,7 +156,7 @@ func reload_map():
 			
 		#TODO James revisa este pifostio plis :)
 		if CombatMapStatus.get_enemy(character)["current_health"] == 0:
-			CombatMapStatus.remove_character_ini(character["map_id"])
+			CombatMapStatus.remove_character_ini(CombatMapStatus.get_enemy(character)["map_id"])
 			if CombatMapStatus.get_current_ini() > len(CombatMapStatus.get_initiative()) - 1:
 				CombatMapStatus.set_current_ini(CombatMapStatus.get_current_ini() - 1)
 			
