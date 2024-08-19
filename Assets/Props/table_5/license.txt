@@ -1,0 +1,11 @@
+Model Information:
+* title:	Table 5
+* source:	https://sketchfab.com/3d-models/table-5-2983f936a55a4574b7ca5be8a0bfd021
+* author:	eucocker (https://sketchfab.com/eucocker)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Table 5" (https://sketchfab.com/3d-models/table-5-2983f936a55a4574b7ca5be8a0bfd021) by eucocker (https://sketchfab.com/eucocker) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
