@@ -10,7 +10,7 @@
 		"ini_mana": 6,
 		"max_mana": 25,
 		"reg_mana": 8,
-		"range": 5,
+		"range": 999,
 		"skills": ["shadow_ball", "nero_nero", "boost_1", "boost_2"],
 		"is_ranged": true,
 		"mesh_path": "res://Assets/Characters/Party/Edgar/Edgar.glb"
