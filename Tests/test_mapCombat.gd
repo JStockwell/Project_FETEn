@@ -12,6 +12,9 @@ var test_mapCombat
 #var stats_atk
 #var stats_def
 
+func before():
+	GameStatus.debugMode = false
+
 func before_test():
 	GameStatus.set_playable_characters(test_players)
 	GameStatus.set_enemy_set(test_enemies)
@@ -40,7 +43,6 @@ func after_test():
 	test_mapCombat.free()
 	for test_skill in GameStatus.skillSet:
 		GameStatus.skillSet[test_skill].free()
-
 
 ##############
 # Unit Tests #
@@ -167,6 +169,7 @@ func test_reset_map_status():
 
 
 func test_regen_mana():
+	GameStatus.get_party()["attacker"]["current_mana"] = 5.
 	assert_that(GameStatus.get_party()["attacker"]["current_mana"]).is_equal(5.)
 
 	test_mapCombat.regen_mana()
@@ -174,72 +177,175 @@ func test_regen_mana():
 	assert_that(GameStatus.get_party()["attacker"]["current_mana"]).is_equal(10.)
 
 
-#TODO ask james
-func test_character_handler():
-	pass
+func test_character_handler_enemy_turn():
+	CombatMapStatus.set_selected_character(test_mapCombat.enemyGroup.get_children()[0])
+	
+	test_mapCombat.character_handler(test_mapCombat.characterGroup.get_children()[0])
+	
+	assert_that(CombatMapStatus.get_selected_ally()).is_null()
+	assert_that(CombatMapStatus.get_selected_enemy()).is_null()
+	
+
+func test_character_handler_isEnemy_handled():
+	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
+	
+	test_mapCombat.character_handler(test_mapCombat.enemyGroup.get_children()[0])
+	
+	assert_that(CombatMapStatus.get_selected_enemy()).is_equal(test_mapCombat.enemyGroup.get_children()[0])
+	
+	
+func test_character_handler_other_ally_turn():
+	GameStatus.set_party(["attacker", "attacker2"])
+	CombatMapStatus.set_is_start_combat(true)
+	test_mapCombat.initial_map_load()
+	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
+	
+	test_mapCombat.character_handler(test_mapCombat.characterGroup.get_children()[1])
+	
+	assert_that(CombatMapStatus.get_selected_ally()).is_equal(test_mapCombat.characterGroup.get_children()[1])
 
 
-func test_selected_checker():
-	pass
+func test_selected_checker_last_selection_null_enemy():
+	GameStatus.set_party(["attacker", "attacker2"])
+	CombatMapStatus.set_enemies(["defender", "defender"])
+	CombatMapStatus.set_is_start_combat(true)
+	test_mapCombat.initial_map_load()
+	var enemy = test_mapCombat.enemyGroup.get_children()[0]
+	
+	test_mapCombat.selected_checker(enemy, null, enemy.get_stats()["is_enemy"])
+	
+	assert_that(CombatMapStatus.get_selected_enemy()).is_equal(enemy)
+	
+
+func test_selected_checker_last_selection_null_ally():
+	GameStatus.set_party(["attacker", "attacker2"])
+	CombatMapStatus.set_enemies(["defender", "defender"])
+	CombatMapStatus.set_is_start_combat(true)
+	test_mapCombat.initial_map_load()
+	var ally = test_mapCombat.characterGroup.get_children()[1]
+
+	test_mapCombat.selected_checker(ally, null, ally.get_stats()["is_enemy"])
+	
+	assert_that(CombatMapStatus.get_selected_ally()).is_equal(ally)
+	
+	
+func test_selected_checker_unselect_enemy():
+	GameStatus.set_party(["attacker", "attacker2"])
+	CombatMapStatus.set_enemies(["defender", "defender"])
+	CombatMapStatus.set_is_start_combat(true)
+	test_mapCombat.initial_map_load()
+	var enemy = test_mapCombat.enemyGroup.get_children()[0]
+	
+	test_mapCombat.selected_checker(enemy, enemy, enemy.get_stats()["is_enemy"])
+	
+	assert_that(CombatMapStatus.get_selected_enemy()).is_null()
+	
+	
+func test_selected_checker_unselect_ally():
+	GameStatus.set_party(["attacker", "attacker2"])
+	CombatMapStatus.set_enemies(["defender", "defender"])
+	CombatMapStatus.set_is_start_combat(true)
+	test_mapCombat.initial_map_load()
+	var ally = test_mapCombat.characterGroup.get_children()[0]
+	
+	test_mapCombat.selected_checker(ally, ally, ally.get_stats()["is_enemy"])
+	
+	assert_that(CombatMapStatus.get_selected_ally()).is_null()
+	
+	
+func test_selected_checker_change_selection_enemy():
+	GameStatus.set_party(["attacker", "attacker2"])
+	CombatMapStatus.set_enemies(["defender", "defender"])
+	CombatMapStatus.set_is_start_combat(true)
+	test_mapCombat.initial_map_load()
+	var old_enemy = test_mapCombat.enemyGroup.get_children()[0]
+	var enemy = test_mapCombat.enemyGroup.get_children()[1]
+	
+	test_mapCombat.selected_checker(enemy, old_enemy, enemy.get_stats()["is_enemy"])
+	
+	assert_that(CombatMapStatus.get_selected_enemy()).is_equal(enemy)
 
 
-func test_set_selected_character():
-	pass
+func test_selected_checker_change_selection_ally():
+	GameStatus.set_party(["attacker", "attacker2"])
+	CombatMapStatus.set_enemies(["defender", "defender"])
+	CombatMapStatus.set_is_start_combat(true)
+	test_mapCombat.initial_map_load()
+	var old_ally = test_mapCombat.characterGroup.get_children()[0]
+	var ally = test_mapCombat.characterGroup.get_children()[1]
+	
+	test_mapCombat.selected_checker(ally, old_ally, ally.get_stats()["is_enemy"])
+	
+	assert_that(CombatMapStatus.get_selected_ally()).is_equal(ally)
+
+
+func test_set_selected_character_enemy():
+	var enemy = test_mapCombat.enemyGroup.get_children()[0]
+	test_mapCombat.set_selected_character(enemy, enemy.get_stats()["is_enemy"])
+	
+	assert_that(CombatMapStatus.get_selected_enemy()).is_equal(enemy)
+	
+	
+func test_set_selected_character_ally():
+	var ally = test_mapCombat.characterGroup.get_children()[0]
+	test_mapCombat.set_selected_character(ally, ally.get_stats()["is_enemy"])
+	
+	assert_that(CombatMapStatus.get_selected_ally()).is_equal(ally)
 
 
 func test_get_tile_from_coords():
-	pass
+	assert_that(true).is_equal(true)
 	
-func test_set_tile_populated():
-	pass
+func test_set_tile_populated(do_skip=true, skip_reason="Test case under development"):
+	assert_that(true).is_equal(true)
 
 # Set selected MapTile
-func test_tile_handler():
-	pass
+func test_tile_handler(do_skip=true, skip_reason="Test case under development"):
+	assert_that(true).is_equal(true)
 	
 # Player movement
-func test_validate_move():
-	pass
+func test_validate_move(do_skip=true, skip_reason="Test case under development"):
+	assert_that(true).is_equal(true)
 
 # Buttons updater
-func test_update_buttons():
-	pass
+func test_update_buttons(do_skip=true, skip_reason="Test case under development"):
+	assert_that(true).is_equal(true)
 	
-func test_update_move_button():
-	pass
+func test_update_move_button(do_skip=true, skip_reason="Test case under development"):
+	assert_that(true).is_equal(true)
 
-func test_update_phys_attack_button():
-	pass
+func test_update_phys_attack_button(do_skip=true, skip_reason="Test case under development"):
+	assert_that(true).is_equal(true)
 			
-func test_update_skill_menu_button():
-	pass
+func test_update_skill_menu_button(do_skip=true, skip_reason="Test case under development"):
+	assert_that(true).is_equal(true)
 
-func test_update_end_turn_button():
-	pass
+func test_update_end_turn_button(do_skip=true, skip_reason="Test case under development"):
+	assert_that(true).is_equal(true)
 
-func test_highlight_movement():
-	pass
+func test_highlight_movement(do_skip=true, skip_reason="Test case under development"):
+	assert_that(true).is_equal(true)
 
-func test_highlight_control_zones():
-	pass
+func test_highlight_control_zones(do_skip=true, skip_reason="Test case under development"):
+	assert_that(true).is_equal(true)
 					
-func test_check_within_bounds():
-	pass
+func test_check_within_bounds(do_skip=true, skip_reason="Test case under development"):
+	assert_that(true).is_equal(true)
 
-func test_remove_highlights():
-	pass
+func test_remove_highlights(do_skip=true, skip_reason="Test case under development"):
+	assert_that(true).is_equal(true)
 
-func test_remove_control_zones():
-	pass
+func test_remove_control_zones(do_skip=true, skip_reason="Test case under development"):
+	assert_that(true).is_equal(true)
 
-func test_remove_selected():
-	pass
+func test_remove_selected(do_skip=true, skip_reason="Test case under development"):
+	assert_that(true).is_equal(true)
 		
-func test_remove_char_highlights():
-	pass
+func test_remove_char_highlights(do_skip=true, skip_reason="Test case under development"):
+	assert_that(true).is_equal(true)
 
-func test_remove_ally_highlights():
-	pass
+func test_remove_ally_highlights(do_skip=true, skip_reason="Test case under development"):
+	assert_that(true).is_equal(true)
 		
-func test_remove_enemy_highlights():
-	pass
+func test_remove_enemy_highlights(do_skip=true, skip_reason="Test case under development"):
+	assert_that(true).is_equal(true)
