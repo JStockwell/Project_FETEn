@@ -293,7 +293,7 @@ func test_set_selected_character_ally():
 	assert_that(CombatMapStatus.get_selected_ally()).is_equal(ally)
 
 
-func test_get_tile_from_coords():
+func test_get_tile_from_coords(do_skip=true, skip_reason="Test case under development"):
 	assert_that(true).is_equal(true)
 	
 func test_set_tile_populated(do_skip=true, skip_reason="Test case under development"):
