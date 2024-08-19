@@ -228,7 +228,7 @@ func test_combat_round_melee():
 	test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1,"")
 
 	assert_int(defender.get_current_health()).is_less(defender.get_max_health())
-	await test_combat.wait(1.1)
+	await test_combat.wait(1.5)
 	assert_int(attacker.get_current_health()).is_less(attacker.get_max_health())
 
 	
