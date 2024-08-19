@@ -70,9 +70,6 @@ mesh = SubResource("BoxMesh_587e4")
 [node name="placeholder_max_map" parent="Debug" instance=ExtResource("9_7p3eo")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5, 12.807, -5)
 
-[node name="TableHeight" type="Marker3D" parent="Debug"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.5066, 0)
-
 [node name="World" type="Node3D" parent="."]
 
 [node name="Sun" type="DirectionalLight3D" parent="World"]
@@ -84,3 +81,11 @@ transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 14.9142
 [node name="Camera3D" type="Camera3D" parent="World/Marker3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20.6)
 fov = 30.0
+
+[node name="SpawnPoints" type="Node3D" parent="."]
+
+[node name="MapCenter" type="Marker3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.5303, 0)
+
+[node name="CombatCenter" type="Marker3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 14.53, 0)

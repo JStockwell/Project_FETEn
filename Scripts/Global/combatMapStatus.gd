@@ -6,8 +6,11 @@ var minCameraHeight = 20.6 # 9x9
 var enemies: Dictionary
 
 var mapSpawn: Vector3
-var mapX = 11
-var mapY = 11
+var combatSpawn: Vector3
+var mapX
+var mapY
+const MAX_MAP_DIMENSION = 15
+const MIN_MAP_DIMENSION = 9
 
 var selectedCharacter
 var selectedEnemy
@@ -131,8 +134,8 @@ func get_selected_map_tile():
 	return selectedMapTile
 
 # Map
-func calculate_map_spawn() -> void:
-	mapSpawn = Vector3(-mapX / 2, GameStatus.get_table_height() + 0.5, -mapY / 2)
+func calculate_map_spawn(spawn: Vector3) -> void:
+	mapSpawn = Vector3(-mapX / 2, 0.5, -mapY / 2) + spawn
 	
 	if mapX % 2 == 0:
 		mapSpawn.x += 0.5
@@ -142,6 +145,12 @@ func calculate_map_spawn() -> void:
 	
 func get_map_spawn() -> Vector3:
 	return mapSpawn
+	
+func set_combat_spawn(spawn: Vector3) -> void:
+	combatSpawn = spawn
+	
+func get_combat_spawn() -> Vector3:
+	return combatSpawn
 
 func get_map_x() -> int:
 	return mapX

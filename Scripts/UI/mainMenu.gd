@@ -17,8 +17,8 @@ func _ready():
 		GameStatus.skillSet[skillName].set_skill_menu_id(i)
 		i += 1
 	
-	combat_debug_test()
-	debug_map_combat_test()
+	#combat_debug_test()
+	#debug_map_combat_test()
 	
 
 func combat_debug_test():

@@ -11,6 +11,8 @@ var characterGroup = $CharacterGroup
 @onready
 var enemyGroup = $EnemyGroup
 @onready
+var ui = $UI
+@onready
 var moveButton = $UI/MoveButton
 @onready
 var physAttackButton = $UI/PhysAttackButton
@@ -346,6 +348,8 @@ func validate_move(character, mapTile) -> bool:
 	
 	return result
 
+signal combat_start
+
 func _on_phys_attack_button_pressed():
 	# TODO MapMod
 	var attacker = CombatMapStatus.get_selected_character()
@@ -355,8 +359,8 @@ func _on_phys_attack_button_pressed():
 		CombatMapStatus.mapMod -= 25
 
 	CombatMapStatus.set_combat(attacker, defender, Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()), 0)
-	get_tree().change_scene_to_file("res://Scenes/3D/combat.tscn")
-	CombatMapStatus.hasAttacked = true
+	#get_tree().change_scene_to_file("res://Scenes/3D/combat.tscn")
+	combat_start.emit()
 	
 func _on_skill_selected(id: int):
 	skillIssue.hide()
@@ -387,7 +391,8 @@ func _on_skill_selected(id: int):
 			var defender = CombatMapStatus.get_selected_enemy()
 			
 			CombatMapStatus.set_combat(attacker, defender, Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()), 0, skillName)
-			get_tree().change_scene_to_file("res://Scenes/3D/combat.tscn")
+			#get_tree().change_scene_to_file("res://Scenes/3D/combat.tscn")
+			combat_start.emit()
 			CombatMapStatus.hasAttacked = true
 
 func _on_end_turn_button_pressed():

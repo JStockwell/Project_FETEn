@@ -9,8 +9,13 @@ var defenderSpawn  = $Characters/DefenderSpawn
 @onready
 var damageNumber = $UI/DamageNumber
 
+@onready
+var camera = $Utility/CameraPivot/Camera3D
+
 var attacker
 var defender
+
+signal combat_end
 
 var debug: bool = false
 
@@ -28,8 +33,13 @@ func _ready():
 	add_child(attacker)
 	add_child(defender)
 	
+	attacker.position = CombatMapStatus.get_combat_spawn()
 	attacker.translate(attackerSpawn.get_position())
+	
+	defender.position = CombatMapStatus.get_combat_spawn()
 	defender.translate(defenderSpawn.get_position())
+	
+	damageNumber.global_position = CombatMapStatus.get_combat_spawn() + Vector3(0, 3.75, 0)
 
 	# TODO Times and UI once Map is being used
 	if GameStatus.autorunCombat:
@@ -62,7 +72,8 @@ func combat_round(rolls: Array, rolls_retaliate: Array, mapMod: int, range: int,
 			CombatMapStatus.set_current_ini(CombatMapStatus.get_current_ini() - 1)
 		
 	CombatMapStatus.set_has_attacked(true)
-	get_tree().change_scene_to_file("res://Scenes/3D/tavern.tscn")
+	combat_end.emit()
+	#get_tree().change_scene_to_file("res://Scenes/3D/tavern.tscn")
 
 # Attack functions
 # TODO Map modifier
