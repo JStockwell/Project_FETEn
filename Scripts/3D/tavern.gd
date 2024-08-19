@@ -47,3 +47,5 @@ func _on_combat_end():
 	tavernCam.current = true
 	cm.ui.show()
 	com.queue_free()
+	cm.purge_the_dead()
+	cm.reset_to_tavern()

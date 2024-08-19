@@ -177,6 +177,20 @@ func reload_map():
 		if not CombatMapStatus.hasMoved:
 			highlight_movement(CombatMapStatus.get_selected_character())
 	
+func reset_to_tavern():
+	if CombatMapStatus.get_current_ini() > len(CombatMapStatus.get_initiative()) - 1:
+		CombatMapStatus.set_current_ini(CombatMapStatus.get_current_ini() - 1)
+			
+	reset_map_status()
+	highlight_control_zones()
+	skillIssue.hide()
+	
+	if not CombatMapStatus.get_selected_character().is_enemy():
+		CombatMapStatus.get_selected_character().selectedChar.show()
+		
+		if not CombatMapStatus.hasMoved:
+			highlight_movement(CombatMapStatus.get_selected_character())
+	
 func sort_descending(a: float, b: float) -> bool:
 	if a >= b:
 		return true
@@ -243,6 +257,15 @@ func regen_mana() -> void:
 	for char in characterGroup.get_children():
 		if char.get_max_mana() != 0:
 			char.modify_mana(char.get_reg_mana())
+
+func purge_the_dead():
+	for char in characterGroup.get_children():
+		if char.get_current_health() == 0:
+			char.free()
+			
+	for enemy in enemyGroup.get_children():
+		if enemy.get_current_health() == 0:
+			enemy.free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
