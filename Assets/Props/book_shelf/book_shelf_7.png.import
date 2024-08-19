@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://byedo517vih37"
+path.s3tc="res://.godot/imported/book_shelf_7.png-ee63aaf913f83f8ffc61f1d4d8a8d7eb.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "411fb2d8328111c6b24ee70b97365e90"
+}
+
+[deps]
+
+source_file="res://Assets/Props/book_shelf/book_shelf_7.png"
+dest_files=["res://.godot/imported/book_shelf_7.png-ee63aaf913f83f8ffc61f1d4d8a8d7eb.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=8
+roughness/src_normal="res://Assets/Props/book_shelf/book_shelf_8.png"
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0
