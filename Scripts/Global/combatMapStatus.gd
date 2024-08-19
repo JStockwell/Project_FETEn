@@ -1,7 +1,11 @@
 extends Node
 
+var maxCameraHeight = 33.75 # 16x16
+var minCameraHeight = 20.6 # 9x9
+
 var enemies: Dictionary
 
+var mapSpawn: Vector3
 var mapX = 11
 var mapY = 11
 
@@ -127,6 +131,18 @@ func get_selected_map_tile():
 	return selectedMapTile
 
 # Map
+func calculate_map_spawn() -> void:
+	mapSpawn = Vector3(-mapX / 2, GameStatus.get_table_height() + 0.5, -mapY / 2)
+	
+	if mapX % 2 == 0:
+		mapSpawn.x += 0.5
+		
+	if mapY % 2 == 0:
+		mapSpawn.z += 0.5
+	
+func get_map_spawn() -> Vector3:
+	return mapSpawn
+
 func get_map_x() -> int:
 	return mapX
 

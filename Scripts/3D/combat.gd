@@ -62,7 +62,7 @@ func combat_round(rolls: Array, rolls_retaliate: Array, mapMod: int, range: int,
 			CombatMapStatus.set_current_ini(CombatMapStatus.get_current_ini() - 1)
 		
 	CombatMapStatus.set_has_attacked(true)
-	get_tree().change_scene_to_file("res://Scenes/3D/mapCombat.tscn")
+	get_tree().change_scene_to_file("res://Scenes/3D/tavern.tscn")
 
 # Attack functions
 # TODO Map modifier

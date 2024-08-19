@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://yrpe0q2ov0cc"]
+[gd_scene load_steps=14 format=3 uid="uid://dbkqbo2tbjjv7"]
 
 [ext_resource type="Texture2D" uid="uid://omp4nekd6s4u" path="res://Assets/Textures/floor_tiles/textures/floor_tiles_02_rough_4k.jpg" id="1_5kh56"]
 [ext_resource type="Texture2D" uid="uid://1w4gt6stnmko" path="res://Assets/Textures/floor_tiles/textures/floor_tiles_02_diff_4k.jpg" id="1_fxol1"]
@@ -20,10 +20,10 @@ grow_amount = -3.16
 
 [sub_resource type="QuadMesh" id="QuadMesh_fhdrr"]
 material = SubResource("StandardMaterial3D_lwxo7")
-size = Vector2(30, 30)
+size = Vector2(300, 300)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ip43j"]
-size = Vector3(30, 1, 30)
+size = Vector3(300, 1, 300)
 
 [sub_resource type="BoxMesh" id="BoxMesh_587e4"]
 
@@ -39,7 +39,7 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 
 mesh = SubResource("QuadMesh_fhdrr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+transform = Transform3D(1.00147, 0, 0, 0, 1.00147, 0, 0, 0, 1.00147, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_ip43j")
 
 [node name="Furniture" type="Node3D" parent="Room"]
@@ -57,9 +57,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.365, 0)
 visible = false
 
 [node name="jenson_table" parent="Room/Furniture" instance=ExtResource("8_ibvtj")]
-transform = Transform3D(0.17, 0, 0, 0, 0.17, 0, 0, 0, 0.17, 0, 0, 0)
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 
 [node name="Debug" type="Node3D" parent="."]
+visible = false
 
 [node name="ReferenceCube" type="MeshInstance3D" parent="Debug"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -68,7 +69,9 @@ mesh = SubResource("BoxMesh_587e4")
 
 [node name="placeholder_max_map" parent="Debug" instance=ExtResource("9_7p3eo")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5, 12.807, -5)
-visible = false
+
+[node name="TableHeight" type="Marker3D" parent="Debug"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.5066, 0)
 
 [node name="World" type="Node3D" parent="."]
 
@@ -76,10 +79,8 @@ visible = false
 transform = Transform3D(0.707107, 0.353553, -0.612372, 0, 0.866025, 0.5, 0.707107, -0.353553, 0.612372, 0, 5.02738, 0)
 
 [node name="Marker3D" type="Marker3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 0.740089, 0.672509, 0, -0.672509, 0.740089, 0, 12.9142, 0)
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 14.9142, 0)
 
 [node name="Camera3D" type="Camera3D" parent="World/Marker3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.90735e-06, 29.9328)
-
-[node name="CombatMapSpawn" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 12.807, -5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20.6)
+fov = 30.0

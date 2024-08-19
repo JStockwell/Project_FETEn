@@ -1,5 +1,8 @@
 extends Node
 
+# Comes from the table in the tavern.tscn scene
+var tavernTableHeight = 14.5
+
 var playableCharacters: Dictionary
 var enemySet: Dictionary
 var skillSet: Dictionary
@@ -31,3 +34,6 @@ func get_party_member(charName: String):
 
 func set_autorun_combat(value: bool) -> void:
 	autorunCombat = value
+
+func get_table_height() -> float:
+	return tavernTableHeight
