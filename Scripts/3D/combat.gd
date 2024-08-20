@@ -47,7 +47,7 @@ func combat_round(rolls: Array, rolls_retaliate: Array, mapMod: int, range: int,
 	else:
 		var skillSet = GameStatus.skillSet[skillName].get_skill()
 		if skillSet["sef"]:
-			await SEF.run(self, skillName, attacker, defender, mapMod, 0, skillSet["spa"], skillSet["imd"])
+			await SEF.run(self, skillName, rolls, attacker, defender, mapMod, 0, skillSet["spa"], skillSet["imd"])
 		else:
 			await attack(attacker, defender, rolls, mapMod, skillSet["spa"], skillSet["imd"])
 	
