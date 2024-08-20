@@ -43,7 +43,7 @@ func _ready():
 
 	# TODO Times and UI once Map is being used
 	if GameStatus.autorunCombat:
-		combat_round(generate_rolls(), generate_rolls(), CombatMapStatus.mapMod, CombatMapStatus.attackRange, CombatMapStatus.attackSkill)
+		await combat_round(generate_rolls(), generate_rolls(), CombatMapStatus.mapMod, CombatMapStatus.attackRange, CombatMapStatus.attackSkill)
 
 #func _process(delta):
 	#if GameStatus.debugMode:

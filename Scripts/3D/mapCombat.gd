@@ -211,12 +211,13 @@ func start_turn() -> void:
 	if currentChar.is_enemy():
 		currentChar.selectedEnemy.show()
 		# TODO Enemy Logic
+		await wait(1)
 		var enemyAttack = EnemyBehavior.dumb_melee_behavior(self)
-		#await wait(1)
+		await wait(1)
 		if (enemyAttack):
 			phys_combat_round()
 		CombatMapStatus.advance_ini()
-		#await start_turn()
+		await start_turn()
 		
 	else:
 		setup_skill_menu()
@@ -335,6 +336,9 @@ func tile_handler(mapTile) -> void:
 
 # Player movement
 func _on_move_button_pressed():
+	move_character()
+
+func move_character() -> void:
 	var selChar = CombatMapStatus.get_selected_character()
 	if validate_move(selChar, CombatMapStatus.get_selected_map_tile()):
 		var tile_coords = CombatMapStatus.get_selected_map_tile().get_coords()
