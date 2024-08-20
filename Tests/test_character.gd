@@ -8,6 +8,11 @@ var checker
 var max_stats
 var dict 
 
+
+func before():
+	GameStatus.debugMode = false
+
+
 func before_test():
 	test_char = Character.instantiate()
 	add_child(test_char)
