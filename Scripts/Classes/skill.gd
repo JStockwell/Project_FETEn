@@ -37,6 +37,9 @@ func get_range() -> int:
 	
 func get_cost() -> int:
 	return cost
+	
+func get_spa() -> int:
+	return spa
 
 func can_target_allies() -> bool:
 	return canTargetAllies

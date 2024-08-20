@@ -181,9 +181,13 @@ func reset_to_tavern():
 	highlight_control_zones()
 	skillIssue.hide()
 	
-	if not CombatMapStatus.get_selected_character().is_enemy():
+	#TODO James revisa este pifostio plis fdo: Pablo :)
+	# Funciona fook u >:)
+	if CombatMapStatus.get_selected_character() == null or CombatMapStatus.get_selected_character().is_enemy():
+		CombatMapStatus.advance_ini()
+		await start_turn()
+	else:
 		CombatMapStatus.get_selected_character().selectedChar.show()
-		
 		if not CombatMapStatus.hasMoved:
 			highlight_movement(CombatMapStatus.get_selected_character())
 	
@@ -210,16 +214,25 @@ func start_turn() -> void:
 	if currentChar.is_enemy():
 		currentChar.selectedEnemy.show()
 		# TODO Enemy Logic
-		# EnemyLogic.execute(Map, currentChar...)
-		await wait(2)
-		CombatMapStatus.advance_ini()
-		await start_turn()
+		await wait(1)
+		var enemyAttack = EnemyBehavior.dumb_melee_behavior(self)
+		await wait(1)
+		
+		if (enemyAttack):
+			phys_combat_round()
+			
+		else:
+			enemy_turn_end()
 		
 	else:
 		setup_skill_menu()
 		currentChar.selectedChar.show()
 		highlight_movement(currentChar)
 		highlight_control_zones()
+	
+func enemy_turn_end():
+	CombatMapStatus.advance_ini()
+	await start_turn()
 	
 func reset_map_status() -> void:
 	remove_ally_highlights()
@@ -255,13 +268,20 @@ func regen_mana() -> void:
 			char.modify_mana(char.get_reg_mana())
 
 func purge_the_dead():
+	var dead
 	for char in characterGroup.get_children():
 		if char.get_current_health() == 0:
-			char.free()
+			dead = char
 			
 	for enemy in enemyGroup.get_children():
 		if enemy.get_current_health() == 0:
-			enemy.free()
+			dead = enemy
+			
+	CombatMapStatus.remove_character_ini(dead.get_map_id())
+	var tile = get_tile_from_coords(dead.get_map_coords())
+	tile.set_is_populated(false)
+	dead.free()
+			
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -332,6 +352,9 @@ func tile_handler(mapTile) -> void:
 
 # Player movement
 func _on_move_button_pressed():
+	move_character()
+
+func move_character() -> void:
 	var selChar = CombatMapStatus.get_selected_character()
 	if validate_move(selChar, CombatMapStatus.get_selected_map_tile()):
 		var tile_coords = CombatMapStatus.get_selected_map_tile().get_coords()
@@ -370,7 +393,9 @@ func validate_move(character, mapTile) -> bool:
 signal combat_start
 
 func _on_phys_attack_button_pressed():
-	# TODO MapMod
+	phys_combat_round()
+	
+func phys_combat_round() -> void:
 	var attacker = CombatMapStatus.get_selected_character()
 	var defender = CombatMapStatus.get_selected_enemy()
 	

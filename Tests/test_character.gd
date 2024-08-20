@@ -26,6 +26,7 @@ func before_test():
 		"range": 4,
 		"skills": ["SKILL_ID_1", "SKILL_ID_2"], # GameStatus.get_ability_by_id("SKILL_ID_1") -> instance ability.gd
 		"is_ranged": false,
+		"is_rooted": false,
 		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb",
 		"is_enemy": false
 	}
@@ -44,6 +45,7 @@ func before_test():
 		"range": 4,
 		"skills": ["SKILL_ID_1", "SKILL_ID_2"], # GameStatus.get_ability_by_id("SKILL_ID_1") -> instance ability.gd
 		"is_ranged": false,
+		"is_rooted": false,
 		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb",
 		"current_health": 24,
 		"current_mana": 5, 
