@@ -55,6 +55,7 @@ func before_test():
 	
 func after_test():
 	test_char.free()
+	Utils.reset_all()
 	
 	
 ##############
