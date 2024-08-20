@@ -17,19 +17,19 @@ func _ready():
 		GameStatus.skillSet[skillName].set_skill_menu_id(i)
 		i += 1
 	
-	combat_debug_test()
-	debug_map_combat_test()
+	#combat_debug_test()
+	#debug_map_combat_test()
 	
 
 func combat_debug_test():
 	CombatMapStatus.set_active_characters(GameStatus.get_party_member("edgar"), GameStatus.get_party_member("dick"))
 		
 func debug_map_combat_test():
-	CombatMapStatus.set_map_size(4, 4)
+	CombatMapStatus.set_map_size(9, 9)
 	CombatMapStatus.set_is_start_combat(true)
 
 func _on_debug_button_pressed():
-	get_tree().change_scene_to_file("res://Scenes/3D/mapCombat.tscn")
+	get_tree().change_scene_to_file("res://Scenes/3D/tavern.tscn")
 
 func read_json(jsonPath: String):
 	if FileAccess.file_exists(jsonPath):

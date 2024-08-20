@@ -11,6 +11,8 @@ var characterGroup = $CharacterGroup
 @onready
 var enemyGroup = $EnemyGroup
 @onready
+var ui = $UI
+@onready
 var moveButton = $UI/MoveButton
 @onready
 var physAttackButton = $UI/PhysAttackButton
@@ -61,7 +63,8 @@ func initial_map_load() -> void:
 	for character in GameStatus.get_party():
 		var partyMember = Factory.Character.create(GameStatus.get_party_member(character))
 		partyMember.scale *= Vector3(0.5, 0.5, 0.5)
-		partyMember.position = Vector3(0, 0, i)
+		partyMember.position = CombatMapStatus.get_map_spawn()
+		partyMember.position += Vector3(0, 0, i)
 		partyMember.set_map_coords(Vector2(0, i))
 		partyMember.set_map_id(i)
 		characterGroup.add_child(partyMember)
@@ -76,7 +79,8 @@ func initial_map_load() -> void:
 	for character in CombatMapStatus.get_enemies():
 		var enemy = Factory.Character.create(CombatMapStatus.get_enemy(character))
 		enemy.scale *= Vector3(0.5, 0.5, 0.5)
-		enemy.position = Vector3(CombatMapStatus.get_map_x() - 1, 0, CombatMapStatus.get_map_y() - j - 1)
+		enemy.position = CombatMapStatus.get_map_spawn()
+		enemy.position += Vector3(CombatMapStatus.get_map_x() - 1, 0, CombatMapStatus.get_map_y() - j - 1)
 		enemy.set_map_coords(Vector2(CombatMapStatus.get_map_x() - 1, CombatMapStatus.get_map_y() - j - 1 ))
 		enemy.set_map_id(i + j)
 		enemyGroup.add_child(enemy)
@@ -130,36 +134,48 @@ func reload_map():
 		if GameStatus.get_party_member(character)["current_health"] > 0:
 			var partyMember = Factory.Character.create(GameStatus.get_party_member(character))
 			partyMember.scale *= Vector3(0.5, 0.5, 0.5)
-			partyMember.position = Vector3(partyMember.get_map_coords().x, 0, partyMember.get_map_coords().y)
+			partyMember.position = CombatMapStatus.get_map_spawn()
+			partyMember.position += Vector3(partyMember.get_map_coords().x, 0, partyMember.get_map_coords().y)
 			characterGroup.add_child(partyMember)
 			
 			partyMember.connect("character_selected", Callable(self, "character_handler"))
 			
 			set_tile_populated(Vector2(partyMember.get_map_coords().x, partyMember.get_map_coords().y), true)
 		
-		#TODO James revisa este pifostio plis :)
-		if GameStatus.get_party_member(character)["current_health"] == 0:
-			CombatMapStatus.remove_character_ini(character["map_id"])
-			if CombatMapStatus.get_current_ini() > len(CombatMapStatus.get_initiative()) - 1:
-				CombatMapStatus.set_current_ini(CombatMapStatus.get_current_ini() - 1)
+		else:
+			CombatMapStatus.remove_character_ini(GameStatus.get_party_member(character)["map_id"])
 		
 	for character in CombatMapStatus.get_enemies():
 		if CombatMapStatus.get_enemy(character)["current_health"] > 0:
 			var enemy = Factory.Character.create(CombatMapStatus.get_enemy(character))
 			enemy.scale *= Vector3(0.5, 0.5, 0.5)
-			enemy.position = Vector3(enemy.get_map_coords().x, 0, enemy.get_map_coords().y)
+			enemy.position = CombatMapStatus.get_map_spawn()
+			enemy.position += Vector3(enemy.get_map_coords().x, 0, enemy.get_map_coords().y)
 			enemyGroup.add_child(enemy)
 			
 			enemy.connect("character_selected", Callable(self, "character_handler"))
 			
 			set_tile_populated(Vector2(enemy.get_map_coords().x, enemy.get_map_coords().y), true)
 			
-		#TODO James revisa este pifostio plis fdo: Alex :)
+		else:
+			CombatMapStatus.remove_character_ini(CombatMapStatus.get_enemy(character)["map_id"])
+			
+	if CombatMapStatus.get_current_ini() > len(CombatMapStatus.get_initiative()) - 1:
+		CombatMapStatus.set_current_ini(CombatMapStatus.get_current_ini() - 1)
+			
+	reset_map_status()
+	highlight_control_zones()
+	skillIssue.hide()
+	
+	if not CombatMapStatus.get_selected_character().is_enemy():
+		CombatMapStatus.get_selected_character().selectedChar.show()
 		
-		if CombatMapStatus.get_enemy(character)["current_health"] == 0:
-			CombatMapStatus.remove_character_ini(character["map_id"])
-			if CombatMapStatus.get_current_ini() > len(CombatMapStatus.get_initiative()) - 1:
-				CombatMapStatus.set_current_ini(CombatMapStatus.get_current_ini() - 1)
+		if not CombatMapStatus.hasMoved:
+			highlight_movement(CombatMapStatus.get_selected_character())
+	
+func reset_to_tavern():
+	if CombatMapStatus.get_current_ini() > len(CombatMapStatus.get_initiative()) - 1:
+		CombatMapStatus.set_current_ini(CombatMapStatus.get_current_ini() - 1)
 			
 	reset_map_status()
 	highlight_control_zones()
@@ -241,6 +257,15 @@ func regen_mana() -> void:
 		if char.get_max_mana() != 0:
 			char.modify_mana(char.get_reg_mana())
 
+func purge_the_dead():
+	for char in characterGroup.get_children():
+		if char.get_current_health() == 0:
+			char.free()
+			
+	for enemy in enemyGroup.get_children():
+		if enemy.get_current_health() == 0:
+			enemy.free()
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if GameStatus.debugMode:
@@ -315,7 +340,8 @@ func _on_move_button_pressed():
 		var tile_coords = CombatMapStatus.get_selected_map_tile().get_coords()
 		var old_char_coords = CombatMapStatus.get_selected_character().get_map_coords()
 		
-		selChar.position = Vector3(tile_coords.x, 0.5, tile_coords.y)
+		selChar.position = CombatMapStatus.get_map_spawn()
+		selChar.position += Vector3(tile_coords.x, 0.5, tile_coords.y)
 		selChar.set_map_coords(Vector2(tile_coords.x, tile_coords.y))
 		
 		# Deselect mapTile
@@ -344,6 +370,8 @@ func validate_move(character, mapTile) -> bool:
 	
 	return result
 
+signal combat_start
+
 func _on_phys_attack_button_pressed():
 	phys_combat_round()
 	
@@ -355,8 +383,8 @@ func phys_combat_round() -> void:
 		CombatMapStatus.mapMod -= 25
 
 	CombatMapStatus.set_combat(attacker, defender, Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()), 0)
-	get_tree().change_scene_to_file("res://Scenes/3D/combat.tscn")
-	CombatMapStatus.hasAttacked = true
+	#get_tree().change_scene_to_file("res://Scenes/3D/combat.tscn")
+	combat_start.emit()
 	
 func _on_skill_selected(id: int):
 	skillIssue.hide()
@@ -387,7 +415,8 @@ func _on_skill_selected(id: int):
 			var defender = CombatMapStatus.get_selected_enemy()
 			
 			CombatMapStatus.set_combat(attacker, defender, Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()), 0, skillName)
-			get_tree().change_scene_to_file("res://Scenes/3D/combat.tscn")
+			#get_tree().change_scene_to_file("res://Scenes/3D/combat.tscn")
+			combat_start.emit()
 			CombatMapStatus.hasAttacked = true
 
 func _on_end_turn_button_pressed():

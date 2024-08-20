@@ -3,6 +3,8 @@ extends GdUnitTestSuite
 var Character = preload("res://Scenes/Entities/character.tscn")
 var Combat = preload("res://Scenes/3D/combat.tscn")
 
+var test_skillSet = Utils.read_json("res://Assets/json/skills.json")
+
 var attacker
 var defender
 var test_combat 
@@ -16,30 +18,11 @@ func before_test():
 	defender = Character.instantiate()
 	add_child(defender)
 	
-	
-	var skill1dict = {
-		"skill_name": "Skill_1",
-		"range": 5,
-		"cost": 6,
-		"spa": 7,
-		"imd": 1,
-		"isMelee": true,
-		"description": "meh"
-	}
-	
-	var skill2dict = {
-		"skill_name": "Death Beam",
-		"description": "",
-		"range": 5,
-		"cost": 12,
-		"spa": 11,
-		"sef": true,
-		"imd": 1
-	}
-	
-	GameStatus.skillSet["skill_1"] = Factory.Skill.create(skill1dict)
-	GameStatus.skillSet["nero_nero"] = Factory.Skill.create(skill2dict)
-	GameStatus.skillSet["nero_nero"].set_skill_menu_id(80085)
+	var i = 0
+	for skillName in test_skillSet:
+		GameStatus.skillSet[skillName] = Factory.Skill.create(test_skillSet[skillName])
+		GameStatus.skillSet[skillName].set_skill_menu_id(i)
+		i += 1
 	
 	stats_atk = {
 		"name": "Attacker",
@@ -53,7 +36,7 @@ func before_test():
 		"max_mana": 20,
 		"reg_mana": 5,
 		"range": 4,
-		"skills": ["skill_1"], # GameStatus.get_ability_by_id("SKILL_ID_1") -> instance ability.gd
+		"skills": ["shadow_ball","nero_nero"], # GameStatus.get_ability_by_id("SKILL_ID_1") -> instance ability.gd
 		"is_ranged": false,
 		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb",
 		"current_health": 24,
@@ -61,7 +44,6 @@ func before_test():
 		"is_enemy": false,
 		"map_id": 0
 	}
-
 
 	stats_def = {
 		"name": "Defender",
@@ -75,7 +57,7 @@ func before_test():
 		"max_mana": 20,
 		"reg_mana": 5,
 		"range": 4,
-		"skills": ["skill_1"], # GameStatus.get_ability_by_id("SKILL_ID_1") -> instance ability.gd
+		"skills": [], # GameStatus.get_ability_by_id("SKILL_ID_1") -> instance ability.gd
 		"is_ranged": false,
 		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb",
 		"current_health": 22,
@@ -97,8 +79,9 @@ func after_test():
 	attacker.free()
 	defender.free()
 	test_combat.free()
-	for test_skill in GameStatus.skillSet:
-		GameStatus.skillSet[test_skill].free()
+	for test_skill_combat in GameStatus.skillSet:
+		GameStatus.skillSet[test_skill_combat].free()
+	Utils.reset_all()
 
 
 ##############
@@ -242,12 +225,11 @@ func test_generate_rolls_random():
 # Integration Tests #
 #####################
 
-#TODO test retaliation
 func test_combat_round_melee():
 	test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1,"")
 
 	assert_int(defender.get_current_health()).is_less(defender.get_max_health())
-	await test_combat.wait(1.1)
+	await test_combat.wait(1.5)
 	assert_int(attacker.get_current_health()).is_less(attacker.get_max_health())
 
 	
@@ -259,7 +241,7 @@ func test_combat_round_ranged():
 	
 #TODO Testear en mapcombat
 func test_combat_round_skill_no_SEF_retaliation():
-	#test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1,"skill_1")
+	#test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1,"shadow_ball")
 #
 	#assert_int(defender.get_current_health()).is_less(defender.get_max_health())
 	#await test_combat.wait(1.1)
@@ -269,7 +251,7 @@ func test_combat_round_skill_no_SEF_retaliation():
 	
 
 func test_combat_round_skill_no_SEF_no_retaliation():
-	test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 4,"skill_1")
+	test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 4,"shadow_ball")
 
 	assert_int(defender.get_current_health()).is_less(defender.get_max_health())
 	

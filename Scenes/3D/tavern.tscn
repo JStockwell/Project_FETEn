@@ -1,0 +1,91 @@
+[gd_scene load_steps=14 format=3 uid="uid://dbkqbo2tbjjv7"]
+
+[ext_resource type="Texture2D" uid="uid://omp4nekd6s4u" path="res://Assets/Textures/floor_tiles/textures/floor_tiles_02_rough_4k.jpg" id="1_5kh56"]
+[ext_resource type="Texture2D" uid="uid://1w4gt6stnmko" path="res://Assets/Textures/floor_tiles/textures/floor_tiles_02_diff_4k.jpg" id="1_fxol1"]
+[ext_resource type="Script" path="res://Scripts/3D/tavern.gd" id="1_vaq4h"]
+[ext_resource type="Texture2D" uid="uid://cjqwofn7x8ta0" path="res://Assets/Textures/floor_tiles/textures/floor_tiles_02_nor_gl_4k.jpg" id="2_8kp6d"]
+[ext_resource type="PackedScene" uid="uid://7mlxceeje6ma" path="res://Assets/Props/wooden_table/scene.gltf" id="4_rtr3l"]
+[ext_resource type="PackedScene" uid="uid://bm1c2o2b7j3cn" path="res://Assets/Props/table_and_chairs/scene.gltf" id="6_nib1w"]
+[ext_resource type="PackedScene" uid="uid://csirscwnl2jsn" path="res://Assets/Props/table_5/scene.gltf" id="7_able7"]
+[ext_resource type="PackedScene" uid="uid://88iaxvkv7y2c" path="res://Assets/Props/jenson_extending_dining_table_dark_stain_oak/scene.gltf" id="8_ibvtj"]
+[ext_resource type="PackedScene" uid="uid://c11mh4mlt8853" path="res://Assets/MapTiles/placeholder_max_map.glb" id="9_7p3eo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lwxo7"]
+albedo_texture = ExtResource("1_fxol1")
+roughness_texture = ExtResource("1_5kh56")
+normal_enabled = true
+normal_texture = ExtResource("2_8kp6d")
+uv1_scale = Vector3(18, 18, 18)
+grow_amount = -3.16
+
+[sub_resource type="QuadMesh" id="QuadMesh_fhdrr"]
+material = SubResource("StandardMaterial3D_lwxo7")
+size = Vector2(300, 300)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ip43j"]
+size = Vector3(300, 1, 300)
+
+[sub_resource type="BoxMesh" id="BoxMesh_587e4"]
+
+[node name="Tavern" type="Node3D"]
+script = ExtResource("1_vaq4h")
+
+[node name="Room" type="Node3D" parent="."]
+
+[node name="Floor" type="StaticBody3D" parent="Room"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/Floor"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_fhdrr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Floor"]
+transform = Transform3D(1.00147, 0, 0, 0, 1.00147, 0, 0, 0, 1.00147, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_ip43j")
+
+[node name="Furniture" type="Node3D" parent="Room"]
+
+[node name="wooden_table" parent="Room/Furniture" instance=ExtResource("4_rtr3l")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.485975, 0)
+visible = false
+
+[node name="table_and_chairs" parent="Room/Furniture" instance=ExtResource("6_nib1w")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -0.378763, -3.18242, 1.0222)
+visible = false
+
+[node name="table_5" parent="Room/Furniture" instance=ExtResource("7_able7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.365, 0)
+visible = false
+
+[node name="jenson_table" parent="Room/Furniture" instance=ExtResource("8_ibvtj")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+
+[node name="Debug" type="Node3D" parent="."]
+visible = false
+
+[node name="ReferenceCube" type="MeshInstance3D" parent="Debug"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+visible = false
+mesh = SubResource("BoxMesh_587e4")
+
+[node name="placeholder_max_map" parent="Debug" instance=ExtResource("9_7p3eo")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5, 12.807, -5)
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="Sun" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(0.707107, 0.353553, -0.612372, 0, 0.866025, 0.5, 0.707107, -0.353553, 0.612372, 0, 5.02738, 0)
+
+[node name="Marker3D" type="Marker3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 14.9142, 0)
+
+[node name="Camera3D" type="Camera3D" parent="World/Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20.6)
+fov = 30.0
+
+[node name="SpawnPoints" type="Node3D" parent="."]
+
+[node name="MapCenter" type="Marker3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.5303, 0)
+
+[node name="CombatCenter" type="Marker3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 14.53, 0)
