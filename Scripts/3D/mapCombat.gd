@@ -182,9 +182,12 @@ func reset_to_tavern():
 	skillIssue.hide()
 	
 	#TODO James revisa este pifostio plis fdo: Pablo :)
-	if not CombatMapStatus.get_selected_character().is_enemy():
+	# Funciona fook u >:)
+	if CombatMapStatus.get_selected_character() == null or CombatMapStatus.get_selected_character().is_enemy():
+		CombatMapStatus.advance_ini()
+		await start_turn()
+	else:
 		CombatMapStatus.get_selected_character().selectedChar.show()
-		
 		if not CombatMapStatus.hasMoved:
 			highlight_movement(CombatMapStatus.get_selected_character())
 	
@@ -214,16 +217,22 @@ func start_turn() -> void:
 		await wait(1)
 		var enemyAttack = EnemyBehavior.dumb_melee_behavior(self)
 		await wait(1)
+		
 		if (enemyAttack):
 			phys_combat_round()
-		CombatMapStatus.advance_ini()
-		await start_turn()
+			
+		else:
+			enemy_turn_end()
 		
 	else:
 		setup_skill_menu()
 		currentChar.selectedChar.show()
 		highlight_movement(currentChar)
 		highlight_control_zones()
+	
+func enemy_turn_end():
+	CombatMapStatus.advance_ini()
+	await start_turn()
 	
 func reset_map_status() -> void:
 	remove_ally_highlights()
@@ -261,10 +270,14 @@ func regen_mana() -> void:
 func purge_the_dead():
 	for char in characterGroup.get_children():
 		if char.get_current_health() == 0:
+			var tile = get_tile_from_coords(char.get_map_coords())
+			tile.set_is_populated(false)
 			char.free()
 			
 	for enemy in enemyGroup.get_children():
 		if enemy.get_current_health() == 0:
+			var tile = get_tile_from_coords(enemy.get_map_coords())
+			tile.set_is_populated(false)
 			enemy.free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -76,4 +76,3 @@ static func melee_movement(map, enemy):
 	
 	CombatMapStatus.set_selected_map_tile(map.get_tile_from_coords(Vector2(posX,posY)))
 	map.move_character()
-	
