@@ -212,11 +212,11 @@ func start_turn() -> void:
 		currentChar.selectedEnemy.show()
 		# TODO Enemy Logic
 		var enemyAttack = EnemyBehavior.dumb_melee_behavior(self)
-		await wait(1)
+		#await wait(1)
 		if (enemyAttack):
 			phys_combat_round()
 		CombatMapStatus.advance_ini()
-		await start_turn()
+		#await start_turn()
 		
 	else:
 		setup_skill_menu()

@@ -193,17 +193,17 @@ func test_combat_round_boost2_not_crit():
 	assert_int(defender.get_current_health()).is_equal(defender.get_max_health()-(attacker.get_attack()+spa))
 
 func test_combat_round_anchoring_strike():
-	test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1, "anchoring_strike")
+	await test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1, "anchoring_strike")
 	assert_int(defender.get_current_health()).is_equal(defender.get_max_health()-attacker.get_attack()+defender.get_defense())
 	assert_bool(defender.is_rooted()).is_true()
 	
 func test_combat_round_anchoring_strike_miss():
-	test_combat.combat_round([1, 100, 1, 100], [1, 1, 1, 100], 0, 1, "anchoring_strike")
+	await test_combat.combat_round([1, 100, 1, 100], [1, 1, 1, 100], 0, 1, "anchoring_strike")
 	assert_int(defender.get_current_health()).is_equal(defender.get_max_health())
 	assert_bool(defender.is_rooted()).is_false()
 	
 func test_combat_round_anchoring_strike_dead_target():
-	defender.modify_health(-defender.get_max_health()+1)
+	await defender.modify_health(-defender.get_max_health()+1)
 	test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1, "anchoring_strike")
 	assert_int(defender.get_current_health()).is_equal(0)
 	assert_bool(defender.is_rooted()).is_false()

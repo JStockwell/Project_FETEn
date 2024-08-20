@@ -19,6 +19,7 @@ static func create(args: Dictionary):
 		if "current_health" not in stats_set:
 			stats_set["current_health"] = stats_set["max_health"]
 			stats_set["current_mana"] = stats_set["ini_mana"]
+			stats_set["is_rooted"] = false
 		
 		else:
 			character.cap_current_stats(stats_set)
