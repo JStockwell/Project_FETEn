@@ -142,8 +142,6 @@ func reload_map():
 			
 			set_tile_populated(Vector2(partyMember.get_map_coords().x, partyMember.get_map_coords().y), true)
 		
-		#TODO James revisa este pifostio plis :)
-		# Done :)
 		else:
 			CombatMapStatus.remove_character_ini(GameStatus.get_party_member(character)["map_id"])
 		
@@ -159,8 +157,6 @@ func reload_map():
 			
 			set_tile_populated(Vector2(enemy.get_map_coords().x, enemy.get_map_coords().y), true)
 			
-		#TODO James revisa este pifostio plis :)
-		# Done :)
 		else:
 			CombatMapStatus.remove_character_ini(CombatMapStatus.get_enemy(character)["map_id"])
 			
