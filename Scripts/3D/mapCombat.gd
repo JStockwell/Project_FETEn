@@ -270,12 +270,14 @@ func regen_mana() -> void:
 func purge_the_dead():
 	for char in characterGroup.get_children():
 		if char.get_current_health() == 0:
+			CombatMapStatus.remove_character_ini(char.get_map_id())
 			var tile = get_tile_from_coords(char.get_map_coords())
 			tile.set_is_populated(false)
 			char.free()
 			
 	for enemy in enemyGroup.get_children():
 		if enemy.get_current_health() == 0:
+			CombatMapStatus.remove_character_ini(enemy.get_map_id())
 			var tile = get_tile_from_coords(enemy.get_map_coords())
 			tile.set_is_populated(false)
 			enemy.free()
