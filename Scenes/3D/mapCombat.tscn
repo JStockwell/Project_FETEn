@@ -63,6 +63,7 @@ offset_left = 64.0
 offset_top = 816.0
 offset_right = 189.0
 offset_bottom = 847.0
+disabled = true
 text = "Physical Attack"
 
 [node name="EndTurnButton" type="Button" parent="UI"]
