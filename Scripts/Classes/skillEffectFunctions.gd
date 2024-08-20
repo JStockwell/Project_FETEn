@@ -51,7 +51,7 @@ static func anchoring_strike(Combat, rolls, attacker, defender, accMod: int, cri
 		var dmg = Combat.calc_damage(attacker.get_attack(), defender.get_defense(), spa, imd)
 		
 		await Combat.deal_damage(dmg, crit, defender)
-		if defender.get_stats()["current_health"] != 0:
+		if defender.get_current_health() > 0:
 			defender.set_is_rooted(true)
 		
 	else:

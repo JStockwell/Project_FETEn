@@ -41,6 +41,7 @@ func before_test():
 		"range": 4,
 		"skills": ["shadow_ball", "nero_nero", "mend_flesh", "boost_1", "boost_2", "bestow_life", "creators_touch", "anchoring_strike", "flaming_daggers"], # GameStatus.get_ability_by_id("SKILL_ID_1") -> instance ability.gd
 		"is_ranged": false,
+		"is_rooted": false,
 		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb",
 		"current_health": 24,
 		"current_mana": 5,
@@ -62,6 +63,7 @@ func before_test():
 		"range": 4,
 		"skills": [],
 		"is_ranged": false,
+		"is_rooted": false,
 		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb",
 		"current_health": 25,
 		"current_mana": 5,
@@ -84,6 +86,7 @@ func before_test():
 		"range": 4,
 		"skills": [], # GameStatus.get_ability_by_id("SKILL_ID_1") -> instance ability.gd
 		"is_ranged": false,
+		"is_rooted": false,
 		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb",
 		"current_health": 40,
 		"current_mana": 5,
@@ -188,6 +191,22 @@ func test_combat_round_boost2_not_crit():
 	test_combat.combat_round([1, 1, 1, barelyNotCrit], [1, 1, 1, 100], 0, 1, "boost_2") #boost_2 crit chance is 23% 24 should miss
 	var spa = GameStatus.skillSet["boost_2"].get_spa()
 	assert_int(defender.get_current_health()).is_equal(defender.get_max_health()-(attacker.get_attack()+spa))
+
+func test_combat_round_anchoring_strike():
+	test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1, "anchoring_strike")
+	assert_int(defender.get_current_health()).is_equal(defender.get_max_health()-attacker.get_attack()+defender.get_defense())
+	assert_bool(defender.is_rooted()).is_true()
+	
+func test_combat_round_anchoring_strike_miss():
+	test_combat.combat_round([1, 100, 1, 100], [1, 1, 1, 100], 0, 1, "anchoring_strike")
+	assert_int(defender.get_current_health()).is_equal(defender.get_max_health())
+	assert_bool(defender.is_rooted()).is_false()
+	
+func test_combat_round_anchoring_strike_dead_target():
+	defender.modify_health(-defender.get_max_health()+1)
+	test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1, "anchoring_strike")
+	assert_int(defender.get_current_health()).is_equal(0)
+	assert_bool(defender.is_rooted()).is_false()
 	
 #func test_combat_round_bestow_life():
 	#CombatMapStatus.set_active_characters(attacker.get_stats(), ally.get_stats())
