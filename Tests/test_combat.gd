@@ -81,6 +81,7 @@ func after_test():
 	test_combat.free()
 	for test_skill_combat in GameStatus.skillSet:
 		GameStatus.skillSet[test_skill_combat].free()
+	Utils.reset_all()
 
 
 ##############
