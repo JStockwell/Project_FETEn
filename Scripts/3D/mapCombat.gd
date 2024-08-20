@@ -268,19 +268,20 @@ func regen_mana() -> void:
 			char.modify_mana(char.get_reg_mana())
 
 func purge_the_dead():
+	var dead
 	for char in characterGroup.get_children():
 		if char.get_current_health() == 0:
-			CombatMapStatus.remove_character_ini(char.get_map_id())
-			var tile = get_tile_from_coords(char.get_map_coords())
-			tile.set_is_populated(false)
-			char.free()
+			dead = char
 			
 	for enemy in enemyGroup.get_children():
 		if enemy.get_current_health() == 0:
-			CombatMapStatus.remove_character_ini(enemy.get_map_id())
-			var tile = get_tile_from_coords(enemy.get_map_coords())
-			tile.set_is_populated(false)
-			enemy.free()
+			dead = enemy
+			
+	CombatMapStatus.remove_character_ini(dead.get_map_id())
+	var tile = get_tile_from_coords(dead.get_map_coords())
+	tile.set_is_populated(false)
+	dead.free()
+			
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
