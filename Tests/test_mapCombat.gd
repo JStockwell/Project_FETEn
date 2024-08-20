@@ -99,7 +99,7 @@ func test_setup_skill_menu():
 	
 	if(CombatMapStatus.get_selected_character().get_char_name() == "Attacker"):
 		checker = test_mapCombat.skillMenu.get_item_text(0)
-		assert_that(checker).is_equal("Darkness Spheres")
+		assert_that(checker).is_equal("Spheres of Darkness")
 		checker = test_mapCombat.skillMenu.get_item_text(1)
 		assert_that(checker).is_equal("Death Beam")
 	if(CombatMapStatus.get_selected_character().get_char_name() == "Defender"):
