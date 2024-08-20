@@ -12,6 +12,10 @@ var test_combat
 var stats_atk
 var stats_def
 
+func before():
+	GameStatus.debugMode = false
+	
+
 func before_test():
 	attacker = Character.instantiate()
 	add_child(attacker)
