@@ -27,7 +27,7 @@
 		"max_mana": 20,
 		"reg_mana": 5,
 		"range": 4,
-		"skills": ["shadow_ball", "nero_nero"], 
+		"skills": [], 
 		"is_ranged": false,
 		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb"
 	}
