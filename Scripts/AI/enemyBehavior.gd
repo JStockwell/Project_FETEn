@@ -3,7 +3,6 @@ class_name EnemyBehavior
 static func dumb_melee_behavior(map) -> bool:
 	var enemy = CombatMapStatus.get_selected_character()
 	var possibleTargets = check_players_in_range(map, enemy)
-	var rooted = enemy.is_rooted()
 	
 	if (possibleTargets.is_empty()): # currently doesnt take into account root or a unit being in those tiles, but it will do for basic testing
 		melee_movement(map, enemy, 0)
@@ -11,31 +10,72 @@ static func dumb_melee_behavior(map) -> bool:
 	else:
 		var finalTargetId = randi_range(1,len(possibleTargets))
 		var finalTarget = possibleTargets[finalTargetId-1]
-		var finalTargetX = finalTarget.get_map_coords()[0]
-		var finalTargetY = finalTarget.get_map_coords()[1]
-		
-		
-		if rooted or Utils.calc_distance(enemy.get_map_coords(),finalTarget.get_map_coords()) == 1:
-			CombatMapStatus.set_selected_enemy(finalTarget)
-			return true
-		elif validate_movement(map, enemy, Vector2(finalTargetX+1, finalTargetY)):
-			CombatMapStatus.set_selected_map_tile(map.get_tile_from_coords(Vector2(finalTargetX+1, finalTargetY)))
-			CombatMapStatus.set_selected_enemy(finalTarget)
-		elif validate_movement(map, enemy, Vector2(finalTargetX, finalTargetY+1)):
-			CombatMapStatus.set_selected_map_tile(map.get_tile_from_coords(Vector2(finalTargetX, finalTargetY+1)))
-			CombatMapStatus.set_selected_enemy(finalTarget)
-		elif validate_movement(map, enemy, Vector2(finalTargetX-1, finalTargetY)):
-			CombatMapStatus.set_selected_map_tile(map.get_tile_from_coords(Vector2(finalTargetX-1, finalTargetY)))
-			CombatMapStatus.set_selected_enemy(finalTarget)
-		elif validate_movement(map, enemy, Vector2(finalTargetX, finalTargetY-1)):
-			CombatMapStatus.set_selected_map_tile(map.get_tile_from_coords(Vector2(finalTargetX, finalTargetY-1)))
-			CombatMapStatus.set_selected_enemy(finalTarget)
+		return melee_enemy_attack(map, enemy, finalTarget)
+
+
+static func smart_melee_behavior(map) -> bool:
+	var enemy = CombatMapStatus.get_selected_character()
+	var possibleTargets = check_players_in_range(map, enemy)
+	
+	if (possibleTargets.is_empty()): # currently doesnt take into account root or a unit being in those tiles, but it will do for basic testing
+		melee_movement(map, enemy, 0)
+		return false
+	else:
+		var finalTarget = smart_enemy_target_choice(enemy, possibleTargets)
+		return melee_enemy_attack(map, enemy, finalTarget)
+
+
+static func smart_enemy_target_choice(enemy, possibleTargets):
+	var finalTarget
+	var damageValue: int
+	var precision: float
+	var appetizingTarget: float
+	var previousBest = 0.1
+	var killRange: int
+	
+	for playerCharacter in possibleTargets:
+		damageValue = enemy.get_attack()-playerCharacter.get_defense()
+		precision = (50+enemy.get_dexterity()*5-playerCharacter.get_agility()*3)/100
+		if damageValue >= playerCharacter.get_current_health():
+			killRange = 5
 		else:
-			melee_movement(map, enemy, 1)
-			return false
-			
-		map.move_character() #not final move, probably should go to the furthest non populated tile reachable that allows attack
+			killRange = 0
+		
+		appetizingTarget = (damageValue+killRange)*precision
+		
+		if(previousBest<appetizingTarget):
+			previousBest = appetizingTarget
+			finalTarget = playerCharacter
+		
+	return finalTarget
+
+
+static func melee_enemy_attack(map, enemy, finalTarget) -> bool:
+	var rooted = enemy.is_rooted()
+	var finalTargetX = finalTarget.get_map_coords()[0]
+	var finalTargetY = finalTarget.get_map_coords()[1]
+	
+	if rooted or Utils.calc_distance(enemy.get_map_coords(),finalTarget.get_map_coords()) == 1:
+		CombatMapStatus.set_selected_enemy(finalTarget)
 		return true
+	elif validate_movement(map, enemy, Vector2(finalTargetX+1, finalTargetY)):
+		CombatMapStatus.set_selected_map_tile(map.get_tile_from_coords(Vector2(finalTargetX+1, finalTargetY)))
+		CombatMapStatus.set_selected_enemy(finalTarget)
+	elif validate_movement(map, enemy, Vector2(finalTargetX, finalTargetY+1)):
+		CombatMapStatus.set_selected_map_tile(map.get_tile_from_coords(Vector2(finalTargetX, finalTargetY+1)))
+		CombatMapStatus.set_selected_enemy(finalTarget)
+	elif validate_movement(map, enemy, Vector2(finalTargetX-1, finalTargetY)):
+		CombatMapStatus.set_selected_map_tile(map.get_tile_from_coords(Vector2(finalTargetX-1, finalTargetY)))
+		CombatMapStatus.set_selected_enemy(finalTarget)
+	elif validate_movement(map, enemy, Vector2(finalTargetX, finalTargetY-1)):
+		CombatMapStatus.set_selected_map_tile(map.get_tile_from_coords(Vector2(finalTargetX, finalTargetY-1)))
+		CombatMapStatus.set_selected_enemy(finalTarget)
+	else:
+		melee_movement(map, enemy, 1)
+		return false
+		
+	map.move_character() #not final move, probably should go to the furthest non populated tile reachable that allows attack
+	return true
 
 static func check_players_in_range(map, enemy) -> Array:
 	var possible_Targets: Array
@@ -62,11 +102,14 @@ static func check_closest_player(map, enemy): #we can get everything in the mega
 	
 static func melee_movement(map, enemy, reach): #reach is basically a movement penalty, it is used in the case that the enemy cant reach a valid attack target
 	var closestTarget = check_closest_player(map, enemy)
+	var rooted = enemy.is_rooted()
 	var leftoverMov: int
 	var posX: int
 	var posY: int = enemy.get_map_coords()[1]
 	
-	if(abs(enemy.get_map_coords()[0]-closestTarget.get_map_coords()[0])<enemy.get_movement()-reach):
+	if(rooted):
+		posX = enemy.get_map_coords()[0]
+	elif(abs(enemy.get_map_coords()[0]-closestTarget.get_map_coords()[0])<enemy.get_movement()-reach):
 		posX = enemy.get_map_coords()[0] + (closestTarget.get_map_coords()[0]-enemy.get_map_coords()[0])
 		leftoverMov = enemy.get_movement()-reach-abs(enemy.get_map_coords()[0]-closestTarget.get_map_coords()[0])
 		if(enemy.get_map_coords()[1]<closestTarget.get_map_coords()[1]):
