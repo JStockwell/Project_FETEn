@@ -343,9 +343,13 @@ func phys_combat_round() -> void:
 	
 	if Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()) == 1 and attacker.is_ranged():
 		CombatMapStatus.mapMod -= 25
-
+		
+	var attTile = get_tile_from_coords(attacker.get_map_coords())
+	var defTile = get_tile_from_coords(defender.get_map_coords())
+	
+	CombatMapStatus.mapMod += 5 * (attTile.get_height() - defTile.get_height())
+		
 	CombatMapStatus.set_combat(attacker, defender, Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()), 0)
-	#get_tree().change_scene_to_file("res://Scenes/3D/combat.tscn")
 	combat_start.emit()
 	
 func _on_skill_selected(id: int):
@@ -377,7 +381,6 @@ func _on_skill_selected(id: int):
 			var defender = CombatMapStatus.get_selected_enemy()
 			
 			CombatMapStatus.set_combat(attacker, defender, Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()), 0, skillName)
-			#get_tree().change_scene_to_file("res://Scenes/3D/combat.tscn")
 			combat_start.emit()
 			CombatMapStatus.hasAttacked = true
 

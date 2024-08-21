@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://crcla4kf7cuxy"]
+[gd_scene load_steps=10 format=3 uid="uid://crcla4kf7cuxy"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/mapTile.gd" id="1_v7lvt"]
 
@@ -28,6 +28,8 @@ albedo_color = Color(1, 0, 0, 0.196078)
 [sub_resource type="BoxMesh" id="BoxMesh_q7eie"]
 material = SubResource("StandardMaterial3D_4kmtl")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_eri6c"]
+
 [node name="MapTile" type="StaticBody3D"]
 script = ExtResource("1_v7lvt")
 
@@ -45,5 +47,12 @@ mesh = SubResource("BoxMesh_iw0yw")
 [node name="Enemy" type="MeshInstance3D" parent="."]
 visible = false
 mesh = SubResource("BoxMesh_q7eie")
+
+[node name="HitDetection" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitDetection"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+shape = SubResource("BoxShape3D_eri6c")
+disabled = true
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
