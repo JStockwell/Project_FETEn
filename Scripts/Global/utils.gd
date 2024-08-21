@@ -12,8 +12,6 @@ static func reset_gs():
 	GameStatus.party = {}
 
 static func reset_cms():
-	CombatMapStatus.enemies = {}
-
 	CombatMapStatus.mapX = 0
 	CombatMapStatus.mapY = 0
 

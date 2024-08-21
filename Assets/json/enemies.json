@@ -1,7 +1,7 @@
 {
 	"goblin": {
 		"name": "Goblin",
-		"max_health": 1,
+		"max_health": 20,
 		"attack": 9,
 		"dexterity": 10,
 		"defense": 3,
@@ -13,22 +13,22 @@
 		"range": 1,
 		"skills": [],
 		"is_ranged": false,
-		"mesh_path": null
+		"mesh_path": "res://Assets/Characters/Enemies/Goblin/phys goblin idle 1.glb"
 	},
 	"sling_gobbo": {
 		"name": "Goblin",
-		"max_health": 1,
-		"attack": 9,
+		"max_health": 14,
+		"attack": 8,
 		"dexterity": 10,
-		"defense": 3,
-		"agility": 5,
-		"movement": 5,
+		"defense": 2,
+		"agility": 4,
+		"movement": 4,
 		"ini_mana": 0,
 		"max_mana": 0,
 		"reg_mana": 0,
-		"range": 1,
+		"range": 5,
 		"skills": [],
-		"is_ranged": false,
-		"mesh_path": null
+		"is_ranged": true,
+		"mesh_path": "res://Assets/Characters/Enemies/Ranged_Gobbo/ranged goblin idle 1.glb"
 	}
 }

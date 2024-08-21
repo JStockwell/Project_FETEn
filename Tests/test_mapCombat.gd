@@ -29,7 +29,7 @@ func before_test():
 		i += 1
 		
 	#CombatMapStatus.set_active_characters(GameStatus.get_party_member("attacker"), CombatMapStatus.get_enemy("defender_0"))
-	CombatMapStatus.set_map_size(3, 3)
+	CombatMapStatus.set_map_size(Vector2(3, 3))
 	CombatMapStatus.set_is_start_combat(true)
 	
 	GameStatus.set_autorun_combat(false)

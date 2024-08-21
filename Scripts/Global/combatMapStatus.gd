@@ -3,8 +3,6 @@ extends Node
 var maxCameraHeight = 33.75 # 16x16
 var minCameraHeight = 20.6 # 9x9
 
-var enemies: Dictionary
-
 var mapPath: String
 var mapSpawn: Vector3
 var combatSpawn: Vector3
@@ -33,23 +31,6 @@ var hasAttacked: bool
 var hasMoved: bool
 
 var mapTileMatrix: Array = []
-
-# Enemy
-func set_enemies(enemyList: Array) -> void:
-	var counter = 0
-	for enemy in enemyList:
-		enemies[enemy + "_" + str(counter)] = GameStatus.enemySet[enemy].duplicate()
-		counter += 1
-		
-func get_enemies() -> Dictionary:
-	return enemies
-
-func get_enemy(charName: String):
-	if charName in enemies.keys():
-		return enemies[charName]
-		
-	else:
-		print("character {n} not in enemies".format({"n": charName}))
 
 # Attacker and Defender
 func set_active_characters(attack: Dictionary, defend: Dictionary) -> void:

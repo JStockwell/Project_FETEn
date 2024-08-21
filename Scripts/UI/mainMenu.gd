@@ -8,8 +8,7 @@ func _ready():
 	GameStatus.set_playable_characters(playableCharacters)
 	GameStatus.set_enemy_set(enemySet)
 	
-	GameStatus.set_party(["dick", "edgar"])
-	CombatMapStatus.set_enemies(["goblin", "goblin"])
+	GameStatus.set_party(["dick", "edgar", "samael"])
 	
 	var i = 0
 	for skillName in skillSet:
