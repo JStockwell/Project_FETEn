@@ -29,7 +29,7 @@ static func create(args: Dictionary):
 		if args["mesh_path"] == null:
 			mesh_path = "res://Assets/Characters/Placeholder/Placeholder_Char.glb"
 			
-		character.stats = stats_set
+		character.stats = stats_set.duplicate()
 		character.add_child(load(mesh_path).instantiate())
 		return character
 		

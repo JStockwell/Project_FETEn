@@ -6,7 +6,7 @@ const MapTile = preload("res://Scenes/Entities/mapTile.tscn")
 static func create(args: Dictionary):
 	var validator = true
 	
-	var coords: Vector2 = args["coords"]
+	var coords: Vector2 = Utils.string_to_vector2(args["coords"])
 	var height: int = args["height"]
 	var idt: int = args["idt"]
 	var isPopulated: bool = args["isPopulated"]
@@ -38,9 +38,8 @@ static func create(args: Dictionary):
 		var path = args["meshPath"]
 		if path == "":
 			path = "res://Assets/MapTiles/placeholder_tile.glb"
-			
-		myMapTile.add_child(load(path).instantiate())
 		
+		myMapTile.add_child(load(path).instantiate())
 		return myMapTile
 		
 	else:

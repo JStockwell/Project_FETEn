@@ -3,8 +3,7 @@ extends Node
 var maxCameraHeight = 33.75 # 16x16
 var minCameraHeight = 20.6 # 9x9
 
-var enemies: Dictionary
-
+var mapPath: String
 var mapSpawn: Vector3
 var combatSpawn: Vector3
 var mapX
@@ -32,23 +31,6 @@ var hasAttacked: bool
 var hasMoved: bool
 
 var mapTileMatrix: Array = []
-
-# Enemy
-func set_enemies(enemyList: Array) -> void:
-	var counter = 0
-	for enemy in enemyList:
-		enemies[enemy + "_" + str(counter)] = GameStatus.enemySet[enemy].duplicate()
-		counter += 1
-		
-func get_enemies() -> Dictionary:
-	return enemies
-
-func get_enemy(charName: String):
-	if charName in enemies.keys():
-		return enemies[charName]
-		
-	else:
-		print("character {n} not in enemies".format({"n": charName}))
 
 # Attacker and Defender
 func set_active_characters(attack: Dictionary, defend: Dictionary) -> void:
@@ -134,13 +116,19 @@ func get_selected_map_tile():
 	return selectedMapTile
 
 # Map
+func set_map_path(path: String) -> void:
+	mapPath = path
+	
+func get_map_path() -> String:
+	return mapPath
+	
 func calculate_map_spawn(spawn: Vector3) -> void:
 	mapSpawn = Vector3(-mapX / 2, 0.5, -mapY / 2) + spawn
 	
-	if mapX % 2 == 0:
+	if not int(mapX) & 1:
 		mapSpawn.x += 0.5
 		
-	if mapY % 2 == 0:
+	if not int(mapY) & 1:
 		mapSpawn.z += 0.5
 	
 func get_map_spawn() -> Vector3:
@@ -161,9 +149,9 @@ func get_map_y() -> int:
 func get_map_dimensions() -> Vector2:
 	return Vector2(mapX, mapY)
 
-func set_map_size(x: int, y: int) -> void:
-	mapX = x
-	mapY = y
+func set_map_size(vec: Vector2) -> void:
+	mapX = vec.x
+	mapY = vec.y
 
 func get_map_tile_matrix() -> Array:
 	return mapTileMatrix

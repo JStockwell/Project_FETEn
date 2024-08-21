@@ -137,7 +137,7 @@ func test_set_stats():
 
 func test_set_map_coords_ok():
 	checker = Vector2(3, 3)
-	CombatMapStatus.set_map_size(3, 3)
+	CombatMapStatus.set_map_size(Vector2(3, 3))
 	
 	test_char.set_map_coords(checker)
 	
@@ -146,7 +146,7 @@ func test_set_map_coords_ok():
 	
 func test_set_map_coords_x_out_of_range():
 	checker = Vector2(4, 3)
-	CombatMapStatus.set_map_size(3, 3)
+	CombatMapStatus.set_map_size(Vector2(3, 3))
 	
 	test_char.set_map_coords(checker)
 	
@@ -155,7 +155,7 @@ func test_set_map_coords_x_out_of_range():
 	
 func test_set_map_coords_y_out_of_range():
 	checker = Vector2(3, 4)
-	CombatMapStatus.set_map_size(3, 3)
+	CombatMapStatus.set_map_size(Vector2(3, 3))
 	
 	test_char.set_map_coords(checker)
 	
