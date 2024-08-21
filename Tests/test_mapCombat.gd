@@ -1,7 +1,7 @@
 extends GdUnitTestSuite
 
 #var Character = preload("res://Scenes/Entities/character.tscn")
-var MapCombat = preload("res://Scenes/3D/mapCombat.tscn")
+var MapCombat = load("res://Scenes/3D/mapCombat.tscn")
 
 var test_players = Utils.read_json("res://Assets/json/test_players.json")
 var test_enemies = Utils.read_json("res://Assets/json/test_enemies.json")
@@ -15,7 +15,7 @@ var test_mapCombat
 func before():
 	GameStatus.debugMode = false
 
-func before_test():
+func before_test():	
 	GameStatus.set_playable_characters(test_players)
 	GameStatus.set_enemy_set(test_enemies)
 	
@@ -44,6 +44,9 @@ func after_test():
 	for test_skill in GameStatus.skillSet:
 		GameStatus.skillSet[test_skill].free()
 	Utils.reset_all()
+	
+	GameStatus.party.clear()
+	CombatMapStatus.enemies.clear()
 
 ##############
 # Unit Tests #
@@ -391,7 +394,6 @@ func test__on_end_turn_button_pressed():
 	assert_bool(CombatMapStatus.is_start_combat()).is_false()
 	
 	
-# Buttons updater
 func test_update_buttons(do_skip=true, skip_reason="Waiting for TODOs"):
 	assert_that(true).is_equal(true)
 	pass
@@ -408,6 +410,7 @@ func test_update_phys_attack_button_after_attack():
 	
 	assert_bool(test_mapCombat.physAttackButton.disabled).is_true()
 	
+	
 func test_update_phys_attack_button_is_enemy():
 	CombatMapStatus.set_initiative([1, 0])
 
@@ -415,44 +418,126 @@ func test_update_phys_attack_button_is_enemy():
 	
 	assert_bool(test_mapCombat.physAttackButton.disabled).is_true()
 	
+	
 func test_update_phys_attack_button_no_selected_enemy():
-	assert_that(true).is_equal(true)
+	CombatMapStatus.set_initiative([0, 1])
+	CombatMapStatus.set_selected_enemy(null)
+	
+	test_mapCombat.update_phys_attack_button()
+	
+	assert_bool(test_mapCombat.physAttackButton.disabled).is_true()
 	
 func test_update_phys_attack_button_enemy_at_range():
-	assert_that(true).is_equal(true)
+	CombatMapStatus.set_initiative([0, 1])
+	var ally = test_mapCombat.characterGroup.get_children()[0]
+	var enemy = test_mapCombat.enemyGroup.get_children()[0]
+	CombatMapStatus.set_selected_character(ally)
+	CombatMapStatus.set_selected_enemy(enemy)
+	
+	test_mapCombat.update_phys_attack_button()
+	
+	assert_bool(test_mapCombat.physAttackButton.disabled).is_false()
+	
 	
 func test_update_phys_attack_button_disabled():
-	assert_that(true).is_equal(true)
-			
-func test_update_skill_menu_button(do_skip=true, skip_reason="Test case under development"):
-	assert_that(true).is_equal(true)
+	test_mapCombat.update_phys_attack_button()
+	
+	assert_bool(test_mapCombat.physAttackButton.disabled).is_true()
+	
+	
+func test_update_skill_menu_button_after_attack():
+	CombatMapStatus.set_initiative([0, 1])
+	CombatMapStatus.set_has_attacked(true)
+	
+	test_mapCombat.update_skill_menu_button()
+	
+	assert_bool(test_mapCombat.baseSkillMenu.disabled).is_true()
+	
+	
+func test_update_skill_menu_button_is_enemy():
+	var enemy = test_mapCombat.enemyGroup.get_children()[0]
+	CombatMapStatus.set_selected_character(enemy)
 
-func test_update_end_turn_button(do_skip=true, skip_reason="Test case under development"):
-	assert_that(true).is_equal(true)
+	test_mapCombat.update_skill_menu_button()
+	
+	assert_bool(test_mapCombat.baseSkillMenu.disabled).is_true()
 
-func test_highlight_movement(do_skip=true, skip_reason="Test case under development"):
-	assert_that(true).is_equal(true)
 
-func test_highlight_control_zones(do_skip=true, skip_reason="Test case under development"):
+func test_update_skill_menu_button_character_has_no_skills():
+	CombatMapStatus.set_initiative([0, 1])
+	CombatMapStatus.set_current_ini(0)
+	test_mapCombat.characterGroup.get_children()[0].get_stats()["skills"] = []
+	
+	test_mapCombat.update_skill_menu_button()
+	
+	assert_bool(test_mapCombat.baseSkillMenu.disabled).is_true()
+	
+	test_mapCombat.characterGroup.get_children()[0].get_stats()["skills"] = ["shadow_ball", "nero_nero"]
+	
+	
+func test_update_skill_menu_button_skills_availables():
+	CombatMapStatus.set_initiative([0, 1])
+	CombatMapStatus.set_current_ini(0)
+	var ally = test_mapCombat.characterGroup.get_children()[0]
+	CombatMapStatus.set_selected_character(ally)
+	
+	test_mapCombat.update_skill_menu_button()
+	
+	assert_bool(test_mapCombat.baseSkillMenu.disabled).is_false()
+
+
+func test_update_end_turn_button_is_player():
+	CombatMapStatus.set_initiative([0, 1])
+	var ally = test_mapCombat.characterGroup.get_children()[0]
+	CombatMapStatus.set_selected_character(ally)
+	
+	test_mapCombat.update_end_turn_button()
+	
+	assert_bool(test_mapCombat.endTurnButton.disabled).is_false()
+
+
+func test_update_end_turn_button_is_enemy():
+	CombatMapStatus.set_initiative([1, 0])
+	var enemy = test_mapCombat.enemyGroup.get_children()[0]
+	CombatMapStatus.set_selected_character(enemy)
+	
+	test_mapCombat.update_end_turn_button()
+	
+	assert_bool(test_mapCombat.endTurnButton.disabled).is_true()
+
+
+func test_highlight_movement(do_skip=true, skip_reason="Waiting for TODOs"):
 	assert_that(true).is_equal(true)
+	pass
+
+func test_highlight_control_zones(do_skip=true, skip_reason="Waiting for TODOs"):
+	assert_that(true).is_equal(true)
+	pass
 					
-func test_check_within_bounds(do_skip=true, skip_reason="Test case under development"):
+func test_check_within_bounds(do_skip=true, skip_reason="Waiting for TODOs"):
 	assert_that(true).is_equal(true)
+	pass
 
-func test_remove_highlights(do_skip=true, skip_reason="Test case under development"):
+func test_remove_highlights(do_skip=true, skip_reason="Waiting for TODOs"):
 	assert_that(true).is_equal(true)
+	pass
 
-func test_remove_control_zones(do_skip=true, skip_reason="Test case under development"):
+func test_remove_control_zones(do_skip=true, skip_reason="Waiting for TODOs"):
 	assert_that(true).is_equal(true)
+	pass
 
-func test_remove_selected(do_skip=true, skip_reason="Test case under development"):
+func test_remove_selected(do_skip=true, skip_reason="Waiting for TODOs"):
 	assert_that(true).is_equal(true)
+	pass
 		
-func test_remove_char_highlights(do_skip=true, skip_reason="Test case under development"):
+func test_remove_char_highlights(do_skip=true, skip_reason="Waiting for TODOs"):
 	assert_that(true).is_equal(true)
+	pass
 
-func test_remove_ally_highlights(do_skip=true, skip_reason="Test case under development"):
+func test_remove_ally_highlights(do_skip=true, skip_reason="Waiting for TODOs"):
 	assert_that(true).is_equal(true)
+	pass
 		
-func test_remove_enemy_highlights(do_skip=true, skip_reason="Test case under development"):
+func test_remove_enemy_highlights(do_skip=true, skip_reason="Waiting for TODOs"):
 	assert_that(true).is_equal(true)
+	pass
