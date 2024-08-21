@@ -84,7 +84,7 @@ func initial_map_load() -> void:
 		
 		enemy.set_is_enemy(true)
 		enemy.connect("character_selected", Callable(self, "character_handler"))
-		
+
 		set_tile_populated(spawnPos, true)
 		j += 1
 
@@ -504,7 +504,6 @@ func highlight_movement(character) -> void:
 func highlight_control_zones() -> void:
 	for enemy in enemyGroup.get_children():
 		var enemyCoords = enemy.get_map_coords()
-		
 		for i in range(-1, 2):
 			for j in range(-1, 2):
 				if check_within_bounds(enemyCoords + Vector2(i,j), Vector2(i,j)):
