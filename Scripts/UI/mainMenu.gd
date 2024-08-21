@@ -17,15 +17,14 @@ func _ready():
 		GameStatus.skillSet[skillName].set_skill_menu_id(i)
 		i += 1
 	
-	#combat_debug_test()
-	#debug_map_combat_test()
+	CombatMapStatus.set_map_path("res://Assets/json/maps/map1.json")
 	
 
 func combat_debug_test():
 	CombatMapStatus.set_active_characters(GameStatus.get_party_member("edgar"), GameStatus.get_party_member("dick"))
 		
 func debug_map_combat_test():
-	CombatMapStatus.set_map_size(9, 9)
+	#CombatMapStatus.set_map_size(9,9)
 	CombatMapStatus.set_is_start_combat(true)
 
 func _on_debug_button_pressed():

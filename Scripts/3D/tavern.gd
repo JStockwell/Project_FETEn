@@ -14,7 +14,8 @@ var cm
 var com
 
 func _ready():
-	CombatMapStatus.set_map_size(9, 9)
+	var mapDict = Utils.read_json(CombatMapStatus.get_map_path())
+	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
 	CombatMapStatus.set_is_start_combat(true)
 	CombatMapStatus.calculate_map_spawn(mapCenter.position)
 	CombatMapStatus.set_combat_spawn(combatCenter.position)

@@ -1,5 +1,7 @@
 extends Node3D
 
+var mapDict: Dictionary
+
 @onready
 var cameraPivot = $Utility/CameraPivot
 @onready
@@ -32,6 +34,7 @@ func _ready():
 	skillMenu.connect("id_pressed", Callable(self, "_on_skill_selected"))
 	
 	if CombatMapStatus.is_start_combat():
+		mapDict = Utils.read_json(CombatMapStatus.get_map_path())
 		initial_map_load()
 		calculate_combat_initiative()
 		await start_turn()
@@ -39,56 +42,50 @@ func _ready():
 		reload_map()
 	
 func initial_map_load() -> void:
-	for x in CombatMapStatus.get_map_x():
-		var row = []
-		for y in CombatMapStatus.get_map_y():
-			var mapTile = Factory.MapTile.create({
-				"coords": Vector2(x,y),
-				"height": 0,
-				"idt": false,
-				"isPopulated": false,
-				"isTraversable": true,
-				"isObstacle": false,
-				"meshPath": ""
-			})
-			
-			mapTileGroup.add_child(mapTile, true)
-			mapTile.position = Vector3(x, mapTile.get_height(), y)
-			mapTile.connect("tile_selected", Callable(self, "tile_handler"))
-			
-			row.append(mapTile.get_variables().duplicate())
-		CombatMapStatus.add_map_tile_row(row)
+	var row = []
+	for tile in mapDict["tiles"]:
+		var mapTile = Factory.MapTile.create(tile)
+		mapTileGroup.add_child(mapTile, true)
+		mapTile.position = Vector3(mapTile.get_coords().x, mapTile.get_height() * 0.1, mapTile.get_coords().y)
+		mapTile.connect("tile_selected", Callable(self, "tile_handler"))
+		
+		row.append(mapTile.get_variables().duplicate())
+		if mapTile.get_coords().x == CombatMapStatus.get_map_x():
+			CombatMapStatus.add_map_tile_row(row)
+			row = []
 		
 	var i = 0
 	for character in GameStatus.get_party():
 		var partyMember = Factory.Character.create(GameStatus.get_party_member(character))
 		partyMember.scale *= Vector3(0.5, 0.5, 0.5)
 		partyMember.position = CombatMapStatus.get_map_spawn()
-		partyMember.position += Vector3(0, 0, i)
-		partyMember.set_map_coords(Vector2(0, i))
+		var spawnPos = Utils.string_to_vector2(mapDict["ally_spawn"][i])
+		partyMember.position += Vector3(spawnPos.x, 0, spawnPos.y)
+		partyMember.set_map_coords(spawnPos)
 		partyMember.set_map_id(i)
 		characterGroup.add_child(partyMember)
 		
 		partyMember.set_is_enemy(false)
 		partyMember.connect("character_selected", Callable(self, "character_handler"))
 		
-		set_tile_populated(Vector2(0, i), true)
+		set_tile_populated(spawnPos, true)
 		i += 1
 		
 	var j = 0
-	for character in CombatMapStatus.get_enemies():
-		var enemy = Factory.Character.create(CombatMapStatus.get_enemy(character))
+	for character in mapDict["enemy_spawn"].keys():
+		var enemy = Factory.Character.create(GameStatus.get_enemy_from_enemy_set(character))
 		enemy.scale *= Vector3(0.5, 0.5, 0.5)
 		enemy.position = CombatMapStatus.get_map_spawn()
-		enemy.position += Vector3(CombatMapStatus.get_map_x() - 1, 0, CombatMapStatus.get_map_y() - j - 1)
-		enemy.set_map_coords(Vector2(CombatMapStatus.get_map_x() - 1, CombatMapStatus.get_map_y() - j - 1 ))
+		var spawnPos = Utils.string_to_vector2(mapDict["enemy_spawn"][character])
+		enemy.position += Vector3(spawnPos.x, 0, spawnPos.y)
+		enemy.set_map_coords(spawnPos)
 		enemy.set_map_id(i + j)
 		enemyGroup.add_child(enemy)
 		
 		enemy.set_is_enemy(true)
 		enemy.connect("character_selected", Callable(self, "character_handler"))
 		
-		set_tile_populated(Vector2(CombatMapStatus.get_map_x() - 1, CombatMapStatus.get_map_y() - 1 - j), true)
+		set_tile_populated(spawnPos, true)
 		j += 1
 
 func calculate_combat_initiative() -> void:
@@ -512,8 +509,9 @@ func highlight_control_zones() -> void:
 			for j in range(-1, 2):
 				if check_within_bounds(enemyCoords + Vector2(i,j), Vector2(i,j)):
 					var tile = get_tile_from_coords(enemyCoords + Vector2(i,j))
-					tile.enemy.show()
-					tile.set_is_control_zone(true)
+					if tile.is_traversable():
+						tile.enemy.show()
+						tile.set_is_control_zone(true)
 					
 func check_within_bounds(vector: Vector2, offset: Vector2) -> bool:
 	var result = true
