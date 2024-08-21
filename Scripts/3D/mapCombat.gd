@@ -32,14 +32,11 @@ func _ready():
 	cameraPivot.position = Vector3(CombatMapStatus.get_map_x()/2, 0, CombatMapStatus.get_map_y()/2)
 	camera.position = Vector3(0,0,CombatMapStatus.get_map_x())
 	skillMenu.connect("id_pressed", Callable(self, "_on_skill_selected"))
-	
-	if CombatMapStatus.is_start_combat():
-		mapDict = Utils.read_json(CombatMapStatus.get_map_path())
-		initial_map_load()
-		calculate_combat_initiative()
-		await start_turn()
-	else:
-		reload_map()
+
+	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
+	initial_map_load()
+	calculate_combat_initiative()
+	await start_turn()
 	
 func initial_map_load() -> void:
 	var row = []
@@ -118,57 +115,6 @@ func setup_skill_menu() -> void:
 	
 	for skill in CombatMapStatus.get_selected_character().get_skills():
 		skillMenu.add_item(GameStatus.skillSet[skill].get_skill_name(), GameStatus.skillSet[skill].get_skill_menu_id())
-
-func reload_map():
-	for mapTileRow in CombatMapStatus.get_map_tile_matrix():
-		for mapTileVars in mapTileRow:
-			var mapTile = Factory.MapTile.create(mapTileVars)
-			mapTileGroup.add_child(mapTile, true)
-			mapTile.position = Vector3(mapTile["coords"].x, mapTile.get_height(), mapTile["coords"].y)
-			mapTile.connect("tile_selected", Callable(self, "tile_handler"))
-			
-	for character in GameStatus.get_party():
-		if GameStatus.get_party_member(character)["current_health"] > 0:
-			var partyMember = Factory.Character.create(GameStatus.get_party_member(character))
-			partyMember.scale *= Vector3(0.5, 0.5, 0.5)
-			partyMember.position = CombatMapStatus.get_map_spawn()
-			partyMember.position += Vector3(partyMember.get_map_coords().x, 0, partyMember.get_map_coords().y)
-			characterGroup.add_child(partyMember)
-			
-			partyMember.connect("character_selected", Callable(self, "character_handler"))
-			
-			set_tile_populated(Vector2(partyMember.get_map_coords().x, partyMember.get_map_coords().y), true)
-		
-		else:
-			CombatMapStatus.remove_character_ini(GameStatus.get_party_member(character)["map_id"])
-		
-	for character in CombatMapStatus.get_enemies():
-		if CombatMapStatus.get_enemy(character)["current_health"] > 0:
-			var enemy = Factory.Character.create(CombatMapStatus.get_enemy(character))
-			enemy.scale *= Vector3(0.5, 0.5, 0.5)
-			enemy.position = CombatMapStatus.get_map_spawn()
-			enemy.position += Vector3(enemy.get_map_coords().x, 0, enemy.get_map_coords().y)
-			enemyGroup.add_child(enemy)
-			
-			enemy.connect("character_selected", Callable(self, "character_handler"))
-			
-			set_tile_populated(Vector2(enemy.get_map_coords().x, enemy.get_map_coords().y), true)
-			
-		else:
-			CombatMapStatus.remove_character_ini(CombatMapStatus.get_enemy(character)["map_id"])
-			
-	if CombatMapStatus.get_current_ini() > len(CombatMapStatus.get_initiative()) - 1:
-		CombatMapStatus.set_current_ini(CombatMapStatus.get_current_ini() - 1)
-			
-	reset_map_status()
-	highlight_control_zones()
-	skillIssue.hide()
-	
-	if not CombatMapStatus.get_selected_character().is_enemy():
-		CombatMapStatus.get_selected_character().selectedChar.show()
-		
-		if not CombatMapStatus.hasMoved:
-			highlight_movement(CombatMapStatus.get_selected_character())
 	
 func reset_to_tavern():
 	if CombatMapStatus.get_current_ini() > len(CombatMapStatus.get_initiative()) - 1:
@@ -178,8 +124,6 @@ func reset_to_tavern():
 	highlight_control_zones()
 	skillIssue.hide()
 	
-	#TODO James revisa este pifostio plis fdo: Pablo :)
-	# Funciona fook u >:)
 	if CombatMapStatus.get_selected_character() == null or CombatMapStatus.get_selected_character().is_enemy():
 		CombatMapStatus.advance_ini()
 		await start_turn()
@@ -265,7 +209,7 @@ func regen_mana() -> void:
 			char.modify_mana(char.get_reg_mana())
 
 func purge_the_dead():
-	var dead
+	var dead = null
 	for char in characterGroup.get_children():
 		if char.get_current_health() == 0:
 			dead = char
@@ -274,10 +218,11 @@ func purge_the_dead():
 		if enemy.get_current_health() == 0:
 			dead = enemy
 			
-	CombatMapStatus.remove_character_ini(dead.get_map_id())
-	var tile = get_tile_from_coords(dead.get_map_coords())
-	tile.set_is_populated(false)
-	dead.free()
+	if dead != null:
+		CombatMapStatus.remove_character_ini(dead.get_map_id())
+		var tile = get_tile_from_coords(dead.get_map_coords())
+		tile.set_is_populated(false)
+		dead.free()
 			
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
