@@ -1,7 +1,7 @@
 extends GdUnitTestSuite
 
 #var Character = preload("res://Scenes/Entities/character.tscn")
-var MapCombat = preload("res://Scenes/3D/mapCombat.tscn")
+var MapCombat = load("res://Scenes/3D/mapCombat.tscn")
 
 var test_players = Utils.read_json("res://Assets/json/test_players.json")
 var test_enemies = Utils.read_json("res://Assets/json/test_enemies.json")
@@ -15,7 +15,7 @@ var test_mapCombat
 func before():
 	GameStatus.debugMode = false
 
-func before_test():
+func before_test():	
 	GameStatus.set_playable_characters(test_players)
 	GameStatus.set_enemy_set(test_enemies)
 	
@@ -43,6 +43,10 @@ func after_test():
 	test_mapCombat.free()
 	for test_skill in GameStatus.skillSet:
 		GameStatus.skillSet[test_skill].free()
+	Utils.reset_all()
+	
+	GameStatus.party.clear()
+	CombatMapStatus.enemies.clear()
 
 ##############
 # Unit Tests #
@@ -293,59 +297,247 @@ func test_set_selected_character_ally():
 	assert_that(CombatMapStatus.get_selected_ally()).is_equal(ally)
 
 
-func test_get_tile_from_coords(do_skip=true, skip_reason="Test case under development"):
-	assert_that(true).is_equal(true)
+func test_get_tile_from_coords_exist():
+	var tile = test_mapCombat.get_tile_from_coords(Vector2(1 ,1))
 	
-func test_set_tile_populated(do_skip=true, skip_reason="Test case under development"):
-	assert_that(true).is_equal(true)
+	assert_that(tile.get_variables()["coords"]).is_equal(Vector2(1 ,1))
+	assert_int(tile.get_variables()["height"]).is_zero()
+	assert_bool(tile.get_variables()["idt"]).is_false()
+	assert_bool(tile.get_variables()["isPopulated"]).is_false()
+	assert_bool(tile.get_variables()["isTraversable"]).is_true()
+	assert_bool(tile.get_variables()["isObstacle"]).is_false()
+	
+	
+func test_get_tile_from_coords_not_exist():
+	var tile = test_mapCombat.get_tile_from_coords(Vector2(5 ,5))
+	
+	assert_that(tile).is_null()
+
+	
+func test_set_tile_populated_false_to_true():
+	var tile = test_mapCombat.get_tile_from_coords(Vector2(1 ,1))
+	assert_bool(tile.get_variables()["isPopulated"]).is_false()
+	
+	test_mapCombat.set_tile_populated(Vector2(1 ,1), true)
+	
+	assert_bool(tile.get_variables()["isPopulated"]).is_true()
+	
+	
+func test_set_tile_populated_true_to_false():
+	var tile = test_mapCombat.get_tile_from_coords(Vector2(0 ,0))
+	assert_bool(tile.get_variables()["isPopulated"]).is_true()
+	
+	test_mapCombat.set_tile_populated(Vector2(0 ,0), false)
+	
+	assert_bool(tile.get_variables()["isPopulated"]).is_false()
+	
 
 # Set selected MapTile
-func test_tile_handler(do_skip=true, skip_reason="Test case under development"):
+func test_tile_handler_tile_selected():
+	var tile = test_mapCombat.get_tile_from_coords(Vector2(1 ,1))
+	CombatMapStatus.set_selected_map_tile(tile)
+	
+	test_mapCombat.tile_handler(tile)
+	
+	assert_that(CombatMapStatus.get_selected_map_tile()).is_null()
+	
+	
+func test_tile_handler_tile_not_selected():
+	var old_tile = test_mapCombat.get_tile_from_coords(Vector2(1 ,1))
+	var new_tile = test_mapCombat.get_tile_from_coords(Vector2(0 ,0))
+	CombatMapStatus.set_selected_map_tile(old_tile)
+	
+	test_mapCombat.tile_handler(new_tile)
+	
+	assert_that(CombatMapStatus.get_selected_map_tile()).is_not_equal(old_tile)
+	assert_that(CombatMapStatus.get_selected_map_tile()).is_equal(new_tile)
+	
+	
+func test_tile_handler_null_selected():
+	var tile = test_mapCombat.get_tile_from_coords(Vector2(1 ,1))
+	
+	test_mapCombat.tile_handler(tile)
+	
+	assert_that(CombatMapStatus.get_selected_map_tile()).is_equal(tile)
+
+#TODO
+func test__on_move_button_pressed(do_skip=true, skip_reason="Waiting for TODOs"):
 	assert_that(true).is_equal(true)
+	pass
 	
 # Player movement
-func test_validate_move(do_skip=true, skip_reason="Test case under development"):
+#TODO
+func test_validate_move(do_skip=true, skip_reason="Waiting for TODOs"):
 	assert_that(true).is_equal(true)
-
-# Buttons updater
-func test_update_buttons(do_skip=true, skip_reason="Test case under development"):
-	assert_that(true).is_equal(true)
+	pass
 	
-func test_update_move_button(do_skip=true, skip_reason="Test case under development"):
+	
+#TODO
+func test__on_phys_attack_button_pressed(do_skip=true, skip_reason="Waiting for TODOs"):
 	assert_that(true).is_equal(true)
+	pass
 
-func test_update_phys_attack_button(do_skip=true, skip_reason="Test case under development"):
-	assert_that(true).is_equal(true)
-			
-func test_update_skill_menu_button(do_skip=true, skip_reason="Test case under development"):
-	assert_that(true).is_equal(true)
 
-func test_update_end_turn_button(do_skip=true, skip_reason="Test case under development"):
+#TODO
+func test__on_skill_selected(do_skip=true, skip_reason="Waiting for TODOs"):
 	assert_that(true).is_equal(true)
+	pass
 
-func test_highlight_movement(do_skip=true, skip_reason="Test case under development"):
-	assert_that(true).is_equal(true)
 
-func test_highlight_control_zones(do_skip=true, skip_reason="Test case under development"):
+func test__on_end_turn_button_pressed():
+	CombatMapStatus.set_initiative([0, 1])
+	assert_that(CombatMapStatus.get_current_ini()).is_equal(0)
+	
+	test_mapCombat._on_end_turn_button_pressed()
+	
+	assert_that(CombatMapStatus.get_current_ini()).is_equal(1)
+	assert_bool(CombatMapStatus.is_start_combat()).is_false()
+	
+	
+func test_update_buttons(do_skip=true, skip_reason="Waiting for TODOs"):
 	assert_that(true).is_equal(true)
+	pass
+	
+func test_update_move_button(do_skip=true, skip_reason="Waiting for TODOs"):
+	assert_that(true).is_equal(true)
+	pass
+
+func test_update_phys_attack_button_after_attack():
+	CombatMapStatus.set_initiative([0, 1])
+	CombatMapStatus.set_has_attacked(true)
+	
+	test_mapCombat.update_phys_attack_button()
+	
+	assert_bool(test_mapCombat.physAttackButton.disabled).is_true()
+	
+	
+func test_update_phys_attack_button_is_enemy():
+	CombatMapStatus.set_initiative([1, 0])
+
+	test_mapCombat.update_phys_attack_button()
+	
+	assert_bool(test_mapCombat.physAttackButton.disabled).is_true()
+	
+	
+func test_update_phys_attack_button_no_selected_enemy():
+	CombatMapStatus.set_initiative([0, 1])
+	CombatMapStatus.set_selected_enemy(null)
+	
+	test_mapCombat.update_phys_attack_button()
+	
+	assert_bool(test_mapCombat.physAttackButton.disabled).is_true()
+	
+func test_update_phys_attack_button_enemy_at_range():
+	CombatMapStatus.set_initiative([0, 1])
+	var ally = test_mapCombat.characterGroup.get_children()[0]
+	var enemy = test_mapCombat.enemyGroup.get_children()[0]
+	CombatMapStatus.set_selected_character(ally)
+	CombatMapStatus.set_selected_enemy(enemy)
+	
+	test_mapCombat.update_phys_attack_button()
+	
+	assert_bool(test_mapCombat.physAttackButton.disabled).is_false()
+	
+	
+func test_update_phys_attack_button_disabled():
+	test_mapCombat.update_phys_attack_button()
+	
+	assert_bool(test_mapCombat.physAttackButton.disabled).is_true()
+	
+	
+func test_update_skill_menu_button_after_attack():
+	CombatMapStatus.set_initiative([0, 1])
+	CombatMapStatus.set_has_attacked(true)
+	
+	test_mapCombat.update_skill_menu_button()
+	
+	assert_bool(test_mapCombat.baseSkillMenu.disabled).is_true()
+	
+	
+func test_update_skill_menu_button_is_enemy():
+	var enemy = test_mapCombat.enemyGroup.get_children()[0]
+	CombatMapStatus.set_selected_character(enemy)
+
+	test_mapCombat.update_skill_menu_button()
+	
+	assert_bool(test_mapCombat.baseSkillMenu.disabled).is_true()
+
+
+func test_update_skill_menu_button_character_has_no_skills():
+	CombatMapStatus.set_initiative([0, 1])
+	CombatMapStatus.set_current_ini(0)
+	test_mapCombat.characterGroup.get_children()[0].get_stats()["skills"] = []
+	
+	test_mapCombat.update_skill_menu_button()
+	
+	assert_bool(test_mapCombat.baseSkillMenu.disabled).is_true()
+	
+	test_mapCombat.characterGroup.get_children()[0].get_stats()["skills"] = ["shadow_ball", "nero_nero"]
+	
+	
+func test_update_skill_menu_button_skills_availables():
+	CombatMapStatus.set_initiative([0, 1])
+	CombatMapStatus.set_current_ini(0)
+	var ally = test_mapCombat.characterGroup.get_children()[0]
+	CombatMapStatus.set_selected_character(ally)
+	
+	test_mapCombat.update_skill_menu_button()
+	
+	assert_bool(test_mapCombat.baseSkillMenu.disabled).is_false()
+
+
+func test_update_end_turn_button_is_player():
+	CombatMapStatus.set_initiative([0, 1])
+	var ally = test_mapCombat.characterGroup.get_children()[0]
+	CombatMapStatus.set_selected_character(ally)
+	
+	test_mapCombat.update_end_turn_button()
+	
+	assert_bool(test_mapCombat.endTurnButton.disabled).is_false()
+
+
+func test_update_end_turn_button_is_enemy():
+	CombatMapStatus.set_initiative([1, 0])
+	var enemy = test_mapCombat.enemyGroup.get_children()[0]
+	CombatMapStatus.set_selected_character(enemy)
+	
+	test_mapCombat.update_end_turn_button()
+	
+	assert_bool(test_mapCombat.endTurnButton.disabled).is_true()
+
+
+func test_highlight_movement(do_skip=true, skip_reason="Waiting for TODOs"):
+	assert_that(true).is_equal(true)
+	pass
+
+func test_highlight_control_zones(do_skip=true, skip_reason="Waiting for TODOs"):
+	assert_that(true).is_equal(true)
+	pass
 					
-func test_check_within_bounds(do_skip=true, skip_reason="Test case under development"):
+func test_check_within_bounds(do_skip=true, skip_reason="Waiting for TODOs"):
 	assert_that(true).is_equal(true)
+	pass
 
-func test_remove_highlights(do_skip=true, skip_reason="Test case under development"):
+func test_remove_highlights(do_skip=true, skip_reason="Waiting for TODOs"):
 	assert_that(true).is_equal(true)
+	pass
 
-func test_remove_control_zones(do_skip=true, skip_reason="Test case under development"):
+func test_remove_control_zones(do_skip=true, skip_reason="Waiting for TODOs"):
 	assert_that(true).is_equal(true)
+	pass
 
-func test_remove_selected(do_skip=true, skip_reason="Test case under development"):
+func test_remove_selected(do_skip=true, skip_reason="Waiting for TODOs"):
 	assert_that(true).is_equal(true)
+	pass
 		
-func test_remove_char_highlights(do_skip=true, skip_reason="Test case under development"):
+func test_remove_char_highlights(do_skip=true, skip_reason="Waiting for TODOs"):
 	assert_that(true).is_equal(true)
+	pass
 
-func test_remove_ally_highlights(do_skip=true, skip_reason="Test case under development"):
+func test_remove_ally_highlights(do_skip=true, skip_reason="Waiting for TODOs"):
 	assert_that(true).is_equal(true)
+	pass
 		
-func test_remove_enemy_highlights(do_skip=true, skip_reason="Test case under development"):
+func test_remove_enemy_highlights(do_skip=true, skip_reason="Waiting for TODOs"):
 	assert_that(true).is_equal(true)
+	pass
