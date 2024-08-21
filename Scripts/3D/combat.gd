@@ -43,7 +43,7 @@ func _ready():
 
 	# TODO Times and UI once Map is being used
 	if GameStatus.autorunCombat:
-		combat_round(generate_rolls(), generate_rolls(), CombatMapStatus.mapMod, CombatMapStatus.attackRange, CombatMapStatus.attackSkill)
+		await combat_round(generate_rolls(), generate_rolls(), CombatMapStatus.mapMod, CombatMapStatus.attackRange, CombatMapStatus.attackSkill)
 
 #func _process(delta):
 	#if GameStatus.debugMode:
@@ -57,7 +57,7 @@ func combat_round(rolls: Array, rolls_retaliate: Array, mapMod: int, range: int,
 	else:
 		var skillSet = GameStatus.skillSet[skillName].get_skill()
 		if skillSet["sef"]:
-			await SEF.run(self, skillName, attacker, defender, mapMod, 0, skillSet["spa"], skillSet["imd"])
+			await SEF.run(self, skillName, rolls, attacker, defender, mapMod, 0, skillSet["spa"], skillSet["imd"])
 		else:
 			await attack(attacker, defender, rolls, mapMod, skillSet["spa"], skillSet["imd"])
 	
