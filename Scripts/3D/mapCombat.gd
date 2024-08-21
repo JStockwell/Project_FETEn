@@ -60,7 +60,7 @@ func initial_map_load() -> void:
 		partyMember.scale *= Vector3(0.5, 0.5, 0.5)
 		partyMember.position = CombatMapStatus.get_map_spawn()
 		var spawnPos = Utils.string_to_vector2(mapDict["ally_spawn"][i])
-		partyMember.position += Vector3(spawnPos.x, 0, spawnPos.y)
+		partyMember.position += Vector3(spawnPos.x, 0.5, spawnPos.y)
 		partyMember.set_map_coords(spawnPos)
 		partyMember.set_map_id(i)
 		characterGroup.add_child(partyMember)
@@ -72,12 +72,12 @@ func initial_map_load() -> void:
 		i += 1
 		
 	var j = 0
-	for character in mapDict["enemy_spawn"].keys():
-		var enemy = Factory.Character.create(GameStatus.get_enemy_from_enemy_set(character))
+	for character in mapDict["enemy_spawn"]:
+		var enemy = Factory.Character.create(GameStatus.get_enemy_from_enemy_set(character[0]))
 		enemy.scale *= Vector3(0.5, 0.5, 0.5)
 		enemy.position = CombatMapStatus.get_map_spawn()
-		var spawnPos = Utils.string_to_vector2(mapDict["enemy_spawn"][character])
-		enemy.position += Vector3(spawnPos.x, 0, spawnPos.y)
+		var spawnPos = Utils.string_to_vector2(character[1])
+		enemy.position += Vector3(spawnPos.x, 0.5, spawnPos.y)
 		enemy.set_map_coords(spawnPos)
 		enemy.set_map_id(i + j)
 		enemyGroup.add_child(enemy)

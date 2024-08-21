@@ -20,7 +20,7 @@ func set_enemy_set(enemyDict: Dictionary) -> void:
 	enemySet = enemyDict
 	
 func get_enemy_from_enemy_set(enemy: String) -> Dictionary:
-	return enemySet[enemy]
+	return enemySet[enemy]	
 
 func get_party() -> Dictionary:
 	return party
