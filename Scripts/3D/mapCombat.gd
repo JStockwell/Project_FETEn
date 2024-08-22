@@ -53,7 +53,7 @@ func initial_map_load() -> void:
 		
 	var i = 0
 	for character in GameStatus.get_party():
-		var partyMember = Factory.Character.create(GameStatus.get_party_member(character))
+		var partyMember = Factory.Character.create(GameStatus.get_party_member(character), false)
 		partyMember.scale *= Vector3(0.5, 0.5, 0.5)
 		partyMember.position = CombatMapStatus.get_map_spawn()
 		var spawnPos = Utils.string_to_vector2(mapDict["ally_spawn"][i])
@@ -70,7 +70,7 @@ func initial_map_load() -> void:
 		
 	var j = 0
 	for character in mapDict["enemy_spawn"]:
-		var enemy = Factory.Character.create(GameStatus.get_enemy_from_enemy_set(character[0]))
+		var enemy = Factory.Character.create(GameStatus.get_enemy_from_enemy_set(character[0]), true)
 		enemy.scale *= Vector3(0.5, 0.5, 0.5)
 		enemy.position = CombatMapStatus.get_map_spawn()
 		var spawnPos = Utils.string_to_vector2(character[1])

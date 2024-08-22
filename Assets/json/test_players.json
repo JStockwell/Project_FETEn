@@ -15,7 +15,7 @@
 		"is_ranged": false,
 		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb"
 	},
-		"attacker2": {
+	"attacker2": {
 		"name": "Attacker2",
 		"max_health": 24,
 		"attack": 16,
@@ -30,5 +30,47 @@
 		"skills": [], 
 		"is_ranged": false,
 		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb"
+	},
+	"attacker_skillTests": {
+		"name": "Attacker",
+		"max_health": 24,
+		"attack": 9,
+		"dexterity": 9,
+		"defense": 6,
+		"agility": 8,
+		"movement": 5,
+		"ini_mana": 5,
+		"max_mana": 20,
+		"reg_mana": 5,
+		"range": 4,
+		"skills": ["shadow_ball", "nero_nero", "mend_flesh", "boost_1", "boost_2", "bestow_life", "creators_touch", "anchoring_strike", "flaming_daggers"],
+		"is_ranged": false,
+		"is_rooted": false,
+		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb",
+		"current_health": 24,
+		"current_mana": 5,
+		"is_enemy": false,
+		"map_id": 0
+	},
+	"ally_skillTests": {
+		"name": "Ally",
+		"max_health": 50,
+		"attack": 16,
+		"dexterity": 9,
+		"defense": 6,
+		"agility": 8,
+		"movement": 5,
+		"ini_mana": 5,
+		"max_mana": 20,
+		"reg_mana": 5,
+		"range": 4,
+		"skills": [],
+		"is_ranged": false,
+		"is_rooted": false,
+		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb",
+		"current_health": 25,
+		"current_mana": 5,
+		"is_enemy": false,
+		"map_id": 0
 	}
 }
