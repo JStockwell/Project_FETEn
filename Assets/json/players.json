@@ -1,7 +1,7 @@
 {
 	"edgar": {
 		"name": "Edgar",
-		"max_health": 32,
+		"max_health": 1,
 		"attack": 9,
 		"dexterity": 10,
 		"defense": 3,

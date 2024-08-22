@@ -45,7 +45,8 @@ func initial_map_load() -> void:
 		mapTileGroup.add_child(mapTile, true)
 		mapTile.position = Vector3(mapTile.get_coords().x, mapTile.get_height() * 0.1, mapTile.get_coords().y)
 		mapTile.connect("tile_selected", Callable(self, "tile_handler"))
-		
+		if mapTile.is_obstacle():
+			mapTile.set_odz(false)
 		row.append(mapTile.get_variables().duplicate())
 		if mapTile.get_coords().x == CombatMapStatus.get_map_x():
 			CombatMapStatus.add_map_tile_row(row)

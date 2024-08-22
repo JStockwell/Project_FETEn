@@ -9,6 +9,9 @@ var selected = $Selected
 @onready
 var enemy = $Enemy
 
+@onready
+var odz = $ObstacleDetectionZone/CollisionShape3D
+
 var coords: Vector2
 var height: int
 var isDifficultTerrain: bool
@@ -58,6 +61,9 @@ func set_is_control_zone(value: bool) -> void:
 	
 func is_control_zone() -> bool:
 	return isControlZone
+
+func set_odz(value: bool) -> void:
+	odz.disabled = value
 
 signal tile_selected(mapTile)
 
