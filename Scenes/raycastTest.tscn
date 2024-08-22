@@ -1,0 +1,75 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctaadeewtnueu"]
+
+[ext_resource type="Script" path="res://Scripts/raycastTest.gd" id="1_erups"]
+[ext_resource type="PackedScene" uid="uid://crcla4kf7cuxy" path="res://Scenes/Entities/mapTile.tscn" id="1_wspk4"]
+[ext_resource type="PackedScene" uid="uid://csx40302cpyqp" path="res://Assets/MapTiles/Grass1.glb" id="2_3d4k7"]
+
+[node name="RaycastTest" type="Node3D"]
+script = ExtResource("1_erups")
+
+[node name="Maptiles" type="Node3D" parent="."]
+
+[node name="MapTile" parent="Maptiles" instance=ExtResource("1_wspk4")]
+
+[node name="Grass1" parent="Maptiles/MapTile" instance=ExtResource("2_3d4k7")]
+
+[node name="MapTile2" parent="Maptiles" instance=ExtResource("1_wspk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="Grass1" parent="Maptiles/MapTile2" instance=ExtResource("2_3d4k7")]
+
+[node name="MapTile3" parent="Maptiles" instance=ExtResource("1_wspk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="Grass1" parent="Maptiles/MapTile3" instance=ExtResource("2_3d4k7")]
+
+[node name="MapTile4" parent="Maptiles" instance=ExtResource("1_wspk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="Grass1" parent="Maptiles/MapTile4" instance=ExtResource("2_3d4k7")]
+
+[node name="MapTile5" parent="Maptiles" instance=ExtResource("1_wspk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+
+[node name="Grass1" parent="Maptiles/MapTile5" instance=ExtResource("2_3d4k7")]
+
+[node name="MapTile6" parent="Maptiles" instance=ExtResource("1_wspk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 1)
+
+[node name="Grass1" parent="Maptiles/MapTile6" instance=ExtResource("2_3d4k7")]
+
+[node name="MapTile7" parent="Maptiles" instance=ExtResource("1_wspk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="Grass1" parent="Maptiles/MapTile7" instance=ExtResource("2_3d4k7")]
+
+[node name="MapTile8" parent="Maptiles" instance=ExtResource("1_wspk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 2)
+
+[node name="Grass1" parent="Maptiles/MapTile8" instance=ExtResource("2_3d4k7")]
+
+[node name="MapTile9" parent="Maptiles" instance=ExtResource("1_wspk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
+
+[node name="Grass1" parent="Maptiles/MapTile9" instance=ExtResource("2_3d4k7")]
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(0.882373, 0.348574, -0.31609, 2.98023e-08, 0.671746, 0.740781, 0.47055, -0.653646, 0.592731, -5.97913, 0, 0)
+
+[node name="Marker3D" type="Marker3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 1, 1, 1)
+
+[node name="Camera3D" type="Camera3D" parent="World/Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.04095)
+size = 5.74984
+
+[node name="Button" type="Button" parent="."]
+offset_left = 8.0
+offset_top = 16.0
+offset_right = 120.0
+offset_bottom = 48.0
+text = "Raycast Test"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

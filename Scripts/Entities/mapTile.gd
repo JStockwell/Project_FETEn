@@ -65,3 +65,6 @@ func _on_input_event(camera, event, position, normal, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == 1 and event.pressed:
 			tile_selected.emit(self)
+
+func _on_hit_detection_area_entered(area):
+	CombatMapStatus.set_hit_blocked(true)

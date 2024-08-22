@@ -27,6 +27,7 @@ var isStartCombat: bool
 var initiative: Array = []
 var currentIni: int
 
+var hitBlocked: bool
 var hasAttacked: bool
 var hasMoved: bool
 
@@ -89,6 +90,12 @@ func set_has_attacked(value: bool) -> void:
 	
 func set_has_moved(value: bool) -> void:
 	hasMoved = value
+	
+func set_hit_blocked(value: bool) -> void:
+	hitBlocked = value
+	
+func is_hit_blocked() -> bool:
+	return hitBlocked
 
 # Selected Entities
 func set_selected_character(character) -> void:

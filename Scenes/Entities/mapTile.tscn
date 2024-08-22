@@ -49,6 +49,8 @@ visible = false
 mesh = SubResource("BoxMesh_q7eie")
 
 [node name="HitDetection" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitDetection"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
@@ -56,3 +58,4 @@ shape = SubResource("BoxShape3D_eri6c")
 disabled = true
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="area_entered" from="HitDetection" to="." method="_on_hit_detection_area_entered"]

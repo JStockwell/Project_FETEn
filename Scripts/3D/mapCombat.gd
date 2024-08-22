@@ -341,6 +341,9 @@ func phys_combat_round() -> void:
 	var attacker = CombatMapStatus.get_selected_character()
 	var defender = CombatMapStatus.get_selected_enemy()
 	
+	if Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()) != 1:
+		CombatMapStatus.set_hit_blocked(false)
+	
 	if Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()) == 1 and attacker.is_ranged():
 		CombatMapStatus.mapMod -= 25
 		
