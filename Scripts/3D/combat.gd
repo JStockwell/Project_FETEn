@@ -27,8 +27,8 @@ func _ready():
 		setup_debug_skill_options()
 		
 	# Create Attacker
-	attacker = Factory.Character.create(CombatMapStatus.attackerStats)
-	defender = Factory.Character.create(CombatMapStatus.defenderStats)
+	attacker = Factory.Character.create(CombatMapStatus.attackerStats, false)
+	defender = Factory.Character.create(CombatMapStatus.defenderStats, false)
 	
 	add_child(attacker)
 	add_child(defender)

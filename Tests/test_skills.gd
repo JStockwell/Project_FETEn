@@ -94,9 +94,9 @@ func before_test():
 		"map_id": 2
 	}
 	
-	attacker = Factory.Character.create(stats_atk)
-	defender = Factory.Character.create(stats_def)
-	ally = Factory.Character.create(stats_ally)
+	attacker = Factory.Character.create(stats_atk, false)
+	defender = Factory.Character.create(stats_def, false)
+	ally = Factory.Character.create(stats_ally, false)
 	CombatMapStatus.set_active_characters(attacker.get_stats(), defender.get_stats())
 	GameStatus.set_autorun_combat(false)
 	

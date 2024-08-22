@@ -57,7 +57,7 @@ func before_test():
 		"is_enemy": false
 	}
 	
-	test_char = Factory.Character.create(initial_stats)
+	test_char = Factory.Character.create(initial_stats, false)
 	
 	
 func after_test():

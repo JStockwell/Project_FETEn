@@ -34,8 +34,8 @@ func before_test():
 
 	stats_def = test_enemies["defender"]
 	
-	attacker = Factory.Character.create(stats_atk)
-	defender = Factory.Character.create(stats_def)
+	attacker = Factory.Character.create(stats_atk, true)
+	defender = Factory.Character.create(stats_def, true)
 	
 	CombatMapStatus.set_active_characters(attacker.get_stats(), defender.get_stats())
 	GameStatus.set_autorun_combat(false)
