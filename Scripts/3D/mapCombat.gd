@@ -1,5 +1,7 @@
 extends Node3D
 
+var mapDict: Dictionary
+
 @onready
 var cameraPivot = $Utility/CameraPivot
 @onready
@@ -30,65 +32,57 @@ func _ready():
 	cameraPivot.position = Vector3(CombatMapStatus.get_map_x()/2, 0, CombatMapStatus.get_map_y()/2)
 	camera.position = Vector3(0,0,CombatMapStatus.get_map_x())
 	skillMenu.connect("id_pressed", Callable(self, "_on_skill_selected"))
-	
-	if CombatMapStatus.is_start_combat():
-		initial_map_load()
-		calculate_combat_initiative()
-		await start_turn()
-	else:
-		reload_map()
+
+	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
+	initial_map_load()
+	calculate_combat_initiative()
+	await start_turn()
 	
 func initial_map_load() -> void:
-	for x in CombatMapStatus.get_map_x():
-		var row = []
-		for y in CombatMapStatus.get_map_y():
-			var mapTile = Factory.MapTile.create({
-				"coords": Vector2(x,y),
-				"height": 0,
-				"idt": false,
-				"isPopulated": false,
-				"isTraversable": true,
-				"isObstacle": false,
-				"meshPath": ""
-			})
-			
-			mapTileGroup.add_child(mapTile, true)
-			mapTile.position = Vector3(x, mapTile.get_height(), y)
-			mapTile.connect("tile_selected", Callable(self, "tile_handler"))
-			
-			row.append(mapTile.get_variables().duplicate())
-		CombatMapStatus.add_map_tile_row(row)
+	var row = []
+	for tile in mapDict["tiles"]:
+		var mapTile = Factory.MapTile.create(tile)
+		mapTileGroup.add_child(mapTile, true)
+		mapTile.position = Vector3(mapTile.get_coords().x, mapTile.get_height() * 0.1, mapTile.get_coords().y)
+		mapTile.connect("tile_selected", Callable(self, "tile_handler"))
+		
+		row.append(mapTile.get_variables().duplicate())
+		if mapTile.get_coords().x == CombatMapStatus.get_map_x():
+			CombatMapStatus.add_map_tile_row(row)
+			row = []
 		
 	var i = 0
 	for character in GameStatus.get_party():
-		var partyMember = Factory.Character.create(GameStatus.get_party_member(character))
+		var partyMember = Factory.Character.create(GameStatus.get_party_member(character), false)
 		partyMember.scale *= Vector3(0.5, 0.5, 0.5)
 		partyMember.position = CombatMapStatus.get_map_spawn()
-		partyMember.position += Vector3(0, 0, i)
-		partyMember.set_map_coords(Vector2(0, i))
+		var spawnPos = Utils.string_to_vector2(mapDict["ally_spawn"][i])
+		partyMember.position += Vector3(spawnPos.x, 0.5, spawnPos.y)
+		partyMember.set_map_coords(spawnPos)
 		partyMember.set_map_id(i)
 		characterGroup.add_child(partyMember)
 		
 		partyMember.set_is_enemy(false)
 		partyMember.connect("character_selected", Callable(self, "character_handler"))
 		
-		set_tile_populated(Vector2(0, i), true)
+		set_tile_populated(spawnPos, true)
 		i += 1
 		
 	var j = 0
-	for character in CombatMapStatus.get_enemies():
-		var enemy = Factory.Character.create(CombatMapStatus.get_enemy(character))
+	for character in mapDict["enemy_spawn"]:
+		var enemy = Factory.Character.create(GameStatus.get_enemy_from_enemy_set(character[0]), true)
 		enemy.scale *= Vector3(0.5, 0.5, 0.5)
 		enemy.position = CombatMapStatus.get_map_spawn()
-		enemy.position += Vector3(CombatMapStatus.get_map_x() - 1, 0, CombatMapStatus.get_map_y() - j - 1)
-		enemy.set_map_coords(Vector2(CombatMapStatus.get_map_x() - 1, CombatMapStatus.get_map_y() - j - 1 ))
+		var spawnPos = Utils.string_to_vector2(character[1])
+		enemy.position += Vector3(spawnPos.x, 0.5, spawnPos.y)
+		enemy.set_map_coords(spawnPos)
 		enemy.set_map_id(i + j)
 		enemyGroup.add_child(enemy)
 		
 		enemy.set_is_enemy(true)
 		enemy.connect("character_selected", Callable(self, "character_handler"))
-		
-		set_tile_populated(Vector2(CombatMapStatus.get_map_x() - 1, CombatMapStatus.get_map_y() - 1 - j), true)
+
+		set_tile_populated(spawnPos, true)
 		j += 1
 
 func calculate_combat_initiative() -> void:
@@ -121,57 +115,6 @@ func setup_skill_menu() -> void:
 	
 	for skill in CombatMapStatus.get_selected_character().get_skills():
 		skillMenu.add_item(GameStatus.skillSet[skill].get_skill_name(), GameStatus.skillSet[skill].get_skill_menu_id())
-
-func reload_map():
-	for mapTileRow in CombatMapStatus.get_map_tile_matrix():
-		for mapTileVars in mapTileRow:
-			var mapTile = Factory.MapTile.create(mapTileVars)
-			mapTileGroup.add_child(mapTile, true)
-			mapTile.position = Vector3(mapTile["coords"].x, mapTile.get_height(), mapTile["coords"].y)
-			mapTile.connect("tile_selected", Callable(self, "tile_handler"))
-			
-	for character in GameStatus.get_party():
-		if GameStatus.get_party_member(character)["current_health"] > 0:
-			var partyMember = Factory.Character.create(GameStatus.get_party_member(character))
-			partyMember.scale *= Vector3(0.5, 0.5, 0.5)
-			partyMember.position = CombatMapStatus.get_map_spawn()
-			partyMember.position += Vector3(partyMember.get_map_coords().x, 0, partyMember.get_map_coords().y)
-			characterGroup.add_child(partyMember)
-			
-			partyMember.connect("character_selected", Callable(self, "character_handler"))
-			
-			set_tile_populated(Vector2(partyMember.get_map_coords().x, partyMember.get_map_coords().y), true)
-		
-		else:
-			CombatMapStatus.remove_character_ini(GameStatus.get_party_member(character)["map_id"])
-		
-	for character in CombatMapStatus.get_enemies():
-		if CombatMapStatus.get_enemy(character)["current_health"] > 0:
-			var enemy = Factory.Character.create(CombatMapStatus.get_enemy(character))
-			enemy.scale *= Vector3(0.5, 0.5, 0.5)
-			enemy.position = CombatMapStatus.get_map_spawn()
-			enemy.position += Vector3(enemy.get_map_coords().x, 0, enemy.get_map_coords().y)
-			enemyGroup.add_child(enemy)
-			
-			enemy.connect("character_selected", Callable(self, "character_handler"))
-			
-			set_tile_populated(Vector2(enemy.get_map_coords().x, enemy.get_map_coords().y), true)
-			
-		else:
-			CombatMapStatus.remove_character_ini(CombatMapStatus.get_enemy(character)["map_id"])
-			
-	if CombatMapStatus.get_current_ini() > len(CombatMapStatus.get_initiative()) - 1:
-		CombatMapStatus.set_current_ini(CombatMapStatus.get_current_ini() - 1)
-			
-	reset_map_status()
-	highlight_control_zones()
-	skillIssue.hide()
-	
-	if not CombatMapStatus.get_selected_character().is_enemy():
-		CombatMapStatus.get_selected_character().selectedChar.show()
-		
-		if not CombatMapStatus.hasMoved:
-			highlight_movement(CombatMapStatus.get_selected_character())
 	
 func reset_to_tavern():
 	if CombatMapStatus.get_current_ini() > len(CombatMapStatus.get_initiative()) - 1:
@@ -181,8 +124,6 @@ func reset_to_tavern():
 	highlight_control_zones()
 	skillIssue.hide()
 	
-	#TODO James revisa este pifostio plis fdo: Pablo :)
-	# Funciona fook u >:)
 	if CombatMapStatus.get_selected_character() == null or CombatMapStatus.get_selected_character().is_enemy():
 		CombatMapStatus.advance_ini()
 		await start_turn()
@@ -268,7 +209,7 @@ func regen_mana() -> void:
 			char.modify_mana(char.get_reg_mana())
 
 func purge_the_dead():
-	var dead
+	var dead = null
 	for char in characterGroup.get_children():
 		if char.get_current_health() == 0:
 			dead = char
@@ -277,10 +218,11 @@ func purge_the_dead():
 		if enemy.get_current_health() == 0:
 			dead = enemy
 			
-	CombatMapStatus.remove_character_ini(dead.get_map_id())
-	var tile = get_tile_from_coords(dead.get_map_coords())
-	tile.set_is_populated(false)
-	dead.free()
+	if dead != null:
+		CombatMapStatus.remove_character_ini(dead.get_map_id())
+		var tile = get_tile_from_coords(dead.get_map_coords())
+		tile.set_is_populated(false)
+		dead.free()
 			
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -507,13 +449,13 @@ func highlight_movement(character) -> void:
 func highlight_control_zones() -> void:
 	for enemy in enemyGroup.get_children():
 		var enemyCoords = enemy.get_map_coords()
-		
 		for i in range(-1, 2):
 			for j in range(-1, 2):
 				if check_within_bounds(enemyCoords + Vector2(i,j), Vector2(i,j)):
 					var tile = get_tile_from_coords(enemyCoords + Vector2(i,j))
-					tile.enemy.show()
-					tile.set_is_control_zone(true)
+					if tile.is_traversable():
+						tile.enemy.show()
+						tile.set_is_control_zone(true)
 					
 func check_within_bounds(vector: Vector2, offset: Vector2) -> bool:
 	var result = true

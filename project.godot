@@ -37,3 +37,7 @@ settings/test/test_lookup_folder="Tests"
 settings/test/test_discovery=true
 ui/inspector/node_collapse=false
 ui/toolbar/run_overall=true
+
+[rendering]
+
+anti_aliasing/quality/screen_space_aa=1

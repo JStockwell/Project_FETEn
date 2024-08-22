@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://csx40302cpyqp"
-path="res://.godot/imported/Grass1.glb-7130633ea73414b6b78de85191490a85.scn"
+uid="uid://c7wfrsbjwvuta"
+path="res://.godot/imported/Void1.glb-d9c3bebd86b1afddbe0ade368b7f4146.scn"
 
 [deps]
 
-source_file="res://Assets/MapTiles/Grass1.glb"
-dest_files=["res://.godot/imported/Grass1.glb-7130633ea73414b6b78de85191490a85.scn"]
+source_file="res://Assets/MapTiles/Void1.glb"
+dest_files=["res://.godot/imported/Void1.glb-d9c3bebd86b1afddbe0ade368b7f4146.scn"]
 
 [params]
 
@@ -20,7 +20,7 @@ nodes/root_scale=1.0
 meshes/ensure_tangents=true
 meshes/generate_lods=true
 meshes/create_shadow_meshes=true
-meshes/light_baking=3
+meshes/light_baking=1
 meshes/lightmap_texel_size=0.2
 meshes/force_disable_compression=false
 skins/use_named_skins=true
