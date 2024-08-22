@@ -14,8 +14,8 @@ var test_combat
 var stats_atk
 var stats_def
 
-#func before():
-	#GameStatus.debugMode = false
+func before():
+	GameStatus.debugMode = false
 	
 
 func before_test():
@@ -195,10 +195,9 @@ func test_generate_rolls_random():
 #####################
 
 func test_combat_round_melee():
-	test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1,"")
+	await test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1,"")
 
 	assert_int(defender.get_current_health()).is_less(defender.get_max_health())
-	await test_combat.wait(1.5)
 	assert_int(attacker.get_current_health()).is_less(attacker.get_max_health())
 
 	
@@ -211,11 +210,9 @@ func test_combat_round_ranged():
 func test_combat_round_skill_no_SEF_retaliation():
 	attacker.get_stats()["attack"] = 5
 	
-	test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1,"shadow_ball")
+	await test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1,"shadow_ball")
 
 	assert_int(defender.get_current_health()).is_less(defender.get_max_health())
-	await test_combat.wait(1.1)
-	
 	assert_int(attacker.get_current_health()).is_less(attacker.get_max_health())
 	
 
@@ -228,10 +225,9 @@ func test_combat_round_skill_no_SEF_no_retaliation():
 func test_combat_round_skill_SEF_retaliation():
 	attacker.get_stats()["attack"] = 2
 	
-	test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1,"nero_nero")
+	await test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1,"nero_nero")
 	
 	assert_int(defender.get_current_health()).is_less(defender.get_max_health())
-	await test_combat.wait(1.1)
 	assert_int(attacker.get_current_health()).is_less(attacker.get_max_health())
 	
 
@@ -247,10 +243,9 @@ func test_combat_round_kill_no_retaliation():
 	defender.get_stats()["map_id"] = 1
 	CombatMapStatus.set_initiative([0, 1])
 
-	test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1,"")
+	await test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1,"")
 
 	assert_int(defender.get_current_health()).is_less(defender.get_max_health())
-	await test_combat.wait(1.1)
 	assert_int(attacker.get_current_health()).is_equal(attacker.get_max_health())
 	
 	
@@ -261,10 +256,9 @@ func test_combat_round_kill_erase_initiative_enemy():
 	defender.get_stats()["map_id"] = 1
 	CombatMapStatus.set_initiative([0, 1])
 	
-	test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1,"")
+	await test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1,"")
 
 	assert_int(defender.get_current_health()).is_less(defender.get_max_health())
-	await test_combat.wait(1.1)
 	assert_int(CombatMapStatus.get_initiative().size()).is_equal(1)
 	assert_bool(CombatMapStatus.get_initiative().has(1)).is_false()
 	
@@ -275,10 +269,9 @@ func test_combat_round_kill_erase_initiative_ally_because_retaliation(do_skip=fa
 	defender.get_stats()["map_id"] = 1
 	CombatMapStatus.set_initiative([0, 1])
 	
-	test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1,"")
+	await test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1,"")
 
 	assert_int(defender.get_current_health()).is_less(defender.get_max_health())
-	await test_combat.wait(1.1)
 	assert_int(attacker.get_current_health()).is_less(attacker.get_max_health())
 	assert_int(CombatMapStatus.get_initiative().size()).is_equal(1)
 	assert_bool(CombatMapStatus.get_initiative().has(0)).is_false()
