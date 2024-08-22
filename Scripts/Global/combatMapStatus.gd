@@ -82,7 +82,8 @@ func set_current_ini(val: int) -> void:
 	currentIni = val
 
 func remove_character_ini(map_id: int) -> void:
-	initiative.remove_at(initiative.find(map_id))
+	if initiative.size() != 0:
+		initiative.remove_at(initiative.find(map_id))
 
 func set_has_attacked(value: bool) -> void:
 	hasAttacked = value
