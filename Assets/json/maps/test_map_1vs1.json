@@ -1,0 +1,96 @@
+{
+	"name": "test_map_1vs1",
+	"size": "(3,3)",
+	"ally_spawn": [
+		"(0,0)",
+	],
+	"enemy_spawn": [
+		[
+			"defender",
+			"(2,2)"
+		],
+	],
+	"tiles": [
+		{
+			"coords": "(0,0)",
+			"height": 0,
+			"idt": false,
+			"isPopulated": false,
+			"isTraversable": true,
+			"isObstacle": false,
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+		},
+		{
+			"coords": "(1,0)",
+			"height": 0,
+			"idt": false,
+			"isPopulated": false,
+			"isTraversable": true,
+			"isObstacle": false,
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+		},
+		{
+			"coords": "(2,0)",
+			"height": 0,
+			"idt": false,
+			"isPopulated": false,
+			"isTraversable": true,
+			"isObstacle": false,
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+		},
+		{
+			"coords": "(0,1)",
+			"height": 0,
+			"idt": false,
+			"isPopulated": false,
+			"isTraversable": true,
+			"isObstacle": false,
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+		},
+		{
+			"coords": "(1,1)",
+			"height": 0,
+			"idt": false,
+			"isPopulated": false,
+			"isTraversable": true,
+			"isObstacle": false,
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+		},
+		{
+			"coords": "(2,1)",
+			"height": 0,
+			"idt": false,
+			"isPopulated": false,
+			"isTraversable": true,
+			"isObstacle": false,
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+		},
+		{
+			"coords": "(0,2)",
+			"height": 0,
+			"idt": false,
+			"isPopulated": false,
+			"isTraversable": true,
+			"isObstacle": false,
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+		},
+		{
+			"coords": "(1,2)",
+			"height": 0,
+			"idt": false,
+			"isPopulated": false,
+			"isTraversable": true,
+			"isObstacle": false,
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+		},
+		{
+			"coords": "(2,2)",
+			"height": 0,
+			"idt": false,
+			"isPopulated": false,
+			"isTraversable": true,
+			"isObstacle": false,
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+		},
+	]
+}
