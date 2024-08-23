@@ -64,16 +64,9 @@ func combat_round(rolls: Array, rolls_retaliate: Array, mapMod: int, range: int,
 	if range == 1 and defender.get_stats()["current_health"] != 0:
 		# TODO check mapMod for enemy? No mapMod?
 		await attack(defender, attacker, rolls_retaliate, mapMod)
-		
-	elif defender.get_stats()["current_health"] == 0:
-		CombatMapStatus.remove_character_ini(defender.get_map_id())
-		
-		if CombatMapStatus.get_current_ini() > len(CombatMapStatus.get_initiative()) - 1:
-			CombatMapStatus.set_current_ini(CombatMapStatus.get_current_ini() - 1)
-		
+	
 	CombatMapStatus.set_has_attacked(true)
 	combat_end.emit()
-	#get_tree().change_scene_to_file("res://Scenes/3D/tavern.tscn")
 
 # Attack functions
 # TODO Map modifier
