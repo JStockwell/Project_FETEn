@@ -110,7 +110,7 @@ func test_setup_skill_menu():
 		assert_int(checker).is_zero()
 		
 		
-func test_reset_to_tavern(do_skip=true, skip_reason="Tests under development"):
+func test_reset_to_tavern(do_skip=true, skip_reason="Ask James"):
 	pass
 
 
@@ -401,10 +401,18 @@ func test_validate_move(do_skip=true, skip_reason="Waiting for TODOs"):
 	pass
 	
 	
-#TODO
-func test__on_phys_attack_button_pressed(do_skip=true, skip_reason="Tests under development"):
-	assert_that(true).is_equal(true)
-	pass
+func test__on_phys_attack_button_pressed():
+	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
+	CombatMapStatus.set_selected_enemy(test_mapCombat.enemyGroup.get_children()[0])
+	test_mapCombat.characterGroup.get_children()[0].get_stats()["map_coords"] = Vector2(2,1)
+	
+	test_mapCombat._on_phys_attack_button_pressed()
+	
+	assert_int(CombatMapStatus.mapMod).is_zero()
+	assert_that(test_mapCombat.characterGroup.get_children()[0].get_stats()).is_equal(CombatMapStatus.get_attacker_stats())
+	assert_that(test_mapCombat.enemyGroup.get_children()[0].get_stats()).is_equal(CombatMapStatus.get_defender_stats())
+	
+	test_mapCombat.characterGroup.get_children()[0].get_stats()["map_coords"] = Vector2(0,0)
 
 func test_phys_combat_round_melee():
 	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
@@ -438,11 +446,11 @@ func test_phys_combat_round_ranged_melee(do_skip=false, skip_reason="Tests under
 	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
 	CombatMapStatus.set_selected_enemy(test_mapCombat.enemyGroup.get_children()[0])
 	test_mapCombat.characterGroup.get_children()[0].get_stats()["is_ranged"] = true
-	test_mapCombat.characterGroup.get_children()[0].get_stats()["map_coords"] = Vector2(2,1)
+	test_mapCombat.characterGroup.get_children()[0].get_stats()["map_coords"] = Vector2(1,2)
 	
 	test_mapCombat.phys_combat_round()
 	
-	assert_int(CombatMapStatus.mapMod).is_zero() #TODO revisar con yames, deberia ser -25
+	assert_int(CombatMapStatus.mapMod).is_equal(-25)
 	assert_that(test_mapCombat.characterGroup.get_children()[0].get_stats()).is_equal(CombatMapStatus.get_attacker_stats())
 	assert_that(test_mapCombat.enemyGroup.get_children()[0].get_stats()).is_equal(CombatMapStatus.get_defender_stats())
 	
@@ -450,7 +458,7 @@ func test_phys_combat_round_ranged_melee(do_skip=false, skip_reason="Tests under
 	test_mapCombat.characterGroup.get_children()[0].get_stats()["map_coords"] = Vector2(0,0)
 	
 #TODO
-func test__on_skill_selected(do_skip=true, skip_reason="Tests under development"):
+func test__on_skill_selected(do_skip=true, skip_reason="Waiting for TODOs"):
 	assert_that(true).is_equal(true)
 	pass
 
