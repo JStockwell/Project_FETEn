@@ -362,6 +362,7 @@ func _on_skill_selected(id: int):
 	else:
 		skillResult = SkillMenu.handle_skill(skillName, CombatMapStatus.get_selected_character(), CombatMapStatus.get_selected_enemy())
 	
+	#TODO revisar -> skillMenu
 	if skillResult != "":
 		skillIssue.text = skillResult
 		skillIssue.show()
