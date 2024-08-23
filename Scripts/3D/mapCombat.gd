@@ -44,9 +44,12 @@ func initial_map_load() -> void:
 		mapTileGroup.add_child(mapTile, true)
 		mapTile.position = Vector3(mapTile.get_coords().x, mapTile.get_height() * 0.1, mapTile.get_coords().y)
 		mapTile.connect("tile_selected", Callable(self, "tile_handler"))
-		if mapTile.is_obstacle():
+		
+		if mapTile.get_obstacle_type() in [1, 2]:
 			mapTile.set_odz(false)
+			
 		row.append(mapTile.get_variables().duplicate())
+		
 		if mapTile.get_coords().x == CombatMapStatus.get_map_x():
 			CombatMapStatus.add_map_tile_row(row)
 			row = []
@@ -118,7 +121,7 @@ func setup_skill_menu() -> void:
 	
 func reset_to_tavern():
 	if CombatMapStatus.get_current_ini() > len(CombatMapStatus.get_initiative()) - 1:
-		CombatMapStatus.set_current_ini(CombatMapStatus.get_current_ini() - 1)
+		CombatMapStatus.set_current_ini(len(CombatMapStatus.get_initiative()) - 1)
 			
 	reset_map_status()
 	highlight_control_zones()
@@ -191,6 +194,7 @@ func reset_map_status() -> void:
 	CombatMapStatus.set_selected_character(null)
 	CombatMapStatus.set_selected_enemy(null)
 	CombatMapStatus.set_selected_map_tile(null)
+	CombatMapStatus.mapMod = 0
 	
 	var currentChar
 	var flag = true
@@ -207,6 +211,7 @@ func reset_map_status() -> void:
 				
 	CombatMapStatus.set_selected_character(currentChar)
 
+# TODO Redo with actual mana recharges
 func regen_mana() -> void:
 	for char in characterGroup.get_children():
 		if char.get_max_mana() != 0:
@@ -384,6 +389,8 @@ func calc_los() -> bool:
 	ray.force_raycast_update()
 	
 	if ray.is_colliding():
+		var tile = ray.get_collider()
+		print(tile)
 		result = true
 		
 	ray.free()
@@ -410,7 +417,7 @@ func _on_skill_selected(id: int):
 		CombatMapStatus.get_selected_character().modify_mana(-GameStatus.skillSet[skillName].get_cost())
 		
 		if GameStatus.skillSet[skillName].can_target_allies():
-			# Buffs and health?
+			#TODO James programa esta puta mierda :))) Buffs and health?
 			pass
 			
 		else:

@@ -26,10 +26,10 @@ func _ready():
 	for tile in mapDict["tiles"]:
 		var mapTile = Factory.MapTile.create(tile)
 		mapTileGroup.add_child(mapTile, true)
-		mapTile.position = Vector3(mapTile.get_coords().x, mapTile.get_height() * 0.1, mapTile.get_coords().y)
+		mapTile.position = Vector3(mapTile.get_coords().x, mapTile.get_height() * 0.2, mapTile.get_coords().y)
 		mapTile.connect("tile_selected", Callable(self, "tile_handler"))
 		
-		if mapTile.is_obstacle():
+		if mapTile.get_obstacle_type() in [1, 2]:
 			mapTile.set_odz(false)
 		
 		row.append(mapTile.get_variables().duplicate())
@@ -44,17 +44,52 @@ func _process(delta):
 
 func _on_button_pressed():
 	var ray = RayCast3D.new()
-	
-	ray.set_collide_with_areas(true)
-	
+	#var origin = CombatMapStatus.get_selected_character().get_map_coords()
+	#var end = CombatMapStatus.get_selected_enemy().get_map_coords()
 	ray.position = Vector3(origin.x, -5, origin.y)
 	ray.target_position = Vector3(end.x - origin.x, 0, end.y - origin.y)
 	
 	add_child(ray)
+	ray.set_collide_with_areas(true)
+	
+	# endFlag, hasCollidedFull, mapMod
+	var result = [false, false, []]
+	
+	for i in range(0, 1000):
+		result = collision_loop(ray, result)
+		
+		if result[0] == true:
+			break
+		
+	if result[1]:
+		print("Big Collision!")
+	
+	else:
+		if len(result[2]) == 0:
+			print("No Collision!")
+			
+		else:
+			print(result[2])
+
+# args: endFlag: bool, noLoS: bool, foundTiles: Array
+func collision_loop(ray, args: Array):
 	ray.force_raycast_update()
 	
-	print(ray.is_colliding())
-	ray.free()
+	if ray.is_colliding():
+		var tile = ray.get_collider().get_parent()
+		
+		if tile.get_obstacle_type() == 2:
+			ray.free()
+			args[0] = true
+			args[1] = true
+		
+		elif tile.get_obstacle_type() == 1:
+			args[2].append(tile)
+			
+	else:
+		args[0] = true
+		
+	return args
 
 func tile_handler(tile):
 	selectedTile = tile

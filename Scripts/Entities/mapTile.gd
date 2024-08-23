@@ -18,7 +18,7 @@ var isDifficultTerrain: bool
 
 var isPopulated: bool
 var isTraversable: bool
-var isObstacle: bool
+var obstacleType: int # 0 None, 1 Semi, 2 Full
 var isControlZone: bool = false
 
 var meshPath: String = ""
@@ -31,7 +31,7 @@ func get_variables() -> Dictionary:
 		"idt": isDifficultTerrain,
 		"isPopulated": isPopulated,
 		"isTraversable": isTraversable,
-		"isObstacle": isObstacle,
+		"obstacleType": obstacleType,
 		"meshPath": meshPath
 	}
 
@@ -44,8 +44,8 @@ func is_populated() -> bool:
 func is_traversable() -> bool:
 	return isTraversable
 	
-func is_obstacle() -> bool:
-	return isObstacle
+func get_obstacle_type() -> int:
+	return obstacleType
 
 func get_height() -> int:
 	return height

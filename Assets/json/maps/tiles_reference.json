@@ -5,7 +5,7 @@
 		"idt": false,
 		"isPopulated": false,
 		"isTraversable": true,
-		"isObstacle": false,
+		"obstacleType": 0,
 		"meshPath": "res://Assets/MapTiles/Grass1.glb"
 	},
 	"stone": {
@@ -14,7 +14,7 @@
 		"idt": false,
 		"isPopulated": false,
 		"isTraversable": true,
-		"isObstacle": false,
+		"obstacleType": 0,
 		"meshPath": "res://Assets/MapTiles/Stone1.glb"
 	},
 	"water": {
@@ -23,7 +23,7 @@
 		"idt": true,
 		"isPopulated": false,
 		"isTraversable": true,
-		"isObstacle": false,
+		"obstacleType": 0,
 		"meshPath": "res://Assets/MapTiles/Water1.glb"
 	},
 	"mid_obstacle": {
@@ -31,8 +31,8 @@
 		"height": 0,
 		"idt": true,
 		"isPopulated": false,
-		"isTraversable": true,
-		"isObstacle": true,
+		"isTraversable": false,
+		"obstacleType": 1,
 		"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
 	},
 	"obstacle": {
@@ -41,7 +41,7 @@
 		"idt": false,
 		"isPopulated": false,
 		"isTraversable": false,
-		"isObstacle": true,
+		"obstacleType": 2,
 		"meshPath": "res://Assets/MapTiles/Obstacle1.glb"
 	},
 	"void": {
@@ -50,7 +50,7 @@
 		"idt": false,
 		"isPopulated": false,
 		"isTraversable": false,
-		"isObstacle": false,
+		"obstacleType": 0,
 		"meshPath": "res://Assets/MapTiles/Void1.glb"
 	}
 }

@@ -58,11 +58,8 @@ func _on_start_turn() -> void:
 
 func _on_combat_start() -> void:
 	com = Combat.instantiate()
-	
 	add_child(com)
-	
 	com.connect("combat_end", Callable(self, "_on_combat_end"))
-	
 	com.position = combatCenter.position
 	com.camera.current = true
 	cm.ui.hide()

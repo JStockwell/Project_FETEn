@@ -39,4 +39,4 @@ static func create(args: Dictionary, duplicateFlag: bool):
 		return character
 		
 	else:
-		print("Incorrect stats set")
+		push_error("Incorrect stats set")
