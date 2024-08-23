@@ -5,7 +5,7 @@ var Combat = load("res://Scenes/3D/combat.tscn")
 
 var test_players = Utils.read_json("res://Assets/json/test_players.json")
 var test_enemies = Utils.read_json("res://Assets/json/test_enemies.json")
-var test_skillSet = Utils.read_json("res://Assets/json/skills.json")
+var skillSet = Utils.read_json("res://Assets/json/skills.json")
 
 var attacker
 var defender
@@ -25,8 +25,8 @@ func before_test():
 	add_child(defender)
 	
 	var i = 0
-	for skillName in test_skillSet:
-		GameStatus.skillSet[skillName] = Factory.Skill.create(test_skillSet[skillName])
+	for skillName in skillSet:
+		GameStatus.skillSet[skillName] = Factory.Skill.create(skillSet[skillName])
 		GameStatus.skillSet[skillName].set_skill_menu_id(i)
 		i += 1
 	
