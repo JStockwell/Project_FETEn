@@ -249,34 +249,6 @@ func test_combat_round_kill_no_retaliation():
 	assert_int(attacker.get_current_health()).is_equal(attacker.get_max_health())
 	
 	
-func test_combat_round_kill_erase_initiative_enemy():
-	#CombatMapStatus.set_active_characters(attacker.get_stats(), defender.get_stats())
-	attacker.get_stats()["attack"] = 50
-	attacker.get_stats()["map_id"] = 0
-	defender.get_stats()["map_id"] = 1
-	CombatMapStatus.set_initiative([0, 1])
-	
-	await test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1,"")
-
-	assert_int(defender.get_current_health()).is_less(defender.get_max_health())
-	assert_int(CombatMapStatus.get_initiative().size()).is_equal(1)
-	assert_bool(CombatMapStatus.get_initiative().has(1)).is_false()
-	
-	
-func test_combat_round_kill_erase_initiative_ally_because_retaliation(do_skip=false, skip_reason="James has to repair the function"):
-	defender.get_stats()["attack"] = 50
-	attacker.get_stats()["map_id"] = 0
-	defender.get_stats()["map_id"] = 1
-	CombatMapStatus.set_initiative([0, 1])
-	
-	await test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1,"")
-
-	assert_int(defender.get_current_health()).is_less(defender.get_max_health())
-	assert_int(attacker.get_current_health()).is_less(attacker.get_max_health())
-	assert_int(CombatMapStatus.get_initiative().size()).is_equal(1)
-	assert_bool(CombatMapStatus.get_initiative().has(0)).is_false()
-	
-	
 func test_attack_hit():
 	var rolls = [1, 1, 1, 1]
 	

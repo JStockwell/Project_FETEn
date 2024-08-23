@@ -7,6 +7,7 @@ var test_enemies = Utils.read_json("res://Assets/json/test_enemies.json")
 var test_skillSet = Utils.read_json("res://Assets/json/skills.json")
 
 var test_mapCombat
+var mapDict
 
 #var stats_atk
 #var stats_def
@@ -14,14 +15,14 @@ var test_mapCombat
 func before():
 	GameStatus.debugMode = false
 
-func before_test():	
+func before_test():
 	GameStatus.set_playable_characters(test_players)
 	GameStatus.set_enemy_set(test_enemies)
 	
 	GameStatus.set_party(["attacker"])
 	
 	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_1vs1.json")
-	var mapDict = Utils.read_json(CombatMapStatus.get_map_path())
+	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
 	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
 	
 	var i = 0
@@ -134,17 +135,23 @@ func test_start_turn_enemy():
 	assert_that(CombatMapStatus.hasMoved).is_false()
 
 
-func test_reset_map_status(do_skip=true, skip_reason="Waiting for new map 2vs2"):
+func test_reset_map_status():
+	#Change the map 
 	GameStatus.set_party(["attacker", "attacker2"])
+	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
+	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
+	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
+	test_mapCombat.mapDict = mapDict
 	CombatMapStatus.set_is_start_combat(true)
 	test_mapCombat.initial_map_load()
-	CombatMapStatus.set_initiative([0, 1, 2])
+	CombatMapStatus.set_initiative([0, 1, 2, 3])
+	
 	test_mapCombat.start_turn()
 	CombatMapStatus.set_selected_ally(GameStatus.get_party()["attacker2"])
-	CombatMapStatus.set_selected_enemy(CombatMapStatus.get_enemy("defender_0"))
+	CombatMapStatus.set_selected_enemy(test_mapCombat.enemyGroup.get_children()[0])
 	CombatMapStatus.set_selected_map_tile(Vector2(1,1))
 	assert_that(CombatMapStatus.get_selected_ally()).is_equal(GameStatus.get_party()["attacker2"])
-	assert_that(CombatMapStatus.get_selected_enemy()).is_equal(CombatMapStatus.get_enemy("defender_0"))
+	assert_that(CombatMapStatus.get_selected_enemy()).is_equal(test_mapCombat.enemyGroup.get_children()[0])
 	assert_that(CombatMapStatus.get_selected_map_tile()).is_equal(Vector2(1,1))
 	assert_that(CombatMapStatus.get_selected_character().get_stats()).is_equal(GameStatus.get_party()["attacker"])
 	
@@ -183,8 +190,11 @@ func test_character_handler_isEnemy_handled():
 	assert_that(CombatMapStatus.get_selected_enemy()).is_equal(test_mapCombat.enemyGroup.get_children()[0])
 	
 	
-func test_character_handler_other_ally_turn(do_skip=true, skip_reason="Waiting for new map 2vs2"):
-	GameStatus.set_party(["attacker", "attacker2"])
+func test_character_handler_other_ally_turn():
+	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
+	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
+	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
+	test_mapCombat.mapDict = mapDict
 	CombatMapStatus.set_is_start_combat(true)
 	test_mapCombat.initial_map_load()
 	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
@@ -194,9 +204,11 @@ func test_character_handler_other_ally_turn(do_skip=true, skip_reason="Waiting f
 	assert_that(CombatMapStatus.get_selected_ally()).is_equal(test_mapCombat.characterGroup.get_children()[1])
 
 
-func test_selected_checker_last_selection_null_enemy(do_skip=true, skip_reason="Waiting for new map 2vs2"):
-	GameStatus.set_party(["attacker", "attacker2"])
-	CombatMapStatus.set_enemies(["defender", "defender"])
+func test_selected_checker_last_selection_null_enemy():
+	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
+	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
+	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
+	test_mapCombat.mapDict = mapDict
 	CombatMapStatus.set_is_start_combat(true)
 	test_mapCombat.initial_map_load()
 	var enemy = test_mapCombat.enemyGroup.get_children()[0]
@@ -206,9 +218,11 @@ func test_selected_checker_last_selection_null_enemy(do_skip=true, skip_reason="
 	assert_that(CombatMapStatus.get_selected_enemy()).is_equal(enemy)
 	
 
-func test_selected_checker_last_selection_null_ally(do_skip=true, skip_reason="Waiting for new map 2vs2"):
-	GameStatus.set_party(["attacker", "attacker2"])
-	CombatMapStatus.set_enemies(["defender", "defender"])
+func test_selected_checker_last_selection_null_ally():
+	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
+	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
+	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
+	test_mapCombat.mapDict = mapDict
 	CombatMapStatus.set_is_start_combat(true)
 	test_mapCombat.initial_map_load()
 	var ally = test_mapCombat.characterGroup.get_children()[1]
@@ -218,9 +232,11 @@ func test_selected_checker_last_selection_null_ally(do_skip=true, skip_reason="W
 	assert_that(CombatMapStatus.get_selected_ally()).is_equal(ally)
 	
 	
-func test_selected_checker_unselect_enemy(do_skip=true, skip_reason="Waiting for new map 2vs2"):
-	GameStatus.set_party(["attacker", "attacker2"])
-	CombatMapStatus.set_enemies(["defender", "defender"])
+func test_selected_checker_unselect_enemy():
+	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
+	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
+	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
+	test_mapCombat.mapDict = mapDict
 	CombatMapStatus.set_is_start_combat(true)
 	test_mapCombat.initial_map_load()
 	var enemy = test_mapCombat.enemyGroup.get_children()[0]
@@ -230,9 +246,11 @@ func test_selected_checker_unselect_enemy(do_skip=true, skip_reason="Waiting for
 	assert_that(CombatMapStatus.get_selected_enemy()).is_null()
 	
 	
-func test_selected_checker_unselect_ally(do_skip=true, skip_reason="Waiting for new map 2vs2"):
-	GameStatus.set_party(["attacker", "attacker2"])
-	CombatMapStatus.set_enemies(["defender", "defender"])
+func test_selected_checker_unselect_ally():
+	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
+	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
+	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
+	test_mapCombat.mapDict = mapDict
 	CombatMapStatus.set_is_start_combat(true)
 	test_mapCombat.initial_map_load()
 	var ally = test_mapCombat.characterGroup.get_children()[0]
@@ -242,9 +260,11 @@ func test_selected_checker_unselect_ally(do_skip=true, skip_reason="Waiting for 
 	assert_that(CombatMapStatus.get_selected_ally()).is_null()
 	
 	
-func test_selected_checker_change_selection_enemy(do_skip=true, skip_reason="Waiting for new map 2vs2"):
-	GameStatus.set_party(["attacker", "attacker2"])
-	CombatMapStatus.set_enemies(["defender", "defender"])
+func test_selected_checker_change_selection_enemy():
+	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
+	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
+	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
+	test_mapCombat.mapDict = mapDict
 	CombatMapStatus.set_is_start_combat(true)
 	test_mapCombat.initial_map_load()
 	var old_enemy = test_mapCombat.enemyGroup.get_children()[0]
@@ -255,9 +275,11 @@ func test_selected_checker_change_selection_enemy(do_skip=true, skip_reason="Wai
 	assert_that(CombatMapStatus.get_selected_enemy()).is_equal(enemy)
 
 
-func test_selected_checker_change_selection_ally(do_skip=true, skip_reason="Waiting for new map 2vs2"):
-	GameStatus.set_party(["attacker", "attacker2"])
-	CombatMapStatus.set_enemies(["defender", "defender"])
+func test_selected_checker_change_selection_ally():
+	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
+	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
+	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
+	test_mapCombat.mapDict = mapDict
 	CombatMapStatus.set_is_start_combat(true)
 	test_mapCombat.initial_map_load()
 	var old_ally = test_mapCombat.characterGroup.get_children()[0]
