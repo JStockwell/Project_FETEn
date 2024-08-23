@@ -220,11 +220,12 @@ func purge_the_dead():
 			dead = enemy
 			
 	if dead != null:
+		if dead.get_map_id() == CombatMapStatus.get_selected_character().get_map_id():
+			print("hello")
 		CombatMapStatus.remove_character_ini(dead.get_map_id())
 		var tile = get_tile_from_coords(dead.get_map_coords())
 		tile.set_is_populated(false)
 		dead.free()
-			
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

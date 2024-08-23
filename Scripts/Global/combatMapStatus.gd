@@ -83,7 +83,18 @@ func set_current_ini(val: int) -> void:
 	currentIni = val
 
 func remove_character_ini(map_id: int) -> void:
-	initiative.remove_at(initiative.find(map_id))
+	var index = initiative.find(map_id)
+	initiative.remove_at(index)
+	
+	if map_id == selectedCharacter.get_map_id():
+		hasAttacked == false
+		hasMoved == false
+	
+	elif CombatMapStatus.get_current_ini() > index:
+		CombatMapStatus.set_current_ini(CombatMapStatus.get_current_ini() - 1)
+		
+	if CombatMapStatus.get_current_ini() > len(CombatMapStatus.get_initiative()) - 1:
+		CombatMapStatus.set_current_ini(CombatMapStatus.get_current_ini() - 1)
 
 func set_has_attacked(value: bool) -> void:
 	hasAttacked = value

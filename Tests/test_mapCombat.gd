@@ -1,6 +1,5 @@
 extends GdUnitTestSuite
 
-#var Character = preload("res://Scenes/Entities/character.tscn")
 var MapCombat = load("res://Scenes/3D/mapCombat.tscn")
 
 var test_players = Utils.read_json("res://Assets/json/test_players.json")
@@ -20,7 +19,10 @@ func before_test():
 	GameStatus.set_enemy_set(test_enemies)
 	
 	GameStatus.set_party(["attacker"])
-	CombatMapStatus.set_enemies(["defender"])
+	
+	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_1vs1.json")
+	var mapDict = Utils.read_json(CombatMapStatus.get_map_path())
+	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
 	
 	var i = 0
 	for skillName in test_skillSet:
@@ -28,8 +30,6 @@ func before_test():
 		GameStatus.skillSet[skillName].set_skill_menu_id(i)
 		i += 1
 		
-	#CombatMapStatus.set_active_characters(GameStatus.get_party_member("attacker"), CombatMapStatus.get_enemy("defender_0"))
-	CombatMapStatus.set_map_size(Vector2(3, 3))
 	CombatMapStatus.set_is_start_combat(true)
 	
 	GameStatus.set_autorun_combat(false)
@@ -45,30 +45,28 @@ func after_test():
 		GameStatus.skillSet[test_skill].free()
 	Utils.reset_all()
 	
-	GameStatus.party.clear()
-	CombatMapStatus.enemies.clear()
 
 ##############
 # Unit Tests #
 ##############
 
-func test_not_null(do_skip=true, skip_reason="Waiting for maintenance"):
+func test_not_null():
 	assert_that(test_mapCombat).is_not_null()
 	
 	
-func test_sort_descending_case_a_bigger_b(do_skip=true, skip_reason="Waiting for maintenance"):
+func test_sort_descending_case_a_bigger_b():
 	var res = test_mapCombat.sort_descending(2., 1.)
 	
 	assert_bool(res).is_true()
 
 
-func test_sort_descending_case_a_less_b(do_skip=true, skip_reason="Waiting for maintenance"):
+func test_sort_descending_case_a_less_b():
 	var res = test_mapCombat.sort_descending(1., 2.)
 	
 	assert_bool(res).is_false()
 
 
-func test_sort_descending_case_a_equal_b(do_skip=true, skip_reason="Waiting for maintenance"):
+func test_sort_descending_case_a_equal_b():
 	var res = test_mapCombat.sort_descending(1., 1.)
 	
 	assert_bool(res).is_true()
@@ -78,17 +76,17 @@ func test_sort_descending_case_a_equal_b(do_skip=true, skip_reason="Waiting for 
 # Integration Tests #
 #####################
 
-func test_initial_map_load(do_skip=true, skip_reason="Waiting for maintenance"):
+func test_initial_map_load():
 	#Function called in _ready() of mapCombat
 	assert_that(CombatMapStatus.get_map_dimensions()).is_equal(Vector2(3, 3))
 	assert_that(CombatMapStatus.get_selected_character()).is_not_null()
 	assert_that(GameStatus.get_party()["attacker"]["map_coords"]).is_not_null()
 	assert_that(GameStatus.get_party()["attacker"]["map_id"]).is_not_null()
-	assert_that(CombatMapStatus.get_enemies()["defender_0"]["map_coords"]).is_not_null()
-	assert_that(CombatMapStatus.get_enemies()["defender_0"]["map_id"]).is_not_null()
+	assert_that(test_mapCombat.enemyGroup.get_children()[0].get_stats()["map_coords"]).is_not_null()
+	assert_that(test_mapCombat.enemyGroup.get_children()[0].get_stats()["map_id"]).is_not_null()
 	
 	
-func test_calculate_combat_initiative(do_skip=true, skip_reason="Waiting for maintenance"):
+func test_calculate_combat_initiative():
 	CombatMapStatus.initiative.clear()
 	assert_array(CombatMapStatus.get_initiative()).is_empty()
 	
@@ -97,7 +95,7 @@ func test_calculate_combat_initiative(do_skip=true, skip_reason="Waiting for mai
 	assert_array(CombatMapStatus.get_initiative()).is_not_empty()
 
 
-func test_setup_skill_menu(do_skip=true, skip_reason="Waiting for maintenance"):
+func test_setup_skill_menu():
 	test_mapCombat.setup_skill_menu()
 	var checker
 	
@@ -111,20 +109,7 @@ func test_setup_skill_menu(do_skip=true, skip_reason="Waiting for maintenance"):
 		assert_int(checker).is_zero()
 
 
-func test_reload_map(do_skip=true, skip_reason="Waiting for maintenance"):
-	CombatMapStatus.set_enemies(["defender", "defender"])
-	CombatMapStatus.set_is_start_combat(true)
-	test_mapCombat.initial_map_load()
-	test_mapCombat.calculate_combat_initiative()
-	assert_that(CombatMapStatus.get_initiative().size()).is_equal(3)
-	CombatMapStatus.get_enemy("defender_0")["current_health"] = 0
-	
-	test_mapCombat.reload_map()
-	
-	assert_that(CombatMapStatus.get_initiative().size()).is_equal(2)
-
-
-func test_start_turn_party(do_skip=true, skip_reason="Waiting for maintenance"):
+func test_start_turn_party():
 	CombatMapStatus.set_initiative([0,1])
 	CombatMapStatus.set_is_start_combat(false)
 	assert_that(GameStatus.get_party()["attacker"]["current_mana"]).is_equal(5.)
@@ -139,7 +124,7 @@ func test_start_turn_party(do_skip=true, skip_reason="Waiting for maintenance"):
 	
 	
 	#TODO Wait Pablo for IA for more testing
-func test_start_turn_enemy(do_skip=true, skip_reason="Waiting for maintenance"):
+func test_start_turn_enemy():
 	CombatMapStatus.set_initiative([1,0])
 	CombatMapStatus.set_is_start_combat(false)
 
@@ -149,7 +134,7 @@ func test_start_turn_enemy(do_skip=true, skip_reason="Waiting for maintenance"):
 	assert_that(CombatMapStatus.hasMoved).is_false()
 
 
-func test_reset_map_status(do_skip=true, skip_reason="Waiting for maintenance"):
+func test_reset_map_status(do_skip=true, skip_reason="Waiting for new map 2vs2"):
 	GameStatus.set_party(["attacker", "attacker2"])
 	CombatMapStatus.set_is_start_combat(true)
 	test_mapCombat.initial_map_load()
@@ -172,7 +157,7 @@ func test_reset_map_status(do_skip=true, skip_reason="Waiting for maintenance"):
 	assert_that(CombatMapStatus.get_selected_character().get_stats()).is_equal(GameStatus.get_party()["attacker2"])
 
 
-func test_regen_mana(do_skip=true, skip_reason="Waiting for maintenance"):
+func test_regen_mana():
 	GameStatus.get_party()["attacker"]["current_mana"] = 5.
 	assert_that(GameStatus.get_party()["attacker"]["current_mana"]).is_equal(5.)
 
@@ -181,7 +166,7 @@ func test_regen_mana(do_skip=true, skip_reason="Waiting for maintenance"):
 	assert_that(GameStatus.get_party()["attacker"]["current_mana"]).is_equal(10.)
 
 
-func test_character_handler_enemy_turn(do_skip=true, skip_reason="Waiting for maintenance"):
+func test_character_handler_enemy_turn():
 	CombatMapStatus.set_selected_character(test_mapCombat.enemyGroup.get_children()[0])
 	
 	test_mapCombat.character_handler(test_mapCombat.characterGroup.get_children()[0])
@@ -190,7 +175,7 @@ func test_character_handler_enemy_turn(do_skip=true, skip_reason="Waiting for ma
 	assert_that(CombatMapStatus.get_selected_enemy()).is_null()
 	
 
-func test_character_handler_isEnemy_handled(do_skip=true, skip_reason="Waiting for maintenance"):
+func test_character_handler_isEnemy_handled():
 	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
 	
 	test_mapCombat.character_handler(test_mapCombat.enemyGroup.get_children()[0])
@@ -198,7 +183,7 @@ func test_character_handler_isEnemy_handled(do_skip=true, skip_reason="Waiting f
 	assert_that(CombatMapStatus.get_selected_enemy()).is_equal(test_mapCombat.enemyGroup.get_children()[0])
 	
 	
-func test_character_handler_other_ally_turn(do_skip=true, skip_reason="Waiting for maintenance"):
+func test_character_handler_other_ally_turn(do_skip=true, skip_reason="Waiting for new map 2vs2"):
 	GameStatus.set_party(["attacker", "attacker2"])
 	CombatMapStatus.set_is_start_combat(true)
 	test_mapCombat.initial_map_load()
@@ -209,7 +194,7 @@ func test_character_handler_other_ally_turn(do_skip=true, skip_reason="Waiting f
 	assert_that(CombatMapStatus.get_selected_ally()).is_equal(test_mapCombat.characterGroup.get_children()[1])
 
 
-func test_selected_checker_last_selection_null_enemy(do_skip=true, skip_reason="Waiting for maintenance"):
+func test_selected_checker_last_selection_null_enemy(do_skip=true, skip_reason="Waiting for new map 2vs2"):
 	GameStatus.set_party(["attacker", "attacker2"])
 	CombatMapStatus.set_enemies(["defender", "defender"])
 	CombatMapStatus.set_is_start_combat(true)
@@ -221,7 +206,7 @@ func test_selected_checker_last_selection_null_enemy(do_skip=true, skip_reason="
 	assert_that(CombatMapStatus.get_selected_enemy()).is_equal(enemy)
 	
 
-func test_selected_checker_last_selection_null_ally(do_skip=true, skip_reason="Waiting for maintenance"):
+func test_selected_checker_last_selection_null_ally(do_skip=true, skip_reason="Waiting for new map 2vs2"):
 	GameStatus.set_party(["attacker", "attacker2"])
 	CombatMapStatus.set_enemies(["defender", "defender"])
 	CombatMapStatus.set_is_start_combat(true)
@@ -233,7 +218,7 @@ func test_selected_checker_last_selection_null_ally(do_skip=true, skip_reason="W
 	assert_that(CombatMapStatus.get_selected_ally()).is_equal(ally)
 	
 	
-func test_selected_checker_unselect_enemy(do_skip=true, skip_reason="Waiting for maintenance"):
+func test_selected_checker_unselect_enemy(do_skip=true, skip_reason="Waiting for new map 2vs2"):
 	GameStatus.set_party(["attacker", "attacker2"])
 	CombatMapStatus.set_enemies(["defender", "defender"])
 	CombatMapStatus.set_is_start_combat(true)
@@ -245,7 +230,7 @@ func test_selected_checker_unselect_enemy(do_skip=true, skip_reason="Waiting for
 	assert_that(CombatMapStatus.get_selected_enemy()).is_null()
 	
 	
-func test_selected_checker_unselect_ally(do_skip=true, skip_reason="Waiting for maintenance"):
+func test_selected_checker_unselect_ally(do_skip=true, skip_reason="Waiting for new map 2vs2"):
 	GameStatus.set_party(["attacker", "attacker2"])
 	CombatMapStatus.set_enemies(["defender", "defender"])
 	CombatMapStatus.set_is_start_combat(true)
@@ -257,7 +242,7 @@ func test_selected_checker_unselect_ally(do_skip=true, skip_reason="Waiting for 
 	assert_that(CombatMapStatus.get_selected_ally()).is_null()
 	
 	
-func test_selected_checker_change_selection_enemy(do_skip=true, skip_reason="Waiting for maintenance"):
+func test_selected_checker_change_selection_enemy(do_skip=true, skip_reason="Waiting for new map 2vs2"):
 	GameStatus.set_party(["attacker", "attacker2"])
 	CombatMapStatus.set_enemies(["defender", "defender"])
 	CombatMapStatus.set_is_start_combat(true)
@@ -270,7 +255,7 @@ func test_selected_checker_change_selection_enemy(do_skip=true, skip_reason="Wai
 	assert_that(CombatMapStatus.get_selected_enemy()).is_equal(enemy)
 
 
-func test_selected_checker_change_selection_ally(do_skip=true, skip_reason="Waiting for maintenance"):
+func test_selected_checker_change_selection_ally(do_skip=true, skip_reason="Waiting for new map 2vs2"):
 	GameStatus.set_party(["attacker", "attacker2"])
 	CombatMapStatus.set_enemies(["defender", "defender"])
 	CombatMapStatus.set_is_start_combat(true)
@@ -283,21 +268,21 @@ func test_selected_checker_change_selection_ally(do_skip=true, skip_reason="Wait
 	assert_that(CombatMapStatus.get_selected_ally()).is_equal(ally)
 
 
-func test_set_selected_character_enemy(do_skip=true, skip_reason="Waiting for maintenance"):
+func test_set_selected_character_enemy():
 	var enemy = test_mapCombat.enemyGroup.get_children()[0]
 	test_mapCombat.set_selected_character(enemy, enemy.get_stats()["is_enemy"])
 	
 	assert_that(CombatMapStatus.get_selected_enemy()).is_equal(enemy)
 	
 	
-func test_set_selected_character_ally(do_skip=true, skip_reason="Waiting for maintenance"):
+func test_set_selected_character_ally():
 	var ally = test_mapCombat.characterGroup.get_children()[0]
 	test_mapCombat.set_selected_character(ally, ally.get_stats()["is_enemy"])
 	
 	assert_that(CombatMapStatus.get_selected_ally()).is_equal(ally)
 
 
-func test_get_tile_from_coords_exist(do_skip=true, skip_reason="Waiting for maintenance"):
+func test_get_tile_from_coords_exist():
 	var tile = test_mapCombat.get_tile_from_coords(Vector2(1 ,1))
 	
 	assert_that(tile.get_variables()["coords"]).is_equal(Vector2(1 ,1))
@@ -308,13 +293,13 @@ func test_get_tile_from_coords_exist(do_skip=true, skip_reason="Waiting for main
 	assert_bool(tile.get_variables()["isObstacle"]).is_false()
 	
 	
-func test_get_tile_from_coords_not_exist(do_skip=true, skip_reason="Waiting for maintenance"):
+func test_get_tile_from_coords_not_exist():
 	var tile = test_mapCombat.get_tile_from_coords(Vector2(5 ,5))
 	
 	assert_that(tile).is_null()
 
 	
-func test_set_tile_populated_false_to_true(do_skip=true, skip_reason="Waiting for maintenance"):
+func test_set_tile_populated_false_to_true():
 	var tile = test_mapCombat.get_tile_from_coords(Vector2(1 ,1))
 	assert_bool(tile.get_variables()["isPopulated"]).is_false()
 	
@@ -323,7 +308,7 @@ func test_set_tile_populated_false_to_true(do_skip=true, skip_reason="Waiting fo
 	assert_bool(tile.get_variables()["isPopulated"]).is_true()
 	
 	
-func test_set_tile_populated_true_to_false(do_skip=true, skip_reason="Waiting for maintenance"):
+func test_set_tile_populated_true_to_false():
 	var tile = test_mapCombat.get_tile_from_coords(Vector2(0 ,0))
 	assert_bool(tile.get_variables()["isPopulated"]).is_true()
 	
@@ -333,7 +318,7 @@ func test_set_tile_populated_true_to_false(do_skip=true, skip_reason="Waiting fo
 	
 
 # Set selected MapTile
-func test_tile_handler_tile_selected(do_skip=true, skip_reason="Waiting for maintenance"):
+func test_tile_handler_tile_selected():
 	var tile = test_mapCombat.get_tile_from_coords(Vector2(1 ,1))
 	CombatMapStatus.set_selected_map_tile(tile)
 	
@@ -342,7 +327,7 @@ func test_tile_handler_tile_selected(do_skip=true, skip_reason="Waiting for main
 	assert_that(CombatMapStatus.get_selected_map_tile()).is_null()
 	
 	
-func test_tile_handler_tile_not_selected(do_skip=true, skip_reason="Waiting for maintenance"):
+func test_tile_handler_tile_not_selected():
 	var old_tile = test_mapCombat.get_tile_from_coords(Vector2(1 ,1))
 	var new_tile = test_mapCombat.get_tile_from_coords(Vector2(0 ,0))
 	CombatMapStatus.set_selected_map_tile(old_tile)
@@ -353,7 +338,7 @@ func test_tile_handler_tile_not_selected(do_skip=true, skip_reason="Waiting for 
 	assert_that(CombatMapStatus.get_selected_map_tile()).is_equal(new_tile)
 	
 	
-func test_tile_handler_null_selected(do_skip=true, skip_reason="Waiting for maintenance"):
+func test_tile_handler_null_selected():
 	var tile = test_mapCombat.get_tile_from_coords(Vector2(1 ,1))
 	
 	test_mapCombat.tile_handler(tile)
@@ -384,7 +369,7 @@ func test__on_skill_selected(do_skip=true, skip_reason="Waiting for TODOs"):
 	pass
 
 
-func test__on_end_turn_button_pressed(do_skip=true, skip_reason="Waiting for maintenance"):
+func test__on_end_turn_button_pressed():
 	CombatMapStatus.set_initiative([0, 1])
 	assert_that(CombatMapStatus.get_current_ini()).is_equal(0)
 	
@@ -402,7 +387,7 @@ func test_update_move_button(do_skip=true, skip_reason="Waiting for TODOs"):
 	assert_that(true).is_equal(true)
 	pass
 
-func test_update_phys_attack_button_after_attack(do_skip=true, skip_reason="Waiting for maintenance"):
+func test_update_phys_attack_button_after_attack():
 	CombatMapStatus.set_initiative([0, 1])
 	CombatMapStatus.set_has_attacked(true)
 	
@@ -411,7 +396,7 @@ func test_update_phys_attack_button_after_attack(do_skip=true, skip_reason="Wait
 	assert_bool(test_mapCombat.physAttackButton.disabled).is_true()
 	
 	
-func test_update_phys_attack_button_is_enemy(do_skip=true, skip_reason="Waiting for maintenance"):
+func test_update_phys_attack_button_is_enemy():
 	CombatMapStatus.set_initiative([1, 0])
 
 	test_mapCombat.update_phys_attack_button()
@@ -419,7 +404,7 @@ func test_update_phys_attack_button_is_enemy(do_skip=true, skip_reason="Waiting 
 	assert_bool(test_mapCombat.physAttackButton.disabled).is_true()
 	
 	
-func test_update_phys_attack_button_no_selected_enemy(do_skip=true, skip_reason="Waiting for maintenance"):
+func test_update_phys_attack_button_no_selected_enemy():
 	CombatMapStatus.set_initiative([0, 1])
 	CombatMapStatus.set_selected_enemy(null)
 	
@@ -427,7 +412,7 @@ func test_update_phys_attack_button_no_selected_enemy(do_skip=true, skip_reason=
 	
 	assert_bool(test_mapCombat.physAttackButton.disabled).is_true()
 	
-func test_update_phys_attack_button_enemy_at_range(do_skip=true, skip_reason="Waiting for maintenance"):
+func test_update_phys_attack_button_enemy_at_range():
 	CombatMapStatus.set_initiative([0, 1])
 	var ally = test_mapCombat.characterGroup.get_children()[0]
 	var enemy = test_mapCombat.enemyGroup.get_children()[0]
@@ -439,13 +424,13 @@ func test_update_phys_attack_button_enemy_at_range(do_skip=true, skip_reason="Wa
 	assert_bool(test_mapCombat.physAttackButton.disabled).is_false()
 	
 	
-func test_update_phys_attack_button_disabled(do_skip=true, skip_reason="Waiting for maintenance"):
+func test_update_phys_attack_button_disabled():
 	test_mapCombat.update_phys_attack_button()
 	
 	assert_bool(test_mapCombat.physAttackButton.disabled).is_true()
 	
 	
-func test_update_skill_menu_button_after_attack(do_skip=true, skip_reason="Waiting for maintenance"):
+func test_update_skill_menu_button_after_attack():
 	CombatMapStatus.set_initiative([0, 1])
 	CombatMapStatus.set_has_attacked(true)
 	
@@ -454,7 +439,7 @@ func test_update_skill_menu_button_after_attack(do_skip=true, skip_reason="Waiti
 	assert_bool(test_mapCombat.baseSkillMenu.disabled).is_true()
 	
 	
-func test_update_skill_menu_button_is_enemy(do_skip=true, skip_reason="Waiting for maintenance"):
+func test_update_skill_menu_button_is_enemy():
 	var enemy = test_mapCombat.enemyGroup.get_children()[0]
 	CombatMapStatus.set_selected_character(enemy)
 
@@ -463,7 +448,7 @@ func test_update_skill_menu_button_is_enemy(do_skip=true, skip_reason="Waiting f
 	assert_bool(test_mapCombat.baseSkillMenu.disabled).is_true()
 
 
-func test_update_skill_menu_button_character_has_no_skills(do_skip=true, skip_reason="Waiting for maintenance"):
+func test_update_skill_menu_button_character_has_no_skills():
 	CombatMapStatus.set_initiative([0, 1])
 	CombatMapStatus.set_current_ini(0)
 	test_mapCombat.characterGroup.get_children()[0].get_stats()["skills"] = []
@@ -475,7 +460,7 @@ func test_update_skill_menu_button_character_has_no_skills(do_skip=true, skip_re
 	test_mapCombat.characterGroup.get_children()[0].get_stats()["skills"] = ["shadow_ball", "nero_nero"]
 	
 	
-func test_update_skill_menu_button_skills_availables(do_skip=true, skip_reason="Waiting for maintenance"):
+func test_update_skill_menu_button_skills_availables():
 	CombatMapStatus.set_initiative([0, 1])
 	CombatMapStatus.set_current_ini(0)
 	var ally = test_mapCombat.characterGroup.get_children()[0]
@@ -486,7 +471,7 @@ func test_update_skill_menu_button_skills_availables(do_skip=true, skip_reason="
 	assert_bool(test_mapCombat.baseSkillMenu.disabled).is_false()
 
 
-func test_update_end_turn_button_is_player(do_skip=true, skip_reason="Waiting for maintenance"):
+func test_update_end_turn_button_is_player():
 	CombatMapStatus.set_initiative([0, 1])
 	var ally = test_mapCombat.characterGroup.get_children()[0]
 	CombatMapStatus.set_selected_character(ally)
@@ -496,7 +481,7 @@ func test_update_end_turn_button_is_player(do_skip=true, skip_reason="Waiting fo
 	assert_bool(test_mapCombat.endTurnButton.disabled).is_false()
 
 
-func test_update_end_turn_button_is_enemy(do_skip=true, skip_reason="Waiting for maintenance"):
+func test_update_end_turn_button_is_enemy():
 	CombatMapStatus.set_initiative([1, 0])
 	var enemy = test_mapCombat.enemyGroup.get_children()[0]
 	CombatMapStatus.set_selected_character(enemy)
