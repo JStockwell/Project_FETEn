@@ -14,8 +14,8 @@ var test_combat
 var stats_atk
 var stats_def
 
-#func before():
-	#GameStatus.debugMode = false
+func before():
+	GameStatus.debugMode = false
 	
 
 func before_test():
@@ -34,8 +34,8 @@ func before_test():
 
 	stats_def = test_enemies["defender"]
 	
-	attacker = Factory.Character.create(stats_atk)
-	defender = Factory.Character.create(stats_def)
+	attacker = Factory.Character.create(stats_atk, true)
+	defender = Factory.Character.create(stats_def, true)
 	
 	CombatMapStatus.set_active_characters(attacker.get_stats(), defender.get_stats())
 	GameStatus.set_autorun_combat(false)
@@ -103,7 +103,7 @@ func test_calc_hit_chance_bloated_hit_fail():
 	assert_bool(test_res).is_false()
 	
 	
-func test_calc_crit(do_skip=false, skip_reason="Waiting for maintenance"):
+func test_calc_crit():
 	var attDex = CombatMapStatus.get_attacker_stats().get("dexterity")
 	var attAgi = CombatMapStatus.get_attacker_stats().get("agility")
 	var defAgi = CombatMapStatus.get_defender_stats().get("agility")
@@ -114,7 +114,7 @@ func test_calc_crit(do_skip=false, skip_reason="Waiting for maintenance"):
 	assert_that(test_res).is_equal(1.5)
 	
 	
-func test_calc_crit_no(do_skip=false, skip_reason="Waiting for maintenance"):
+func test_calc_crit_no():
 	var attDex = CombatMapStatus.get_attacker_stats().get("dexterity")
 	var attAgi = CombatMapStatus.get_attacker_stats().get("agility")
 	var defAgi = CombatMapStatus.get_defender_stats().get("agility")
@@ -125,7 +125,7 @@ func test_calc_crit_no(do_skip=false, skip_reason="Waiting for maintenance"):
 	assert_that(test_res).is_equal(1.)
 	
 	
-func test_calc_damage_no_magic(do_skip=false, skip_reason="Waiting for maintenance"):
+func test_calc_damage_no_magic():
 	var attack = CombatMapStatus.get_attacker_stats().get("attack")
 	var defense = CombatMapStatus.get_defender_stats().get("defense")
 	var should_dmg = attack - defense
@@ -135,7 +135,7 @@ func test_calc_damage_no_magic(do_skip=false, skip_reason="Waiting for maintenan
 	assert_int(test_res).is_equal(int(should_dmg))
 	
 	
-func test_calc_damage_magic(do_skip=false, skip_reason="Waiting for maintenance"):
+func test_calc_damage_magic():
 	var should_dmg = stats_atk.get("attack")
 	
 	var attack = CombatMapStatus.get_attacker_stats().get("attack")
@@ -145,7 +145,7 @@ func test_calc_damage_magic(do_skip=false, skip_reason="Waiting for maintenance"
 	assert_that(test_res).is_equal(int(should_dmg))
 	
 	
-func test_calc_damage_no_magic_SPA(do_skip=false, skip_reason="Waiting for maintenance"):
+func test_calc_damage_no_magic_SPA():
 	var should_dmg = stats_atk.get("attack") + 5 - stats_def.get("defense")
 	
 	var attack = CombatMapStatus.get_attacker_stats().get("attack")
@@ -156,7 +156,7 @@ func test_calc_damage_no_magic_SPA(do_skip=false, skip_reason="Waiting for maint
 	assert_that(test_res).is_equal(int(should_dmg))
 	
 	
-func test_calc_damage_magic_no_SPA(do_skip=false, skip_reason="Waiting for maintenance"):
+func test_calc_damage_magic_no_SPA():
 	var should_dmg = stats_atk.get("attack") + 5
 	var attack = CombatMapStatus.get_attacker_stats().get("attack")
 	var defense = CombatMapStatus.get_defender_stats().get("defense")
@@ -194,54 +194,90 @@ func test_generate_rolls_random():
 # Integration Tests #
 #####################
 
-func test_combat_round_melee(do_skip=false, skip_reason="Waiting for maintenance"):
-	test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1,"")
+func test_combat_round_melee():
+	await test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1,"")
 
 	assert_int(defender.get_current_health()).is_less(defender.get_max_health())
-	await test_combat.wait(1.5)
 	assert_int(attacker.get_current_health()).is_less(attacker.get_max_health())
 
 	
-func test_combat_round_ranged(do_skip=false, skip_reason="Waiting for maintenance"):
+func test_combat_round_ranged():
 	test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 4,"")
 
 	assert_int(defender.get_current_health()).is_less(defender.get_max_health())
 	
 	
-#TODO Testear en mapcombat
-func test_combat_round_skill_no_SEF_retaliation(do_skip=true, skip_reason="Try to do this test y map combat"):
-	#test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1,"shadow_ball")
-#
-	#assert_int(defender.get_current_health()).is_less(defender.get_max_health())
-	#await test_combat.wait(1.1)
-	#
-	#assert_int(CombatMapStatus.get_attacker_stats()["current_health"]).is_less(stats_atk["max_health"])
-	pass
+func test_combat_round_skill_no_SEF_retaliation():
+	attacker.get_stats()["attack"] = 5
+	
+	await test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1,"shadow_ball")
+
+	assert_int(defender.get_current_health()).is_less(defender.get_max_health())
+	assert_int(attacker.get_current_health()).is_less(attacker.get_max_health())
 	
 
-func test_combat_round_skill_no_SEF_no_retaliation(do_skip=false, skip_reason="Waiting for maintenance"):
+func test_combat_round_skill_no_SEF_no_retaliation():
 	test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 4,"shadow_ball")
 
 	assert_int(defender.get_current_health()).is_less(defender.get_max_health())
 	
 	
-#TODO Testear en mapcombat
-func test_combat_round_skill_SEF_retaliation(do_skip=true, skip_reason="Try to do this test y map combat"):
-	#test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1,"nero_nero")
-	#
-	#assert_int(defender.get_current_health()).is_less(defender.get_max_health())
-	#await test_combat.wait(1.07)
-	#assert_int(attacker.get_current_health()).is_less(attacker.get_max_health())
-	pass
+func test_combat_round_skill_SEF_retaliation():
+	attacker.get_stats()["attack"] = 2
+	
+	await test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1,"nero_nero")
+	
+	assert_int(defender.get_current_health()).is_less(defender.get_max_health())
+	assert_int(attacker.get_current_health()).is_less(attacker.get_max_health())
 	
 
-func test_combat_round_skill_SEF_no_retaliation(do_skip=false, skip_reason="Waiting for maintenance"):
+func test_combat_round_skill_SEF_no_retaliation():
 	test_combat.combat_round([1, 100, 1, 100], [1, 1, 1, 100], 0, 4,"nero_nero")
 
 	assert_int(defender.get_current_health()).is_less(defender.get_max_health())
 	
 	
-func test_attack_hit(do_skip=false, skip_reason="Waiting for maintenance"):
+func test_combat_round_kill_no_retaliation():
+	attacker.get_stats()["attack"] = 50
+	attacker.get_stats()["map_id"] = 0
+	defender.get_stats()["map_id"] = 1
+	CombatMapStatus.set_initiative([0, 1])
+
+	await test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1,"")
+
+	assert_int(defender.get_current_health()).is_less(defender.get_max_health())
+	assert_int(attacker.get_current_health()).is_equal(attacker.get_max_health())
+	
+	
+func test_combat_round_kill_erase_initiative_enemy():
+	#CombatMapStatus.set_active_characters(attacker.get_stats(), defender.get_stats())
+	attacker.get_stats()["attack"] = 50
+	attacker.get_stats()["map_id"] = 0
+	defender.get_stats()["map_id"] = 1
+	CombatMapStatus.set_initiative([0, 1])
+	
+	await test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1,"")
+
+	assert_int(defender.get_current_health()).is_less(defender.get_max_health())
+	assert_int(CombatMapStatus.get_initiative().size()).is_equal(1)
+	assert_bool(CombatMapStatus.get_initiative().has(1)).is_false()
+	
+	
+func test_combat_round_kill_erase_initiative_ally_because_retaliation(do_skip=false, skip_reason="James has to repair the function"):
+	defender.get_stats()["attack"] = 50
+	attacker.get_stats()["map_id"] = 0
+	defender.get_stats()["map_id"] = 1
+	CombatMapStatus.set_initiative([0, 1])
+	
+	await test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1,"")
+
+	assert_int(defender.get_current_health()).is_less(defender.get_max_health())
+	assert_int(attacker.get_current_health()).is_less(attacker.get_max_health())
+	assert_int(CombatMapStatus.get_initiative().size()).is_equal(1)
+	assert_bool(CombatMapStatus.get_initiative().has(0)).is_false()
+	
+	
+func test_attack_hit():
 	var rolls = [1, 1, 1, 1]
 	
 	test_combat.attack(attacker, defender, rolls, 0, 0, 0)
@@ -249,7 +285,7 @@ func test_attack_hit(do_skip=false, skip_reason="Waiting for maintenance"):
 	assert_int(defender.get_current_health()).is_less(defender.get_max_health())
 
 
-func test_attack_miss(do_skip=false, skip_reason="Waiting for maintenance"):
+func test_attack_miss():
 	var rolls = [1, 100, 1, 1]
 	
 	test_combat.attack(attacker, defender, rolls, 0, 0, 0)
@@ -258,27 +294,27 @@ func test_attack_miss(do_skip=false, skip_reason="Waiting for maintenance"):
 	assert_that(test_combat.damageNumber.text).is_equal("MISS")
 
 
-func test_deal_damage_positive_no_crit(do_skip=false, skip_reason="Waiting for maintenance"):
+func test_deal_damage_positive_no_crit():
 	test_combat.deal_damage(2, 1., defender)
 	
 	assert_that(defender.get_current_health()).is_equal(20)
 	assert_that(test_combat.damageNumber.text).is_equal("-2")
 
 
-func test_deal_damage_positive_crit(do_skip=false, skip_reason="Waiting for maintenance"):
+func test_deal_damage_positive_crit():
 	test_combat.deal_damage(2, 1.5, defender)
 	
 	assert_that(defender.get_current_health()).is_equal(19)
 	assert_that(test_combat.damageNumber.text).is_equal("-3")
 	
 	
-func test_deal_damage_0(do_skip=false, skip_reason="Waiting for maintenance"):
+func test_deal_damage_0():
 	test_combat.deal_damage(0, 1., defender)
 	
 	assert_that(defender.get_current_health()).is_equal(defender.get_max_health())
 	assert_that(test_combat.damageNumber.text).is_equal("0")
 	
-func test_deal_damage_negative(do_skip=false, skip_reason="Waiting for maintenance"):
+func test_deal_damage_negative():
 	test_combat.deal_damage(-1, 1., defender)
 	
 	assert_that(defender.get_current_health()).is_equal(defender.get_max_health())
