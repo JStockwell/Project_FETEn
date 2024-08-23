@@ -1,6 +1,8 @@
 class_name EnemyBehavior
 
+
 static func dumb_melee_behavior(map) -> bool:
+
 	var enemy = CombatMapStatus.get_selected_character()
 	var possibleTargets = check_players_in_range(map, enemy)
 	
@@ -82,7 +84,7 @@ static func check_players_in_range(map, enemy) -> Array:
 	var rooted = false #enemy.is_rooted()
 	for character in map.characterGroup.get_children():
 		if(rooted):
-			if (Utils.calc_distance(enemy.get_map_coords(), character.get_map_coords())<=enemy.get_range()):
+			if (Utils.calc_distance(enemy.get_map_coords(), character.get_map_coords())<=enemy.get_range()): #add the validation from james
 				possible_Targets.append(character)
 			#enemy.set_is_rooted(false)
 		elif(Utils.calc_distance(enemy.get_map_coords(), character.get_map_coords())<=(enemy.get_movement()+enemy.get_range())):
@@ -129,3 +131,72 @@ static func validate_movement(map, enemy, finalCoords: Vector2) -> bool:
 	var condition1 = Utils.calc_distance(enemy.get_map_coords(), finalCoords) <= enemy.get_movement()
 	var condition2 = not map.get_tile_from_coords(finalCoords).is_populated()
 	return condition1 and condition2
+
+func _dijkstra(map, mapCoords: Vector2, maxRange: int) -> Array:
+	var moveableCells = [mapCoords] # append the current cell to the array of tiles that can be moved to
+	var visited = [] # bidimensional array that keeps track of which tiles have been traversed to
+	var distances = [] # shows distance to each cell, might be useful for certain checks but ultimately not 100% necsessary as the distance is also the priority
+	var previous = [] # bidimensional array that shows which cells you have to take to get there to get the shortest path
+	var directions = [Vector2.UP, Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT] # array that will help us later to move to the adjacent tiles, goes in this order South, east, north, west (remember Y axis is toward player, thats why its reversed)
+	var pQ = PriorityQueue.new()
+	
+	# Now we setup the bidimensional array, once populated, the visited and previous path will be set empty
+	# and distance will be considered max to allow for better distances to be registered
+	for y in range(CombatMapStatus.mapY): #substitute for map size y
+		visited.append([])
+		distances.append([])
+		previous.append([])
+		for x in range(CombatMapStatus.mapX): #substitute for map size x
+			visited[y].append([false])
+			distances[y].append([9999])
+			previous[y].append([null])
+	
+	pQ.push(mapCoords, 0) # We create the priority queue with the starting tile (the tile the enemy is standing on
+
+	distances[mapCoords.y][mapCoords.x] = 0
+	
+	var tileCost
+	var distanceToNode
+	var occupiedCells = []
+	
+	# start the search
+	for i in range(10000):
+		var current = pQ.pop()
+		visited[current.value.y][current.value.x] = true
+		
+		for dir in directions:
+			var coordinates =  current.value + dir
+			if coords_within_bounds(coordinates) and map.get_tile_from_coords(coordinates).is_traversable(): # if it is traversable and it is within the map
+				if visited[coordinates.y][coordinates.x]: # if it was already visited that means that the tile had a better/equal path to it due to the prio queue
+					continue
+				else:
+					var extraCost = 0
+					if map.get_tile_from_coords(coordinates).is_control_zone(): #coordinates de este debería ser las de la casilla anterior
+						extraCost += 2
+					elif map.get_tile_from_coords(coordinates).is_difficult_terrain():
+						extraCost += 1
+					tileCost = 1 + extraCost
+					
+					distanceToNode = current.priority + tileCost
+					
+					visited[coordinates.y][coordinates.x] = true
+					distances[coordinates.y][coordinates.x] = distanceToNode
+				
+				if distanceToNode <= maxRange or current.priority + 1 <= maxRange: #the second part of the or should allwo for allowing moving a cost 2 with only 1 mov or a cost 3 with 1-2 mov left
+					previous[coordinates.y][coordinates.x] = current.value
+					moveableCells.append(coordinates)
+					pQ.push(coordinates, distanceToNode)
+				
+			if pQ.is_empty():
+				break
+			
+	return moveableCells
+
+static func coords_within_bounds(coords: Vector2) -> bool:
+	var maxX = CombatMapStatus.mapX
+	var maxY = CombatMapStatus.mapY
+	
+	if coords.x < 0 or coords.x >= maxX or coords.y < 0 or coords.y >= maxY:
+		return false
+	else:
+		return true
