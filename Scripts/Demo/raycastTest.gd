@@ -46,8 +46,6 @@ func _on_button_pressed():
 	var ray = RayCast3D.new()
 	
 	ray.set_collide_with_areas(true)
-	ray.set_collision_mask(1)
-	ray.set_collision_mask_value(1, true)
 	
 	ray.position = Vector3(origin.x, -5, origin.y)
 	ray.target_position = Vector3(end.x - origin.x, 0, end.y - origin.y)
@@ -56,6 +54,7 @@ func _on_button_pressed():
 	ray.force_raycast_update()
 	
 	print(ray.is_colliding())
+	ray.free()
 
 func tile_handler(tile):
 	selectedTile = tile

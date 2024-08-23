@@ -10,9 +10,12 @@
 		"ini_mana": 6,
 		"max_mana": 25,
 		"reg_mana": 8,
-		"range": 1,
-		"skills": ["shadow_ball", "nero_nero"],
-		"is_ranged": false,
+		"range": 999,
+		"skills": [
+			"shadow_ball",
+			"nero_nero"
+		],
+		"is_ranged": true,
 		"mesh_path": "res://Assets/Characters/Party/Edgar/Edgar.glb"
 	},
 	"dick": {
@@ -43,7 +46,10 @@
 		"max_mana": 2,
 		"reg_mana": 0,
 		"range": 1,
-		"skills": ["boost_1", "boost_2"],
+		"skills": [
+			"boost_1",
+			"boost_2"
+		],
 		"is_ranged": false,
 		"mesh_path": "res://Assets/Characters/Party/Samael/Samael idle 1.glb"
 	}
