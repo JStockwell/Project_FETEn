@@ -118,7 +118,7 @@ func setup_skill_menu() -> void:
 	
 func reset_to_tavern():
 	if CombatMapStatus.get_current_ini() > len(CombatMapStatus.get_initiative()) - 1:
-		CombatMapStatus.set_current_ini(CombatMapStatus.get_current_ini() - 1)
+		CombatMapStatus.set_current_ini(len(CombatMapStatus.get_initiative()) - 1)
 			
 	reset_map_status()
 	highlight_control_zones()
@@ -219,11 +219,12 @@ func purge_the_dead():
 			dead = enemy
 			
 	if dead != null:
+		if dead.get_map_id() == CombatMapStatus.get_selected_character().get_map_id():
+			print("hello")
 		CombatMapStatus.remove_character_ini(dead.get_map_id())
 		var tile = get_tile_from_coords(dead.get_map_coords())
 		tile.set_is_populated(false)
 		dead.free()
-			
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -344,7 +345,7 @@ func phys_combat_round() -> void:
 	if Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()) == 1 and attacker.is_ranged():
 		CombatMapStatus.mapMod -= 25
 
-	CombatMapStatus.set_combat(attacker, defender, Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()), 0)
+	CombatMapStatus.set_combat(attacker, defender, Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()), CombatMapStatus.mapMod)
 	#get_tree().change_scene_to_file("res://Scenes/3D/combat.tscn")
 	combat_start.emit()
 	
@@ -369,7 +370,7 @@ func _on_skill_selected(id: int):
 		CombatMapStatus.get_selected_character().modify_mana(-GameStatus.skillSet[skillName].get_cost())
 		
 		if GameStatus.skillSet[skillName].can_target_allies():
-			# Buffs and health?
+			#TODO James programa esta puta mierda :))) Buffs and health?
 			pass
 			
 		else:

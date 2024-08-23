@@ -7,6 +7,7 @@ var test_enemies = Utils.read_json("res://Assets/json/test_enemies.json")
 var test_skillSet = Utils.read_json("res://Assets/json/skills.json")
 
 var test_mapCombat
+var mapDict
 
 #var stats_atk
 #var stats_def
@@ -14,14 +15,14 @@ var test_mapCombat
 func before():
 	GameStatus.debugMode = false
 
-func before_test():	
+func before_test():
 	GameStatus.set_playable_characters(test_players)
 	GameStatus.set_enemy_set(test_enemies)
 	
 	GameStatus.set_party(["attacker"])
 	
 	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_1vs1.json")
-	var mapDict = Utils.read_json(CombatMapStatus.get_map_path())
+	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
 	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
 	
 	var i = 0
@@ -107,6 +108,10 @@ func test_setup_skill_menu():
 	if(CombatMapStatus.get_selected_character().get_char_name() == "Defender"):
 		checker = test_mapCombat.skillMenu.get_item_count()
 		assert_int(checker).is_zero()
+		
+		
+func test_reset_to_tavern(do_skip=true, skip_reason="Ask James"):
+	pass
 
 
 func test_start_turn_party():
@@ -132,19 +137,29 @@ func test_start_turn_enemy():
 	
 	assert_that(CombatMapStatus.hasAttacked).is_false()
 	assert_that(CombatMapStatus.hasMoved).is_false()
+	
+	
+func test_enemy_turn_end(do_skip=true, skip_reason="Tests under development"):
+	pass
 
 
-func test_reset_map_status(do_skip=true, skip_reason="Waiting for new map 2vs2"):
+func test_reset_map_status():
+	#Change the map 
 	GameStatus.set_party(["attacker", "attacker2"])
+	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
+	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
+	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
+	test_mapCombat.mapDict = mapDict
 	CombatMapStatus.set_is_start_combat(true)
 	test_mapCombat.initial_map_load()
-	CombatMapStatus.set_initiative([0, 1, 2])
+	CombatMapStatus.set_initiative([0, 1, 2, 3])
+	
 	test_mapCombat.start_turn()
 	CombatMapStatus.set_selected_ally(GameStatus.get_party()["attacker2"])
-	CombatMapStatus.set_selected_enemy(CombatMapStatus.get_enemy("defender_0"))
+	CombatMapStatus.set_selected_enemy(test_mapCombat.enemyGroup.get_children()[0])
 	CombatMapStatus.set_selected_map_tile(Vector2(1,1))
 	assert_that(CombatMapStatus.get_selected_ally()).is_equal(GameStatus.get_party()["attacker2"])
-	assert_that(CombatMapStatus.get_selected_enemy()).is_equal(CombatMapStatus.get_enemy("defender_0"))
+	assert_that(CombatMapStatus.get_selected_enemy()).is_equal(test_mapCombat.enemyGroup.get_children()[0])
 	assert_that(CombatMapStatus.get_selected_map_tile()).is_equal(Vector2(1,1))
 	assert_that(CombatMapStatus.get_selected_character().get_stats()).is_equal(GameStatus.get_party()["attacker"])
 	
@@ -164,6 +179,10 @@ func test_regen_mana():
 	test_mapCombat.regen_mana()
 	
 	assert_that(GameStatus.get_party()["attacker"]["current_mana"]).is_equal(10.)
+	
+	
+func purge_the_dead(do_skip=true):
+	pass
 
 
 func test_character_handler_enemy_turn():
@@ -183,8 +202,11 @@ func test_character_handler_isEnemy_handled():
 	assert_that(CombatMapStatus.get_selected_enemy()).is_equal(test_mapCombat.enemyGroup.get_children()[0])
 	
 	
-func test_character_handler_other_ally_turn(do_skip=true, skip_reason="Waiting for new map 2vs2"):
-	GameStatus.set_party(["attacker", "attacker2"])
+func test_character_handler_other_ally_turn():
+	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
+	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
+	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
+	test_mapCombat.mapDict = mapDict
 	CombatMapStatus.set_is_start_combat(true)
 	test_mapCombat.initial_map_load()
 	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
@@ -194,9 +216,11 @@ func test_character_handler_other_ally_turn(do_skip=true, skip_reason="Waiting f
 	assert_that(CombatMapStatus.get_selected_ally()).is_equal(test_mapCombat.characterGroup.get_children()[1])
 
 
-func test_selected_checker_last_selection_null_enemy(do_skip=true, skip_reason="Waiting for new map 2vs2"):
-	GameStatus.set_party(["attacker", "attacker2"])
-	CombatMapStatus.set_enemies(["defender", "defender"])
+func test_selected_checker_last_selection_null_enemy():
+	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
+	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
+	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
+	test_mapCombat.mapDict = mapDict
 	CombatMapStatus.set_is_start_combat(true)
 	test_mapCombat.initial_map_load()
 	var enemy = test_mapCombat.enemyGroup.get_children()[0]
@@ -206,9 +230,11 @@ func test_selected_checker_last_selection_null_enemy(do_skip=true, skip_reason="
 	assert_that(CombatMapStatus.get_selected_enemy()).is_equal(enemy)
 	
 
-func test_selected_checker_last_selection_null_ally(do_skip=true, skip_reason="Waiting for new map 2vs2"):
-	GameStatus.set_party(["attacker", "attacker2"])
-	CombatMapStatus.set_enemies(["defender", "defender"])
+func test_selected_checker_last_selection_null_ally():
+	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
+	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
+	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
+	test_mapCombat.mapDict = mapDict
 	CombatMapStatus.set_is_start_combat(true)
 	test_mapCombat.initial_map_load()
 	var ally = test_mapCombat.characterGroup.get_children()[1]
@@ -218,9 +244,11 @@ func test_selected_checker_last_selection_null_ally(do_skip=true, skip_reason="W
 	assert_that(CombatMapStatus.get_selected_ally()).is_equal(ally)
 	
 	
-func test_selected_checker_unselect_enemy(do_skip=true, skip_reason="Waiting for new map 2vs2"):
-	GameStatus.set_party(["attacker", "attacker2"])
-	CombatMapStatus.set_enemies(["defender", "defender"])
+func test_selected_checker_unselect_enemy():
+	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
+	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
+	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
+	test_mapCombat.mapDict = mapDict
 	CombatMapStatus.set_is_start_combat(true)
 	test_mapCombat.initial_map_load()
 	var enemy = test_mapCombat.enemyGroup.get_children()[0]
@@ -230,9 +258,11 @@ func test_selected_checker_unselect_enemy(do_skip=true, skip_reason="Waiting for
 	assert_that(CombatMapStatus.get_selected_enemy()).is_null()
 	
 	
-func test_selected_checker_unselect_ally(do_skip=true, skip_reason="Waiting for new map 2vs2"):
-	GameStatus.set_party(["attacker", "attacker2"])
-	CombatMapStatus.set_enemies(["defender", "defender"])
+func test_selected_checker_unselect_ally():
+	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
+	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
+	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
+	test_mapCombat.mapDict = mapDict
 	CombatMapStatus.set_is_start_combat(true)
 	test_mapCombat.initial_map_load()
 	var ally = test_mapCombat.characterGroup.get_children()[0]
@@ -242,9 +272,11 @@ func test_selected_checker_unselect_ally(do_skip=true, skip_reason="Waiting for 
 	assert_that(CombatMapStatus.get_selected_ally()).is_null()
 	
 	
-func test_selected_checker_change_selection_enemy(do_skip=true, skip_reason="Waiting for new map 2vs2"):
-	GameStatus.set_party(["attacker", "attacker2"])
-	CombatMapStatus.set_enemies(["defender", "defender"])
+func test_selected_checker_change_selection_enemy():
+	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
+	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
+	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
+	test_mapCombat.mapDict = mapDict
 	CombatMapStatus.set_is_start_combat(true)
 	test_mapCombat.initial_map_load()
 	var old_enemy = test_mapCombat.enemyGroup.get_children()[0]
@@ -255,9 +287,11 @@ func test_selected_checker_change_selection_enemy(do_skip=true, skip_reason="Wai
 	assert_that(CombatMapStatus.get_selected_enemy()).is_equal(enemy)
 
 
-func test_selected_checker_change_selection_ally(do_skip=true, skip_reason="Waiting for new map 2vs2"):
-	GameStatus.set_party(["attacker", "attacker2"])
-	CombatMapStatus.set_enemies(["defender", "defender"])
+func test_selected_checker_change_selection_ally():
+	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
+	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
+	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
+	test_mapCombat.mapDict = mapDict
 	CombatMapStatus.set_is_start_combat(true)
 	test_mapCombat.initial_map_load()
 	var old_ally = test_mapCombat.characterGroup.get_children()[0]
@@ -350,6 +384,16 @@ func test__on_move_button_pressed(do_skip=true, skip_reason="Waiting for TODOs")
 	assert_that(true).is_equal(true)
 	pass
 	
+#TODO
+func test_move_character_validated(do_skip=true, skip_reason="Waiting for TODOs"):
+	assert_that(true).is_equal(true)
+	pass
+	
+#TODO
+func test_move_character_not_validated(do_skip=true, skip_reason="Waiting for TODOs"):
+	assert_that(true).is_equal(true)
+	pass
+	
 # Player movement
 #TODO
 func test_validate_move(do_skip=true, skip_reason="Waiting for TODOs"):
@@ -357,12 +401,62 @@ func test_validate_move(do_skip=true, skip_reason="Waiting for TODOs"):
 	pass
 	
 	
-#TODO
-func test__on_phys_attack_button_pressed(do_skip=true, skip_reason="Waiting for TODOs"):
-	assert_that(true).is_equal(true)
-	pass
+func test__on_phys_attack_button_pressed():
+	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
+	CombatMapStatus.set_selected_enemy(test_mapCombat.enemyGroup.get_children()[0])
+	test_mapCombat.characterGroup.get_children()[0].get_stats()["map_coords"] = Vector2(2,1)
+	
+	test_mapCombat._on_phys_attack_button_pressed()
+	
+	assert_int(CombatMapStatus.mapMod).is_zero()
+	assert_that(test_mapCombat.characterGroup.get_children()[0].get_stats()).is_equal(CombatMapStatus.get_attacker_stats())
+	assert_that(test_mapCombat.enemyGroup.get_children()[0].get_stats()).is_equal(CombatMapStatus.get_defender_stats())
+	
+	test_mapCombat.characterGroup.get_children()[0].get_stats()["map_coords"] = Vector2(0,0)
 
-
+func test_phys_combat_round_melee():
+	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
+	CombatMapStatus.set_selected_enemy(test_mapCombat.enemyGroup.get_children()[0])
+	test_mapCombat.characterGroup.get_children()[0].get_stats()["map_coords"] = Vector2(2,1)
+	
+	test_mapCombat.phys_combat_round()
+	
+	assert_int(CombatMapStatus.mapMod).is_zero()
+	assert_that(test_mapCombat.characterGroup.get_children()[0].get_stats()).is_equal(CombatMapStatus.get_attacker_stats())
+	assert_that(test_mapCombat.enemyGroup.get_children()[0].get_stats()).is_equal(CombatMapStatus.get_defender_stats())
+	
+	test_mapCombat.characterGroup.get_children()[0].get_stats()["map_coords"] = Vector2(0,0)
+	
+	
+func test_phys_combat_round_ranged(do_skip=false, skip_reason="Tests under development"):
+	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
+	CombatMapStatus.set_selected_enemy(test_mapCombat.enemyGroup.get_children()[0])
+	test_mapCombat.characterGroup.get_children()[0].get_stats()["is_ranged"] = true
+	
+	test_mapCombat.phys_combat_round()
+	
+	assert_int(CombatMapStatus.mapMod).is_zero()
+	assert_that(test_mapCombat.characterGroup.get_children()[0].get_stats()).is_equal(CombatMapStatus.get_attacker_stats())
+	assert_that(test_mapCombat.enemyGroup.get_children()[0].get_stats()).is_equal(CombatMapStatus.get_defender_stats())
+	
+	test_mapCombat.characterGroup.get_children()[0].get_stats()["is_ranged"] = false
+	
+	
+func test_phys_combat_round_ranged_melee(do_skip=false, skip_reason="Tests under development"):
+	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
+	CombatMapStatus.set_selected_enemy(test_mapCombat.enemyGroup.get_children()[0])
+	test_mapCombat.characterGroup.get_children()[0].get_stats()["is_ranged"] = true
+	test_mapCombat.characterGroup.get_children()[0].get_stats()["map_coords"] = Vector2(1,2)
+	
+	test_mapCombat.phys_combat_round()
+	
+	assert_int(CombatMapStatus.mapMod).is_equal(-25)
+	assert_that(test_mapCombat.characterGroup.get_children()[0].get_stats()).is_equal(CombatMapStatus.get_attacker_stats())
+	assert_that(test_mapCombat.enemyGroup.get_children()[0].get_stats()).is_equal(CombatMapStatus.get_defender_stats())
+	
+	test_mapCombat.characterGroup.get_children()[0].get_stats()["is_ranged"] = false
+	test_mapCombat.characterGroup.get_children()[0].get_stats()["map_coords"] = Vector2(0,0)
+	
 #TODO
 func test__on_skill_selected(do_skip=true, skip_reason="Waiting for TODOs"):
 	assert_that(true).is_equal(true)
@@ -491,38 +585,38 @@ func test_update_end_turn_button_is_enemy():
 	assert_bool(test_mapCombat.endTurnButton.disabled).is_true()
 
 
-func test_highlight_movement(do_skip=true, skip_reason="Waiting for TODOs"):
+func test_highlight_movement(do_skip=true, skip_reason="Tests under development"):
 	assert_that(true).is_equal(true)
 	pass
 
-func test_highlight_control_zones(do_skip=true, skip_reason="Waiting for TODOs"):
+func test_highlight_control_zones(do_skip=true, skip_reason="Tests under development"):
 	assert_that(true).is_equal(true)
 	pass
 					
-func test_check_within_bounds(do_skip=true, skip_reason="Waiting for TODOs"):
+func test_check_within_bounds(do_skip=true, skip_reason="Tests under development"):
 	assert_that(true).is_equal(true)
 	pass
 
-func test_remove_highlights(do_skip=true, skip_reason="Waiting for TODOs"):
+func test_remove_highlights(do_skip=true, skip_reason="Tests under development"):
 	assert_that(true).is_equal(true)
 	pass
 
-func test_remove_control_zones(do_skip=true, skip_reason="Waiting for TODOs"):
+func test_remove_control_zones(do_skip=true, skip_reason="Tests under development"):
 	assert_that(true).is_equal(true)
 	pass
 
-func test_remove_selected(do_skip=true, skip_reason="Waiting for TODOs"):
+func test_remove_selected(do_skip=true, skip_reason="Tests under development"):
 	assert_that(true).is_equal(true)
 	pass
 		
-func test_remove_char_highlights(do_skip=true, skip_reason="Waiting for TODOs"):
+func test_remove_char_highlights(do_skip=true, skip_reason="Tests under development"):
 	assert_that(true).is_equal(true)
 	pass
 
-func test_remove_ally_highlights(do_skip=true, skip_reason="Waiting for TODOs"):
+func test_remove_ally_highlights(do_skip=true, skip_reason="Tests under development"):
 	assert_that(true).is_equal(true)
 	pass
 		
-func test_remove_enemy_highlights(do_skip=true, skip_reason="Waiting for TODOs"):
+func test_remove_enemy_highlights(do_skip=true, skip_reason="Tests under development"):
 	assert_that(true).is_equal(true)
 	pass
