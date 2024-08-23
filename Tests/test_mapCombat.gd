@@ -135,7 +135,7 @@ func test_start_turn_enemy():
 	assert_that(CombatMapStatus.hasMoved).is_false()
 
 
-func test_reset_map_status(do_skip=false, skip_reason="Waiting for new map 2vs2"):
+func test_reset_map_status():
 	#Change the map 
 	GameStatus.set_party(["attacker", "attacker2"])
 	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
@@ -190,7 +190,7 @@ func test_character_handler_isEnemy_handled():
 	assert_that(CombatMapStatus.get_selected_enemy()).is_equal(test_mapCombat.enemyGroup.get_children()[0])
 	
 	
-func test_character_handler_other_ally_turn(do_skip=false, skip_reason="Waiting for new map 2vs2"):
+func test_character_handler_other_ally_turn():
 	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
 	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
 	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
@@ -204,7 +204,7 @@ func test_character_handler_other_ally_turn(do_skip=false, skip_reason="Waiting 
 	assert_that(CombatMapStatus.get_selected_ally()).is_equal(test_mapCombat.characterGroup.get_children()[1])
 
 
-func test_selected_checker_last_selection_null_enemy(do_skip=false, skip_reason="Waiting for new map 2vs2"):
+func test_selected_checker_last_selection_null_enemy():
 	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
 	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
 	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
@@ -218,7 +218,7 @@ func test_selected_checker_last_selection_null_enemy(do_skip=false, skip_reason=
 	assert_that(CombatMapStatus.get_selected_enemy()).is_equal(enemy)
 	
 
-func test_selected_checker_last_selection_null_ally(do_skip=false, skip_reason="Waiting for new map 2vs2"):
+func test_selected_checker_last_selection_null_ally():
 	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
 	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
 	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
@@ -232,7 +232,7 @@ func test_selected_checker_last_selection_null_ally(do_skip=false, skip_reason="
 	assert_that(CombatMapStatus.get_selected_ally()).is_equal(ally)
 	
 	
-func test_selected_checker_unselect_enemy(do_skip=false, skip_reason="Waiting for new map 2vs2"):
+func test_selected_checker_unselect_enemy():
 	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
 	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
 	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
@@ -246,7 +246,7 @@ func test_selected_checker_unselect_enemy(do_skip=false, skip_reason="Waiting fo
 	assert_that(CombatMapStatus.get_selected_enemy()).is_null()
 	
 	
-func test_selected_checker_unselect_ally(do_skip=false, skip_reason="Waiting for new map 2vs2"):
+func test_selected_checker_unselect_ally():
 	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
 	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
 	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
@@ -260,7 +260,7 @@ func test_selected_checker_unselect_ally(do_skip=false, skip_reason="Waiting for
 	assert_that(CombatMapStatus.get_selected_ally()).is_null()
 	
 	
-func test_selected_checker_change_selection_enemy(do_skip=false, skip_reason="Waiting for new map 2vs2"):
+func test_selected_checker_change_selection_enemy():
 	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
 	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
 	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
@@ -275,7 +275,7 @@ func test_selected_checker_change_selection_enemy(do_skip=false, skip_reason="Wa
 	assert_that(CombatMapStatus.get_selected_enemy()).is_equal(enemy)
 
 
-func test_selected_checker_change_selection_ally(do_skip=false, skip_reason="Waiting for new map 2vs2"):
+func test_selected_checker_change_selection_ally():
 	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
 	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
 	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
