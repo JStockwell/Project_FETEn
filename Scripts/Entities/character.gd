@@ -15,6 +15,7 @@ var stats = {
 	"range": 0,
 	"skills": [],
 	"is_ranged": false,
+	"is_rooted": false,
 	"mesh_path": null
 }
 
@@ -70,6 +71,12 @@ func get_skills() -> Array:
 func get_mesh_path() -> String:
 	return stats["mesh_path"]
 	
+func is_rooted() -> bool:
+	return stats["is_rooted"]
+	
+func set_is_rooted(val: bool) -> void:
+	stats["is_rooted"] = val
+	
 func get_map_coords() -> Vector2:
 	return stats["map_coords"]
 	
@@ -78,7 +85,7 @@ func is_ranged() -> bool:
 	
 func is_enemy() -> bool: 
 	return stats["is_enemy"]
-
+	
 func get_current_health() -> int:
 	return stats["current_health"]
 	

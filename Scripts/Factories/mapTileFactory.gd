@@ -6,17 +6,17 @@ const MapTile = preload("res://Scenes/Entities/mapTile.tscn")
 static func create(args: Dictionary):
 	var validator = true
 	
-	var coords: Vector2 = args["coords"]
+	var coords: Vector2 = Utils.string_to_vector2(args["coords"])
 	var height: int = args["height"]
 	var idt: int = args["idt"]
 	var isPopulated: bool = args["isPopulated"]
 	var isTraversable: bool = args["isTraversable"]
-	var isObstacle: bool = args["isObstacle"]
+	var obstacleType: int = args["obstacleType"]
 	
 	if coords.x < 0 or coords.y <0:
 		validator = false
 		
-	if isObstacle and isTraversable:
+	if obstacleType == 2 and isTraversable:
 		validator = false
 		
 	if isPopulated and not isTraversable:
@@ -33,15 +33,14 @@ static func create(args: Dictionary):
 		myMapTile.isDifficultTerrain = idt
 		myMapTile.isPopulated = isPopulated
 		myMapTile.isTraversable = isTraversable
-		myMapTile.isObstacle = isObstacle
+		myMapTile.obstacleType = obstacleType
 		
 		var path = args["meshPath"]
 		if path == "":
 			path = "res://Assets/MapTiles/placeholder_tile.glb"
-			
-		myMapTile.add_child(load(path).instantiate())
 		
+		myMapTile.add_child(load(path).instantiate())
 		return myMapTile
 		
 	else:
-		print("incorrect maptile")
+		push_error("incorrect maptile")

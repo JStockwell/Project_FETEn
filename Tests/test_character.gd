@@ -8,6 +8,11 @@ var checker
 var max_stats
 var dict 
 
+
+func before():
+	GameStatus.debugMode = false
+
+
 func before_test():
 	test_char = Character.instantiate()
 	add_child(test_char)
@@ -26,6 +31,7 @@ func before_test():
 		"range": 4,
 		"skills": ["SKILL_ID_1", "SKILL_ID_2"], # GameStatus.get_ability_by_id("SKILL_ID_1") -> instance ability.gd
 		"is_ranged": false,
+		"is_rooted": false,
 		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb",
 		"is_enemy": false
 	}
@@ -44,17 +50,19 @@ func before_test():
 		"range": 4,
 		"skills": ["SKILL_ID_1", "SKILL_ID_2"], # GameStatus.get_ability_by_id("SKILL_ID_1") -> instance ability.gd
 		"is_ranged": false,
+		"is_rooted": false,
 		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb",
 		"current_health": 24,
 		"current_mana": 5, 
 		"is_enemy": false
 	}
 	
-	test_char = Factory.Character.create(initial_stats)
+	test_char = Factory.Character.create(initial_stats, false)
 	
 	
 func after_test():
 	test_char.free()
+	Utils.reset_all()
 	
 	
 ##############
@@ -134,7 +142,7 @@ func test_set_stats():
 
 func test_set_map_coords_ok():
 	checker = Vector2(3, 3)
-	CombatMapStatus.set_map_size(3, 3)
+	CombatMapStatus.set_map_size(Vector2(3, 3))
 	
 	test_char.set_map_coords(checker)
 	
@@ -143,7 +151,7 @@ func test_set_map_coords_ok():
 	
 func test_set_map_coords_x_out_of_range():
 	checker = Vector2(4, 3)
-	CombatMapStatus.set_map_size(3, 3)
+	CombatMapStatus.set_map_size(Vector2(3, 3))
 	
 	test_char.set_map_coords(checker)
 	
@@ -152,7 +160,7 @@ func test_set_map_coords_x_out_of_range():
 	
 func test_set_map_coords_y_out_of_range():
 	checker = Vector2(3, 4)
-	CombatMapStatus.set_map_size(3, 3)
+	CombatMapStatus.set_map_size(Vector2(3, 3))
 	
 	test_char.set_map_coords(checker)
 	

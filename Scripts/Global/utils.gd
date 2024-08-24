@@ -12,8 +12,6 @@ static func reset_gs():
 	GameStatus.party = {}
 
 static func reset_cms():
-	CombatMapStatus.enemies = {}
-
 	CombatMapStatus.mapX = 0
 	CombatMapStatus.mapY = 0
 
@@ -53,3 +51,18 @@ static func read_json(jsonPath: String):
 			
 	else:
 		print("File {path} doesn't exist!".format({"path": jsonPath}))
+		
+static func generate_rolls() -> Array:
+	# true_hit_flag, dice_1, dice_2, crit_roll
+	return [randi_range(1, 2), randi_range(1, 100), randi_range(1, 100), randi_range(1, 100)]
+
+static func string_to_vector2(vectorString:= "") -> Vector2:
+	if vectorString:
+		var new_string: String = vectorString
+		new_string = new_string.erase(0, 1)
+		new_string = new_string.erase(new_string.length() - 1, 1)
+		var array: Array = new_string.split(",")
+
+		return Vector2(int(array[0]), int(array[1]))
+
+	return Vector2.ZERO

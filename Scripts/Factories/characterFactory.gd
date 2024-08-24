@@ -4,7 +4,7 @@ const Character = preload("res://Scenes/Entities/character.tscn")
 
 const stats_list = ["name", "max_health", "attack", "dexterity", "defense", "agility", "movement", "ini_mana", "max_mana", "reg_mana", "range", "skills", "is_ranged", "mesh_path"]
 
-static func create(args: Dictionary):
+static func create(args: Dictionary, duplicateFlag: bool):
 	var validator = true
 	var stats_set: Dictionary
 	
@@ -19,6 +19,7 @@ static func create(args: Dictionary):
 		if "current_health" not in stats_set:
 			stats_set["current_health"] = stats_set["max_health"]
 			stats_set["current_mana"] = stats_set["ini_mana"]
+			stats_set["is_rooted"] = false
 		
 		else:
 			character.cap_current_stats(stats_set)
@@ -28,9 +29,14 @@ static func create(args: Dictionary):
 		if args["mesh_path"] == null:
 			mesh_path = "res://Assets/Characters/Placeholder/Placeholder_Char.glb"
 			
-		character.stats = stats_set
+		if duplicateFlag:
+			character.stats = stats_set.duplicate()
+		
+		else:
+			character.stats = stats_set
+		
 		character.add_child(load(mesh_path).instantiate())
 		return character
 		
 	else:
-		print("Incorrect stats set")
+		push_error("Incorrect stats set")

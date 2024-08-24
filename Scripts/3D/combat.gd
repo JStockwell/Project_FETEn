@@ -27,8 +27,8 @@ func _ready():
 		setup_debug_skill_options()
 		
 	# Create Attacker
-	attacker = Factory.Character.create(CombatMapStatus.attackerStats)
-	defender = Factory.Character.create(CombatMapStatus.defenderStats)
+	attacker = Factory.Character.create(CombatMapStatus.attackerStats, false)
+	defender = Factory.Character.create(CombatMapStatus.defenderStats, false)
 	
 	add_child(attacker)
 	add_child(defender)
@@ -43,11 +43,7 @@ func _ready():
 
 	# TODO Times and UI once Map is being used
 	if GameStatus.autorunCombat:
-		combat_round(generate_rolls(), generate_rolls(), CombatMapStatus.mapMod, CombatMapStatus.attackRange, CombatMapStatus.attackSkill)
-
-#func _process(delta):
-	#if GameStatus.debugMode:
-		#update_debug_text()
+		await combat_round(generate_rolls(), generate_rolls(), CombatMapStatus.mapMod, CombatMapStatus.attackRange, CombatMapStatus.attackSkill)
 
 # 4 types: melee, ranged, skill and mag
 func combat_round(rolls: Array, rolls_retaliate: Array, mapMod: int, range: int, skillName: String = "") -> void:
@@ -57,23 +53,16 @@ func combat_round(rolls: Array, rolls_retaliate: Array, mapMod: int, range: int,
 	else:
 		var skillSet = GameStatus.skillSet[skillName].get_skill()
 		if skillSet["sef"]:
-			await SEF.run(self, skillName, attacker, defender, mapMod, 0, skillSet["spa"], skillSet["imd"])
+			await SEF.run(self, skillName, rolls, attacker, defender, mapMod, 0, skillSet["spa"], skillSet["imd"])
 		else:
 			await attack(attacker, defender, rolls, mapMod, skillSet["spa"], skillSet["imd"])
 	
 	if range == 1 and defender.get_stats()["current_health"] != 0:
 		# TODO check mapMod for enemy? No mapMod?
 		await attack(defender, attacker, rolls_retaliate, mapMod)
-		
-	elif defender.get_stats()["current_health"] == 0:
-		CombatMapStatus.remove_character_ini(defender.get_map_id())
-		
-		if CombatMapStatus.get_current_ini() > len(CombatMapStatus.get_initiative()) - 1:
-			CombatMapStatus.set_current_ini(CombatMapStatus.get_current_ini() - 1)
-		
+	
 	CombatMapStatus.set_has_attacked(true)
 	combat_end.emit()
-	#get_tree().change_scene_to_file("res://Scenes/3D/tavern.tscn")
 
 # Attack functions
 # TODO Map modifier

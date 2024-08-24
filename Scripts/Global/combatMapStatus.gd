@@ -3,8 +3,7 @@ extends Node
 var maxCameraHeight = 33.75 # 16x16
 var minCameraHeight = 20.6 # 9x9
 
-var enemies: Dictionary
-
+var mapPath: String
 var mapSpawn: Vector3
 var combatSpawn: Vector3
 var mapX
@@ -28,27 +27,11 @@ var isStartCombat: bool
 var initiative: Array = []
 var currentIni: int
 
+var hitBlocked: bool
 var hasAttacked: bool
 var hasMoved: bool
 
 var mapTileMatrix: Array = []
-
-# Enemy
-func set_enemies(enemyList: Array) -> void:
-	var counter = 0
-	for enemy in enemyList:
-		enemies[enemy + "_" + str(counter)] = GameStatus.enemySet[enemy].duplicate()
-		counter += 1
-		
-func get_enemies() -> Dictionary:
-	return enemies
-
-func get_enemy(charName: String):
-	if charName in enemies.keys():
-		return enemies[charName]
-		
-	else:
-		print("character {n} not in enemies".format({"n": charName}))
 
 # Attacker and Defender
 func set_active_characters(attack: Dictionary, defend: Dictionary) -> void:
@@ -100,13 +83,30 @@ func set_current_ini(val: int) -> void:
 	currentIni = val
 
 func remove_character_ini(map_id: int) -> void:
-	initiative.remove_at(initiative.find(map_id))
+	var index = initiative.find(map_id)
+	initiative.remove_at(index)
+	
+	if map_id == selectedCharacter.get_map_id():
+		hasAttacked == false
+		hasMoved == false
+	
+	elif CombatMapStatus.get_current_ini() > index:
+		CombatMapStatus.set_current_ini(CombatMapStatus.get_current_ini() - 1)
+		
+	if CombatMapStatus.get_current_ini() > len(CombatMapStatus.get_initiative()) - 1:
+		CombatMapStatus.set_current_ini(CombatMapStatus.get_current_ini() - 1)
 
 func set_has_attacked(value: bool) -> void:
 	hasAttacked = value
 	
 func set_has_moved(value: bool) -> void:
 	hasMoved = value
+	
+func set_hit_blocked(value: bool) -> void:
+	hitBlocked = value
+	
+func is_hit_blocked() -> bool:
+	return hitBlocked
 
 # Selected Entities
 func set_selected_character(character) -> void:
@@ -134,13 +134,19 @@ func get_selected_map_tile():
 	return selectedMapTile
 
 # Map
+func set_map_path(path: String) -> void:
+	mapPath = path
+	
+func get_map_path() -> String:
+	return mapPath
+	
 func calculate_map_spawn(spawn: Vector3) -> void:
 	mapSpawn = Vector3(-mapX / 2, 0.5, -mapY / 2) + spawn
 	
-	if mapX % 2 == 0:
+	if not int(mapX) & 1:
 		mapSpawn.x += 0.5
 		
-	if mapY % 2 == 0:
+	if not int(mapY) & 1:
 		mapSpawn.z += 0.5
 	
 func get_map_spawn() -> Vector3:
@@ -161,9 +167,9 @@ func get_map_y() -> int:
 func get_map_dimensions() -> Vector2:
 	return Vector2(mapX, mapY)
 
-func set_map_size(x: int, y: int) -> void:
-	mapX = x
-	mapY = y
+func set_map_size(vec: Vector2) -> void:
+	mapX = vec.x
+	mapY = vec.y
 
 func get_map_tile_matrix() -> Array:
 	return mapTileMatrix
