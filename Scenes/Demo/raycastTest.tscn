@@ -1,0 +1,79 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6820yn2kiodr"]
+
+[ext_resource type="Script" path="res://Scripts/Demo/raycastTest.gd" id="1_iye7k"]
+
+[node name="RaycastTest" type="Node3D"]
+script = ExtResource("1_iye7k")
+
+[node name="MapTileGroup" type="Node3D" parent="."]
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(0.882373, 0.348574, -0.31609, 2.98023e-08, 0.671746, 0.740781, 0.47055, -0.653646, 0.592731, -5.97913, 0, 0)
+
+[node name="MainCam" type="Marker3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 5.5, 0, 7)
+
+[node name="Camera3D" type="Camera3D" parent="World/MainCam"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11)
+current = true
+fov = 65.0
+size = 5.74984
+
+[node name="TopDown" type="Marker3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 5, 1, 6.5)
+
+[node name="Camera3D" type="Camera3D" parent="World/TopDown"]
+transform = Transform3D(-4.37114e-08, -1, -2.11758e-22, 1, -4.37114e-08, -3.55271e-15, 3.55271e-15, -2.11758e-22, 1, 0, 0, 11)
+projection = 1
+size = 11.0
+
+[node name="Forward" type="Marker3D" parent="World"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 1.06581e-14, 1.06581e-14, 0, 1, 5, 1, 6.5)
+
+[node name="Camera3D" type="Camera3D" parent="World/Forward"]
+transform = Transform3D(-4.37114e-08, -1, -2.11758e-22, 1, -4.37114e-08, -3.55271e-15, 3.55271e-15, -2.11758e-22, 1, 0, 0, 11)
+projection = 1
+size = 6.5
+
+[node name="RaycastTest" type="Button" parent="."]
+offset_left = 8.0
+offset_top = 88.0
+offset_right = 120.0
+offset_bottom = 120.0
+text = "Raycast Test"
+
+[node name="ChangeCam" type="Button" parent="."]
+offset_left = 8.0
+offset_top = 128.0
+offset_right = 120.0
+offset_bottom = 160.0
+text = "Change Cam"
+
+[node name="SetOrigin" type="Button" parent="."]
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 112.0
+offset_bottom = 40.0
+text = "Set Origin"
+
+[node name="SetEnd" type="Button" parent="."]
+offset_left = 24.0
+offset_top = 48.0
+offset_right = 104.0
+offset_bottom = 80.0
+text = "Set End"
+
+[node name="DebugText" type="Label" parent="."]
+offset_left = 128.0
+offset_top = 8.0
+offset_right = 168.0
+offset_bottom = 31.0
+text = "Origin: (X, X)
+End: (X, X)"
+
+[connection signal="pressed" from="RaycastTest" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="ChangeCam" to="." method="_on_change_cam_pressed"]
+[connection signal="pressed" from="SetOrigin" to="." method="_on_set_origin_pressed"]
+[connection signal="pressed" from="SetEnd" to="." method="_on_set_end_pressed"]

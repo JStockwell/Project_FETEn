@@ -75,12 +75,20 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5, 12
 [node name="Sun" type="DirectionalLight3D" parent="World"]
 transform = Transform3D(0.707107, 0.353553, -0.612372, 0, 0.866025, 0.5, 0.707107, -0.353553, 0.612372, 0, 5.02738, 0)
 
-[node name="Marker3D" type="Marker3D" parent="World"]
+[node name="Tavern" type="Marker3D" parent="World"]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 14.9142, 0)
 
-[node name="Camera3D" type="Camera3D" parent="World/Marker3D"]
+[node name="Camera3D" type="Camera3D" parent="World/Tavern"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20.6)
 fov = 30.0
+
+[node name="TopDown" type="Marker3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 14.914, 0)
+
+[node name="Camera3D" type="Camera3D" parent="World/TopDown"]
+transform = Transform3D(-4.37114e-08, -1, -2.11758e-22, 1, -4.37114e-08, -3.55271e-15, 3.55271e-15, -2.11758e-22, 1, 0, 0, 11)
+projection = 1
+size = 11.0
 
 [node name="SpawnPoints" type="Node3D" parent="."]
 

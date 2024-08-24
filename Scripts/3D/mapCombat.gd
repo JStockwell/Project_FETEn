@@ -1,11 +1,8 @@
 extends Node3D
 
 var mapDict: Dictionary
+var setCam = 1
 
-@onready
-var cameraPivot = $Utility/CameraPivot
-@onready
-var camera = $Utility/CameraPivot/Camera3D
 @onready
 var mapTileGroup = $MapTileGroup
 @onready
@@ -21,23 +18,25 @@ var physAttackButton = $UI/PhysAttackButton
 @onready
 var endTurnButton = $UI/EndTurnButton
 @onready
+var changeCameraButton = $UI/ChangeCamera
+@onready
 var baseSkillMenu = $UI/SkillMenu
 @onready
 var skillMenu = $UI/SkillMenu.get_popup()
 @onready
 var skillIssue = $UI/SkillIssue
+@onready
+var skillIssue2 = $UI/SkillIssue2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	cameraPivot.position = Vector3(CombatMapStatus.get_map_x()/2, 0, CombatMapStatus.get_map_y()/2)
-	camera.position = Vector3(0,0,CombatMapStatus.get_map_x())
 	skillMenu.connect("id_pressed", Callable(self, "_on_skill_selected"))
 
 	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
 	initial_map_load()
 	calculate_combat_initiative()
 	await start_turn()
-	
+
 func initial_map_load() -> void:
 	var row = []
 	for tile in mapDict["tiles"]:
@@ -46,17 +45,25 @@ func initial_map_load() -> void:
 		mapTile.position = Vector3(mapTile.get_coords().x, mapTile.get_height() * 0.1, mapTile.get_coords().y)
 		mapTile.connect("tile_selected", Callable(self, "tile_handler"))
 		
+		if mapTile.get_obstacle_type() in [1, 2]:
+			mapTile.set_odz(false)
+			
 		row.append(mapTile.get_variables().duplicate())
+		
 		if mapTile.get_coords().x == CombatMapStatus.get_map_x():
 			CombatMapStatus.add_map_tile_row(row)
 			row = []
 		
 	var i = 0
+	var positions = mapDict["ally_spawn"]
 	for character in GameStatus.get_party():
 		var partyMember = Factory.Character.create(GameStatus.get_party_member(character), false)
 		partyMember.scale *= Vector3(0.5, 0.5, 0.5)
 		partyMember.position = CombatMapStatus.get_map_spawn()
-		var spawnPos = Utils.string_to_vector2(mapDict["ally_spawn"][i])
+		
+		# TODO Possibly choose spawn, not sure if we're going to do this
+		var spawnPos = choose_random_spawn(positions)
+			
 		partyMember.position += Vector3(spawnPos.x, 0.5, spawnPos.y)
 		partyMember.set_map_coords(spawnPos)
 		partyMember.set_map_id(i)
@@ -84,6 +91,18 @@ func initial_map_load() -> void:
 
 		set_tile_populated(spawnPos, true)
 		j += 1
+
+func choose_random_spawn(spawnPositions: Array) -> Vector2:
+	var spawnPos
+	var index
+	
+	for c in range(100):
+		index = randi_range(0, len(spawnPositions) - 1)
+		spawnPos = Utils.string_to_vector2(mapDict["ally_spawn"][index])
+		if not get_tile_from_coords(spawnPos).is_populated():
+			break
+			
+	return spawnPos
 
 func calculate_combat_initiative() -> void:
 	var res_dict = {}
@@ -123,6 +142,7 @@ func reset_to_tavern():
 	reset_map_status()
 	highlight_control_zones()
 	skillIssue.hide()
+	skillIssue2.hide()
 	
 	if CombatMapStatus.get_selected_character() == null or CombatMapStatus.get_selected_character().is_enemy():
 		CombatMapStatus.advance_ini()
@@ -137,7 +157,9 @@ func sort_descending(a: float, b: float) -> bool:
 		return true
 	return false
 
+signal start_turn_signal
 func start_turn() -> void:
+	start_turn_signal.emit()
 	if CombatMapStatus.get_current_turn_char() == CombatMapStatus.get_initiative()[0] and not CombatMapStatus.is_start_combat():
 		regen_mana()
 	else:
@@ -145,6 +167,7 @@ func start_turn() -> void:
 		
 	reset_map_status()
 	skillIssue.hide()
+	skillIssue2.hide()
 	
 	var currentChar = CombatMapStatus.get_selected_character()
 	
@@ -187,6 +210,7 @@ func reset_map_status() -> void:
 	CombatMapStatus.set_selected_character(null)
 	CombatMapStatus.set_selected_enemy(null)
 	CombatMapStatus.set_selected_map_tile(null)
+	CombatMapStatus.mapMod = 0
 	
 	var currentChar
 	var flag = true
@@ -203,6 +227,7 @@ func reset_map_status() -> void:
 				
 	CombatMapStatus.set_selected_character(currentChar)
 
+# TODO Redo with actual mana recharges
 func regen_mana() -> void:
 	for char in characterGroup.get_children():
 		if char.get_max_mana() != 0:
@@ -316,6 +341,7 @@ func move_character() -> void:
 		remove_selected()
 		CombatMapStatus.set_has_moved(true)
 
+# TODO Replace with Djikstra
 func validate_move(character, mapTile) -> bool:
 	var result = true
 	
@@ -327,9 +353,6 @@ func validate_move(character, mapTile) -> bool:
 		
 	if not mapTile.is_traversable():
 		result = false
-		
-	# TODO calculate path from point to point
-	# TODO add check terrain difficulty
 	
 	return result
 
@@ -338,17 +361,99 @@ signal combat_start
 func _on_phys_attack_button_pressed():
 	phys_combat_round()
 	
+# TODO Test, new changes
 func phys_combat_round() -> void:
+	skillIssue2.hide()
 	var attacker = CombatMapStatus.get_selected_character()
 	var defender = CombatMapStatus.get_selected_enemy()
+	# 0: blockedFlag, 1: mapMod
+	var losResult = calc_los(defender)
 	
-	if Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()) == 1 and attacker.is_ranged():
-		CombatMapStatus.mapMod -= 25
+	if losResult[0] and Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()) != 1:
+		skillIssue2.show()
+		
+	else:
+		if Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()) != 1:
+			CombatMapStatus.set_hit_blocked(false)
+			CombatMapStatus.mapMod -= losResult[1]
+		
+		if Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()) == 1 and attacker.is_ranged():
+			CombatMapStatus.mapMod -= 25
+			
+		var attTile = get_tile_from_coords(attacker.get_map_coords())
+		var defTile = get_tile_from_coords(defender.get_map_coords())
+		
+		CombatMapStatus.mapMod += 5 * (attTile.get_height() - defTile.get_height())
+			
+		CombatMapStatus.set_combat(attacker, defender, Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()), CombatMapStatus.mapMod)
+		combat_start.emit()
+	
+# TODO Test
+# Result: hitFlag, mapMod
+# hitFlag true means there's obstacle, can't attack
+# hitFlag false means there's no obstacle, continue with attack with mapMod
+func calc_los(defender) -> Array:
+	var ray = RayCast3D.new()
+	var origin = CombatMapStatus.get_selected_character().get_map_coords()
+	var end = CombatMapStatus.get_selected_enemy().get_map_coords()
+	ray.position = Vector3(origin.x, -5, origin.y)
+	ray.target_position = Vector3(end.x - origin.x, 0, end.y - origin.y)
+	
+	add_child(ray)
+	ray.set_collide_with_areas(true)
+	
+	# endFlag, hasCollidedFull, mapMod
+	var result = [false, false, []]
+	
+	for i in range(0, 1000):
+		result = collision_loop(ray, result)
+		
+		if result[0] == true:
+			break
+		
+	if result[1]:
+		return [true, 0]
+	
+	else:
+		if len(result[2]) == 0:
+			return [false, 0]
+			
+		else:
+			return [false, check_behind_cover(defender, result[2])]
 
-	CombatMapStatus.set_combat(attacker, defender, Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()), CombatMapStatus.mapMod)
-	#get_tree().change_scene_to_file("res://Scenes/3D/combat.tscn")
-	combat_start.emit()
+# TODO Test
+# args: endFlag: bool, noLoS: bool, foundTiles: Array
+func collision_loop(ray, args: Array):
+	ray.force_raycast_update()
 	
+	if ray.is_colliding():
+		var tile = ray.get_collider().get_parent()
+		
+		if tile.get_obstacle_type() == 2:
+			ray.free()
+			args[0] = true
+			args[1] = true
+		
+		elif tile.get_obstacle_type() == 1:
+			args[2].append(tile)
+			tile.set_odz(true)
+			
+	else:
+		args[0] = true
+		
+	return args
+
+# TODO Test
+func check_behind_cover(defender, tileArray: Array) -> int:
+	var mapMod = 0
+	for tile in tileArray:
+		if Utils.calc_distance(defender.get_map_coords(), tile.get_coords()) == 1:
+			mapMod = 25
+			
+		tile.set_odz(false)
+		
+	return mapMod
+
 func _on_skill_selected(id: int):
 	skillIssue.hide()
 	var skillName
@@ -379,7 +484,6 @@ func _on_skill_selected(id: int):
 			var defender = CombatMapStatus.get_selected_enemy()
 			
 			CombatMapStatus.set_combat(attacker, defender, Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()), 0, skillName)
-			#get_tree().change_scene_to_file("res://Scenes/3D/combat.tscn")
 			combat_start.emit()
 			CombatMapStatus.hasAttacked = true
 
@@ -393,6 +497,7 @@ func update_buttons() -> void:
 	update_phys_attack_button()
 	update_end_turn_button()
 	update_skill_menu_button()
+	update_camera_button()
 
 func update_move_button() -> void:
 	if CombatMapStatus.hasMoved or CombatMapStatus.get_selected_character().is_enemy():
@@ -430,6 +535,12 @@ func update_end_turn_button() -> void:
 		
 	else:
 		endTurnButton.disabled = false
+		
+func update_camera_button() -> void:
+	if CombatMapStatus.get_selected_character().is_enemy():
+		changeCameraButton.disabled = true
+	else:
+		changeCameraButton.disabled = false
 
 func highlight_movement(character) -> void:
 	var char_coords = character.get_map_coords()
@@ -504,6 +615,10 @@ func remove_enemy_highlights() -> void:
 
 func wait(seconds: float) -> void:
 	await get_tree().create_timer(seconds).timeout
+	
+signal change_camera
+func _on_change_camera_pressed():
+	change_camera.emit()
 
 # Debug
 @onready

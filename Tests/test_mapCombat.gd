@@ -365,7 +365,7 @@ func test_get_tile_from_coords_exist():
 	assert_bool(tile.get_variables()["idt"]).is_false()
 	assert_bool(tile.get_variables()["isPopulated"]).is_false()
 	assert_bool(tile.get_variables()["isTraversable"]).is_true()
-	assert_bool(tile.get_variables()["isObstacle"]).is_false()
+	assert_that(tile.get_variables()["obstacleType"]).is_equal(0)
 	
 	
 func test_get_tile_from_coords_not_exist():

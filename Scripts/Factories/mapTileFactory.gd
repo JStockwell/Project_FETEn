@@ -11,12 +11,12 @@ static func create(args: Dictionary):
 	var idt: int = args["idt"]
 	var isPopulated: bool = args["isPopulated"]
 	var isTraversable: bool = args["isTraversable"]
-	var isObstacle: bool = args["isObstacle"]
+	var obstacleType: int = args["obstacleType"]
 	
 	if coords.x < 0 or coords.y <0:
 		validator = false
 		
-	if isObstacle and isTraversable:
+	if obstacleType == 2 and isTraversable:
 		validator = false
 		
 	if isPopulated and not isTraversable:
@@ -33,7 +33,7 @@ static func create(args: Dictionary):
 		myMapTile.isDifficultTerrain = idt
 		myMapTile.isPopulated = isPopulated
 		myMapTile.isTraversable = isTraversable
-		myMapTile.isObstacle = isObstacle
+		myMapTile.obstacleType = obstacleType
 		
 		var path = args["meshPath"]
 		if path == "":
@@ -43,4 +43,4 @@ static func create(args: Dictionary):
 		return myMapTile
 		
 	else:
-		print("incorrect maptile")
+		push_error("incorrect maptile")
