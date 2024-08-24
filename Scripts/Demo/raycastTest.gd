@@ -63,12 +63,15 @@ func _on_button_pressed():
 		
 	if result[1]:
 		print("Big Collision!")
+		return 
 	
 	else:
 		if len(result[2]) == 0:
 			print("No Collision!")
 			
 		else:
+			for tile in result[2]:
+				tile.set_odz(false)
 			print(result[2])
 
 # args: endFlag: bool, noLoS: bool, foundTiles: Array
@@ -85,6 +88,7 @@ func collision_loop(ray, args: Array):
 		
 		elif tile.get_obstacle_type() == 1:
 			args[2].append(tile)
+			tile.set_odz(true)
 			
 	else:
 		args[0] = true

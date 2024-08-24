@@ -16,7 +16,8 @@ func _ready():
 		GameStatus.skillSet[skillName].set_skill_menu_id(i)
 		i += 1
 	
-	CombatMapStatus.set_map_path("res://Assets/json/maps/map1.json")
+	#CombatMapStatus.set_map_path("res://Assets/json/maps/map1.json")
+	CombatMapStatus.set_map_path("res://Assets/json/maps/demo_line_of_sight.json")
 	
 
 func combat_debug_test():

@@ -352,13 +352,16 @@ func phys_combat_round() -> void:
 	skillIssue2.hide()
 	var attacker = CombatMapStatus.get_selected_character()
 	var defender = CombatMapStatus.get_selected_enemy()
+	# 0: blockedFlag, 1: mapMod
+	var losResult = calc_los(defender)
 	
-	if calc_los() and Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()) != 1:
+	if losResult[0] and Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()) != 1:
 		skillIssue2.show()
 		
 	else:
 		if Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()) != 1:
 			CombatMapStatus.set_hit_blocked(false)
+			CombatMapStatus.mapMod -= losResult[1]
 		
 		if Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()) == 1 and attacker.is_ranged():
 			CombatMapStatus.mapMod -= 25
@@ -368,33 +371,74 @@ func phys_combat_round() -> void:
 		
 		CombatMapStatus.mapMod += 5 * (attTile.get_height() - defTile.get_height())
 			
-		CombatMapStatus.set_combat(attacker, defender, Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()), 0)
+		CombatMapStatus.set_combat(attacker, defender, Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()), CombatMapStatus.mapMod	)
 		combat_start.emit()
 	
 # TODO Test
-# False means there's no obstacle, continue with attack
-# True means there's obstacle, can't attack
-func calc_los() -> bool:
-	var result = false
+# Result: hitFlag, mapMod
+# hitFlag true means there's obstacle, can't attack
+# hitFlag false means there's no obstacle, continue with attack with mapMod
+func calc_los(defender) -> Array:
 	var ray = RayCast3D.new()
 	var origin = CombatMapStatus.get_selected_character().get_map_coords()
 	var end = CombatMapStatus.get_selected_enemy().get_map_coords()
-	
-	ray.set_collide_with_areas(true)
-	
 	ray.position = Vector3(origin.x, -5, origin.y)
 	ray.target_position = Vector3(end.x - origin.x, 0, end.y - origin.y)
 	
 	add_child(ray)
+	ray.set_collide_with_areas(true)
+	
+	# endFlag, hasCollidedFull, mapMod
+	var result = [false, false, []]
+	
+	for i in range(0, 1000):
+		result = collision_loop(ray, result)
+		
+		if result[0] == true:
+			break
+		
+	if result[1]:
+		return [true, 0]
+	
+	else:
+		if len(result[2]) == 0:
+			return [false, 0]
+			
+		else:
+			return [false, check_behind_cover(defender, result[2])]
+
+# TODO Test
+# args: endFlag: bool, noLoS: bool, foundTiles: Array
+func collision_loop(ray, args: Array):
 	ray.force_raycast_update()
 	
 	if ray.is_colliding():
-		var tile = ray.get_collider()
-		print(tile)
-		result = true
+		var tile = ray.get_collider().get_parent()
 		
-	ray.free()
-	return result
+		if tile.get_obstacle_type() == 2:
+			ray.free()
+			args[0] = true
+			args[1] = true
+		
+		elif tile.get_obstacle_type() == 1:
+			args[2].append(tile)
+			tile.set_odz(true)
+			
+	else:
+		args[0] = true
+		
+	return args
+
+# TODO Test
+func check_behind_cover(defender, tileArray: Array) -> int:
+	var mapMod = 0
+	for tile in tileArray:
+		if Utils.calc_distance(defender.get_map_coords(), tile.get_coords()) == 1:
+			mapMod = 25
+			
+		tile.set_odz(false)
+		
+	return mapMod
 
 func _on_skill_selected(id: int):
 	skillIssue.hide()
