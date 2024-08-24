@@ -54,50 +54,58 @@ static func smart_enemy_target_choice(enemy, possibleTargets):
 
 static func melee_enemy_attack(map, enemy, finalTarget) -> bool:
 	var rooted = enemy.is_rooted()
-	var finalTargetX = finalTarget.get_map_coords()[0]
-	var finalTargetY = finalTarget.get_map_coords()[1]
+	var finalTargetCoords = finalTarget.get_map_coords()
+	var dijkstra = _dijkstra(map, enemy.get_map_coords(), enemy.get_movement)
+	var moveableCells = dijkstra[0]
+	var distToCell = dijkstra[1]
+	const DIRECTIONS = [Vector2.UP, Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT]
 	
-	if rooted or Utils.calc_distance(enemy.get_map_coords(),finalTarget.get_map_coords()) == 1:
+	if rooted or Utils.calc_distance(enemy.get_map_coords(),finalTargetCoords) == 1:
 		CombatMapStatus.set_selected_enemy(finalTarget)
 		return true
-	elif validate_movement(map, enemy, Vector2(finalTargetX+1, finalTargetY)):
-		CombatMapStatus.set_selected_map_tile(map.get_tile_from_coords(Vector2(finalTargetX+1, finalTargetY)))
-		CombatMapStatus.set_selected_enemy(finalTarget)
-	elif validate_movement(map, enemy, Vector2(finalTargetX, finalTargetY+1)):
-		CombatMapStatus.set_selected_map_tile(map.get_tile_from_coords(Vector2(finalTargetX, finalTargetY+1)))
-		CombatMapStatus.set_selected_enemy(finalTarget)
-	elif validate_movement(map, enemy, Vector2(finalTargetX-1, finalTargetY)):
-		CombatMapStatus.set_selected_map_tile(map.get_tile_from_coords(Vector2(finalTargetX-1, finalTargetY)))
-		CombatMapStatus.set_selected_enemy(finalTarget)
-	elif validate_movement(map, enemy, Vector2(finalTargetX, finalTargetY-1)):
-		CombatMapStatus.set_selected_map_tile(map.get_tile_from_coords(Vector2(finalTargetX, finalTargetY-1)))
-		CombatMapStatus.set_selected_enemy(finalTarget)
 	else:
-		melee_movement(map, enemy, 1)
-		return false
+		var attackPoint
+		var furthestAP = 0
+		for dir in DIRECTIONS:
+			var coordsPlusDir = finalTargetCoords+dir
+			if moveableCells.has(finalTargetCoords+dir) and furthestAP < distToCell[coordsPlusDir.x][coordsPlusDir.y]:
+				attackPoint = finalTargetCoords+dir
+				furthestAP = distToCell[coordsPlusDir.x][coordsPlusDir.y]
 		
-	map.move_character() #not final move, probably should go to the furthest non populated tile reachable that allows attack
+		CombatMapStatus.set_selected_map_tile(map.get_tile_from_coords(attackPoint)) #there is no else to check for inappropriate movement since its literally impossible for the algorythm to reach this point if a tile wasnt previously valid
+		
+	map.move_character()
 	return true
 
 static func check_players_in_range(map, enemy) -> Array:
 	var possible_Targets: Array
-	var rooted = false #enemy.is_rooted()
+	var rooted = enemy.is_rooted()
+	var tilesRange = _dijkstra(map, enemy.get_map_coords, enemy.get_movement)[0]
+	const DIRECTIONS = [Vector2.LEFT, Vector2.UP, Vector2.RIGHT, Vector2.DOWN]
 	for character in map.characterGroup.get_children():
 		if(rooted):
 			if (Utils.calc_distance(enemy.get_map_coords(), character.get_map_coords())<=enemy.get_range()): #add the validation from james
 				possible_Targets.append(character)
 			#enemy.set_is_rooted(false)
-		elif(Utils.calc_distance(enemy.get_map_coords(), character.get_map_coords())<=(enemy.get_movement()+enemy.get_range())):
-			possible_Targets.append(character)
+		else:
+			var viable_target = false
+			for dir in DIRECTIONS:
+				if tilesRange.has(Vector2(character.get_map_coords()+dir) and not map.is_populated(Vector2(character.get_map_coords()+dir))): #If the target has an adjacent tile that is accessible and is not populated and is in range then it is a valid target
+					viable_target = true
+					
+			if viable_target == true:
+				possible_Targets.append(character)
 	
 	return possible_Targets
 
 static func check_closest_player(map, enemy): #we can get everything in the mega if here if wanted and rename func to get_near_closest_player
 	var closestTargetDist = 100
 	var closestTarget
+	var dijkstra = _dijkstra(map, enemy.get_map_coords, 50)
 	for character in map.characterGroup.get_children():
-		if (Utils.calc_distance(enemy.get_map_coords(), character.get_map_coords())<closestTargetDist):
-			closestTargetDist = Utils.calc_distance(enemy.get_map_coords(), character.get_map_coords())
+		var characterPosition = character.get_map_coords()
+		if (dijkstra[1][characterPosition[0]][characterPosition[1]]<closestTargetDist):
+			closestTargetDist = dijkstra[1][characterPosition[0]][characterPosition[1]]
 			closestTarget = character
 			
 	return closestTarget
@@ -127,12 +135,12 @@ static func melee_movement(map, enemy, reach): #reach is basically a movement pe
 	CombatMapStatus.set_selected_map_tile(map.get_tile_from_coords(Vector2(posX,posY)))
 	map.move_character()
 	
-static func validate_movement(map, enemy, finalCoords: Vector2) -> bool:
-	var condition1 = Utils.calc_distance(enemy.get_map_coords(), finalCoords) <= enemy.get_movement()
+static func validate_movement(map, finalCoords: Vector2) -> bool: #much vestigial, such wow
+	var condition1 = map.get_tile_from_coords(finalCoords).is_traversable()
 	var condition2 = not map.get_tile_from_coords(finalCoords).is_populated()
 	return condition1 and condition2
 
-func _dijkstra(map, mapCoords: Vector2, maxRange: int) -> Array:
+static func _dijkstra(map, mapCoords: Vector2, maxRange: int) -> Array:
 	var moveableCells = [mapCoords] # append the current cell to the array of tiles that can be moved to
 	var visited = [] # bidimensional array that keeps track of which tiles have been traversed to
 	var distances = [] # shows distance to each cell, might be useful for certain checks but ultimately not 100% necsessary as the distance is also the priority
@@ -165,7 +173,7 @@ func _dijkstra(map, mapCoords: Vector2, maxRange: int) -> Array:
 		
 		for dir in DIRECTIONS:
 			var coordinates =  current.value + dir
-			if coords_within_bounds(coordinates) and map.get_tile_from_coords(coordinates).is_traversable(): # if it is traversable and it is within the map
+			if valid_coordinates(map, coordinates): # if it is traversable and it is within the map, does not check if a player is in it, check later.
 				if visited[coordinates.y][coordinates.x]: # if it was already visited that means that the tile had a better/equal path to it due to the prio queue
 					continue
 				else:
@@ -189,13 +197,16 @@ func _dijkstra(map, mapCoords: Vector2, maxRange: int) -> Array:
 			if pQ.is_empty():
 				break
 			
-	return moveableCells
+	return [moveableCells, distances]
 
-static func coords_within_bounds(coords: Vector2) -> bool:
+static func valid_coordinates(map, coords: Vector2) -> bool: #this function checks that the coords provided are in the map AND that the tile is not an obstacle
 	var maxX = CombatMapStatus.mapX
 	var maxY = CombatMapStatus.mapY
 	
 	if coords.x < 0 or coords.x >= maxX or coords.y < 0 or coords.y >= maxY:
 		return false
+	elif not map.get_tile_from_coords(coords).is_traversable():
+		return false
 	else:
 		return true
+
