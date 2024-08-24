@@ -632,54 +632,146 @@ func test_update_end_turn_button_is_enemy():
 	assert_bool(test_mapCombat.endTurnButton.disabled).is_true()
 
 
-func test_highlight_movement(do_skip=false, skip_reason="Tests under development"):
+func test_highlight_movement(do_skip=false, skip_reason="Test is giving false negatives"):
 	test_mapCombat.characterGroup.get_children()[0].get_stats()["movement"] = 1
-	#CombatMapStatus.set_initiative([0,1])
-	#CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
-	
-	#test_mapCombat.wait(0.5)
+	test_mapCombat.enemyGroup.get_children()[0].get_stats()["movement"] = 1
+	test_mapCombat.remove_control_zones()
+	test_mapCombat.remove_selected()
+	test_mapCombat.remove_char_highlights()
+	test_mapCombat.remove_ally_highlights()
+	test_mapCombat.remove_enemy_highlights()
 
 	test_mapCombat.highlight_movement(test_mapCombat.characterGroup.get_children()[0])
 	
-	#test_mapCombat.wait(0.5)
+	var tile_10 = test_mapCombat.get_tile_from_coords(Vector2(1, 0))
+	var tile_01 = test_mapCombat.get_tile_from_coords(Vector2(0, 1))
+	var tile_11 = test_mapCombat.get_tile_from_coords(Vector2(1, 1))
+	var tile_21 = test_mapCombat.get_tile_from_coords(Vector2(2, 1))
+	var tile_12 = test_mapCombat.get_tile_from_coords(Vector2(1, 2))
 	
-	var tile_10 = test_mapCombat.get_tile_from_coords(Vector2(1, 0)).highlighted.visible
-	var tile_01 = test_mapCombat.get_tile_from_coords(Vector2(0, 1)).highlighted.visible
-	var tile_11 = test_mapCombat.get_tile_from_coords(Vector2(1, 1)).highlighted.visible
-	var tile_21 = test_mapCombat.get_tile_from_coords(Vector2(2, 1)).highlighted.visible
-	var tile_12 = test_mapCombat.get_tile_from_coords(Vector2(1, 2)).highlighted.visible
-	var char = test_mapCombat.characterGroup.get_children()[0]
-	
-	#test_mapCombat.wait(0.5)
-
-	assert_bool(tile_10).is_true()
-	assert_bool(tile_01).is_true()
-	assert_bool(tile_11).is_false()
-	assert_bool(tile_21).is_false()
-	assert_bool(tile_12).is_false()
+	assert_bool(tile_10.highlighted.visible).is_true()
+	assert_bool(tile_01.highlighted.visible).is_true()
+	assert_bool(tile_11.highlighted.visible).is_false()
+	assert_bool(tile_21.highlighted.visible).is_false()
+	assert_bool(tile_12.highlighted.visible).is_false()
 
 	test_mapCombat.characterGroup.get_children()[0].get_stats()["movement"] = 5
+	test_mapCombat.enemyGroup.get_children()[0].get_stats()["movement"] = 5
+	
 
-func test_highlight_control_zones(do_skip=true, skip_reason="Tests under development"):
-	assert_that(true).is_equal(true)
-	pass
-					
-func test_check_within_bounds(do_skip=true, skip_reason="Tests under development"):
-	assert_that(true).is_equal(true)
-	pass
+func test_highlight_control_zones(do_skip=false, skip_reason="Test is giving false negatives"):
+	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
+	test_mapCombat.remove_control_zones()
+	test_mapCombat.remove_selected()
+	test_mapCombat.remove_char_highlights()
+	test_mapCombat.remove_ally_highlights()
+	test_mapCombat.remove_enemy_highlights()
 
-func test_remove_highlights(do_skip=true, skip_reason="Tests under development"):
-	assert_that(true).is_equal(true)
-	pass
+	test_mapCombat.characterGroup.get_children()[0].get_stats()["movement"] = 1
+	test_mapCombat.enemyGroup.get_children()[0].get_stats()["movement"] = 1
+	
+	test_mapCombat.highlight_control_zones()
+	
+	var tile_11 = test_mapCombat.get_tile_from_coords(Vector2(1, 1))
+	var tile_12 = test_mapCombat.get_tile_from_coords(Vector2(1, 2))
+	var tile_21 = test_mapCombat.get_tile_from_coords(Vector2(2, 1))
+	
+	assert_bool(tile_11.isControlZone).is_false()
+	assert_bool(tile_12.isControlZone).is_true()
+	assert_bool(tile_21.isControlZone).is_true()
+	
+	test_mapCombat.characterGroup.get_children()[0].get_stats()["movement"] = 5
+	test_mapCombat.enemyGroup.get_children()[0].get_stats()["movement"] = 5
+	
+func test_check_within_bounds_ok(do_skip=false, skip_reason="Tests under development"):
+	var enemyCoords = test_mapCombat.enemyGroup.get_children()[0].get_stats()["map_coords"]
+	var vector_up = Vector2(0,-1)
+	var vector_left = Vector2(-1,0)
+	
+	var checker_up = test_mapCombat.check_within_bounds(enemyCoords + vector_up, vector_up)
+	var checker_left = test_mapCombat.check_within_bounds(enemyCoords + vector_left, vector_left)
+	
+	assert_bool(checker_up).is_true()
+	assert_bool(checker_left).is_true()
+	
+	
+func test_check_within_bounds_out_of_bounds(do_skip=false, skip_reason="Tests under development"):
+	var enemyCoords = test_mapCombat.enemyGroup.get_children()[0].get_stats()["map_coords"]
+	var vector_down = Vector2(0,1)
+	var vector_right = Vector2(1,0)
+	
+	var checker_down = test_mapCombat.check_within_bounds(enemyCoords + vector_down, vector_down)
+	var checker_right = test_mapCombat.check_within_bounds(enemyCoords + vector_right, vector_right)
+	
+	assert_bool(checker_down).is_false()
+	assert_bool(checker_right).is_false()
+	
+	
+func test_check_within_bounds_enemy_tile(do_skip=false, skip_reason="Tests under development"):
+	var enemyCoords = test_mapCombat.enemyGroup.get_children()[0].get_stats()["map_coords"]
+	
+	var check_enemy_tile = test_mapCombat.check_within_bounds(enemyCoords, Vector2(0,0))
+	
+	assert_bool(check_enemy_tile).is_false()
+	
 
-func test_remove_control_zones(do_skip=true, skip_reason="Tests under development"):
-	assert_that(true).is_equal(true)
-	pass
+func test_remove_highlights(do_skip=false, skip_reason="Tests under development"):
+	test_mapCombat.remove_highlights()
+	
+	var tile_00 = test_mapCombat.get_tile_from_coords(Vector2(0, 0))
+	var tile_01 = test_mapCombat.get_tile_from_coords(Vector2(0, 1))
+	var tile_02 = test_mapCombat.get_tile_from_coords(Vector2(0, 2))
+	var tile_10 = test_mapCombat.get_tile_from_coords(Vector2(1, 0))
+	var tile_11 = test_mapCombat.get_tile_from_coords(Vector2(1, 1))
+	var tile_12 = test_mapCombat.get_tile_from_coords(Vector2(1, 2))
+	var tile_20 = test_mapCombat.get_tile_from_coords(Vector2(2, 0))
+	var tile_21 = test_mapCombat.get_tile_from_coords(Vector2(2, 1))
+	var tile_22 = test_mapCombat.get_tile_from_coords(Vector2(2, 2))
+	
+	assert_bool(tile_00.highlighted.visible).is_false()
+	assert_bool(tile_01.highlighted.visible).is_false()
+	assert_bool(tile_02.highlighted.visible).is_false()
+	assert_bool(tile_10.highlighted.visible).is_false()
+	assert_bool(tile_11.highlighted.visible).is_false()
+	assert_bool(tile_12.highlighted.visible).is_false()
+	assert_bool(tile_20.highlighted.visible).is_false()
+	assert_bool(tile_21.highlighted.visible).is_false()
+	assert_bool(tile_22.highlighted.visible).is_false()
+	
+	test_mapCombat.reset_map_status()
+	
 
-func test_remove_selected(do_skip=true, skip_reason="Tests under development"):
-	assert_that(true).is_equal(true)
-	pass
-		
+func test_remove_control_zones(do_skip=false, skip_reason="Tests under development"):
+	test_mapCombat.remove_char_highlights()
+	test_mapCombat.remove_ally_highlights()
+	test_mapCombat.remove_enemy_highlights()
+	var tile_11 = test_mapCombat.get_tile_from_coords(Vector2(1, 1))
+	var tile_12 = test_mapCombat.get_tile_from_coords(Vector2(1, 2))
+	var tile_21 = test_mapCombat.get_tile_from_coords(Vector2(2, 1))
+	
+	test_mapCombat.remove_control_zones()
+	
+	assert_bool(tile_11.isControlZone).is_false()
+	assert_bool(tile_12.isControlZone).is_false()
+	assert_bool(tile_21.isControlZone).is_false()
+
+
+func test_remove_selected(do_skip=false, skip_reason="Tests under development"):
+	var tile = test_mapCombat.get_tile_from_coords(Vector2(1, 1))
+	test_mapCombat.remove_control_zones()
+	test_mapCombat.remove_char_highlights()
+	test_mapCombat.remove_ally_highlights()
+	test_mapCombat.remove_enemy_highlights()
+
+	CombatMapStatus.set_selected_map_tile(tile)
+	
+	test_mapCombat.remove_selected()
+	
+	#var tile2 = MeshInstance3D
+	
+	assert_that(tile.highlighted.visible).is_equal(false)
+	
+	
 func test_remove_char_highlights(do_skip=true, skip_reason="Tests under development"):
 	assert_that(true).is_equal(true)
 	pass
