@@ -86,7 +86,7 @@ static func check_players_in_range(map, enemy) -> Array:
 		if(rooted):
 			if (Utils.calc_distance(enemy.get_map_coords(), character.get_map_coords())<=enemy.get_range()): #add the validation from james
 				possible_Targets.append(character)
-			#enemy.set_is_rooted(false)
+			
 		else:
 			var viable_target = false
 			for dir in DIRECTIONS:
@@ -95,13 +95,14 @@ static func check_players_in_range(map, enemy) -> Array:
 					
 			if viable_target == true:
 				possible_Targets.append(character)
-	
+				
+	enemy.set_is_rooted(false)
 	return possible_Targets
 
 static func check_closest_player(map, enemy): #we can get everything in the mega if here if wanted and rename func to get_near_closest_player
 	var closestTargetDist = 100
 	var closestTarget
-	var dijkstra = _dijkstra(map, enemy.get_map_coords, 50)
+	var dijkstra = _dijkstra(map, enemy.get_map_coords, 72) #traversing 1 corner to the other of a 16*16 map with all tiles being dif terrain and 8 zones of control in the path is about 72 movement cost, technically we can remove 4 since the enemy and player have to be within bounds
 	for character in map.characterGroup.get_children():
 		var characterPosition = character.get_map_coords()
 		if (dijkstra[1][characterPosition[0]][characterPosition[1]]<closestTargetDist):
@@ -119,18 +120,8 @@ static func melee_movement(map, enemy, reach): #reach is basically a movement pe
 	
 	if(rooted):
 		posX = enemy.get_map_coords()[0]
-	elif(abs(enemy.get_map_coords()[0]-closestTarget.get_map_coords()[0])<enemy.get_movement()-reach):
-		posX = enemy.get_map_coords()[0] + (closestTarget.get_map_coords()[0]-enemy.get_map_coords()[0])
-		leftoverMov = enemy.get_movement()-reach-abs(enemy.get_map_coords()[0]-closestTarget.get_map_coords()[0])
-		if(enemy.get_map_coords()[1]<closestTarget.get_map_coords()[1]):
-			posY = enemy.get_map_coords()[1] + leftoverMov
-		else:
-			posY = enemy.get_map_coords()[1] - leftoverMov
 	else:
-		if(enemy.get_map_coords()[0]<closestTarget.get_map_coords()[0]):
-			posX = enemy.get_map_coords()[0] + enemy.get_movement() - reach
-		else:
-			posX = enemy.get_map_coords()[0] - enemy.get_movement() + reach
+		return 
 	
 	CombatMapStatus.set_selected_map_tile(map.get_tile_from_coords(Vector2(posX,posY)))
 	map.move_character()
