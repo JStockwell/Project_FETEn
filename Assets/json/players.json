@@ -1,7 +1,7 @@
 {
 	"edgar": {
 		"name": "Edgar",
-		"max_health": 1,
+		"max_health": 32,
 		"attack": 9,
 		"dexterity": 10,
 		"defense": 3,
@@ -10,12 +10,12 @@
 		"ini_mana": 6,
 		"max_mana": 25,
 		"reg_mana": 8,
-		"range": 999,
+		"range": 1,
 		"skills": [
 			"shadow_ball",
 			"nero_nero"
 		],
-		"is_ranged": true,
+		"is_ranged": false,
 		"mesh_path": "res://Assets/Characters/Party/Edgar/Edgar.glb"
 	},
 	"dick": {

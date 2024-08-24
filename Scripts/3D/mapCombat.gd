@@ -55,11 +55,15 @@ func initial_map_load() -> void:
 			row = []
 		
 	var i = 0
+	var positions = mapDict["ally_spawn"]
 	for character in GameStatus.get_party():
 		var partyMember = Factory.Character.create(GameStatus.get_party_member(character), false)
 		partyMember.scale *= Vector3(0.5, 0.5, 0.5)
 		partyMember.position = CombatMapStatus.get_map_spawn()
-		var spawnPos = Utils.string_to_vector2(mapDict["ally_spawn"][i])
+		
+		# TODO Possibly choose spawn, not sure if we're going to do this
+		var spawnPos = choose_random_spawn(positions)
+			
 		partyMember.position += Vector3(spawnPos.x, 0.5, spawnPos.y)
 		partyMember.set_map_coords(spawnPos)
 		partyMember.set_map_id(i)
@@ -87,6 +91,18 @@ func initial_map_load() -> void:
 
 		set_tile_populated(spawnPos, true)
 		j += 1
+
+func choose_random_spawn(spawnPositions: Array) -> Vector2:
+	var spawnPos
+	var index
+	
+	for c in range(100):
+		index = randi_range(0, len(spawnPositions) - 1)
+		spawnPos = Utils.string_to_vector2(mapDict["ally_spawn"][index])
+		if not get_tile_from_coords(spawnPos).is_populated():
+			break
+			
+	return spawnPos
 
 func calculate_combat_initiative() -> void:
 	var res_dict = {}
@@ -325,6 +341,7 @@ func move_character() -> void:
 		remove_selected()
 		CombatMapStatus.set_has_moved(true)
 
+# TODO Replace with Djikstra
 func validate_move(character, mapTile) -> bool:
 	var result = true
 	
@@ -336,9 +353,6 @@ func validate_move(character, mapTile) -> bool:
 		
 	if not mapTile.is_traversable():
 		result = false
-		
-	# TODO calculate path from point to point
-	# TODO add check terrain difficulty
 	
 	return result
 
@@ -371,7 +385,7 @@ func phys_combat_round() -> void:
 		
 		CombatMapStatus.mapMod += 5 * (attTile.get_height() - defTile.get_height())
 			
-		CombatMapStatus.set_combat(attacker, defender, Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()), CombatMapStatus.mapMod	)
+		CombatMapStatus.set_combat(attacker, defender, Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()), CombatMapStatus.mapMod)
 		combat_start.emit()
 	
 # TODO Test
