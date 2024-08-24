@@ -89,7 +89,7 @@ static func check_players_in_range(map, enemy) -> Array:
 			#enemy.set_is_rooted(false)
 		elif(Utils.calc_distance(enemy.get_map_coords(), character.get_map_coords())<=(enemy.get_movement()+enemy.get_range())):
 			possible_Targets.append(character)
-
+	
 	return possible_Targets
 
 static func check_closest_player(map, enemy): #we can get everything in the mega if here if wanted and rename func to get_near_closest_player
@@ -137,7 +137,7 @@ func _dijkstra(map, mapCoords: Vector2, maxRange: int) -> Array:
 	var visited = [] # bidimensional array that keeps track of which tiles have been traversed to
 	var distances = [] # shows distance to each cell, might be useful for certain checks but ultimately not 100% necsessary as the distance is also the priority
 	var previous = [] # bidimensional array that shows which cells you have to take to get there to get the shortest path
-	var directions = [Vector2.UP, Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT] # array that will help us later to move to the adjacent tiles, goes in this order South, east, north, west (remember Y axis is toward player, thats why its reversed)
+	const DIRECTIONS = [Vector2.UP, Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT] # array that will help us later to move to the adjacent tiles, goes in this order South, east, north, west (remember Y axis is toward player, thats why its reversed)
 	var pQ = PriorityQueue.new()
 	
 	# Now we setup the bidimensional array, once populated, the visited and previous path will be set empty
@@ -152,7 +152,6 @@ func _dijkstra(map, mapCoords: Vector2, maxRange: int) -> Array:
 			previous[y].append([null])
 	
 	pQ.push(mapCoords, 0) # We create the priority queue with the starting tile (the tile the enemy is standing on
-
 	distances[mapCoords.y][mapCoords.x] = 0
 	
 	var tileCost
@@ -164,15 +163,15 @@ func _dijkstra(map, mapCoords: Vector2, maxRange: int) -> Array:
 		var current = pQ.pop()
 		visited[current.value.y][current.value.x] = true
 		
-		for dir in directions:
+		for dir in DIRECTIONS:
 			var coordinates =  current.value + dir
 			if coords_within_bounds(coordinates) and map.get_tile_from_coords(coordinates).is_traversable(): # if it is traversable and it is within the map
 				if visited[coordinates.y][coordinates.x]: # if it was already visited that means that the tile had a better/equal path to it due to the prio queue
 					continue
 				else:
 					var extraCost = 0
-					if map.get_tile_from_coords(coordinates).is_control_zone(): #coordinates de este debería ser las de la casilla anterior
-						extraCost += 2
+					if map.get_tile_from_coords(coordinates).is_control_zone(): # reworkeado, la casilla que mira es en entrada y reduce en 1 el mov en lugar de 2, checkea que la zona de inicio de la unidad sea zona de control antes de llamarlo
+						extraCost += 1
 					elif map.get_tile_from_coords(coordinates).is_difficult_terrain():
 						extraCost += 1
 					tileCost = 1 + extraCost
