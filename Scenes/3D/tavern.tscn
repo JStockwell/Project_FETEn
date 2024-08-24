@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://dbkqbo2tbjjv7"]
+[gd_scene load_steps=33 format=3 uid="uid://dbkqbo2tbjjv7"]
 
 [ext_resource type="Texture2D" uid="uid://omp4nekd6s4u" path="res://Assets/Textures/floor_tiles/textures/floor_tiles_02_rough_4k.jpg" id="1_5kh56"]
 [ext_resource type="Texture2D" uid="uid://1w4gt6stnmko" path="res://Assets/Textures/floor_tiles/textures/floor_tiles_02_diff_4k.jpg" id="1_fxol1"]
@@ -7,11 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://7mlxceeje6ma" path="res://Assets/Props/wooden_table/scene.gltf" id="4_rtr3l"]
 [ext_resource type="Texture2D" uid="uid://y6h84qvdgm6p" path="res://Assets/Textures/laminate-flooring-brown-bl/laminate-flooring-brown_albedo.png" id="5_wcieu"]
 [ext_resource type="Texture2D" uid="uid://c4x81ewdeh03g" path="res://Assets/Textures/laminate-flooring-brown-bl/laminate-flooring-brown_ao.png" id="6_meyhs"]
-[ext_resource type="PackedScene" uid="uid://bm1c2o2b7j3cn" path="res://Assets/Props/table_and_chairs/scene.gltf" id="6_nib1w"]
-[ext_resource type="PackedScene" uid="uid://csirscwnl2jsn" path="res://Assets/Props/table_5/scene.gltf" id="7_able7"]
 [ext_resource type="Texture2D" uid="uid://duf8xj4vvqlsi" path="res://Assets/Textures/laminate-flooring-brown-bl/laminate-flooring-brown_height.png" id="7_bg7r4"]
 [ext_resource type="Texture2D" uid="uid://chxm5404ylp77" path="res://Assets/Textures/laminate-flooring-brown-bl/laminate-flooring-brown_metallic.png" id="8_40b21"]
-[ext_resource type="PackedScene" uid="uid://88iaxvkv7y2c" path="res://Assets/Props/jenson_extending_dining_table_dark_stain_oak/scene.gltf" id="8_ibvtj"]
 [ext_resource type="PackedScene" uid="uid://c11mh4mlt8853" path="res://Assets/MapTiles/placeholder_max_map.glb" id="9_7p3eo"]
 [ext_resource type="Texture2D" uid="uid://djvotkdqduwb7" path="res://Assets/Textures/laminate-flooring-brown-bl/laminate-flooring-brown_normal-ogl.png" id="9_c473l"]
 [ext_resource type="Texture2D" uid="uid://ex1qpvc68t5p" path="res://Assets/Textures/laminate-flooring-brown-bl/laminate-flooring-brown_roughness.png" id="10_1cv04"]
@@ -24,25 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://d4g5duibd626" path="res://Assets/Textures/wood_floor_028/WoodFloor028_4K-JPG_Color.jpg" id="16_x3rp4"]
 [ext_resource type="Texture2D" uid="uid://cwj4h1k8qvqbj" path="res://Assets/Textures/wood_floor_028/WoodFloor028_4K-JPG_NormalDX.jpg" id="18_2syxh"]
 [ext_resource type="Texture2D" uid="uid://c2gmvutmid7pq" path="res://Assets/Textures/wood_floor_028/WoodFloor028_4K-JPG_Roughness.jpg" id="19_1g77h"]
-[ext_resource type="PackedScene" uid="uid://crrmexmho68y" path="res://Assets/Props/book_shelf/book_shelf.glb" id="24_5alhb"]
 [ext_resource type="PackedScene" uid="uid://083u5t3a6jej" path="res://Assets/Props/rustic_chair/rustic_chair.glb" id="25_vje1j"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dd45p"]
-albedo_color = Color(0.380392, 0.211765, 0, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_tn8mm"]
-material = SubResource("StandardMaterial3D_dd45p")
-size = Vector3(32, 42, 7)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ovct"]
-albedo_color = Color(0, 0.320978, 1.92523e-07, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_wn21r"]
-material = SubResource("StandardMaterial3D_0ovct")
-size = Vector3(37, 17, 35)
-
-[sub_resource type="BoxMesh" id="BoxMesh_3vhm5"]
-size = Vector3(80, 15, 12)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ip43j"]
 size = Vector3(300, 1, 300)
@@ -109,19 +88,6 @@ uv1_scale = Vector3(3, 3, 3)
 material = SubResource("StandardMaterial3D_nfx40")
 size = Vector2(300, 300)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yjg25"]
-albedo_color = Color(3.17663e-06, 0, 0.793012, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_id3t0"]
-material = SubResource("StandardMaterial3D_yjg25")
-size = Vector3(4, 42, 25)
-
-[sub_resource type="BoxMesh" id="BoxMesh_nuqn0"]
-size = Vector3(300, 50, 7)
-
-[sub_resource type="BoxMesh" id="BoxMesh_s827o"]
-size = Vector3(7, 47, 30)
-
 [sub_resource type="BoxMesh" id="BoxMesh_587e4"]
 
 [node name="Tavern" type="Node3D"]
@@ -136,23 +102,7 @@ script = ExtResource("1_vaq4h")
 [node name="wooden_table" parent="Room/Furniture/GameTables" instance=ExtResource("4_rtr3l")]
 transform = Transform3D(-6.46448e-07, 0, -14.789, 0, 14.789, 0, 14.789, 0, -6.46448e-07, 0, 7.25562, 0)
 
-[node name="table_and_chairs" parent="Room/Furniture/GameTables" instance=ExtResource("6_nib1w")]
-transform = Transform3D(6.60607e-07, 0, 8.75, 0, 8.75, 0, -8.75, 0, 6.60607e-07, -3.70549, -28.0582, 9.22194)
-visible = false
-
-[node name="table_5" parent="Room/Furniture/GameTables" instance=ExtResource("7_able7")]
-transform = Transform3D(-1.69032e-07, 0, 3.867, 0, 3.867, 0, -3.867, 0, -1.69032e-07, 0, -1.48378, 0)
-visible = false
-
-[node name="jenson_table" parent="Room/Furniture/GameTables" instance=ExtResource("8_ibvtj")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
-visible = false
-
 [node name="Misc" type="Node3D" parent="Room/Furniture"]
-
-[node name="bookshelf" parent="Room/Furniture/Misc" instance=ExtResource("24_5alhb")]
-transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, -4.4469, 0, -47.2822)
-visible = false
 
 [node name="Chairs" type="Node3D" parent="Room/Furniture/Misc"]
 
@@ -167,56 +117,6 @@ transform = Transform3D(-17.5, 0, -0.0265712, 0, 17.5, 0, 0.0265712, 0, -17.5, -
 
 [node name="chair4" parent="Room/Furniture/Misc/Chairs" instance=ExtResource("25_vje1j")]
 transform = Transform3D(-17.3796, 0, -2.04963, 0, 17.5, 0, 2.04963, 0, -17.3796, 6.23426, 8.02859, -8.15585)
-
-[node name="Mockup" type="Node3D" parent="Room/Furniture"]
-
-[node name="Bookshelf" type="MeshInstance3D" parent="Room/Furniture/Mockup"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21.096, -30.813)
-mesh = SubResource("BoxMesh_tn8mm")
-
-[node name="Bookshelf2" type="MeshInstance3D" parent="Room/Furniture/Mockup"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.1681, 21.096, -30.813)
-mesh = SubResource("BoxMesh_tn8mm")
-
-[node name="Bookshelf3" type="MeshInstance3D" parent="Room/Furniture/Mockup"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.4422, 21.096, -30.813)
-mesh = SubResource("BoxMesh_tn8mm")
-
-[node name="Bookshelf4" type="MeshInstance3D" parent="Room/Furniture/Mockup"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.0214, 21.096, -30.813)
-mesh = SubResource("BoxMesh_tn8mm")
-
-[node name="TableAndChairs" type="MeshInstance3D" parent="Room/Furniture/Mockup"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.3995, 8.76454, 37.409)
-mesh = SubResource("BoxMesh_wn21r")
-
-[node name="TableAndChairs2" type="MeshInstance3D" parent="Room/Furniture/Mockup"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.1868, 8.76454, 37.409)
-mesh = SubResource("BoxMesh_wn21r")
-
-[node name="TableAndChairs3" type="MeshInstance3D" parent="Room/Furniture/Mockup"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 47.1962, 8.76454, -0.869972)
-mesh = SubResource("BoxMesh_wn21r")
-
-[node name="TableAndChairs4" type="MeshInstance3D" parent="Room/Furniture/Mockup"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -58.0709, 8.76454, 15.6596)
-mesh = SubResource("BoxMesh_wn21r")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/Furniture/Mockup"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -99.9753, 7.2025, 73.4079)
-mesh = SubResource("BoxMesh_3vhm5")
-
-[node name="Bookshelf5" type="MeshInstance3D" parent="Room/Furniture/Mockup"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -121.053, 21.096, 102.506)
-mesh = SubResource("BoxMesh_tn8mm")
-
-[node name="Bookshelf6" type="MeshInstance3D" parent="Room/Furniture/Mockup"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -87.1114, 21.096, 102.506)
-mesh = SubResource("BoxMesh_tn8mm")
-
-[node name="Bookshelf7" type="MeshInstance3D" parent="Room/Furniture/Mockup"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.8751, 21.096, 102.506)
-mesh = SubResource("BoxMesh_tn8mm")
 
 [node name="Room" type="Node3D" parent="Room"]
 
@@ -241,49 +141,6 @@ mesh = SubResource("PlaneMesh_66wff")
 [node name="wood_floor_028" type="MeshInstance3D" parent="Room/Room/Floor"]
 visible = false
 mesh = SubResource("PlaneMesh_k1ddi")
-
-[node name="Mockup" type="Node3D" parent="Room/Room"]
-
-[node name="Door" type="MeshInstance3D" parent="Room/Room/Mockup"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 97.6465, 20.6958, -8.87696)
-mesh = SubResource("BoxMesh_id3t0")
-
-[node name="Wall" type="MeshInstance3D" parent="Room/Room/Mockup"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 24.1001, -38.4773)
-mesh = SubResource("BoxMesh_nuqn0")
-
-[node name="Wall2" type="MeshInstance3D" parent="Room/Room/Mockup"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 100.765, 24.1001, 13.8563)
-mesh = SubResource("BoxMesh_nuqn0")
-
-[node name="Wall3" type="MeshInstance3D" parent="Room/Room/Mockup"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -141.18, -6.06207, 32.432)
-mesh = SubResource("BoxMesh_nuqn0")
-
-[node name="Wall4" type="MeshInstance3D" parent="Room/Room/Mockup"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 105.034, 24.1001, 79.0163)
-mesh = SubResource("BoxMesh_nuqn0")
-
-[node name="Wall5" type="MeshInstance3D" parent="Room/Room/Mockup"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -85.4212, 24.1001, 108.673)
-mesh = SubResource("BoxMesh_nuqn0")
-
-[node name="Wall6" type="MeshInstance3D" parent="Room/Room/Mockup"]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -41.6234, 24.011, 225.81)
-mesh = SubResource("BoxMesh_nuqn0")
-skeleton = NodePath("../Wall4")
-
-[node name="Door2" type="MeshInstance3D" parent="Room/Room/Mockup"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -135.932, 20.6958, 27.8704)
-mesh = SubResource("BoxMesh_id3t0")
-
-[node name="Roof" type="MeshInstance3D" parent="Room/Room/Mockup"]
-transform = Transform3D(1.91069e-15, 10.2585, 4.37114e-08, 4.37114e-08, -4.48412e-07, 1, 1, 0, -4.37114e-08, -30.1636, 49.3822, 32.432)
-mesh = SubResource("BoxMesh_nuqn0")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/Room/Mockup"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -141.052, 23.2808, 27.844)
-mesh = SubResource("BoxMesh_s827o")
 
 [node name="Debug" type="Node3D" parent="."]
 visible = false
