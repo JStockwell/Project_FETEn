@@ -443,7 +443,7 @@ func collision_loop(ray, args: Array):
 		
 	return args
 
-# TODO Test
+
 func check_behind_cover(defender, tileArray: Array) -> int:
 	var mapMod = 0
 	for tile in tileArray:
