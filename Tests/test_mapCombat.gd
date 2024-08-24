@@ -715,7 +715,7 @@ func test_check_within_bounds_enemy_tile(do_skip=false, skip_reason="Tests under
 	assert_bool(check_enemy_tile).is_false()
 	
 
-func test_remove_highlights(do_skip=false, skip_reason="Tests under development"):
+func test_remove_highlights(do_skip=false, skip_reason="Test is giving false negatives"):
 	test_mapCombat.remove_highlights()
 	
 	var tile_00 = test_mapCombat.get_tile_from_coords(Vector2(0, 0))
