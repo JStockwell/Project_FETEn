@@ -30,4 +30,4 @@ static func create(args: Dictionary):
 		return mySkill
 			
 	else:
-		print("invalid skill set")
+		push_error("invalid skill set")

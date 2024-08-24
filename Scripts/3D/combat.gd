@@ -45,10 +45,6 @@ func _ready():
 	if GameStatus.autorunCombat:
 		await combat_round(generate_rolls(), generate_rolls(), CombatMapStatus.mapMod, CombatMapStatus.attackRange, CombatMapStatus.attackSkill)
 
-#func _process(delta):
-	#if GameStatus.debugMode:
-		#update_debug_text()
-
 # 4 types: melee, ranged, skill and mag
 func combat_round(rolls: Array, rolls_retaliate: Array, mapMod: int, range: int, skillName: String = "") -> void:
 	# TODO implement character acc and crit modifiers

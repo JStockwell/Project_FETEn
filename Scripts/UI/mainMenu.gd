@@ -18,7 +18,6 @@ func _ready():
 	
 	CombatMapStatus.set_map_path("res://Assets/json/maps/map1.json")
 	
-
 func combat_debug_test():
 	CombatMapStatus.set_active_characters(GameStatus.get_party_member("edgar"), GameStatus.get_party_member("dick"))
 		

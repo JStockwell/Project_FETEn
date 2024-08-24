@@ -108,11 +108,52 @@ func test_setup_skill_menu():
 	if(CombatMapStatus.get_selected_character().get_char_name() == "Defender"):
 		checker = test_mapCombat.skillMenu.get_item_count()
 		assert_int(checker).is_zero()
-		
-		
-func test_reset_to_tavern(do_skip=true, skip_reason="Ask James"):
-	pass
+	
 
+func test_reset_to_tavern_selected_character_enemy():
+	CombatMapStatus.set_selected_character(test_mapCombat.enemyGroup.get_children()[0])
+	CombatMapStatus.set_initiative([1,0])
+	
+	test_mapCombat.reset_to_tavern()
+	
+	assert_int(CombatMapStatus.get_current_ini()).is_equal(1)
+
+
+func test_reset_to_tavern_selected_character_ally_has_moved():
+	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
+	CombatMapStatus.set_initiative([0,1])
+	test_mapCombat.characterGroup.get_children()[0].get_stats()["hasMoved"] = true
+	
+	test_mapCombat.reset_to_tavern()
+	
+	assert_that(CombatMapStatus.get_selected_character()).is_equal(test_mapCombat.characterGroup.get_children()[0])
+
+	test_mapCombat.characterGroup.get_children()[0].get_stats()["hasMoved"] = false
+
+
+func test_reset_to_tavern_selected_character_ally_has_not_moved():
+	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
+	CombatMapStatus.set_initiative([0,1])
+	test_mapCombat.characterGroup.get_children()[0].get_stats()["hasMoved"] = false
+	
+	test_mapCombat.characterGroup.get_children()[0].get_stats()["movement"] = 1
+	
+	test_mapCombat.reset_to_tavern()
+	
+	var tile_10 = test_mapCombat.get_tile_from_coords(Vector2(1, 0)).highlighted.visible
+	var tile_01 = test_mapCombat.get_tile_from_coords(Vector2(0, 1)).highlighted.visible
+	var tile_11 = test_mapCombat.get_tile_from_coords(Vector2(1, 1)).highlighted.visible
+	var tile_21 = test_mapCombat.get_tile_from_coords(Vector2(2, 1)).highlighted.visible
+	var tile_12 = test_mapCombat.get_tile_from_coords(Vector2(1, 2)).highlighted.visible
+	
+	assert_that(CombatMapStatus.get_selected_character()).is_equal(test_mapCombat.characterGroup.get_children()[0])
+	assert_bool(tile_10).is_true()
+	assert_bool(tile_01).is_true()
+	assert_bool(tile_11).is_false()
+	assert_bool(tile_21).is_false()
+	assert_bool(tile_12).is_false()
+	
+	test_mapCombat.characterGroup.get_children()[0].get_stats()["movement"] = 5
 
 func test_start_turn_party():
 	CombatMapStatus.set_initiative([0,1])
@@ -139,7 +180,7 @@ func test_start_turn_enemy():
 	assert_that(CombatMapStatus.hasMoved).is_false()
 	
 	
-func test_enemy_turn_end(do_skip=true, skip_reason="Tests under development"):
+func test_enemy_turn_end(do_skip=true, skip_reason="Waiting for TODO"):
 	pass
 
 
@@ -324,7 +365,7 @@ func test_get_tile_from_coords_exist():
 	assert_bool(tile.get_variables()["idt"]).is_false()
 	assert_bool(tile.get_variables()["isPopulated"]).is_false()
 	assert_bool(tile.get_variables()["isTraversable"]).is_true()
-	assert_bool(tile.get_variables()["isObstacle"]).is_false()
+	assert_that(tile.get_variables()["obstacleType"]).is_equal(0)
 	
 	
 func test_get_tile_from_coords_not_exist():
@@ -458,7 +499,13 @@ func test_phys_combat_round_ranged_melee(do_skip=false, skip_reason="Tests under
 	test_mapCombat.characterGroup.get_children()[0].get_stats()["map_coords"] = Vector2(0,0)
 	
 #TODO
-func test__on_skill_selected(do_skip=true, skip_reason="Waiting for TODOs"):
+func test__on_skill_selected_targeting_allies(do_skip=true, skip_reason="Waiting for TODOs"):
+	assert_that(true).is_equal(true)
+	pass
+	
+	
+#TODO
+func test__on_skill_selected_targeting_enemies(do_skip=true, skip_reason="Waiting for TODOs"):
 	assert_that(true).is_equal(true)
 	pass
 
@@ -585,9 +632,33 @@ func test_update_end_turn_button_is_enemy():
 	assert_bool(test_mapCombat.endTurnButton.disabled).is_true()
 
 
-func test_highlight_movement(do_skip=true, skip_reason="Tests under development"):
-	assert_that(true).is_equal(true)
-	pass
+func test_highlight_movement(do_skip=false, skip_reason="Tests under development"):
+	test_mapCombat.characterGroup.get_children()[0].get_stats()["movement"] = 1
+	#CombatMapStatus.set_initiative([0,1])
+	#CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
+	
+	#test_mapCombat.wait(0.5)
+
+	test_mapCombat.highlight_movement(test_mapCombat.characterGroup.get_children()[0])
+	
+	#test_mapCombat.wait(0.5)
+	
+	var tile_10 = test_mapCombat.get_tile_from_coords(Vector2(1, 0)).highlighted.visible
+	var tile_01 = test_mapCombat.get_tile_from_coords(Vector2(0, 1)).highlighted.visible
+	var tile_11 = test_mapCombat.get_tile_from_coords(Vector2(1, 1)).highlighted.visible
+	var tile_21 = test_mapCombat.get_tile_from_coords(Vector2(2, 1)).highlighted.visible
+	var tile_12 = test_mapCombat.get_tile_from_coords(Vector2(1, 2)).highlighted.visible
+	var char = test_mapCombat.characterGroup.get_children()[0]
+	
+	#test_mapCombat.wait(0.5)
+
+	assert_bool(tile_10).is_true()
+	assert_bool(tile_01).is_true()
+	assert_bool(tile_11).is_false()
+	assert_bool(tile_21).is_false()
+	assert_bool(tile_12).is_false()
+
+	test_mapCombat.characterGroup.get_children()[0].get_stats()["movement"] = 5
 
 func test_highlight_control_zones(do_skip=true, skip_reason="Tests under development"):
 	assert_that(true).is_equal(true)
