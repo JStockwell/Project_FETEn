@@ -767,19 +767,41 @@ func test_remove_selected(do_skip=false, skip_reason="Tests under development"):
 	
 	test_mapCombat.remove_selected()
 	
-	#var tile2 = MeshInstance3D
-	
 	assert_that(tile.highlighted.visible).is_equal(false)
 	
 	
-func test_remove_char_highlights(do_skip=true, skip_reason="Tests under development"):
-	assert_that(true).is_equal(true)
-	pass
+func test_remove_char_highlights(do_skip=false, skip_reason="Tests under development"):
+	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
+	var tile = test_mapCombat.characterGroup.get_children()[0]
+	test_mapCombat.remove_selected()
+	test_mapCombat.remove_ally_highlights()
+	test_mapCombat.remove_enemy_highlights()
+	test_mapCombat.remove_control_zones()
+	
+	test_mapCombat.remove_char_highlights()
+	
+	assert_that(test_mapCombat.characterGroup.get_children()[0].selectedChar.visible).is_equal(false)
 
-func test_remove_ally_highlights(do_skip=true, skip_reason="Tests under development"):
-	assert_that(true).is_equal(true)
-	pass
+func test_remove_ally_highlights(do_skip=false, skip_reason="Tests under development"):
+	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
+	var tile = test_mapCombat.characterGroup.get_children()[0]
+	test_mapCombat.remove_selected()
+	test_mapCombat.remove_char_highlights()
+	test_mapCombat.remove_enemy_highlights()
+	test_mapCombat.remove_control_zones()
+	
+	test_mapCombat.remove_ally_highlights()
+	
+	assert_that(test_mapCombat.characterGroup.get_children()[0].selectedAlly.visible).is_equal(false)
 		
-func test_remove_enemy_highlights(do_skip=true, skip_reason="Tests under development"):
-	assert_that(true).is_equal(true)
-	pass
+func test_remove_enemy_highlights(do_skip=false, skip_reason="Tests under development"):
+	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
+	var tile = test_mapCombat.characterGroup.get_children()[0]
+	test_mapCombat.remove_selected()
+	test_mapCombat.remove_char_highlights()
+	test_mapCombat.remove_ally_highlights()
+	test_mapCombat.remove_control_zones()
+	
+	test_mapCombat.remove_enemy_highlights()
+	
+	assert_that(test_mapCombat.characterGroup.get_children()[0].selectedEnemy.visible).is_equal(false)
