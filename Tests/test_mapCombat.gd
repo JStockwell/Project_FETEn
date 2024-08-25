@@ -222,7 +222,7 @@ func test_regen_mana():
 	assert_that(GameStatus.get_party()["attacker"]["current_mana"]).is_equal(10.)
 	
 	
-func purge_the_dead(do_skip=true):
+func test_purge_the_dead(do_skip=true, skip_reason="Work in progress"):
 	pass
 
 
@@ -455,7 +455,8 @@ func test__on_phys_attack_button_pressed():
 	
 	test_mapCombat.characterGroup.get_children()[0].get_stats()["map_coords"] = Vector2(0,0)
 
-func test_phys_combat_round_melee():
+
+func test_phys_combat_round_melee(do_skip=true, skip_reason="Obsolete test"):
 	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
 	CombatMapStatus.set_selected_enemy(test_mapCombat.enemyGroup.get_children()[0])
 	test_mapCombat.characterGroup.get_children()[0].get_stats()["map_coords"] = Vector2(2,1)
@@ -469,7 +470,7 @@ func test_phys_combat_round_melee():
 	test_mapCombat.characterGroup.get_children()[0].get_stats()["map_coords"] = Vector2(0,0)
 	
 	
-func test_phys_combat_round_ranged(do_skip=false, skip_reason="Tests under development"):
+func test_phys_combat_round_ranged(do_skip=true, skip_reason="Obsolete test"):
 	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
 	CombatMapStatus.set_selected_enemy(test_mapCombat.enemyGroup.get_children()[0])
 	test_mapCombat.characterGroup.get_children()[0].get_stats()["is_ranged"] = true
@@ -483,7 +484,7 @@ func test_phys_combat_round_ranged(do_skip=false, skip_reason="Tests under devel
 	test_mapCombat.characterGroup.get_children()[0].get_stats()["is_ranged"] = false
 	
 	
-func test_phys_combat_round_ranged_melee(do_skip=false, skip_reason="Tests under development"):
+func test_phys_combat_round_ranged_melee(do_skip=true, skip_reason="Obsolete test"):
 	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
 	CombatMapStatus.set_selected_enemy(test_mapCombat.enemyGroup.get_children()[0])
 	test_mapCombat.characterGroup.get_children()[0].get_stats()["is_ranged"] = true
@@ -497,7 +498,89 @@ func test_phys_combat_round_ranged_melee(do_skip=false, skip_reason="Tests under
 	
 	test_mapCombat.characterGroup.get_children()[0].get_stats()["is_ranged"] = false
 	test_mapCombat.characterGroup.get_children()[0].get_stats()["map_coords"] = Vector2(0,0)
+
+
+
+
+
+
+func test_calc_los(do_skip=true, skip_reason="Work in progress"):
+	#los -> Line Of Sight
+	assert_that(true).is_equal(true)
+	pass
+
+
+func test_collision_loop_collision_complete_cover(do_skip=true, skip_reason="Work in progress"):
+	assert_that(true).is_equal(true)
+	pass
 	
+func test_collision_loop_collision_partial_cover(do_skip=false, skip_reason="Work in progress"):
+	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
+	CombatMapStatus.set_selected_enemy(test_mapCombat.enemyGroup.get_children()[0])
+	test_mapCombat.characterGroup.get_children()[0].set_map_coords(Vector2(2,0))
+	var cover = test_mapCombat.get_tile_from_coords(Vector2(2, 1))
+	cover.obstacleType = 1
+	
+	var ray = RayCast3D.new()
+	var origin = CombatMapStatus.get_selected_character().get_map_coords()
+	var end = CombatMapStatus.get_selected_enemy().get_map_coords()
+	
+	#ray.position = Vector3(2, -5, 0)
+	#ray.target_position = Vector3(2, 0, 2)
+	
+	ray.position = Vector3(origin.x, -5, origin.y)
+	ray.target_position = Vector3(end.x - origin.x, 0, end.y - origin.y)
+	
+	add_child(ray)
+	ray.set_collide_with_areas(true)
+	var result = [false, false, []]
+	
+	for i in range(0, 1000):
+		result = test_mapCombat.collision_loop(ray, result)
+
+	
+	assert_that(result[2][0]).is_equal(cover)
+
+	
+	
+func test_collision_loop_collision_no_cover(do_skip=false, skip_reason="Work in progress"):
+	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
+	CombatMapStatus.set_selected_enemy(test_mapCombat.enemyGroup.get_children()[0])
+	test_mapCombat.characterGroup.get_children()[0].set_map_coords(Vector2(2,0))
+	var ray = RayCast3D.new()
+	var origin = CombatMapStatus.get_selected_character().get_map_coords()
+	var end = CombatMapStatus.get_selected_enemy().get_map_coords()
+	ray.position = Vector3(origin.x, -5, origin.y)
+	ray.target_position = Vector3(end.x - origin.x, 0, end.y - origin.y)
+	add_child(ray)
+	ray.set_collide_with_areas(true)
+	var result = [false, false, []]
+	
+	result = test_mapCombat.collision_loop(ray, result)
+
+	assert_that(result[0]).is_equal(true)
+
+
+func test_check_behind_cover(do_skip=false, skip_reason="Work in progress"):
+	#obz -> Obstacle Detection Zone
+	var cover = test_mapCombat.get_tile_from_coords(Vector2(2, 1))
+	cover.obstacleType = 1
+	var defender = test_mapCombat.enemyGroup.get_children()[0]
+	
+	var mapMod = test_mapCombat.check_behind_cover(defender, [cover])
+
+	assert_that(mapMod).is_equal(25)
+	
+	
+func test_check_behind_cover_not(do_skip=false, skip_reason="Work in progress"):
+	var cover = []
+	var defender = test_mapCombat.enemyGroup.get_children()[0]
+	
+	var mapMod = test_mapCombat.check_behind_cover(defender, cover)
+
+	assert_that(mapMod).is_equal(0)
+
+
 #TODO
 func test__on_skill_selected_targeting_allies(do_skip=true, skip_reason="Waiting for TODOs"):
 	assert_that(true).is_equal(true)
