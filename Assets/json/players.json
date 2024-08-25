@@ -16,7 +16,8 @@
 			"nero_nero"
 		],
 		"is_ranged": false,
-		"mesh_path": "res://Assets/Characters/Party/Edgar/Edgar.glb"
+		"mesh_path": "res://Assets/Characters/Party/Edgar/Edgar.glb",
+		"sprite_path": "res://Assets/Characters/Party/Edgar/Edgar_sprite.png"
 	},
 	"dick": {
 		"name": "Dick",
@@ -32,7 +33,8 @@
 		"range": 1,
 		"skills": [],
 		"is_ranged": false,
-		"mesh_path": "res://Assets/Characters/Party/Dick/dick idle 1.glb"
+		"mesh_path": "res://Assets/Characters/Party/Dick/dick idle 1.glb",
+		"sprite_path": "res://Assets/Characters/Party/Dick/dick_sprite.png"
 	},
 	"samael": {
 		"name": "Samael",
@@ -51,6 +53,58 @@
 			"boost_2"
 		],
 		"is_ranged": false,
-		"mesh_path": "res://Assets/Characters/Party/Samael/Samael idle 1.glb"
+		"mesh_path": "res://Assets/Characters/Party/Samael/Samael idle 1.glb",
+		"sprite_path": ""
+	},
+	"adran": {
+		"name": "Adran",
+		"max_health": 35,
+		"attack": 15,
+		"dexterity": 13,
+		"defense": 3,
+		"agility": 9,
+		"movement": 6,
+		"ini_mana": 6,
+		"max_mana": 15,
+		"reg_mana": 4,
+		"range": 1,
+		"skills": [],
+		"is_ranged": false,
+		"mesh_path": "",
+		"sprite_path": ""
+	},
+	"salvador": {
+		"name": "Salvador",
+		"max_health": 28,
+		"attack": 18,
+		"dexterity": 12,
+		"defense": 4,
+		"agility": 6,
+		"movement": 5,
+		"ini_mana": 1,
+		"max_mana": 3,
+		"reg_mana": 0,
+		"range": 7,
+		"skills": [],
+		"is_ranged": true,
+		"mesh_path": "res://Assets/Characters/Party/Salvador/Salva Idle 1.glb",
+		"sprite_path": ""
+	},
+	"lystra": {
+		"name": "Lystra",
+		"max_health": 24,
+		"attack": 10,
+		"dexterity": 9,
+		"defense": 2,
+		"agility": 10,
+		"movement": 6,
+		"ini_mana": 5,
+		"max_mana": 20,
+		"reg_mana": 7,
+		"range": 1,
+		"skills": [],
+		"is_ranged": false,
+		"mesh_path": "res://Assets/Characters/Party/Lystra/Lystra idle 1.glb",
+		"sprite_path": ""
 	}
 }
