@@ -1,0 +1,99 @@
+[gd_scene load_steps=8 format=3 uid="uid://bisjnpqa5w25q"]
+
+[ext_resource type="PackedScene" uid="uid://cl2xin84vqoax" path="res://Assets/Characters/Party/Dick/dick idle 1.glb" id="1_coo2l"]
+[ext_resource type="Script" path="res://Scripts/UI/characterSelect.gd" id="1_ocioc"]
+[ext_resource type="PackedScene" uid="uid://bqtun5kunny5u" path="res://Scenes/UI/characterCard.tscn" id="2_kwgtb"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vqhfv"]
+size = Vector2(300, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7j3mw"]
+size = Vector3(8.69676, 0.2, 2.16074)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lda3a"]
+albedo_color = Color(0.347817, 0.347817, 0.347817, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_b0o0v"]
+material = SubResource("StandardMaterial3D_lda3a")
+size = Vector3(1, 1.5, 1)
+
+[node name="CharacterSelect" type="Node3D"]
+script = ExtResource("1_ocioc")
+
+[node name="CharacterGroup" type="Node3D" parent="."]
+
+[node name="Dick" type="Node3D" parent="CharacterGroup"]
+visible = false
+
+[node name="dick idle 1" parent="CharacterGroup/Dick" instance=ExtResource("1_coo2l")]
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="Background" type="MeshInstance3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -2)
+mesh = SubResource("PlaneMesh_vqhfv")
+skeleton = NodePath("../..")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.89503, -13.5618)
+light_energy = 0.3
+
+[node name="Camera3D" type="Camera3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6, 5)
+projection = 1
+current = true
+size = 5.5
+
+[node name="TopFloor" type="StaticBody3D" parent="World"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/TopFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.36353, 2.19331, 0.0075531)
+shape = SubResource("BoxShape3D_7j3mw")
+
+[node name="BottomFloor" type="StaticBody3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.26954, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/BottomFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0350311, 2.1643, 0.0075531)
+shape = SubResource("BoxShape3D_7j3mw")
+
+[node name="Placeholders" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0142028, 0)
+visible = false
+
+[node name="CharacterPlaceholder" type="MeshInstance3D" parent="Placeholders"]
+transform = Transform3D(1.6795, 0, 0, 0, 1, 0, 0, 0, 1.6795, -3.35, 0.75972, 0)
+mesh = SubResource("BoxMesh_b0o0v")
+skeleton = NodePath("../../CharacterGroup/Dick")
+
+[node name="CharacterPlaceholder2" type="MeshInstance3D" parent="Placeholders"]
+transform = Transform3D(1.6795, 0, 0, 0, 1, 0, 0, 0, 1.6795, -1.35, 0.75972, 0)
+mesh = SubResource("BoxMesh_b0o0v")
+skeleton = NodePath("../../CharacterGroup/Dick")
+
+[node name="CharacterPlaceholder3" type="MeshInstance3D" parent="Placeholders"]
+transform = Transform3D(1.6795, 0, 0, 0, 1, 0, 0, 0, 1.6795, 1.35, 0.75972, 0)
+mesh = SubResource("BoxMesh_b0o0v")
+skeleton = NodePath("../../CharacterGroup/Dick")
+
+[node name="CharacterPlaceholder4" type="MeshInstance3D" parent="Placeholders"]
+transform = Transform3D(1.6795, 0, 0, 0, 1, 0, 0, 0, 1.6795, 3.35, 0.75972, 0)
+mesh = SubResource("BoxMesh_b0o0v")
+skeleton = NodePath("../../CharacterGroup/Dick")
+
+[node name="CharacterPlaceholder5" type="MeshInstance3D" parent="Placeholders"]
+transform = Transform3D(1.6795, 0, 0, 0, 1, 0, 0, 0, 1.6795, -3.35, 3.05972, 0)
+mesh = SubResource("BoxMesh_b0o0v")
+skeleton = NodePath("../../CharacterGroup/Dick")
+
+[node name="CharacterPlaceholder6" type="MeshInstance3D" parent="Placeholders"]
+transform = Transform3D(1.6795, 0, 0, 0, 1, 0, 0, 0, 1.6795, -1.35, 3.05972, 0)
+mesh = SubResource("BoxMesh_b0o0v")
+skeleton = NodePath("../../CharacterGroup/Dick")
+
+[node name="CharacterCard" parent="." instance=ExtResource("2_kwgtb")]
+visible = false
+offset_left = 1024.0
+offset_top = 192.0
+offset_right = 1024.0
+offset_bottom = 192.0

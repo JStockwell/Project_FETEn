@@ -517,16 +517,13 @@ func test_collision_loop_collision_complete_cover(do_skip=true, skip_reason="Wor
 func test_collision_loop_collision_partial_cover(do_skip=false, skip_reason="Work in progress"):
 	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
 	CombatMapStatus.set_selected_enemy(test_mapCombat.enemyGroup.get_children()[0])
+	
 	test_mapCombat.characterGroup.get_children()[0].set_map_coords(Vector2(2,0))
 	var cover = test_mapCombat.get_tile_from_coords(Vector2(2, 1))
-	cover.obstacleType = 1
 	
 	var ray = RayCast3D.new()
 	var origin = CombatMapStatus.get_selected_character().get_map_coords()
 	var end = CombatMapStatus.get_selected_enemy().get_map_coords()
-	
-	#ray.position = Vector3(2, -5, 0)
-	#ray.target_position = Vector3(2, 0, 2)
 	
 	ray.position = Vector3(origin.x, -5, origin.y)
 	ray.target_position = Vector3(end.x - origin.x, 0, end.y - origin.y)
@@ -537,11 +534,11 @@ func test_collision_loop_collision_partial_cover(do_skip=false, skip_reason="Wor
 	
 	for i in range(0, 1000):
 		result = test_mapCombat.collision_loop(ray, result)
-
+		
+		if result[0]:
+			break
 	
 	assert_that(result[2][0]).is_equal(cover)
-
-	
 	
 func test_collision_loop_collision_no_cover(do_skip=false, skip_reason="Work in progress"):
 	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])

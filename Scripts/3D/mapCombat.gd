@@ -46,6 +46,7 @@ func initial_map_load() -> void:
 		mapTile.connect("tile_selected", Callable(self, "tile_handler"))
 		
 		if mapTile.get_obstacle_type() in [1, 2]:
+			mapTile.init_odz()
 			mapTile.set_odz(false)
 			
 		row.append(mapTile.get_variables().duplicate())
@@ -442,7 +443,6 @@ func collision_loop(ray, args: Array):
 		args[0] = true
 		
 	return args
-
 
 func check_behind_cover(defender, tileArray: Array) -> int:
 	var mapMod = 0
