@@ -61,7 +61,7 @@
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": true,
+			"isTraversable": false,
 			"obstacleType": 1,
 			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
 		},
