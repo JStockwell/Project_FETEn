@@ -62,6 +62,11 @@ func set_is_control_zone(value: bool) -> void:
 func is_control_zone() -> bool:
 	return isControlZone
 
+func init_odz() -> void:
+	var shape = BoxShape3D.new()
+	shape.size = Vector3(1, 1, 1)
+	odz.shape = shape
+
 func set_odz(value: bool) -> void:
 	odz.disabled = value
 

@@ -30,6 +30,7 @@ func _ready():
 		mapTile.connect("tile_selected", Callable(self, "tile_handler"))
 		
 		if mapTile.get_obstacle_type() in [1, 2]:
+			mapTile.init_odz()
 			mapTile.set_odz(false)
 		
 		row.append(mapTile.get_variables().duplicate())

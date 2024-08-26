@@ -46,6 +46,7 @@ func initial_map_load() -> void:
 		mapTile.connect("tile_selected", Callable(self, "tile_handler"))
 		
 		if mapTile.get_obstacle_type() in [1, 2]:
+			mapTile.init_odz()
 			mapTile.set_odz(false)
 			
 		row.append(mapTile.get_variables().duplicate())
@@ -234,22 +235,40 @@ func regen_mana() -> void:
 			char.modify_mana(char.get_reg_mana())
 
 func purge_the_dead():
-	var dead = null
+	#var dead = null
+	#for char in characterGroup.get_children():
+		#if char.get_current_health() == 0:
+			#dead = char
+			#
+	#for enemy in enemyGroup.get_children():
+		#if enemy.get_current_health() == 0:
+			#dead = enemy
+			#
+	#if dead != null:
+		#if dead.get_map_id() == CombatMapStatus.get_selected_character().get_map_id():
+			#print("hello")
+		#CombatMapStatus.remove_character_ini(dead.get_map_id())
+		#var tile = get_tile_from_coords(dead.get_map_coords())
+		#tile.set_is_populated(false)
+		#dead.free()
+		
+	var deads = []
 	for char in characterGroup.get_children():
 		if char.get_current_health() == 0:
-			dead = char
+			deads.append(char)
 			
 	for enemy in enemyGroup.get_children():
 		if enemy.get_current_health() == 0:
-			dead = enemy
+			deads.append(enemy)
 			
-	if dead != null:
-		if dead.get_map_id() == CombatMapStatus.get_selected_character().get_map_id():
-			print("hello")
-		CombatMapStatus.remove_character_ini(dead.get_map_id())
-		var tile = get_tile_from_coords(dead.get_map_coords())
-		tile.set_is_populated(false)
-		dead.free()
+	if deads.size() != 0:
+		for dead in deads:
+			if dead.get_map_id() == CombatMapStatus.get_selected_character().get_map_id():
+				print("hello")
+			CombatMapStatus.remove_character_ini(dead.get_map_id())
+			var tile = get_tile_from_coords(dead.get_map_coords())
+			tile.set_is_populated(false)
+			dead.queue_free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -425,6 +444,8 @@ func calc_los(defender) -> Array:
 # args: endFlag: bool, noLoS: bool, foundTiles: Array
 func collision_loop(ray, args: Array):
 	ray.force_raycast_update()
+	var cover = get_tile_from_coords(Vector2(2, 1))
+	var tile_test = mapTileGroup.get_children()[5]
 	
 	if ray.is_colliding():
 		var tile = ray.get_collider().get_parent()
@@ -443,7 +464,6 @@ func collision_loop(ray, args: Array):
 		
 	return args
 
-# TODO Test
 func check_behind_cover(defender, tileArray: Array) -> int:
 	var mapMod = 0
 	for tile in tileArray:
