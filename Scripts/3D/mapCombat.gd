@@ -235,40 +235,40 @@ func regen_mana() -> void:
 			char.modify_mana(char.get_reg_mana())
 
 func purge_the_dead():
-	#var dead = null
-	#for char in characterGroup.get_children():
-		#if char.get_current_health() == 0:
-			#dead = char
-			#
-	#for enemy in enemyGroup.get_children():
-		#if enemy.get_current_health() == 0:
-			#dead = enemy
-			#
-	#if dead != null:
-		#if dead.get_map_id() == CombatMapStatus.get_selected_character().get_map_id():
-			#print("hello")
-		#CombatMapStatus.remove_character_ini(dead.get_map_id())
-		#var tile = get_tile_from_coords(dead.get_map_coords())
-		#tile.set_is_populated(false)
-		#dead.free()
-		
-	var deads = []
+	var dead = null
 	for char in characterGroup.get_children():
 		if char.get_current_health() == 0:
-			deads.append(char)
+			dead = char
 			
 	for enemy in enemyGroup.get_children():
 		if enemy.get_current_health() == 0:
-			deads.append(enemy)
+			dead = enemy
 			
-	if deads.size() != 0:
-		for dead in deads:
-			if dead.get_map_id() == CombatMapStatus.get_selected_character().get_map_id():
-				print("hello")
-			CombatMapStatus.remove_character_ini(dead.get_map_id())
-			var tile = get_tile_from_coords(dead.get_map_coords())
-			tile.set_is_populated(false)
-			dead.queue_free()
+	if dead != null:
+		if dead.get_map_id() == CombatMapStatus.get_selected_character().get_map_id():
+			print("hello")
+		CombatMapStatus.remove_character_ini(dead.get_map_id())
+		var tile = get_tile_from_coords(dead.get_map_coords())
+		tile.set_is_populated(false)
+		dead.queue_free()
+		
+	#var deads = []
+	#for char in characterGroup.get_children():
+		#if char.get_current_health() == 0:
+			#deads.append(char)
+			#
+	#for enemy in enemyGroup.get_children():
+		#if enemy.get_current_health() == 0:
+			#deads.append(enemy)
+			#
+	#if deads.size() != 0:
+		#for dead in deads:
+			#if dead.get_map_id() == CombatMapStatus.get_selected_character().get_map_id():
+				#print("hello")
+			#CombatMapStatus.remove_character_ini(dead.get_map_id())
+			#var tile = get_tile_from_coords(dead.get_map_coords())
+			#tile.set_is_populated(false)
+			#dead.queue_free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
