@@ -16,7 +16,7 @@ var stats_def
 
 func before():
 	GameStatus.debugMode = false
-	
+	GameStatus.testMode = true
 
 func before_test():
 	attacker = Character.instantiate()

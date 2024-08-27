@@ -2,7 +2,7 @@ class_name CharacterFactory
 
 const Character = preload("res://Scenes/Entities/character.tscn")
 
-const stats_list = ["name", "max_health", "attack", "dexterity", "defense", "agility", "movement", "ini_mana", "max_mana", "reg_mana", "range", "skills", "is_ranged", "mesh_path", "sprite_path"]
+const stats_list = ["id", "name", "max_health", "attack", "dexterity", "defense", "agility", "movement", "ini_mana", "max_mana", "reg_mana", "range", "skills", "is_ranged", "mesh_path", "sprite_path"]
 
 static func create(args: Dictionary, duplicateFlag: bool):
 	var validator = true

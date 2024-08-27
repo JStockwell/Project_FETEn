@@ -179,9 +179,11 @@ func start_turn() -> void:
 	if currentChar.is_enemy():
 		currentChar.selectedEnemy.show()
 		# TODO Enemy Logic
-		await wait(1)
+		if not GameStatus.testMode:
+			await wait(1)
 		var enemyAttack = EnemyBehavior.dumb_melee_behavior(self)
-		await wait(1)
+		if not GameStatus.testMode:
+			await wait(1)
 		
 		if (enemyAttack):
 			phys_combat_round()

@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://ct1jdv1dd3bkl"]
 
 [ext_resource type="Script" path="res://Scripts/UI/mainMenu.gd" id="1_w2wt5"]
-[ext_resource type="FontFile" uid="uid://p6npb2mlppqj" path="res://Fonts/Micrhoma/Michroma-Regular.ttf" id="2_hxlxy"]
+[ext_resource type="FontFile" uid="uid://p6npb2mlppqj" path="res://Assets/Fonts/Micrhoma/Michroma-Regular.ttf" id="2_hxlxy"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_267l2"]
 font_size = 32

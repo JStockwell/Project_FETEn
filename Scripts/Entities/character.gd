@@ -2,6 +2,7 @@ extends RigidBody3D
 
 @export
 var stats = {
+	"id": "msno.",
 	"name": "missingno.",
 	"max_health": 0,
 	"attack": 0,
@@ -32,6 +33,9 @@ var selectedAlly = $SelectedAlly
 # Getters
 func get_stats() -> Dictionary:
 	return stats
+	
+func get_id() -> String:
+	return stats["id"]
 
 func get_char_name() -> String:
 	return stats["name"]

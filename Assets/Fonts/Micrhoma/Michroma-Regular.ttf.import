@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://p6npb2mlppqj"
-path="res://.godot/imported/Michroma-Regular.ttf-57c67bd8049a5ccdb6b8a8f3fe3f0ccb.fontdata"
+path="res://.godot/imported/Michroma-Regular.ttf-93b8782da5a4dec6d1262e565f354172.fontdata"
 
 [deps]
 
-source_file="res://Fonts/Micrhoma/Michroma-Regular.ttf"
-dest_files=["res://.godot/imported/Michroma-Regular.ttf-57c67bd8049a5ccdb6b8a8f3fe3f0ccb.fontdata"]
+source_file="res://Assets/Fonts/Micrhoma/Michroma-Regular.ttf"
+dest_files=["res://.godot/imported/Michroma-Regular.ttf-93b8782da5a4dec6d1262e565f354172.fontdata"]
 
 [params]
 

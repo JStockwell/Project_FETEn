@@ -18,7 +18,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass1.glb",
 		},
 		{
 			"coords": "(1,0)",

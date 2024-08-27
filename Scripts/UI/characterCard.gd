@@ -46,7 +46,7 @@ func set_stats(character) -> void:
 	# Skills
 	var skillText = ""
 	for mySkill in statsSet["skills"]:
-		skillText += GameStatus.get_skill_set()[mySkill]["skill_name"] + ", "
+		skillText += GameStatus.get_skill_set()[mySkill].get_skill_name() + ", "
 	
 	if skillText == "":
 		skillText = "None"

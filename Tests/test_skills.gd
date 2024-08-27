@@ -16,6 +16,9 @@ var stats_atk
 var stats_def
 var stats_ally
 
+func before():
+	GameStatus.testMode = true
+
 func before_test():
 	attacker = Character.instantiate()
 	add_child(attacker)
