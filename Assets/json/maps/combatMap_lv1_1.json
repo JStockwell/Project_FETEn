@@ -1227,6 +1227,6 @@
 			"isTraversable": false,
 			"obstacleType": 2,
 			"meshPath": "res://Assets/MapTiles/Obstacle1.glb"
-		},
+		}
 	]
 }
