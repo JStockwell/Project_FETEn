@@ -69,9 +69,10 @@ static func melee_enemy_attack(map, enemy, finalTarget, dijkstra) -> bool:
 		var furthestAP = 0
 		for dir in DIRECTIONS:
 			var coordsPlusDir = finalTargetCoords+dir
+			#change for dict
 			if moveableCells.has(finalTargetCoords+dir) and not map.get_tile_from_coords(finalTargetCoords+dir).is_populated() and furthestAP < distToCell[coordsPlusDir.x][coordsPlusDir.y]: #maybe function for the not populated shiez
 				attackPoint = finalTargetCoords+dir
-				furthestAP = distToCell[coordsPlusDir.x][coordsPlusDir.y]
+				furthestAP = distToCell[coordsPlusDir.x][coordsPlusDir.y] #change for dict
 		
 		CombatMapStatus.set_selected_map_tile(map.get_tile_from_coords(attackPoint)) #there is no else to check for inappropriate movement since its literally impossible for the algorythm to reach this point if a tile wasnt previously valid
 		
@@ -91,7 +92,8 @@ static func check_players_in_range(map, enemy, tilesRange) -> Array:
 		else:
 			var viable_target = false
 			for dir in DIRECTIONS:
-				if tilesRange.has(Vector2(character.get_map_coords()+dir) and not map.is_populated(character.get_map_coords()+dir)): #If the target has an adjacent tile that is accessible and is not populated and is in range then it is a valid target
+				# change the following line with the equivalent dict alternative
+				if tilesRange.has(character.get_map_coords()+dir and not map.is_populated(character.get_map_coords()+dir)): #If the target has an adjacent tile that is accessible and is not populated and is in range then it is a valid target
 					viable_target = true
 					
 			if viable_target == true:
@@ -107,8 +109,8 @@ static func check_closest_player(map, enemy): #we can get everything in the mega
 	var distances = dijkstra[1]
 	for character in map.characterGroup.get_children():
 		var characterPosition = character.get_map_coords()
-		if (dijkstra[1][characterPosition[0]][characterPosition[1]]<closestTargetDist):
-			closestTargetDist = dijkstra[1][characterPosition[0]][characterPosition[1]]
+		if (distances[characterPosition.x][characterPosition.y]<closestTargetDist): # chage for dict
+			closestTargetDist = distances[characterPosition.x][characterPosition.y] # change for dict
 			closestTarget = character
 			
 	return [closestTarget, distances]
@@ -121,10 +123,12 @@ static func melee_movement(map, enemy, tilesInReach): #it is used in the case th
 		var players = []
 		var checkClosestPlayer = check_closest_player(map, enemy)
 		var closestTarget = checkClosestPlayer[0] # closest player returns the closest player
-		var distances = checkClosestPlayer[1] # and the distances that it calculated with a WAAAAY bigger range
+		var distances = checkClosestPlayer[1] # and the distances that it calculated with a WAAAAY bigger range     change for dict new dijkstra
 		var closestMove = -100
 		
 		for character in map.characterGroup.get_children():
+			
+			# change to a list of the keys in the dictionary and internally call the dictionary every execution
 			for tile in tilesInReach:
 				var movementFitness = distances[tile.x][tile.y] - Utils.calc_distance(character.get_map_coords(), tile)
 				if movementFitness > closestMove and not map.get_tile_from_coords(tile).is_populated():
