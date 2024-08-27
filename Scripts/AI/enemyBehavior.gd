@@ -165,23 +165,28 @@ static func _dijkstra(map, mapCoords: Vector2, maxRange: int) -> Array:
 	var occupiedCells = []
 	
 	# start the search
-	for i in range(10000):
+	for i in range(1000):
 		var current = pQ.pop()
-		print(current.get_coords())
-		print(DIRECTIONS)
 		visited[current.get_coords().x][current.get_coords().y] = true
-		
+		print(i)
 		for dir in DIRECTIONS:
 			var coordinates =  current.get_coords() + dir
 			if valid_coordinates(map, coordinates): # if it is traversable and it is within the map, does not check if a player is in it, check later.
-				var visitedTile = visited[coordinates.y][coordinates.x][0]
-				if visitedTile: # if it was already visited that means that the tile had a better/equal path to it due to the prio queue
+				var visitedTile = visited[coordinates.y][coordinates.x]
+				var visitedTileBool: bool
+				var typeOfBullshit = typeof(visitedTile)
+				if not typeof(visitedTile)==1:
+					visitedTileBool = visitedTile[0]
+				else:
+					visitedTileBool = visitedTile
+				
+				if visitedTileBool: # if it was already visited that means that the tile had a better/equal path to it due to the prio queue
 					continue
 				else:
 					var extraCost = 0
-					var meVoyDeBirras = map.get_tile_from_coords(coordinates).is_control_zone()
+					var controlZone = map.get_tile_from_coords(coordinates).is_control_zone()
 					
-					if meVoyDeBirras: # reworkeado, la casilla que mira es en entrada y reduce en 1 el mov en lugar de 2, checkea que la zona de inicio de la unidad sea zona de control antes de llamarlo
+					if controlZone: # reworkeado, la casilla que mira es en entrada y reduce en 1 el mov en lugar de 2, checkea que la zona de inicio de la unidad sea zona de control antes de llamarlo
 						extraCost += 1
 					elif map.get_tile_from_coords(coordinates).is_difficult_terrain():
 						extraCost += 1
@@ -199,7 +204,8 @@ static func _dijkstra(map, mapCoords: Vector2, maxRange: int) -> Array:
 				
 			if pQ.is_empty():
 				break
-			
+	print(moveableCells)
+	print(distances)
 	return [moveableCells, distances]
 
 static func valid_coordinates(map, coords: Vector2) -> bool: #this function checks that the coords provided are in the map AND that the tile is not an obstacle
