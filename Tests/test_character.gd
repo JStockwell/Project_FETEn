@@ -11,13 +11,14 @@ var dict
 
 func before():
 	GameStatus.debugMode = false
-
+	GameStatus.testMode = true
 
 func before_test():
 	test_char = Character.instantiate()
 	add_child(test_char)
 	
 	initial_stats = {
+		"id": "player_1",
 		"name": "Player1",
 		"max_health": 24,
 		"attack": 16,
@@ -33,10 +34,12 @@ func before_test():
 		"is_ranged": false,
 		"is_rooted": false,
 		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb",
+		"sprite_path": "",
 		"is_enemy": false
 	}
 	
 	max_stats = {
+		"id": "player_1",
 		"name": "Player1",
 		"max_health": 24,
 		"attack": 16,
@@ -52,6 +55,7 @@ func before_test():
 		"is_ranged": false,
 		"is_rooted": false,
 		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb",
+		"sprite_path": "",
 		"current_health": 24,
 		"current_mana": 5, 
 		"is_enemy": false

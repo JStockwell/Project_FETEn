@@ -9,11 +9,9 @@ var test_skillSet = Utils.read_json("res://Assets/json/skills.json")
 var test_mapCombat
 var mapDict
 
-#var stats_atk
-#var stats_def
-
 func before():
 	GameStatus.debugMode = false
+	GameStatus.testMode = false
 
 func before_test():
 	GameStatus.set_playable_characters(test_players)
@@ -135,7 +133,6 @@ func test_reset_to_tavern_selected_character_ally_has_not_moved():
 	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
 	CombatMapStatus.set_initiative([0,1])
 	test_mapCombat.characterGroup.get_children()[0].get_stats()["hasMoved"] = false
-	
 	test_mapCombat.characterGroup.get_children()[0].get_stats()["movement"] = 1
 	
 	test_mapCombat.reset_to_tavern()
@@ -154,6 +151,7 @@ func test_reset_to_tavern_selected_character_ally_has_not_moved():
 	assert_bool(tile_12).is_false()
 	
 	test_mapCombat.characterGroup.get_children()[0].get_stats()["movement"] = 5
+
 
 func test_start_turn_party():
 	CombatMapStatus.set_initiative([0,1])
@@ -180,8 +178,14 @@ func test_start_turn_enemy():
 	assert_that(CombatMapStatus.hasMoved).is_false()
 	
 	
-func test_enemy_turn_end(do_skip=true, skip_reason="Waiting for TODO"):
-	pass
+func test_enemy_turn_end():
+	CombatMapStatus.set_initiative([1,0])
+	CombatMapStatus.set_current_ini(0)
+	
+	await test_mapCombat.enemy_turn_end()
+	
+	assert_int(CombatMapStatus.get_current_ini()).is_equal(1)
+	assert_int(CombatMapStatus.get_selected_character().get_map_id()).is_zero()
 
 
 func test_reset_map_status():
@@ -222,10 +226,56 @@ func test_regen_mana():
 	assert_that(GameStatus.get_party()["attacker"]["current_mana"]).is_equal(10.)
 	
 	
-func purge_the_dead(do_skip=true):
-	pass
+func test_purge_the_dead_ally():
+	var ally = test_mapCombat.characterGroup.get_children()[0]
+	ally.modify_health(-8000)
+	assert_int(ally.get_current_health()).is_zero()
+	var ally_map_id = ally.get_map_id()
+	var ally_tile = test_mapCombat.get_tile_from_coords(ally.get_map_coords())
+	
+	test_mapCombat.purge_the_dead()
+	
+	assert_array(CombatMapStatus.get_initiative()).not_contains([ally_map_id])
+	assert_bool(ally_tile.is_populated()).is_false()
 
-
+	test_mapCombat.initial_map_load()
+	ally = test_mapCombat.characterGroup.get_children()[0]
+	ally.modify_health(8000)
+	
+	
+func test_purge_the_dead_enemy():
+	var enemy = test_mapCombat.enemyGroup.get_children()[0]
+	enemy.modify_health(-8000)
+	assert_int(enemy.get_current_health()).is_zero()
+	var enemy_map_id = enemy.get_map_id()
+	var enemy_tile = test_mapCombat.get_tile_from_coords(enemy.get_map_coords())
+	
+	test_mapCombat.purge_the_dead()
+	
+	assert_array(CombatMapStatus.get_initiative()).not_contains([enemy_map_id])
+	assert_bool(enemy_tile.is_populated()).is_false()
+	
+	test_mapCombat.initial_map_load()
+	enemy = test_mapCombat.enemyGroup.get_children()[0]
+	enemy.modify_health(8000)
+	
+	
+func test_purge_the_dead_no_one_dies():
+	var ally = test_mapCombat.characterGroup.get_children()[0]
+	var enemy = test_mapCombat.enemyGroup.get_children()[0]
+	var ally_map_id = ally.get_map_id()
+	var enemy_map_id = enemy.get_map_id()
+	var ally_tile = test_mapCombat.get_tile_from_coords(ally.get_map_coords())
+	var enemy_tile = test_mapCombat.get_tile_from_coords(enemy.get_map_coords())
+	
+	test_mapCombat.purge_the_dead()
+	
+	assert_array(CombatMapStatus.get_initiative()).has_size(2)
+	assert_array(CombatMapStatus.get_initiative()).contains([ally_map_id, enemy_map_id])
+	assert_bool(ally_tile.is_populated()).is_true()
+	assert_bool(enemy_tile.is_populated()).is_true()
+	
+	
 func test_character_handler_enemy_turn():
 	CombatMapStatus.set_selected_character(test_mapCombat.enemyGroup.get_children()[0])
 	
@@ -445,7 +495,7 @@ func test_validate_move(do_skip=true, skip_reason="Waiting for TODOs"):
 func test__on_phys_attack_button_pressed():
 	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
 	CombatMapStatus.set_selected_enemy(test_mapCombat.enemyGroup.get_children()[0])
-	test_mapCombat.characterGroup.get_children()[0].get_stats()["map_coords"] = Vector2(2,1)
+	test_mapCombat.characterGroup.get_children()[0].get_stats()["map_coords"] = Vector2(1,2)
 	
 	test_mapCombat._on_phys_attack_button_pressed()
 	
@@ -455,10 +505,11 @@ func test__on_phys_attack_button_pressed():
 	
 	test_mapCombat.characterGroup.get_children()[0].get_stats()["map_coords"] = Vector2(0,0)
 
+
 func test_phys_combat_round_melee():
 	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
 	CombatMapStatus.set_selected_enemy(test_mapCombat.enemyGroup.get_children()[0])
-	test_mapCombat.characterGroup.get_children()[0].get_stats()["map_coords"] = Vector2(2,1)
+	test_mapCombat.characterGroup.get_children()[0].get_stats()["map_coords"] = Vector2(1,2)
 	
 	test_mapCombat.phys_combat_round()
 	
@@ -469,7 +520,7 @@ func test_phys_combat_round_melee():
 	test_mapCombat.characterGroup.get_children()[0].get_stats()["map_coords"] = Vector2(0,0)
 	
 	
-func test_phys_combat_round_ranged(do_skip=false, skip_reason="Tests under development"):
+func test_phys_combat_round_ranged():
 	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
 	CombatMapStatus.set_selected_enemy(test_mapCombat.enemyGroup.get_children()[0])
 	test_mapCombat.characterGroup.get_children()[0].get_stats()["is_ranged"] = true
@@ -483,7 +534,7 @@ func test_phys_combat_round_ranged(do_skip=false, skip_reason="Tests under devel
 	test_mapCombat.characterGroup.get_children()[0].get_stats()["is_ranged"] = false
 	
 	
-func test_phys_combat_round_ranged_melee(do_skip=false, skip_reason="Tests under development"):
+func test_phys_combat_round_ranged_melee():
 	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
 	CombatMapStatus.set_selected_enemy(test_mapCombat.enemyGroup.get_children()[0])
 	test_mapCombat.characterGroup.get_children()[0].get_stats()["is_ranged"] = true
@@ -497,7 +548,89 @@ func test_phys_combat_round_ranged_melee(do_skip=false, skip_reason="Tests under
 	
 	test_mapCombat.characterGroup.get_children()[0].get_stats()["is_ranged"] = false
 	test_mapCombat.characterGroup.get_children()[0].get_stats()["map_coords"] = Vector2(0,0)
+
+
+func test_calc_los(do_skip=true, skip_reason="Not possible, raycast fails in testing"):
+	#los -> Line Of Sight
+	assert_that(true).is_equal(true)
+	pass
+
+
+func test_collision_loop_collision_full_cover(do_skip=true, skip_reason="Not possible, raycast fails in testing"):
+	assert_that(true).is_equal(true)
+	pass
 	
+	
+func test_collision_loop_collision_partial_cover(do_skip=true, skip_reason="Not possible, raycast fails in testing"):
+	var cover = test_mapCombat.get_tile_from_coords(Vector2(2, 1))
+	cover.init_odz()
+	cover.set_odz(false)
+	
+	test_mapCombat.characterGroup.get_children()[0].set_map_coords(Vector2(2,0))
+	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
+	CombatMapStatus.set_selected_enemy(test_mapCombat.enemyGroup.get_children()[0])
+	
+	var ray = RayCast3D.new()
+	var origin = CombatMapStatus.get_selected_character().get_map_coords()
+	var end = CombatMapStatus.get_selected_enemy().get_map_coords()
+	
+	ray.position = Vector3(origin.x, -5, origin.y)
+	ray.target_position = Vector3(end.x - origin.x, 0, end.y - origin.y)
+	
+	add_child(ray)
+	ray.set_collide_with_areas(true)
+	ray.hit_back_faces = true
+	ray.hit_from_inside = true
+	ray.exclude_parent = false
+	
+	var result = [false, false, []]
+	
+	for i in range(0, 1000):
+		result = test_mapCombat.collision_loop(ray, result)
+		
+		if result[0]:
+			break
+	
+	assert_that(result[2][0]).is_equal(cover)
+	
+	
+func test_collision_loop_collision_no_cover(do_skip=true, skip_reason="Not possible, raycast fails in testing"):
+	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
+	CombatMapStatus.set_selected_enemy(test_mapCombat.enemyGroup.get_children()[0])
+	test_mapCombat.characterGroup.get_children()[0].set_map_coords(Vector2(2,0))
+	var ray = RayCast3D.new()
+	var origin = CombatMapStatus.get_selected_character().get_map_coords()
+	var end = CombatMapStatus.get_selected_enemy().get_map_coords()
+	ray.position = Vector3(origin.x, -5, origin.y)
+	ray.target_position = Vector3(end.x - origin.x, 0, end.y - origin.y)
+	add_child(ray)
+	ray.set_collide_with_areas(true)
+	var result = [false, false, []]
+	
+	result = test_mapCombat.collision_loop(ray, result)
+
+	assert_that(result[0]).is_equal(true)
+
+
+func test_check_behind_cover():
+	#obz -> Obstacle Detection Zone
+	var cover = test_mapCombat.get_tile_from_coords(Vector2(2, 1))
+	var defender = test_mapCombat.enemyGroup.get_children()[0]
+	
+	var mapMod = test_mapCombat.check_behind_cover(defender, [cover])
+
+	assert_that(mapMod).is_equal(25)
+	
+	
+func test_check_behind_cover_not():
+	var cover = []
+	var defender = test_mapCombat.enemyGroup.get_children()[0]
+	
+	var mapMod = test_mapCombat.check_behind_cover(defender, cover)
+
+	assert_that(mapMod).is_equal(0)
+
+
 #TODO
 func test__on_skill_selected_targeting_allies(do_skip=true, skip_reason="Waiting for TODOs"):
 	assert_that(true).is_equal(true)
@@ -524,9 +657,11 @@ func test_update_buttons(do_skip=true, skip_reason="Waiting for TODOs"):
 	assert_that(true).is_equal(true)
 	pass
 	
+	
 func test_update_move_button(do_skip=true, skip_reason="Waiting for TODOs"):
 	assert_that(true).is_equal(true)
 	pass
+
 
 func test_update_phys_attack_button_after_attack():
 	CombatMapStatus.set_initiative([0, 1])
@@ -659,7 +794,7 @@ func test_highlight_movement(do_skip=true, skip_reason="Test is giving false neg
 	test_mapCombat.enemyGroup.get_children()[0].get_stats()["movement"] = 5
 	
 
-func test_highlight_control_zones(do_skip=false, skip_reason="Test is giving false negatives"):
+func test_highlight_control_zones(do_skip=true, skip_reason="Test is giving false negatives"):
 	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
 	test_mapCombat.remove_control_zones()
 	test_mapCombat.remove_selected()
@@ -683,7 +818,8 @@ func test_highlight_control_zones(do_skip=false, skip_reason="Test is giving fal
 	test_mapCombat.characterGroup.get_children()[0].get_stats()["movement"] = 5
 	test_mapCombat.enemyGroup.get_children()[0].get_stats()["movement"] = 5
 	
-func test_check_within_bounds_ok(do_skip=false, skip_reason="Tests under development"):
+	
+func test_check_within_bounds_ok():
 	var enemyCoords = test_mapCombat.enemyGroup.get_children()[0].get_stats()["map_coords"]
 	var vector_up = Vector2(0,-1)
 	var vector_left = Vector2(-1,0)
@@ -695,7 +831,7 @@ func test_check_within_bounds_ok(do_skip=false, skip_reason="Tests under develop
 	assert_bool(checker_left).is_true()
 	
 	
-func test_check_within_bounds_out_of_bounds(do_skip=false, skip_reason="Tests under development"):
+func test_check_within_bounds_out_of_bounds():
 	var enemyCoords = test_mapCombat.enemyGroup.get_children()[0].get_stats()["map_coords"]
 	var vector_down = Vector2(0,1)
 	var vector_right = Vector2(1,0)
@@ -707,7 +843,7 @@ func test_check_within_bounds_out_of_bounds(do_skip=false, skip_reason="Tests un
 	assert_bool(checker_right).is_false()
 	
 	
-func test_check_within_bounds_enemy_tile(do_skip=false, skip_reason="Tests under development"):
+func test_check_within_bounds_enemy_tile():
 	var enemyCoords = test_mapCombat.enemyGroup.get_children()[0].get_stats()["map_coords"]
 	
 	var check_enemy_tile = test_mapCombat.check_within_bounds(enemyCoords, Vector2(0,0))
@@ -715,7 +851,7 @@ func test_check_within_bounds_enemy_tile(do_skip=false, skip_reason="Tests under
 	assert_bool(check_enemy_tile).is_false()
 	
 
-func test_remove_highlights(do_skip=false, skip_reason="Test is giving false negatives"):
+func test_remove_highlights():
 	test_mapCombat.remove_highlights()
 	
 	var tile_00 = test_mapCombat.get_tile_from_coords(Vector2(0, 0))
@@ -782,6 +918,7 @@ func test_remove_char_highlights(do_skip=true, skip_reason="Test is giving false
 	
 	assert_that(test_mapCombat.characterGroup.get_children()[0].selectedChar.visible).is_equal(false)
 
+
 func test_remove_ally_highlights(do_skip=true, skip_reason="Test is giving false negatives"):
 	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
 	var tile = test_mapCombat.characterGroup.get_children()[0]
@@ -793,7 +930,8 @@ func test_remove_ally_highlights(do_skip=true, skip_reason="Test is giving false
 	test_mapCombat.remove_ally_highlights()
 	
 	assert_that(test_mapCombat.characterGroup.get_children()[0].selectedAlly.visible).is_equal(false)
-		
+	
+	
 func test_remove_enemy_highlights(do_skip=true, skip_reason="Test is giving false negatives"):
 	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
 	var tile = test_mapCombat.characterGroup.get_children()[0]

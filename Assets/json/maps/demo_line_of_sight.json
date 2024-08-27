@@ -91,8 +91,8 @@
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": false,
-			"obstacleType": 1,
-			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
+			"obstacleType": 2,
+			"meshPath": "res://Assets/MapTiles/Obstacle1.glb"
 		},
 		{
 			"coords": "(3,0)",

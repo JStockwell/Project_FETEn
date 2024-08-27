@@ -1,5 +1,6 @@
 {
 	"attacker": {
+		"id": "attacker",
 		"name": "Attacker",
 		"max_health": 24,
 		"attack": 16,
@@ -13,9 +14,11 @@
 		"range": 4,
 		"skills": ["shadow_ball", "nero_nero"], 
 		"is_ranged": false,
-		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb"
+		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb",
+		"sprite_path": ""
 	},
 	"attacker2": {
+		"id": "attacker2",
 		"name": "Attacker2",
 		"max_health": 24,
 		"attack": 16,
@@ -29,9 +32,11 @@
 		"range": 4,
 		"skills": [], 
 		"is_ranged": false,
-		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb"
+		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb",
+		"sprite_path": ""
 	},
 	"attacker_skillTests": {
+		"id": "attacker_skillTests",
 		"name": "Attacker",
 		"max_health": 24,
 		"attack": 9,
@@ -47,12 +52,14 @@
 		"is_ranged": false,
 		"is_rooted": false,
 		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb",
+		"sprite_path": "",
 		"current_health": 24,
 		"current_mana": 5,
 		"is_enemy": false,
 		"map_id": 0
 	},
 	"ally_skillTests": {
+		"id": "ally_skillTests",
 		"name": "Ally",
 		"max_health": 50,
 		"attack": 16,
@@ -68,6 +75,7 @@
 		"is_ranged": false,
 		"is_rooted": false,
 		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb",
+		"sprite_path": "",
 		"current_health": 25,
 		"current_mana": 5,
 		"is_enemy": false,

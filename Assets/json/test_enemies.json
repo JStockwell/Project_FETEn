@@ -1,5 +1,6 @@
 {
 	"defender": {
+		"id": "defender",
 		"name": "Defender",
 		"max_health": 22,
 		"attack": 14,
@@ -13,9 +14,11 @@
 		"range": 4,
 		"skills": [], 
 		"is_ranged": false,
-		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb"
+		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb",
+			"sprite_path": ""
 	},
 	"defender_skillTests": {
+		"id": "defender_skillTests",
 		"name": "Defender",
 		"max_health": 40,
 		"attack": 14,
@@ -31,6 +34,7 @@
 		"is_ranged": false,
 		"is_rooted": false,
 		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb",
+		"sprite_path": "",
 		"current_health": 40,
 		"current_mana": 5,
 		"is_enemy": true,

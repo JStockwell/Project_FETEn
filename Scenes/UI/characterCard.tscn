@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqtun5kunny5u"]
+
+[ext_resource type="Script" path="res://Scripts/UI/characterCard.gd" id="1_j1rqx"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_wgwh8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_oxk0s"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_kr5y0"]
+font_size = 32
+
+[node name="CharacterCard" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_j1rqx")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 768.0
+offset_bottom = 448.0
+color = Color(0.10697, 0.0896635, 0.0655884, 1)
+
+[node name="CharacterPicture" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 16.0
+offset_right = 208.0
+offset_bottom = 192.0
+texture = SubResource("PlaceholderTexture2D_wgwh8")
+expand_mode = 3
+
+[node name="Stats" type="Label" parent="."]
+layout_mode = 0
+offset_left = 272.0
+offset_top = 16.0
+offset_right = 752.0
+offset_bottom = 432.0
+text = "Max Health: 999
+Attack: 99
+Dexterity: 99
+Defense: 99
+Agility: 99
+Movement: Normal
+Skills: SKILL_1, SKILL_2, SKILL_3"
+label_settings = SubResource("LabelSettings_oxk0s")
+autowrap_mode = 3
+
+[node name="ImportantStats" type="Label" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 200.0
+offset_right = 256.0
+offset_bottom = 432.0
+text = "Name: Dick
+Class: Melee Attacker"
+label_settings = SubResource("LabelSettings_kr5y0")
+autowrap_mode = 3
