@@ -2,6 +2,7 @@ extends RigidBody3D
 
 @export
 var stats = {
+	"id": "msno.",
 	"name": "missingno.",
 	"max_health": 0,
 	"attack": 0,
@@ -16,7 +17,8 @@ var stats = {
 	"skills": [],
 	"is_ranged": false,
 	"is_rooted": false,
-	"mesh_path": null
+	"mesh_path": null,
+	"sprite_path": null
 }
 
 @onready
@@ -31,6 +33,9 @@ var selectedAlly = $SelectedAlly
 # Getters
 func get_stats() -> Dictionary:
 	return stats
+	
+func get_id() -> String:
+	return stats["id"]
 
 func get_char_name() -> String:
 	return stats["name"]
@@ -97,6 +102,12 @@ func set_map_id(val: int) -> void:
 	
 func get_map_id() -> int:
 	return stats["map_id"]
+	
+func set_sprite(path: String) -> void:
+	stats["sprite_path"] = path
+	
+func get_sprite() -> String:
+	return stats["sprite_path"]
 
 # Setters
 func set_stats(stats_set: Dictionary) -> void:
@@ -167,3 +178,12 @@ func _on_input_event(camera, event, position, normal, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == 1 and event.pressed:
 			character_selected.emit(self)
+
+signal on_entry(character)
+signal on_exit(character)
+
+func _on_mouse_entered():
+	on_entry.emit(self)
+
+func _on_mouse_exited():
+	on_exit.emit(self)

@@ -2,7 +2,7 @@ class_name CharacterFactory
 
 const Character = preload("res://Scenes/Entities/character.tscn")
 
-const stats_list = ["name", "max_health", "attack", "dexterity", "defense", "agility", "movement", "ini_mana", "max_mana", "reg_mana", "range", "skills", "is_ranged", "mesh_path"]
+const stats_list = ["id", "name", "max_health", "attack", "dexterity", "defense", "agility", "movement", "ini_mana", "max_mana", "reg_mana", "range", "skills", "is_ranged", "mesh_path", "sprite_path"]
 
 static func create(args: Dictionary, duplicateFlag: bool):
 	var validator = true
@@ -26,9 +26,11 @@ static func create(args: Dictionary, duplicateFlag: bool):
 		
 		var mesh_path = args["mesh_path"]
 		
-		if args["mesh_path"] == null:
+		if args["mesh_path"] == "":
 			mesh_path = "res://Assets/Characters/Placeholder/Placeholder_Char.glb"
-			
+		
+		# TODO sprite_path
+		
 		if duplicateFlag:
 			character.stats = stats_set.duplicate()
 		
@@ -39,4 +41,5 @@ static func create(args: Dictionary, duplicateFlag: bool):
 		return character
 		
 	else:
+		printerr(args)
 		push_error("Incorrect stats set")

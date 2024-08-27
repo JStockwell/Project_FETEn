@@ -89,10 +89,12 @@ func deal_damage(dmg: int, crit: float, t_defender):
 	damageNumber.text = dmgText
 	
 	damageNumber.show()
-	await wait(0.75)
+	if not GameStatus.testMode:
+		await wait(0.75)
 	
 	damageNumber.hide()
-	await wait(0.3)
+	if not GameStatus.testMode:
+		await wait(0.3)
 
 # Attack Calculations
 func calc_hit_chance(att_dex: int, def_agi: int, accMod: int, rolls: Array) -> bool:
@@ -118,10 +120,12 @@ func update_damage_text(text: String) -> void:
 	damageNumber.text = text
 	
 	damageNumber.show()
-	await wait(0.75)
+	if not GameStatus.testMode:
+		await wait(0.75)
 	
 	damageNumber.hide()
-	await wait(0.3)
+	if not GameStatus.testMode:
+		await wait(0.3)
 	
 func generate_rolls() -> Array:
 	# true_hit_flag, dice_1, dice_2, crit_roll
