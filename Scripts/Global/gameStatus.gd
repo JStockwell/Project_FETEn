@@ -7,10 +7,20 @@ var skillSet: Dictionary
 var party: Dictionary
 
 var autorunCombat: bool = true
-var debugMode = true
+var debugMode: bool = true
+var testMode: bool = false
+
+func get_playable_characters() -> Dictionary:
+	return playableCharacters
 
 func set_playable_characters(characterDict: Dictionary) -> void:
 	playableCharacters = characterDict
+
+func get_skill_set() -> Dictionary:
+	return skillSet
+
+func set_skill_set(skillDict: Dictionary) -> void:
+	skillSet = skillDict 
 
 func set_party(playerList: Array) -> void:
 	for member in playerList:

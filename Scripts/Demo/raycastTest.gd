@@ -1,6 +1,6 @@
 extends Node3D
 
-var mapDict = Utils.read_json("res://Assets/json/maps/map1.json")
+var mapDict = Utils.read_json("res://Assets/json/maps/demo_line_of_sight.json")
 var selectedTile
 var setCam = 1
 
@@ -62,6 +62,9 @@ func _on_button_pressed():
 		if result[0] == true:
 			break
 		
+	for tile in result[2]:
+		tile.set_odz(false)
+		
 	if result[1]:
 		print("Big Collision!")
 		return 
@@ -71,8 +74,6 @@ func _on_button_pressed():
 			print("No Collision!")
 			
 		else:
-			for tile in result[2]:
-				tile.set_odz(false)
 			print(result[2])
 
 # args: endFlag: bool, noLoS: bool, foundTiles: Array

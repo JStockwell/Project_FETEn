@@ -39,7 +39,7 @@ static func reset_cms():
 static func calc_distance(vect_1: Vector2, vect_2: Vector2) -> int:
 	return abs(vect_1.x - vect_2.x) + abs(vect_1.y - vect_2.y)
 
-static func read_json(jsonPath: String):
+static func read_json(jsonPath: String) -> Dictionary:
 	if FileAccess.file_exists(jsonPath):
 		var dataFile = FileAccess.open(jsonPath, FileAccess.READ)
 		var parsedResult = JSON.parse_string(dataFile.get_as_text())
@@ -47,10 +47,12 @@ static func read_json(jsonPath: String):
 		if parsedResult is Dictionary:
 			return parsedResult
 		else:
-			print("Error reading file " + jsonPath)
+			push_error("Error reading file " + jsonPath)
+			return {}
 			
 	else:
-		print("File {path} doesn't exist!".format({"path": jsonPath}))
+		push_error("File {path} doesn't exist!".format({"path": jsonPath}))
+		return {}
 		
 static func generate_rolls() -> Array:
 	# true_hit_flag, dice_1, dice_2, crit_roll
