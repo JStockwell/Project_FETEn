@@ -133,11 +133,6 @@ static func melee_movement(map, enemy, tilesInReach): #it is used in the case th
 	
 	CombatMapStatus.set_selected_map_tile(map.get_tile_from_coords(chosenTile))
 	map.move_character()
-	
-static func validate_movement(map, finalCoords: Vector2) -> bool: #much vestigial, such wow
-	var condition1 = map.get_tile_from_coords(finalCoords).is_traversable()
-	var condition2 = not map.get_tile_from_coords(finalCoords).is_populated()
-	return condition1 and condition2
 
 static func _dijkstra(map, mapCoords: Vector2, maxRange: int) -> Array:
 	var moveableCells = [mapCoords] # append the current cell to the array of tiles that can be moved to
