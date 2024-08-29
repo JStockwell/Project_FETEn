@@ -68,8 +68,18 @@ offset_left = 56.0
 offset_top = 96.0
 offset_right = 200.0
 offset_bottom = 128.0
-item_count = 1
-popup/item_0/text = "map_1"
+item_count = 6
+popup/item_0/text = "lv1_1"
 popup/item_0/id = 0
+popup/item_1/text = "lv1_2"
+popup/item_1/id = 1
+popup/item_2/text = "lv3_1"
+popup/item_2/id = 2
+popup/item_3/text = "lv3_2"
+popup/item_3/id = 3
+popup/item_4/text = "lv3_3"
+popup/item_4/id = 4
+popup/item_5/text = "lv4_1"
+popup/item_5/id = 5
 
 [connection signal="pressed" from="UI/StartButton" to="." method="_on_start_button_pressed"]

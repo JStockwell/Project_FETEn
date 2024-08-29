@@ -3,7 +3,12 @@ extends Node
 var tempParty = []
 
 const MAPS = [
-	"res://Assets/json/maps/map1.json"
+	"res://Assets/json/maps/combatMap_lv1_1.json",
+	"res://Assets/json/maps/combatMap_lv1_2.json",
+	"res://Assets/json/maps/combatMap_lv3_1.json",
+	"res://Assets/json/maps/combatMap_lv3_2.json",
+	"res://Assets/json/maps/combatMap_lv3_3.json",
+	"res://Assets/json/maps/combatMap_lv4_1.json"
 ]
 
 @onready
