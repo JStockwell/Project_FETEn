@@ -44,8 +44,30 @@ static func dumb_ranged_behavior(map) -> bool:
 	else:
 		var finalTargetId = randi_range(1,len(possibleTargets))
 		var finalTarget = possibleTargets[finalTargetId-1]
-		return melee_enemy_attack(map, enemy, finalTarget, dijkstra)
+		var optimalTile = find_optimal_shot(map, dijkstra, finalTarget)
+		return ranged_enemy_attack(map, enemy, finalTarget, dijkstra)
 		
+static func find_optimal_shot(map, dijkstra, finalTarget) -> Vector2:
+	var moveableTiles = dijkstra[0]
+	var bestMod = -1000
+	var bestModPosition: Vector2
+	var heightPC = map.get_tile_from_coords(finalTarget.get_map_coords()).get_height()
+	var difTerrain = 0
+	if map.get_tile_from_coords(finalTarget.get_map_coords()).is_difficult_terrain():
+		difTerrain = 10
+	for y in range(moveableTiles.size()):
+		for x in range(moveableTiles[y].size()):
+			if moveableTiles[y][x] and not map.calc_los(Vector2(x,y), finalTarget.get_map_coords())[0]:
+				var coverMod = map.calc_los(Vector2(x,y), finalTarget.get_map_coords())[1]
+				var heightEnemy = map.get_tile_from_coords(Vector2(x,y)).get_height()
+				var currentMod = 5*(heightEnemy-heightPC)-coverMod+difTerrain
+				if bestMod < currentMod:
+					bestModPosition = Vector2(x,y)
+					bestMod = currentMod
+					
+	return bestModPosition
+
+
 static func smart_enemy_target_choice(enemy, possibleTargets):
 	var finalTarget
 	var damageValue: int
@@ -56,7 +78,7 @@ static func smart_enemy_target_choice(enemy, possibleTargets):
 	
 	for playerCharacter in possibleTargets:
 		damageValue = enemy.get_attack()-playerCharacter.get_defense()
-		precision = (50+enemy.get_dexterity()*5-playerCharacter.get_agility()*3)/100
+		precision = (50+enemy.get_dexterity()*5-playerCharacter.get_agility()*3)/100 #missing map tile modifiers
 		if damageValue >= playerCharacter.get_current_health():
 			killRange = 5
 		else:
@@ -168,7 +190,7 @@ static func viable_ranged_target(map, enemy, target, tilesRange) -> bool: # ugly
 		if viableTarget == false:
 			for x in range((tilesRange[y]).size()):
 				if tilesRange[y][x]:
-					if map.calc_los(Vector2(y,x), target) and map.calc_distance(Vector2(y,x), target) <= enemy.get_range():
+					if not map.calc_los(Vector2(x,y), target)[0] and map.calc_distance(Vector2(x,y), target) <= enemy.get_range():
 						viableTarget = true
 		else:
 			break
