@@ -40,10 +40,12 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="DebugText" type="Label" parent="UI"]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 24.0
 
 [node name="StartButton" type="Button" parent="UI"]
+layout_mode = 0
 offset_left = 256.0
 offset_top = 96.0
 offset_right = 384.0
@@ -51,6 +53,7 @@ offset_bottom = 128.0
 text = "Start Combat"
 
 [node name="Map" type="Label" parent="UI"]
+layout_mode = 0
 offset_left = 80.0
 offset_top = 64.0
 offset_right = 176.0

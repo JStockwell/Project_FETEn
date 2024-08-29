@@ -6,6 +6,8 @@ var Combat = preload("res://Scenes/3D/combat.tscn")
 var setCam = 1
 
 @onready
+var tavernCamPivot = $World/Tavern
+@onready
 var tavernCam = $World/Tavern/Camera3D
 @onready
 var topTavernPivot = $World/TopDown
@@ -24,6 +26,14 @@ func _ready():
 	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
 	CombatMapStatus.set_is_start_combat(true)
 	CombatMapStatus.calculate_map_spawn(mapCenter.position)
+	var mapSpawn = CombatMapStatus.get_map_spawn()
+	
+	if CombatMapStatus.get_map_x() % 2 != 0:
+		mapSpawn.x += 0.5
+	if CombatMapStatus.get_map_y() % 2 != 0:
+		mapSpawn.z += 0.5
+		
+	CombatMapStatus.set_map_spawn(mapSpawn)
 	CombatMapStatus.set_combat_spawn(combatCenter.position)
 	
 	cm = CombatMap.instantiate()
@@ -43,12 +53,6 @@ func setup_cameras():
 		camHeights.append(CombatMapStatus.minCameraHeight + i * (CombatMapStatus.maxCameraHeight - CombatMapStatus.minCameraHeight) / (CombatMapStatus.MAX_MAP_DIMENSION - CombatMapStatus.MIN_MAP_DIMENSION))
 		
 	tavernCam.position.z = camHeights[CombatMapStatus.mapY - CombatMapStatus.MIN_MAP_DIMENSION]
-	
-	if CombatMapStatus.get_map_x() % 2 != 0:
-		topTavernPivot.position.x -= 0.5
-		
-	if CombatMapStatus.get_map_y() % 2 != 0:
-		topTavernPivot.position.z -= 0.5
 	
 	topTavernCam.size = CombatMapStatus.get_map_x()
 
