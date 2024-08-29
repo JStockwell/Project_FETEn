@@ -387,8 +387,11 @@ func phys_combat_round() -> void:
 	skillIssue2.hide()
 	var attacker = CombatMapStatus.get_selected_character()
 	var defender = CombatMapStatus.get_selected_enemy()
+	
+	var attackerPosition = attacker.get_map_coords()
+	var defenderPosition = defender.get_map_coords()
 	# 0: blockedFlag, 1: mapMod
-	var losResult = calc_los(defender)
+	var losResult = calc_los(attackerPosition, defender)
 	
 	if losResult[0] and Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()) != 1:
 		skillIssue2.show()
@@ -413,12 +416,11 @@ func phys_combat_round() -> void:
 # Result: hitFlag, mapMod
 # hitFlag true means there's obstacle, can't attack
 # hitFlag false means there's no obstacle, continue with attack with mapMod
-func calc_los(defender) -> Array:
+func calc_los(attackerPosition, defender) -> Array:
 	var ray = RayCast3D.new()
-	var origin = CombatMapStatus.get_selected_character().get_map_coords()
-	var end = CombatMapStatus.get_selected_enemy().get_map_coords()
-	ray.position = Vector3(origin.x, -5, origin.y)
-	ray.target_position = Vector3(end.x - origin.x, 0, end.y - origin.y)
+	var targetPosition = defender.get_map_coords()
+	ray.position = Vector3(attackerPosition.x, -5, attackerPosition.y)
+	ray.target_position = Vector3(targetPosition.x - attackerPosition.x, 0, targetPosition.y - attackerPosition.y)
 	
 	add_child(ray)
 	ray.set_collide_with_areas(true)

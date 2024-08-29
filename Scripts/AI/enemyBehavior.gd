@@ -13,7 +13,7 @@ static func dumb_melee_behavior(map) -> bool:
 	var possibleTargets = check_players_in_range(map, enemy, dijkstra[0])
 	
 	if (possibleTargets.is_empty()): # currently doesnt take into account root or a unit being in those tiles, but it will do for basic testing
-		melee_movement(map, enemy, dijkstra[0])
+		approach_enemy(map, enemy, dijkstra[0])
 		return false
 	else:
 		var finalTargetId = randi_range(1,len(possibleTargets))
@@ -27,13 +27,25 @@ static func smart_melee_behavior(map) -> bool:
 	var possibleTargets = check_players_in_range(map, enemy, dijkstra[0])
 	
 	if (possibleTargets.is_empty()): # currently doesnt take into account root or a unit being in those tiles, but it will do for basic testing
-		melee_movement(map, enemy, dijkstra[0])
+		approach_enemy(map, enemy, dijkstra[0])
 		return false
 	else:
 		var finalTarget = smart_enemy_target_choice(enemy, possibleTargets)
 		return melee_enemy_attack(map, enemy, finalTarget, dijkstra)
 
-
+static func dumb_ranged_behavior(map) -> bool:
+	var enemy = CombatMapStatus.get_selected_character()
+	var dijkstra = _dijkstra(map, enemy.get_map_coords(), enemy.get_movement())
+	var possibleTargets = check_players_in_range(map, enemy, dijkstra[0])
+	
+	if (possibleTargets.is_empty()): # currently doesnt take into account root or a unit being in those tiles, but it will do for basic testing
+		approach_enemy(map, enemy, dijkstra[0])
+		return false
+	else:
+		var finalTargetId = randi_range(1,len(possibleTargets))
+		var finalTarget = possibleTargets[finalTargetId-1]
+		return melee_enemy_attack(map, enemy, finalTarget, dijkstra)
+		
 static func smart_enemy_target_choice(enemy, possibleTargets):
 	var finalTarget
 	var damageValue: int
@@ -76,21 +88,91 @@ static func melee_enemy_attack(map, enemy, finalTarget, dijkstra) -> bool:
 			var coordsPlusDir = finalTargetCoords+dir
 			var tileDistance = distToCell[coordsPlusDir.y][coordsPlusDir.x]
 			var tileDistanceInt: int
-			#change for dict
-			if typeof(tileDistance) == 28:
+
+			if typeof(tileDistance) == 28: # in case it randomly decides to make it a list or an int
 				tileDistanceInt = tileDistance[0]
 			else:
 				tileDistanceInt = tileDistance
 			
 			if moveableCells.has(finalTargetCoords+dir) and not map.get_tile_from_coords(finalTargetCoords+dir).is_populated() and furthestAP < tileDistanceInt: #maybe function for the not populated shiez
 				attackPoint = finalTargetCoords+dir
-				furthestAP = distToCell[coordsPlusDir.y][coordsPlusDir.x] #change for dict
+				furthestAP = distToCell[coordsPlusDir.y][coordsPlusDir.x]
 			
 		CombatMapStatus.set_selected_enemy(finalTarget)
 		CombatMapStatus.set_selected_map_tile(map.get_tile_from_coords(attackPoint)) #there is no else to check for inappropriate movement since its literally impossible for the algorythm to reach this point if a tile wasnt previously valid
 		
 	map.move_character()
 	return true
+
+
+static func ranged_enemy_attack(map, enemy, finalTarget, dijkstra) -> bool:
+	var rooted = enemy.is_rooted()
+	var finalTargetCoords = finalTarget.get_map_coords()
+	var moveableCells = dijkstra[0]
+	var distToCell = dijkstra[1]
+	const DIRECTIONS = [Vector2.UP, Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT]
+	var bestTilesToAttack = []
+	
+	if rooted: #has line of sight:
+		CombatMapStatus.set_selected_enemy(finalTarget)
+		return true
+	elif bestTilesToAttack.has(enemy.get_map_coords()):
+		CombatMapStatus.set_selected_enemy(finalTarget)
+		return true # find a way to move after shooting 
+	else: # no clue just yet, work on the target selection
+		var attackPoint
+		var furthestAP = 0
+		for dir in DIRECTIONS:
+			var coordsPlusDir = finalTargetCoords+dir
+			var tileDistance = distToCell[coordsPlusDir.y][coordsPlusDir.x]
+			var tileDistanceInt: int
+
+			if typeof(tileDistance) == 28: # in case it randomly decides to make it a list or an int
+				tileDistanceInt = tileDistance[0]
+			else:
+				tileDistanceInt = tileDistance
+			
+			if moveableCells.has(finalTargetCoords+dir) and not map.get_tile_from_coords(finalTargetCoords+dir).is_populated() and furthestAP < tileDistanceInt: #maybe function for the not populated shiez
+				attackPoint = finalTargetCoords+dir
+				furthestAP = distToCell[coordsPlusDir.y][coordsPlusDir.x]
+			
+		CombatMapStatus.set_selected_enemy(finalTarget)
+		CombatMapStatus.set_selected_map_tile(map.get_tile_from_coords(attackPoint)) #there is no else to check for inappropriate movement since its literally impossible for the algorythm to reach this point if a tile wasnt previously valid
+		
+	map.move_character()
+	return true
+	
+static func check_players_in_range_ranged(map, enemy, tilesRange) -> Array:
+	var possible_Targets: Array
+	var rooted = enemy.is_rooted()
+	
+	const DIRECTIONS = [Vector2.LEFT, Vector2.UP, Vector2.RIGHT, Vector2.DOWN]
+	for character in map.characterGroup.get_children():
+		var target = character.get_map_coords()
+		var attackCoords = enemy.get_map_coords()
+		if(rooted):
+			if Utils.calc_distance(attackCoords, target)<=enemy.get_range() and not map.get_los(attackCoords, target)[0]:
+				possible_Targets.append(character)
+			
+		else:
+			var viableTarget = viable_ranged_target(map, enemy, target, tilesRange) 
+			if viableTarget == true:
+				possible_Targets.append(character)
+				
+	enemy.set_is_rooted(false)
+	return possible_Targets
+
+static func viable_ranged_target(map, enemy, target, tilesRange) -> bool: # ugly ahh function
+	var viableTarget = false
+	for y in range((tilesRange).size()):
+		if viableTarget == false:
+			for x in range((tilesRange[y]).size()):
+				if tilesRange[y][x]:
+					if map.calc_los(Vector2(y,x), target) and map.calc_distance(Vector2(y,x), target) <= enemy.get_range():
+						viableTarget = true
+		else:
+			break
+	return viableTarget
 
 static func check_players_in_range(map, enemy, tilesRange) -> Array:
 	var possible_Targets: Array
@@ -105,7 +187,6 @@ static func check_players_in_range(map, enemy, tilesRange) -> Array:
 		else:
 			var viable_target = false
 			for dir in DIRECTIONS:
-				# change the following line with the equivalent dict alternative
 				if map.check_within_bounds(character.get_map_coords(),dir):
 					if tilesRange.has(character.get_map_coords()+dir) and not map.get_tile_from_coords(character.get_map_coords()+dir).is_populated(): #If the target has an adjacent tile that is accessible and is not populated and is in range then it is a valid target
 						viable_target = true
@@ -116,20 +197,24 @@ static func check_players_in_range(map, enemy, tilesRange) -> Array:
 	enemy.set_is_rooted(false)
 	return possible_Targets
 
-static func check_closest_player(map, enemy): #we can get everything in the mega if here if wanted and rename func to get_near_closest_player
+
+#generic across ranged and melee
+static func check_closest_player(map, enemy): 
 	var closestTargetDist = 100
 	var closestTarget
 	var dijkstra = _dijkstra(map, enemy.get_map_coords(), 72) #traversing 1 corner to the other of a 16*16 map with all tiles being dif terrain and 8 zones of control in the path is about 72 movement cost, technically we can remove 4 since the enemy and player have to be within bounds
 	var distances = dijkstra[1]
 	for character in map.characterGroup.get_children():
 		var characterPosition = character.get_map_coords()
-		if (distances[characterPosition.y][characterPosition.x]<closestTargetDist): # chage for dict
-			closestTargetDist = distances[characterPosition.y][characterPosition.x] # change for dict
+		if (distances[characterPosition.y][characterPosition.x]<closestTargetDist):
+			closestTargetDist = distances[characterPosition.y][characterPosition.x]
 			closestTarget = character
 			
 	return [closestTarget, distances]
-	
-static func melee_movement(map, enemy, tilesInReach): #it is used in the case that the enemy cant reach a valid attack target
+
+
+#generic across ranged and melee
+static func approach_enemy(map, enemy, tilesInReach): #it is used in the case that the enemy cant reach a valid attack target, for both melee and ranged
 	var chosenTile = enemy.get_map_coords()
 	var rooted = enemy.is_rooted()
 	
@@ -142,7 +227,6 @@ static func melee_movement(map, enemy, tilesInReach): #it is used in the case th
 		
 		for character in map.characterGroup.get_children():
 			
-			# change to a list of the keys in the dictionary and internally call the dictionary every execution
 			for tile in tilesInReach:
 				var movementFitness = distances[tile.y][tile.x] - Utils.calc_distance(character.get_map_coords(), tile)
 				if movementFitness > closestMove and not map.get_tile_from_coords(tile).is_populated():
@@ -152,6 +236,8 @@ static func melee_movement(map, enemy, tilesInReach): #it is used in the case th
 	CombatMapStatus.set_selected_map_tile(map.get_tile_from_coords(chosenTile))
 	map.move_character()
 
+
+#generic across ranged and melee
 static func _dijkstra(map, mapCoords: Vector2, maxRange: int) -> Array:
 	var moveableCells = [mapCoords] # append the current cell to the array of tiles that can be moved to
 	var visited = [] # bidimensional array that keeps track of which tiles have been traversed to
@@ -176,7 +262,6 @@ static func _dijkstra(map, mapCoords: Vector2, maxRange: int) -> Array:
 	
 	var tileCost
 	var distanceToNode
-	var occupiedCells = []
 	
 	# start the search
 	for i in range(1000):
@@ -219,6 +304,8 @@ static func _dijkstra(map, mapCoords: Vector2, maxRange: int) -> Array:
 			break
 	return [moveableCells, distances]
 
+
+#generic across ranged and melee
 static func valid_coordinates(map, coords: Vector2) -> bool: #this function checks that the coords provided are in the map AND that the tile is not an obstacle
 	var maxX = CombatMapStatus.mapX
 	var maxY = CombatMapStatus.mapY
