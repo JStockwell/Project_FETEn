@@ -1,26 +1,37 @@
 {
-	"name": "map1",
-	"size": "(11,14)",
+	"name": "combatMap_lv3_2",
+	"size": "(11,12)",
 	"ally_spawn": [
-		"(4,12)",
-		"(5,12)",
-		"(6,12)",
-		"(4,13)",
-		"(5,13)",
-		"(6,13)"
+		
 	],
 	"enemy_spawn": [
 		[
-			"sling_gobbo",
-			"(8,4)"
-		],
-		[
-			"sling_gobbo",
-			"(4,5)"
-		],
-		[
 			"goblin",
-			"(4,7)"
+			"(4,4)"
+		],
+		[
+			"sling_gobbo",
+			"(1,1)"
+		],
+		[
+			"sling_gobbo",
+			"(3,1)"
+		],
+		[
+			"orc",
+			"(12,4)"
+		],
+		[
+			"orc",
+			"(5,5)"
+		],
+		[
+			"orc",
+			"(2,4)"
+		],
+		[
+			"ranged_orc",
+			"(2,2)"
 		]
 	],
 	"tiles": [
@@ -29,27 +40,27 @@
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(1,0)",
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(2,0)",
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(3,0)",
@@ -83,18 +94,18 @@
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": true,
-			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"isTraversable": false,
+			"obstacleType": 2,
+			"meshPath": "res://Assets/MapTiles/Obstacle1.glb"
 		},
 		{
 			"coords": "(7,0)",
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": true,
-			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"isTraversable": false,
+			"obstacleType": 2,
+			"meshPath": "res://Assets/MapTiles/Obstacle1.glb"
 		},
 		{
 			"coords": "(8,0)",
@@ -119,36 +130,36 @@
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(0,1)",
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(1,1)",
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(2,1)",
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(3,1)",
@@ -182,22 +193,22 @@
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
-			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Obstacle1.glb"
+			"isTraversable": true,
+			"obstacleType": 0,
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(7,1)",
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
-			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Obstacle1.glb"
+			"isTraversable": true,
+			"obstacleType": 0,
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(8,1)",
-			"height": 1,
+			"height": 0,
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": true,
@@ -228,17 +239,17 @@
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": false,
-			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"obstacleType": 2,
+			"meshPath": "res://Assets/MapTiles/Obstacle1.glb"
 		},
 		{
 			"coords": "(1,2)",
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(2,2)",
@@ -272,36 +283,36 @@
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": true,
-			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"isTraversable": false,
+			"obstacleType": 2,
+			"meshPath": "res://Assets/MapTiles/Obstacle1.glb"
 		},
 		{
 			"coords": "(6,2)",
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
-			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Obstacle1.glb"
+			"isTraversable": true,
+			"obstacleType": 0,
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(7,2)",
-			"height": 1,
-			"idt": false,
+			"height": 0,
+			"idt": true,
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Water1.glb"
 		},
 		{
 			"coords": "(8,2)",
-			"height": 1,
-			"idt": false,
+			"height": 0,
+			"idt": true,
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Water1.glb"
 		},
 		{
 			"coords": "(9,2)",
@@ -350,21 +361,21 @@
 		},
 		{
 			"coords": "(3,3)",
-			"height": 1,
+			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
-			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Obstacle1.glb"
+			"isTraversable": true,
+			"obstacleType": 0,
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(4,3)",
-			"height": 1,
+			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
-			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Obstacle1.glb"
+			"isTraversable": true,
+			"obstacleType": 0,
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(5,3)",
@@ -380,9 +391,9 @@
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
-			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Obstacle1.glb"
+			"isTraversable": true,
+			"obstacleType": 0,
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(7,3)",
@@ -396,11 +407,11 @@
 		{
 			"coords": "(8,3)",
 			"height": 0,
-			"idt": false,
+			"idt": true,
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Water1.glb"
 		},
 		{
 			"coords": "(9,3)",
@@ -422,7 +433,7 @@
 		},
 		{
 			"coords": "(0,4)",
-			"height": 1,
+			"height": 0,
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": true,
@@ -431,7 +442,7 @@
 		},
 		{
 			"coords": "(1,4)",
-			"height": 1,
+			"height": 0,
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": true,
@@ -440,7 +451,7 @@
 		},
 		{
 			"coords": "(2,4)",
-			"height": 1,
+			"height": 0,
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": true,
@@ -449,7 +460,7 @@
 		},
 		{
 			"coords": "(3,4)",
-			"height": 1,
+			"height": 0,
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": true,
@@ -458,7 +469,7 @@
 		},
 		{
 			"coords": "(4,4)",
-			"height": 1,
+			"height": 0,
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": true,
@@ -467,7 +478,7 @@
 		},
 		{
 			"coords": "(5,4)",
-			"height": 1,
+			"height": 0,
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": true,
@@ -485,7 +496,7 @@
 		},
 		{
 			"coords": "(7,4)",
-			"height": 1,
+			"height": 0,
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": true,
@@ -494,16 +505,16 @@
 		},
 		{
 			"coords": "(8,4)",
-			"height": 1,
-			"idt": false,
+			"height": 0,
+			"idt": true,
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Water1.glb"
 		},
 		{
 			"coords": "(9,4)",
-			"height": 1,
+			"height": 0,
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": true,
@@ -524,13 +535,13 @@
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(1,5)",
-			"height": 1,
+			"height": 0,
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": true,
@@ -539,7 +550,7 @@
 		},
 		{
 			"coords": "(2,5)",
-			"height": 1,
+			"height": 0,
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": true,
@@ -548,7 +559,7 @@
 		},
 		{
 			"coords": "(3,5)",
-			"height": 1,
+			"height": 0,
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": true,
@@ -557,7 +568,7 @@
 		},
 		{
 			"coords": "(4,5)",
-			"height": 1,
+			"height": 0,
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": true,
@@ -566,7 +577,7 @@
 		},
 		{
 			"coords": "(5,5)",
-			"height": 1,
+			"height": 0,
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": true,
@@ -584,7 +595,7 @@
 		},
 		{
 			"coords": "(7,5)",
-			"height": 1,
+			"height": 0,
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": true,
@@ -593,7 +604,16 @@
 		},
 		{
 			"coords": "(8,5)",
-			"height": 1,
+			"height": 0,
+			"idt": true,
+			"isPopulated": false,
+			"isTraversable": false,
+			"obstacleType": 1,
+			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
+		},
+		{
+			"coords": "(9,5)",
+			"height": 0,
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": true,
@@ -601,44 +621,35 @@
 			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
-			"coords": "(9,5)",
-			"height": 0,
-			"idt": false,
-			"isPopulated": false,
-			"isTraversable": false,
-			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
-		},
-		{
 			"coords": "(10,5)",
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(0,6)",
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(1,6)",
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(2,6)",
-			"height": 1,
+			"height": 0,
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": true,
@@ -647,7 +658,7 @@
 		},
 		{
 			"coords": "(3,6)",
-			"height": 1,
+			"height": 0,
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": true,
@@ -656,16 +667,16 @@
 		},
 		{
 			"coords": "(4,6)",
-			"height": 1,
+			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
-			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Obstacle1.glb"
+			"isTraversable": true,
+			"obstacleType": 0,
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(5,6)",
-			"height": 1,
+			"height": 0,
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": true,
@@ -683,7 +694,7 @@
 		},
 		{
 			"coords": "(7,6)",
-			"height": 1,
+			"height": 0,
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": true,
@@ -692,7 +703,7 @@
 		},
 		{
 			"coords": "(8,6)",
-			"height": 1,
+			"height": 0,
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": true,
@@ -704,49 +715,49 @@
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(10,6)",
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(0,7)",
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(1,7)",
 			"height": 0,
-			"idt": false,
+			"idt": true,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Water1.glb"
 		},
 		{
 			"coords": "(2,7)",
 			"height": 0,
-			"idt": false,
+			"idt": true,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Water1.glb"
 		},
 		{
 			"coords": "(3,7)",
-			"height": 1,
+			"height": 0,
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": true,
@@ -755,7 +766,7 @@
 		},
 		{
 			"coords": "(4,7)",
-			"height": 1,
+			"height": 0,
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": true,
@@ -782,7 +793,7 @@
 		},
 		{
 			"coords": "(7,7)",
-			"height": 1,
+			"height": 0,
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": true,
@@ -791,7 +802,7 @@
 		},
 		{
 			"coords": "(8,7)",
-			"height": 1,
+			"height": 0,
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": true,
@@ -803,58 +814,58 @@
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(10,7)",
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(0,8)",
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(1,8)",
 			"height": 0,
-			"idt": false,
+			"idt": true,
 			"isPopulated": false,
 			"isTraversable": false,
-			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"obstacleType": 1,
+			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
 		},
 		{
 			"coords": "(2,8)",
 			"height": 0,
-			"idt": false,
+			"idt": true,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Water1.glb"
 		},
 		{
 			"coords": "(3,8)",
 			"height": 0,
-			"idt": false,
+			"idt": true,
 			"isPopulated": false,
 			"isTraversable": false,
-			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"obstacleType": 1,
+			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
 		},
 		{
 			"coords": "(4,8)",
-			"height": 1,
+			"height": 0,
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": true,
@@ -875,81 +886,81 @@
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": true,
-			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"isTraversable": false,
+			"obstacleType": 2,
+			"meshPath": "res://Assets/MapTiles/Obstacle1.glb"
 		},
 		{
 			"coords": "(7,8)",
-			"height": 1,
-			"idt": false,
+			"height": 0,
+			"idt": true,
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Water1.glb"
 		},
 		{
 			"coords": "(8,8)",
 			"height": 0,
-			"idt": false,
+			"idt": true,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Water1.glb"
 		},
 		{
 			"coords": "(9,8)",
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(10,8)",
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(0,9)",
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(1,9)",
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(2,9)",
 			"height": 0,
-			"idt": false,
+			"idt": true,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Water1.glb"
 		},
 		{
 			"coords": "(3,9)",
 			"height": 0,
-			"idt": false,
+			"idt": true,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Water1.glb"
 		},
 		{
 			"coords": "(4,9)",
@@ -981,83 +992,83 @@
 		{
 			"coords": "(7,9)",
 			"height": 0,
-			"idt": false,
+			"idt": true,
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Water1.glb"
 		},
 		{
 			"coords": "(8,9)",
 			"height": 0,
-			"idt": false,
+			"idt": true,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Water1.glb"
 		},
 		{
 			"coords": "(9,9)",
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(10,9)",
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(0,10)",
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(1,10)",
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(2,10)",
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(3,10)",
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(4,10)",
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": true,
-			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"isTraversable": false,
+			"obstacleType": 2,
+			"meshPath": "res://Assets/MapTiles/Obstacle1.glb"
 		},
 		{
 			"coords": "(5,10)",
@@ -1071,83 +1082,83 @@
 		{
 			"coords": "(6,10)",
 			"height": 0,
-			"idt": false,
+			"idt": true,
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Water1.glb"
 		},
 		{
 			"coords": "(7,10)",
 			"height": 0,
-			"idt": false,
+			"idt": true,
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Water1.glb"
 		},
 		{
 			"coords": "(8,10)",
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(9,10)",
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(10,10)",
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(0,11)",
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(1,11)",
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(2,11)",
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(3,11)",
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(4,11)",
@@ -1181,234 +1192,36 @@
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(8,11)",
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(9,11)",
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
 		},
 		{
 			"coords": "(10,11)",
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
-			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
-		},
-		{
-			"coords": "(0,12)",
-			"height": 0,
-			"idt": false,
-			"isPopulated": false,
-			"isTraversable": false,
-			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
-		},
-		{
-			"coords": "(1,12)",
-			"height": 0,
-			"idt": false,
-			"isPopulated": false,
-			"isTraversable": false,
-			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
-		},
-		{
-			"coords": "(2,12)",
-			"height": 0,
-			"idt": false,
-			"isPopulated": false,
-			"isTraversable": false,
-			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
-		},
-		{
-			"coords": "(3,12)",
-			"height": 0,
-			"idt": false,
-			"isPopulated": false,
-			"isTraversable": false,
-			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
-		},
-		{
-			"coords": "(4,12)",
-			"height": 0,
-			"idt": false,
-			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
 			"meshPath": "res://Assets/MapTiles/Grass1.glb"
-		},
-		{
-			"coords": "(5,12)",
-			"height": 0,
-			"idt": false,
-			"isPopulated": false,
-			"isTraversable": true,
-			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
-		},
-		{
-			"coords": "(6,12)",
-			"height": 0,
-			"idt": false,
-			"isPopulated": false,
-			"isTraversable": true,
-			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
-		},
-		{
-			"coords": "(7,12)",
-			"height": 0,
-			"idt": false,
-			"isPopulated": false,
-			"isTraversable": false,
-			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
-		},
-		{
-			"coords": "(8,12)",
-			"height": 0,
-			"idt": false,
-			"isPopulated": false,
-			"isTraversable": false,
-			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
-		},
-		{
-			"coords": "(9,12)",
-			"height": 0,
-			"idt": false,
-			"isPopulated": false,
-			"isTraversable": false,
-			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
-		},
-		{
-			"coords": "(10,12)",
-			"height": 0,
-			"idt": false,
-			"isPopulated": false,
-			"isTraversable": false,
-			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
-		},
-		{
-			"coords": "(0,13)",
-			"height": 0,
-			"idt": false,
-			"isPopulated": false,
-			"isTraversable": false,
-			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
-		},
-		{
-			"coords": "(1,13)",
-			"height": 0,
-			"idt": false,
-			"isPopulated": false,
-			"isTraversable": false,
-			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
-		},
-		{
-			"coords": "(2,13)",
-			"height": 0,
-			"idt": false,
-			"isPopulated": false,
-			"isTraversable": false,
-			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
-		},
-		{
-			"coords": "(3,13)",
-			"height": 0,
-			"idt": false,
-			"isPopulated": false,
-			"isTraversable": false,
-			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
-		},
-		{
-			"coords": "(4,13)",
-			"height": 0,
-			"idt": false,
-			"isPopulated": false,
-			"isTraversable": true,
-			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
-		},
-		{
-			"coords": "(5,13)",
-			"height": 0,
-			"idt": false,
-			"isPopulated": false,
-			"isTraversable": true,
-			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
-		},
-		{
-			"coords": "(6,13)",
-			"height": 0,
-			"idt": false,
-			"isPopulated": false,
-			"isTraversable": true,
-			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
-		},
-		{
-			"coords": "(7,13)",
-			"height": 0,
-			"idt": false,
-			"isPopulated": false,
-			"isTraversable": false,
-			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
-		},
-		{
-			"coords": "(8,13)",
-			"height": 0,
-			"idt": false,
-			"isPopulated": false,
-			"isTraversable": false,
-			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
-		},
-		{
-			"coords": "(9,13)",
-			"height": 0,
-			"idt": false,
-			"isPopulated": false,
-			"isTraversable": false,
-			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
-		},
-		{
-			"coords": "(10,13)",
-			"height": 0,
-			"idt": false,
-			"isPopulated": false,
-			"isTraversable": false,
-			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
 		}
 	]
 }
