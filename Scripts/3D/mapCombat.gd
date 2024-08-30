@@ -264,23 +264,6 @@ func purge_the_dead():
 		tile.set_is_populated(false)
 		dead.queue_free()
 		
-	#var deads = []
-	#for char in characterGroup.get_children():
-		#if char.get_current_health() == 0:
-			#deads.append(char)
-			#
-	#for enemy in enemyGroup.get_children():
-		#if enemy.get_current_health() == 0:
-			#deads.append(enemy)
-			#
-	#if deads.size() != 0:
-		#for dead in deads:
-			#if dead.get_map_id() == CombatMapStatus.get_selected_character().get_map_id():
-				#print("hello")
-			#CombatMapStatus.remove_character_ini(dead.get_map_id())
-			#var tile = get_tile_from_coords(dead.get_map_coords())
-			#tile.set_is_populated(false)
-			#dead.queue_free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -399,7 +382,7 @@ signal combat_start
 func _on_phys_attack_button_pressed():
 	phys_combat_round()
 	
-# TODO Test, new changes
+
 func phys_combat_round() -> void:
 	skillIssue2.hide()
 	var attacker = CombatMapStatus.get_selected_character()
@@ -426,7 +409,6 @@ func phys_combat_round() -> void:
 		CombatMapStatus.set_combat(attacker, defender, Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()), CombatMapStatus.mapMod)
 		combat_start.emit()
 	
-# TODO Test
 # Result: hitFlag, mapMod
 # hitFlag true means there's obstacle, can't attack
 # hitFlag false means there's no obstacle, continue with attack with mapMod
@@ -459,7 +441,7 @@ func calc_los(defender) -> Array:
 		else:
 			return [false, check_behind_cover(defender, result[2])]
 
-# TODO Test
+
 # args: endFlag: bool, noLoS: bool, foundTiles: Array
 func collision_loop(ray, args: Array):
 	ray.force_raycast_update()
