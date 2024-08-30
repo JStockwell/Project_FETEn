@@ -69,6 +69,28 @@ func test_sort_descending_case_a_equal_b():
 	var res = test_mapCombat.sort_descending(1., 1.)
 	
 	assert_bool(res).is_true()
+	
+	
+func test__on_start_button_pressed():
+	assert_that(CombatMapStatus.get_selected_character()).is_null()
+	
+	test_mapCombat._on_start_button_pressed()
+	
+	assert_that(CombatMapStatus.get_selected_character()).is_not_null()
+	
+	
+func test_choose_random_spawn():
+	#Function called in _ready() of mapCombat
+	var att_coords1 = []
+	var att_coords2 = []
+	
+	for i in range(20):
+		test_mapCombat.initial_map_load()
+		att_coords1.append(GameStatus.get_party()["attacker"]["map_coords"])
+		test_mapCombat.initial_map_load()
+		att_coords2.append(GameStatus.get_party()["attacker"]["map_coords"])
+		
+	assert_that(att_coords1).is_not_equal(att_coords2)
 
 
 #####################
@@ -78,7 +100,7 @@ func test_sort_descending_case_a_equal_b():
 func test_initial_map_load():
 	#Function called in _ready() of mapCombat
 	assert_that(CombatMapStatus.get_map_dimensions()).is_equal(Vector2(3, 3))
-	assert_that(CombatMapStatus.get_selected_character()).is_not_null()
+	assert_that(CombatMapStatus.get_selected_character()).is_null()
 	assert_that(GameStatus.get_party()["attacker"]["map_coords"]).is_not_null()
 	assert_that(GameStatus.get_party()["attacker"]["map_id"]).is_not_null()
 	assert_that(test_mapCombat.enemyGroup.get_children()[0].get_stats()["map_coords"]).is_not_null()
@@ -95,6 +117,7 @@ func test_calculate_combat_initiative():
 
 
 func test_setup_skill_menu():
+	test_mapCombat._on_start_button_pressed()
 	test_mapCombat.setup_skill_menu()
 	var checker
 	
@@ -137,18 +160,25 @@ func test_reset_to_tavern_selected_character_ally_has_not_moved():
 	
 	test_mapCombat.reset_to_tavern()
 	
-	var tile_10 = test_mapCombat.get_tile_from_coords(Vector2(1, 0)).highlighted.visible
-	var tile_01 = test_mapCombat.get_tile_from_coords(Vector2(0, 1)).highlighted.visible
-	var tile_11 = test_mapCombat.get_tile_from_coords(Vector2(1, 1)).highlighted.visible
+	var player_coords = CombatMapStatus.get_selected_character().get_stats()["map_coords"]
+	if player_coords.x != 0:
+		var tile_left = test_mapCombat.get_tile_from_coords(player_coords + Vector2.LEFT).highlighted.visible
+		assert_bool(tile_left).is_true()
+	
+	if player_coords.y != 0:
+		var tile_up = test_mapCombat.get_tile_from_coords(player_coords + Vector2.UP).highlighted.visible
+		assert_bool(tile_up).is_true()
+	
+	var tile_right = test_mapCombat.get_tile_from_coords(player_coords + Vector2.RIGHT).highlighted.visible
+	var tile_down = test_mapCombat.get_tile_from_coords(player_coords + Vector2.DOWN).highlighted.visible
 	var tile_21 = test_mapCombat.get_tile_from_coords(Vector2(2, 1)).highlighted.visible
 	var tile_12 = test_mapCombat.get_tile_from_coords(Vector2(1, 2)).highlighted.visible
 	
-	assert_that(CombatMapStatus.get_selected_character()).is_equal(test_mapCombat.characterGroup.get_children()[0])
-	assert_bool(tile_10).is_true()
-	assert_bool(tile_01).is_true()
-	assert_bool(tile_11).is_false()
+	assert_bool(tile_right).is_true()
+	assert_bool(tile_down).is_true()
 	assert_bool(tile_21).is_false()
 	assert_bool(tile_12).is_false()
+
 	
 	test_mapCombat.characterGroup.get_children()[0].get_stats()["movement"] = 5
 
@@ -227,6 +257,7 @@ func test_regen_mana():
 	
 	
 func test_purge_the_dead_ally():
+	test_mapCombat._on_start_button_pressed()
 	var ally = test_mapCombat.characterGroup.get_children()[0]
 	ally.modify_health(-8000)
 	assert_int(ally.get_current_health()).is_zero()
@@ -244,6 +275,7 @@ func test_purge_the_dead_ally():
 	
 	
 func test_purge_the_dead_enemy():
+	test_mapCombat._on_start_button_pressed()
 	var enemy = test_mapCombat.enemyGroup.get_children()[0]
 	enemy.modify_health(-8000)
 	assert_int(enemy.get_current_health()).is_zero()
@@ -434,10 +466,11 @@ func test_set_tile_populated_false_to_true():
 	
 	
 func test_set_tile_populated_true_to_false():
-	var tile = test_mapCombat.get_tile_from_coords(Vector2(0 ,0))
+	var player_coords = test_mapCombat.characterGroup.get_children()[0].get_stats()["map_coords"]
+	var tile = test_mapCombat.get_tile_from_coords(player_coords)
 	assert_bool(tile.get_variables()["isPopulated"]).is_true()
 	
-	test_mapCombat.set_tile_populated(Vector2(0 ,0), false)
+	test_mapCombat.set_tile_populated(player_coords, false)
 	
 	assert_bool(tile.get_variables()["isPopulated"]).is_false()
 	
@@ -469,6 +502,7 @@ func test_tile_handler_null_selected():
 	test_mapCombat.tile_handler(tile)
 	
 	assert_that(CombatMapStatus.get_selected_map_tile()).is_equal(tile)
+	
 
 #TODO
 func test__on_move_button_pressed(do_skip=true, skip_reason="Waiting for TODOs"):
@@ -673,6 +707,7 @@ func test_update_phys_attack_button_after_attack():
 	
 	
 func test_update_phys_attack_button_is_enemy():
+	test_mapCombat._on_start_button_pressed()
 	CombatMapStatus.set_initiative([1, 0])
 
 	test_mapCombat.update_phys_attack_button()
@@ -681,6 +716,7 @@ func test_update_phys_attack_button_is_enemy():
 	
 	
 func test_update_phys_attack_button_no_selected_enemy():
+	test_mapCombat._on_start_button_pressed()
 	CombatMapStatus.set_initiative([0, 1])
 	CombatMapStatus.set_selected_enemy(null)
 	
@@ -689,6 +725,7 @@ func test_update_phys_attack_button_no_selected_enemy():
 	assert_bool(test_mapCombat.physAttackButton.disabled).is_true()
 	
 func test_update_phys_attack_button_enemy_at_range():
+	test_mapCombat._on_start_button_pressed()
 	CombatMapStatus.set_initiative([0, 1])
 	var ally = test_mapCombat.characterGroup.get_children()[0]
 	var enemy = test_mapCombat.enemyGroup.get_children()[0]
@@ -701,6 +738,7 @@ func test_update_phys_attack_button_enemy_at_range():
 	
 	
 func test_update_phys_attack_button_disabled():
+	test_mapCombat._on_start_button_pressed()
 	test_mapCombat.update_phys_attack_button()
 	
 	assert_bool(test_mapCombat.physAttackButton.disabled).is_true()
@@ -725,6 +763,7 @@ func test_update_skill_menu_button_is_enemy():
 
 
 func test_update_skill_menu_button_character_has_no_skills():
+	test_mapCombat._on_start_button_pressed()
 	CombatMapStatus.set_initiative([0, 1])
 	CombatMapStatus.set_current_ini(0)
 	test_mapCombat.characterGroup.get_children()[0].get_stats()["skills"] = []
