@@ -12,7 +12,7 @@ static func dumb_melee_behavior(map) -> bool:
 	
 	var possibleTargets = check_players_in_range(map, enemy, dijkstra[0])
 	
-	if (possibleTargets.is_empty()): # currently doesnt take into account root or a unit being in those tiles, but it will do for basic testing
+	if (possibleTargets.is_empty()):
 		approach_enemy(map, enemy, dijkstra[0])
 		return false
 	else:
@@ -22,7 +22,12 @@ static func dumb_melee_behavior(map) -> bool:
 
 static func smart_melee_behavior(map) -> bool:
 	var enemy = CombatMapStatus.get_selected_character()
-	var dijkstra = _dijkstra(map, enemy.get_map_coords(), enemy.get_movement())
+	var dijkstra
+	if map.get_tile_from_coords(enemy.get_map_coords()).is_checked():
+		dijkstra = _dijkstra(map, enemy.get_map_coords(), enemy.get_movement()-1)
+	else:
+		dijkstra = _dijkstra(map, enemy.get_map_coords(), enemy.get_movement())
+		
 	var possibleTargets = check_players_in_range(map, enemy, dijkstra[0])
 	
 	if (possibleTargets.is_empty()): # currently doesnt take into account root or a unit being in those tiles, but it will do for basic testing
@@ -53,7 +58,6 @@ static func check_players_in_range(map, enemy, tilesRange) -> Array:
 			if viable_target == true:
 				possible_Targets.append(character)
 				
-	enemy.set_is_rooted(false)
 	return possible_Targets
 
 # melee only function
@@ -66,6 +70,7 @@ static func melee_enemy_attack(map, enemy, finalTarget, dijkstra) -> bool:
 	
 	if rooted or Utils.calc_distance(enemy.get_map_coords(),finalTargetCoords) == 1:
 		CombatMapStatus.set_selected_enemy(finalTarget)
+		enemy.set_is_rooted(false) #once the AI has finished calculating everything for the turn set rooted false
 		return true
 	else:
 		var attackPoint
@@ -93,15 +98,38 @@ static func melee_enemy_attack(map, enemy, finalTarget, dijkstra) -> bool:
 
 static func dumb_ranged_behavior(map) -> bool:
 	var enemy = CombatMapStatus.get_selected_character()
-	var dijkstra = _dijkstra(map, enemy.get_map_coords(), enemy.get_movement())
+	var dijkstra
+	if map.get_tile_from_coords(enemy.get_map_coords()).is_checked():
+		dijkstra = _dijkstra(map, enemy.get_map_coords(), enemy.get_movement()-1)
+	else:
+		dijkstra = _dijkstra(map, enemy.get_map_coords(), enemy.get_movement())
+		
 	var possibleTargets = check_players_in_range(map, enemy, dijkstra[0])
 	
-	if (possibleTargets.is_empty()): # currently doesnt take into account root or a unit being in those tiles, but it will do for basic testing
+	if (possibleTargets.is_empty()):
 		approach_enemy(map, enemy, dijkstra[0])
 		return false
 	else:
 		var finalTargetId = randi_range(1,len(possibleTargets))
 		var finalTarget = possibleTargets[finalTargetId-1]
+		var optimalTile = find_optimal_shot(map, dijkstra, finalTarget)
+		return ranged_enemy_attack(map, enemy, finalTarget, dijkstra, optimalTile)
+
+static func smart_ranged_behavior(map) -> bool:
+	var enemy = CombatMapStatus.get_selected_character()
+	var dijkstra
+	if map.get_tile_from_coords(enemy.get_map_coords()).is_checked():
+		dijkstra = _dijkstra(map, enemy.get_map_coords(), enemy.get_movement()-1)
+	else:
+		dijkstra = _dijkstra(map, enemy.get_map_coords(), enemy.get_movement())
+		
+	var possibleTargets = check_players_in_range(map, enemy, dijkstra[0])
+	
+	if (possibleTargets.is_empty()):
+		approach_enemy(map, enemy, dijkstra[0])
+		return false
+	else:
+		var finalTarget = smart_enemy_target_choice(map, enemy, possibleTargets)
 		var optimalTile = find_optimal_shot(map, dijkstra, finalTarget)
 		return ranged_enemy_attack(map, enemy, finalTarget, dijkstra, optimalTile)
 
@@ -135,6 +163,7 @@ static func ranged_enemy_attack(map, enemy, finalTarget, dijkstra, optimalTile) 
 	
 	if rooted: #has line of sight and no movement, therefore just shoots:
 		CombatMapStatus.set_selected_enemy(finalTarget)
+		enemy.set_is_rooted(false)
 		return true
 	elif optimalTile == enemy.get_map_coords:
 		CombatMapStatus.set_selected_enemy(finalTarget)
@@ -164,7 +193,6 @@ static func check_players_in_range_ranged(map, enemy, tilesRange) -> Array:
 			if viableTarget == true:
 				possible_Targets.append(character)
 				
-	enemy.set_is_rooted(false)
 	return possible_Targets
 
 # ranged only function
@@ -241,18 +269,23 @@ static func approach_enemy(map, enemy, tilesInReach): # if cant attack anyone, a
 				if movementFitness > closestMove and not map.get_tile_from_coords(tile).is_populated():
 					closestMove = movementFitness
 					chosenTile = tile
-	
+	else:
+		enemy.set_is_rooted(false) #once the AI has finished calculating everything for the turn set rooted false
+		
 	CombatMapStatus.set_selected_map_tile(map.get_tile_from_coords(chosenTile))
 	map.move_character()
 
 # generic across ranged and melee
-static func valid_coordinates(map, coords: Vector2) -> bool: # we could do enemy collision on movement here very easy
+static func valid_coordinates(map, coords: Vector2, tilesOccupiedOponents) -> bool: # we could do enemy collision on movement here very easy
 	var maxX = CombatMapStatus.mapX
 	var maxY = CombatMapStatus.mapY
+	var activeCharacter = CombatMapStatus.get_selected_character()
 	
 	if coords.x < 0 or coords.x >= maxX or coords.y < 0 or coords.y >= maxY:
 		return false
 	elif not map.get_tile_from_coords(coords).is_traversable():
+		return false
+	elif tilesOccupiedOponents.has(coords):
 		return false
 	else:
 		return true
@@ -282,6 +315,15 @@ static func _dijkstra(map, mapCoords: Vector2, maxRange: int) -> Array: # we cou
 	
 	var tileCost
 	var distanceToNode
+	var tilesOccupiedOponents = []
+	var enemyAligned = CombatMapStatus.get_selected_character().is_enemy()
+	
+	if enemyAligned:
+		for character in map.characterGroup.get_children():
+			tilesOccupiedOponents.append(character.get_map_coords())
+	else:
+		for enemy in map.enemyGroup.get_children():
+			tilesOccupiedOponents.append(enemy.get_map_coords())
 	
 	# start the search
 	for i in range(1000):
@@ -289,7 +331,7 @@ static func _dijkstra(map, mapCoords: Vector2, maxRange: int) -> Array: # we cou
 		visited[current.get_coords().y][current.get_coords().x] = true
 		for dir in DIRECTIONS:
 			var coordinates =  current.get_coords() + dir
-			if valid_coordinates(map, coordinates): # if it is traversable and it is within the map, does not check if a player is in it, check later.
+			if valid_coordinates(map, coordinates, tilesOccupiedOponents): # if it is traversable and it is within the map and if occupied is by an ally, does not check if a player is in it, check later.
 				var visitedTile = visited[coordinates.y][coordinates.x]
 				var visitedTileBool: bool
 				var typeOfBullshit = typeof(visitedTile)
@@ -303,9 +345,12 @@ static func _dijkstra(map, mapCoords: Vector2, maxRange: int) -> Array: # we cou
 				else:
 					var extraCost = 0
 					var controlZone = map.get_tile_from_coords(coordinates).is_control_zone()
+					#var allyControlZone = map.get_tile_from_coords(coordinates).is_ally_control_zone() #applies correct zones of control
 					
-					if controlZone: # reworkeado, la casilla que mira es en entrada y reduce en 1 el mov en lugar de 2, checkea que la zona de inicio de la unidad sea zona de control antes de llamarlo
+					if controlZone and not enemyAligned: # mira entrada y el coste es 1, reduce el rango del dijkstra si empieza en una
 						extraCost += 1
+					#elif allyControlZone and enemyAligned:
+						#extraCost += 1
 					elif map.get_tile_from_coords(coordinates).is_difficult_terrain():
 						extraCost += 1
 					tileCost = 1 + extraCost
