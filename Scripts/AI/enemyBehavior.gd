@@ -357,12 +357,12 @@ static func _dijkstra(map, mapCoords: Vector2, maxRange: int) -> Array: # we cou
 				else:
 					var extraCost = 0
 					var controlZone = map.get_tile_from_coords(coordinates).is_control_zone()
-					#var allyControlZone = map.get_tile_from_coords(coordinates).is_ally_control_zone() #applies correct zones of control
+					var allyControlZone = map.get_tile_from_coords(coordinates).is_ally_control_zone() #applies correct zones of control
 					
-					if controlZone and not enemyAligned: # mira entrada y el coste es 1, reduce el rango del dijkstra si empieza en una
+					if controlZone and not enemyAligned: # if it is Not an enemy apply controlZone
 						extraCost += 1
-					#elif allyControlZone and enemyAligned:
-						#extraCost += 1
+					elif allyControlZone and enemyAligned: # if it IS an enemy apply allyControlZone
+						extraCost += 1
 					elif map.get_tile_from_coords(coordinates).is_difficult_terrain():
 						extraCost += 1
 					tileCost = 1 + extraCost
