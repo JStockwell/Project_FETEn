@@ -129,7 +129,7 @@ static func smart_ranged_behavior(map) -> bool:
 		approach_enemy(map, enemy, dijkstra[0])
 		return false
 	else:
-		var finalTarget = smart_enemy_target_choice(map, enemy, possibleTargets, false)
+		var finalTarget = smart_enemy_target_choice(map, enemy, possibleTargets, enemy.get_id())
 		var optimalTile = find_optimal_shot(map, dijkstra, finalTarget)
 		return ranged_enemy_attack(map, enemy, finalTarget, dijkstra, optimalTile)
 
@@ -209,7 +209,7 @@ static func viable_ranged_target(map, enemy, target, tilesRange) -> bool: # ugly
 	return viableTarget
 
 # generic for now but probably will stay as only melee unless we want to tweak the hell out of it to account for cover
-static func smart_enemy_target_choice(map, enemy, possibleTargets, mage):
+static func smart_enemy_target_choice(map, enemy, possibleTargets, enemyType):
 	var finalTarget
 	var damageValue: int
 	var precision: float
@@ -225,7 +225,7 @@ static func smart_enemy_target_choice(map, enemy, possibleTargets, mage):
 			
 		precision = 50+enemy.get_dexterity()*5-playerCharacter.get_agility()*3+difTerrain #missing map tile modifiers
 		
-		if mage:
+		if enemyType == "mage":
 			if 12 >= playerCharacter.get_current_health():
 				killRange = 10
 			else:
