@@ -43,6 +43,9 @@ func _ready():
 	calculate_combat_initiative()
 	uiActions.hide()
 	uiStart.show()
+	
+	if GameStatus.testMode:
+		await start_turn()
 
 func initial_map_load() -> void:
 	var row = []
