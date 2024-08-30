@@ -148,6 +148,11 @@ static func find_optimal_shot(map, dijkstra, finalTarget) -> Vector2:
 				var coverMod = map.calc_los(Vector2(x,y), finalTarget.get_map_coords())[1]
 				var heightEnemy = map.get_tile_from_coords(Vector2(x,y)).get_height()
 				var currentMod = 5*(heightEnemy-heightPC)-coverMod+difTerrain
+				
+				#if the tile selected so far was in zone of control of a player account for the negative
+				if map.get_tile_from_coords(Vector2(x,y)).is_ally_control_zone():
+					currentMod -= 25
+				
 				if bestMod < currentMod:
 					bestModPosition = Vector2(x,y)
 					bestMod = currentMod
