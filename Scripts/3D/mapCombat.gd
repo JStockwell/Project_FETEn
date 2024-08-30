@@ -2,6 +2,7 @@ extends Node3D
 
 var mapDict: Dictionary
 var setCam = 1
+var battleStart: bool = false
 
 @onready
 var mapTileGroup = $MapTileGroup
@@ -12,30 +13,36 @@ var enemyGroup = $EnemyGroup
 @onready
 var ui = $UI
 @onready
-var moveButton = $UI/MoveButton
+var uiStart = $UI/Start
 @onready
-var physAttackButton = $UI/PhysAttackButton
+var uiActions = $UI/Actions
 @onready
-var endTurnButton = $UI/EndTurnButton
+var moveButton = $UI/Actions/MoveButton
 @onready
-var changeCameraButton = $UI/ChangeCamera
+var physAttackButton = $UI/Actions/PhysAttackButton
 @onready
-var baseSkillMenu = $UI/SkillMenu
+var endTurnButton = $UI/Actions/EndTurnButton
 @onready
-var skillMenu = $UI/SkillMenu.get_popup()
+var changeCameraButton = $UI/Actions/ChangeCamera
 @onready
-var skillIssue = $UI/SkillIssue
+var baseSkillMenu = $UI/Actions/SkillMenu
 @onready
-var skillIssue2 = $UI/SkillIssue2
+var skillMenu = $UI/Actions/SkillMenu.get_popup()
+@onready
+var skillIssue = $UI/Actions/SkillIssue
+@onready
+var skillIssue2 = $UI/Actions/SkillIssue2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	battleStart = false
 	skillMenu.connect("id_pressed", Callable(self, "_on_skill_selected"))
 
 	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
 	initial_map_load()
 	calculate_combat_initiative()
-	await start_turn()
+	uiActions.hide()
+	uiStart.show()
 
 func initial_map_load() -> void:
 	var row = []
@@ -277,7 +284,8 @@ func _process(delta):
 	if GameStatus.debugMode:
 		update_debug_label()
 		
-	update_buttons()
+	if battleStart:
+		update_buttons()
 	
 # Set selected enemies
 func character_handler(character) -> void:
@@ -338,6 +346,12 @@ func tile_handler(mapTile) -> void:
 		CombatMapStatus.set_selected_map_tile(mapTile)
 		remove_selected()
 		mapTile.selected.show()
+
+func _on_start_button_pressed():
+	battleStart = true
+	uiActions.show()
+	uiStart.hide()
+	await start_turn()
 
 # Player movement
 func _on_move_button_pressed():

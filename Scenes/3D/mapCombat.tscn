@@ -1,7 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://wvt31gswalxh"]
+[gd_scene load_steps=6 format=3 uid="uid://wvt31gswalxh"]
 
 [ext_resource type="Script" path="res://Scripts/3D/mapCombat.gd" id="1_rhc0y"]
 [ext_resource type="PackedScene" uid="uid://c11mh4mlt8853" path="res://Assets/MapTiles/placeholder_max_map.glb" id="2_tj2i2"]
+[ext_resource type="FontFile" uid="uid://p6npb2mlppqj" path="res://Assets/Fonts/Micrhoma/Michroma-Regular.ttf" id="3_s3ban"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ebm7i"]
+font = ExtResource("3_s3ban")
+font_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_3uv5b"]
 font_color = Color(1, 0, 0, 1)
@@ -22,7 +27,6 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 
 [node name="UI" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -38,7 +42,37 @@ layout_mode = 0
 offset_right = 1912.0
 offset_bottom = 48.0
 
-[node name="MoveButton" type="Button" parent="UI"]
+[node name="Start" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StartButton" type="Button" parent="UI/Start"]
+layout_mode = 0
+offset_left = 768.0
+offset_top = 448.0
+offset_right = 1152.0
+offset_bottom = 640.0
+
+[node name="StartLabel" type="Label" parent="UI/Start"]
+layout_mode = 0
+offset_left = 808.0
+offset_top = 488.0
+offset_right = 1112.0
+offset_bottom = 600.0
+text = "START BATTLE"
+label_settings = SubResource("LabelSettings_ebm7i")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Actions" type="Control" parent="UI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MoveButton" type="Button" parent="UI/Actions"]
 layout_mode = 0
 offset_left = 104.0
 offset_top = 768.0
@@ -46,7 +80,7 @@ offset_right = 155.0
 offset_bottom = 799.0
 text = "Move"
 
-[node name="PhysAttackButton" type="Button" parent="UI"]
+[node name="PhysAttackButton" type="Button" parent="UI/Actions"]
 layout_mode = 0
 offset_left = 64.0
 offset_top = 816.0
@@ -54,7 +88,7 @@ offset_right = 189.0
 offset_bottom = 847.0
 text = "Physical Attack"
 
-[node name="EndTurnButton" type="Button" parent="UI"]
+[node name="EndTurnButton" type="Button" parent="UI/Actions"]
 layout_mode = 0
 offset_left = 88.0
 offset_top = 912.0
@@ -62,7 +96,7 @@ offset_right = 166.0
 offset_bottom = 943.0
 text = "End Turn"
 
-[node name="ChangeCamera" type="Button" parent="UI"]
+[node name="ChangeCamera" type="Button" parent="UI/Actions"]
 layout_mode = 0
 offset_left = 56.0
 offset_top = 80.0
@@ -70,7 +104,7 @@ offset_right = 200.0
 offset_bottom = 112.0
 text = "Change Camera"
 
-[node name="SkillMenu" type="MenuButton" parent="UI"]
+[node name="SkillMenu" type="MenuButton" parent="UI/Actions"]
 layout_mode = 0
 offset_left = 76.0
 offset_top = 864.0
@@ -80,7 +114,7 @@ text = "Use Skill
 "
 flat = false
 
-[node name="SkillIssue" type="Label" parent="UI"]
+[node name="SkillIssue" type="Label" parent="UI/Actions"]
 layout_mode = 0
 offset_left = 224.0
 offset_top = 864.0
@@ -91,7 +125,7 @@ label_settings = SubResource("LabelSettings_3uv5b")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SkillIssue2" type="Label" parent="UI"]
+[node name="SkillIssue2" type="Label" parent="UI/Actions"]
 layout_mode = 0
 offset_left = 200.0
 offset_top = 816.0
@@ -102,7 +136,8 @@ label_settings = SubResource("LabelSettings_3uv5b")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="pressed" from="UI/MoveButton" to="." method="_on_move_button_pressed"]
-[connection signal="pressed" from="UI/PhysAttackButton" to="." method="_on_phys_attack_button_pressed"]
-[connection signal="pressed" from="UI/EndTurnButton" to="." method="_on_end_turn_button_pressed"]
-[connection signal="pressed" from="UI/ChangeCamera" to="." method="_on_change_camera_pressed"]
+[connection signal="pressed" from="UI/Start/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="UI/Actions/MoveButton" to="." method="_on_move_button_pressed"]
+[connection signal="pressed" from="UI/Actions/PhysAttackButton" to="." method="_on_phys_attack_button_pressed"]
+[connection signal="pressed" from="UI/Actions/EndTurnButton" to="." method="_on_end_turn_button_pressed"]
+[connection signal="pressed" from="UI/Actions/ChangeCamera" to="." method="_on_change_camera_pressed"]
