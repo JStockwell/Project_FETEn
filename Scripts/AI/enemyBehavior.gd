@@ -288,7 +288,7 @@ static func approach_enemy(map, enemy, tilesInReach): # if cant attack anyone, a
 	map.move_character()
 
 # generic across ranged and melee
-static func valid_coordinates(map, coords: Vector2, tilesOccupiedOponents) -> bool: # we could do enemy collision on movement here very easy
+static func valid_coordinates(map, coords: Vector2, tilesOccupiedOponents) -> bool:
 	var maxX = CombatMapStatus.mapX
 	var maxY = CombatMapStatus.mapY
 	var activeCharacter = CombatMapStatus.get_selected_character()
@@ -297,7 +297,7 @@ static func valid_coordinates(map, coords: Vector2, tilesOccupiedOponents) -> bo
 		return false
 	elif not map.get_tile_from_coords(coords).is_traversable():
 		return false
-	elif tilesOccupiedOponents.has(coords):
+	elif tilesOccupiedOponents.has(coords): #we could make it so that the assassin can traverse enemies, may be interesting
 		return false
 	else:
 		return true
