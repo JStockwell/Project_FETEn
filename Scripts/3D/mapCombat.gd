@@ -593,15 +593,15 @@ func highlight_control_zones() -> void:
 						tile.enemy.show()
 						tile.set_is_control_zone(true)
 	
-	#for ally in characterGroup.get_children(): #only for debugging and visual clarity purposes for dev team
-		#var allyCoords = ally.get_map_coords()
-		#for i in range(-1, 2):
-			#for j in range(-1, 2):
-				#if check_within_bounds(allyCoords + Vector2(i,j), Vector2(i,j)):
-					#var tile = get_tile_from_coords(allyCoords + Vector2(i,j))
-					#if tile.is_traversable():
-						#tile.enemy.show()
-						#tile.set_is_ally_control_zone(true)
+	for ally in characterGroup.get_children():
+		var allyCoords = ally.get_map_coords()
+		for i in range(-1, 2):
+			for j in range(-1, 2):
+				if check_within_bounds(allyCoords + Vector2(i,j), Vector2(i,j)):
+					var tile = get_tile_from_coords(allyCoords + Vector2(i,j))
+					if tile.is_traversable():
+						tile.enemy.show()
+						tile.set_is_ally_control_zone(true)
 					
 func check_within_bounds(vector: Vector2, offset: Vector2) -> bool:
 	var result = true
@@ -631,9 +631,9 @@ func remove_control_zones() -> void:
 		tile.set_is_control_zone(false)
 		tile.enemy.hide()
 	
-	#unsure on how this removes them, guessing it would be something like
-	#for tile in mapTileGroup.get_children():
-		#tile.ally.hide()
+	for tile in mapTileGroup.get_children():
+		tile.set_is_control_zone(false)
+		tile.ally.hide()
 
 
 func remove_selected() -> void:
@@ -714,7 +714,7 @@ func update_debug_label():
 		debugLabel.text += "\nisPopulated: " + str(debugTile.is_populated())
 		debugLabel.text += "\nname: " + str(debugTile.get_name())
 		debugLabel.text += "\nisControlZone: " + str(debugTile.is_control_zone())
-		#debugLabel.text += "\nisAllyControlZone: " + str(debugTile.is_ally_control_zone())
+		debugLabel.text += "\nisAllyControlZone: " + str(debugTile.is_ally_control_zone())
 
 	debugLabel.text += "\n--------------\ncombatMapStatus\n"
 	debugLabel.text += "initiative: " + str(CombatMapStatus.get_initiative())

@@ -20,6 +20,7 @@ var isPopulated: bool
 var isTraversable: bool
 var obstacleType: int # 0 None, 1 Semi, 2 Full
 var isControlZone: bool = false
+var isAllyControlZone: bool = false
 
 var meshPath: String = ""
 
@@ -60,6 +61,12 @@ func set_is_control_zone(value: bool) -> void:
 	isControlZone = value
 	
 func is_control_zone() -> bool:
+	return isControlZone
+
+func set_is_ally_control_zone(value: bool) -> void:
+	isAllyControlZone = value
+
+func is_ally_control_zone() -> bool:
 	return isControlZone
 
 func init_odz() -> void:
