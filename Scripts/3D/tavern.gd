@@ -30,7 +30,10 @@ func _ready():
 	
 	if CombatMapStatus.get_map_x() % 2 != 0:
 		mapSpawn.x += 0.5
-	if CombatMapStatus.get_map_y() % 2 != 0:
+	else:
+		mapSpawn.x += 0.5
+		
+	if CombatMapStatus.get_map_y() % 2 == 0:
 		mapSpawn.z += 0.5
 		
 	CombatMapStatus.set_map_spawn(mapSpawn)

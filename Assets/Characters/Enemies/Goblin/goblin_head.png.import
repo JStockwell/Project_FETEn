@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xvdpwgfxvxjt"
-path="res://.godot/imported/edgar_sprite.png-6428ab1a8d335dea1861feb693816b97.ctex"
+uid="uid://b56e2sxi4r1g0"
+path="res://.godot/imported/goblin_head.png-b355f4414a40757ab358c4f74a003fe2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Characters/Party/Edgar/edgar_sprite.png"
-dest_files=["res://.godot/imported/edgar_sprite.png-6428ab1a8d335dea1861feb693816b97.ctex"]
+source_file="res://Assets/Characters/Enemies/Goblin/goblin_head.png"
+dest_files=["res://.godot/imported/goblin_head.png-b355f4414a40757ab358c4f74a003fe2.ctex"]
 
 [params]
 

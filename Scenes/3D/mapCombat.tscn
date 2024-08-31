@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://wvt31gswalxh"]
+[gd_scene load_steps=5 format=3 uid="uid://wvt31gswalxh"]
 
 [ext_resource type="Script" path="res://Scripts/3D/mapCombat.gd" id="1_rhc0y"]
-[ext_resource type="PackedScene" uid="uid://c11mh4mlt8853" path="res://Assets/MapTiles/placeholder_max_map.glb" id="2_tj2i2"]
 [ext_resource type="FontFile" uid="uid://p6npb2mlppqj" path="res://Assets/Fonts/Micrhoma/Michroma-Regular.ttf" id="3_s3ban"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ebm7i"]
@@ -20,13 +19,8 @@ script = ExtResource("1_rhc0y")
 
 [node name="MapTileGroup" type="Node3D" parent="."]
 
-[node name="Debug" type="Node3D" parent="."]
-visible = false
-
-[node name="placeholder_max_map" parent="Debug" instance=ExtResource("2_tj2i2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
-
 [node name="UI" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
