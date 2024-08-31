@@ -5,7 +5,7 @@ static func dumb_melee_behavior(map) -> bool:
 
 	var enemy = CombatMapStatus.get_selected_character()
 	var dijkstra
-	if map.get_tile_from_coords(enemy.get_map_coords()).is_checked():
+	if map.get_tile_from_coords(enemy.get_map_coords()).is_control_zone():
 		dijkstra = _dijkstra(map, enemy.get_map_coords(), enemy.get_movement()-1)
 	else:
 		dijkstra = _dijkstra(map, enemy.get_map_coords(), enemy.get_movement())
@@ -23,7 +23,7 @@ static func dumb_melee_behavior(map) -> bool:
 static func smart_melee_behavior(map) -> bool:
 	var enemy = CombatMapStatus.get_selected_character()
 	var dijkstra
-	if map.get_tile_from_coords(enemy.get_map_coords()).is_checked():
+	if map.get_tile_from_coords(enemy.get_map_coords()).is_control_zone():
 		dijkstra = _dijkstra(map, enemy.get_map_coords(), enemy.get_movement()-1)
 	else:
 		dijkstra = _dijkstra(map, enemy.get_map_coords(), enemy.get_movement())
@@ -99,7 +99,7 @@ static func melee_enemy_attack(map, enemy, finalTarget, dijkstra) -> bool:
 static func dumb_ranged_behavior(map) -> bool:
 	var enemy = CombatMapStatus.get_selected_character()
 	var dijkstra
-	if map.get_tile_from_coords(enemy.get_map_coords()).is_checked():
+	if map.get_tile_from_coords(enemy.get_map_coords()).is_control_zone():
 		dijkstra = _dijkstra(map, enemy.get_map_coords(), enemy.get_movement()-1)
 	else:
 		dijkstra = _dijkstra(map, enemy.get_map_coords(), enemy.get_movement())
@@ -118,7 +118,7 @@ static func dumb_ranged_behavior(map) -> bool:
 static func smart_ranged_behavior(map) -> bool:
 	var enemy = CombatMapStatus.get_selected_character()
 	var dijkstra
-	if map.get_tile_from_coords(enemy.get_map_coords()).is_checked():
+	if map.get_tile_from_coords(enemy.get_map_coords()).is_control_zone():
 		dijkstra = _dijkstra(map, enemy.get_map_coords(), enemy.get_movement()-1)
 	else:
 		dijkstra = _dijkstra(map, enemy.get_map_coords(), enemy.get_movement())
@@ -261,8 +261,8 @@ static func check_closest_player(map, enemy): # gets closest target, used in app
 	var distances = dijkstra[1]
 	for character in map.characterGroup.get_children():
 		var characterPosition = character.get_map_coords()
-		if distances[characterPosition.y][characterPosition.x]<closestTargetDist:
-			closestTargetDist = distances[characterPosition.y][characterPosition.x]
+		if distances[characterPosition.y][characterPosition.x][0]<closestTargetDist:
+			closestTargetDist = distances[characterPosition.y][characterPosition.x][0]
 			closestTarget = character
 			
 	return [closestTarget, distances]
@@ -362,11 +362,8 @@ static func _dijkstra(map, mapCoords: Vector2, maxRange: int) -> Array: # we cou
 				else:
 					var extraCost = 0
 					var controlZone = map.get_tile_from_coords(coordinates).is_control_zone()
-					var allyControlZone = map.get_tile_from_coords(coordinates).is_ally_control_zone() #applies correct zones of control
 					
-					if controlZone and not enemyAligned: # if it is Not an enemy apply controlZone
-						extraCost += 1
-					elif allyControlZone and enemyAligned: # if it IS an enemy apply allyControlZone
+					if controlZone:
 						extraCost += 1
 					elif map.get_tile_from_coords(coordinates).is_difficult_terrain():
 						extraCost += 1

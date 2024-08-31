@@ -151,7 +151,11 @@ func reset_to_tavern():
 		CombatMapStatus.set_current_ini(len(CombatMapStatus.get_initiative()) - 1)
 			
 	reset_map_status()
-	highlight_control_zones()
+	if not CombatMapStatus.get_selected_character().is_enemy():
+		highlight_control_zones(enemyGroup)
+	else:
+		highlight_control_zones(characterGroup)
+	
 	skillIssue.hide()
 	skillIssue2.hide()
 	
@@ -194,13 +198,13 @@ func start_turn() -> void:
 		var enemyAttack 
 		
 		match CombatMapStatus.get_selected_character().get_id():
-			"melee_fodder", "juggernaut":
+			"goblin", "juggernaut":
 				enemyAttack = EnemyBehavior.dumb_melee_behavior(self)
-			"melee_elite":
+			"orc":
 				enemyAttack = EnemyBehavior.smart_melee_behavior(self)
-			"ranged_fodder":
+			"sling_gobbo":
 				enemyAttack = EnemyBehavior.dumb_ranged_behavior(self)
-			"ranged_elite", "mage":
+			"ranged_orc", "mage":
 				enemyAttack = EnemyBehavior.smart_ranged_behavior(self)
 		
 		if not GameStatus.testMode:
@@ -216,7 +220,10 @@ func start_turn() -> void:
 		setup_skill_menu()
 		currentChar.selectedChar.show()
 		highlight_movement(currentChar)
-		highlight_control_zones()
+		if not CombatMapStatus.get_selected_character().is_enemy():
+			highlight_control_zones(enemyGroup)
+		else:
+			highlight_control_zones(characterGroup)
 	
 func enemy_turn_end():
 	CombatMapStatus.advance_ini()
@@ -593,26 +600,16 @@ func highlight_movement(character) -> void:
 				if sel_tile != null and !sel_tile.is_populated() and sel_tile.is_traversable():
 					sel_tile.highlighted.show()
 
-func highlight_control_zones() -> void:
-	for enemy in enemyGroup.get_children():
-		var enemyCoords = enemy.get_map_coords()
+func highlight_control_zones(myCharacterGroup) -> void:
+	for character in myCharacterGroup.get_children():
+		var characterCoords = character.get_map_coords()
 		for i in range(-1, 2):
 			for j in range(-1, 2):
-				if check_within_bounds(enemyCoords + Vector2(i,j), Vector2(i,j)):
-					var tile = get_tile_from_coords(enemyCoords + Vector2(i,j))
+				if check_within_bounds(characterCoords + Vector2(i,j), Vector2(i,j)):
+					var tile = get_tile_from_coords(characterCoords + Vector2(i,j))
 					if tile.is_traversable():
 						tile.enemy.show()
 						tile.set_is_control_zone(true)
-	
-	for ally in characterGroup.get_children():
-		var allyCoords = ally.get_map_coords()
-		for i in range(-1, 2):
-			for j in range(-1, 2):
-				if check_within_bounds(allyCoords + Vector2(i,j), Vector2(i,j)):
-					var tile = get_tile_from_coords(allyCoords + Vector2(i,j))
-					if tile.is_traversable():
-						tile.enemy.show()
-						tile.set_is_ally_control_zone(true)
 					
 func check_within_bounds(vector: Vector2, offset: Vector2) -> bool:
 	var result = true
@@ -641,11 +638,6 @@ func remove_control_zones() -> void:
 	for tile in mapTileGroup.get_children():
 		tile.set_is_control_zone(false)
 		tile.enemy.hide()
-	
-	for tile in mapTileGroup.get_children():
-		tile.set_is_control_zone(false)
-		tile.ally.hide()
-
 
 func remove_selected() -> void:
 	for tile in mapTileGroup.get_children():
@@ -725,7 +717,6 @@ func update_debug_label():
 		debugLabel.text += "\nisPopulated: " + str(debugTile.is_populated())
 		debugLabel.text += "\nname: " + str(debugTile.get_name())
 		debugLabel.text += "\nisControlZone: " + str(debugTile.is_control_zone())
-		debugLabel.text += "\nisAllyControlZone: " + str(debugTile.is_ally_control_zone())
 
 	debugLabel.text += "\n--------------\ncombatMapStatus\n"
 	debugLabel.text += "initiative: " + str(CombatMapStatus.get_initiative())
