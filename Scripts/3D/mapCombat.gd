@@ -194,18 +194,14 @@ func start_turn() -> void:
 		var enemyAttack 
 		
 		match CombatMapStatus.get_selected_character().get_id():
-			"melee_fodder":
+			"melee_fodder", "juggernaut":
 				enemyAttack = EnemyBehavior.dumb_melee_behavior(self)
 			"melee_elite":
 				enemyAttack = EnemyBehavior.smart_melee_behavior(self)
 			"ranged_fodder":
 				enemyAttack = EnemyBehavior.dumb_ranged_behavior(self)
-			"ranged_elite":
+			"ranged_elite", "mage":
 				enemyAttack = EnemyBehavior.smart_ranged_behavior(self)
-			"mage":
-				enemyAttack = EnemyBehavior.smart_ranged_behavior(self)
-			"juggernaut":
-				enemyAttack = EnemyBehavior.dumb_melee_behavior(self)
 		
 		if not GameStatus.testMode:
 			await wait(1)
