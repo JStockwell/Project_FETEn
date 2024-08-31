@@ -17,7 +17,7 @@ func before_test():
 	GameStatus.set_playable_characters(test_players)
 	GameStatus.set_enemy_set(test_enemies)
 	
-	GameStatus.set_party(["attacker"])
+	GameStatus.set_party(["attacker", "attacker2"])
 	
 	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
 	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
@@ -29,7 +29,7 @@ func before_test():
 		GameStatus.skillSet[skillName].set_skill_menu_id(i)
 		i += 1
 	
-	GameStatus.set_autorun_combat(false)
+	GameStatus.set_autorun_combat(true)
 	
 	test_tavern = Tavern.instantiate()
 	add_child(test_tavern)
@@ -64,19 +64,43 @@ func test_setup_cameras():
 	#TODO Tests for setup_camera when its finished
 	
 	
-func test__on_start_turn(do_skip=true):
-	assert_that(true).is_equal(true)
-	pass
+func test__on_start_turn():
+	test_tavern._on_start_turn()
 
-func test__on_combat_start(do_skip=true):
-	assert_that(true).is_equal(true)
-	pass
+	assert_bool(test_tavern.tavernCam.current).is_true()
+	assert_int(test_tavern.setCam).is_equal(1)
 
-func test__on_combat_end(do_skip=true):
-	assert_that(true).is_equal(true)
-	pass
 
-func test__on_change_camera(do_skip=true):
+func test__on_combat_start():
+	var attacker = test_tavern.cm.characterGroup.get_children()[0]
+	var defender = test_tavern.cm.enemyGroup.get_children()[0]
+	CombatMapStatus.set_active_characters(attacker.get_stats(), defender.get_stats())
+	assert_that(test_tavern.com).is_null()
+	
+	test_tavern._on_combat_start()
+	
+	assert_that(test_tavern.com).is_not_null()
+	assert_bool(test_tavern.com.camera.current).is_true()
+	assert_that(test_tavern.com.attacker.get_stats()).is_equal(attacker.get_stats())
+	assert_that(test_tavern.com.defender.get_stats()).is_equal(defender.get_stats())
+	
+
+
+func test__on_combat_end():
+	var attacker = test_tavern.cm.characterGroup.get_children()[0]
+	var defender = test_tavern.cm.enemyGroup.get_children()[0]
+	CombatMapStatus.set_active_characters(attacker.get_stats(), defender.get_stats())
+	assert_that(test_tavern.com).is_null()
+	test_tavern._on_combat_start()
+	
+	test_tavern._on_combat_end()
+	
+	assert_bool(test_tavern.tavernCam.current).is_true()
+	assert_that(test_tavern.com).is_queued_for_deletion()
+	
+
+	#TODO Tests for setup_camera when its finished
+func test__on_change_camera(do_skip=true, skip_reason="TODO when camera is finished"):
 	assert_that(true).is_equal(true)
 	pass
 
