@@ -52,5 +52,14 @@
 		"isTraversable": false,
 		"obstacleType": 0,
 		"meshPath": "res://Assets/MapTiles/Void1.glb"
-	}
+	},
+	"sand": {
+		"coords": "(0,0)",
+		"height": 0,
+		"idt": false,
+		"isPopulated": false,
+		"isTraversable": true,
+		"obstacleType": 0,
+		"meshPath": "res://Assets/MapTiles/Sand1.glb"
+	},
 }
