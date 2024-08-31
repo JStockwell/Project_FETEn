@@ -34,7 +34,7 @@ static func smart_melee_behavior(map) -> bool:
 		approach_enemy(map, enemy, dijkstra[0])
 		return false
 	else:
-		var finalTarget = smart_enemy_target_choice(map, enemy, possibleTargets, false)
+		var finalTarget = smart_enemy_target_choice(map, enemy, possibleTargets, enemy.get_id())
 		return melee_enemy_attack(map, enemy, finalTarget, dijkstra)
 
 # melee only function
@@ -104,7 +104,7 @@ static func dumb_ranged_behavior(map) -> bool:
 	else:
 		dijkstra = _dijkstra(map, enemy.get_map_coords(), enemy.get_movement())
 		
-	var possibleTargets = check_players_in_range(map, enemy, dijkstra[0])
+	var possibleTargets = check_players_in_range_ranged(map, enemy, dijkstra[0])
 	
 	if (possibleTargets.is_empty()):
 		approach_enemy(map, enemy, dijkstra[0])
@@ -123,7 +123,7 @@ static func smart_ranged_behavior(map) -> bool:
 	else:
 		dijkstra = _dijkstra(map, enemy.get_map_coords(), enemy.get_movement())
 		
-	var possibleTargets = check_players_in_range(map, enemy, dijkstra[0])
+	var possibleTargets = check_players_in_range_ranged(map, enemy, dijkstra[0])
 	
 	if (possibleTargets.is_empty()):
 		approach_enemy(map, enemy, dijkstra[0])
@@ -142,20 +142,19 @@ static func find_optimal_shot(map, dijkstra, finalTarget) -> Vector2:
 	var difTerrain = 0
 	if map.get_tile_from_coords(finalTarget.get_map_coords()).is_difficult_terrain():
 		difTerrain = 10
-	for y in range(moveableTiles.size()):
-		for x in range(moveableTiles[y].size()):
-			if moveableTiles[y][x] and not map.calc_los(Vector2(x,y), finalTarget.get_map_coords())[0]:
-				var coverMod = map.calc_los(Vector2(x,y), finalTarget.get_map_coords())[1]
-				var heightEnemy = map.get_tile_from_coords(Vector2(x,y)).get_height()
-				var currentMod = 5*(heightEnemy-heightPC)-coverMod+difTerrain
-				
-				#if the tile selected was in zone of control of a player account for the negative
-				if map.get_tile_from_coords(Vector2(x,y)).is_ally_control_zone():
-					currentMod -= 25
-				
-				if bestMod < currentMod:
-					bestModPosition = Vector2(x,y)
-					bestMod = currentMod
+	for tile in range(moveableTiles.size()):
+		if not map.calc_los(moveableTiles[tile], finalTarget)[0]:
+			var coverMod = map.calc_los(moveableTiles[tile], finalTarget)[1]
+			var heightEnemy = map.get_tile_from_coords(moveableTiles[tile]).get_height()
+			var currentMod = 5*(heightEnemy-heightPC)-coverMod+difTerrain
+			
+			#if the tile selected was in zone of control of a player account for the negative
+			if map.get_tile_from_coords(moveableTiles[tile]).is_control_zone():
+				currentMod -= 25
+			
+			if bestMod < currentMod:
+				bestModPosition = moveableTiles[tile]
+				bestMod = currentMod
 					
 	return bestModPosition
 
@@ -170,7 +169,7 @@ static func ranged_enemy_attack(map, enemy, finalTarget, dijkstra, optimalTile) 
 		CombatMapStatus.set_selected_enemy(finalTarget)
 		enemy.set_is_rooted(false)
 		return true
-	elif optimalTile == enemy.get_map_coords:
+	elif optimalTile == enemy.get_map_coords():
 		CombatMapStatus.set_selected_enemy(finalTarget)
 		return true # find a way to move after shooting 
 	else:
@@ -190,11 +189,11 @@ static func check_players_in_range_ranged(map, enemy, tilesRange) -> Array:
 		var target = character.get_map_coords()
 		var attackCoords = enemy.get_map_coords()
 		if(rooted):
-			if Utils.calc_distance(attackCoords, target)<=enemy.get_range() and not map.get_los(attackCoords, target)[0]:
+			if Utils.calc_distance(attackCoords, target)<=enemy.get_range() and not map.get_los(attackCoords, character)[0]:
 				possible_Targets.append(character)
 			
 		else:
-			var viableTarget = viable_ranged_target(map, enemy, target, tilesRange) 
+			var viableTarget = viable_ranged_target(map, enemy, character, tilesRange) 
 			if viableTarget == true:
 				possible_Targets.append(character)
 				
@@ -203,12 +202,10 @@ static func check_players_in_range_ranged(map, enemy, tilesRange) -> Array:
 # ranged only function
 static func viable_ranged_target(map, enemy, target, tilesRange) -> bool: # ugly ahh function
 	var viableTarget = false
-	for y in range((tilesRange).size()):
+	for tile in range(tilesRange.size()):
 		if viableTarget == false:
-			for x in range((tilesRange[y]).size()):
-				if tilesRange[y][x]:
-					if not map.calc_los(Vector2(x,y), target)[0] and map.calc_distance(Vector2(x,y), target) <= enemy.get_range():
-						viableTarget = true
+			if not map.calc_los(tilesRange[tile], target)[0] and Utils.calc_distance(tilesRange[tile], target.get_map_coords()) <= enemy.get_range():
+				viableTarget = true
 		else:
 			break
 	return viableTarget
