@@ -15,7 +15,7 @@
 		"skills": [], 
 		"is_ranged": false,
 		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb",
-			"sprite_path": ""
+		"sprite_path": ""
 	},
 	"defender_skillTests": {
 		"id": "defender_skillTests",
