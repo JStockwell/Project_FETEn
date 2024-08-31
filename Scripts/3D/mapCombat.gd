@@ -616,6 +616,7 @@ func remove_highlights() -> void:
 
 func remove_control_zones() -> void:
 	for tile in mapTileGroup.get_children():
+		tile.set_is_control_zone(false)
 		tile.enemy.hide()
 
 func remove_selected() -> void:
