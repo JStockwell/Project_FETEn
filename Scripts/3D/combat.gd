@@ -80,6 +80,8 @@ func attack(t_attacker, t_defender, rolls: Array, mapMod: int, spa: int = 0, imd
 		
 func deal_damage(dmg: int, crit: float, t_defender):
 	var dmgText: String
+	if dmg * crit >= 15:
+		pass
 	if dmg >= 0:
 		t_defender.modify_health(-int(dmg * crit))
 		dmgText = str(-int(dmg * crit))

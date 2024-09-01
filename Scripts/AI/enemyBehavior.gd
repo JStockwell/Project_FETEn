@@ -112,7 +112,7 @@ static func dumb_ranged_behavior(map) -> bool:
 	else:
 		var finalTargetId = randi_range(1,len(possibleTargets))
 		var finalTarget = possibleTargets[finalTargetId-1]
-		var optimalTile = find_optimal_shot(map, dijkstra, finalTarget)
+		var optimalTile = find_optimal_shot(map, dijkstra, finalTarget) # TODO check to include position of not only the shot but also safety of the mf taking it
 		return ranged_enemy_attack(map, enemy, finalTarget, dijkstra, optimalTile)
 
 static func smart_ranged_behavior(map) -> bool:
@@ -130,12 +130,15 @@ static func smart_ranged_behavior(map) -> bool:
 		return false
 	else:
 		var finalTarget = smart_enemy_target_choice(map, enemy, possibleTargets, enemy.get_id())
-		var optimalTile = find_optimal_shot(map, dijkstra, finalTarget)
+		if typeof(finalTarget) == 28: #another russian roulette woooo
+			finalTarget = finalTarget[0]
+		var viableShootingPositions = viable_ranged_positions(map, enemy, finalTarget, dijkstra[0])
+		var optimalTile = find_optimal_shot(map, finalTarget, viableShootingPositions)
 		return ranged_enemy_attack(map, enemy, finalTarget, dijkstra, optimalTile)
 
 # ranged only function
-static func find_optimal_shot(map, dijkstra, finalTarget) -> Vector2:
-	var moveableTiles = dijkstra[0]
+static func find_optimal_shot(map, finalTarget, viableShootingPositions) -> Vector2:
+	var moveableTiles = viableShootingPositions
 	var bestMod = -1000
 	var bestModPosition: Vector2
 	var heightPC = map.get_tile_from_coords(finalTarget.get_map_coords()).get_height()
@@ -162,8 +165,6 @@ static func find_optimal_shot(map, dijkstra, finalTarget) -> Vector2:
 static func ranged_enemy_attack(map, enemy, finalTarget, dijkstra, optimalTile) -> bool:
 	var rooted = enemy.is_rooted()
 	var finalTargetCoords = finalTarget.get_map_coords()
-	var moveableCells = dijkstra[0]
-	var distToCell = dijkstra[1]
 	
 	if rooted: #has line of sight and no movement, therefore just shoots:
 		CombatMapStatus.set_selected_enemy(finalTarget)
@@ -193,7 +194,7 @@ static func check_players_in_range_ranged(map, enemy, tilesRange) -> Array:
 				possible_Targets.append(character)
 			
 		else:
-			var viableTarget = viable_ranged_target(map, enemy, character, tilesRange) 
+			var viableTarget = viable_ranged_target(map, enemy, character, tilesRange)
 			if viableTarget == true:
 				possible_Targets.append(character)
 				
@@ -210,7 +211,17 @@ static func viable_ranged_target(map, enemy, target, tilesRange) -> bool: # ugly
 			break
 	return viableTarget
 
-# generic for now but probably will stay as only melee unless we want to tweak the hell out of it to account for cover
+static func viable_ranged_positions(map, enemy, target, tilesRange) -> Array: # ugly ahh function
+	var viableShootingPositions = []
+	for tile in range(tilesRange.size()):
+		if not map.calc_los(tilesRange[tile], target)[0]:
+			if Utils.calc_distance(tilesRange[tile], target.get_map_coords()) <= enemy.get_range():
+				viableShootingPositions.append(tilesRange[tile])
+		else:
+			break
+	return viableShootingPositions
+
+# generic for now and will probably will stay unless we want to tweak the hell out of it to account for cover
 static func smart_enemy_target_choice(map, enemy, possibleTargets, enemyType):
 	var finalTarget
 	var damageValue: int
