@@ -151,7 +151,11 @@ func reset_to_tavern():
 		CombatMapStatus.set_current_ini(len(CombatMapStatus.get_initiative()) - 1)
 			
 	reset_map_status()
-	highlight_control_zones()
+	if not CombatMapStatus.get_selected_character().is_enemy():
+		highlight_control_zones(enemyGroup)
+	else:
+		highlight_control_zones(characterGroup)
+	
 	skillIssue.hide()
 	skillIssue2.hide()
 	
@@ -191,7 +195,18 @@ func start_turn() -> void:
 		# TODO Enemy Logic
 		if not GameStatus.testMode:
 			await wait(1)
-		var enemyAttack = EnemyBehavior.dumb_melee_behavior(self)
+		var enemyAttack 
+		
+		match CombatMapStatus.get_selected_character().get_id():
+			"goblin", "juggernaut":
+				enemyAttack = EnemyBehavior.dumb_melee_behavior(self)
+			"orc":
+				enemyAttack = EnemyBehavior.smart_melee_behavior(self)
+			"sling_gobbo":
+				enemyAttack = EnemyBehavior.dumb_ranged_behavior(self)
+			"ranged_orc", "mage":
+				enemyAttack = EnemyBehavior.smart_ranged_behavior(self)
+		
 		if not GameStatus.testMode:
 			await wait(1)
 		
@@ -205,7 +220,10 @@ func start_turn() -> void:
 		setup_skill_menu()
 		currentChar.selectedChar.show()
 		highlight_movement(currentChar)
-		highlight_control_zones()
+		if not CombatMapStatus.get_selected_character().is_enemy():
+			highlight_control_zones(enemyGroup)
+		else:
+			highlight_control_zones(characterGroup)
 	
 func enemy_turn_end():
 	CombatMapStatus.advance_ini()
@@ -387,8 +405,11 @@ func phys_combat_round() -> void:
 	skillIssue2.hide()
 	var attacker = CombatMapStatus.get_selected_character()
 	var defender = CombatMapStatus.get_selected_enemy()
+	
+	var attackerPosition = attacker.get_map_coords()
+	var defenderPosition = defender.get_map_coords()
 	# 0: blockedFlag, 1: mapMod
-	var losResult = calc_los(defender)
+	var losResult = calc_los(attackerPosition, defender)
 	
 	if losResult[0] and Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()) != 1:
 		skillIssue2.show()
@@ -412,12 +433,12 @@ func phys_combat_round() -> void:
 # Result: hitFlag, mapMod
 # hitFlag true means there's obstacle, can't attack
 # hitFlag false means there's no obstacle, continue with attack with mapMod
-func calc_los(defender) -> Array:
+#TODO breaking on first round of checks, doesnt really collide with anything although it should
+func calc_los(attackerPosition, defender) -> Array:
 	var ray = RayCast3D.new()
-	var origin = CombatMapStatus.get_selected_character().get_map_coords()
-	var end = CombatMapStatus.get_selected_enemy().get_map_coords()
-	ray.position = Vector3(origin.x, -5, origin.y)
-	ray.target_position = Vector3(end.x - origin.x, 0, end.y - origin.y)
+	var targetPosition = defender.get_map_coords()
+	ray.position = Vector3(attackerPosition.x, -5, attackerPosition.y)
+	ray.target_position = Vector3(targetPosition.x - attackerPosition.x, 0, targetPosition.y - attackerPosition.y)
 	
 	add_child(ray)
 	ray.set_collide_with_areas(true)
@@ -580,13 +601,13 @@ func highlight_movement(character) -> void:
 				if sel_tile != null and !sel_tile.is_populated() and sel_tile.is_traversable():
 					sel_tile.highlighted.show()
 
-func highlight_control_zones() -> void:
-	for enemy in enemyGroup.get_children():
-		var enemyCoords = enemy.get_map_coords()
+func highlight_control_zones(myCharacterGroup) -> void:
+	for character in myCharacterGroup.get_children():
+		var characterCoords = character.get_map_coords()
 		for i in range(-1, 2):
 			for j in range(-1, 2):
-				if check_within_bounds(enemyCoords + Vector2(i,j), Vector2(i,j)):
-					var tile = get_tile_from_coords(enemyCoords + Vector2(i,j))
+				if check_within_bounds(characterCoords + Vector2(i,j), Vector2(i,j)):
+					var tile = get_tile_from_coords(characterCoords + Vector2(i,j))
 					if tile.is_traversable():
 						tile.enemy.show()
 						tile.set_is_control_zone(true)
