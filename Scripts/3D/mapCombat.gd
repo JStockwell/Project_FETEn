@@ -433,6 +433,7 @@ func phys_combat_round() -> void:
 # Result: hitFlag, mapMod
 # hitFlag true means there's obstacle, can't attack
 # hitFlag false means there's no obstacle, continue with attack with mapMod
+#TODO breaking on first round of checks, doesnt really collide with anything although it should
 func calc_los(attackerPosition, defender) -> Array:
 	var ray = RayCast3D.new()
 	var targetPosition = defender.get_map_coords()

@@ -112,7 +112,8 @@ static func dumb_ranged_behavior(map) -> bool:
 	else:
 		var finalTargetId = randi_range(1,len(possibleTargets))
 		var finalTarget = possibleTargets[finalTargetId-1]
-		var optimalTile = find_optimal_shot(map, dijkstra, finalTarget) # TODO check to include position of not only the shot but also safety of the mf taking it
+		var viableShootingPositions = viable_ranged_positions(map, enemy, finalTarget, dijkstra[0])
+		var optimalTile = find_optimal_shot(map, finalTarget, viableShootingPositions) # TODO check to include position of not only the shot but also safety of the mf taking it
 		return ranged_enemy_attack(map, enemy, finalTarget, dijkstra, optimalTile)
 
 static func smart_ranged_behavior(map) -> bool:
@@ -153,12 +154,16 @@ static func find_optimal_shot(map, finalTarget, viableShootingPositions) -> Vect
 			
 			#if the tile selected was in zone of control of a player account for the negative
 			if map.get_tile_from_coords(moveableTiles[tile]).is_control_zone():
-				currentMod -= 25
+				currentMod -= 30 #+5% to incite enemies to move away from melee range of other units
 			
 			if bestMod < currentMod:
 				bestModPosition = moveableTiles[tile]
 				bestMod = currentMod
-					
+			# in case multiple ranged shots are of same mod but one is further from the target stick to the furthest tile possible
+			elif bestMod == currentMod and Utils.calc_distance(finalTarget.get_map_coords(), moveableTiles[tile]) > Utils.calc_distance(finalTarget.get_map_coords(), bestModPosition):
+				bestModPosition = moveableTiles[tile]
+				bestMod = currentMod
+		
 	return bestModPosition
 
 # ranged only function
@@ -215,7 +220,7 @@ static func viable_ranged_positions(map, enemy, target, tilesRange) -> Array: # 
 	var viableShootingPositions = []
 	for tile in range(tilesRange.size()):
 		if not map.calc_los(tilesRange[tile], target)[0]:
-			if Utils.calc_distance(tilesRange[tile], target.get_map_coords()) <= enemy.get_range():
+			if Utils.calc_distance(tilesRange[tile], target.get_map_coords()) <= enemy.get_range() and not map.get_tile_from_coords(tilesRange[tile]).is_populated():
 				viableShootingPositions.append(tilesRange[tile])
 		else:
 			break
