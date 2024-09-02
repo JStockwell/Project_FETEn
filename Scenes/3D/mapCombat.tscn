@@ -1,7 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://wvt31gswalxh"]
+[gd_scene load_steps=17 format=3 uid="uid://wvt31gswalxh"]
 
 [ext_resource type="Script" path="res://Scripts/3D/mapCombat.gd" id="1_rhc0y"]
+[ext_resource type="Texture2D" uid="uid://cdr8pfgua7joc" path="res://Assets/UI/attack_button.png" id="3_1u004"]
+[ext_resource type="Texture2D" uid="uid://dhymjl6nk7i45" path="res://Assets/UI/move_button.png" id="3_4py7p"]
 [ext_resource type="FontFile" uid="uid://p6npb2mlppqj" path="res://Assets/Fonts/Micrhoma/Michroma-Regular.ttf" id="3_s3ban"]
+[ext_resource type="Texture2D" uid="uid://bdpy5pn7bey5t" path="res://Assets/UI/ui_reference.png" id="4_au5eu"]
+[ext_resource type="Texture2D" uid="uid://bsl6g8gagqiap" path="res://Assets/UI/camera_button.png" id="5_d7t6j"]
+[ext_resource type="Texture2D" uid="uid://54egr8br2bfy" path="res://Assets/UI/end_turn_button.png" id="5_rdtu0"]
+[ext_resource type="Texture2D" uid="uid://ccgvnwjnwtmy4" path="res://Assets/UI/skill_button.png" id="6_mpm3b"]
+[ext_resource type="Texture2D" uid="uid://bbh53o5x5olr0" path="res://Assets/UI/hp_empty.png" id="8_qrg6f"]
+[ext_resource type="Texture2D" uid="uid://tok1r52onrms" path="res://Assets/UI/hp_full.png" id="9_aeilp"]
+[ext_resource type="Texture2D" uid="uid://cfijrjclbo01q" path="res://Assets/UI/mana_empty.png" id="10_16okr"]
+[ext_resource type="Texture2D" uid="uid://bknoolonomvoe" path="res://Assets/UI/mana_full.png" id="11_ipnbs"]
+[ext_resource type="FontFile" uid="uid://71blta5wlshk" path="res://Assets/Fonts/Minecraft/Minecraft.ttf" id="12_fy7hm"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ebm7i"]
 font = ExtResource("3_s3ban")
@@ -9,6 +20,11 @@ font_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_3uv5b"]
 font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sp4do"]
+font = ExtResource("12_fy7hm")
+font_size = 32
+font_color = Color(0, 0, 0, 1)
 
 [node name="MapCombat" type="Node3D"]
 script = ExtResource("1_rhc0y")
@@ -20,7 +36,6 @@ script = ExtResource("1_rhc0y")
 [node name="MapTileGroup" type="Node3D" parent="."]
 
 [node name="UI" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -37,6 +52,7 @@ offset_right = 1912.0
 offset_bottom = 48.0
 
 [node name="Start" type="Control" parent="UI"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -66,54 +82,65 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="MoveButton" type="Button" parent="UI/Actions"]
+[node name="MoveButton" type="TextureButton" parent="UI/Actions"]
 layout_mode = 0
-offset_left = 104.0
-offset_top = 768.0
-offset_right = 155.0
-offset_bottom = 799.0
-text = "Move"
+offset_left = 120.0
+offset_top = 616.0
+offset_right = 248.0
+offset_bottom = 664.0
+texture_normal = ExtResource("3_4py7p")
+ignore_texture_size = true
+stretch_mode = 5
 
-[node name="PhysAttackButton" type="Button" parent="UI/Actions"]
+[node name="PhysAttackButton" type="TextureButton" parent="UI/Actions"]
 layout_mode = 0
-offset_left = 64.0
-offset_top = 816.0
-offset_right = 189.0
-offset_bottom = 847.0
-text = "Physical Attack"
+offset_left = 96.0
+offset_top = 680.0
+offset_right = 273.0
+offset_bottom = 728.0
+texture_normal = ExtResource("3_1u004")
+ignore_texture_size = true
+stretch_mode = 5
 
-[node name="EndTurnButton" type="Button" parent="UI/Actions"]
+[node name="EndTurnButton" type="TextureButton" parent="UI/Actions"]
 layout_mode = 0
-offset_left = 88.0
-offset_top = 912.0
-offset_right = 166.0
-offset_bottom = 943.0
-text = "End Turn"
+offset_left = 1564.0
+offset_top = 961.0
+offset_right = 1852.0
+offset_bottom = 1033.0
+texture_normal = ExtResource("5_rdtu0")
+ignore_texture_size = true
+stretch_mode = 5
 
-[node name="ChangeCamera" type="Button" parent="UI/Actions"]
+[node name="ChangeCamera" type="TextureButton" parent="UI/Actions"]
 layout_mode = 0
-offset_left = 56.0
-offset_top = 80.0
-offset_right = 200.0
-offset_bottom = 112.0
-text = "Change Camera"
+offset_left = 1742.0
+offset_top = 44.0
+offset_right = 1854.0
+offset_bottom = 148.0
+texture_normal = ExtResource("5_d7t6j")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="SkillMenu" type="MenuButton" parent="UI/Actions"]
 layout_mode = 0
-offset_left = 76.0
-offset_top = 864.0
-offset_right = 180.0
-offset_bottom = 895.0
-text = "Use Skill
-"
-flat = false
+offset_left = 116.0
+offset_top = 741.0
+offset_right = 252.0
+offset_bottom = 797.0
+icon = ExtResource("6_mpm3b")
+icon_alignment = 1
+expand_icon = true
+item_count = 1
+popup/item_0/text = ""
+popup/item_0/id = 0
 
 [node name="SkillIssue" type="Label" parent="UI/Actions"]
 layout_mode = 0
-offset_left = 224.0
-offset_top = 864.0
-offset_right = 368.0
-offset_bottom = 896.0
+offset_left = 304.0
+offset_top = 688.0
+offset_right = 448.0
+offset_bottom = 720.0
 text = "Skill out of range"
 label_settings = SubResource("LabelSettings_3uv5b")
 horizontal_alignment = 1
@@ -121,14 +148,67 @@ vertical_alignment = 1
 
 [node name="SkillIssue2" type="Label" parent="UI/Actions"]
 layout_mode = 0
-offset_left = 200.0
-offset_top = 816.0
-offset_right = 392.0
-offset_bottom = 848.0
+offset_left = 280.0
+offset_top = 688.0
+offset_right = 472.0
+offset_bottom = 720.0
 text = "Obstacle blocking shot!"
 label_settings = SubResource("LabelSettings_3uv5b")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="StatusBars" type="Control" parent="UI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HPBar" type="TextureProgressBar" parent="UI/StatusBars"]
+layout_mode = 0
+offset_left = 57.0
+offset_top = 963.0
+offset_right = 314.0
+offset_bottom = 997.0
+value = 100.0
+nine_patch_stretch = true
+texture_under = ExtResource("8_qrg6f")
+texture_progress = ExtResource("9_aeilp")
+
+[node name="ManaBar" type="TextureProgressBar" parent="UI/StatusBars"]
+layout_mode = 0
+offset_left = 57.0
+offset_top = 1002.0
+offset_right = 314.0
+offset_bottom = 1036.0
+value = 100.0
+nine_patch_stretch = true
+texture_under = ExtResource("10_16okr")
+texture_progress = ExtResource("11_ipnbs")
+
+[node name="HPText" type="Label" parent="UI/StatusBars"]
+layout_mode = 0
+offset_left = 139.0
+offset_top = 967.0
+offset_right = 229.0
+offset_bottom = 999.0
+text = "99/99"
+label_settings = SubResource("LabelSettings_sp4do")
+horizontal_alignment = 1
+
+[node name="ManaText" type="Label" parent="UI/StatusBars"]
+layout_mode = 0
+offset_left = 139.0
+offset_top = 1007.0
+offset_right = 229.0
+offset_bottom = 1039.0
+text = "99/99"
+label_settings = SubResource("LabelSettings_sp4do")
+horizontal_alignment = 1
+
+[node name="UiReference" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(960, 540)
+texture = ExtResource("4_au5eu")
+metadata/_edit_lock_ = true
 
 [connection signal="pressed" from="UI/Start/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="UI/Actions/MoveButton" to="." method="_on_move_button_pressed"]

@@ -32,6 +32,16 @@ var skillMenu = $UI/Actions/SkillMenu.get_popup()
 var skillIssue = $UI/Actions/SkillIssue
 @onready
 var skillIssue2 = $UI/Actions/SkillIssue2
+@onready
+var uiStatusBars = $UI/StatusBars
+@onready
+var hpBar = $UI/StatusBars/HPBar
+@onready
+var hpBarText = $UI/StatusBars/HPText
+@onready
+var manaBar = $UI/StatusBars/ManaBar
+@onready
+var manaBarText = $UI/StatusBars/ManaText
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -42,6 +52,7 @@ func _ready():
 	initial_map_load()
 	calculate_combat_initiative()
 	uiActions.hide()
+	uiStatusBars.hide()
 	uiStart.show()
 	
 	if GameStatus.testMode:
@@ -164,6 +175,7 @@ func reset_to_tavern():
 		await start_turn()
 	else:
 		CombatMapStatus.get_selected_character().selectedChar.show()
+		set_status_bars(CombatMapStatus.get_selected_character())
 		if not CombatMapStatus.hasMoved:
 			highlight_movement(CombatMapStatus.get_selected_character())
 	
@@ -189,6 +201,8 @@ func start_turn() -> void:
 	CombatMapStatus.set_has_attacked(false)
 	CombatMapStatus.set_has_moved(false)
 	CombatMapStatus.set_selected_character(currentChar)
+	
+	set_status_bars(currentChar)
 	
 	if currentChar.is_enemy():
 		currentChar.selectedEnemy.show()
@@ -225,6 +239,22 @@ func start_turn() -> void:
 		else:
 			highlight_control_zones(characterGroup)
 	
+func set_status_bars(character) -> void:
+	hpBar.set_max(character.get_max_health())
+	hpBar.set_value_no_signal(character.get_current_health())
+	hpBarText.text = str(character.get_current_health()) + "/" + str(character.get_max_health())
+	
+	if character.get_max_mana() == 0:
+		manaBar.hide()
+		manaBarText.hide()
+		
+	else:
+		manaBar.show()
+		manaBarText.show()
+		manaBar.set_max(character.get_max_mana())
+		manaBar.set_value_no_signal(character.get_current_mana())
+		manaBarText.text = str(character.get_current_mana()) + "/" + str(character.get_max_mana())
+
 func enemy_turn_end():
 	CombatMapStatus.advance_ini()
 	await start_turn()
@@ -354,6 +384,7 @@ func tile_handler(mapTile) -> void:
 func _on_start_button_pressed():
 	battleStart = true
 	uiActions.show()
+	uiStatusBars.show()
 	uiStart.hide()
 	await start_turn()
 

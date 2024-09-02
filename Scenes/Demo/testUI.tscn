@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b62pp04xadh3q"]
 
 [ext_resource type="Texture2D" uid="uid://bbh53o5x5olr0" path="res://Assets/UI/hp_empty.png" id="1_4bpkd"]
-[ext_resource type="Script" path="res://Scripts/UI/testUI.gd" id="1_g7hln"]
+[ext_resource type="Script" path="res://Scripts/Demo/testUI.gd" id="1_g7hln"]
 [ext_resource type="Texture2D" uid="uid://tok1r52onrms" path="res://Assets/UI/hp_full.png" id="2_n64xr"]
 
 [node name="TestUi" type="Control"]
