@@ -505,7 +505,10 @@ func _on_skill_selected(id: int):
 	
 	var skillResult
 	if GameStatus.skillSet[skillName].can_target_allies():
-		skillResult = SkillMenu.handle_skill(skillName, CombatMapStatus.get_selected_character(), CombatMapStatus.get_selected_ally())
+		if CombatMapStatus.get_selected_ally() != null:
+			skillResult = SkillMenu.handle_skill(skillName, CombatMapStatus.get_selected_character(), CombatMapStatus.get_selected_ally())
+		else:
+			skillResult = SkillMenu.handle_skill(skillName, CombatMapStatus.get_selected_character(), CombatMapStatus.get_selected_character())
 	else:
 		skillResult = SkillMenu.handle_skill(skillName, CombatMapStatus.get_selected_character(), CombatMapStatus.get_selected_enemy())
 	
@@ -519,8 +522,9 @@ func _on_skill_selected(id: int):
 		caster.modify_mana(-GameStatus.skillSet[skillName].get_cost())
 		
 		if GameStatus.skillSet[skillName].can_target_allies():
-			var target = CombatMapStatus.get_selected_enemy()
+			var target = CombatMapStatus.get_selected_ally()
 			CombatMapStatus.set_ally_interaction(caster, target, Utils.calc_distance(caster.get_map_coords(), target.get_map_coords()))
+			
 			pass
 		
 		elif GameStatus.skillSet[skillName].can_target_self():
@@ -533,6 +537,16 @@ func _on_skill_selected(id: int):
 		
 		if not GameStatus.skillSet[skillName].is_instantaneous(): #handles the instantaneous flag here
 			CombatMapStatus.hasAttacked = true
+
+func allied_skill_handler():
+	# preparar algo similar a current health con el cap de vida, crear y setear a 0 si inexistente, en caso de mantenerse sumar.
+	# una vez vemos que todo bien
+	# bloquear todos los controles # mangar del turno enemigo
+	# cura modify health # activar el SEF y probablemente deberíamos llevar aquí el control del cap de curación
+	# cap stats para asegurar no ir por encima de límites por si acaso
+	# instanciar partículas verdes bajo el target
+	# poner un numerito de curación encima del target
+	pass
 
 func _on_end_turn_button_pressed():
 	CombatMapStatus.advance_ini()

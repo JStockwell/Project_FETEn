@@ -88,7 +88,7 @@
 	},
 	"action_surge":{
 		"skill_name": "Tap speed",
-		"description": "Gather all of your inner focus to allow the character to act two times during his turn\n DEBUG: DEALS 10 DMG TO THE TARGET RANGE 1-4",
+		"description": "Gather all of your inner focus to allow the character to act two times during his turn\n DEBUG: can perform another action",
 		"range": 0,
 		"cost": 3,
 		"sef": true

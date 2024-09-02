@@ -44,7 +44,8 @@ static func boost(Combat, rolls, attacker, defender, accMod: int, critMod: int, 
 static func healing_spell(attacker, defender, spa:int):
 	var amount_healed = attacker.get_attack() + spa
 	defender.modify_health(amount_healed)
-	
+
+
 static func anchoring_strike(Combat, rolls, attacker, defender, accMod: int, critMod: int, spa: int, imd: int):
 	if Combat.calc_hit_chance(attacker.get_dexterity(), defender.get_agility(), accMod, rolls):
 		var crit = Combat.calc_crit(attacker.get_dexterity(), attacker.get_agility(), defender.get_agility(), critMod, rolls[3])

@@ -58,11 +58,9 @@ func set_combat(char, enem, ran: int, mm: int, attSkill: String = "") -> void:
 	if attSkill != "":
 		attackSkill = attSkill
 
-func set_ally_interaction(char, ally, ran: int, effect: String = "") -> void: #maybe?
+func set_ally_interaction(char, ally, ran: int) -> void: #maybe?
 	set_active_characters(char.get_stats(), ally.get_stats())
 	effectRange = ran
-	if effect != "":
-		effectSkill = effect
 
 func is_start_combat() -> bool:
 	return isStartCombat
