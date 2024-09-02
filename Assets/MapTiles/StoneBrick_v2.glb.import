@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ivktdrlonsha"
-path="res://.godot/imported/Sand1.glb-c610dbbba532207bae34ec09c513e4a5.scn"
+uid="uid://bnd3o42vr2hq7"
+path="res://.godot/imported/StoneBrick_v2.glb-c1d2354afb3585631c9b59d7928ac6fd.scn"
 
 [deps]
 
-source_file="res://Assets/MapTiles/Sand1.glb"
-dest_files=["res://.godot/imported/Sand1.glb-c610dbbba532207bae34ec09c513e4a5.scn"]
+source_file="res://Assets/MapTiles/StoneBrick_v2.glb"
+dest_files=["res://.godot/imported/StoneBrick_v2.glb-c1d2354afb3585631c9b59d7928ac6fd.scn"]
 
 [params]
 

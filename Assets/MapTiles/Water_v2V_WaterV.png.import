@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://p7t3wx0hy3df"
-path.s3tc="res://.godot/imported/Sand1_Sand1_pixelart.png-4f2f807206175d5103a7f17af3c5e7b6.s3tc.ctex"
+uid="uid://bt847102iclah"
+path.s3tc="res://.godot/imported/Water_v2V_WaterV.png-77874bc39076ae4af2e03a97d9b9fdd6.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "3fa2272c38dd9c6ea52d4385ce82f9a5"
+"md5": "e5a521bda010264dee251948c9abda0a"
 }
 
 [deps]
 
-source_file="res://Assets/MapTiles/Sand1_Sand1_pixelart.png"
-dest_files=["res://.godot/imported/Sand1_Sand1_pixelart.png-4f2f807206175d5103a7f17af3c5e7b6.s3tc.ctex"]
+source_file="res://Assets/MapTiles/Water_v2V_WaterV.png"
+dest_files=["res://.godot/imported/Water_v2V_WaterV.png-77874bc39076ae4af2e03a97d9b9fdd6.s3tc.ctex"]
 
 [params]
 

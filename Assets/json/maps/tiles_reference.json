@@ -53,6 +53,9 @@
 		"obstacleType": 0,
 		"meshPath": "res://Assets/MapTiles/Void1.glb"
 	},
+	
+	
+	
 	"sand": {
 		"coords": "(0,0)",
 		"height": 0,
@@ -60,6 +63,69 @@
 		"isPopulated": false,
 		"isTraversable": true,
 		"obstacleType": 0,
-		"meshPath": "res://Assets/MapTiles/Sand1.glb"
+		"meshPath": "res://Assets/MapTiles/Sand_v2.glb"
+	},
+	"stoneBricks": {
+		"coords": "(0,0)",
+		"height": 0,
+		"idt": false,
+		"isPopulated": false,
+		"isTraversable": true,
+		"obstacleType": 0,
+		"meshPath": "res://Assets/MapTiles/StoneBrick_v2.glb"
+	},
+	"dirt": {
+		"coords": "(0,0)",
+		"height": 0,
+		"idt": false,
+		"isPopulated": false,
+		"isTraversable": true,
+		"obstacleType": 0,
+		"meshPath": "res://Assets/MapTiles/Dirt.glb"
+	},
+	"grass_v2": {
+		"coords": "(0,0)",
+		"height": 0,
+		"idt": false,
+		"isPopulated": false,
+		"isTraversable": true,
+		"obstacleType": 0,
+		"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
+	},
+	"stone_v2": {
+		"coords": "(0,0)",
+		"height": 0,
+		"idt": false,
+		"isPopulated": false,
+		"isTraversable": true,
+		"obstacleType": 0,
+		"meshPath": "res://Assets/MapTiles/Stone_v2.glb"
+	},
+	"water_v2H": {
+		"coords": "(0,0)",
+		"height": 0,
+		"idt": true,
+		"isPopulated": false,
+		"isTraversable": true,
+		"obstacleType": 0,
+		"meshPath": "res://Assets/MapTiles/Water_v2H.glb"
+	},
+	"water_v2V": {
+		"coords": "(0,0)",
+		"height": 0,
+		"idt": true,
+		"isPopulated": false,
+		"isTraversable": true,
+		"obstacleType": 0,
+		"meshPath": "res://Assets/MapTiles/Water_v2V.glb"
+	},
+	"bricksWall_bottom": {
+		"coords": "(0,0)",
+		"height": 0,
+		"idt": false,
+		"isPopulated": false,
+		"isTraversable": false,
+		"obstacleType": 2,
+		"meshPath": "res://Assets/MapTiles/BricksWall_bottom.glb"
 	},
 }
