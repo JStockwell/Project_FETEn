@@ -515,24 +515,23 @@ func _on_skill_selected(id: int):
 		skillIssue.show()
 		
 	else:
-		CombatMapStatus.get_selected_character().modify_mana(-GameStatus.skillSet[skillName].get_cost())
+		var caster = CombatMapStatus.get_selected_character() #got it out of the 3 since the character using the skill is always required
+		caster.modify_mana(-GameStatus.skillSet[skillName].get_cost())
 		
 		if GameStatus.skillSet[skillName].can_target_allies():
-			var caster = CombatMapStatus.get_selected_character()
 			var target = CombatMapStatus.get_selected_enemy()
 			CombatMapStatus.set_ally_interaction(caster, target, Utils.calc_distance(caster.get_map_coords(), target.get_map_coords()))
 			pass
 		
 		elif GameStatus.skillSet[skillName].can_target_self():
-			#TODO how the hell do I do that, I guess a target self??? or make CTA an int instead of a bool 1 self 2 ally 0 enemy?
 			pass
 			
 		else:
-			var attacker = CombatMapStatus.get_selected_character()
 			var defender = CombatMapStatus.get_selected_enemy()
-			
-			CombatMapStatus.set_combat(attacker, defender, Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()), 0, skillName)
+			CombatMapStatus.set_combat(caster, defender, Utils.calc_distance(caster.get_map_coords(), defender.get_map_coords()), 0, skillName)
 			combat_start.emit()
+		
+		if not GameStatus.skillSet[skillName].is_instantaneous(): #handles the instantaneous flag here
 			CombatMapStatus.hasAttacked = true
 
 func _on_end_turn_button_pressed():
