@@ -23,6 +23,9 @@ var mapMod: int
 var attackRange: int
 var attackSkill: String = ""
 
+var effectRange: int
+var effectSkill: String = ""
+
 var isStartCombat: bool
 var initiative: Array = []
 var currentIni: int
@@ -54,6 +57,12 @@ func set_combat(char, enem, ran: int, mm: int, attSkill: String = "") -> void:
 	mapMod = mm
 	if attSkill != "":
 		attackSkill = attSkill
+
+func set_ally_interaction(char, ally, ran: int, effect: String = "") -> void: #maybe?
+	set_active_characters(char.get_stats(), ally.get_stats())
+	effectRange = ran
+	if effect != "":
+		effectSkill = effect
 
 func is_start_combat() -> bool:
 	return isStartCombat

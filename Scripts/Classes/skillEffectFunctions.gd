@@ -20,6 +20,8 @@ static func run(Combat, sefName:String, rolls, attacker, defender, accMod: int, 
 			healing_spell(attacker, defender, spa)
 		"anchoring_strike":
 			await anchoring_strike(Combat, rolls, attacker, defender, accMod, critMod, spa, imd)
+		"action surge":
+			action_surge(attacker)
 
 static func hello_world():
 	print("Hello World!")
@@ -55,5 +57,5 @@ static func anchoring_strike(Combat, rolls, attacker, defender, accMod: int, cri
 	else:
 		await Combat.update_damage_text("MISS")
 		
-
-
+static func action_surge(attacker):
+	attacker.set_has_attacked(false)

@@ -518,7 +518,13 @@ func _on_skill_selected(id: int):
 		CombatMapStatus.get_selected_character().modify_mana(-GameStatus.skillSet[skillName].get_cost())
 		
 		if GameStatus.skillSet[skillName].can_target_allies():
-			#TODO James programa esta puta mierda :))) Buffs and health?
+			var caster = CombatMapStatus.get_selected_character()
+			var target = CombatMapStatus.get_selected_enemy()
+			CombatMapStatus.set_ally_interaction(caster, target, Utils.calc_distance(caster.get_map_coords(), target.get_map_coords()))
+			pass
+		
+		elif GameStatus.skillSet[skillName].can_target_self():
+			#TODO how the hell do I do that, I guess a target self??? or make CTA an int instead of a bool 1 self 2 ally 0 enemy?
 			pass
 			
 		else:
@@ -566,7 +572,15 @@ func update_phys_attack_button() -> void:
 			physAttackButton.disabled = true
 			
 func update_skill_menu_button() -> void:
-	if CombatMapStatus.hasAttacked or CombatMapStatus.get_selected_character().is_enemy() or len(CombatMapStatus.get_selected_character().get_skills()) == 0:
+	
+	var instantMenu = false # allow menus to be displayed if instant skills present in character
+	for skill in CombatMapStatus.get_selected_character().get_skills():
+		if skill.is_instantaneous():
+			instantMenu = true
+			
+	if instantMenu:
+		baseSkillMenu.disabled = false
+	elif CombatMapStatus.hasAttacked or CombatMapStatus.get_selected_character().is_enemy() or len(CombatMapStatus.get_selected_character().get_skills()) == 0:
 		baseSkillMenu.disabled = true
 	else:
 		baseSkillMenu.disabled = false
@@ -584,7 +598,7 @@ func update_camera_button() -> void:
 	else:
 		changeCameraButton.disabled = false
 
-func highlight_movement(character) -> void:
+func highlight_movement(character) -> void: #dijkstra probablemente va aquí
 	var char_coords = character.get_map_coords()
 	var mov = character.get_movement()
 	

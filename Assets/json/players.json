@@ -72,7 +72,10 @@
 		"max_mana": 15,
 		"reg_mana": 4,
 		"range": 1,
-		"skills": [],
+		"skills": [
+			"flaming_daggers",
+			"anchoring_strike"
+		],
 		"is_ranged": false,
 		"mesh_path": "",
 		"sprite_path": ""
@@ -90,7 +93,9 @@
 		"max_mana": 3,
 		"reg_mana": 0,
 		"range": 7,
-		"skills": [],
+		"skills": [
+			"action_surge"
+		],
 		"is_ranged": true,
 		"mesh_path": "res://Assets/Characters/Party/Salvador/Salva Idle 1.glb",
 		"sprite_path": "res://Assets/Characters/Party/Salvador/salvador_sprite.png"
@@ -108,7 +113,11 @@
 		"max_mana": 20,
 		"reg_mana": 7,
 		"range": 1,
-		"skills": [],
+		"skills": [
+			"rock_throw",
+			"bestow_life",
+			"creators_touch"
+		],
 		"is_ranged": false,
 		"mesh_path": "res://Assets/Characters/Party/Lystra/Lystra idle 1.glb",
 		"sprite_path": "res://Assets/Characters/Party/Lystra/lystra_sprite.png"
