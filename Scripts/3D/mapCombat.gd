@@ -539,7 +539,7 @@ func _on_skill_selected(id: int):
 			CombatMapStatus.hasAttacked = true
 
 func allied_skill_handler():
-	# preparar algo similar a current health con el cap de vida, crear y setear a 0 si inexistente, en caso de mantenerse sumar.
+	# preparar algo similar a current health con el cap de vida, crear y setear a 0 si inexistente, en caso de mantenerse sumar. Done
 	# una vez vemos que todo bien
 	# bloquear todos los controles # mangar del turno enemigo
 	# cura modify health # activar el SEF y probablemente deberíamos llevar aquí el control del cap de curación
@@ -588,7 +588,7 @@ func update_skill_menu_button() -> void:
 	
 	var instantMenu = false # allow menus to be displayed if instant skills present in character
 	for skill in CombatMapStatus.get_selected_character().get_skills():
-		if skill.is_instantaneous():
+		if GameStatus.skillSet[skill].is_instantaneous():
 			instantMenu = true
 			
 	if instantMenu:
@@ -612,21 +612,16 @@ func update_camera_button() -> void:
 		changeCameraButton.disabled = false
 
 func highlight_movement(character) -> void: #dijkstra probablemente va aquí
-	var char_coords = character.get_map_coords()
-	var mov = character.get_movement()
-	
-	var min_x = max(char_coords.x - mov, 0)
-	var max_x = min(char_coords.x + mov, CombatMapStatus.get_map_x())
-	
-	var min_y = max(char_coords.y - mov, 0)
-	var max_y = min(char_coords.y + mov, CombatMapStatus.get_map_y())
-	
-	for i in range(min_x, max_x + 1):
-		for j in range(min_y, max_y + 1):
-			if Utils.calc_distance(char_coords, Vector2(i,j)) <= mov:
-				var sel_tile = get_tile_from_coords(Vector2(i, j))
-				if sel_tile != null and !sel_tile.is_populated() and sel_tile.is_traversable():
-					sel_tile.highlighted.show()
+	var availableTiles: Array
+	if self.get_tile_from_coords(character.get_map_coords()).is_control_zone():
+		availableTiles = EnemyBehavior._dijkstra(self, character.get_map_coords(), character.get_movement()-1)[0]
+	else:
+		availableTiles = EnemyBehavior._dijkstra(self, character.get_map_coords(), character.get_movement())[0]
+
+	for tile in availableTiles:
+		var sel_tile = get_tile_from_coords(tile)
+		if sel_tile != null and !sel_tile.is_populated() and sel_tile.is_traversable():
+			sel_tile.highlighted.show()
 
 func highlight_control_zones(myCharacterGroup) -> void:
 	for character in myCharacterGroup.get_children():

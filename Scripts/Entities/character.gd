@@ -96,7 +96,10 @@ func get_current_health() -> int:
 	
 func get_current_mana() -> int:
 	return stats["current_mana"]
-	
+
+func get_healing_threshold() -> int:
+	return stats["healing_threshold"]
+
 func set_map_id(val: int) -> void:
 	stats["map_id"] = val
 	
@@ -142,7 +145,11 @@ func modify_health(hp_mod: int) -> void:
 func modify_mana(mana_mod: int) -> void:
 	stats["current_mana"] += mana_mod
 	cap_current_stats(stats)
-	
+
+func modify_healing_threshold(heal_mod: int) -> void:
+	stats["healing_threshold"] -= heal_mod
+	cap_current_stats(stats)
+
 # Roll is a D20
 func calculate_initiative(roll: int) -> float:
 	return roll + ((stats["agility"] + stats["dexterity"]) / 2) * 1.1
@@ -160,15 +167,21 @@ func validate_stats(stats_set) -> bool:
 func cap_current_stats(stats_set: Dictionary) -> Dictionary:
 	if stats_set["current_health"] > stats_set["max_health"]:
 		stats_set["current_health"] = stats_set["max_health"]
-		
+	
 	if stats_set["current_mana"] > stats_set["max_mana"]:
 		stats_set["current_mana"] = stats_set["max_mana"]
-		
+	
 	if stats_set["current_health"] < 0:
 		stats_set["current_health"] = 0
-		
+	
 	if stats_set["current_mana"] < 0:
 		stats_set["current_mana"] = 0
+	
+	if stats_set["healing_threshold"] > 30:
+		stats_set["healing_threshold"] = 30
+	
+	if stats_set["healing_threshold"] < 0:
+		stats_set["healing_threshold"] = 0
 	
 	return stats_set
 

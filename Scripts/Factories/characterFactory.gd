@@ -17,9 +17,10 @@ static func create(args: Dictionary, duplicateFlag: bool):
 		stats_set = args
 		
 		if "current_health" not in stats_set:
-			stats_set["current_health"] = stats_set["max_health"]
+			stats_set["current_health"] = stats_set["max_health"] #not necessarily max health, player could be damaged from prev encounter/event
 			stats_set["current_mana"] = stats_set["ini_mana"]
 			stats_set["is_rooted"] = false
+			stats_set["healing_threshold"] = 30
 		
 		else:
 			character.cap_current_stats(stats_set)

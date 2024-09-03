@@ -28,7 +28,8 @@ static func create(args: Dictionary):
 			mySkill.isMagicDamage = args["imd"]
 		
 		if "inst" in args.keys():
-			mySkill.is_instantaneous = args["inst"]
+			mySkill.isInstantaneous = args["inst"]
+		
 		return mySkill
 			
 	else:
