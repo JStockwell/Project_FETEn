@@ -128,4 +128,49 @@
 		"obstacleType": 2,
 		"meshPath": "res://Assets/MapTiles/BricksWall_bottom.glb"
 	},
+	"bricksWall_top": {
+		"coords": "(0,0)",
+		"height": 0,
+		"idt": false,
+		"isPopulated": false,
+		"isTraversable": false,
+		"obstacleType": 2,
+		"meshPath": "res://Assets/MapTiles/BricksWall_top.glb"
+	},
+	"bricksWall_left": {
+		"coords": "(0,0)",
+		"height": 0,
+		"idt": false,
+		"isPopulated": false,
+		"isTraversable": false,
+		"obstacleType": 2,
+		"meshPath": "res://Assets/MapTiles/BricksWall_left.glb"
+	},
+	"bricksWall_right": {
+		"coords": "(0,0)",
+		"height": 0,
+		"idt": false,
+		"isPopulated": false,
+		"isTraversable": false,
+		"obstacleType": 2,
+		"meshPath": "res://Assets/MapTiles/BricksWall_right.glb"
+	},
+	"bricksWall_corner": {
+		"coords": "(0,0)",
+		"height": 0,
+		"idt": false,
+		"isPopulated": false,
+		"isTraversable": false,
+		"obstacleType": 2,
+		"meshPath": "res://Assets/MapTiles/BricksWall_corner.glb"
+	},
+	"woodenBench": {
+		"coords": "(0,0)",
+		"height": 0,
+		"idt": true,
+		"isPopulated": false,
+		"isTraversable": false,
+		"obstacleType": 1,
+		"meshPath": "res://Assets/MapTiles/WoodenBench.glb"
+	},
 }
