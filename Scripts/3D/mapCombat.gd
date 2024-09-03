@@ -614,9 +614,9 @@ func update_camera_button() -> void:
 func highlight_movement(character) -> void: #dijkstra probablemente va aquí
 	var availableTiles: Array
 	if self.get_tile_from_coords(character.get_map_coords()).is_control_zone():
-		availableTiles = EnemyBehavior._dijkstra(self, character.get_map_coords(), character.get_movement()-1)[0]
+		availableTiles = Utils._dijkstra(self, character.get_map_coords(), character.get_movement()-1)[0]
 	else:
-		availableTiles = EnemyBehavior._dijkstra(self, character.get_map_coords(), character.get_movement())[0]
+		availableTiles = Utils._dijkstra(self, character.get_map_coords(), character.get_movement())[0]
 
 	for tile in availableTiles:
 		var sel_tile = get_tile_from_coords(tile)
