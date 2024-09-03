@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://binmq54284fag"
-path.s3tc="res://.godot/imported/Stone_v2_Stone_v2.png-804448e0d09a8c0da9907d225f9ac231.s3tc.ctex"
+uid="uid://cs86c2y5cepyi"
+path.s3tc="res://.godot/imported/StoneWall_left_StoneWall.png-03a16ddb2cc9bfeefc8b1312f0866de8.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "76dc3de00bcd05897099b91b8724351e"
+"md5": "efe5babe20f4dc8ae2e203b6826965fc"
 }
 
 [deps]
 
-source_file="res://Assets/MapTiles/Stone_v2_Stone_v2.png"
-dest_files=["res://.godot/imported/Stone_v2_Stone_v2.png-804448e0d09a8c0da9907d225f9ac231.s3tc.ctex"]
+source_file="res://Assets/MapTiles/StoneWall_left_StoneWall.png"
+dest_files=["res://.godot/imported/StoneWall_left_StoneWall.png-03a16ddb2cc9bfeefc8b1312f0866de8.s3tc.ctex"]
 
 [params]
 
