@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://wvt31gswalxh"]
+[gd_scene load_steps=20 format=3 uid="uid://wvt31gswalxh"]
 
 [ext_resource type="Script" path="res://Scripts/3D/mapCombat.gd" id="1_rhc0y"]
 [ext_resource type="Texture2D" uid="uid://cdr8pfgua7joc" path="res://Assets/UI/attack_button.png" id="3_1u004"]
@@ -13,10 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://cfijrjclbo01q" path="res://Assets/UI/mana_empty.png" id="10_16okr"]
 [ext_resource type="Texture2D" uid="uid://bknoolonomvoe" path="res://Assets/UI/mana_full.png" id="11_ipnbs"]
 [ext_resource type="FontFile" uid="uid://71blta5wlshk" path="res://Assets/Fonts/Minecraft/Minecraft.ttf" id="12_fy7hm"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_ebm7i"]
-font = ExtResource("3_s3ban")
-font_size = 32
+[ext_resource type="PackedScene" uid="uid://btrtro6xli2hs" path="res://Scenes/UI/initiative.tscn" id="13_l6mli"]
+[ext_resource type="Texture2D" uid="uid://bktpssxw1kswd" path="res://Assets/UI/sel_char_bg.png" id="13_nloq1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3uv5b"]
 font_color = Color(1, 0, 0, 1)
@@ -25,6 +23,12 @@ font_color = Color(1, 0, 0, 1)
 font = ExtResource("12_fy7hm")
 font_size = 32
 font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ifhw8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ebm7i"]
+font = ExtResource("3_s3ban")
+font_size = 32
 
 [node name="MapCombat" type="Node3D"]
 script = ExtResource("1_rhc0y")
@@ -40,42 +44,6 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-
-[node name="Debug" type="Control" parent="UI"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="DebugLabel" type="Label" parent="UI/Debug"]
-layout_mode = 0
-offset_right = 1912.0
-offset_bottom = 48.0
-
-[node name="Start" type="Control" parent="UI"]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="StartButton" type="Button" parent="UI/Start"]
-layout_mode = 0
-offset_left = 768.0
-offset_top = 448.0
-offset_right = 1152.0
-offset_bottom = 640.0
-
-[node name="StartLabel" type="Label" parent="UI/Start"]
-layout_mode = 0
-offset_left = 808.0
-offset_top = 488.0
-offset_right = 1112.0
-offset_bottom = 600.0
-text = "START BATTLE"
-label_settings = SubResource("LabelSettings_ebm7i")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
 
 [node name="Actions" type="Control" parent="UI"]
 anchors_preset = 0
@@ -204,14 +172,74 @@ text = "99/99"
 label_settings = SubResource("LabelSettings_sp4do")
 horizontal_alignment = 1
 
+[node name="SelectedCharacter" type="Control" parent="UI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SelCharBg" type="Sprite2D" parent="UI/SelectedCharacter"]
+position = Vector2(183.5, 884.875)
+scale = Vector2(0.25, 0.243517)
+texture = ExtResource("13_nloq1")
+
+[node name="SelCharSprite" type="TextureRect" parent="UI/SelectedCharacter"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 824.0
+offset_right = 248.0
+offset_bottom = 944.0
+texture = SubResource("PlaceholderTexture2D_ifhw8")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Initiative" parent="UI" instance=ExtResource("13_l6mli")]
+layout_mode = 1
+
+[node name="DebugUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DebugLabel" type="Label" parent="DebugUI"]
+layout_mode = 0
+offset_right = 1912.0
+offset_bottom = 48.0
+
+[node name="StartUI" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StartButton" type="Button" parent="StartUI"]
+layout_mode = 0
+offset_left = 768.0
+offset_top = 448.0
+offset_right = 1152.0
+offset_bottom = 640.0
+
+[node name="StartLabel" type="Label" parent="StartUI"]
+layout_mode = 0
+offset_left = 808.0
+offset_top = 488.0
+offset_right = 1112.0
+offset_bottom = 600.0
+text = "START BATTLE"
+label_settings = SubResource("LabelSettings_ebm7i")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
 [node name="UiReference" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(960, 540)
 texture = ExtResource("4_au5eu")
 metadata/_edit_lock_ = true
 
-[connection signal="pressed" from="UI/Start/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="UI/Actions/MoveButton" to="." method="_on_move_button_pressed"]
 [connection signal="pressed" from="UI/Actions/PhysAttackButton" to="." method="_on_phys_attack_button_pressed"]
 [connection signal="pressed" from="UI/Actions/EndTurnButton" to="." method="_on_end_turn_button_pressed"]
 [connection signal="pressed" from="UI/Actions/ChangeCamera" to="." method="_on_change_camera_pressed"]
+[connection signal="pressed" from="StartUI/StartButton" to="." method="_on_start_button_pressed"]
