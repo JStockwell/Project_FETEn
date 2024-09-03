@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xvdpwgfxvxjt"
-path="res://.godot/imported/edgar_sprite.png-6428ab1a8d335dea1861feb693816b97.ctex"
+uid="uid://cg7pila7s8m00"
+path="res://.godot/imported/salvador_head.png-27b0a80dd10025f91e4f9943361ddf11.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Characters/Party/Edgar/edgar_sprite.png"
-dest_files=["res://.godot/imported/edgar_sprite.png-6428ab1a8d335dea1861feb693816b97.ctex"]
+source_file="res://Assets/Characters/Party/Salvador/salvador_head.png"
+dest_files=["res://.godot/imported/salvador_head.png-27b0a80dd10025f91e4f9943361ddf11.ctex"]
 
 [params]
 

@@ -255,7 +255,7 @@ func test_regen_mana():
 	
 	assert_that(GameStatus.get_party()["attacker"]["current_mana"]).is_equal(10.)
 	
-	
+# TODO Fix
 func test_purge_the_dead_ally():
 	test_mapCombat._on_start_button_pressed()
 	var ally = test_mapCombat.characterGroup.get_children()[0]
@@ -273,7 +273,7 @@ func test_purge_the_dead_ally():
 	ally = test_mapCombat.characterGroup.get_children()[0]
 	ally.modify_health(8000)
 	
-	
+# TODO Fix
 func test_purge_the_dead_enemy():
 	test_mapCombat._on_start_button_pressed()
 	var enemy = test_mapCombat.enemyGroup.get_children()[0]
@@ -291,7 +291,7 @@ func test_purge_the_dead_enemy():
 	enemy = test_mapCombat.enemyGroup.get_children()[0]
 	enemy.modify_health(8000)
 	
-	
+# TODO Fix
 func test_purge_the_dead_no_one_dies():
 	var ally = test_mapCombat.characterGroup.get_children()[0]
 	var enemy = test_mapCombat.enemyGroup.get_children()[0]

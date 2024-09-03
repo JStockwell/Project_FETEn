@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xvdpwgfxvxjt"
-path="res://.godot/imported/edgar_sprite.png-6428ab1a8d335dea1861feb693816b97.ctex"
+uid="uid://casr4o6vrg88j"
+path="res://.godot/imported/lystra_head.png-350f96f01503c08025678858ea2b5477.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Characters/Party/Edgar/edgar_sprite.png"
-dest_files=["res://.godot/imported/edgar_sprite.png-6428ab1a8d335dea1861feb693816b97.ctex"]
+source_file="res://Assets/Characters/Party/Lystra/lystra_head.png"
+dest_files=["res://.godot/imported/lystra_head.png-350f96f01503c08025678858ea2b5477.ctex"]
 
 [params]
 
