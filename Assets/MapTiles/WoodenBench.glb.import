@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dr63ywtsmwhmi"
-path="res://.godot/imported/Stone_v2.glb-44ad80c8153dfb3f6e6bceb05ac0acc0.scn"
+uid="uid://dhpv3v6mhvn16"
+path="res://.godot/imported/WoodenBench.glb-d14b2c4fdbebfc1dee3d5dcfa15f649f.scn"
 
 [deps]
 
-source_file="res://Assets/MapTiles/Stone_v2.glb"
-dest_files=["res://.godot/imported/Stone_v2.glb-44ad80c8153dfb3f6e6bceb05ac0acc0.scn"]
+source_file="res://Assets/MapTiles/WoodenBench.glb"
+dest_files=["res://.godot/imported/WoodenBench.glb-d14b2c4fdbebfc1dee3d5dcfa15f649f.scn"]
 
 [params]
 

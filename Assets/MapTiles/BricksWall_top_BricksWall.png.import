@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://binmq54284fag"
-path.s3tc="res://.godot/imported/Stone_v2_Stone_v2.png-804448e0d09a8c0da9907d225f9ac231.s3tc.ctex"
+uid="uid://d2kvvccnoe0bh"
+path.s3tc="res://.godot/imported/BricksWall_top_BricksWall.png-f2fe039863c0d100b054696a977c1874.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "76dc3de00bcd05897099b91b8724351e"
+"md5": "6b580814d9d370d871452cb4d2b2707b"
 }
 
 [deps]
 
-source_file="res://Assets/MapTiles/Stone_v2_Stone_v2.png"
-dest_files=["res://.godot/imported/Stone_v2_Stone_v2.png-804448e0d09a8c0da9907d225f9ac231.s3tc.ctex"]
+source_file="res://Assets/MapTiles/BricksWall_top_BricksWall.png"
+dest_files=["res://.godot/imported/BricksWall_top_BricksWall.png-f2fe039863c0d100b054696a977c1874.s3tc.ctex"]
 
 [params]
 

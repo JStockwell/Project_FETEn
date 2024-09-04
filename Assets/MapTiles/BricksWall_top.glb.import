@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dr63ywtsmwhmi"
-path="res://.godot/imported/Stone_v2.glb-44ad80c8153dfb3f6e6bceb05ac0acc0.scn"
+uid="uid://b1ugmmxsyujeo"
+path="res://.godot/imported/BricksWall_top.glb-415ad013ce159a4869cd3bb9c79d6ad8.scn"
 
 [deps]
 
-source_file="res://Assets/MapTiles/Stone_v2.glb"
-dest_files=["res://.godot/imported/Stone_v2.glb-44ad80c8153dfb3f6e6bceb05ac0acc0.scn"]
+source_file="res://Assets/MapTiles/BricksWall_top.glb"
+dest_files=["res://.godot/imported/BricksWall_top.glb-415ad013ce159a4869cd3bb9c79d6ad8.scn"]
 
 [params]
 
