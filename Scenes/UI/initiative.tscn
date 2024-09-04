@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://btrtro6xli2hs"]
+[gd_scene load_steps=7 format=3 uid="uid://btrtro6xli2hs"]
 
 [ext_resource type="Script" path="res://Scripts/UI/initiative.gd" id="1_acem5"]
 [ext_resource type="Texture2D" uid="uid://i24iwyyn782d" path="res://Assets/UI/char_ini_bg.png" id="2_432cw"]
+[ext_resource type="Texture2D" uid="uid://hgd3w0eqpylf" path="res://Assets/UI/side_arrow_pressed.png" id="3_2b0v8"]
 [ext_resource type="Texture2D" uid="uid://d01lp37s2204e" path="res://Assets/UI/side_arrow.png" id="3_ugui7"]
 [ext_resource type="Texture2D" uid="uid://diddol5ghcff" path="res://Assets/UI/red_arrow.png" id="4_40fbc"]
 
@@ -29,6 +30,7 @@ offset_top = 32.0
 offset_right = 48.0
 offset_bottom = 108.0
 texture_normal = ExtResource("3_ugui7")
+texture_pressed = ExtResource("3_2b0v8")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -39,6 +41,7 @@ offset_top = 32.0
 offset_right = 824.0
 offset_bottom = 108.0
 texture_normal = ExtResource("3_ugui7")
+texture_pressed = ExtResource("3_2b0v8")
 ignore_texture_size = true
 stretch_mode = 5
 flip_h = true
