@@ -209,6 +209,8 @@ func sort_descending(a: float, b: float) -> bool:
 signal start_turn_signal
 func start_turn() -> void:
 	start_turn_signal.emit()
+	CombatMapStatus.attackSkill = ""
+	
 	if CombatMapStatus.get_current_turn_char() == CombatMapStatus.get_initiative()[0] and not CombatMapStatus.is_start_combat():
 		regen_mana()
 	else:
