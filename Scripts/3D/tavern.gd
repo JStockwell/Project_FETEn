@@ -70,10 +70,12 @@ func _on_combat_start() -> void:
 	com.position = combatCenter.position
 	com.camera.current = true
 	cm.ui.hide()
+	cm.changeCameraButton.hide()
 
 func _on_combat_end() -> void:
 	tavernCam.current = true
 	cm.ui.show()
+	cm.changeCameraButton.show()
 	com.queue_free()
 	cm.purge_the_dead()
 	cm.reset_to_tavern()
@@ -82,7 +84,9 @@ func _on_combat_end() -> void:
 func _on_change_camera() -> void:
 	if setCam == 1:
 		topTavernCam.make_current()
+		cm.ui.hide()
 		setCam = 2
 	else:
 		tavernCam.make_current()
+		cm.ui.show()
 		setCam = 1

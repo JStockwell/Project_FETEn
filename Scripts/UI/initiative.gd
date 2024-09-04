@@ -35,7 +35,7 @@ func modify_initiative():
 	var currentCharacter
 	
 	if pointer > charArray.size() - 4:
-		pointer = charArray.size() - 4
+		pointer = max(charArray.size() - 4, 0)
 	
 	for i in range(0,4):
 		if i + pointer < charArray.size():

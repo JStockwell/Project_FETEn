@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://cdr8pfgua7joc" path="res://Assets/UI/attack_button.png" id="3_1u004"]
 [ext_resource type="Texture2D" uid="uid://dhymjl6nk7i45" path="res://Assets/UI/move_button.png" id="3_4py7p"]
 [ext_resource type="FontFile" uid="uid://p6npb2mlppqj" path="res://Assets/Fonts/Micrhoma/Michroma-Regular.ttf" id="3_s3ban"]
-[ext_resource type="Texture2D" uid="uid://bdpy5pn7bey5t" path="res://Assets/UI/ui_reference.png" id="4_au5eu"]
 [ext_resource type="Texture2D" uid="uid://bsl6g8gagqiap" path="res://Assets/UI/camera_button.png" id="5_d7t6j"]
 [ext_resource type="Texture2D" uid="uid://54egr8br2bfy" path="res://Assets/UI/end_turn_button.png" id="5_rdtu0"]
 [ext_resource type="Texture2D" uid="uid://ccgvnwjnwtmy4" path="res://Assets/UI/skill_button.png" id="6_mpm3b"]
@@ -18,6 +17,11 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_3uv5b"]
 font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tngxo"]
+font = ExtResource("12_fy7hm")
+font_size = 20
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_sp4do"]
 font = ExtResource("12_fy7hm")
@@ -80,17 +84,12 @@ texture_normal = ExtResource("5_rdtu0")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="ChangeCamera" type="TextureButton" parent="UI/Actions"]
-layout_mode = 0
-offset_left = 1742.0
-offset_top = 44.0
-offset_right = 1854.0
-offset_bottom = 148.0
-texture_normal = ExtResource("5_d7t6j")
-ignore_texture_size = true
-stretch_mode = 5
+[node name="Skills" type="Control" parent="UI/Actions"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="SkillMenu" type="MenuButton" parent="UI/Actions"]
+[node name="SkillMenu" type="MenuButton" parent="UI/Actions/Skills"]
 layout_mode = 0
 offset_left = 116.0
 offset_top = 741.0
@@ -99,11 +98,9 @@ offset_bottom = 797.0
 icon = ExtResource("6_mpm3b")
 icon_alignment = 1
 expand_icon = true
-item_count = 1
-popup/item_0/text = ""
-popup/item_0/id = 0
 
-[node name="SkillIssue" type="Label" parent="UI/Actions"]
+[node name="SkillIssue" type="Label" parent="UI/Actions/Skills"]
+visible = false
 layout_mode = 0
 offset_left = 304.0
 offset_top = 688.0
@@ -114,7 +111,8 @@ label_settings = SubResource("LabelSettings_3uv5b")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SkillIssue2" type="Label" parent="UI/Actions"]
+[node name="SkillIssue2" type="Label" parent="UI/Actions/Skills"]
+visible = false
 layout_mode = 0
 offset_left = 280.0
 offset_top = 688.0
@@ -124,6 +122,34 @@ text = "Obstacle blocking shot!"
 label_settings = SubResource("LabelSettings_3uv5b")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="SkillCard" type="Control" parent="UI/Actions/Skills"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SkillCardBG" type="ColorRect" parent="UI/Actions/Skills/SkillCard"]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 576.0
+offset_right = 576.0
+offset_bottom = 800.0
+color = Color(0.712129, 0.712129, 0.712129, 1)
+
+[node name="SkillCardText" type="Label" parent="UI/Actions/Skills/SkillCard"]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 584.0
+offset_right = 568.0
+offset_bottom = 792.0
+text = "Description: description,
+Range: range,
+Cost: cost,
+spa: spa,
+cta: canTargetAllies,
+imd: isMagicDamage"
+label_settings = SubResource("LabelSettings_tngxo")
+autowrap_mode = 3
 
 [node name="StatusBars" type="Control" parent="UI"]
 anchors_preset = 0
@@ -194,6 +220,10 @@ stretch_mode = 5
 
 [node name="Initiative" parent="UI" instance=ExtResource("13_l6mli")]
 layout_mode = 1
+offset_left = 648.0
+offset_right = 1440.0
+offset_bottom = 104.0
+scale = Vector2(0.75, 0.75)
 
 [node name="DebugUI" type="Control" parent="."]
 layout_mode = 3
@@ -232,14 +262,17 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="UiReference" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(960, 540)
-texture = ExtResource("4_au5eu")
-metadata/_edit_lock_ = true
+[node name="ChangeCamera" type="TextureButton" parent="."]
+offset_left = 1742.0
+offset_top = 44.0
+offset_right = 1854.0
+offset_bottom = 148.0
+texture_normal = ExtResource("5_d7t6j")
+ignore_texture_size = true
+stretch_mode = 5
 
 [connection signal="pressed" from="UI/Actions/MoveButton" to="." method="_on_move_button_pressed"]
 [connection signal="pressed" from="UI/Actions/PhysAttackButton" to="." method="_on_phys_attack_button_pressed"]
 [connection signal="pressed" from="UI/Actions/EndTurnButton" to="." method="_on_end_turn_button_pressed"]
-[connection signal="pressed" from="UI/Actions/ChangeCamera" to="." method="_on_change_camera_pressed"]
 [connection signal="pressed" from="StartUI/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="ChangeCamera" to="." method="_on_change_camera_pressed"]
