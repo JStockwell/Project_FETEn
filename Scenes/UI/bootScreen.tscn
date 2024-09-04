@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bw8vpwr8m3kn3"]
+
+[ext_resource type="Script" path="res://Scripts/UI/bootScreen.gd" id="1_8tt3u"]
+[ext_resource type="Texture2D" uid="uid://cimufby83m7m8" path="res://Assets/Branding/black_full_logo.png" id="2_8vbsm"]
+
+[node name="BootScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8tt3u")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="BlackFullLogo" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+scale = Vector2(0.17, 0.17)
+texture = ExtResource("2_8vbsm")

@@ -85,7 +85,6 @@ func _on_character_entry(character) -> void:
 func _on_character_exit(character) -> void:
 	charCard.hide()
 
-
 func _on_start_button_pressed() -> void:
 	var result = []
 	for character in tempParty:
