@@ -220,6 +220,10 @@ stretch_mode = 5
 
 [node name="Initiative" parent="UI" instance=ExtResource("13_l6mli")]
 layout_mode = 1
+offset_left = 648.0
+offset_right = 1440.0
+offset_bottom = 104.0
+scale = Vector2(0.75, 0.75)
 
 [node name="DebugUI" type="Control" parent="."]
 layout_mode = 3

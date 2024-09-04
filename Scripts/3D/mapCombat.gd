@@ -65,10 +65,11 @@ func _ready():
 
 func initial_map_load() -> void:
 	var row = []
+	var mapHeightModifier = 0.25
 	for tile in mapDict["tiles"]:
 		var mapTile = Factory.MapTile.create(tile)
 		mapTileGroup.add_child(mapTile, true)
-		mapTile.position = Vector3(mapTile.get_coords().x, mapTile.get_height() * 0.1, mapTile.get_coords().y)
+		mapTile.position = Vector3(mapTile.get_coords().x, mapTile.get_height() * mapHeightModifier, mapTile.get_coords().y)
 		mapTile.connect("tile_selected", Callable(self, "tile_handler"))
 		
 		if mapTile.get_obstacle_type() in [1, 2]:
@@ -226,6 +227,7 @@ func start_turn() -> void:
 	set_status_bars(currentChar)
 	initiativeBar.pointer = CombatMapStatus.get_current_ini()
 	initiativeBar.modify_initiative()
+	
 	if CombatMapStatus.get_selected_character().get_sprite() == "":
 		selCharSprite.texture = load("res://Assets/Characters/Placeholder/sprite_placeholder.png")
 	else:
