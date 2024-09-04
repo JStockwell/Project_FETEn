@@ -3,6 +3,7 @@ extends Node3D
 var mapDict: Dictionary
 var setCam = 1
 var battleStart: bool = false
+var focusedSkill: int = -1
 
 @onready
 var mapTileGroup = $MapTileGroup
@@ -23,13 +24,13 @@ var endTurnButton = $UI/Actions/EndTurnButton
 @onready
 var changeCameraButton = $UI/Actions/ChangeCamera
 @onready
-var baseSkillMenu = $UI/Actions/SkillMenu
+var baseSkillMenu = $UI/Actions/Skills/SkillMenu
 @onready
-var skillMenu = $UI/Actions/SkillMenu.get_popup()
+var skillMenu = $UI/Actions/Skills/SkillMenu.get_popup()
 @onready
-var skillIssue = $UI/Actions/SkillIssue
+var skillIssue = $UI/Actions/Skills/SkillIssue
 @onready
-var skillIssue2 = $UI/Actions/SkillIssue2
+var skillIssue2 = $UI/Actions/Skills/SkillIssue2
 @onready
 var hpBar = $UI/StatusBars/HPBar
 @onready
@@ -42,6 +43,10 @@ var manaBarText = $UI/StatusBars/ManaText
 var selCharSprite = $UI/SelectedCharacter/SelCharSprite
 @onready
 var initiativeBar = $UI/Initiative
+@onready
+var skillCard = $UI/Actions/Skills/SkillCard
+@onready
+var skillCardText = $UI/Actions/Skills/SkillCard/SkillCardText
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -206,6 +211,7 @@ func start_turn() -> void:
 		CombatMapStatus.set_is_start_combat(false)
 		
 	reset_map_status()
+	skillCard.hide()
 	skillIssue.hide()
 	skillIssue2.hide()
 	
@@ -619,6 +625,24 @@ func update_skill_menu_button() -> void:
 		baseSkillMenu.disabled = true
 	else:
 		baseSkillMenu.disabled = false
+		handle_skill_info()
+
+# TODO Test
+func handle_skill_info() -> void:
+	var newFocusedSkill = skillMenu.get_focused_item()
+	if newFocusedSkill != focusedSkill:
+		focusedSkill = newFocusedSkill
+		
+		if focusedSkill == -1:
+			skillCard.hide()
+			
+		else:
+			var mySkill = GameStatus.skillSet[CombatMapStatus.get_selected_character().get_skills()[focusedSkill]].get_skill()
+			var txt = "Description: " + mySkill["description"]
+			txt += "\nCost: " + str(mySkill["cost"])
+			
+			skillCardText.text = txt
+			skillCard.show()
 
 func update_end_turn_button() -> void:
 	if CombatMapStatus.get_selected_character().is_enemy():

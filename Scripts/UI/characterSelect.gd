@@ -8,7 +8,8 @@ const MAPS = [
 	"res://Assets/json/maps/combatMap_lv3_1.json",
 	"res://Assets/json/maps/combatMap_lv3_2.json",
 	"res://Assets/json/maps/combatMap_lv3_3.json",
-	"res://Assets/json/maps/combatMap_lv4_1.json"
+	"res://Assets/json/maps/combatMap_lv4_1.json",
+	"res://Assets/json/maps/test_map_no_enemies.json"
 ]
 
 @onready
