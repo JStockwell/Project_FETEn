@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bisjnpqa5w25q"]
+[gd_scene load_steps=4 format=3 uid="uid://oglv8av31khk"]
 
 [ext_resource type="Script" path="res://Scripts/UI/characterSelect.gd" id="1_ocioc"]
 [ext_resource type="PackedScene" uid="uid://bqtun5kunny5u" path="res://Scenes/UI/characterCard.tscn" id="2_kwgtb"]
@@ -68,18 +68,28 @@ offset_left = 56.0
 offset_top = 96.0
 offset_right = 200.0
 offset_bottom = 128.0
-item_count = 6
+item_count = 11
 popup/item_0/text = "lv1_1"
 popup/item_0/id = 0
 popup/item_1/text = "lv1_2"
 popup/item_1/id = 1
-popup/item_2/text = "lv3_1"
+popup/item_2/text = "lv2_1"
 popup/item_2/id = 2
-popup/item_3/text = "lv3_2"
+popup/item_3/text = "lv2_2"
 popup/item_3/id = 3
-popup/item_4/text = "lv3_3"
+popup/item_4/text = "lv2_3"
 popup/item_4/id = 4
-popup/item_5/text = "lv4_1"
+popup/item_5/text = "lv2_4"
 popup/item_5/id = 5
+popup/item_6/text = "lv3_1"
+popup/item_6/id = 6
+popup/item_7/text = "lv3_2"
+popup/item_7/id = 7
+popup/item_8/text = "lv3_3"
+popup/item_8/id = 8
+popup/item_9/text = "lv4_1"
+popup/item_9/id = 9
+popup/item_10/text = "map_no_enemy"
+popup/item_10/id = 10
 
 [connection signal="pressed" from="UI/StartButton" to="." method="_on_start_button_pressed"]

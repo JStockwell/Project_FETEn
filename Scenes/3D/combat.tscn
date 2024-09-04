@@ -22,7 +22,7 @@ height = 1.0
 radius = 1.25
 
 [node name="Combat" type="Node3D"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 0, 0, 0)
 script = ExtResource("1_xktgj")
 
 [node name="Background" type="Node3D" parent="."]
@@ -143,7 +143,7 @@ offset_bottom = 904.0
 alignment = 1
 
 [node name="DamageNumber" type="Label3D" parent="UI"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 3.75, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 3.75, 0)
 text = "-99
 "
 font_size = 200

@@ -5,10 +5,15 @@ var tempParty = []
 const MAPS = [
 	"res://Assets/json/maps/combatMap_lv1_1.json",
 	"res://Assets/json/maps/combatMap_lv1_2.json",
+	"res://Assets/json/maps/combatMap_lv2_1.json",
+	"res://Assets/json/maps/combatMap_lv2_2.json",
+	"res://Assets/json/maps/combatMap_lv2_3.json",
+	"res://Assets/json/maps/combatMap_lv2_4.json",
 	"res://Assets/json/maps/combatMap_lv3_1.json",
 	"res://Assets/json/maps/combatMap_lv3_2.json",
 	"res://Assets/json/maps/combatMap_lv3_3.json",
-	"res://Assets/json/maps/combatMap_lv4_1.json"
+	"res://Assets/json/maps/combatMap_lv4_1.json",
+	"res://Assets/json/maps/test_map_no_enemies.json"
 ]
 
 @onready

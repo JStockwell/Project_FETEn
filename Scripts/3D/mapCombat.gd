@@ -4,6 +4,7 @@ var mapDict: Dictionary
 var setCam = 1
 var battleStart: bool = false
 var characterDijkstra
+var focusedSkill: int = -1
 
 @onready
 var mapTileGroup = $MapTileGroup
@@ -14,9 +15,7 @@ var enemyGroup = $EnemyGroup
 @onready
 var ui = $UI
 @onready
-var uiStart = $UI/Start
-@onready
-var uiActions = $UI/Actions
+var uiStart = $StartUI
 @onready
 var moveButton = $UI/Actions/MoveButton
 @onready
@@ -24,15 +23,31 @@ var physAttackButton = $UI/Actions/PhysAttackButton
 @onready
 var endTurnButton = $UI/Actions/EndTurnButton
 @onready
-var changeCameraButton = $UI/Actions/ChangeCamera
+var changeCameraButton = $ChangeCamera
 @onready
-var baseSkillMenu = $UI/Actions/SkillMenu
+var baseSkillMenu = $UI/Actions/Skills/SkillMenu
 @onready
-var skillMenu = $UI/Actions/SkillMenu.get_popup()
+var skillMenu = $UI/Actions/Skills/SkillMenu.get_popup()
 @onready
-var skillIssue = $UI/Actions/SkillIssue
+var skillIssue = $UI/Actions/Skills/SkillIssue
 @onready
-var skillIssue2 = $UI/Actions/SkillIssue2
+var skillIssue2 = $UI/Actions/Skills/SkillIssue2
+@onready
+var hpBar = $UI/StatusBars/HPBar
+@onready
+var hpBarText = $UI/StatusBars/HPText
+@onready
+var manaBar = $UI/StatusBars/ManaBar
+@onready
+var manaBarText = $UI/StatusBars/ManaText
+@onready
+var selCharSprite = $UI/SelectedCharacter/SelCharSprite
+@onready
+var initiativeBar = $UI/Initiative
+@onready
+var skillCard = $UI/Actions/Skills/SkillCard
+@onready
+var skillCardText = $UI/Actions/Skills/SkillCard/SkillCardText
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -42,7 +57,8 @@ func _ready():
 	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
 	initial_map_load()
 	calculate_combat_initiative()
-	uiActions.hide()
+	ui.hide()
+	changeCameraButton.hide()
 	uiStart.show()
 	
 	if GameStatus.testMode:
@@ -50,10 +66,11 @@ func _ready():
 
 func initial_map_load() -> void:
 	var row = []
+	var mapHeightModifier = 0.25
 	for tile in mapDict["tiles"]:
 		var mapTile = Factory.MapTile.create(tile)
 		mapTileGroup.add_child(mapTile, true)
-		mapTile.position = Vector3(mapTile.get_coords().x, mapTile.get_height() * 0.1, mapTile.get_coords().y)
+		mapTile.position = Vector3(mapTile.get_coords().x, mapTile.get_height() * mapHeightModifier, mapTile.get_coords().y)
 		mapTile.connect("tile_selected", Callable(self, "tile_handler"))
 		
 		if mapTile.get_obstacle_type() in [1, 2]:
@@ -117,16 +134,20 @@ func choose_random_spawn(spawnPositions: Array) -> Vector2:
 	return spawnPos
 
 func calculate_combat_initiative() -> void:
+	var allCharacters = []
 	var res_dict = {}
 	var result = []
+	var initiativeBarResult = []
 	
 	for char in characterGroup.get_children():
 		var ini = char.calculate_initiative(randi_range(1, 20))
 		res_dict[char.get_map_id()] = ini
+		allCharacters.append(char)
 		
 	for enemy in enemyGroup.get_children():
 		var ini = enemy.calculate_initiative(randi_range(1, 20))
 		res_dict[enemy.get_map_id()] = ini
+		allCharacters.append(enemy)
 
 	# Order the results
 	var ordered_ini = res_dict.values()
@@ -140,6 +161,15 @@ func calculate_combat_initiative() -> void:
 		
 	# Set result
 	CombatMapStatus.set_initiative(result)
+	var myCharacter
+	
+	for mapId in result:
+		for character in allCharacters:
+			if character.get_map_id() == mapId:
+				initiativeBarResult.append(character)
+				break
+	
+	initiativeBar.set_initiative(initiativeBarResult)
 
 func setup_skill_menu() -> void:
 	skillMenu.clear()
@@ -157,6 +187,7 @@ func reset_to_tavern():
 	else:
 		highlight_control_zones(characterGroup)
 	
+	skillCard.hide()
 	skillIssue.hide()
 	skillIssue2.hide()
 	
@@ -165,6 +196,8 @@ func reset_to_tavern():
 		await start_turn()
 	else:
 		CombatMapStatus.get_selected_character().selectedChar.show()
+		set_status_bars(CombatMapStatus.get_selected_character())
+		selCharSprite.texture = load(CombatMapStatus.get_selected_character().get_sprite())
 		if not CombatMapStatus.hasMoved:
 			highlight_movement(CombatMapStatus.get_selected_character())
 	
@@ -182,6 +215,7 @@ func start_turn() -> void:
 		CombatMapStatus.set_is_start_combat(false)
 		
 	reset_map_status()
+	skillCard.hide()
 	skillIssue.hide()
 	skillIssue2.hide()
 	
@@ -190,6 +224,15 @@ func start_turn() -> void:
 	CombatMapStatus.set_has_attacked(false)
 	CombatMapStatus.set_has_moved(false)
 	CombatMapStatus.set_selected_character(currentChar)
+	
+	set_status_bars(currentChar)
+	initiativeBar.pointer = CombatMapStatus.get_current_ini()
+	initiativeBar.modify_initiative()
+	
+	if CombatMapStatus.get_selected_character().get_sprite() == "":
+		selCharSprite.texture = load("res://Assets/Characters/Placeholder/sprite_placeholder.png")
+	else:
+		selCharSprite.texture = load(CombatMapStatus.get_selected_character().get_sprite())
 	
 	if currentChar.is_enemy():
 		currentChar.selectedEnemy.show()
@@ -235,6 +278,22 @@ func generate_dijkstra(currentChar) -> void:
 	else:
 		characterDijkstra = Utils._dijkstra(self, currentChar.get_map_coords(), currentChar.get_movement())
 	
+func set_status_bars(character) -> void:
+	hpBar.set_max(character.get_max_health())
+	hpBar.set_value_no_signal(character.get_current_health())
+	hpBarText.text = str(character.get_current_health()) + "/" + str(character.get_max_health())
+	
+	if character.get_max_mana() == 0:
+		manaBar.hide()
+		manaBarText.hide()
+		
+	else:
+		manaBar.show()
+		manaBarText.show()
+		manaBar.set_max(character.get_max_mana())
+		manaBar.set_value_no_signal(character.get_current_mana())
+		manaBarText.text = str(character.get_current_mana()) + "/" + str(character.get_max_mana())
+
 func enemy_turn_end():
 	CombatMapStatus.advance_ini()
 	await start_turn()
@@ -290,6 +349,7 @@ func purge_the_dead():
 		CombatMapStatus.remove_character_ini(dead.get_map_id())
 		var tile = get_tile_from_coords(dead.get_map_coords())
 		tile.set_is_populated(false)
+		initiativeBar.character_death(dead)
 		dead.queue_free()
 		
 
@@ -303,11 +363,12 @@ func _process(delta):
 	
 # Set selected enemies
 func character_handler(character) -> void:
-	if not CombatMapStatus.get_selected_character().is_enemy():
-		if character.is_enemy():
-			selected_checker(character, CombatMapStatus.get_selected_enemy(), character.is_enemy())
-		elif character.get_instance_id() != CombatMapStatus.get_selected_character().get_instance_id():
-			selected_checker(character, CombatMapStatus.get_selected_ally(), character.is_enemy())
+	if battleStart:
+		if not CombatMapStatus.get_selected_character().is_enemy():
+			if character.is_enemy():
+				selected_checker(character, CombatMapStatus.get_selected_enemy(), character.is_enemy())
+			elif character.get_instance_id() != CombatMapStatus.get_selected_character().get_instance_id():
+				selected_checker(character, CombatMapStatus.get_selected_ally(), character.is_enemy())
 
 func selected_checker(character, combatMapStatusCharacter, isEnemy: bool) -> void:
 	if combatMapStatusCharacter == null:
@@ -353,17 +414,20 @@ func set_tile_populated(coords: Vector2, value: bool) -> void:
 
 # Set selected MapTile
 func tile_handler(mapTile) -> void:
-	if CombatMapStatus.get_selected_map_tile() == mapTile:
-		remove_selected()
-		CombatMapStatus.set_selected_map_tile(null)
-	else:
-		CombatMapStatus.set_selected_map_tile(mapTile)
-		remove_selected()
-		mapTile.selected.show()
+	if battleStart:
+		if not CombatMapStatus.get_selected_character().is_enemy():
+			if CombatMapStatus.get_selected_map_tile() == mapTile:
+				remove_selected()
+				CombatMapStatus.set_selected_map_tile(null)
+			else:
+				CombatMapStatus.set_selected_map_tile(mapTile)
+				remove_selected()
+				mapTile.selected.show()
 
 func _on_start_button_pressed():
 	battleStart = true
-	uiActions.show()
+	ui.show()
+	changeCameraButton.show()
 	uiStart.hide()
 	await start_turn()
 
@@ -409,7 +473,6 @@ signal combat_start
 
 func _on_phys_attack_button_pressed():
 	phys_combat_round()
-	
 
 func phys_combat_round() -> void:
 	skillIssue2.hide()
@@ -604,6 +667,24 @@ func update_skill_menu_button() -> void:
 		baseSkillMenu.disabled = true
 	else:
 		baseSkillMenu.disabled = false
+		handle_skill_info()
+
+# TODO Test
+func handle_skill_info() -> void:
+	var newFocusedSkill = skillMenu.get_focused_item()
+	if newFocusedSkill != focusedSkill:
+		focusedSkill = newFocusedSkill
+		
+		if focusedSkill == -1:
+			skillCard.hide()
+			
+		else:
+			var mySkill = GameStatus.skillSet[CombatMapStatus.get_selected_character().get_skills()[focusedSkill]].get_skill()
+			var txt = "Description: " + mySkill["description"]
+			txt += "\nCost: " + str(mySkill["cost"])
+			
+			skillCardText.text = txt
+			skillCard.show()
 
 func update_end_turn_button() -> void:
 	if CombatMapStatus.get_selected_character().is_enemy():
@@ -689,7 +770,7 @@ func _on_change_camera_pressed():
 
 # Debug
 @onready
-var debugLabel = $UI/Debug/DebugLabel
+var debugLabel = $DebugUI/DebugLabel
 
 var debugSelected
 var debugAlly

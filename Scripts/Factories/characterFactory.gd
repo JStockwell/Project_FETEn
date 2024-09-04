@@ -26,11 +26,13 @@ static func create(args: Dictionary, duplicateFlag: bool):
 			character.cap_current_stats(stats_set)
 		
 		var mesh_path = args["mesh_path"]
+		var sprite_path = args["sprite_path"]
 		
 		if args["mesh_path"] == "":
 			mesh_path = "res://Assets/Characters/Placeholder/Placeholder_Char.glb"
 		
-		# TODO sprite_path
+		if args["sprite_path"] == "":
+			sprite_path = "res://Assets/Characters/Placeholder/sprite_placeholder.png"
 		
 		if duplicateFlag:
 			character.stats = stats_set.duplicate()
