@@ -226,7 +226,10 @@ func start_turn() -> void:
 	set_status_bars(currentChar)
 	initiativeBar.pointer = CombatMapStatus.get_current_ini()
 	initiativeBar.modify_initiative()
-	selCharSprite.texture = load(CombatMapStatus.get_selected_character().get_sprite())
+	if CombatMapStatus.get_selected_character().get_sprite() == "":
+		selCharSprite.texture = load("res://Assets/Characters/Placeholder/sprite_placeholder.png")
+	else:
+		selCharSprite.texture = load(CombatMapStatus.get_selected_character().get_sprite())
 	
 	if currentChar.is_enemy():
 		currentChar.selectedEnemy.show()
