@@ -137,11 +137,12 @@ static func _dijkstra(map, mapCoords: Vector2, maxRange: int) -> Array: # we cou
 					visited[coordinates.y][coordinates.x] = true
 					distances[coordinates.y][coordinates.x] = distanceToNode
 				
-				if distanceToNode <= maxRange or current.priority + 1 <= maxRange: #the second part of the or should allwo for allowing moving a cost 2 with only 1 mov or a cost 3 with 1-2 mov left
-					previous[coordinates.y][coordinates.x] = current.get_coords()
+					if distanceToNode < maxRange: #the second part of the or allows for movement cost 2 with only 1 mov or a cost 3 with 1-2 mov left
+						previous[coordinates.y][coordinates.x] = current.get_coords()
+						pQ.push(coordinates, distanceToNode)
+						
 					moveableCells.append(coordinates)
-					pQ.push(coordinates, distanceToNode)
-				
+					
 		if pQ.is_empty():
 			break
 	return [moveableCells, distances]

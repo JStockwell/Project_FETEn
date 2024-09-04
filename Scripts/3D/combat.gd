@@ -75,7 +75,7 @@ func attack(t_attacker, t_defender, rolls: Array, mapMod: int, spa: int = 0, imd
 			
 		await deal_damage(dmg, crit, t_defender)
 		
-		print("dealt damage by ", t_attacker.get_id(),  " was ", (t_attacker.get_attack()-t_defender.get_defense())*crit) # 
+		print("dealt damage by ", t_attacker.get_id(),  " was ", (t_attacker.get_attack()-t_defender.get_defense())*crit, " to defender ", t_defender.get_id()) # 
 		print("the stats were:", " atk: ", t_attacker.get_attack(), " def: ", t_defender.get_defense(), " crit: ", crit, "\nimd ", imd, "\nspa ", spa) # 
 		
 	else:
@@ -83,14 +83,14 @@ func attack(t_attacker, t_defender, rolls: Array, mapMod: int, spa: int = 0, imd
 		
 func deal_damage(dmg: int, crit: float, t_defender):
 	var dmgText: String
-	if dmg * crit >= 15:
-		pass
 	if dmg >= 0:
 		t_defender.modify_health(-int(dmg * crit))
 		dmgText = str(-int(dmg * crit))
 	else:
 		dmgText = "0"
-		
+	if dmg >= 15:
+		print("turbohit found ", dmgText)
+	
 	damageNumber.text = dmgText
 	
 	damageNumber.show()

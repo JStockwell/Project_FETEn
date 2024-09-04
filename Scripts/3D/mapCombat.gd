@@ -3,6 +3,7 @@ extends Node3D
 var mapDict: Dictionary
 var setCam = 1
 var battleStart: bool = false
+var characterDijkstra
 
 @onready
 var mapTileGroup = $MapTileGroup
@@ -192,7 +193,10 @@ func start_turn() -> void:
 	
 	if currentChar.is_enemy():
 		currentChar.selectedEnemy.show()
-		# TODO Enemy Logic
+
+		highlight_control_zones(characterGroup)
+		generate_dijkstra(currentChar)
+		
 		if not GameStatus.testMode:
 			await wait(1)
 		var enemyAttack 
@@ -219,11 +223,17 @@ func start_turn() -> void:
 	else:
 		setup_skill_menu()
 		currentChar.selectedChar.show()
-		highlight_movement(currentChar)
-		if not CombatMapStatus.get_selected_character().is_enemy():
-			highlight_control_zones(enemyGroup)
-		else:
-			highlight_control_zones(characterGroup)
+		highlight_control_zones(enemyGroup) #first highlight the control zones to allow correct dijkstra calculation
+		generate_dijkstra(currentChar) #generate the dijkstra function
+		highlight_movement(currentChar) #highlight the movement zones available (player characters only)
+		
+
+func generate_dijkstra(currentChar) -> void:
+	#generate the dijkstra, will be called several times later, thus we update it here to avoid several calls to a computationally costly function
+	if self.get_tile_from_coords(currentChar.get_map_coords()).is_control_zone():
+		characterDijkstra = Utils._dijkstra(self, currentChar.get_map_coords(), currentChar.get_movement()-1)
+	else:
+		characterDijkstra = Utils._dijkstra(self, currentChar.get_map_coords(), currentChar.get_movement())
 	
 func enemy_turn_end():
 	CombatMapStatus.advance_ini()
@@ -363,7 +373,7 @@ func _on_move_button_pressed():
 
 func move_character() -> void:
 	var selChar = CombatMapStatus.get_selected_character()
-	if validate_move(selChar, CombatMapStatus.get_selected_map_tile()):
+	if validate_move(selChar, CombatMapStatus.get_selected_map_tile(), characterDijkstra[0]):
 		var tile_coords = CombatMapStatus.get_selected_map_tile().get_coords()
 		var old_char_coords = CombatMapStatus.get_selected_character().get_map_coords()
 		
@@ -381,10 +391,10 @@ func move_character() -> void:
 		CombatMapStatus.set_has_moved(true)
 
 # TODO Replace with Djikstra
-func validate_move(character, mapTile) -> bool:
+func validate_move(character, mapTile, dijkstra) -> bool:
 	var result = true
 	
-	if Utils.calc_distance(character.get_map_coords(), mapTile.get_coords()) > character.get_movement():
+	if not dijkstra.has(mapTile.get_coords()):
 		result = false
 	
 	if mapTile.is_populated():
@@ -526,10 +536,7 @@ func _on_skill_selected(id: int):
 			CombatMapStatus.set_ally_interaction(caster, target, Utils.calc_distance(caster.get_map_coords(), target.get_map_coords()))
 			
 			pass
-		
-		elif GameStatus.skillSet[skillName].can_target_self():
-			pass
-			
+
 		else:
 			var defender = CombatMapStatus.get_selected_enemy()
 			CombatMapStatus.set_combat(caster, defender, Utils.calc_distance(caster.get_map_coords(), defender.get_map_coords()), 0, skillName)
@@ -567,7 +574,7 @@ func update_move_button() -> void:
 		if CombatMapStatus.get_selected_map_tile() == null:
 			moveButton.disabled = true
 			
-		elif validate_move(CombatMapStatus.get_selected_character(), CombatMapStatus.get_selected_map_tile()):
+		elif validate_move(CombatMapStatus.get_selected_character(), CombatMapStatus.get_selected_map_tile(), characterDijkstra[0]):
 			moveButton.disabled = false
 			
 		else:
@@ -612,13 +619,8 @@ func update_camera_button() -> void:
 		changeCameraButton.disabled = false
 
 func highlight_movement(character) -> void: #dijkstra probablemente va aquí
-	var availableTiles: Array
-	if self.get_tile_from_coords(character.get_map_coords()).is_control_zone():
-		availableTiles = Utils._dijkstra(self, character.get_map_coords(), character.get_movement()-1)[0]
-	else:
-		availableTiles = Utils._dijkstra(self, character.get_map_coords(), character.get_movement())[0]
 
-	for tile in availableTiles:
+	for tile in characterDijkstra[0]:
 		var sel_tile = get_tile_from_coords(tile)
 		if sel_tile != null and !sel_tile.is_populated() and sel_tile.is_traversable():
 			sel_tile.highlighted.show()
