@@ -456,7 +456,7 @@ func move_character() -> void:
 		remove_selected()
 		CombatMapStatus.set_has_moved(true)
 
-# TODO Replace with Djikstra
+#TODO test
 func validate_move(character, mapTile, dijkstra) -> bool:
 	var result = true
 	
