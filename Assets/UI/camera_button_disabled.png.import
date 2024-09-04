@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xvdpwgfxvxjt"
-path="res://.godot/imported/Edgar_sprite.png-64f1f8865628a8791788e86a8c1cb5a3.ctex"
+uid="uid://b6msnt2l58d5m"
+path="res://.godot/imported/camera_button_disabled.png-035d5aaf0d67287d364f54f1d655e83e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Characters/Party/Edgar/Edgar_sprite.png"
-dest_files=["res://.godot/imported/Edgar_sprite.png-64f1f8865628a8791788e86a8c1cb5a3.ctex"]
+source_file="res://Assets/UI/camera_button_disabled.png"
+dest_files=["res://.godot/imported/camera_button_disabled.png-035d5aaf0d67287d364f54f1d655e83e.ctex"]
 
 [params]
 

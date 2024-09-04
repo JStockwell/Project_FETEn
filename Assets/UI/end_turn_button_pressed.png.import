@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xvdpwgfxvxjt"
-path="res://.godot/imported/Edgar_sprite.png-64f1f8865628a8791788e86a8c1cb5a3.ctex"
+uid="uid://bvl57g40tmc2p"
+path="res://.godot/imported/end_turn_button_pressed.png-13fe0599a70f07f3ebf0ced52d19dc57.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Characters/Party/Edgar/Edgar_sprite.png"
-dest_files=["res://.godot/imported/Edgar_sprite.png-64f1f8865628a8791788e86a8c1cb5a3.ctex"]
+source_file="res://Assets/UI/end_turn_button_pressed.png"
+dest_files=["res://.godot/imported/end_turn_button_pressed.png-13fe0599a70f07f3ebf0ced52d19dc57.ctex"]
 
 [params]
 

@@ -7,7 +7,7 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m8e4b"]
 transparency = 1
 blend_mode = 1
-albedo_color = Color(0, 0, 1, 0.117647)
+albedo_color = Color(0, 0, 1, 0.490196)
 
 [sub_resource type="BoxMesh" id="BoxMesh_bid71"]
 material = SubResource("StandardMaterial3D_m8e4b")
@@ -15,7 +15,7 @@ material = SubResource("StandardMaterial3D_m8e4b")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_76iah"]
 transparency = 1
 blend_mode = 1
-albedo_color = Color(1, 1, 1, 0.196078)
+albedo_color = Color(1, 1, 1, 0.490196)
 
 [sub_resource type="BoxMesh" id="BoxMesh_iw0yw"]
 material = SubResource("StandardMaterial3D_76iah")
@@ -23,7 +23,7 @@ material = SubResource("StandardMaterial3D_76iah")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4kmtl"]
 transparency = 1
 blend_mode = 1
-albedo_color = Color(1, 0, 0, 0.196078)
+albedo_color = Color(1, 0, 0, 0.490196)
 
 [sub_resource type="BoxMesh" id="BoxMesh_q7eie"]
 material = SubResource("StandardMaterial3D_4kmtl")
