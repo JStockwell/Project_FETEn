@@ -1,0 +1,85 @@
+[gd_scene load_steps=4 format=3 uid="uid://oglv8av31khk"]
+
+[ext_resource type="Script" path="res://Scripts/UI/characterSelect.gd" id="1_ocioc"]
+[ext_resource type="PackedScene" uid="uid://bqtun5kunny5u" path="res://Scenes/UI/characterCard.tscn" id="2_kwgtb"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vqhfv"]
+size = Vector2(300, 20)
+
+[node name="CharacterSelect" type="Node3D"]
+script = ExtResource("1_ocioc")
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="Background" type="MeshInstance3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -2)
+mesh = SubResource("PlaneMesh_vqhfv")
+skeleton = NodePath("../..")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.89503, -13.5618)
+light_energy = 0.3
+
+[node name="Camera3D" type="Camera3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6, 5)
+projection = 1
+current = true
+size = 5.5
+
+[node name="CharacterCard" parent="." instance=ExtResource("2_kwgtb")]
+visible = false
+offset_left = 1024.0
+offset_top = 192.0
+offset_right = 1024.0
+offset_bottom = 192.0
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DebugText" type="Label" parent="UI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 24.0
+
+[node name="StartButton" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 96.0
+offset_right = 384.0
+offset_bottom = 128.0
+text = "Start Combat"
+
+[node name="Map" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 64.0
+offset_right = 176.0
+offset_bottom = 95.0
+text = "Choose Map"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MapChoice" type="OptionButton" parent="UI"]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 96.0
+offset_right = 200.0
+offset_bottom = 128.0
+item_count = 6
+popup/item_0/text = "lv1_1"
+popup/item_0/id = 0
+popup/item_1/text = "lv1_2"
+popup/item_1/id = 1
+popup/item_2/text = "lv3_1"
+popup/item_2/id = 2
+popup/item_3/text = "lv3_2"
+popup/item_3/id = 3
+popup/item_4/text = "lv3_3"
+popup/item_4/id = 4
+popup/item_5/text = "lv4_1"
+popup/item_5/id = 5
+
+[connection signal="pressed" from="UI/StartButton" to="." method="_on_start_button_pressed"]

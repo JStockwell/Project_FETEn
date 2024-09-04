@@ -1,0 +1,154 @@
+[gd_scene load_steps=6 format=3 uid="uid://btrtro6xli2hs"]
+
+[ext_resource type="Script" path="res://Scripts/UI/initiative.gd" id="1_acem5"]
+[ext_resource type="Texture2D" uid="uid://i24iwyyn782d" path="res://Assets/UI/char_ini_bg.png" id="2_432cw"]
+[ext_resource type="Texture2D" uid="uid://d01lp37s2204e" path="res://Assets/UI/side_arrow.png" id="3_ugui7"]
+[ext_resource type="Texture2D" uid="uid://diddol5ghcff" path="res://Assets/UI/red_arrow.png" id="4_40fbc"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ig1xu"]
+
+[node name="Initiative" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_acem5")
+
+[node name="BG" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 832.0
+offset_bottom = 144.0
+color = Color(0.114897, 0.114897, 0.114897, 1)
+
+[node name="LeftButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 32.0
+offset_right = 48.0
+offset_bottom = 108.0
+texture_normal = ExtResource("3_ugui7")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="RightButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 784.0
+offset_top = 32.0
+offset_right = 824.0
+offset_bottom = 108.0
+texture_normal = ExtResource("3_ugui7")
+ignore_texture_size = true
+stretch_mode = 5
+flip_h = true
+
+[node name="InitativeIcons" type="Control" parent="."]
+anchors_preset = 0
+offset_left = -544.0
+offset_top = -936.0
+offset_right = -504.0
+offset_bottom = -896.0
+
+[node name="Ini1" type="Control" parent="InitativeIcons"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CharIniBg" type="Sprite2D" parent="InitativeIcons/Ini1"]
+position = Vector2(672, 1008)
+scale = Vector2(0.124514, 0.124514)
+texture = ExtResource("2_432cw")
+
+[node name="TextureRect" type="TextureRect" parent="InitativeIcons/Ini1"]
+layout_mode = 0
+offset_left = 626.0
+offset_top = 962.0
+offset_right = 718.0
+offset_bottom = 1054.0
+texture = SubResource("PlaceholderTexture2D_ig1xu")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Ini2" type="Control" parent="InitativeIcons"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CharIniBg" type="Sprite2D" parent="InitativeIcons/Ini2"]
+position = Vector2(864, 1008)
+scale = Vector2(0.124514, 0.124514)
+texture = ExtResource("2_432cw")
+
+[node name="TextureRect" type="TextureRect" parent="InitativeIcons/Ini2"]
+layout_mode = 0
+offset_left = 818.0
+offset_top = 962.0
+offset_right = 910.0
+offset_bottom = 1054.0
+texture = SubResource("PlaceholderTexture2D_ig1xu")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RedArrow" type="Sprite2D" parent="InitativeIcons/Ini2"]
+position = Vector2(768, 1008)
+scale = Vector2(0.188, 0.188)
+texture = ExtResource("4_40fbc")
+flip_h = true
+
+[node name="Ini3" type="Control" parent="InitativeIcons"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CharIniBg" type="Sprite2D" parent="InitativeIcons/Ini3"]
+position = Vector2(1056, 1008)
+scale = Vector2(0.124514, 0.124514)
+texture = ExtResource("2_432cw")
+
+[node name="TextureRect" type="TextureRect" parent="InitativeIcons/Ini3"]
+layout_mode = 0
+offset_left = 1010.0
+offset_top = 962.0
+offset_right = 1102.0
+offset_bottom = 1054.0
+texture = SubResource("PlaceholderTexture2D_ig1xu")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RedArrow" type="Sprite2D" parent="InitativeIcons/Ini3"]
+position = Vector2(960, 1008)
+scale = Vector2(0.188, 0.188)
+texture = ExtResource("4_40fbc")
+flip_h = true
+
+[node name="Ini4" type="Control" parent="InitativeIcons"]
+anchors_preset = 0
+offset_left = 544.0
+offset_top = 936.0
+offset_right = 584.0
+offset_bottom = 976.0
+
+[node name="CharIniBg" type="Sprite2D" parent="InitativeIcons/Ini4"]
+position = Vector2(704.064, 72.0002)
+scale = Vector2(0.124514, 0.124514)
+texture = ExtResource("2_432cw")
+
+[node name="TextureRect" type="TextureRect" parent="InitativeIcons/Ini4"]
+layout_mode = 0
+offset_left = 658.064
+offset_top = 26.0001
+offset_right = 750.064
+offset_bottom = 118.0
+texture = SubResource("PlaceholderTexture2D_ig1xu")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RedArrow" type="Sprite2D" parent="InitativeIcons/Ini4"]
+position = Vector2(608.064, 72)
+scale = Vector2(0.188, 0.188)
+texture = ExtResource("4_40fbc")
+flip_h = true
+
+[connection signal="pressed" from="LeftButton" to="." method="_on_left_button_pressed"]
+[connection signal="pressed" from="RightButton" to="." method="_on_right_button_pressed"]

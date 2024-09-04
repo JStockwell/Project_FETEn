@@ -64,7 +64,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(3,0)",
@@ -82,7 +82,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(5,0)",
@@ -91,7 +91,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(6,0)",
@@ -100,7 +100,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(7,0)",
@@ -109,7 +109,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(8,0)",
@@ -118,7 +118,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(9,0)",
@@ -127,7 +127,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(10,0)",
@@ -136,7 +136,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(11,0)",
@@ -154,7 +154,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(13,0)",
@@ -190,7 +190,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(2,1)",
@@ -199,7 +199,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(3,1)",
@@ -208,7 +208,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(4,1)",
@@ -217,7 +217,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(5,1)",
@@ -226,7 +226,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(6,1)",
@@ -235,7 +235,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(7,1)",
@@ -244,7 +244,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(8,1)",
@@ -253,7 +253,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(9,1)",
@@ -262,7 +262,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(10,1)",
@@ -271,7 +271,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(11,1)",
@@ -280,7 +280,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(12,1)",
@@ -289,7 +289,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(13,1)",
@@ -316,7 +316,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(1,2)",
@@ -325,7 +325,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(2,2)",
@@ -334,7 +334,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(3,2)",
@@ -343,7 +343,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(4,2)",
@@ -352,7 +352,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(5,2)",
@@ -361,7 +361,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(6,2)",
@@ -379,7 +379,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(8,2)",
@@ -388,7 +388,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(9,2)",
@@ -397,7 +397,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(10,2)",
@@ -406,7 +406,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(11,2)",
@@ -415,7 +415,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(12,2)",
@@ -424,7 +424,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(13,2)",
@@ -433,7 +433,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(14,2)",
@@ -442,7 +442,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(0,3)",
@@ -451,7 +451,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(1,3)",
@@ -460,7 +460,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(2,3)",
@@ -469,7 +469,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(3,3)",
@@ -478,7 +478,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(4,3)",
@@ -496,7 +496,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(6,3)",
@@ -514,7 +514,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(8,3)",
@@ -541,7 +541,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(11,3)",
@@ -550,7 +550,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(12,3)",
@@ -559,7 +559,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(13,3)",
@@ -568,7 +568,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(14,3)",
@@ -586,7 +586,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(1,4)",
@@ -595,7 +595,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(2,4)",
@@ -604,7 +604,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(3,4)",
@@ -613,7 +613,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(4,4)",
@@ -631,7 +631,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(6,4)",
@@ -640,7 +640,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(7,4)",
@@ -649,7 +649,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(8,4)",
@@ -676,7 +676,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(11,4)",
@@ -685,7 +685,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(12,4)",
@@ -703,7 +703,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(14,4)",
@@ -721,7 +721,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(1,5)",
@@ -730,7 +730,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(2,5)",
@@ -739,7 +739,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(3,5)",
@@ -748,7 +748,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(4,5)",
@@ -757,7 +757,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(5,5)",
@@ -766,7 +766,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(6,5)",
@@ -775,7 +775,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/Dirt.glb"
 		},
 		{
 			"coords": "(7,5)",
@@ -784,7 +784,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/Dirt.glb"
 		},
 		{
 			"coords": "(8,5)",
@@ -793,7 +793,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/Dirt.glb"
 		},
 		{
 			"coords": "(9,5)",
@@ -802,7 +802,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/Dirt.glb"
 		},
 		{
 			"coords": "(10,5)",
@@ -811,7 +811,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(11,5)",
@@ -820,7 +820,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(12,5)",
@@ -829,7 +829,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(13,5)",
@@ -838,7 +838,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(14,5)",
@@ -847,7 +847,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(0,6)",
@@ -856,7 +856,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(1,6)",
@@ -865,7 +865,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(2,6)",
@@ -874,7 +874,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(3,6)",
@@ -883,7 +883,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(4,6)",
@@ -892,7 +892,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(5,6)",
@@ -901,7 +901,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(6,6)",
@@ -910,7 +910,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/Dirt.glb"
 		},
 		{
 			"coords": "(7,6)",
@@ -928,7 +928,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/Dirt.glb"
 		},
 		{
 			"coords": "(9,6)",
@@ -937,7 +937,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/Dirt.glb"
 		},
 		{
 			"coords": "(10,6)",
@@ -946,7 +946,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/Dirt.glb"
 		},
 		{
 			"coords": "(11,6)",
@@ -955,7 +955,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/Dirt.glb"
 		},
 		{
 			"coords": "(12,6)",
@@ -964,7 +964,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(13,6)",
@@ -973,7 +973,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(14,6)",
@@ -982,7 +982,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(0,7)",
@@ -1000,7 +1000,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(2,7)",
@@ -1009,7 +1009,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(3,7)",
@@ -1027,7 +1027,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(5,7)",
@@ -1045,7 +1045,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/Dirt.glb"
 		},
 		{
 			"coords": "(7,7)",
@@ -1054,7 +1054,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/Dirt.glb"
 		},
 		{
 			"coords": "(8,7)",
@@ -1063,7 +1063,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/Dirt.glb"
 		},
 		{
 			"coords": "(9,7)",
@@ -1072,7 +1072,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/Dirt.glb"
 		},
 		{
 			"coords": "(10,7)",
@@ -1081,7 +1081,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/Dirt.glb"
 		},
 		{
 			"coords": "(11,7)",
@@ -1090,7 +1090,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/Dirt.glb"
 		},
 		{
 			"coords": "(12,7)",
@@ -1099,7 +1099,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/Dirt.glb"
 		},
 		{
 			"coords": "(13,7)",
@@ -1108,7 +1108,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(14,7)",
@@ -1117,7 +1117,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(0,8)",
@@ -1135,7 +1135,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(2,8)",
@@ -1144,7 +1144,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(3,8)",
@@ -1162,7 +1162,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(5,8)",
@@ -1180,7 +1180,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(7,8)",
@@ -1189,7 +1189,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(8,8)",
@@ -1216,7 +1216,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(11,8)",
@@ -1225,7 +1225,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/Dirt.glb"
 		},
 		{
 			"coords": "(12,8)",
@@ -1234,7 +1234,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/Dirt.glb"
 		},
 		{
 			"coords": "(13,8)",
@@ -1243,7 +1243,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/Dirt.glb"
 		},
 		{
 			"coords": "(14,8)",
@@ -1252,7 +1252,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/Dirt.glb"
 		},
 		{
 			"coords": "(0,9)",
@@ -1261,7 +1261,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(1,9)",
@@ -1270,7 +1270,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(2,9)",
@@ -1279,7 +1279,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(3,9)",
@@ -1288,7 +1288,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(4,9)",
@@ -1297,7 +1297,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(5,9)",
@@ -1306,7 +1306,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(6,9)",
@@ -1315,7 +1315,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(7,9)",
@@ -1324,7 +1324,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(8,9)",
@@ -1333,7 +1333,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(9,9)",
@@ -1342,7 +1342,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(10,9)",
@@ -1351,7 +1351,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(11,9)",
@@ -1360,7 +1360,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(12,9)",
@@ -1369,7 +1369,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/Dirt.glb"
 		},
 		{
 			"coords": "(13,9)",
@@ -1378,7 +1378,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/Dirt.glb"
 		},
 		{
 			"coords": "(14,9)",
@@ -1387,7 +1387,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/Dirt.glb"
 		},
 		{
 			"coords": "(0,10)",
@@ -1396,7 +1396,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(1,10)",
@@ -1405,7 +1405,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(2,10)",
@@ -1414,7 +1414,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(3,10)",
@@ -1423,7 +1423,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(4,10)",
@@ -1432,7 +1432,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(5,10)",
@@ -1441,7 +1441,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(6,10)",
@@ -1450,7 +1450,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(7,10)",
@@ -1459,7 +1459,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(8,10)",
@@ -1468,7 +1468,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(9,10)",
@@ -1486,7 +1486,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(11,10)",
@@ -1495,7 +1495,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(12,10)",
@@ -1504,7 +1504,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(13,10)",
@@ -1513,7 +1513,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/Dirt.glb"
 		},
 		{
 			"coords": "(14,10)",
@@ -1522,7 +1522,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/Dirt.glb"
 		},
 		{
 			"coords": "(0,11)",
@@ -1531,7 +1531,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(1,11)",
@@ -1540,7 +1540,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(2,11)",
@@ -1549,7 +1549,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(3,11)",
@@ -1558,7 +1558,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(4,11)",
@@ -1567,7 +1567,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(5,11)",
@@ -1576,7 +1576,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(6,11)",
@@ -1585,7 +1585,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(7,11)",
@@ -1594,7 +1594,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(8,11)",
@@ -1603,7 +1603,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(9,11)",
@@ -1612,7 +1612,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(10,11)",
@@ -1630,7 +1630,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(12,11)",
@@ -1639,7 +1639,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(13,11)",
@@ -1648,7 +1648,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(14,11)",
@@ -1657,7 +1657,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(0,12)",
@@ -1666,7 +1666,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(1,12)",
@@ -1675,7 +1675,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(2,12)",
@@ -1684,7 +1684,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(3,12)",
@@ -1693,7 +1693,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(4,12)",
@@ -1702,7 +1702,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(5,12)",
@@ -1711,7 +1711,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(6,12)",
@@ -1738,7 +1738,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(9,12)",
@@ -1747,7 +1747,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(10,12)",
@@ -1756,7 +1756,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(11,12)",
@@ -1783,7 +1783,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(14,12)",
@@ -1792,7 +1792,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(0,13)",
@@ -1810,7 +1810,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(2,13)",
@@ -1819,7 +1819,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(3,13)",
@@ -1828,7 +1828,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(4,13)",
@@ -1837,7 +1837,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(5,13)",
@@ -1846,7 +1846,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(6,13)",
@@ -1873,7 +1873,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(9,13)",
@@ -1882,7 +1882,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(10,13)",
@@ -1891,7 +1891,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(11,13)",
@@ -1900,7 +1900,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(12,13)",
@@ -1918,7 +1918,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(14,13)",
@@ -1927,7 +1927,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(0,14)",
@@ -1954,7 +1954,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(3,14)",
@@ -1972,7 +1972,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(5,14)",
@@ -1990,7 +1990,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(7,14)",
@@ -1999,7 +1999,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(8,14)",
@@ -2008,7 +2008,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(9,14)",
@@ -2017,7 +2017,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(10,14)",
@@ -2026,7 +2026,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(11,14)",
@@ -2035,7 +2035,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(12,14)",
@@ -2044,7 +2044,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(13,14)",
@@ -2053,7 +2053,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(14,14)",
@@ -2062,7 +2062,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 	]
 }

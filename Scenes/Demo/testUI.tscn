@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://b62pp04xadh3q"]
+
+[ext_resource type="Texture2D" uid="uid://bbh53o5x5olr0" path="res://Assets/UI/hp_empty.png" id="1_4bpkd"]
+[ext_resource type="Script" path="res://Scripts/Demo/testUI.gd" id="1_g7hln"]
+[ext_resource type="Texture2D" uid="uid://tok1r52onrms" path="res://Assets/UI/hp_full.png" id="2_n64xr"]
+
+[node name="TestUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g7hln")
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 968.0
+offset_right = 2128.0
+offset_bottom = 1248.0
+scale = Vector2(0.2, 0.2)
+texture_under = ExtResource("1_4bpkd")
+texture_progress = ExtResource("2_n64xr")
+
+[node name="DebugSlider" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 832.0
+offset_right = 512.0
+offset_bottom = 960.0
+value = 100.0
+tick_count = 10

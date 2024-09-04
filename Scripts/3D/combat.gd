@@ -75,11 +75,16 @@ func attack(t_attacker, t_defender, rolls: Array, mapMod: int, spa: int = 0, imd
 			
 		await deal_damage(dmg, crit, t_defender)
 		
+		print("dealt damage by ", t_attacker.get_id(),  " was ", (t_attacker.get_attack()-t_defender.get_defense())*crit) # 
+		print("the stats were:", " atk: ", t_attacker.get_attack(), " def: ", t_defender.get_defense(), " crit: ", crit, "\nimd ", imd, "\nspa ", spa) # 
+		
 	else:
 		await update_damage_text("MISS")
 		
 func deal_damage(dmg: int, crit: float, t_defender):
 	var dmgText: String
+	if dmg * crit >= 15:
+		pass
 	if dmg >= 0:
 		t_defender.modify_health(-int(dmg * crit))
 		dmgText = str(-int(dmg * crit))
