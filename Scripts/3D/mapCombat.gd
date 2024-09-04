@@ -22,7 +22,7 @@ var physAttackButton = $UI/Actions/PhysAttackButton
 @onready
 var endTurnButton = $UI/Actions/EndTurnButton
 @onready
-var changeCameraButton = $UI/Actions/ChangeCamera
+var changeCameraButton = $ChangeCamera
 @onready
 var baseSkillMenu = $UI/Actions/Skills/SkillMenu
 @onready
@@ -57,6 +57,7 @@ func _ready():
 	initial_map_load()
 	calculate_combat_initiative()
 	ui.hide()
+	changeCameraButton.hide()
 	uiStart.show()
 	
 	if GameStatus.testMode:
@@ -184,6 +185,7 @@ func reset_to_tavern():
 	else:
 		highlight_control_zones(characterGroup)
 	
+	skillCard.hide()
 	skillIssue.hide()
 	skillIssue2.hide()
 	
@@ -410,6 +412,7 @@ func tile_handler(mapTile) -> void:
 func _on_start_button_pressed():
 	battleStart = true
 	ui.show()
+	changeCameraButton.show()
 	uiStart.hide()
 	await start_turn()
 
