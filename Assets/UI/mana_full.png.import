@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xvdpwgfxvxjt"
-path="res://.godot/imported/edgar_sprite.png-6428ab1a8d335dea1861feb693816b97.ctex"
+uid="uid://bknoolonomvoe"
+path="res://.godot/imported/mana_full.png-bdec0174f84a83fe0b754c5f9105ab34.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Characters/Party/Edgar/edgar_sprite.png"
-dest_files=["res://.godot/imported/edgar_sprite.png-6428ab1a8d335dea1861feb693816b97.ctex"]
+source_file="res://Assets/UI/mana_full.png"
+dest_files=["res://.godot/imported/mana_full.png-bdec0174f84a83fe0b754c5f9105ab34.ctex"]
 
 [params]
 
