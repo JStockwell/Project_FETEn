@@ -46,25 +46,29 @@ static func anchoring_strike(Combat, rolls, attacker, defender, accMod: int, cri
 		await Combat.update_damage_text("MISS")
 
 
-static func run_out_of_combat(sefName:String, caster, target, spa: int = 0):
+static func run_out_of_combat(sefName:String, caster, target, spa: int = 0) -> Array:
+	var result: Array
 	match sefName:
 		"mend_flesh":
-			healing_spell(caster, target, spa)
+			result = healing_spell(caster, target, spa)
 		"bestow_life":
-			healing_spell(caster, target, spa)
+			result = healing_spell(caster, target, spa)
 		"creators_touch":
-			healing_spell(caster, target, spa)
+			result = healing_spell(caster, target, spa)
 		"action_surge":
-			action_surge()
+			result = action_surge()
+			
+	return result
 
 
 static func action_surge():
 	CombatMapStatus.set_has_attacked(false)
+	return [true, "Action Surge"]
 
 static func healing_spell(caster, target, spa:int):
 	var amountHealed = caster.get_attack() + spa
 	if target.get_max_health() - target.get_current_health() < amountHealed:
-		amountHealed = target.get_max_health - target.get_current_health()
+		amountHealed = target.get_max_health() - target.get_current_health()
 	
 	if target.get_healing_threshold() - amountHealed < 0:
 		amountHealed = target.get_healing_threshold()
@@ -74,4 +78,4 @@ static func healing_spell(caster, target, spa:int):
 		target.modify_healing_threshold(currentThreshold)
 	
 	target.modify_health(amountHealed)
-
+	return [false, "+" + str(amountHealed)]

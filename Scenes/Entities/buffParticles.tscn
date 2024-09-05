@@ -1,9 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://dreo5nuayogf5"]
+[gd_scene load_steps=15 format=3 uid="uid://dreo5nuayogf5"]
 
-[ext_resource type="Script" path="res://Scripts/Demo/particleDemo.gd" id="1_wjoix"]
-[ext_resource type="Texture2D" uid="uid://5dhec6rvvtuf" path="res://Assets/Characters/Enemies/Ranged_Gobbo/ranged_gobbo_head.png" id="2_eoo3r"]
-[ext_resource type="PackedScene" uid="uid://cl2xin84vqoax" path="res://Assets/Characters/Party/Dick/dick idle 1.glb" id="3_figoy"]
-[ext_resource type="FontFile" uid="uid://71blta5wlshk" path="res://Assets/Fonts/Minecraft/Minecraft.ttf" id="4_dc23x"]
+[ext_resource type="Script" path="res://Scripts/Entities/buffParticles.gd" id="1_wej1b"]
+[ext_resource type="Texture2D" uid="uid://5dhec6rvvtuf" path="res://Assets/Characters/Enemies/Ranged_Gobbo/ranged_gobbo_head.png" id="2_tie4p"]
+[ext_resource type="FontFile" uid="uid://71blta5wlshk" path="res://Assets/Fonts/Minecraft/Minecraft.ttf" id="3_532em"]
 
 [sub_resource type="Curve" id="Curve_8a7cb"]
 min_value = -10.0
@@ -80,7 +79,7 @@ alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 blend_mode = 1
 cull_mode = 2
-albedo_texture = ExtResource("2_eoo3r")
+albedo_texture = ExtResource("2_tie4p")
 emission_enabled = true
 emission = Color(0.174777, 0.717264, 0.764681, 1)
 emission_energy_multiplier = 5.0
@@ -93,7 +92,7 @@ material = SubResource("StandardMaterial3D_c0twc")
 size = Vector2(0.1, 0.1)
 
 [node name="ParticleDemo" type="Node3D"]
-script = ExtResource("1_wjoix")
+script = ExtResource("1_wej1b")
 
 [node name="HealParticles" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.195042, 0)
@@ -117,30 +116,11 @@ transform_align = 1
 process_material = SubResource("ParticleProcessMaterial_ll6y5")
 draw_pass_1 = SubResource("QuadMesh_o7iae")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 2.51734, 3.41882)
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.825754, 0, -0.564031, 0.315549, 0.828862, 0.461971, 0.467503, -0.559453, 0.684436, 0, 3.22852, 4.84379)
-
-[node name="Button" type="Button" parent="."]
-offset_left = 126.0
-offset_top = 932.0
-offset_right = 256.0
-offset_bottom = 963.0
-text = "Spawn Particles
-"
-
-[node name="dick idle 1" parent="." instance=ExtResource("3_figoy")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-
 [node name="Label3D" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 1, 0)
 text = "+33"
-font = ExtResource("4_dc23x")
+font = ExtResource("3_532em")
 font_size = 64
 
 [connection signal="finished" from="HealParticles" to="." method="_on_particles_finished"]
 [connection signal="finished" from="BuffParticles" to="." method="_on_particles_finished"]
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
