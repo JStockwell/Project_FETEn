@@ -17,23 +17,24 @@ var topTavernCam = $World/TopDown/Camera3D
 var mapCenter = $SpawnPoints/MapCenter
 @onready
 var combatCenter = $SpawnPoints/CombatCenter
+@onready
+var mapBase = $MapBase
 
 var cm
 var com
 
 func _ready():
 	var mapDict = Utils.read_json(CombatMapStatus.get_map_path())
-	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
+	var mapSize = Utils.string_to_vector2(mapDict["size"])
+	CombatMapStatus.set_map_size(mapSize)
 	CombatMapStatus.set_is_start_combat(true)
 	CombatMapStatus.calculate_map_spawn(mapCenter.position)
 	var mapSpawn = CombatMapStatus.get_map_spawn()
 	
-	if CombatMapStatus.get_map_x() % 2 != 0:
-		mapSpawn.x += 0.5
-	else:
-		mapSpawn.x += 0.5
+	mapBase.mesh.size = Vector3(mapSize.x + 1, 0.36, mapSize.y + 1)
 		
 	if CombatMapStatus.get_map_y() % 2 == 0:
+		mapBase.position.z += 0.5
 		mapSpawn.z += 0.5
 		
 	CombatMapStatus.set_map_spawn(mapSpawn)
@@ -51,13 +52,29 @@ func _ready():
 	
 func setup_cameras():
 	var camHeights = []
+	var mapDict = Utils.read_json(CombatMapStatus.get_map_path())
 	
-	for i in range(0, CombatMapStatus.MAX_MAP_DIMENSION - CombatMapStatus.MIN_MAP_DIMENSION + 1):
-		camHeights.append(CombatMapStatus.minCameraHeight + i * (CombatMapStatus.maxCameraHeight - CombatMapStatus.minCameraHeight) / (CombatMapStatus.MAX_MAP_DIMENSION - CombatMapStatus.MIN_MAP_DIMENSION))
+	# TODO make camera based on json
+	if not "camera" in mapDict.keys():
+		for i in range(0, CombatMapStatus.MAX_MAP_DIMENSION - CombatMapStatus.MIN_MAP_DIMENSION + 1):
+			camHeights.append(CombatMapStatus.minCameraHeight + i * (CombatMapStatus.maxCameraHeight - CombatMapStatus.minCameraHeight) / (CombatMapStatus.MAX_MAP_DIMENSION - CombatMapStatus.MIN_MAP_DIMENSION))
 		
-	tavernCam.position.z = camHeights[CombatMapStatus.mapY - CombatMapStatus.MIN_MAP_DIMENSION]
+		tavernCam.position.z = camHeights[CombatMapStatus.mapY - CombatMapStatus.MIN_MAP_DIMENSION]
+		
+	else:
+		tavernCam.position.z = mapDict["camera"]
 	
-	topTavernCam.size = CombatMapStatus.get_map_x()
+	topTavernPivot.position = Vector3(0, 15, 0)
+	if CombatMapStatus.get_map_x() >= CombatMapStatus.get_map_y():
+		if CombatMapStatus.get_map_y() % 2 != 0:
+			topTavernPivot.position.z = -0.5
+			
+		topTavernCam.size = CombatMapStatus.get_map_y() + 1
+		topTavernCam.rotation_degrees = Vector3(0, 0, 0)
+		
+	else:
+		topTavernCam.size = CombatMapStatus.get_map_x() + 1
+		topTavernCam.rotation_degrees = Vector3(0, 0, 90)
 
 func _on_start_turn() -> void:
 	tavernCam.make_current()

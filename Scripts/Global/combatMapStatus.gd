@@ -148,7 +148,7 @@ func get_map_path() -> String:
 	return mapPath
 	
 func calculate_map_spawn(spawn: Vector3) -> void:
-	mapSpawn = Vector3(-mapX / 2, 0.5, -mapY / 2) + spawn
+	mapSpawn = Vector3(-mapX / 2 + 0.5, 0.5, -mapY / 2) + spawn
 
 func set_map_spawn(vector: Vector3) -> void:
 	mapSpawn = vector

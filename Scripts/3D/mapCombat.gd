@@ -5,6 +5,7 @@ var setCam = 1
 var battleStart: bool = false
 var characterDijkstra
 var focusedSkill: int = -1
+var mapHeightModifier = 0.25
 
 @onready
 var mapTileGroup = $MapTileGroup
@@ -66,7 +67,6 @@ func _ready():
 
 func initial_map_load() -> void:
 	var row = []
-	var mapHeightModifier = 0.25
 	for tile in mapDict["tiles"]:
 		var mapTile = Factory.MapTile.create(tile)
 		mapTileGroup.add_child(mapTile, true)
@@ -93,7 +93,7 @@ func initial_map_load() -> void:
 		# TODO Possibly choose spawn, not sure if we're going to do this
 		var spawnPos = choose_random_spawn(positions)
 			
-		partyMember.position += Vector3(spawnPos.x, 0.5, spawnPos.y)
+		partyMember.position += Vector3(spawnPos.x, 0.5 + (mapHeightModifier * get_tile_from_coords(spawnPos).get_height()), spawnPos.y)
 		partyMember.set_map_coords(spawnPos)
 		partyMember.set_map_id(i)
 		characterGroup.add_child(partyMember)
@@ -110,7 +110,7 @@ func initial_map_load() -> void:
 		enemy.scale *= Vector3(0.5, 0.5, 0.5)
 		enemy.position = CombatMapStatus.get_map_spawn()
 		var spawnPos = Utils.string_to_vector2(character[1])
-		enemy.position += Vector3(spawnPos.x, 0.5, spawnPos.y)
+		enemy.position += Vector3(spawnPos.x, 0.5 + (mapHeightModifier * get_tile_from_coords(spawnPos).get_height()), spawnPos.y)
 		enemy.set_map_coords(spawnPos)
 		enemy.set_map_id(i + j)
 		enemyGroup.add_child(enemy)
@@ -444,7 +444,7 @@ func move_character() -> void:
 		var old_char_coords = CombatMapStatus.get_selected_character().get_map_coords()
 		
 		selChar.position = CombatMapStatus.get_map_spawn()
-		selChar.position += Vector3(tile_coords.x, 0.5, tile_coords.y)
+		selChar.position += Vector3(tile_coords.x, 0.5 + (mapHeightModifier * CombatMapStatus.get_selected_map_tile().get_height()), tile_coords.y)
 		selChar.set_map_coords(Vector2(tile_coords.x, tile_coords.y))
 		
 		# Deselect mapTile

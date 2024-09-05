@@ -39,7 +39,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
 			"coords": "(1,0)",
@@ -48,7 +48,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
 			"coords": "(2,0)",
@@ -138,7 +138,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
 			"coords": "(1,1)",
@@ -723,7 +723,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
 			"coords": "(0,7)",
@@ -732,7 +732,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
 			"coords": "(1,7)",
@@ -822,7 +822,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
 			"coords": "(0,8)",
@@ -831,7 +831,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
 			"coords": "(1,8)",
@@ -840,7 +840,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
 			"coords": "(2,8)",
@@ -921,7 +921,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
 			"coords": "(0,9)",
@@ -930,7 +930,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
 			"coords": "(1,9)",
@@ -939,7 +939,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
 			"coords": "(2,9)",
@@ -948,7 +948,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
 			"coords": "(3,9)",
@@ -1011,7 +1011,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
 			"coords": "(10,9)",
@@ -1020,7 +1020,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
 			"coords": "(0,10)",
@@ -1029,7 +1029,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
 			"coords": "(1,10)",
@@ -1038,7 +1038,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
 			"coords": "(2,10)",
@@ -1047,7 +1047,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
 			"coords": "(3,10)",
@@ -1110,7 +1110,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
 			"coords": "(10,10)",
@@ -1119,7 +1119,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
 			"coords": "(0,11)",
@@ -1128,7 +1128,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
 			"coords": "(1,11)",
@@ -1137,7 +1137,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
 			"coords": "(2,11)",
@@ -1146,7 +1146,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
 			"coords": "(3,11)",
@@ -1209,7 +1209,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
 			"coords": "(10,11)",
@@ -1218,7 +1218,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
 			"coords": "(0,12)",
@@ -1227,7 +1227,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
 			"coords": "(1,12)",
@@ -1236,7 +1236,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
 			"coords": "(2,12)",
@@ -1245,7 +1245,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
 			"coords": "(3,12)",
@@ -1299,7 +1299,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
 			"coords": "(9,12)",
@@ -1308,7 +1308,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
 			"coords": "(10,12)",
@@ -1317,7 +1317,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
 			"coords": "(0,13)",
@@ -1326,7 +1326,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
 			"coords": "(1,13)",
@@ -1335,7 +1335,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
 			"coords": "(2,13)",
@@ -1344,7 +1344,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
 			"coords": "(3,13)",
@@ -1398,7 +1398,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
 			"coords": "(9,13)",
@@ -1407,7 +1407,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
 			"coords": "(10,13)",
@@ -1416,8 +1416,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
-		},
-
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
+		}
 	]
 }
