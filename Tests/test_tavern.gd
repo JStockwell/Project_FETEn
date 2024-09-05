@@ -90,6 +90,8 @@ func test__on_combat_end():
 	var attacker = test_tavern.cm.characterGroup.get_children()[0]
 	var defender = test_tavern.cm.enemyGroup.get_children()[0]
 	CombatMapStatus.set_active_characters(attacker.get_stats(), defender.get_stats())
+	#CombatMapStatus.set_initiative([0,1])
+	test_tavern.cm.battleStart = true
 	assert_that(test_tavern.com).is_null()
 	test_tavern._on_combat_start()
 	

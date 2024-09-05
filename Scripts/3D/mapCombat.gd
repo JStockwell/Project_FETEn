@@ -704,7 +704,6 @@ func update_camera_button() -> void:
 		changeCameraButton.disabled = false
 
 func highlight_movement(character) -> void: #dijkstra probablemente va aquí
-
 	for tile in characterDijkstra[0]:
 		var sel_tile = get_tile_from_coords(tile)
 		if sel_tile != null and !sel_tile.is_populated() and sel_tile.is_traversable():

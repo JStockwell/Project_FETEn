@@ -36,7 +36,6 @@ func before_test():
 	test_mapCombat = MapCombat.instantiate()
 	add_child(test_mapCombat)
 	
-	#test_mapCombat.initial_map_load()
 	
 func after_test():
 	test_mapCombat.free()
@@ -132,6 +131,7 @@ func test_setup_skill_menu():
 	
 
 func test_reset_to_tavern_selected_character_enemy():
+	test_mapCombat._on_start_button_pressed()
 	CombatMapStatus.set_selected_character(test_mapCombat.enemyGroup.get_children()[0])
 	CombatMapStatus.set_initiative([1,0])
 	
@@ -141,6 +141,7 @@ func test_reset_to_tavern_selected_character_enemy():
 
 
 func test_reset_to_tavern_selected_character_ally_has_moved():
+	test_mapCombat._on_start_button_pressed()
 	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
 	CombatMapStatus.set_initiative([0,1])
 	test_mapCombat.characterGroup.get_children()[0].get_stats()["hasMoved"] = true
@@ -153,6 +154,7 @@ func test_reset_to_tavern_selected_character_ally_has_moved():
 
 
 func test_reset_to_tavern_selected_character_ally_has_not_moved():
+	test_mapCombat._on_start_button_pressed()
 	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
 	CombatMapStatus.set_initiative([0,1])
 	test_mapCombat.characterGroup.get_children()[0].get_stats()["hasMoved"] = false
@@ -172,12 +174,14 @@ func test_reset_to_tavern_selected_character_ally_has_not_moved():
 	var tile_right = test_mapCombat.get_tile_from_coords(player_coords + Vector2.RIGHT).highlighted.visible
 	var tile_down = test_mapCombat.get_tile_from_coords(player_coords + Vector2.DOWN).highlighted.visible
 	var tile_21 = test_mapCombat.get_tile_from_coords(Vector2(2, 1)).highlighted.visible
-	var tile_12 = test_mapCombat.get_tile_from_coords(Vector2(1, 2)).highlighted.visible
+	
+	var tile_12 = test_mapCombat.get_tile_from_coords(Vector2(1, 2))
 	
 	assert_bool(tile_right).is_true()
 	assert_bool(tile_down).is_true()
 	assert_bool(tile_21).is_false()
-	assert_bool(tile_12).is_false()
+	assert_bool(tile_12.isControlZone).is_true()
+	assert_bool(tile_12.highlighted.visible).is_true()
 
 	
 	test_mapCombat.characterGroup.get_children()[0].get_stats()["movement"] = 5
@@ -781,6 +785,7 @@ func test_update_phys_attack_button_disabled():
 	
 	
 func test_update_skill_menu_button_after_attack():
+	test_mapCombat._on_start_button_pressed()
 	CombatMapStatus.set_initiative([0, 1])
 	CombatMapStatus.set_has_attacked(true)
 	
