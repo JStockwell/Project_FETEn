@@ -14,7 +14,8 @@
 		"range": 1,
 		"skills": [
 			"shadow_ball",
-			"nero_nero"
+			"nero_nero",
+			"mend_flesh"
 		],
 		"is_ranged": false,
 		"mesh_path": "res://Assets/Characters/Party/Edgar/Edgar.glb",
