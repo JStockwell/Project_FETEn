@@ -53,10 +53,7 @@
 		"is_rooted": false,
 		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb",
 		"sprite_path": "",
-		"current_health": 24,
-		"current_mana": 5,
 		"is_enemy": false,
-		"map_id": 0
 	},
 	"ally_skillTests": {
 		"id": "ally_skillTests",
@@ -76,9 +73,6 @@
 		"is_rooted": false,
 		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb",
 		"sprite_path": "",
-		"current_health": 25,
-		"current_mana": 5,
 		"is_enemy": false,
-		"map_id": 0
 	}
 }

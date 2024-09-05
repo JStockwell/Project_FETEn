@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://dreo5nuayogf5"]
+
+[ext_resource type="Script" path="res://Scripts/Demo/particleDemo.gd" id="1_wjoix"]
+[ext_resource type="Texture2D" uid="uid://dlfag0nvqaqby" path="res://Assets/Characters/Party/Dick/dick_head.png" id="2_7727j"]
+
+[sub_resource type="Curve" id="Curve_pgo16"]
+_data = [Vector2(0, 1), 0.0, -0.466701, 0, 1, Vector2(0.882641, 0.588071), -2.0352, -2.0352, 0, 0, Vector2(1, 0.00652373), -4.95527, 0.0, 1, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_5umdv"]
+curve = SubResource("Curve_pgo16")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ncjni"]
+lifetime_randomness = 0.2
+emission_shape_scale = Vector3(0.5, 0.1, 0.5)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.7
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, 2, 0)
+scale_curve = SubResource("CurveTexture_5umdv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_87ari"]
+albedo_texture = ExtResource("2_7727j")
+
+[sub_resource type="QuadMesh" id="QuadMesh_1vkk7"]
+lightmap_size_hint = Vector2i(7, 7)
+material = SubResource("StandardMaterial3D_87ari")
+size = Vector2(0.2, 0.2)
+
+[node name="ParticleDemo" type="Node3D"]
+script = ExtResource("1_wjoix")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 64
+lifetime = 1.5
+one_shot = true
+visibility_aabb = AABB(-1, -1, -1, 2, 2, 2)
+transform_align = 1
+process_material = SubResource("ParticleProcessMaterial_ncjni")
+draw_pass_1 = SubResource("QuadMesh_1vkk7")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.28407)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.825754, 0, -0.564031, 0.315549, 0.828862, 0.461971, 0.467503, -0.559453, 0.684436, 0, 3.22852, 4.84379)
+
+[node name="Button" type="Button" parent="."]
+offset_left = 126.0
+offset_top = 932.0
+offset_right = 256.0
+offset_bottom = 963.0
+text = "Spawn Particles
+"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

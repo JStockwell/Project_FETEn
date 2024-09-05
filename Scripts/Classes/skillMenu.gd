@@ -8,10 +8,12 @@ static func handle_skill(skillName: String, character, target) -> String:
 	if character.get_current_mana() < skill.get_cost():
 		error = "Not enough mana"
 		
-	elif skill.get_range() == 0:
-		return error
-		
-	elif target == null:
+	#elif skill.get_range() == 0:	# unsure on why its here, there are skills that can target self
+		#return error
+	
+	#TODO cap de 30 de curación recibida por personaje
+	
+	elif target == null and not skill.can_target_allies():
 		error = "Select a target"
 		
 	elif Utils.calc_distance(character.get_map_coords(), target.get_map_coords()) > skill.get_range():

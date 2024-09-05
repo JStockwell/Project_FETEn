@@ -35,9 +35,6 @@
 		"is_rooted": false,
 		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb",
 		"sprite_path": "",
-		"current_health": 40,
-		"current_mana": 5,
 		"is_enemy": true,
-		"map_id": 2
 	}
 }
