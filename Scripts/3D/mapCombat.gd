@@ -619,6 +619,10 @@ func allied_skill_handler():
 	# instanciar partículas verdes bajo el target
 	# poner un numerito de curación encima del target
 	pass
+	
+func buff_particles(target, particleColor: String, buffText: String) -> void:
+	
+	pass
 
 func _on_end_turn_button_pressed():
 	CombatMapStatus.advance_ini()
