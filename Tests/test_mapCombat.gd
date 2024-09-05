@@ -159,6 +159,7 @@ func test_reset_to_tavern_selected_character_ally_has_not_moved():
 	CombatMapStatus.set_initiative([0,1])
 	test_mapCombat.characterGroup.get_children()[0].get_stats()["hasMoved"] = false
 	test_mapCombat.characterGroup.get_children()[0].get_stats()["movement"] = 1
+	test_mapCombat.characterGroup.get_children()[0].get_stats()["map_coords"] = Vector2(1,0)
 	
 	test_mapCombat.reset_to_tavern()
 	
@@ -171,13 +172,17 @@ func test_reset_to_tavern_selected_character_ally_has_not_moved():
 		var tile_up = test_mapCombat.get_tile_from_coords(player_coords + Vector2.UP).highlighted.visible
 		assert_bool(tile_up).is_true()
 	
-	var tile_right = test_mapCombat.get_tile_from_coords(player_coords + Vector2.RIGHT).highlighted.visible
+	var tile_right_bool = test_mapCombat.get_tile_from_coords(player_coords + Vector2.RIGHT).highlighted.visible
 	var tile_down = test_mapCombat.get_tile_from_coords(player_coords + Vector2.DOWN).highlighted.visible
 	var tile_21 = test_mapCombat.get_tile_from_coords(Vector2(2, 1)).highlighted.visible
 	
 	var tile_12 = test_mapCombat.get_tile_from_coords(Vector2(1, 2))
 	
-	assert_bool(tile_right).is_true()
+	var tile_12_cz = tile_12.isControlZone
+	var tile_12_h = tile_12.highlighted.visible
+	var tile_right = test_mapCombat.get_tile_from_coords(player_coords + Vector2.RIGHT)
+	
+	assert_bool(test_mapCombat.get_tile_from_coords(player_coords + Vector2.RIGHT).highlighted.visible).is_true()
 	assert_bool(tile_down).is_true()
 	assert_bool(tile_21).is_false()
 	assert_bool(tile_12.isControlZone).is_true()
