@@ -280,6 +280,7 @@ func generate_dijkstra(currentChar) -> void:
 	else:
 		characterDijkstra = Utils._dijkstra(self, currentChar.get_map_coords(), currentChar.get_movement())
 	
+	
 func set_status_bars(character) -> void:
 	hpBar.set_max(character.get_max_health())
 	hpBar.set_value_no_signal(character.get_current_health())
@@ -437,6 +438,7 @@ func _on_start_button_pressed():
 func _on_move_button_pressed():
 	move_character()
 
+#TODO Test
 func move_character() -> void:
 	var selChar = CombatMapStatus.get_selected_character()
 	if validate_move(selChar, CombatMapStatus.get_selected_map_tile(), characterDijkstra[0]):

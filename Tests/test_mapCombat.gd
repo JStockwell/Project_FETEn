@@ -208,7 +208,35 @@ func test_start_turn_enemy():
 	assert_that(CombatMapStatus.hasMoved).is_false()
 	
 	
+func test_set_status_bars():
+	var char = test_mapCombat.characterGroup.get_children()[0]
+	
+	test_mapCombat.set_status_bars(char)
+	
+	assert_bool(test_mapCombat.hpBar.visible).is_true()
+	assert_that(test_mapCombat.hpBar.max_value).is_equal(char.get_stats()["max_health"])
+	assert_that(test_mapCombat.hpBar.value).is_equal(char.get_stats()["current_health"])
+	assert_bool(test_mapCombat.manaBar.visible).is_true()
+	assert_that(test_mapCombat.manaBar.max_value).is_equal(char.get_stats()["max_mana"])
+	assert_that(test_mapCombat.manaBar.value).is_equal(char.get_stats()["current_mana"])
+	
+	
+func test_set_status_bars_no_mana():
+	var char = test_mapCombat.characterGroup.get_children()[0]
+	char.get_stats()["max_mana"] = 0
+	
+	test_mapCombat.set_status_bars(char)
+	
+	assert_bool(test_mapCombat.hpBar.visible).is_true()
+	assert_that(test_mapCombat.hpBar.max_value).is_equal(char.get_stats()["max_health"])
+	assert_that(test_mapCombat.hpBar.value).is_equal(char.get_stats()["current_health"])
+	assert_bool(test_mapCombat.manaBar.visible).is_false()
+	
+	char.get_stats()["max_mana"] = 20
+	
+	
 func test_enemy_turn_end():
+	var char = test_mapCombat.characterGroup.get_children()[0]
 	CombatMapStatus.set_initiative([1,0])
 	CombatMapStatus.set_current_ini(0)
 	
