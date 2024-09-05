@@ -208,7 +208,35 @@ func test_start_turn_enemy():
 	assert_that(CombatMapStatus.hasMoved).is_false()
 	
 	
+func test_set_status_bars():
+	var char = test_mapCombat.characterGroup.get_children()[0]
+	
+	test_mapCombat.set_status_bars(char)
+	
+	assert_bool(test_mapCombat.hpBar.visible).is_true()
+	assert_that(test_mapCombat.hpBar.max_value).is_equal(char.get_stats()["max_health"])
+	assert_that(test_mapCombat.hpBar.value).is_equal(char.get_stats()["current_health"])
+	assert_bool(test_mapCombat.manaBar.visible).is_true()
+	assert_that(test_mapCombat.manaBar.max_value).is_equal(char.get_stats()["max_mana"])
+	assert_that(test_mapCombat.manaBar.value).is_equal(char.get_stats()["current_mana"])
+	
+	
+func test_set_status_bars_no_mana():
+	var char = test_mapCombat.characterGroup.get_children()[0]
+	char.get_stats()["max_mana"] = 0
+	
+	test_mapCombat.set_status_bars(char)
+	
+	assert_bool(test_mapCombat.hpBar.visible).is_true()
+	assert_that(test_mapCombat.hpBar.max_value).is_equal(char.get_stats()["max_health"])
+	assert_that(test_mapCombat.hpBar.value).is_equal(char.get_stats()["current_health"])
+	assert_bool(test_mapCombat.manaBar.visible).is_false()
+	
+	char.get_stats()["max_mana"] = 20
+	
+	
 func test_enemy_turn_end():
+	var char = test_mapCombat.characterGroup.get_children()[0]
 	CombatMapStatus.set_initiative([1,0])
 	CombatMapStatus.set_current_ini(0)
 	
@@ -318,6 +346,7 @@ func test_character_handler_enemy_turn():
 	
 
 func test_character_handler_isEnemy_handled():
+	test_mapCombat.battleStart = true
 	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
 	
 	test_mapCombat.character_handler(test_mapCombat.enemyGroup.get_children()[0])
@@ -332,6 +361,7 @@ func test_character_handler_other_ally_turn():
 	test_mapCombat.mapDict = mapDict
 	CombatMapStatus.set_is_start_combat(true)
 	test_mapCombat.initial_map_load()
+	test_mapCombat.battleStart = true
 	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
 	
 	test_mapCombat.character_handler(test_mapCombat.characterGroup.get_children()[1])
@@ -477,6 +507,8 @@ func test_set_tile_populated_true_to_false():
 
 # Set selected MapTile
 func test_tile_handler_tile_selected():
+	test_mapCombat.battleStart = true
+	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
 	var tile = test_mapCombat.get_tile_from_coords(Vector2(1 ,1))
 	CombatMapStatus.set_selected_map_tile(tile)
 	
@@ -486,6 +518,8 @@ func test_tile_handler_tile_selected():
 	
 	
 func test_tile_handler_tile_not_selected():
+	test_mapCombat.battleStart = true
+	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
 	var old_tile = test_mapCombat.get_tile_from_coords(Vector2(1 ,1))
 	var new_tile = test_mapCombat.get_tile_from_coords(Vector2(0 ,0))
 	CombatMapStatus.set_selected_map_tile(old_tile)
@@ -497,6 +531,8 @@ func test_tile_handler_tile_not_selected():
 	
 	
 func test_tile_handler_null_selected():
+	test_mapCombat.battleStart = true
+	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
 	var tile = test_mapCombat.get_tile_from_coords(Vector2(1 ,1))
 	
 	test_mapCombat.tile_handler(tile)

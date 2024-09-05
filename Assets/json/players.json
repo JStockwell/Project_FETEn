@@ -75,7 +75,7 @@
 		"skills": [],
 		"is_ranged": false,
 		"mesh_path": "",
-		"sprite_path": ""
+		"sprite_path": "res://Assets/Characters/Party/Adran/adran_sprite.png"
 	},
 	"salvador": {
 		"id": "salvador",

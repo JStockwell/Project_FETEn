@@ -92,6 +92,15 @@
 		"obstacleType": 0,
 		"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 	},
+	"darkgrass": {
+		"coords": "(0,0)",
+		"height": 0,
+		"idt": false,
+		"isPopulated": false,
+		"isTraversable": true,
+		"obstacleType": 0,
+		"meshPath": "res://Assets/MapTiles/Darkgrass.glb"
+	},
 	"stone_v2": {
 		"coords": "(0,0)",
 		"height": 0,
@@ -118,6 +127,15 @@
 		"isTraversable": true,
 		"obstacleType": 0,
 		"meshPath": "res://Assets/MapTiles/Water_v2V.glb"
+	},
+	"stagnantWater": {
+		"coords": "(0,0)",
+		"height": 0,
+		"idt": true,
+		"isPopulated": false,
+		"isTraversable": true,
+		"obstacleType": 0,
+		"meshPath": "res://Assets/MapTiles/StagnantWater.glb"
 	},
 	"bricksWall_bottom": {
 		"coords": "(0,0)",

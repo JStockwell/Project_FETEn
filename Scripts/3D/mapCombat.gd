@@ -268,6 +268,7 @@ func start_turn() -> void:
 		else:
 			highlight_control_zones(characterGroup)
 	
+	
 func set_status_bars(character) -> void:
 	hpBar.set_max(character.get_max_health())
 	hpBar.set_value_no_signal(character.get_current_health())
@@ -323,25 +324,23 @@ func regen_mana() -> void:
 		if char.get_max_mana() != 0:
 			char.modify_mana(char.get_reg_mana())
 
+# TODO Función cambiada
 func purge_the_dead():
-	var dead = null
+	var deadList = []
 	for char in characterGroup.get_children():
 		if char.get_current_health() == 0:
-			dead = char
+			deadList.append(char)
 			
 	for enemy in enemyGroup.get_children():
 		if enemy.get_current_health() == 0:
-			dead = enemy
+			deadList.append(enemy)
 			
-	if dead != null:
-		if dead.get_map_id() == CombatMapStatus.get_selected_character().get_map_id():
-			print("hello")
+	for dead in deadList:
 		CombatMapStatus.remove_character_ini(dead.get_map_id())
 		var tile = get_tile_from_coords(dead.get_map_coords())
 		tile.set_is_populated(false)
 		initiativeBar.character_death(dead)
-		dead.queue_free()
-		
+		dead.free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -425,6 +424,7 @@ func _on_start_button_pressed():
 func _on_move_button_pressed():
 	move_character()
 
+#TODO Test
 func move_character() -> void:
 	var selChar = CombatMapStatus.get_selected_character()
 	if validate_move(selChar, CombatMapStatus.get_selected_map_tile()):

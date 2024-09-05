@@ -16,7 +16,7 @@ run/main_scene="res://Scenes/UI/bootScreen.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
-config/icon="res://icon.svg"
+config/icon="res://Assets/Characters/Enemies/Gobsworth/gobsworth_head.png"
 
 [autoload]
 
@@ -40,7 +40,3 @@ settings/test/test_lookup_folder="Tests"
 settings/test/test_discovery=true
 ui/inspector/node_collapse=false
 ui/toolbar/run_overall=true
-
-[rendering]
-
-anti_aliasing/quality/screen_space_aa=1
