@@ -75,9 +75,6 @@ func attack(t_attacker, t_defender, rolls: Array, mapMod: int, spa: int = 0, imd
 			
 		await deal_damage(dmg, crit, t_defender)
 		
-		print("dealt damage by ", t_attacker.get_id(),  " was ", (t_attacker.get_attack()-t_defender.get_defense())*crit, " to defender ", t_defender.get_id()) # 
-		print("the stats were:", " atk: ", t_attacker.get_attack(), " def: ", t_defender.get_defense(), " crit: ", crit, "\nimd ", imd, "\nspa ", spa) # 
-		
 	else:
 		await update_damage_text("MISS")
 		

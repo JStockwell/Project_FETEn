@@ -1,15 +1,9 @@
 class_name EnemyBehavior
 
 
-static func dumb_melee_behavior(map) -> bool:
+static func dumb_melee_behavior(map, dijkstra) -> bool:
 
-	var enemy = CombatMapStatus.get_selected_character()
-	var dijkstra
-	if map.get_tile_from_coords(enemy.get_map_coords()).is_control_zone():
-		dijkstra = Utils._dijkstra(map, enemy.get_map_coords(), enemy.get_movement()-1)
-	else:
-		dijkstra = Utils._dijkstra(map, enemy.get_map_coords(), enemy.get_movement())
-	
+	var enemy = CombatMapStatus.get_selected_character()	
 	var possibleTargets = check_players_in_range(map, enemy, dijkstra[0])
 	
 	if (possibleTargets.is_empty()):
@@ -20,14 +14,8 @@ static func dumb_melee_behavior(map) -> bool:
 		var finalTarget = possibleTargets[finalTargetId-1]
 		return melee_enemy_attack(map, enemy, finalTarget, dijkstra)
 
-static func smart_melee_behavior(map) -> bool:
+static func smart_melee_behavior(map, dijkstra) -> bool:
 	var enemy = CombatMapStatus.get_selected_character()
-	var dijkstra
-	if map.get_tile_from_coords(enemy.get_map_coords()).is_control_zone():
-		dijkstra = Utils._dijkstra(map, enemy.get_map_coords(), enemy.get_movement()-1)
-	else:
-		dijkstra = Utils._dijkstra(map, enemy.get_map_coords(), enemy.get_movement())
-		
 	var possibleTargets = check_players_in_range(map, enemy, dijkstra[0])
 	
 	if (possibleTargets.is_empty()): # currently doesnt take into account root or a unit being in those tiles, but it will do for basic testing
@@ -96,14 +84,8 @@ static func melee_enemy_attack(map, enemy, finalTarget, dijkstra) -> bool:
 	return true
 
 
-static func dumb_ranged_behavior(map) -> bool:
+static func dumb_ranged_behavior(map, dijkstra) -> bool:
 	var enemy = CombatMapStatus.get_selected_character()
-	var dijkstra
-	if map.get_tile_from_coords(enemy.get_map_coords()).is_control_zone():
-		dijkstra = Utils._dijkstra(map, enemy.get_map_coords(), enemy.get_movement()-1)
-	else:
-		dijkstra = Utils._dijkstra(map, enemy.get_map_coords(), enemy.get_movement())
-		
 	var possibleTargets = check_players_in_range_ranged(map, enemy, dijkstra[0])
 	
 	if (possibleTargets.is_empty()):
@@ -116,14 +98,8 @@ static func dumb_ranged_behavior(map) -> bool:
 		var optimalTile = find_optimal_shot(map, finalTarget, viableShootingPositions) # TODO check to include position of not only the shot but also safety of the mf taking it
 		return ranged_enemy_attack(map, enemy, finalTarget, dijkstra, optimalTile)
 
-static func smart_ranged_behavior(map) -> bool:
+static func smart_ranged_behavior(map, dijkstra) -> bool:
 	var enemy = CombatMapStatus.get_selected_character()
-	var dijkstra
-	if map.get_tile_from_coords(enemy.get_map_coords()).is_control_zone():
-		dijkstra = Utils._dijkstra(map, enemy.get_map_coords(), enemy.get_movement()-1)
-	else:
-		dijkstra = Utils._dijkstra(map, enemy.get_map_coords(), enemy.get_movement())
-		
 	var possibleTargets = check_players_in_range_ranged(map, enemy, dijkstra[0])
 	
 	if (possibleTargets.is_empty()):

@@ -145,6 +145,7 @@ static func _dijkstra(map, mapCoords: Vector2, maxRange: int) -> Array: # we cou
 					
 		if pQ.is_empty():
 			break
+	pQ.queue_free() #avoid memory leak pass test
 	return [moveableCells, distances]
 
 

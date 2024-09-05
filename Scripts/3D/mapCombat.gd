@@ -248,13 +248,13 @@ func start_turn() -> void:
 		
 		match CombatMapStatus.get_selected_character().get_id():
 			"goblin", "juggernaut":
-				enemyAttack = EnemyBehavior.dumb_melee_behavior(self)
+				enemyAttack = EnemyBehavior.dumb_melee_behavior(self, characterDijkstra)
 			"orc":
-				enemyAttack = EnemyBehavior.smart_melee_behavior(self)
+				enemyAttack = EnemyBehavior.smart_melee_behavior(self, characterDijkstra)
 			"sling_gobbo":
-				enemyAttack = EnemyBehavior.dumb_ranged_behavior(self)
+				enemyAttack = EnemyBehavior.dumb_ranged_behavior(self, characterDijkstra)
 			"ranged_orc", "mage":
-				enemyAttack = EnemyBehavior.smart_ranged_behavior(self)
+				enemyAttack = EnemyBehavior.smart_ranged_behavior(self, characterDijkstra)
 		
 		if not GameStatus.testMode:
 			await wait(1)
@@ -348,7 +348,7 @@ func purge_the_dead():
 			
 	if dead != null:
 		if dead.get_map_id() == CombatMapStatus.get_selected_character().get_map_id():
-			print("hello")
+			print("hello") # what the hell this doing here?
 		CombatMapStatus.remove_character_ini(dead.get_map_id())
 		var tile = get_tile_from_coords(dead.get_map_coords())
 		tile.set_is_populated(false)
