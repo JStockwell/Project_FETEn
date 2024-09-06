@@ -367,6 +367,11 @@ func purge_the_dead():
 			deadList.append(enemy)
 			
 	for dead in deadList:
+		if dead.is_enemy():
+			var charId = CombatMapStatus.get_selected_character().get_id()
+			if charId == "samael" or charId == "salvador" or charId == "azrael":
+				CombatMapStatus.get_selected_character().modify_mana(1)
+				
 		CombatMapStatus.remove_character_ini(dead.get_map_id())
 		var tile = get_tile_from_coords(dead.get_map_coords())
 		tile.set_is_populated(false)
