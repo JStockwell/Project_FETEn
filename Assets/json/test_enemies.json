@@ -1,6 +1,6 @@
 {
 	"defender": {
-		"id": "defender",
+		"id": "orc",
 		"name": "Defender",
 		"max_health": 22,
 		"attack": 14,

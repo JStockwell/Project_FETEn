@@ -44,7 +44,7 @@
 		"imd": 1
 	},
 	"rock_throw":{
-		"skill_name": "Rock throw",
+		"skill_name": "Rock Throw",
 		"description": "Throw a rock with _very_ ill intention\n DEBUG: HEALS 15HP TO THE TARGET RANGE 1-5",
 		"range": 5,
 		"cost": 9,
@@ -79,7 +79,7 @@
 		"imd": 0
 	},
 	"flaming_daggers":{
-		"skill_name": "flaming daggers",
+		"skill_name": "Flaming Daggers",
 		"description": "Launch several dagger like projectiles made out of arcane fire dealing light magic damage to the target\n DEBUG: DEALS 10 DMG TO THE TARGET RANGE 1-4",
 		"range": 4,
 		"cost": 4,
@@ -87,10 +87,11 @@
 		"imd": 1
 	},
 	"action_surge":{
-		"skill_name": "Tap speed",
+		"skill_name": "Tap Speed",
 		"description": "Gather all of your inner focus to allow the character to act two times during his turn\n DEBUG: can perform another action",
 		"range": 0,
 		"cost": 3,
+		"spa": 0,
 		"sef": true,
 		"cta": true,
 		"inst": true
