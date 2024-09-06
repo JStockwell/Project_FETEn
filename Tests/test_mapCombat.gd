@@ -138,20 +138,20 @@ func test_update_ane_character_card_with_mana():
 	
 	test_mapCombat.update_ane_character_card(character)
 	
-	var txt = ""
+	var char_txt = ""
 	
-	txt += "Name: " + stats["name"]
-	txt += "\nHealth: " + str(stats["current_health"]) + "/" + str(stats["max_health"])
-	txt += "\nMana: " + str(stats["current_mana"]) + "/" + str(stats["max_mana"])
-	txt += "\nAttack: " + str(stats["attack"])
-	txt += "\nDefense: " + str(stats["defense"])
-	txt += "\nDexterity: " + str(stats["dexterity"])
-	txt += "\nAgility: " + str(stats["agility"])
-	txt += "\nMovement: " + str(stats["movement"])
-	txt += "\nRange: " + str(stats["range"])
+	char_txt += "Name: " + stats["name"]
+	char_txt += "\nHealth: " + str(stats["current_health"]) + "/" + str(stats["max_health"])
+	char_txt += "\nMana: " + str(stats["current_mana"]) + "/" + str(stats["max_mana"])
+	char_txt += "\nAttack: " + str(stats["attack"])
+	char_txt += "\nDefense: " + str(stats["defense"])
+	char_txt += "\nDexterity: " + str(stats["dexterity"])
+	char_txt += "\nAgility: " + str(stats["agility"])
+	char_txt += "\nMovement: " + str(stats["movement"])
+	char_txt += "\nRange: " + str(stats["range"])
 	
-	assert_that(test_mapCombat.aneStats.text).is_equal(txt)
-	
+	assert_that(test_mapCombat.aneStats.text).is_equal(char_txt)
+
 	
 func test_update_ane_character_card_with_no_mana():
 	var character = test_mapCombat.enemyGroup.get_children()[0]
@@ -1017,7 +1017,7 @@ func test_update_buttons(do_skip=true, skip_reason="Waiting for TODOs"):
 	pass
 	
 	
-func test_update_move_button_ok(do_skip=false, skip_reason="Waiting for TODOs"):
+func test_update_move_button_ok():
 	var character = test_mapCombat.characterGroup.get_children()[0]
 	var prev_coords = character.get_map_coords()
 	var mapTile = test_mapCombat.get_tile_from_coords(Vector2(0, 2))
@@ -1049,7 +1049,7 @@ func test_update_move_button_enemy_turn():
 	assert_bool(test_mapCombat.moveButton.disabled).is_true()
 	
 	
-func test_update_move_button_not_selected_maptile(do_skip=false, skip_reason="Waiting for TODOs"):
+func test_update_move_button_not_selected_maptile():
 	var character = test_mapCombat.characterGroup.get_children()[0]
 	var prev_coords = character.get_map_coords()
 	CombatMapStatus.set_initiative([0,1])
@@ -1164,17 +1164,24 @@ func test_handle_skill_info_skill_hover():
 	test_mapCombat._on_start_button_pressed()
 	CombatMapStatus.set_initiative([0, 1])
 	CombatMapStatus.set_current_ini(0)
+	test_mapCombat.start_turn()
 	var character = test_mapCombat.characterGroup.get_children()[0]
 	CombatMapStatus.set_selected_character(character)
 	var focusedSkill = 0
 	test_mapCombat.skillMenu.set_focused_item(focusedSkill)
 	var mySkill = GameStatus.skillSet[CombatMapStatus.get_selected_character().get_skills()[focusedSkill]].get_skill()
-	var txt = "Description: " + mySkill["description"]
-	txt += "\nCost: " + str(mySkill["cost"])
+	var skill_txt = ""
+	skill_txt += "Description: " + mySkill["description"]
+	skill_txt += "\nCost: " + str(mySkill["cost"])
 	
 	test_mapCombat.handle_skill_info()
 	
-	assert_that(test_mapCombat.skillCardText.text).is_equal(txt)
+	var checker1 = test_mapCombat.skillCardText.text
+	
+	var checker2 = skill_txt
+	#.erase(-1)
+	
+	assert_that(test_mapCombat.skillCardText.text).is_equal(skill_txt)
 
 
 func test_update_end_turn_button_is_player():
