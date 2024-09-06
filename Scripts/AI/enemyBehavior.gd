@@ -109,6 +109,9 @@ static func smart_ranged_behavior(map, dijkstra) -> bool:
 		var finalTarget = smart_enemy_target_choice(map, enemy, possibleTargets, enemy.get_id())
 		if typeof(finalTarget) == 28: #another russian roulette woooo
 			finalTarget = finalTarget[0]
+			
+		CombatMapStatus.set_selected_enemy(finalTarget) # to allow recognition for the mage skill
+		
 		var viableShootingPositions = viable_ranged_positions(map, enemy, finalTarget, dijkstra[0])
 		var optimalTile = find_optimal_shot(map, finalTarget, viableShootingPositions)
 		return ranged_enemy_attack(map, enemy, finalTarget, dijkstra, optimalTile)
@@ -224,7 +227,7 @@ static func smart_enemy_target_choice(map, enemy, possibleTargets, enemyType):
 				killRange = 0
 			
 			var missingHp = playerCharacter.get_max_health()-playerCharacter.get_current_health()
-			appetizingTarget = (12+killRange+playerCharacter.get_armor())*precision
+			appetizingTarget = (12+killRange+playerCharacter.get_defense())*precision
 			
 		else:
 			if damageValue >= playerCharacter.get_current_health():

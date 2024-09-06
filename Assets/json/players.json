@@ -78,7 +78,7 @@
 			"anchoring_strike"
 		],
 		"is_ranged": false,
-		"mesh_path": "",
+		"mesh_path": "res://Assets/Characters/Party/Adran/Adran idle 1.glb",
 		"sprite_path": ""
 	},
 	"salvador": {

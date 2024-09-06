@@ -95,5 +95,13 @@
 		"sef": true,
 		"cta": true,
 		"inst": true
+	},
+	"icicle": {
+		"skill_name": "Icicle",
+		"description": "Hurl a shard of pure ice to pierce the target\n DEBUG: DEALS 12 DMG RANGE 1-5",
+		"range": 5,
+		"cost": 1,
+		"spa": 7,
+		"imd": 1
 	}
 }

@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://busgwgkk23s3v"
-path.s3tc="res://.godot/imported/dick idle 1_reference square.png-9509031b6a5b6ca6fb20b5ff9dbaafeb.s3tc.ctex"
+uid="uid://cgf04xjbxjuus"
+path.s3tc="res://.godot/imported/Juggernaut Idle 1_Untitled_Artwork.png-6f808c036360ca99afcf8a174b917aa7.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "350e9fca8f445202aa66a3af3361ce29"
+"md5": "c7faab4773ed6db81542e73e1d39e479"
 }
 
 [deps]
 
-source_file="res://Assets/Characters/Party/Dick/dick idle 1_reference square.png"
-dest_files=["res://.godot/imported/dick idle 1_reference square.png-9509031b6a5b6ca6fb20b5ff9dbaafeb.s3tc.ctex"]
+source_file="res://Assets/Characters/Enemies/Juggernaut/Juggernaut Idle 1_Untitled_Artwork.png"
+dest_files=["res://.godot/imported/Juggernaut Idle 1_Untitled_Artwork.png-6f808c036360ca99afcf8a174b917aa7.s3tc.ctex"]
 
 [params]
 
