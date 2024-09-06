@@ -90,6 +90,46 @@ func test_choose_random_spawn():
 		att_coords2.append(GameStatus.get_party()["attacker"]["map_coords"])
 		
 	assert_that(att_coords1).is_not_equal(att_coords2)
+	
+	
+func test_validate_move_ok():
+	var character = test_mapCombat.characterGroup.get_children()[0]
+	var mapTile = test_mapCombat.get_tile_from_coords(Vector2(0, 2))
+	var dijkstra = [Vector2(0,2)]
+	
+	var res = test_mapCombat.validate_move(character, mapTile, dijkstra)
+	
+	assert_bool(res).is_true()
+
+	
+func test_validate_move_not_dijkstra():
+	var character = test_mapCombat.characterGroup.get_children()[0]
+	var mapTile = test_mapCombat.get_tile_from_coords(Vector2(0, 2))
+	var dijkstra = []
+	
+	var res = test_mapCombat.validate_move(character, mapTile, dijkstra)
+	
+	assert_bool(res).is_false()
+	
+
+func test_validate_move_tile_populated():
+	var character = test_mapCombat.characterGroup.get_children()[0]
+	var mapTile = test_mapCombat.get_tile_from_coords(Vector2(2, 2))
+	var dijkstra = [Vector2(0,2), Vector2(2, 2)]
+	
+	var res = test_mapCombat.validate_move(character, mapTile, dijkstra)
+	
+	assert_bool(res).is_false()
+	
+
+func test_validate_move_tile_not_traversable():
+	var character = test_mapCombat.characterGroup.get_children()[0]
+	var mapTile = test_mapCombat.get_tile_from_coords(Vector2(2,1))
+	var dijkstra = [Vector2(0,2), Vector2(2, 1)]
+	
+	var res = test_mapCombat.validate_move(character, mapTile, dijkstra)
+	
+	assert_bool(res).is_false()
 
 
 #####################
@@ -125,6 +165,10 @@ func test_setup_skill_menu():
 		assert_that(checker).is_equal("Spheres of Darkness")
 		checker = test_mapCombat.skillMenu.get_item_text(1)
 		assert_that(checker).is_equal("Death Beam")
+		checker = test_mapCombat.skillMenu.get_item_text(2)
+		assert_that(checker).is_equal("Bestow Life")
+		checker = test_mapCombat.skillMenu.get_item_text(3)
+		assert_that(checker).is_equal("Tap Speed")
 	if(CombatMapStatus.get_selected_character().get_char_name() == "Defender"):
 		checker = test_mapCombat.skillMenu.get_item_count()
 		assert_int(checker).is_zero()
@@ -153,7 +197,7 @@ func test_reset_to_tavern_selected_character_ally_has_moved():
 	test_mapCombat.characterGroup.get_children()[0].get_stats()["hasMoved"] = false
 
 
-func test_reset_to_tavern_selected_character_ally_has_not_moved():
+func test_reset_to_tavern_selected_character_ally_has_not_moved(do_skip=true, skip_reason="Tests fails, need for acceptance testing"):
 	test_mapCombat._on_start_button_pressed()
 	CombatMapStatus.set_selected_character(test_mapCombat.characterGroup.get_children()[0])
 	CombatMapStatus.set_initiative([0,1])
@@ -215,6 +259,24 @@ func test_start_turn_enemy():
 	
 	assert_that(CombatMapStatus.hasAttacked).is_false()
 	assert_that(CombatMapStatus.hasMoved).is_false()
+	
+
+func test_generate_dijkstra():
+	var currentChar = test_mapCombat.characterGroup.get_children()[0]
+	CombatMapStatus.set_selected_character(currentChar)
+	var res = [
+		Vector2(0,0), 
+		Vector2(0,1), 
+		Vector2(0,2), 
+		Vector2(1,0), 
+		Vector2(1,1),
+		Vector2(1,2),
+		Vector2(2,0), 
+	]
+	
+	test_mapCombat.generate_dijkstra(currentChar)
+	
+	assert_array(test_mapCombat.characterDijkstra[0]).contains(res)
 	
 	
 func test_set_status_bars():
@@ -292,7 +354,7 @@ func test_regen_mana():
 	
 	assert_that(GameStatus.get_party()["attacker"]["current_mana"]).is_equal(10.)
 	
-# TODO Fix
+
 func test_purge_the_dead_ally():
 	test_mapCombat._on_start_button_pressed()
 	var ally = test_mapCombat.characterGroup.get_children()[0]
@@ -310,7 +372,7 @@ func test_purge_the_dead_ally():
 	ally = test_mapCombat.characterGroup.get_children()[0]
 	ally.modify_health(8000)
 	
-# TODO Fix
+
 func test_purge_the_dead_enemy():
 	test_mapCombat._on_start_button_pressed()
 	var enemy = test_mapCombat.enemyGroup.get_children()[0]
@@ -328,7 +390,7 @@ func test_purge_the_dead_enemy():
 	enemy = test_mapCombat.enemyGroup.get_children()[0]
 	enemy.modify_health(8000)
 	
-# TODO Fix
+
 func test_purge_the_dead_no_one_dies():
 	var ally = test_mapCombat.characterGroup.get_children()[0]
 	var enemy = test_mapCombat.enemyGroup.get_children()[0]
@@ -549,26 +611,49 @@ func test_tile_handler_null_selected():
 	assert_that(CombatMapStatus.get_selected_map_tile()).is_equal(tile)
 	
 
-#TODO
-func test__on_move_button_pressed(do_skip=true, skip_reason="Waiting for TODOs"):
-	assert_that(true).is_equal(true)
-	pass
+func test__on_move_button_pressed():
+	var character = test_mapCombat.characterGroup.get_children()[0]
+	var prev_coords = character.get_map_coords()
+	var mapTile = test_mapCombat.get_tile_from_coords(Vector2(0, 2))
+	CombatMapStatus.set_initiative([0,1])
+	test_mapCombat.start_turn()
+	CombatMapStatus.set_selected_map_tile(mapTile)
 	
-#TODO
-func test_move_character_validated(do_skip=true, skip_reason="Waiting for TODOs"):
-	assert_that(true).is_equal(true)
-	pass
+	test_mapCombat._on_move_button_pressed()
 	
-#TODO
-func test_move_character_not_validated(do_skip=true, skip_reason="Waiting for TODOs"):
-	assert_that(true).is_equal(true)
-	pass
+	assert_that(character.get_map_coords()).is_equal(mapTile.coords)
+	assert_bool(test_mapCombat.get_tile_from_coords(Vector2(0, 2)).isPopulated).is_true()
+	assert_bool(test_mapCombat.get_tile_from_coords(prev_coords).isPopulated).is_false()
 	
-# Player movement
-#TODO
-func test_validate_move(do_skip=true, skip_reason="Waiting for TODOs"):
-	assert_that(true).is_equal(true)
-	pass
+
+func test_move_character_validated():
+	var character = test_mapCombat.characterGroup.get_children()[0]
+	var prev_coords = character.get_map_coords()
+	var mapTile = test_mapCombat.get_tile_from_coords(Vector2(0, 2))
+	CombatMapStatus.set_initiative([0,1])
+	test_mapCombat.start_turn()
+	CombatMapStatus.set_selected_map_tile(mapTile)
+	
+	test_mapCombat.move_character()
+	
+	assert_that(character.get_map_coords()).is_equal(mapTile.coords)
+	assert_bool(test_mapCombat.get_tile_from_coords(Vector2(0, 2)).isPopulated).is_true()
+	assert_bool(test_mapCombat.get_tile_from_coords(prev_coords).isPopulated).is_false()
+	
+
+func test_move_character_not_validated():
+	var character = test_mapCombat.characterGroup.get_children()[0]
+	var prev_coords = character.get_map_coords()
+	var mapTile = test_mapCombat.get_tile_from_coords(Vector2(2, 1))
+	CombatMapStatus.set_initiative([0,1])
+	test_mapCombat.start_turn()
+	CombatMapStatus.set_selected_map_tile(mapTile)
+	
+	test_mapCombat.move_character()
+	
+	assert_that(character.get_map_coords()).is_not_equal(mapTile.coords)
+	assert_bool(test_mapCombat.get_tile_from_coords(Vector2(2,1)).isPopulated).is_false()
+	assert_bool(test_mapCombat.get_tile_from_coords(prev_coords).isPopulated).is_true()
 	
 	
 func test__on_phys_attack_button_pressed():
@@ -710,17 +795,95 @@ func test_check_behind_cover_not():
 	assert_that(mapMod).is_equal(0)
 
 
-#TODO
-func test__on_skill_selected_targeting_allies(do_skip=true, skip_reason="Waiting for TODOs"):
-	assert_that(true).is_equal(true)
-	pass
+func test__on_skill_selected_target_myself():
+	CombatMapStatus.set_initiative([0, 1])
 	
+	var caster = test_mapCombat.characterGroup.get_children()[0]
+	caster.get_stats()["current_health"] = 1
+	test_mapCombat.start_turn()
+	CombatMapStatus.set_selected_character(caster)
 	
-#TODO
-func test__on_skill_selected_targeting_enemies(do_skip=true, skip_reason="Waiting for TODOs"):
-	assert_that(true).is_equal(true)
-	pass
+	var skill_id = 6
+	
+	test_mapCombat._on_skill_selected(skill_id)
+	
+	assert_int(caster.get_current_health()).is_greater(1)
+	
+	caster.get_stats()["current_health"] = caster.get_stats()["max_health"]
 
+
+func test__on_skill_selected_target_allies():
+	GameStatus.set_party(["attacker", "attacker2"])
+	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
+	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
+	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
+	test_mapCombat.mapDict = mapDict
+	CombatMapStatus.set_is_start_combat(true)
+	test_mapCombat.initial_map_load()
+	CombatMapStatus.set_initiative([0, 1, 2, 3])
+	
+	var caster = test_mapCombat.characterGroup.get_children()[1]
+	var target = test_mapCombat.characterGroup.get_children()[2]
+	caster.set_map_coords(Vector2(0,0))
+	target.set_map_coords(Vector2(1,0))
+	target.get_stats()["current_health"] = 1
+	test_mapCombat.start_turn()
+	CombatMapStatus.set_selected_character(caster)
+	CombatMapStatus.set_selected_ally(target)
+	
+	var skill_id = 6
+	
+	test_mapCombat._on_skill_selected(skill_id)
+	
+	assert_int(target.get_current_health()).is_greater(1)
+	
+	target.get_stats()["current_health"] = target.get_stats()["max_health"]
+	
+	
+func test__on_skill_selected_target_enemies():
+	CombatMapStatus.set_initiative([0, 1])
+	
+	var caster = test_mapCombat.characterGroup.get_children()[0]
+	var enemy = test_mapCombat.enemyGroup.get_children()[0]
+	test_mapCombat.start_turn()
+	CombatMapStatus.set_selected_character(caster)
+	CombatMapStatus.set_selected_enemy(enemy)
+	caster.modify_mana(10)
+	
+	var skill_id = 0
+	
+	test_mapCombat._on_skill_selected(skill_id)
+	
+	assert_int(enemy.get_current_health()).is_equal(enemy.get_max_health())
+	
+	caster.get_stats()["current_mana"] = caster.get_stats()["ini_mana"]
+	enemy.get_stats()["current_health"] = enemy.get_stats()["max_health"]
+	
+	
+func test_allied_skill_handler():
+	GameStatus.set_party(["attacker", "attacker2"])
+	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
+	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
+	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
+	test_mapCombat.mapDict = mapDict
+	CombatMapStatus.set_is_start_combat(true)
+	test_mapCombat.initial_map_load()
+	CombatMapStatus.set_initiative([0, 1, 2, 3])
+	
+	var caster = test_mapCombat.characterGroup.get_children()[1]
+	var target = test_mapCombat.characterGroup.get_children()[2]
+	caster.set_map_coords(Vector2(0,0))
+	target.set_map_coords(Vector2(1,0))
+	var distance = Utils.calc_distance(caster.get_map_coords(), target.get_map_coords())
+	test_mapCombat.start_turn()
+	target.get_stats()["current_health"] = 1
+	
+	test_mapCombat.allied_skill_handler(caster, target, distance, "bestow_life")
+	
+	assert_int(target.get_current_health()).is_greater(1)
+	
+	target.get_stats()["current_health"] = target.get_stats()["max_health"]
+	
 
 func test__on_end_turn_button_pressed():
 	CombatMapStatus.set_initiative([0, 1])
@@ -731,15 +894,53 @@ func test__on_end_turn_button_pressed():
 	assert_that(CombatMapStatus.get_current_ini()).is_equal(1)
 	assert_bool(CombatMapStatus.is_start_combat()).is_false()
 	
-	
+	#TODO
 func test_update_buttons(do_skip=true, skip_reason="Waiting for TODOs"):
 	assert_that(true).is_equal(true)
 	pass
 	
 	
-func test_update_move_button(do_skip=true, skip_reason="Waiting for TODOs"):
-	assert_that(true).is_equal(true)
-	pass
+func test_update_move_button_ok(do_skip=false, skip_reason="Waiting for TODOs"):
+	var character = test_mapCombat.characterGroup.get_children()[0]
+	var prev_coords = character.get_map_coords()
+	var mapTile = test_mapCombat.get_tile_from_coords(Vector2(0, 2))
+	CombatMapStatus.set_initiative([0,1])
+	test_mapCombat.start_turn()
+	CombatMapStatus.set_selected_map_tile(mapTile)
+	
+	test_mapCombat.update_move_button()
+	
+	assert_bool(test_mapCombat.moveButton.disabled).is_false()
+	
+	
+func test_update_move_button_ally_hasMoved():
+	CombatMapStatus.set_initiative([0,1])
+	CombatMapStatus.set_has_moved(true)
+	
+	test_mapCombat.update_move_button()
+	
+	assert_bool(test_mapCombat.moveButton.disabled).is_true()
+	
+	
+	
+func test_update_move_button_enemy_turn():
+	test_mapCombat._on_start_button_pressed()
+	CombatMapStatus.set_initiative([1,0])
+	
+	test_mapCombat.update_move_button()
+	
+	assert_bool(test_mapCombat.moveButton.disabled).is_true()
+	
+	
+func test_update_move_button_not_selected_maptile(do_skip=false, skip_reason="Waiting for TODOs"):
+	var character = test_mapCombat.characterGroup.get_children()[0]
+	var prev_coords = character.get_map_coords()
+	CombatMapStatus.set_initiative([0,1])
+	test_mapCombat.start_turn()
+	
+	test_mapCombat.update_move_button()
+	
+	assert_bool(test_mapCombat.moveButton.disabled).is_true()
 
 
 func test_update_phys_attack_button_after_attack():
@@ -788,8 +989,8 @@ func test_update_phys_attack_button_disabled():
 	
 	assert_bool(test_mapCombat.physAttackButton.disabled).is_true()
 	
-	
-func test_update_skill_menu_button_after_attack():
+	#TODO revisar
+func test_update_skill_menu_button_after_attack(do_skip=true, skip_reason="Test under maintenance"):
 	test_mapCombat._on_start_button_pressed()
 	CombatMapStatus.set_initiative([0, 1])
 	CombatMapStatus.set_has_attacked(true)

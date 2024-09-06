@@ -459,7 +459,7 @@ func move_character() -> void:
 		remove_selected()
 		CombatMapStatus.set_has_moved(true)
 
-#TODO test
+
 func validate_move(character, mapTile, dijkstra) -> bool:
 	var result = true
 	
@@ -588,11 +588,11 @@ func _on_skill_selected(id: int):
 	var skillResult
 	if GameStatus.skillSet[skillName].can_target_allies():
 		if CombatMapStatus.get_selected_ally() != null:
-			skillResult = SkillMenu.handle_skill(skillName, CombatMapStatus.get_selected_character(), CombatMapStatus.get_selected_ally())
+			skillResult = SkillMenu.validate_skill(skillName, CombatMapStatus.get_selected_character(), CombatMapStatus.get_selected_ally())
 		else:
-			skillResult = SkillMenu.handle_skill(skillName, CombatMapStatus.get_selected_character(), CombatMapStatus.get_selected_character())
+			skillResult = SkillMenu.validate_skill(skillName, CombatMapStatus.get_selected_character(), CombatMapStatus.get_selected_character())
 	else:
-		skillResult = SkillMenu.handle_skill(skillName, CombatMapStatus.get_selected_character(), CombatMapStatus.get_selected_enemy())
+		skillResult = SkillMenu.validate_skill(skillName, CombatMapStatus.get_selected_character(), CombatMapStatus.get_selected_enemy())
 	
 	#TODO revisar -> skillMenu
 	if skillResult != "":
@@ -624,20 +624,16 @@ func _on_skill_selected(id: int):
 	# cap stats para asegurar no ir por encima de límites por si acaso # done
 	# instanciar partículas verdes bajo el target
 	# poner un numerito de curación encima del target
-	pass
+
 	
 func buff_particles(target, particleColor: String, buffText: String) -> void:
-	
 	pass
 
 #TODO testear
 func allied_skill_handler(caster, target, distance, skillName):
 	var particleArgs: Array
 	isCastingSkill = true
-	if GameStatus.skillSet[skillName].get_spa() != 0:
-		particleArgs = SEF.run_out_of_combat(skillName, caster, target, GameStatus.skillSet[skillName].get_spa())
-	else:
-		particleArgs = SEF.run_out_of_combat(skillName, caster, target, 0)
+	particleArgs = SEF.run_out_of_combat(skillName, caster, target, GameStatus.skillSet[skillName].get_spa())
 	target.cap_current_stats(target.get_stats())
 	
 	var buffPart = BuffParticles.instantiate()
