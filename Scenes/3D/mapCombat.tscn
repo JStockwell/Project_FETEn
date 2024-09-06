@@ -21,8 +21,12 @@
 [ext_resource type="FontFile" uid="uid://71blta5wlshk" path="res://Assets/Fonts/Minecraft/Minecraft.ttf" id="12_fy7hm"]
 [ext_resource type="PackedScene" uid="uid://btrtro6xli2hs" path="res://Scenes/UI/initiative.tscn" id="13_l6mli"]
 [ext_resource type="Texture2D" uid="uid://bktpssxw1kswd" path="res://Assets/UI/sel_char_bg.png" id="13_nloq1"]
+[ext_resource type="Texture2D" uid="uid://3x4u4ibe1d7u" path="res://Assets/UI/ane_background.png" id="19_f0fty"]
 [ext_resource type="Texture2D" uid="uid://b6msnt2l58d5m" path="res://Assets/UI/camera_button_disabled.png" id="19_m8hej"]
 [ext_resource type="Texture2D" uid="uid://bk63cj60tdeno" path="res://Assets/UI/camera_button_pressed.png" id="22_7t38n"]
+[ext_resource type="Texture2D" uid="uid://4p5212j5xpax" path="res://Assets/UI/main_menu_button.png" id="24_6tr0q"]
+[ext_resource type="Texture2D" uid="uid://ui57mmxo6gs4" path="res://Assets/UI/main_menu_button_pressed.png" id="25_f0ndi"]
+[ext_resource type="Texture2D" uid="uid://ceka643agih8a" path="res://Assets/UI/main_menu_button_disabled.png" id="26_kuh5p"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3uv5b"]
 font_color = Color(1, 0, 0, 1)
@@ -38,8 +42,6 @@ font_size = 32
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ifhw8"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_upw3f"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2wdrh"]
 font = ExtResource("12_fy7hm")
@@ -57,12 +59,6 @@ font_size = 32
 [sub_resource type="LabelSettings" id="LabelSettings_mbttw"]
 font = ExtResource("12_fy7hm")
 font_size = 32
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_euhhm"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_uiwtv"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_r1n5i"]
 
 [node name="MapCombat" type="Node3D"]
 script = ExtResource("1_rhc0y")
@@ -274,18 +270,19 @@ offset_bottom = 40.0
 
 [node name="TextureRect" type="TextureRect" parent="UI/AnECharacter"]
 layout_mode = 0
-offset_left = 96.0
-offset_top = 240.0
-offset_right = 288.0
+offset_left = 80.0
+offset_top = 216.0
+offset_right = 304.0
 offset_bottom = 544.0
-texture = SubResource("PlaceholderTexture2D_upw3f")
+texture = ExtResource("19_f0fty")
+expand_mode = 3
 
 [node name="AnEStats" type="Label" parent="UI/AnECharacter"]
 layout_mode = 0
 offset_left = 104.0
-offset_top = 368.0
+offset_top = 352.0
 offset_right = 280.0
-offset_bottom = 536.0
+offset_bottom = 520.0
 text = "Name:
 Health:
 Mana:
@@ -300,9 +297,9 @@ label_settings = SubResource("LabelSettings_2wdrh")
 [node name="AnESprite" type="TextureRect" parent="UI/AnECharacter"]
 layout_mode = 0
 offset_left = 136.0
-offset_top = 248.0
+offset_top = 232.0
 offset_right = 248.0
-offset_bottom = 360.0
+offset_bottom = 344.0
 texture = SubResource("PlaceholderTexture2D_ypjpi")
 expand_mode = 1
 stretch_mode = 5
@@ -360,7 +357,38 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
+[node name="GlobalButtons" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ChangeCamera" type="TextureButton" parent="GlobalButtons"]
+layout_mode = 0
+offset_left = 1744.0
+offset_top = 48.0
+offset_right = 1856.0
+offset_bottom = 152.0
+texture_normal = ExtResource("5_d7t6j")
+texture_pressed = ExtResource("22_7t38n")
+texture_disabled = ExtResource("19_m8hej")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="MainMenuButton" type="TextureButton" parent="GlobalButtons"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 48.0
+offset_right = 176.0
+offset_bottom = 149.0
+texture_normal = ExtResource("24_6tr0q")
+texture_pressed = ExtResource("25_f0ndi")
+texture_disabled = ExtResource("26_kuh5p")
+ignore_texture_size = true
+stretch_mode = 5
+
 [node name="ReturnMainMenu" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -421,42 +449,12 @@ label_settings = SubResource("LabelSettings_mbttw")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="GlobalButtons" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="ChangeCamera" type="TextureButton" parent="GlobalButtons"]
-layout_mode = 0
-offset_left = 1742.0
-offset_top = 44.0
-offset_right = 1854.0
-offset_bottom = 148.0
-texture_normal = ExtResource("5_d7t6j")
-texture_pressed = ExtResource("22_7t38n")
-texture_disabled = ExtResource("19_m8hej")
-ignore_texture_size = true
-stretch_mode = 5
-
-[node name="MainMenuButton" type="TextureButton" parent="GlobalButtons"]
-layout_mode = 0
-offset_left = 66.0
-offset_top = 46.0
-offset_right = 178.0
-offset_bottom = 147.0
-texture_normal = SubResource("PlaceholderTexture2D_euhhm")
-texture_pressed = SubResource("PlaceholderTexture2D_uiwtv")
-texture_disabled = SubResource("PlaceholderTexture2D_r1n5i")
-ignore_texture_size = true
-stretch_mode = 0
-
 [connection signal="pressed" from="UI/Actions/MoveButton" to="." method="_on_move_button_pressed"]
 [connection signal="pressed" from="UI/Actions/PhysAttackButton" to="." method="_on_phys_attack_button_pressed"]
 [connection signal="pressed" from="UI/Actions/EndTurnButton" to="." method="_on_end_turn_button_pressed"]
 [connection signal="pressed" from="DebugUI/DebugAllySkillButton" to="." method="_on_debug_ally_skill_button_pressed"]
 [connection signal="pressed" from="StartUI/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="ReturnMainMenu/RMMYes" to="." method="_on_rmm_yes_pressed"]
-[connection signal="pressed" from="ReturnMainMenu/RMMNo" to="." method="_on_main_menu_button_pressed"]
 [connection signal="pressed" from="GlobalButtons/ChangeCamera" to="." method="_on_change_camera_pressed"]
 [connection signal="pressed" from="GlobalButtons/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="ReturnMainMenu/RMMYes" to="." method="_on_rmm_yes_pressed"]
+[connection signal="pressed" from="ReturnMainMenu/RMMNo" to="." method="_on_main_menu_button_pressed"]
