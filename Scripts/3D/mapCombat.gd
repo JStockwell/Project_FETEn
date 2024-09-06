@@ -7,6 +7,7 @@ var characterDijkstra
 var focusedSkill: int = -1
 var mapHeightModifier = 0.25
 var isCastingSkill: bool = false
+var isPaused: bool = false
 
 var BuffParticles = load("res://Scenes/Entities/buffParticles.tscn")
 
@@ -27,7 +28,13 @@ var physAttackButton = $UI/Actions/PhysAttackButton
 @onready
 var endTurnButton = $UI/Actions/EndTurnButton
 @onready
-var changeCameraButton = $ChangeCamera
+var globalButtons = $GlobalButtons
+@onready
+var changeCameraButton = $GlobalButtons/ChangeCamera
+@onready
+var mainMenuButton = $GlobalButtons/MainMenuButton
+@onready
+var returnMainMenu = $ReturnMainMenu
 @onready
 var baseSkillMenu = $UI/Actions/Skills/SkillMenu
 @onready
@@ -52,6 +59,12 @@ var initiativeBar = $UI/Initiative
 var skillCard = $UI/Actions/Skills/SkillCard
 @onready
 var skillCardText = $UI/Actions/Skills/SkillCard/SkillCardText
+@onready
+var aneCharacter = $UI/AnECharacter
+@onready
+var aneStats = $UI/AnECharacter/AnEStats
+@onready
+var aneSprite = $UI/AnECharacter/AnESprite
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -62,7 +75,9 @@ func _ready():
 	initial_map_load()
 	calculate_combat_initiative()
 	ui.hide()
-	changeCameraButton.hide()
+	aneCharacter.hide()
+	globalButtons.hide()
+	returnMainMenu.hide()
 	uiStart.show()
 	
 	if GameStatus.testMode:
@@ -320,6 +335,7 @@ func reset_map_status() -> void:
 	
 	var currentChar
 	var flag = true
+	isPaused = false
 	
 	for character in characterGroup.get_children():
 		if character.get_map_id() == CombatMapStatus.get_current_turn_char():
@@ -365,22 +381,25 @@ func _process(delta):
 	if battleStart:
 		update_buttons()
 	
+# TODO Retest, it now can only have one selected ally or enemy active, not both
 # Set selected enemies
 func character_handler(character) -> void:
-	if battleStart:
+	if battleStart and not isPaused:
 		if not CombatMapStatus.get_selected_character().is_enemy():
 			if character.is_enemy():
 				selected_checker(character, CombatMapStatus.get_selected_enemy(), character.is_enemy())
 			elif character.get_instance_id() != CombatMapStatus.get_selected_character().get_instance_id():
 				selected_checker(character, CombatMapStatus.get_selected_ally(), character.is_enemy())
 
+# TODO Retest, it now can only have one selected ally or enemy active, not both
 func selected_checker(character, combatMapStatusCharacter, isEnemy: bool) -> void:
 	if combatMapStatusCharacter == null or combatMapStatusCharacter.get_name() != character.get_name():
 		set_selected_character(character, isEnemy)
 			
 	else:
 		set_selected_character(null, isEnemy)
-		
+
+# TODO Retest, it now can only have one selected ally or enemy active, not both
 func set_selected_character(character, isEnemy: bool) -> void:
 	remove_ally_highlights()
 	remove_enemy_highlights()
@@ -397,6 +416,33 @@ func set_selected_character(character, isEnemy: bool) -> void:
 		CombatMapStatus.set_selected_ally(character)
 		if character != null:
 			character.selectedAlly.show()
+			
+	if character == null:
+		aneCharacter.hide()
+		
+	else:
+		aneCharacter.show()
+		update_ane_character_card(character)
+
+# TODO Test new
+# AnE = Allies and Enemies
+func update_ane_character_card(character) -> void:
+	var txt = ""
+	var stats = character.get_stats()
+	
+	txt += "Name: " + stats["name"]
+	txt += "\nHealth: " + str(stats["current_health"]) + "/" + str(stats["max_health"])
+	if stats["max_mana"] != 0:
+		txt += "\nMana: " + str(stats["current_mana"]) + "/" + str(stats["max_mana"])
+	txt += "\nAttack: " + str(stats["attack"])
+	txt += "\nDefense: " + str(stats["defense"])
+	txt += "\nDexterity: " + str(stats["dexterity"])
+	txt += "\nAgility: " + str(stats["agility"])
+	txt += "\nMovement: " + str(stats["movement"])
+	txt += "\nRange: " + str(stats["range"])
+	
+	aneStats.text = txt
+	aneSprite.texture = load(stats["sprite_path"])
 
 func get_tile_from_coords(coords: Vector2):
 	for tile in mapTileGroup.get_children():
@@ -409,7 +455,7 @@ func set_tile_populated(coords: Vector2, value: bool) -> void:
 
 # Set selected MapTile
 func tile_handler(mapTile) -> void:
-	if battleStart:
+	if battleStart and not isPaused:
 		if not CombatMapStatus.get_selected_character().is_enemy():
 			if CombatMapStatus.get_selected_map_tile() == mapTile:
 				remove_selected()
@@ -422,7 +468,7 @@ func tile_handler(mapTile) -> void:
 func _on_start_button_pressed():
 	battleStart = true
 	ui.show()
-	changeCameraButton.show()
+	globalButtons.show()
 	uiStart.hide()
 	await start_turn()
 
@@ -648,13 +694,31 @@ func _on_end_turn_button_pressed():
 	CombatMapStatus.advance_ini()
 	await start_turn()
 
+func _on_main_menu_button_pressed():
+	if not CombatMapStatus.selectedCharacter.is_enemy():
+		isPaused = !isPaused
+		
+		if isPaused:
+			returnMainMenu.show()
+			ui.hide()
+			globalButtons.hide()
+			
+		else:
+			returnMainMenu.hide()
+			ui.show()
+			globalButtons.show()
+
+func _on_rmm_yes_pressed():
+	get_tree().change_scene_to_file("res://Scenes/UI/mainMenu.tscn")
+
 # Buttons updater
 func update_buttons() -> void:
-	update_move_button()
-	update_phys_attack_button()
-	update_end_turn_button()
-	update_skill_menu_button()
-	update_camera_button()
+	if not isPaused:
+		update_move_button()
+		update_phys_attack_button()
+		update_end_turn_button()
+		update_skill_menu_button()
+		update_global_button()
 
 func update_move_button() -> void:
 	if CombatMapStatus.hasMoved or CombatMapStatus.get_selected_character().is_enemy() or isCastingSkill:
@@ -681,7 +745,6 @@ func update_phys_attack_button() -> void:
 			physAttackButton.disabled = true
 			
 func update_skill_menu_button() -> void:
-	
 	var instantMenu = false # allow menus to be displayed if instant skills present in character
 	for skill in CombatMapStatus.get_selected_character().get_skills():
 		if GameStatus.skillSet[skill].is_instantaneous():
@@ -722,11 +785,13 @@ func update_end_turn_button() -> void:
 	else:
 		endTurnButton.disabled = false
 		
-func update_camera_button() -> void:
+func update_global_button() -> void:
 	if CombatMapStatus.get_selected_character().is_enemy() or isCastingSkill:
 		changeCameraButton.disabled = true
+		mainMenuButton.disabled = true
 	else:
 		changeCameraButton.disabled = false
+		mainMenuButton.disabled = false
 
 func highlight_movement(character) -> void: #dijkstra probablemente va aquí
 	for tile in characterDijkstra[0]:
@@ -776,6 +841,7 @@ func remove_control_zones() -> void:
 func remove_selected() -> void:
 	for tile in mapTileGroup.get_children():
 		tile.selected.hide()
+		aneCharacter.hide()
 		
 func remove_char_highlights() -> void:
 	for character in characterGroup.get_children():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://wvt31gswalxh"]
+[gd_scene load_steps=37 format=3 uid="uid://wvt31gswalxh"]
 
 [ext_resource type="Script" path="res://Scripts/3D/mapCombat.gd" id="1_rhc0y"]
 [ext_resource type="Texture2D" uid="uid://cdr8pfgua7joc" path="res://Assets/UI/attack_button.png" id="3_1u004"]
@@ -39,9 +39,30 @@ font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ifhw8"]
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_upw3f"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2wdrh"]
+font = ExtResource("12_fy7hm")
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ypjpi"]
+
 [sub_resource type="LabelSettings" id="LabelSettings_ebm7i"]
 font = ExtResource("3_s3ban")
 font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_8qrx1"]
+font = ExtResource("12_fy7hm")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_mbttw"]
+font = ExtResource("12_fy7hm")
+font_size = 32
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_euhhm"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_uiwtv"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_r1n5i"]
 
 [node name="MapCombat" type="Node3D"]
 script = ExtResource("1_rhc0y")
@@ -246,6 +267,46 @@ texture = SubResource("PlaceholderTexture2D_ifhw8")
 expand_mode = 1
 stretch_mode = 5
 
+[node name="AnECharacter" type="Control" parent="UI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="UI/AnECharacter"]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 240.0
+offset_right = 288.0
+offset_bottom = 544.0
+texture = SubResource("PlaceholderTexture2D_upw3f")
+
+[node name="AnEStats" type="Label" parent="UI/AnECharacter"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 368.0
+offset_right = 280.0
+offset_bottom = 536.0
+text = "Name:
+Health:
+Mana:
+Attack:
+Defense:
+Dexterity:
+Agility:
+Movement:
+Range:"
+label_settings = SubResource("LabelSettings_2wdrh")
+
+[node name="AnESprite" type="TextureRect" parent="UI/AnECharacter"]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 248.0
+offset_right = 248.0
+offset_bottom = 360.0
+texture = SubResource("PlaceholderTexture2D_ypjpi")
+expand_mode = 1
+stretch_mode = 5
+
 [node name="Initiative" parent="UI" instance=ExtResource("13_l6mli")]
 layout_mode = 1
 offset_left = 648.0
@@ -299,7 +360,75 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="ChangeCamera" type="TextureButton" parent="."]
+[node name="ReturnMainMenu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Dim" type="ColorRect" parent="ReturnMainMenu"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.627451)
+
+[node name="RMM" type="Label" parent="ReturnMainMenu"]
+layout_mode = 0
+offset_left = 784.0
+offset_top = 528.0
+offset_right = 1136.0
+offset_bottom = 560.0
+text = "Return to main menu?"
+label_settings = SubResource("LabelSettings_8qrx1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RMMYes" type="Button" parent="ReturnMainMenu"]
+layout_mode = 0
+offset_left = 856.0
+offset_top = 584.0
+offset_right = 936.0
+offset_bottom = 632.0
+flat = true
+
+[node name="Label" type="Label" parent="ReturnMainMenu/RMMYes"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 72.0
+offset_bottom = 48.0
+text = "Yes"
+label_settings = SubResource("LabelSettings_mbttw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RMMNo" type="Button" parent="ReturnMainMenu"]
+layout_mode = 0
+offset_left = 984.0
+offset_top = 584.0
+offset_right = 1064.0
+offset_bottom = 632.0
+flat = true
+
+[node name="Label" type="Label" parent="ReturnMainMenu/RMMNo"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 72.0
+offset_bottom = 48.0
+text = "No"
+label_settings = SubResource("LabelSettings_mbttw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GlobalButtons" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ChangeCamera" type="TextureButton" parent="GlobalButtons"]
+layout_mode = 0
 offset_left = 1742.0
 offset_top = 44.0
 offset_right = 1854.0
@@ -310,9 +439,24 @@ texture_disabled = ExtResource("19_m8hej")
 ignore_texture_size = true
 stretch_mode = 5
 
+[node name="MainMenuButton" type="TextureButton" parent="GlobalButtons"]
+layout_mode = 0
+offset_left = 66.0
+offset_top = 46.0
+offset_right = 178.0
+offset_bottom = 147.0
+texture_normal = SubResource("PlaceholderTexture2D_euhhm")
+texture_pressed = SubResource("PlaceholderTexture2D_uiwtv")
+texture_disabled = SubResource("PlaceholderTexture2D_r1n5i")
+ignore_texture_size = true
+stretch_mode = 0
+
 [connection signal="pressed" from="UI/Actions/MoveButton" to="." method="_on_move_button_pressed"]
 [connection signal="pressed" from="UI/Actions/PhysAttackButton" to="." method="_on_phys_attack_button_pressed"]
 [connection signal="pressed" from="UI/Actions/EndTurnButton" to="." method="_on_end_turn_button_pressed"]
 [connection signal="pressed" from="DebugUI/DebugAllySkillButton" to="." method="_on_debug_ally_skill_button_pressed"]
 [connection signal="pressed" from="StartUI/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="ChangeCamera" to="." method="_on_change_camera_pressed"]
+[connection signal="pressed" from="ReturnMainMenu/RMMYes" to="." method="_on_rmm_yes_pressed"]
+[connection signal="pressed" from="ReturnMainMenu/RMMNo" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="GlobalButtons/ChangeCamera" to="." method="_on_change_camera_pressed"]
+[connection signal="pressed" from="GlobalButtons/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

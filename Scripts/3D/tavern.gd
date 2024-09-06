@@ -87,12 +87,12 @@ func _on_combat_start() -> void:
 	com.position = combatCenter.position
 	com.camera.current = true
 	cm.ui.hide()
-	cm.changeCameraButton.hide()
+	cm.globalButtons.hide()
 
 func _on_combat_end() -> void:
 	tavernCam.current = true
 	cm.ui.show()
-	cm.changeCameraButton.show()
+	cm.globalButtons.show()
 	com.queue_free()
 	cm.purge_the_dead()
 	cm.reset_to_tavern()
