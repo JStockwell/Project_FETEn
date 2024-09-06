@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dbkqbo2tbjjv7"]
+[gd_scene load_steps=25 format=3 uid="uid://dbkqbo2tbjjv7"]
 
 [ext_resource type="Script" path="res://Scripts/3D/tavern.gd" id="1_vaq4h"]
 [ext_resource type="Texture2D" uid="uid://dotpb0qnmfnfa" path="res://Assets/Textures/DiamondPlate008C/DiamondPlate008C_4K-JPG_Color.jpg" id="2_61uf5"]
@@ -9,7 +9,11 @@
 [ext_resource type="Texture2D" uid="uid://chp71jcril5rj" path="res://Assets/Textures/DiamondPlate008C/DiamondPlate008C_4K-JPG_NormalGL.jpg" id="6_0w5kn"]
 [ext_resource type="Texture2D" uid="uid://i4b4p2e5n8nc" path="res://Assets/Textures/DiamondPlate008C/DiamondPlate008C_4K-JPG_Roughness.jpg" id="7_3phwk"]
 [ext_resource type="PackedScene" uid="uid://c11mh4mlt8853" path="res://Assets/MapTiles/placeholder_max_map.glb" id="9_7p3eo"]
+[ext_resource type="PackedScene" uid="uid://dhsxf6x20qv3k" path="res://Assets/Props/chair/chair.glb" id="11_20frk"]
 [ext_resource type="Material" uid="uid://cum4nwryffnrq" path="res://Assets/Textures/Concrete042C/concrete_042C.tres" id="11_ln2i0"]
+[ext_resource type="PackedScene" uid="uid://d0c2b7ehpqem5" path="res://Assets/Props/door/door.glb" id="12_3m3mc"]
+[ext_resource type="PackedScene" uid="uid://47eew04eex6j" path="res://Assets/Props/whiskey/hiram_walker_whiskey_bottle.glb" id="13_2um30"]
+[ext_resource type="PackedScene" uid="uid://b0veomtxqmpbc" path="res://Assets/Props/handcuffs/simple_handcuffs.glb" id="14_0ews5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5rlju"]
 albedo_texture = ExtResource("2_61uf5")
@@ -124,6 +128,18 @@ shape = SubResource("BoxShape3D_msj2s")
 
 [node name="wooden_table" parent="Room/Furniture" instance=ExtResource("4_rtr3l")]
 transform = Transform3D(-6.88673e-07, 0, -14.795, 0, 14.795, 0, 15.755, 0, -6.4671e-07, 0, 7.20751, 0)
+
+[node name="Sketchfab_Scene" parent="Room/Furniture" instance=ExtResource("11_20frk")]
+transform = Transform3D(2.04249, 0, 0.101288, 0, 2.045, 0, -0.101288, 0, 2.04249, 0.601954, 16.6923, 14.8111)
+
+[node name="Sketchfab_Scene2" parent="Room/Furniture" instance=ExtResource("12_3m3mc")]
+transform = Transform3D(-0.145, 0, 1.26763e-08, 0, 0.145, 0, -1.26763e-08, 0, -0.145, 0, 30.602, 24.7067)
+
+[node name="Sketchfab_Scene3" parent="Room/Furniture" instance=ExtResource("13_2um30")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.6527, 14.4923, -3.90474)
+
+[node name="Sketchfab_Scene4" parent="Room/Furniture" instance=ExtResource("14_0ews5")]
+transform = Transform3D(0.412214, 0, -0.911087, 0, 1, 0, 0.911087, 0, 0.412214, -12.3121, 14.6143, -0.0779626)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Room"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 35, 0)
