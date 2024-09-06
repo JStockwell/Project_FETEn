@@ -167,8 +167,6 @@ func test_setup_skill_menu():
 		assert_that(checker).is_equal("Death Beam")
 		checker = test_mapCombat.skillMenu.get_item_text(2)
 		assert_that(checker).is_equal("Bestow Life")
-		checker = test_mapCombat.skillMenu.get_item_text(3)
-		assert_that(checker).is_equal("Tap Speed")
 	if(CombatMapStatus.get_selected_character().get_char_name() == "Defender"):
 		checker = test_mapCombat.skillMenu.get_item_count()
 		assert_int(checker).is_zero()
@@ -989,10 +987,11 @@ func test_update_phys_attack_button_disabled():
 	
 	assert_bool(test_mapCombat.physAttackButton.disabled).is_true()
 	
-	#TODO revisar
-func test_update_skill_menu_button_after_attack(do_skip=true, skip_reason="Test under maintenance"):
+
+func test_update_skill_menu_button_after_attack():
 	test_mapCombat._on_start_button_pressed()
 	CombatMapStatus.set_initiative([0, 1])
+	test_mapCombat.start_turn()
 	CombatMapStatus.set_has_attacked(true)
 	
 	test_mapCombat.update_skill_menu_button()

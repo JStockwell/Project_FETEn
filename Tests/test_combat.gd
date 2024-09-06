@@ -68,7 +68,7 @@ func test_calc_hit_chance_true_hit():
 	var defAgi = CombatMapStatus.get_defender_stats().get("agility")
 	var rolls = [1, 71, 1, 1]
 	
-	var test_res = test_combat.calc_hit_chance(attDex, defAgi, 0, rolls)
+	var test_res = test_combat.calc_hit_chance(attDex, defAgi, rolls)
 	
 	assert_bool(test_res).is_true()
 	
@@ -78,7 +78,7 @@ func test_calc_hit_chance_true_hit_fail():
 	var defAgi = CombatMapStatus.get_defender_stats().get("agility")
 	var rolls = [1, 72, 1, 1]
 	
-	var test_res = test_combat.calc_hit_chance(attDex, defAgi, 0, rolls)
+	var test_res = test_combat.calc_hit_chance(attDex, defAgi, rolls)
 	
 	assert_bool(test_res).is_false()
 	
@@ -88,7 +88,7 @@ func test_calc_hit_chance_bloated_hit():
 	var defAgi = CombatMapStatus.get_defender_stats().get("agility")
 	var rolls = [2, 43, 100, 1]
 	
-	var test_res = test_combat.calc_hit_chance(attDex, defAgi, 0, rolls)
+	var test_res = test_combat.calc_hit_chance(attDex, defAgi, rolls)
 	
 	assert_bool(test_res).is_true()
 	
@@ -98,7 +98,7 @@ func test_calc_hit_chance_bloated_hit_fail():
 	var defAgi = CombatMapStatus.get_defender_stats().get("agility")
 	var rolls = [2, 44, 100, 1]
 	
-	var test_res = test_combat.calc_hit_chance(attDex, defAgi, 0, rolls)
+	var test_res = test_combat.calc_hit_chance(attDex, defAgi, rolls)
 	
 	assert_bool(test_res).is_false()
 	
@@ -195,46 +195,79 @@ func test_generate_rolls_random():
 #####################
 
 func test_combat_round_melee():
-	await test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1,"")
+	CombatMapStatus.attackRange = 1
+	
+	await test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100])
 
 	assert_int(defender.get_current_health()).is_less(defender.get_max_health())
 	assert_int(attacker.get_current_health()).is_less(attacker.get_max_health())
+	
+	defender.modify_health(8000)
+	attacker.modify_health(8000)
 
 	
 func test_combat_round_ranged():
-	test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 4,"")
+	CombatMapStatus.attackRange = 4
+	
+	test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100])
 
 	assert_int(defender.get_current_health()).is_less(defender.get_max_health())
+	
+	defender.modify_health(8000)
 	
 	
 func test_combat_round_skill_no_SEF_retaliation():
 	attacker.get_stats()["attack"] = 5
+	CombatMapStatus.attackRange = 1
+	CombatMapStatus.set_attack_skill("shadow_ball")
+	attacker.modify_mana(8000)
 	
-	await test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1,"shadow_ball")
+	await test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100])
 
 	assert_int(defender.get_current_health()).is_less(defender.get_max_health())
 	assert_int(attacker.get_current_health()).is_less(attacker.get_max_health())
 	
+	defender.modify_health(8000)
+	attacker.modify_health(8000)
+	
 
 func test_combat_round_skill_no_SEF_no_retaliation():
-	test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 4,"shadow_ball")
+	CombatMapStatus.attackRange = 4
+	CombatMapStatus.set_attack_skill("shadow_ball")
+	attacker.modify_mana(8000)
+	
+	test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100])
 
 	assert_int(defender.get_current_health()).is_less(defender.get_max_health())
+	
+	defender.modify_health(8000)
 	
 	
 func test_combat_round_skill_SEF_retaliation():
 	attacker.get_stats()["attack"] = 2
+	CombatMapStatus.attackRange = 1
+	CombatMapStatus.set_attack_skill("nero_nero")
+	attacker.modify_mana(8000)
 	
-	await test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1,"nero_nero")
+	await test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100])
 	
 	assert_int(defender.get_current_health()).is_less(defender.get_max_health())
 	assert_int(attacker.get_current_health()).is_less(attacker.get_max_health())
 	
+	defender.modify_health(8000)
+	attacker.modify_health(8000)
+	
 
 func test_combat_round_skill_SEF_no_retaliation():
-	test_combat.combat_round([1, 100, 1, 100], [1, 1, 1, 100], 0, 4,"nero_nero")
+	CombatMapStatus.attackRange = 4
+	CombatMapStatus.set_attack_skill("nero_nero")
+	attacker.modify_mana(8000)
+	
+	test_combat.combat_round([1, 100, 1, 100], [1, 1, 1, 100])
 
 	assert_int(defender.get_current_health()).is_less(defender.get_max_health())
+	
+	defender.modify_health(8000)
 	
 	
 func test_combat_round_kill_no_retaliation():
@@ -242,25 +275,31 @@ func test_combat_round_kill_no_retaliation():
 	attacker.get_stats()["map_id"] = 0
 	defender.get_stats()["map_id"] = 1
 	CombatMapStatus.set_initiative([0, 1])
+	CombatMapStatus.attackRange = 1
 
-	await test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1,"")
+	await test_combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100])
 
 	assert_int(defender.get_current_health()).is_less(defender.get_max_health())
 	assert_int(attacker.get_current_health()).is_equal(attacker.get_max_health())
+	
+	defender.modify_health(8000)
+	attacker.modify_health(8000)
 	
 	
 func test_attack_hit():
 	var rolls = [1, 1, 1, 1]
 	
-	test_combat.attack(attacker, defender, rolls, 0, 0, 0)
+	test_combat.attack(attacker, defender, rolls, 0, 0)
 
 	assert_int(defender.get_current_health()).is_less(defender.get_max_health())
+	
+	defender.modify_health(8000)
 
 
 func test_attack_miss():
 	var rolls = [1, 100, 1, 1]
 	
-	test_combat.attack(attacker, defender, rolls, 0, 0, 0)
+	test_combat.attack(attacker, defender, rolls, 0, 0)
 	
 	assert_that(defender.get_current_health()).is_equal(defender.get_max_health())
 	assert_that(test_combat.damageNumber.text).is_equal("MISS")
@@ -271,6 +310,8 @@ func test_deal_damage_positive_no_crit():
 	
 	assert_that(defender.get_current_health()).is_equal(20)
 	assert_that(test_combat.damageNumber.text).is_equal("-2")
+	
+	defender.modify_health(8000)
 
 
 func test_deal_damage_positive_crit():
@@ -278,6 +319,8 @@ func test_deal_damage_positive_crit():
 	
 	assert_that(defender.get_current_health()).is_equal(19)
 	assert_that(test_combat.damageNumber.text).is_equal("-3")
+	
+	defender.modify_health(8000)
 	
 	
 func test_deal_damage_0():

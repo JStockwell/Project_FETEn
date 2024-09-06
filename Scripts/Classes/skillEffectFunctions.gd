@@ -23,7 +23,8 @@ static func nero_nero(Combat, attacker, defender, spa: int, imd: int):
 	await Combat.deal_damage(dmg, 1, defender)
 
 static func boost(Combat, rolls, attacker, defender, accMod: int, critMod: int, spa: int, imd: int, level: int):
-	if Combat.calc_hit_chance(attacker.get_dexterity(), defender.get_agility(), accMod + (15 * level), rolls):
+	accMod += 3 * level
+	if Combat.calc_hit_chance(attacker.get_dexterity() + accMod, defender.get_agility(), rolls):
 		var crit = Combat.calc_crit(attacker.get_dexterity(), attacker.get_agility(), defender.get_agility(), critMod + (3 * level), rolls[3])
 		var dmg = Combat.calc_damage(attacker.get_attack(), defender.get_defense(), spa, imd)
 		
@@ -34,7 +35,7 @@ static func boost(Combat, rolls, attacker, defender, accMod: int, critMod: int, 
 		
 
 static func anchoring_strike(Combat, rolls, attacker, defender, accMod: int, critMod: int, spa: int, imd: int):
-	if Combat.calc_hit_chance(attacker.get_dexterity(), defender.get_agility(), accMod, rolls):
+	if Combat.calc_hit_chance(attacker.get_dexterity(), defender.get_agility(), rolls):
 		var crit = Combat.calc_crit(attacker.get_dexterity(), attacker.get_agility(), defender.get_agility(), critMod, rolls[3])
 		var dmg = Combat.calc_damage(attacker.get_attack(), defender.get_defense(), spa, imd)
 		
