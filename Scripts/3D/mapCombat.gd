@@ -845,15 +845,16 @@ func remove_control_zones() -> void:
 func remove_selected() -> void:
 	for tile in mapTileGroup.get_children():
 		tile.selected.hide()
-		aneCharacter.hide()
 		
 func remove_char_highlights() -> void:
 	for character in characterGroup.get_children():
 		character.selectedChar.hide()
+		aneCharacter.hide()
 
 func remove_ally_highlights() -> void:
 	for character in characterGroup.get_children():
 		character.selectedAlly.hide()
+		aneCharacter.hide()
 		
 func remove_enemy_highlights() -> void:
 	for enemy in enemyGroup.get_children():
