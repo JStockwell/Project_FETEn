@@ -386,7 +386,7 @@ func _process(delta):
 	if battleStart:
 		update_buttons()
 	
-# TODO Retest, it now can only have one selected ally or enemy active, not both
+	
 # Set selected enemies
 func character_handler(character) -> void:
 	if battleStart and not isPaused:
@@ -396,7 +396,7 @@ func character_handler(character) -> void:
 			elif character.get_instance_id() != CombatMapStatus.get_selected_character().get_instance_id():
 				selected_checker(character, CombatMapStatus.get_selected_ally(), character.is_enemy())
 
-# TODO Retest, it now can only have one selected ally or enemy active, not both
+
 func selected_checker(character, combatMapStatusCharacter, isEnemy: bool) -> void:
 	if combatMapStatusCharacter == null or combatMapStatusCharacter.get_name() != character.get_name():
 		set_selected_character(character, isEnemy)
@@ -404,7 +404,7 @@ func selected_checker(character, combatMapStatusCharacter, isEnemy: bool) -> voi
 	else:
 		set_selected_character(null, isEnemy)
 
-# TODO Retest, it now can only have one selected ally or enemy active, not both
+
 func set_selected_character(character, isEnemy: bool) -> void:
 	remove_ally_highlights()
 	remove_enemy_highlights()
@@ -429,7 +429,7 @@ func set_selected_character(character, isEnemy: bool) -> void:
 		aneCharacter.show()
 		update_ane_character_card(character)
 
-# TODO Test new
+
 # AnE = Allies and Enemies
 func update_ane_character_card(character) -> void:
 	var txt = ""

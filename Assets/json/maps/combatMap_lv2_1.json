@@ -2,7 +2,7 @@
 	"name": "combatMap_lv2_1",
 	"size": "(14,13)",
 	"ally_spawn": [
-		"(0,10)", "(1,10)", "(2,10)", 
+		"(0,10)", "(1,10)",
 		"(0,11)", "(1,11)", "(2,11)", 
 		"(0,12)", "(1,12)", "(2,12)"
 	],
@@ -1203,9 +1203,9 @@
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
 		},
 		{
 			"coords": "(4,9)",
