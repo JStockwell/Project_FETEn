@@ -375,37 +375,28 @@ func character_handler(character) -> void:
 				selected_checker(character, CombatMapStatus.get_selected_ally(), character.is_enemy())
 
 func selected_checker(character, combatMapStatusCharacter, isEnemy: bool) -> void:
-	if combatMapStatusCharacter == null:
-		if not isEnemy:
-			character.selectedAlly.show()
-		else:
-			character.selectedEnemy.show()
-			
+	if combatMapStatusCharacter == null or combatMapStatusCharacter.get_name() != character.get_name():
 		set_selected_character(character, isEnemy)
 			
-	elif combatMapStatusCharacter.get_name() == character.get_name():
-		if not isEnemy:
-			remove_ally_highlights()
-		else:
-			remove_enemy_highlights()
-			
+	else:
 		set_selected_character(null, isEnemy)
 		
-	else:
-		if not isEnemy:
-			remove_ally_highlights()
-			character.selectedAlly.show()
-		else:
-			remove_enemy_highlights()
-			character.selectedEnemy.show()
-			
-		set_selected_character(character, isEnemy)
-		
 func set_selected_character(character, isEnemy: bool) -> void:
+	remove_ally_highlights()
+	remove_enemy_highlights()
+	
+	CombatMapStatus.set_selected_enemy(null)
+	CombatMapStatus.set_selected_ally(null)
+	
 	if isEnemy:
 		CombatMapStatus.set_selected_enemy(character)
+		if character != null:
+			character.selectedEnemy.show()
+		
 	else:
 		CombatMapStatus.set_selected_ally(character)
+		if character != null:
+			character.selectedAlly.show()
 
 func get_tile_from_coords(coords: Vector2):
 	for tile in mapTileGroup.get_children():

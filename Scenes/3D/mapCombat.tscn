@@ -265,6 +265,7 @@ offset_right = 1912.0
 offset_bottom = 48.0
 
 [node name="DebugAllySkillButton" type="Button" parent="DebugUI"]
+visible = false
 layout_mode = 0
 offset_left = 109.0
 offset_top = 513.0
