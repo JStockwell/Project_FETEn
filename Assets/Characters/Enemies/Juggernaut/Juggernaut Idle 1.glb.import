@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ihdl8id2v178"
-path="res://.godot/imported/dick idle 1.glb-d5917e37b0c70f43c8a30e33ae087579.scn"
+uid="uid://y7lkssvmrvci"
+path="res://.godot/imported/Juggernaut Idle 1.glb-025d2390056ff84d0fc90a3da32a2528.scn"
 
 [deps]
 
-source_file="res://Assets/Characters/Party/Dick/dick idle 1.glb"
-dest_files=["res://.godot/imported/dick idle 1.glb-d5917e37b0c70f43c8a30e33ae087579.scn"]
+source_file="res://Assets/Characters/Enemies/Juggernaut/Juggernaut Idle 1.glb"
+dest_files=["res://.godot/imported/Juggernaut Idle 1.glb-025d2390056ff84d0fc90a3da32a2528.scn"]
 
 [params]
 
@@ -32,6 +32,12 @@ import_script/path=""
 _subresources={
 "nodes": {
 "PATH:Acrilyc": {
+"import/skip_import": true
+},
+"PATH:Samael": {
+"import/skip_import": true
+},
+"PATH:Sword": {
 "import/skip_import": true
 }
 }

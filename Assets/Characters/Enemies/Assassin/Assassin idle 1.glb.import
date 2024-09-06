@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ihdl8id2v178"
-path="res://.godot/imported/dick idle 1.glb-d5917e37b0c70f43c8a30e33ae087579.scn"
+uid="uid://cqp1e7weqcqvf"
+path="res://.godot/imported/Assassin idle 1.glb-8f457ad636897f1fcc6fe5941c25b360.scn"
 
 [deps]
 
-source_file="res://Assets/Characters/Party/Dick/dick idle 1.glb"
-dest_files=["res://.godot/imported/dick idle 1.glb-d5917e37b0c70f43c8a30e33ae087579.scn"]
+source_file="res://Assets/Characters/Enemies/Assassin/Assassin idle 1.glb"
+dest_files=["res://.godot/imported/Assassin idle 1.glb-8f457ad636897f1fcc6fe5941c25b360.scn"]
 
 [params]
 

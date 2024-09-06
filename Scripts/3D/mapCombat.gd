@@ -277,7 +277,10 @@ func start_turn() -> void:
 		if not GameStatus.testMode:
 			await wait(1)
 		
-		if (enemyAttack):
+		if enemyAttack and CombatMapStatus.get_selected_character().get_id() == "mage":
+			CombatMapStatus.set_combat(currentChar, CombatMapStatus.get_selected_enemy(), Utils.calc_distance(currentChar.get_map_coords(), CombatMapStatus.get_selected_enemy().get_map_coords()), "icicle") # how to get defender
+			combat_start.emit()
+		elif enemyAttack:
 			phys_combat_round()
 			
 		else:

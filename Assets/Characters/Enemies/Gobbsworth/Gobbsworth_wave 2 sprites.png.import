@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://busgwgkk23s3v"
-path.s3tc="res://.godot/imported/dick idle 1_reference square.png-9509031b6a5b6ca6fb20b5ff9dbaafeb.s3tc.ctex"
+uid="uid://g38im40flqr2"
+path.s3tc="res://.godot/imported/Gobbsworth_wave 2 sprites.png-f1cd96a502a5bc45be82f08c37fbb4aa.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "350e9fca8f445202aa66a3af3361ce29"
+"md5": "b9c2c5b9d1e8da22e7a3f8fc3ca63056"
 }
 
 [deps]
 
-source_file="res://Assets/Characters/Party/Dick/dick idle 1_reference square.png"
-dest_files=["res://.godot/imported/dick idle 1_reference square.png-9509031b6a5b6ca6fb20b5ff9dbaafeb.s3tc.ctex"]
+source_file="res://Assets/Characters/Enemies/Gobbsworth/Gobbsworth_wave 2 sprites.png"
+dest_files=["res://.godot/imported/Gobbsworth_wave 2 sprites.png-f1cd96a502a5bc45be82f08c37fbb4aa.s3tc.ctex"]
 
 [params]
 
