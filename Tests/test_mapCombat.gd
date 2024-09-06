@@ -165,6 +165,10 @@ func test_setup_skill_menu():
 		assert_that(checker).is_equal("Spheres of Darkness")
 		checker = test_mapCombat.skillMenu.get_item_text(1)
 		assert_that(checker).is_equal("Death Beam")
+		checker = test_mapCombat.skillMenu.get_item_text(2)
+		assert_that(checker).is_equal("Bestow Life")
+		checker = test_mapCombat.skillMenu.get_item_text(3)
+		assert_that(checker).is_equal("Tap Speed")
 	if(CombatMapStatus.get_selected_character().get_char_name() == "Defender"):
 		checker = test_mapCombat.skillMenu.get_item_count()
 		assert_int(checker).is_zero()
@@ -791,17 +795,95 @@ func test_check_behind_cover_not():
 	assert_that(mapMod).is_equal(0)
 
 
-#TODO
-func test__on_skill_selected_targeting_allies(do_skip=true, skip_reason="Waiting for TODOs"):
-	assert_that(true).is_equal(true)
-	pass
+func test__on_skill_selected_target_myself():
+	CombatMapStatus.set_initiative([0, 1])
 	
+	var caster = test_mapCombat.characterGroup.get_children()[0]
+	caster.get_stats()["current_health"] = 1
+	test_mapCombat.start_turn()
+	CombatMapStatus.set_selected_character(caster)
 	
-#TODO
-func test__on_skill_selected_targeting_enemies(do_skip=true, skip_reason="Waiting for TODOs"):
-	assert_that(true).is_equal(true)
-	pass
+	var skill_id = 6
+	
+	test_mapCombat._on_skill_selected(skill_id)
+	
+	assert_int(caster.get_current_health()).is_greater(1)
+	
+	caster.get_stats()["current_health"] = caster.get_stats()["max_health"]
 
+
+func test__on_skill_selected_target_allies():
+	GameStatus.set_party(["attacker", "attacker2"])
+	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
+	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
+	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
+	test_mapCombat.mapDict = mapDict
+	CombatMapStatus.set_is_start_combat(true)
+	test_mapCombat.initial_map_load()
+	CombatMapStatus.set_initiative([0, 1, 2, 3])
+	
+	var caster = test_mapCombat.characterGroup.get_children()[1]
+	var target = test_mapCombat.characterGroup.get_children()[2]
+	caster.set_map_coords(Vector2(0,0))
+	target.set_map_coords(Vector2(1,0))
+	target.get_stats()["current_health"] = 1
+	test_mapCombat.start_turn()
+	CombatMapStatus.set_selected_character(caster)
+	CombatMapStatus.set_selected_ally(target)
+	
+	var skill_id = 6
+	
+	test_mapCombat._on_skill_selected(skill_id)
+	
+	assert_int(target.get_current_health()).is_greater(1)
+	
+	target.get_stats()["current_health"] = target.get_stats()["max_health"]
+	
+	
+func test__on_skill_selected_target_enemies():
+	CombatMapStatus.set_initiative([0, 1])
+	
+	var caster = test_mapCombat.characterGroup.get_children()[0]
+	var enemy = test_mapCombat.enemyGroup.get_children()[0]
+	test_mapCombat.start_turn()
+	CombatMapStatus.set_selected_character(caster)
+	CombatMapStatus.set_selected_enemy(enemy)
+	caster.modify_mana(10)
+	
+	var skill_id = 0
+	
+	test_mapCombat._on_skill_selected(skill_id)
+	
+	assert_int(enemy.get_current_health()).is_equal(enemy.get_max_health())
+	
+	caster.get_stats()["current_mana"] = caster.get_stats()["ini_mana"]
+	enemy.get_stats()["current_health"] = enemy.get_stats()["max_health"]
+	
+	
+func test_allied_skill_handler():
+	GameStatus.set_party(["attacker", "attacker2"])
+	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
+	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
+	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
+	test_mapCombat.mapDict = mapDict
+	CombatMapStatus.set_is_start_combat(true)
+	test_mapCombat.initial_map_load()
+	CombatMapStatus.set_initiative([0, 1, 2, 3])
+	
+	var caster = test_mapCombat.characterGroup.get_children()[1]
+	var target = test_mapCombat.characterGroup.get_children()[2]
+	caster.set_map_coords(Vector2(0,0))
+	target.set_map_coords(Vector2(1,0))
+	var distance = Utils.calc_distance(caster.get_map_coords(), target.get_map_coords())
+	test_mapCombat.start_turn()
+	target.get_stats()["current_health"] = 1
+	
+	test_mapCombat.allied_skill_handler(caster, target, distance, "bestow_life")
+	
+	assert_int(target.get_current_health()).is_greater(1)
+	
+	target.get_stats()["current_health"] = target.get_stats()["max_health"]
+	
 
 func test__on_end_turn_button_pressed():
 	CombatMapStatus.set_initiative([0, 1])
@@ -907,7 +989,7 @@ func test_update_phys_attack_button_disabled():
 	
 	assert_bool(test_mapCombat.physAttackButton.disabled).is_true()
 	
-	
+	#TODO revisar
 func test_update_skill_menu_button_after_attack():
 	test_mapCombat._on_start_button_pressed()
 	CombatMapStatus.set_initiative([0, 1])

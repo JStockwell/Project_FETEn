@@ -1,7 +1,7 @@
 class_name SkillMenu
 
 #TODO revisar
-static func handle_skill(skillName: String, character, target) -> String:
+static func validate_skill(skillName: String, character, target) -> String:
 	var error = ""
 	var skill = GameStatus.skillSet[skillName]
 	
