@@ -542,7 +542,8 @@ func phys_combat_round() -> void:
 		
 		CombatMapStatus.mapMod += 5 * (attTile.get_height() - defTile.get_height())
 			
-		CombatMapStatus.set_combat(attacker, defender, Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()), CombatMapStatus.mapMod)
+		CombatMapStatus.set_combat(attacker, defender, Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()))
+		
 		combat_start.emit()
 	
 # Result: hitFlag, mapMod
@@ -649,7 +650,9 @@ func _on_skill_selected(id: int):
 				skillResult = await allied_skill_handler(caster, target, Utils.calc_distance(caster.get_map_coords(), target.get_map_coords()), skillName)
 		else:
 			var defender = CombatMapStatus.get_selected_enemy()
-			CombatMapStatus.set_combat(caster, defender, Utils.calc_distance(caster.get_map_coords(), defender.get_map_coords()), 0, skillName)
+			
+			
+			CombatMapStatus.set_combat(caster, defender, Utils.calc_distance(caster.get_map_coords(), defender.get_map_coords()), skillName)
 			combat_start.emit()
 		
 			if not GameStatus.skillSet[skillName].is_instantaneous(): #handles the instantaneous flag here
