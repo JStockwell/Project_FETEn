@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ihdl8id2v178"
-path="res://.godot/imported/dick idle 1.glb-d5917e37b0c70f43c8a30e33ae087579.scn"
+uid="uid://ctaag0u0i5ths"
+path="res://.godot/imported/Adran idle 1.glb-017e7d165fa4236d2ebcadd654763d57.scn"
 
 [deps]
 
-source_file="res://Assets/Characters/Party/Dick/dick idle 1.glb"
-dest_files=["res://.godot/imported/dick idle 1.glb-d5917e37b0c70f43c8a30e33ae087579.scn"]
+source_file="res://Assets/Characters/Party/Adran/Adran idle 1.glb"
+dest_files=["res://.godot/imported/Adran idle 1.glb-017e7d165fa4236d2ebcadd654763d57.scn"]
 
 [params]
 
