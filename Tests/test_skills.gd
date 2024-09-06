@@ -73,7 +73,10 @@ func test_not_null():
 #####################
 
 func test_combat_round_shadow_ball():
-	combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 4, "shadow_ball")
+	CombatMapStatus.attackRange = 4
+	CombatMapStatus.set_attack_skill("shadow_ball")
+	
+	combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100])
 	
 	var spa = GameStatus.skillSet["shadow_ball"].get_spa()
 	assert_int(defender.get_current_health()).is_equal(defender.get_max_health()-(attacker.get_attack()+spa)) # No crit or miss, should dela normal damage
@@ -82,7 +85,10 @@ func test_combat_round_shadow_ball():
 
 
 func test_combat_round_flaming_daggers():
-	combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 4, "flaming_daggers")
+	CombatMapStatus.attackRange = 4
+	CombatMapStatus.set_attack_skill("flaming_daggers")
+	
+	combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100])
 	
 	var spa = GameStatus.skillSet["flaming_daggers"].get_spa()
 	assert_int(defender.get_current_health()).is_equal(defender.get_max_health()-(attacker.get_attack()+spa)) # No crit or miss, should dela normal damage
@@ -91,16 +97,22 @@ func test_combat_round_flaming_daggers():
 	
 	
 func test_combat_round_nero_nero():
-	combat.combat_round([2, 100, 100, 0], [1, 1, 1, 100], 0, 4, "nero_nero") # double roll, double 100 to hit (cant hit) 0 to crit (always crit) but shouldnt deal 1.5 damage since it doesnt check for crits
+	CombatMapStatus.attackRange = 4
+	CombatMapStatus.set_attack_skill("nero_nero")
+	
+	combat.combat_round([2, 100, 100, 0], [1, 1, 1, 100]) # double roll, double 100 to hit (cant hit) 0 to crit (always crit) but shouldnt deal 1.5 damage since it doesnt check for crits
 	
 	var spa = GameStatus.skillSet["nero_nero"].get_spa()
 	assert_int(defender.get_current_health()).is_equal(defender.get_max_health()-(attacker.get_attack()+spa)) # Should deal normal dmg despite the previous pre and crit
 
 	defender.get_stats()["current_health"] = defender.get_stats()["max_health"]
 	
-	
+
 func test_combat_round_boost1():
-	combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1, "boost_1")
+	CombatMapStatus.attackRange = 1
+	CombatMapStatus.set_attack_skill("boost_1")
+	
+	combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100])
 	
 	var spa = GameStatus.skillSet["boost_1"].get_spa()
 	assert_int(defender.get_current_health()).is_equal(defender.get_max_health()-(attacker.get_attack()+spa-defender.get_defense()))
@@ -109,21 +121,25 @@ func test_combat_round_boost1():
 	
 	
 func test_combat_round_boost1_acc_crit():
+	CombatMapStatus.attackRange = 1
+	CombatMapStatus.set_attack_skill("boost_1")
 	var barelyHit: int = 65+attacker.get_dexterity()*5-defender.get_agility()*3 # = 80% as of writing this test 50 base 15 boosted acc 45 from dex - 30 enemy agi cast to int to avoid inconsistencies
 	var barelyCrit: int = 3+attacker.get_agility()+attacker.get_dexterity()-defender.get_agility()/2 # = 3+17-10/2 => 20-5 => 15% cast to int to avoid, inconsistencies regular formulae +3 for boost lv1
 	
-	combat.combat_round([1, barelyHit, barelyCrit, 0], [1, 1, 1, 100], 0, 1, "boost_1") #base hit chance is 65% 80 should miss, however due to boost actual acc is 80 base crit chance is
+	combat.combat_round([1, barelyHit, barelyCrit, 0], [1, 1, 1, 100]) #base hit chance is 65% 80 should miss, however due to boost actual acc is 80 base crit chance is
 	
 	var spa = GameStatus.skillSet["boost_1"].get_spa()
 	assert_int(defender.get_current_health()).is_equal(defender.get_max_health()-int((attacker.get_attack()+spa-defender.get_defense())*1.5))
 	
 	defender.get_stats()["current_health"] = defender.get_stats()["max_health"]
 	
-	
+
 func test_combat_round_boost1_miss():
+	CombatMapStatus.attackRange = 1
+	CombatMapStatus.set_attack_skill("boost_1")
 	var barelyMiss: int = 66+attacker.get_dexterity()*5-defender.get_agility()*3 # = same chance as last test, setting 1 higher on the roll to make sure the hit chance is working properly
 	
-	combat.combat_round([1, barelyMiss, 1, 100], [1, 1, 1, 100], 0, 1, "boost_1") #boost_1 hit chance is 80% 81 should miss
+	combat.combat_round([1, barelyMiss, 1, 100], [1, 1, 1, 100]) #boost_1 hit chance is 80% 81 should miss
 	
 	var spa = GameStatus.skillSet["boost_1"].get_spa()
 	assert_int(defender.get_current_health()).is_equal(defender.get_max_health())
@@ -132,9 +148,11 @@ func test_combat_round_boost1_miss():
 
 
 func test_combat_round_boost1_not_crit():
+	CombatMapStatus.attackRange = 1
+	CombatMapStatus.set_attack_skill("boost_1")
 	var barelyNotCrit: int = 4+attacker.get_agility()+attacker.get_dexterity()-defender.get_agility()/2 # = 3+17-10/2 => 20-5 => 15% cast to int to avoid inconsistencies, regular formulae +3 for boost lv1
 
-	combat.combat_round([1, 1, 1, barelyNotCrit], [1, 1, 1, 100], 0, 1, "boost_1") #boost_1 crit chance is 20% 21 should miss
+	combat.combat_round([1, 1, 1, barelyNotCrit], [1, 1, 1, 100]) #boost_1 crit chance is 20% 21 should miss
 
 	var spa = GameStatus.skillSet["boost_1"].get_spa()
 	assert_int(defender.get_current_health()).is_equal(defender.get_max_health()-(attacker.get_attack()+spa-defender.get_defense()))
@@ -143,30 +161,37 @@ func test_combat_round_boost1_not_crit():
 	
 	
 func test_combat_round_boost2():
-	combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1, "boost_2")
+	CombatMapStatus.attackRange = 1
+	CombatMapStatus.set_attack_skill("boost_2")
+	
+	combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100])
 	
 	var spa = GameStatus.skillSet["boost_2"].get_spa()
 	assert_int(defender.get_current_health()).is_equal(defender.get_max_health()-(attacker.get_attack()+spa))
 	
 	defender.get_stats()["current_health"] = defender.get_stats()["max_health"]
 	
-	
+
 func test_combat_round_boost2_acc_crit():
+	CombatMapStatus.attackRange = 1
+	CombatMapStatus.set_attack_skill("boost_2")
 	var barelyHit: int = 80+attacker.get_dexterity()*5-defender.get_agility()*3 # = 95% as of writing this test 50 base 30 boosted acc 45 from dex - 30 enemy agi cast to int to avoid inconsistencies
 	var barelyCrit: int = 6+attacker.get_agility()+attacker.get_dexterity()-defender.get_agility()/2 # = 6+17-10/2 => 23-5 => 18% cast to int to avoid, inconsistencies regular formulae +3 for boost lv1
 	
-	combat.combat_round([1, barelyHit, barelyCrit, 0], [1, 1, 1, 100], 0, 1, "boost_2") #base hit chance is 65% 95 should miss, however due to boost actual acc is 80 base crit chance is
+	combat.combat_round([1, barelyHit, barelyCrit, 0], [1, 1, 1, 100]) #base hit chance is 65% 95 should miss, however due to boost actual acc is 80 base crit chance is
 	
 	var spa = GameStatus.skillSet["boost_2"].get_spa()
 	assert_int(defender.get_current_health()).is_equal(defender.get_max_health()-int((attacker.get_attack()+spa)*1.5))
 	
 	defender.get_stats()["current_health"] = defender.get_stats()["max_health"]
 	
-	
+
 func test_combat_round_boost2_miss():
+	CombatMapStatus.attackRange = 1
+	CombatMapStatus.set_attack_skill("boost_2")
 	var barelyMiss: int = 81+attacker.get_dexterity()*5-defender.get_agility()*3 # = same chance as last test, setting 1 higher on the roll to make sure the hit chance is working properly
 	
-	combat.combat_round([1, barelyMiss, 1, 100], [1, 1, 1, 100], 0, 1, "boost_2") #boost_2 hit chance is 95% 96 should miss
+	combat.combat_round([1, barelyMiss, 1, 100], [1, 1, 1, 100]) #boost_2 hit chance is 95% 96 should miss
 	
 	var spa = GameStatus.skillSet["boost_1"].get_spa()
 	assert_int(defender.get_current_health()).is_equal(defender.get_max_health())
@@ -175,9 +200,11 @@ func test_combat_round_boost2_miss():
 
 
 func test_combat_round_boost2_not_crit():
+	CombatMapStatus.attackRange = 1
+	CombatMapStatus.set_attack_skill("boost_2")
 	var barelyNotCrit: int = 7+attacker.get_agility()+attacker.get_dexterity()-defender.get_agility()/2 # = 6+17-10/2 => 23-5 => 18% cast to int to avoid inconsistencies, regular formulae +3 for boost lv1
 	
-	combat.combat_round([1, 1, 1, barelyNotCrit], [1, 1, 1, 100], 0, 1, "boost_2") #boost_2 crit chance is 23% 24 should miss
+	combat.combat_round([1, 1, 1, barelyNotCrit], [1, 1, 1, 100]) #boost_2 crit chance is 23% 24 should miss
 	
 	var spa = GameStatus.skillSet["boost_2"].get_spa()
 	assert_int(defender.get_current_health()).is_equal(defender.get_max_health()-(attacker.get_attack()+spa))
@@ -186,7 +213,9 @@ func test_combat_round_boost2_not_crit():
 	
 	
 func test_combat_round_anchoring_strike():
-	await combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1, "anchoring_strike")
+	CombatMapStatus.attackRange = 1
+	CombatMapStatus.set_attack_skill("anchoring_strike")
+	await combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100])
 	
 	assert_int(defender.get_current_health()).is_equal(defender.get_max_health()-attacker.get_attack()+defender.get_defense())
 	assert_bool(defender.is_rooted()).is_true()
@@ -196,15 +225,21 @@ func test_combat_round_anchoring_strike():
 	
 	
 func test_combat_round_anchoring_strike_miss():
-	await combat.combat_round([1, 100, 1, 100], [1, 1, 1, 100], 0, 1, "anchoring_strike")
+	CombatMapStatus.attackRange = 1
+	CombatMapStatus.set_attack_skill("anchoring_strike")
+	
+	await combat.combat_round([1, 100, 1, 100], [1, 1, 1, 100])
 	
 	assert_int(defender.get_current_health()).is_equal(defender.get_max_health())
 	assert_bool(defender.is_rooted()).is_false()
 	
 	
 func test_combat_round_anchoring_strike_dead_target():
+	CombatMapStatus.attackRange = 1
+	CombatMapStatus.set_attack_skill("anchoring_strike")
+	
 	await defender.modify_health(-defender.get_max_health()+1)
-	await combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1, "anchoring_strike")
+	await combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100])
 	
 	assert_int(defender.get_current_health()).is_equal(0)
 	assert_bool(defender.is_rooted()).is_false()

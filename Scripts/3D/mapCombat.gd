@@ -481,7 +481,7 @@ func _on_start_button_pressed():
 func _on_move_button_pressed():
 	move_character()
 
-#TODO Test
+
 func move_character() -> void:
 	var selChar = CombatMapStatus.get_selected_character()
 	if validate_move(selChar, CombatMapStatus.get_selected_map_tile(), characterDijkstra[0]):
@@ -674,7 +674,7 @@ func _on_skill_selected(id: int):
 func buff_particles(target, particleColor: String, buffText: String) -> void:
 	pass
 
-#TODO testear
+
 func allied_skill_handler(caster, target, distance, skillName):
 	var particleArgs: Array
 	isCastingSkill = true
