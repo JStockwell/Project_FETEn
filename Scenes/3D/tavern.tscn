@@ -1,29 +1,54 @@
-[gd_scene load_steps=16 format=3 uid="uid://dbkqbo2tbjjv7"]
+[gd_scene load_steps=21 format=3 uid="uid://dbkqbo2tbjjv7"]
 
-[ext_resource type="Texture2D" uid="uid://omp4nekd6s4u" path="res://Assets/Textures/floor_tiles/textures/floor_tiles_02_rough_4k.jpg" id="1_5kh56"]
-[ext_resource type="Texture2D" uid="uid://1w4gt6stnmko" path="res://Assets/Textures/floor_tiles/textures/floor_tiles_02_diff_4k.jpg" id="1_fxol1"]
 [ext_resource type="Script" path="res://Scripts/3D/tavern.gd" id="1_vaq4h"]
-[ext_resource type="Texture2D" uid="uid://cjqwofn7x8ta0" path="res://Assets/Textures/floor_tiles/textures/floor_tiles_02_nor_gl_4k.jpg" id="2_8kp6d"]
+[ext_resource type="Texture2D" uid="uid://dotpb0qnmfnfa" path="res://Assets/Textures/DiamondPlate008C/DiamondPlate008C_4K-JPG_Color.jpg" id="2_61uf5"]
+[ext_resource type="Texture2D" uid="uid://b2mx5we4e0mi3" path="res://Assets/Textures/DiamondPlate008C/DiamondPlate008C_4K-JPG_AmbientOcclusion.jpg" id="3_bltli"]
+[ext_resource type="Texture2D" uid="uid://dfsw56xmlsmdh" path="res://Assets/Textures/DiamondPlate008C/DiamondPlate008C_4K-JPG_Displacement.jpg" id="4_jy4xj"]
 [ext_resource type="PackedScene" uid="uid://7mlxceeje6ma" path="res://Assets/Props/wooden_table/scene.gltf" id="4_rtr3l"]
-[ext_resource type="PackedScene" uid="uid://bm1c2o2b7j3cn" path="res://Assets/Props/table_and_chairs/scene.gltf" id="6_nib1w"]
-[ext_resource type="PackedScene" uid="uid://csirscwnl2jsn" path="res://Assets/Props/table_5/scene.gltf" id="7_able7"]
-[ext_resource type="PackedScene" uid="uid://88iaxvkv7y2c" path="res://Assets/Props/jenson_extending_dining_table_dark_stain_oak/scene.gltf" id="8_ibvtj"]
+[ext_resource type="Texture2D" uid="uid://d4hnunr6e0cve" path="res://Assets/Textures/DiamondPlate008C/DiamondPlate008C_4K-JPG_Metalness.jpg" id="5_1qfi1"]
+[ext_resource type="Texture2D" uid="uid://chp71jcril5rj" path="res://Assets/Textures/DiamondPlate008C/DiamondPlate008C_4K-JPG_NormalGL.jpg" id="6_0w5kn"]
+[ext_resource type="Texture2D" uid="uid://i4b4p2e5n8nc" path="res://Assets/Textures/DiamondPlate008C/DiamondPlate008C_4K-JPG_Roughness.jpg" id="7_3phwk"]
 [ext_resource type="PackedScene" uid="uid://c11mh4mlt8853" path="res://Assets/MapTiles/placeholder_max_map.glb" id="9_7p3eo"]
+[ext_resource type="Material" uid="uid://cum4nwryffnrq" path="res://Assets/Textures/Concrete042C/concrete_042C.tres" id="11_ln2i0"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lwxo7"]
-albedo_texture = ExtResource("1_fxol1")
-roughness_texture = ExtResource("1_5kh56")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5rlju"]
+albedo_texture = ExtResource("2_61uf5")
+metallic = 1.0
+metallic_texture = ExtResource("5_1qfi1")
+metallic_texture_channel = 4
+roughness_texture = ExtResource("7_3phwk")
+roughness_texture_channel = 4
 normal_enabled = true
-normal_texture = ExtResource("2_8kp6d")
-uv1_scale = Vector3(18, 18, 18)
-grow_amount = -3.16
+normal_texture = ExtResource("6_0w5kn")
+ao_enabled = true
+ao_light_affect = 1.0
+ao_texture = ExtResource("3_bltli")
+ao_texture_channel = 4
+heightmap_enabled = true
+heightmap_scale = 0.066
+heightmap_texture = ExtResource("4_jy4xj")
+uv1_scale = Vector3(10, 10, 10)
 
-[sub_resource type="QuadMesh" id="QuadMesh_fhdrr"]
-material = SubResource("StandardMaterial3D_lwxo7")
-size = Vector2(300, 300)
+[sub_resource type="BoxMesh" id="BoxMesh_endt2"]
+material = SubResource("StandardMaterial3D_5rlju")
+size = Vector3(70, 1, 49)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ip43j"]
-size = Vector3(300, 1, 300)
+[sub_resource type="BoxShape3D" id="BoxShape3D_5lws3"]
+size = Vector3(70, 1, 49)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gxts8"]
+material = ExtResource("11_ln2i0")
+size = Vector3(70, 42, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_awwcd"]
+size = Vector3(70, 42, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sry3h"]
+material = ExtResource("11_ln2i0")
+size = Vector3(49, 42, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_msj2s"]
+size = Vector3(49, 42, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_587e4"]
 
@@ -39,32 +64,74 @@ script = ExtResource("1_vaq4h")
 
 [node name="Room" type="Node3D" parent="."]
 
-[node name="Floor" type="StaticBody3D" parent="Room"]
+[node name="Walls" type="Node3D" parent="Room"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/Floor"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-mesh = SubResource("QuadMesh_fhdrr")
+[node name="Floor" type="StaticBody3D" parent="Room/Walls"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Floor"]
-transform = Transform3D(1.00147, 0, 0, 0, 1.00147, 0, 0, 0, 1.00147, 0, -0.5, 0)
-shape = SubResource("BoxShape3D_ip43j")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/Walls/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_endt2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Walls/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_5lws3")
+
+[node name="BackWall" type="StaticBody3D" parent="Room/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/Walls/BackWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21, 0)
+mesh = SubResource("BoxMesh_gxts8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Walls/BackWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21, 0)
+shape = SubResource("BoxShape3D_awwcd")
+
+[node name="Front Wall" type="StaticBody3D" parent="Room/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 25)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/Walls/Front Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21, 0)
+mesh = SubResource("BoxMesh_gxts8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Walls/Front Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21, 0)
+shape = SubResource("BoxShape3D_awwcd")
+
+[node name="LeftWall" type="StaticBody3D" parent="Room/Walls"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -35, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/Walls/LeftWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21, 0)
+mesh = SubResource("BoxMesh_sry3h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Walls/LeftWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21, 0)
+shape = SubResource("BoxShape3D_msj2s")
+
+[node name="RightWall" type="StaticBody3D" parent="Room/Walls"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 35, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/Walls/RightWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21, 0)
+mesh = SubResource("BoxMesh_sry3h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Walls/RightWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21, 0)
+shape = SubResource("BoxShape3D_msj2s")
 
 [node name="Furniture" type="Node3D" parent="Room"]
 
 [node name="wooden_table" parent="Room/Furniture" instance=ExtResource("4_rtr3l")]
 transform = Transform3D(-6.88673e-07, 0, -14.795, 0, 14.795, 0, 15.755, 0, -6.4671e-07, 0, 7.20751, 0)
 
-[node name="table_and_chairs" parent="Room/Furniture" instance=ExtResource("6_nib1w")]
-transform = Transform3D(6.62872e-07, 0, 8.78, 0, 8.78, 0, -8.78, 0, 6.62872e-07, -3.268, -28.152, 8.88)
-visible = false
-
-[node name="table_5" parent="Room/Furniture" instance=ExtResource("7_able7")]
-transform = Transform3D(-1.69163e-07, 0, -3.87, 0, 3.87, 0, 3.87, 0, -1.69163e-07, 0, -1.43128, 0)
-visible = false
-
-[node name="jenson_table" parent="Room/Furniture" instance=ExtResource("8_ibvtj")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
-visible = false
+[node name="OmniLight3D" type="OmniLight3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 35, 0)
+light_color = Color(0.816982, 0.790471, 0.61917, 1)
+light_energy = 10.0
+light_indirect_energy = 7.5
+omni_range = 35.0
+omni_attenuation = 0.75
 
 [node name="Debug" type="Node3D" parent="."]
 
@@ -81,6 +148,7 @@ visible = false
 
 [node name="Sun" type="DirectionalLight3D" parent="World"]
 transform = Transform3D(0.707107, 0.353553, -0.612372, 0, 0.866025, 0.5, 0.707107, -0.353553, 0.612372, 0, 5.02738, 0)
+visible = false
 
 [node name="Tavern" type="Marker3D" parent="World"]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 14.9142, 0)
