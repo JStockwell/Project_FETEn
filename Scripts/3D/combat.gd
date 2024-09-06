@@ -43,23 +43,23 @@ func _ready():
 
 	# TODO Times and UI once Map is being used
 	if GameStatus.autorunCombat:
-		await combat_round(generate_rolls(), generate_rolls(), CombatMapStatus.mapMod, CombatMapStatus.attackRange, CombatMapStatus.attackSkill)
+		await combat_round(generate_rolls(), generate_rolls())
 
 # 4 types: melee, ranged, skill and mag
-func combat_round(rolls: Array, rolls_retaliate: Array, mapMod: int, range: int, skillName: String = "") -> void:
+func combat_round(rolls: Array, rolls_retaliate: Array) -> void:
 	# TODO implement character acc and crit modifiers
-	if skillName == "":
-		await attack(attacker, defender, rolls, mapMod)
+	if CombatMapStatus.attackSkill == "":
+		await attack(attacker, defender, rolls)
 	else:
-		var skillSet = GameStatus.skillSet[skillName].get_skill()
+		var skillSet = GameStatus.skillSet[CombatMapStatus.attackSkill].get_skill()
 		if skillSet["sef"]:
-			await SEF.run(self, skillName, rolls, attacker, defender, mapMod, 0, skillSet["spa"], skillSet["imd"])
+			await SEF.run(self, CombatMapStatus.attackSkill, rolls, attacker, defender, 0, skillSet["spa"], skillSet["imd"])
 		else:
-			await attack(attacker, defender, rolls, mapMod, skillSet["spa"], skillSet["imd"])
+			await attack(attacker, defender, rolls, skillSet["spa"], skillSet["imd"])
 	
-	if range == 1 and defender.get_stats()["current_health"] != 0:
+	if CombatMapStatus.attackRange == 1 and defender.get_stats()["current_health"] != 0:
 		# TODO check mapMod for enemy? No mapMod?
-		await attack(defender, attacker, rolls_retaliate, mapMod)
+		await attack(defender, attacker, rolls_retaliate)
 	
 	CombatMapStatus.set_has_attacked(true)
 	combat_end.emit()
@@ -67,9 +67,9 @@ func combat_round(rolls: Array, rolls_retaliate: Array, mapMod: int, range: int,
 # Attack functions
 # TODO Map modifier
 # t_ -> temporary
-func attack(t_attacker, t_defender, rolls: Array, mapMod: int, spa: int = 0, imd: int = 0) -> void:
+func attack(t_attacker, t_defender, rolls: Array, spa: int = 0, imd: int = 0) -> void:
 	# TODO Char mod
-	if calc_hit_chance(t_attacker.get_stats()["dexterity"], t_defender.get_stats()["agility"], mapMod, rolls):
+	if calc_hit_chance(t_attacker.get_stats()["dexterity"], t_defender.get_stats()["agility"], rolls):
 		var crit = calc_crit(t_attacker.get_stats()["dexterity"], t_attacker.get_stats()["agility"], t_defender.get_stats()["agility"], 0, rolls[3])
 		var dmg = calc_damage(t_attacker.get_stats()["attack"], t_defender.get_stats()["defense"], spa, imd)
 			
@@ -99,8 +99,8 @@ func deal_damage(dmg: int, crit: float, t_defender):
 		await wait(0.3)
 
 # Attack Calculations
-func calc_hit_chance(att_dex: int, def_agi: int, accMod: int, rolls: Array) -> bool:
-	var chance = 50 + 5 * att_dex - 3 * def_agi + accMod
+func calc_hit_chance(att_dex: int, def_agi: int, rolls: Array) -> bool:
+	var chance = 50 + 5 * att_dex - 3 * def_agi + CombatMapStatus.mapMod
 	# 1: True hit, 2: Bloated hit
 	if rolls[0] == 1:
 		return rolls[1] <= chance

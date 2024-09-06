@@ -7,6 +7,8 @@ var skillSet = Utils.read_json("res://Assets/json/skills.json")
 func _ready():
 	GameStatus.set_playable_characters(playableCharacters)
 	GameStatus.set_enemy_set(enemySet)
+	GameStatus.party = {}
+	CombatMapStatus.isStartCombat = true
 
 func _on_start_button_pressed():
 	get_tree().change_scene_to_file("res://Scenes/UI/characterSelect.tscn")
