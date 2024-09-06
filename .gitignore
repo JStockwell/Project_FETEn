@@ -17,3 +17,4 @@ mono_crash.*.json
 # Project-specific ignores
 .vscode/
 Releases/
+*.tmp
