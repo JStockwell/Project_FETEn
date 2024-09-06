@@ -198,8 +198,6 @@ static func viable_ranged_positions(map, enemy, target, tilesRange) -> Array: # 
 		if not map.calc_los(tilesRange[tile], target)[0]:
 			if Utils.calc_distance(tilesRange[tile], target.get_map_coords()) <= enemy.get_range() and not map.get_tile_from_coords(tilesRange[tile]).is_populated():
 				viableShootingPositions.append(tilesRange[tile])
-		else:
-			break
 	return viableShootingPositions
 
 # generic for now and will probably will stay unless we want to tweak the hell out of it to account for cover

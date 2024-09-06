@@ -2,7 +2,7 @@ class_name SEF extends Node
 
 var Character = preload("res://Scenes/Entities/character.tscn")
 
-static func run(Combat, sefName:String, rolls, attacker, defender, accMod: int, critMod: int, spa: int = 0, imd = 0):
+static func run(Combat, sefName: String, rolls, attacker, defender, accMod: int, critMod: int, spa: int = 0, imd = 0):
 	match sefName:
 		"hello_world":
 			hello_world()
