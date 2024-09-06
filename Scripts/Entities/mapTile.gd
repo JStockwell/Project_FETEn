@@ -18,7 +18,7 @@ var isDifficultTerrain: bool
 
 var isPopulated: bool
 var isTraversable: bool
-var obstacleType: int # 0 None, 1 Semi, 2 Full
+var obstacleType: int # 0 None, 1 Semi, 2 Full'
 var isControlZone: bool = false
 var isAllyControlZone: bool = false
 
