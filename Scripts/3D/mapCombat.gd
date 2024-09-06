@@ -8,6 +8,8 @@ var focusedSkill: int = -1
 var mapHeightModifier = 0.25
 var isCastingSkill: bool = false
 
+var BuffParticles = load("res://Scenes/Entities/buffParticles.tscn")
+
 @onready
 var mapTileGroup = $MapTileGroup
 @onready
@@ -574,6 +576,10 @@ func check_behind_cover(defender, tileArray: Array) -> int:
 
 func _on_skill_selected(id: int):
 	skillIssue.hide()
+	skillIssue2.hide()
+	skillMenu.hide()
+	skillCard.hide()
+	
 	var skillName
 	for skill in GameStatus.skillSet:
 		if GameStatus.skillSet[skill].get_skill_menu_id() == id:
@@ -609,8 +615,8 @@ func _on_skill_selected(id: int):
 			CombatMapStatus.set_combat(caster, defender, Utils.calc_distance(caster.get_map_coords(), defender.get_map_coords()), 0, skillName)
 			combat_start.emit()
 		
-		if not GameStatus.skillSet[skillName].is_instantaneous(): #handles the instantaneous flag here
-			CombatMapStatus.hasAttacked = true
+			if not GameStatus.skillSet[skillName].is_instantaneous(): #handles the instantaneous flag here
+				CombatMapStatus.hasAttacked = true
 
 	# preparar algo similar a current health con el cap de vida, crear y setear a 0 si inexistente, en caso de mantenerse sumar. # Done
 	# bloquear todos los controles # mangar del turno enemigo. # done
@@ -626,13 +632,24 @@ func buff_particles(target, particleColor: String, buffText: String) -> void:
 
 #TODO testear
 func allied_skill_handler(caster, target, distance, skillName):
+	var particleArgs: Array
 	isCastingSkill = true
-	await wait(1)
 	if GameStatus.skillSet[skillName].get_spa() != 0:
-		SEF.run_out_of_combat(skillName, caster, target, GameStatus.skillSet[skillName].get_spa())
+		particleArgs = SEF.run_out_of_combat(skillName, caster, target, GameStatus.skillSet[skillName].get_spa())
 	else:
-		SEF.run_out_of_combat(skillName, caster, target, 0)
+		particleArgs = SEF.run_out_of_combat(skillName, caster, target, 0)
 	target.cap_current_stats(target.get_stats())
+	
+	var buffPart = BuffParticles.instantiate()
+	add_child(buffPart)
+	buffPart.connect("particleEnd", Callable(self, "_on_particle_end"))
+	
+	buffPart.position = Vector3(target.get_map_coords().x, 0.5 + get_tile_from_coords(target.get_map_coords()).get_height() * mapHeightModifier, target.get_map_coords().y)
+	buffPart.start(particleArgs[0], particleArgs[1])
+	
+
+func _on_particle_end(particleScn):
+	particleScn.queue_free()
 	set_status_bars(CombatMapStatus.get_selected_character())
 	isCastingSkill = false
 

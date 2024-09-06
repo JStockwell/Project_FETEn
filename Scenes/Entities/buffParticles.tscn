@@ -1,0 +1,126 @@
+[gd_scene load_steps=15 format=3 uid="uid://dreo5nuayogf5"]
+
+[ext_resource type="Script" path="res://Scripts/Entities/buffParticles.gd" id="1_wej1b"]
+[ext_resource type="Texture2D" uid="uid://5dhec6rvvtuf" path="res://Assets/Characters/Enemies/Ranged_Gobbo/ranged_gobbo_head.png" id="2_tie4p"]
+[ext_resource type="FontFile" uid="uid://71blta5wlshk" path="res://Assets/Fonts/Minecraft/Minecraft.ttf" id="3_532em"]
+
+[sub_resource type="Curve" id="Curve_8a7cb"]
+min_value = -10.0
+max_value = 10.0
+_data = [Vector2(0, -10), 0.0, 0.0, 0, 0, Vector2(1, 10), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_uibaw"]
+curve = SubResource("Curve_8a7cb")
+
+[sub_resource type="Curve" id="Curve_pgo16"]
+_data = [Vector2(0, 1), 0.0, -0.41125, 0, 1, Vector2(0.855072, 0.648352), -1.27385, -1.27385, 0, 0, Vector2(1, 0.00652373), -4.42861, 0.0, 1, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_5umdv"]
+curve = SubResource("Curve_pgo16")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ncjni"]
+lifetime_randomness = 0.2
+emission_shape_scale = Vector3(0.4, 0.1, 0.4)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.7
+angle_min = -10.0
+angle_max = 10.0
+angle_curve = SubResource("CurveTexture_uibaw")
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, 1.2, 0)
+scale_min = 0.0
+scale_curve = SubResource("CurveTexture_5umdv")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wui7f"]
+load_path = "res://.godot/imported/goblin_head.png-b355f4414a40757ab358c4f74a003fe2.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_87ari"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+blend_mode = 1
+cull_mode = 2
+albedo_texture = SubResource("CompressedTexture2D_wui7f")
+emission_enabled = true
+emission = Color(0.308384, 0.747527, 0.306917, 1)
+emission_energy_multiplier = 5.0
+backlight = Color(4.33177e-07, 0.487055, 0.551575, 1)
+grow_amount = 3.388
+
+[sub_resource type="QuadMesh" id="QuadMesh_1vkk7"]
+lightmap_size_hint = Vector2i(7, 7)
+material = SubResource("StandardMaterial3D_87ari")
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ll6y5"]
+lifetime_randomness = 0.2
+emission_shape_scale = Vector3(0.4, 0.1, 0.4)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.7
+angle_min = -10.0
+angle_max = 10.0
+angle_curve = SubResource("CurveTexture_uibaw")
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, 1.2, 0)
+scale_min = 0.0
+scale_curve = SubResource("CurveTexture_5umdv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c0twc"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+blend_mode = 1
+cull_mode = 2
+albedo_texture = ExtResource("2_tie4p")
+emission_enabled = true
+emission = Color(0.174777, 0.717264, 0.764681, 1)
+emission_energy_multiplier = 5.0
+backlight = Color(4.33177e-07, 0.487055, 0.551575, 1)
+grow_amount = 3.388
+
+[sub_resource type="QuadMesh" id="QuadMesh_o7iae"]
+lightmap_size_hint = Vector2i(7, 7)
+material = SubResource("StandardMaterial3D_c0twc")
+size = Vector2(0.1, 0.1)
+
+[node name="ParticleDemo" type="Node3D"]
+script = ExtResource("1_wej1b")
+
+[node name="HealParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.195042, 0)
+emitting = false
+amount = 128
+one_shot = true
+preprocess = 0.2
+visibility_aabb = AABB(-1, -1, -1, 2, 2, 2)
+transform_align = 1
+process_material = SubResource("ParticleProcessMaterial_ncjni")
+draw_pass_1 = SubResource("QuadMesh_1vkk7")
+
+[node name="BuffParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.390083, 0)
+emitting = false
+amount = 128
+one_shot = true
+preprocess = 0.2
+visibility_aabb = AABB(-1, -1, -1, 2, 2, 2)
+transform_align = 1
+process_material = SubResource("ParticleProcessMaterial_ll6y5")
+draw_pass_1 = SubResource("QuadMesh_o7iae")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 1, 0)
+text = "+33"
+font = ExtResource("3_532em")
+font_size = 64
+
+[connection signal="finished" from="HealParticles" to="." method="_on_particles_finished"]
+[connection signal="finished" from="BuffParticles" to="." method="_on_particles_finished"]
