@@ -26,8 +26,7 @@ var startButton = $UI/StartButton
 var mapChoice = $UI/MapChoice
 
 func _ready():
-	if GameStatus.debugMode:
-		setup_status()
+	setup_status()
 		
 	var i = 0
 	var j = 0
