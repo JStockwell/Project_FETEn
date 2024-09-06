@@ -6,6 +6,9 @@ var battleStart: bool = false
 var characterDijkstra
 var focusedSkill: int = -1
 var mapHeightModifier = 0.25
+var isCastingSkill: bool = false
+
+var BuffParticles = load("res://Scenes/Entities/buffParticles.tscn")
 
 @onready
 var mapTileGroup = $MapTileGroup
@@ -336,25 +339,23 @@ func regen_mana() -> void:
 		if char.get_max_mana() != 0:
 			char.modify_mana(char.get_reg_mana())
 
+# TODO Función cambiada
 func purge_the_dead():
-	var dead = null
+	var deadList = []
 	for char in characterGroup.get_children():
 		if char.get_current_health() == 0:
-			dead = char
+			deadList.append(char)
 			
 	for enemy in enemyGroup.get_children():
 		if enemy.get_current_health() == 0:
-			dead = enemy
+			deadList.append(enemy)
 			
-	if dead != null:
-		if dead.get_map_id() == CombatMapStatus.get_selected_character().get_map_id():
-			print("hello") # what the hell this doing here?
+	for dead in deadList:
 		CombatMapStatus.remove_character_ini(dead.get_map_id())
 		var tile = get_tile_from_coords(dead.get_map_coords())
 		tile.set_is_populated(false)
 		initiativeBar.character_death(dead)
-		dead.queue_free()
-		
+		dead.free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -575,6 +576,10 @@ func check_behind_cover(defender, tileArray: Array) -> int:
 
 func _on_skill_selected(id: int):
 	skillIssue.hide()
+	skillIssue2.hide()
+	skillMenu.hide()
+	skillCard.hide()
+	
 	var skillName
 	for skill in GameStatus.skillSet:
 		if GameStatus.skillSet[skill].get_skill_menu_id() == id:
@@ -599,28 +604,54 @@ func _on_skill_selected(id: int):
 		caster.modify_mana(-GameStatus.skillSet[skillName].get_cost())
 		
 		if GameStatus.skillSet[skillName].can_target_allies():
-			var target = CombatMapStatus.get_selected_ally()
-			CombatMapStatus.set_ally_interaction(caster, target, Utils.calc_distance(caster.get_map_coords(), target.get_map_coords()))
-			
-			pass
-
+			if CombatMapStatus.get_selected_ally() == null:
+				var target = CombatMapStatus.get_selected_character()
+				skillResult = await allied_skill_handler(caster, target, Utils.calc_distance(caster.get_map_coords(), target.get_map_coords()), skillName)
+			else:
+				var target = CombatMapStatus.get_selected_ally()
+				skillResult = await allied_skill_handler(caster, target, Utils.calc_distance(caster.get_map_coords(), target.get_map_coords()), skillName)
 		else:
 			var defender = CombatMapStatus.get_selected_enemy()
 			CombatMapStatus.set_combat(caster, defender, Utils.calc_distance(caster.get_map_coords(), defender.get_map_coords()), 0, skillName)
 			combat_start.emit()
 		
-		if not GameStatus.skillSet[skillName].is_instantaneous(): #handles the instantaneous flag here
-			CombatMapStatus.hasAttacked = true
+			if not GameStatus.skillSet[skillName].is_instantaneous(): #handles the instantaneous flag here
+				CombatMapStatus.hasAttacked = true
 
-func allied_skill_handler():
-	# preparar algo similar a current health con el cap de vida, crear y setear a 0 si inexistente, en caso de mantenerse sumar. Done
-	# una vez vemos que todo bien
-	# bloquear todos los controles # mangar del turno enemigo
-	# cura modify health # activar el SEF y probablemente deberíamos llevar aquí el control del cap de curación
-	# cap stats para asegurar no ir por encima de límites por si acaso
+	# preparar algo similar a current health con el cap de vida, crear y setear a 0 si inexistente, en caso de mantenerse sumar. # Done
+	# bloquear todos los controles # mangar del turno enemigo. # done
+	# cura modify health # activar el SEF y probablemente deberíamos llevar aquí el control del cap de curación # done teóricamente
+	# cap stats para asegurar no ir por encima de límites por si acaso # done
 	# instanciar partículas verdes bajo el target
 	# poner un numerito de curación encima del target
 	pass
+	
+func buff_particles(target, particleColor: String, buffText: String) -> void:
+	
+	pass
+
+#TODO testear
+func allied_skill_handler(caster, target, distance, skillName):
+	var particleArgs: Array
+	isCastingSkill = true
+	if GameStatus.skillSet[skillName].get_spa() != 0:
+		particleArgs = SEF.run_out_of_combat(skillName, caster, target, GameStatus.skillSet[skillName].get_spa())
+	else:
+		particleArgs = SEF.run_out_of_combat(skillName, caster, target, 0)
+	target.cap_current_stats(target.get_stats())
+	
+	var buffPart = BuffParticles.instantiate()
+	add_child(buffPart)
+	buffPart.connect("particleEnd", Callable(self, "_on_particle_end"))
+	
+	buffPart.position = Vector3(target.get_map_coords().x, 0.5 + get_tile_from_coords(target.get_map_coords()).get_height() * mapHeightModifier, target.get_map_coords().y)
+	buffPart.start(particleArgs[0], particleArgs[1])
+	
+
+func _on_particle_end(particleScn):
+	particleScn.queue_free()
+	set_status_bars(CombatMapStatus.get_selected_character())
+	isCastingSkill = false
 
 func _on_end_turn_button_pressed():
 	CombatMapStatus.advance_ini()
@@ -635,7 +666,7 @@ func update_buttons() -> void:
 	update_camera_button()
 
 func update_move_button() -> void:
-	if CombatMapStatus.hasMoved or CombatMapStatus.get_selected_character().is_enemy():
+	if CombatMapStatus.hasMoved or CombatMapStatus.get_selected_character().is_enemy() or isCastingSkill:
 		moveButton.disabled = true
 	else:
 		if CombatMapStatus.get_selected_map_tile() == null:
@@ -643,12 +674,12 @@ func update_move_button() -> void:
 			
 		elif validate_move(CombatMapStatus.get_selected_character(), CombatMapStatus.get_selected_map_tile(), characterDijkstra[0]):
 			moveButton.disabled = false
-			
+		
 		else:
 			moveButton.disabled = true
 
 func update_phys_attack_button() -> void:
-	if CombatMapStatus.hasAttacked or CombatMapStatus.get_selected_character().is_enemy():
+	if CombatMapStatus.hasAttacked or CombatMapStatus.get_selected_character().is_enemy() or isCastingSkill:
 		physAttackButton.disabled = true
 	else:
 		if CombatMapStatus.get_selected_enemy() == null:
@@ -664,9 +695,12 @@ func update_skill_menu_button() -> void:
 	for skill in CombatMapStatus.get_selected_character().get_skills():
 		if GameStatus.skillSet[skill].is_instantaneous():
 			instantMenu = true
-			
-	if instantMenu:
+	
+	if isCastingSkill:
+		baseSkillMenu.disabled = true
+	elif instantMenu:
 		baseSkillMenu.disabled = false
+		handle_skill_info()
 	elif CombatMapStatus.hasAttacked or CombatMapStatus.get_selected_character().is_enemy() or len(CombatMapStatus.get_selected_character().get_skills()) == 0:
 		baseSkillMenu.disabled = true
 	else:
@@ -691,14 +725,14 @@ func handle_skill_info() -> void:
 			skillCard.show()
 
 func update_end_turn_button() -> void:
-	if CombatMapStatus.get_selected_character().is_enemy():
+	if CombatMapStatus.get_selected_character().is_enemy() or isCastingSkill:
 		endTurnButton.disabled = true
 		
 	else:
 		endTurnButton.disabled = false
 		
 func update_camera_button() -> void:
-	if CombatMapStatus.get_selected_character().is_enemy():
+	if CombatMapStatus.get_selected_character().is_enemy() or isCastingSkill:
 		changeCameraButton.disabled = true
 	else:
 		changeCameraButton.disabled = false
@@ -719,7 +753,7 @@ func highlight_control_zones(myCharacterGroup) -> void:
 					if tile.is_traversable():
 						tile.enemy.show()
 						tile.set_is_control_zone(true)
-					
+
 func check_within_bounds(vector: Vector2, offset: Vector2) -> bool:
 	var result = true
 	
@@ -832,3 +866,11 @@ func update_debug_label():
 	debugLabel.text += "\ncurrentInitative: " + str(CombatMapStatus.get_current_turn_char())
 	debugLabel.text += "\nhasAttacked: " + str(CombatMapStatus.hasAttacked)
 	debugLabel.text += "\nhasMoved: " + str(CombatMapStatus.hasMoved)
+
+
+func _on_debug_ally_skill_button_pressed():
+	var skillName = "bestow_life"
+	var caster = CombatMapStatus.get_selected_character()
+	var target = CombatMapStatus.get_selected_ally()
+	var distance = Utils.calc_distance(caster.get_map_coords(), target.get_map_coords())
+	allied_skill_handler(caster, target, distance, skillName)

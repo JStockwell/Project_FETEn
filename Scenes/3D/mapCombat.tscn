@@ -264,6 +264,14 @@ layout_mode = 0
 offset_right = 1912.0
 offset_bottom = 48.0
 
+[node name="DebugAllySkillButton" type="Button" parent="DebugUI"]
+layout_mode = 0
+offset_left = 109.0
+offset_top = 513.0
+offset_right = 258.0
+offset_bottom = 579.0
+text = "allied skill"
+
 [node name="StartUI" type="Control" parent="."]
 visible = false
 layout_mode = 3
@@ -304,5 +312,6 @@ stretch_mode = 5
 [connection signal="pressed" from="UI/Actions/MoveButton" to="." method="_on_move_button_pressed"]
 [connection signal="pressed" from="UI/Actions/PhysAttackButton" to="." method="_on_phys_attack_button_pressed"]
 [connection signal="pressed" from="UI/Actions/EndTurnButton" to="." method="_on_end_turn_button_pressed"]
+[connection signal="pressed" from="DebugUI/DebugAllySkillButton" to="." method="_on_debug_ally_skill_button_pressed"]
 [connection signal="pressed" from="StartUI/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="ChangeCamera" to="." method="_on_change_camera_pressed"]

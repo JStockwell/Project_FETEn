@@ -92,6 +92,7 @@
 		"range": 0,
 		"cost": 3,
 		"sef": true,
+		"cta": true,
 		"inst": true
 	}
 }

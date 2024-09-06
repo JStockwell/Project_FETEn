@@ -146,8 +146,8 @@ func modify_mana(mana_mod: int) -> void:
 	stats["current_mana"] += mana_mod
 	cap_current_stats(stats)
 
-func modify_healing_threshold(heal_mod: int) -> void:
-	stats["healing_threshold"] -= heal_mod
+func modify_healing_threshold(curr_heal_threshold: int) -> void:
+	stats["healing_threshold"] = curr_heal_threshold
 	cap_current_stats(stats)
 
 # Roll is a D20
