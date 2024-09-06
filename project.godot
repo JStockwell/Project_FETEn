@@ -10,10 +10,11 @@ config_version=5
 
 [application]
 
-config/name="Project_FETEn"
-config/version="v0.1a"
+config/name="Project FETEn"
+config/version="0.0.1-pre-alpha"
 run/main_scene="res://Scenes/UI/bootScreen.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
+run/max_fps=60
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
 config/icon="res://Assets/Characters/Enemies/Gobsworth/gobsworth_head.png"
@@ -28,6 +29,8 @@ CombatMapStatus="*res://Scripts/Global/combatMapStatus.gd"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/resizable=false
+window/size/borderless=true
 window/stretch/mode="viewport"
 
 [editor_plugins]

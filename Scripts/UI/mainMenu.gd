@@ -10,3 +10,6 @@ func _ready():
 
 func _on_start_button_pressed():
 	get_tree().change_scene_to_file("res://Scenes/UI/characterSelect.tscn")
+
+func _on_credits_button_pressed():
+	get_tree().change_scene_to_file("res://Scenes/UI/credits.tscn")

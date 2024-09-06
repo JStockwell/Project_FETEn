@@ -58,7 +58,8 @@ func before_test():
 		"sprite_path": "",
 		"current_health": 24,
 		"current_mana": 5, 
-		"is_enemy": false
+		"is_enemy": false,
+		"healing_threshold": 30
 	}
 	
 	test_char = Factory.Character.create(initial_stats, false)

@@ -23,6 +23,9 @@ var mapMod: int
 var attackRange: int
 var attackSkill: String = ""
 
+var effectRange: int
+var effectSkill: String = ""
+
 var isStartCombat: bool
 var initiative: Array = []
 var currentIni: int
