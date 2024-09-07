@@ -415,15 +415,20 @@ func test_purge_the_dead_ally():
 func test_purge_the_dead_enemy():
 	test_mapCombat._on_start_button_pressed()
 	var enemy = test_mapCombat.enemyGroup.get_children()[0]
+	var player = test_mapCombat.characterGroup.get_children()[0]
+	var player_mana = player.get_current_mana()
 	enemy.modify_health(-8000)
 	assert_int(enemy.get_current_health()).is_zero()
 	var enemy_map_id = enemy.get_map_id()
 	var enemy_tile = test_mapCombat.get_tile_from_coords(enemy.get_map_coords())
+	CombatMapStatus.set_selected_character(player)
+	CombatMapStatus.set_selected_enemy(enemy)
 	
 	test_mapCombat.purge_the_dead()
 	
 	assert_array(CombatMapStatus.get_initiative()).not_contains([enemy_map_id])
 	assert_bool(enemy_tile.is_populated()).is_false()
+	assert_int(player.get_current_mana()).is_equal(player_mana)
 	
 	test_mapCombat.initial_map_load()
 	enemy = test_mapCombat.enemyGroup.get_children()[0]
@@ -437,6 +442,8 @@ func test_purge_the_dead_no_one_dies():
 	var enemy_map_id = enemy.get_map_id()
 	var ally_tile = test_mapCombat.get_tile_from_coords(ally.get_map_coords())
 	var enemy_tile = test_mapCombat.get_tile_from_coords(enemy.get_map_coords())
+	CombatMapStatus.set_selected_character(ally)
+	CombatMapStatus.set_selected_enemy(enemy)
 	
 	test_mapCombat.purge_the_dead()
 	
@@ -444,6 +451,32 @@ func test_purge_the_dead_no_one_dies():
 	assert_array(CombatMapStatus.get_initiative()).contains([ally_map_id, enemy_map_id])
 	assert_bool(ally_tile.is_populated()).is_true()
 	assert_bool(enemy_tile.is_populated()).is_true()
+	
+	
+func test_purge_the_dead_mana_regen_on_kill():
+	test_mapCombat._on_start_button_pressed()
+	var enemy = test_mapCombat.enemyGroup.get_children()[0]
+	var player = test_mapCombat.characterGroup.get_children()[0]
+	player.get_stats()["id"] = "azrael"
+	var player_mana = player.get_current_mana()
+	enemy.modify_health(-8000)
+	assert_int(enemy.get_current_health()).is_zero()
+	var enemy_map_id = enemy.get_map_id()
+	var enemy_tile = test_mapCombat.get_tile_from_coords(enemy.get_map_coords())
+	CombatMapStatus.set_selected_character(player)
+	CombatMapStatus.set_selected_enemy(enemy)
+	
+	
+	test_mapCombat.purge_the_dead()
+	
+	assert_array(CombatMapStatus.get_initiative()).not_contains([enemy_map_id])
+	assert_bool(enemy_tile.is_populated()).is_false()
+	assert_int(player.get_current_mana()).is_equal(player_mana+1)
+	
+	test_mapCombat.initial_map_load()
+	enemy = test_mapCombat.enemyGroup.get_children()[0]
+	enemy.modify_health(8000)
+	player.get_stats()["id"] = "attacker"
 	
 	
 func test_character_handler_enemy_turn():
@@ -1049,6 +1082,17 @@ func test_update_move_button_enemy_turn():
 	assert_bool(test_mapCombat.moveButton.disabled).is_true()
 	
 	
+func test_update_move_button_isCastingSkill():
+	CombatMapStatus.set_initiative([0,1])
+	test_mapCombat.isCastingSkill = true
+	var player = test_mapCombat.characterGroup.get_children()[0]
+	CombatMapStatus.set_selected_character(player)
+	
+	test_mapCombat.update_move_button()
+	
+	assert_bool(test_mapCombat.moveButton.disabled).is_true()
+	
+	
 func test_update_move_button_not_selected_maptile():
 	var character = test_mapCombat.characterGroup.get_children()[0]
 	var prev_coords = character.get_map_coords()
@@ -1073,6 +1117,17 @@ func test_update_phys_attack_button_is_enemy():
 	test_mapCombat._on_start_button_pressed()
 	CombatMapStatus.set_initiative([1, 0])
 
+	test_mapCombat.update_phys_attack_button()
+	
+	assert_bool(test_mapCombat.physAttackButton.disabled).is_true()
+	
+	
+func test_update_phys_attack_button_isCastingSkill():
+	CombatMapStatus.set_initiative([0,1])
+	test_mapCombat.isCastingSkill = true
+	var player = test_mapCombat.characterGroup.get_children()[0]
+	CombatMapStatus.set_selected_character(player)
+	
 	test_mapCombat.update_phys_attack_button()
 	
 	assert_bool(test_mapCombat.physAttackButton.disabled).is_true()
@@ -1122,6 +1177,17 @@ func test_update_skill_menu_button_is_enemy():
 	var enemy = test_mapCombat.enemyGroup.get_children()[0]
 	CombatMapStatus.set_selected_character(enemy)
 
+	test_mapCombat.update_skill_menu_button()
+	
+	assert_bool(test_mapCombat.baseSkillMenu.disabled).is_true()
+	
+	
+func test_update_skill_menu_button_isCastingSkill():
+	CombatMapStatus.set_initiative([0,1])
+	test_mapCombat.isCastingSkill = true
+	var player = test_mapCombat.characterGroup.get_children()[0]
+	CombatMapStatus.set_selected_character(player)
+	
 	test_mapCombat.update_skill_menu_button()
 	
 	assert_bool(test_mapCombat.baseSkillMenu.disabled).is_true()
@@ -1202,7 +1268,52 @@ func test_update_end_turn_button_is_enemy():
 	test_mapCombat.update_end_turn_button()
 	
 	assert_bool(test_mapCombat.endTurnButton.disabled).is_true()
+	
+	
+func test_update_end_turn_button_isCastingSkill():
+	CombatMapStatus.set_initiative([0,1])
+	test_mapCombat.isCastingSkill = true
+	var player = test_mapCombat.characterGroup.get_children()[0]
+	CombatMapStatus.set_selected_character(player)
+	
+	test_mapCombat.update_end_turn_button()
+	
+	assert_bool(test_mapCombat.endTurnButton.disabled).is_true()
+	
+	
+func test_update_global_button_ok():
+	CombatMapStatus.set_initiative([0,1])
+	var player = test_mapCombat.characterGroup.get_children()[0]
+	CombatMapStatus.set_selected_character(player)
+	
+	test_mapCombat.update_global_button()
+	
+	assert_bool(test_mapCombat.changeCameraButton.disabled).is_false()
+	assert_bool(test_mapCombat.mainMenuButton.disabled).is_false()
+	
+	
+func test_update_global_button_isEnemy():
+	CombatMapStatus.set_initiative([1, 0])
+	var enemy = test_mapCombat.enemyGroup.get_children()[0]
+	CombatMapStatus.set_selected_character(enemy)
+	
+	test_mapCombat.update_global_button()
+	
+	assert_bool(test_mapCombat.changeCameraButton.disabled).is_true()
+	assert_bool(test_mapCombat.mainMenuButton.disabled).is_true()
+	
 
+func test_update_global_button_isCastingSkill():
+	CombatMapStatus.set_initiative([0,1])
+	var player = test_mapCombat.characterGroup.get_children()[0]
+	CombatMapStatus.set_selected_character(player)
+	test_mapCombat.isCastingSkill = true
+	
+	test_mapCombat.update_global_button()
+	
+	assert_bool(test_mapCombat.changeCameraButton.disabled).is_true()
+	assert_bool(test_mapCombat.mainMenuButton.disabled).is_true()
+	
 
 func test_highlight_movement(do_skip=true, skip_reason="Test is giving false negatives"):
 	test_mapCombat.characterGroup.get_children()[0].get_stats()["movement"] = 1
