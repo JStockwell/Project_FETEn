@@ -163,3 +163,14 @@ static func valid_coordinates(map, coords: Vector2, tilesOccupiedOponents) -> bo
 		return false
 	else:
 		return true
+
+# Combat Predictions
+static func predict_hit_chance(att_dex, def_agi, accMod) -> int:
+	return 50 + 5 * att_dex - 3 * def_agi + accMod
+
+static func predict_damage(att, def, spa: int = 0, imd: int = 0) -> int:
+	return att + spa - (def * (1 - imd))
+	
+# TODO Implement + critMod at the end
+static func predict_crit_chance(att_dex, att_agi, def_agi, critMod) -> int:
+	return ((att_dex + att_agi) - def_agi / 2) + critMod

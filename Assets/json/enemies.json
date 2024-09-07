@@ -51,7 +51,7 @@
 		"skills": [],
 		"is_ranged": false,
 		"mesh_path": "res://Assets/Characters/Enemies/Melee_Orc/orc melee idle 1.glb",
-		"sprite_path": ""
+		"sprite_path": "res://Assets/Characters/Enemies/Melee_Orc/orc_idle.png"
 	},
 	"ranged_orc": {
 		"id": "ranged_orc",

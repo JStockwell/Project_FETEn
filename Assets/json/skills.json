@@ -29,7 +29,7 @@
 		"skill_name": "Boost Lv 1",
 		"description": "Gather focus to unleash a more precise, heavier and deadlier strike\n DEBUG: DEALS ATK+4DMG TO THE TARGET AND HAS N+15% ACC AND M+3%CRIT RANGE 1",
 		"range": 1,
-		"cost": 2,
+		"cost": 1,
 		"spa": 4,
 		"sef": true,
 		"imd": 0

@@ -40,7 +40,8 @@ static func check_players_in_range(map, enemy, tilesRange) -> Array:
 			var viable_target = false
 			for dir in DIRECTIONS:
 				if map.check_within_bounds(character.get_map_coords(),dir):
-					if tilesRange.has(character.get_map_coords()+dir) and not map.get_tile_from_coords(character.get_map_coords()+dir).is_populated(): #If the target has an adjacent tile that is accessible and is not populated and is in range then it is a valid target
+					var tileInQuestion = map.get_tile_from_coords(character.get_map_coords()+dir)
+					if tilesRange.has(character.get_map_coords()+dir) and not tileInQuestion.is_populated() and not tileInQuestion.get_obstacle_type() == 1: #If the target has an adjacent tile that is accessible and is not populated and is in range then it is a valid target
 						viable_target = true
 					
 			if viable_target == true:
@@ -64,6 +65,7 @@ static func melee_enemy_attack(map, enemy, finalTarget, dijkstra) -> bool:
 		var attackPoint
 		var furthestAP = 0
 		for dir in DIRECTIONS:
+			# TODO Validate in bounds
 			var coordsPlusDir = finalTargetCoords+dir
 			var tileDistance = distToCell[coordsPlusDir.y][coordsPlusDir.x]
 			var tileDistanceInt: int
@@ -73,7 +75,8 @@ static func melee_enemy_attack(map, enemy, finalTarget, dijkstra) -> bool:
 			else:
 				tileDistanceInt = tileDistance
 			
-			if moveableCells.has(finalTargetCoords+dir) and not map.get_tile_from_coords(finalTargetCoords+dir).is_populated() and furthestAP < tileDistanceInt: #maybe function for the not populated shiez
+			var tileInQuestion = map.get_tile_from_coords(finalTargetCoords+dir)
+			if moveableCells.has(finalTargetCoords+dir) and not tileInQuestion.is_populated() and furthestAP < tileDistanceInt and not tileInQuestion.get_obstacle_type() == 1:
 				attackPoint = finalTargetCoords+dir
 				furthestAP = distToCell[coordsPlusDir.y][coordsPlusDir.x]
 			
@@ -199,7 +202,8 @@ static func viable_ranged_positions(map, enemy, target, tilesRange) -> Array: # 
 	var viableShootingPositions = []
 	for tile in range(tilesRange.size()):
 		if not map.calc_los(tilesRange[tile], target)[0]:
-			if Utils.calc_distance(tilesRange[tile], target.get_map_coords()) <= enemy.get_range() and not map.get_tile_from_coords(tilesRange[tile]).is_populated():
+			var tileInQuestion = map.get_tile_from_coords(tilesRange[tile])
+			if Utils.calc_distance(tilesRange[tile], target.get_map_coords()) <= enemy.get_range() and not tileInQuestion.is_populated() and not tileInQuestion.get_obstacle_type() == 1:
 				viableShootingPositions.append(tilesRange[tile])
 	return viableShootingPositions
 
@@ -273,7 +277,8 @@ static func approach_enemy(map, enemy, tilesInReach): # if cant attack anyone, a
 			
 			for tile in tilesInReach:
 				var movementFitness = distances[tile.y][tile.x] - Utils.calc_distance(character.get_map_coords(), tile)
-				if movementFitness > closestMove and not map.get_tile_from_coords(tile).is_populated():
+				var tileInQuestion = map.get_tile_from_coords(tile)
+				if movementFitness > closestMove and not tileInQuestion.is_populated() and not tileInQuestion.get_obstacle_type() == 1:
 					closestMove = movementFitness
 					chosenTile = tile
 	else:

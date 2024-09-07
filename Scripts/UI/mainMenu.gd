@@ -2,7 +2,6 @@ extends Control
 
 var playableCharacters = Utils.read_json("res://Assets/json/players.json")
 var enemySet = Utils.read_json("res://Assets/json/enemies.json")
-var skillSet = Utils.read_json("res://Assets/json/skills.json")
 
 func _ready():
 	GameStatus.set_playable_characters(playableCharacters)
