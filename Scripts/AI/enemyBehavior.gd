@@ -64,6 +64,7 @@ static func melee_enemy_attack(map, enemy, finalTarget, dijkstra) -> bool:
 		var attackPoint
 		var furthestAP = 0
 		for dir in DIRECTIONS:
+			# TODO Validate in bounds
 			var coordsPlusDir = finalTargetCoords+dir
 			var tileDistance = distToCell[coordsPlusDir.y][coordsPlusDir.x]
 			var tileDistanceInt: int

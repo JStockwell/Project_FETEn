@@ -371,8 +371,8 @@ func purge_the_dead():
 
 	for dead in deadList:
 		if dead.is_enemy():
-			var charId = CombatMapStatus.get_selected_character().get_id()
-			if charId == "samael" or charId == "salvador" or charId == "azrael":
+			var charIds = [CombatMapStatus.get_selected_character().get_id(), CombatMapStatus.get_selected_enemy().get_id()]
+			if "samael" in charIds or "salvador" in charIds or "azrael" in charIds:
 				CombatMapStatus.get_selected_character().modify_mana(1)
 
 		CombatMapStatus.remove_character_ini(dead.get_map_id())
