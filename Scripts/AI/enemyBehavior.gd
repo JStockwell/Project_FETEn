@@ -56,6 +56,10 @@ static func melee_enemy_attack(map, enemy, finalTarget, dijkstra) -> bool:
 	var moveableCells = dijkstra[0]
 	var distToCell = dijkstra[1]
 	const DIRECTIONS = [Vector2.UP, Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT]
+	var tilesOccupiedOpponents = []
+	
+	for character in map.characterGroup.get_children():
+		tilesOccupiedOpponents.append(character.get_map_coords())
 	
 	if rooted or Utils.calc_distance(enemy.get_map_coords(),finalTargetCoords) == 1:
 		CombatMapStatus.set_selected_enemy(finalTarget)
@@ -65,7 +69,7 @@ static func melee_enemy_attack(map, enemy, finalTarget, dijkstra) -> bool:
 		var attackPoint
 		var furthestAP = 0
 		for dir in DIRECTIONS:
-			if map.check_within_bounds(finalTargetCoords,dir):
+			if Utils.valid_coordinates(map, finalTargetCoords+dir, tilesOccupiedOpponents):
 				var coordsPlusDir = finalTargetCoords+dir
 				var tileDistance = distToCell[coordsPlusDir.y][coordsPlusDir.x]
 				var tileDistanceInt: int
@@ -172,11 +176,11 @@ static func check_players_in_range_ranged(map, enemy, tilesRange) -> Array:
 	var possible_Targets: Array
 	var rooted = enemy.is_rooted()
 	
-	const DIRECTIONS = [Vector2.LEFT, Vector2.UP, Vector2.RIGHT, Vector2.DOWN]
+	const DIRECTIONS = [Vector2.LEFT, Vector2.UP, Vector2.RIGHT, Vector2.DOWN] #delet this
 	for character in map.characterGroup.get_children():
 		var target = character.get_map_coords()
-		var attackCoords = enemy.get_map_coords()
 		if(rooted):
+			var attackCoords = enemy.get_map_coords() # attack coordinates should only be moved in the if rooted
 			if Utils.calc_distance(attackCoords, target)<=enemy.get_range() and not map.get_los(attackCoords, character)[0]:
 				possible_Targets.append(character)
 			
@@ -190,9 +194,9 @@ static func check_players_in_range_ranged(map, enemy, tilesRange) -> Array:
 # ranged only function
 static func viable_ranged_target(map, enemy, target, tilesRange) -> bool: # ugly ahh function
 	var viableTarget = false
-	for tile in range(tilesRange.size()):
+	for tile in tilesRange: #turn to tiles in tilesRange
 		if viableTarget == false:
-			if not map.calc_los(tilesRange[tile], target)[0] and Utils.calc_distance(tilesRange[tile], target.get_map_coords()) <= enemy.get_range():
+			if not map.calc_los(tile, target)[0] and Utils.calc_distance(tile, target.get_map_coords()) <= enemy.get_range() and not map.get_tile_from_coords(tile).get_obstacle_type() == 1:
 				viableTarget = true
 		else:
 			break
