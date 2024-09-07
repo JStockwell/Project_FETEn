@@ -146,7 +146,7 @@ func choose_random_spawn(spawnPositions: Array) -> Vector2:
 	for c in range(100):
 		index = randi_range(0, len(spawnPositions) - 1)
 		spawnPos = Utils.string_to_vector2(mapDict["ally_spawn"][index])
-		if not get_tile_from_coords(spawnPos).is_populated():
+		if not get_tile_from_coords(spawnPos).is_populated() and get_tile_from_coords(spawnPos).get_obstacle_type() == 0:
 			break
 
 	return spawnPos
@@ -510,8 +510,8 @@ func validate_move(character, mapTile, dijkstra) -> bool:
 
 	if not dijkstra.has(mapTile.get_coords()):
 		result = false
-
-	if mapTile.is_populated():
+	
+	if mapTile.is_populated() or mapTile.get_obstacle_type() == 1:
 		result = false
 
 	if not mapTile.is_traversable():
@@ -804,7 +804,7 @@ func update_global_button() -> void:
 func highlight_movement(character) -> void: #dijkstra probablemente va aquí
 	for tile in characterDijkstra[0]:
 		var sel_tile = get_tile_from_coords(tile)
-		if sel_tile != null and !sel_tile.is_populated() and sel_tile.is_traversable():
+		if sel_tile != null and not sel_tile.is_populated() and sel_tile.is_traversable() and not sel_tile.get_obstacle_type() == 1:
 			sel_tile.highlighted.show()
 
 func highlight_control_zones(myCharacterGroup) -> void:

@@ -361,7 +361,7 @@
 			"height": 1,
 			"idt": true,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 1,
 			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
 		},
@@ -370,7 +370,7 @@
 			"height": 1,
 			"idt": true,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 1,
 			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
 		},
@@ -667,7 +667,7 @@
 			"height": 1,
 			"idt": true,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 1,
 			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
 		},
