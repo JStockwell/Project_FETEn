@@ -332,27 +332,27 @@ func reset_map_status() -> void:
 	remove_highlights()
 	remove_control_zones()
 	remove_selected()
-
+	
 	CombatMapStatus.set_selected_ally(null)
 	CombatMapStatus.set_selected_character(null)
 	CombatMapStatus.set_selected_enemy(null)
 	CombatMapStatus.set_selected_map_tile(null)
 	CombatMapStatus.mapMod = 0
-
+	
 	var currentChar
 	var flag = true
 	isPaused = false
-
+	
 	for character in characterGroup.get_children():
 		if character.get_map_id() == CombatMapStatus.get_current_turn_char():
 			currentChar = character
 			flag = false
-
+	
 	if flag:
 		for enemy in enemyGroup.get_children():
 			if enemy.get_map_id() == CombatMapStatus.get_current_turn_char():
 				currentChar = enemy
-
+	
 	CombatMapStatus.set_selected_character(currentChar)
 
 # TODO Redo with actual mana recharges
@@ -361,17 +361,16 @@ func regen_mana() -> void:
 		if char.get_max_mana() != 0:
 			char.modify_mana(char.get_reg_mana())
 
-
 func purge_the_dead():
 	var deadList = []
 	for char in characterGroup.get_children():
 		if char.get_current_health() == 0:
 			deadList.append(char)
-
+		
 	for enemy in enemyGroup.get_children():
 		if enemy.get_current_health() == 0:
 			deadList.append(enemy)
-
+		
 	for dead in deadList:
 		if dead.is_enemy():
 			var selCharID = CombatMapStatus.get_selected_character().get_id()
@@ -382,7 +381,7 @@ func purge_the_dead():
 				
 			elif "samael" == enemCharID or "salvador" == enemCharID or "azrael" == enemCharID:
 				CombatMapStatus.get_selected_enemy().modify_mana(1)
-
+		
 		CombatMapStatus.remove_character_ini(dead.get_map_id())
 		var tile = get_tile_from_coords(dead.get_map_coords())
 		tile.set_is_populated(false)
@@ -393,10 +392,9 @@ func purge_the_dead():
 func _process(delta):
 	if GameStatus.debugMode:
 		update_debug_label()
-
+	
 	if battleStart:
 		update_buttons()
-
 
 # Set selected enemies
 func character_handler(character) -> void:
@@ -729,7 +727,7 @@ func _on_skill_selected(id: int):
 func cast_skill(skillName: String, skillResult):
 	var caster = CombatMapStatus.get_selected_character() #got it out of the 3 since the character using the skill is always required
 	caster.modify_mana(-GameStatus.skillSet[skillName].get_cost())
-
+	
 	if GameStatus.skillSet[skillName].can_target_allies():
 		if CombatMapStatus.get_selected_ally() == null:
 			var target = CombatMapStatus.get_selected_character()
@@ -742,12 +740,12 @@ func cast_skill(skillName: String, skillResult):
 		
 	else:
 		var defender = CombatMapStatus.get_selected_enemy()
-
+		
 		CombatMapStatus.set_combat(caster, defender, Utils.calc_distance(caster.get_map_coords(), defender.get_map_coords()), skillName)
 		combat_start.emit()
-
+		
 		if not GameStatus.skillSet[skillName].is_instantaneous(): #handles the instantaneous flag here
-			CombatMapStatus.hasAttacked = true
+			CombatMapStatus.set_has_attacked(true)
 
 
 func allied_skill_handler(caster, target, distance, skillName):
@@ -755,11 +753,11 @@ func allied_skill_handler(caster, target, distance, skillName):
 	disableUI = true
 	particleArgs = SEF.run_out_of_combat(skillName, caster, target, GameStatus.skillSet[skillName].get_spa())
 	target.cap_current_stats(target.get_stats())
-
+	
 	var buffPart = BuffParticles.instantiate()
 	add_child(buffPart)
 	buffPart.connect("particleEnd", Callable(self, "_on_particle_end"))
-
+	
 	buffPart.position = Vector3(target.get_map_coords().x, 0.5 + get_tile_from_coords(target.get_map_coords()).get_height() * mapHeightModifier, target.get_map_coords().y)
 	buffPart.start(particleArgs[0], particleArgs[1])
 
