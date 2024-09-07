@@ -272,8 +272,8 @@ offset_bottom = 40.0
 layout_mode = 0
 offset_left = 80.0
 offset_top = 216.0
-offset_right = 305.175
-offset_bottom = 560.0
+offset_right = 310.179
+offset_bottom = 584.0
 texture = ExtResource("19_f0fty")
 expand_mode = 3
 

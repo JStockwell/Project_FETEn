@@ -57,6 +57,12 @@ func setup():
 	
 	if Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()) == 1:
 		retaliateGroup.show()
+		
+		if attacker.is_ranged():
+			CombatMapStatus.mapMod += 25
+		if defender.is_ranged():
+			CombatMapStatus.mapMod -= 25
+			
 		retaliatePredictionText.text = predict_combat(defender, attacker)
 		attackGroup.set_position(Vector2(328, 72))
 		
@@ -87,7 +93,7 @@ func predict_combat(att, def) -> String:
 	return result
 
 func _on_attack_button_pressed():
-	combat_start.emit(self)
+	combat_start.emit(self, skillName, skillResult)
 
 func _on_cancel_button_pressed():
 	close.emit(self)
