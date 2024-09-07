@@ -67,6 +67,8 @@ var aneStats = $UI/AnECharacter/AnEStats
 @onready
 var aneSprite = $UI/AnECharacter/AnESprite
 
+var comPred
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	battleStart = false
@@ -545,7 +547,7 @@ func setup_com_pred(skillName: String = "", skillResult: String = ""):
 		
 	else:
 		isCastingSkill = true
-		var comPred = CombatPrediction.instantiate()
+		comPred = CombatPrediction.instantiate()
 		add_child(comPred)
 		
 		comPred.position = Vector2(468, 376)
@@ -556,7 +558,7 @@ func setup_com_pred(skillName: String = "", skillResult: String = ""):
 		comPred.connect("combat_start", Callable(self, "attack_combat_prediction"))
 		comPred.connect("close", Callable(self, "close_combat_prediction"))
 
-# TODO Test
+
 func attack_combat_prediction(comPred, skillName: String = "", skillResult:String = ""):
 	comPred.hide()
 	comPred.queue_free()
@@ -703,7 +705,7 @@ func _on_skill_selected(id: int):
 		else:
 			setup_com_pred(skillName, skillResult)
 
-
+# TODO test
 func cast_skill(skillName: String, skillResult):
 	var caster = CombatMapStatus.get_selected_character() #got it out of the 3 since the character using the skill is always required
 	caster.modify_mana(-GameStatus.skillSet[skillName].get_cost())
