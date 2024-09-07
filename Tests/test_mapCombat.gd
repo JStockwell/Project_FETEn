@@ -419,6 +419,7 @@ func test_purge_the_dead_enemy():
 	assert_int(enemy.get_current_health()).is_zero()
 	var enemy_map_id = enemy.get_map_id()
 	var enemy_tile = test_mapCombat.get_tile_from_coords(enemy.get_map_coords())
+	CombatMapStatus.set_selected_enemy(enemy)
 	
 	test_mapCombat.purge_the_dead()
 	
