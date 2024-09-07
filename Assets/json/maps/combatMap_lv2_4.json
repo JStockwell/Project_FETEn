@@ -397,8 +397,8 @@
 			"idt": true,
 			"isPopulated": false,
 			"isTraversable": true,
-			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Water1.glb"
+			"obstacleType": 1,
+			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
 		},
 		{
 			"coords": "(7,2)",
@@ -424,8 +424,8 @@
 			"idt": true,
 			"isPopulated": false,
 			"isTraversable": true,
-			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Water1.glb"
+			"obstacleType": 1,
+			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
 		},
 		{
 			"coords": "(10,2)",
@@ -1180,8 +1180,8 @@
 			"idt": true,
 			"isPopulated": false,
 			"isTraversable": true,
-			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Water1.glb"
+			"obstacleType": 1,
+			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
 		},
 		{
 			"coords": "(14,7)",
@@ -1540,8 +1540,8 @@
 			"idt": true,
 			"isPopulated": false,
 			"isTraversable": true,
-			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Water1.glb"
+			"obstacleType": 1,
+			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
 		},
 		{
 			"coords": "(6,10)",
@@ -1576,8 +1576,8 @@
 			"idt": true,
 			"isPopulated": false,
 			"isTraversable": true,
-			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Water1.glb"
+			"obstacleType": 1,
+			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
 		},
 		{
 			"coords": "(10,10)",
