@@ -33,7 +33,7 @@ var retaliateGroup = $Retaliate
 @onready
 var retaliatePredictionText = $Retaliate/Label
 
-func _ready():
+func setup():
 	# DEBUG
 	#if GameStatus.debugMode:
 		#debug_setup()
