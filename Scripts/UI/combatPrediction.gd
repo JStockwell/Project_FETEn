@@ -3,8 +3,11 @@ extends Control
 var attacker
 var defender
 
-signal combat_start
-signal close
+var skillName: String = ""
+var skillResult: String = ""
+
+signal combat_start(comPred, skillName, skillResult)
+signal close(comPred)
 
 @onready
 var attackerSprite = $Attacker/Sprite
@@ -32,8 +35,8 @@ var retaliatePredictionText = $Retaliate/Label
 
 func _ready():
 	# DEBUG
-	if GameStatus.debugMode:
-		debug_setup()
+	#if GameStatus.debugMode:
+		#debug_setup()
 		
 	attacker = CombatMapStatus.get_selected_character()
 	defender = CombatMapStatus.get_selected_enemy()
@@ -84,10 +87,10 @@ func predict_combat(att, def) -> String:
 	return result
 
 func _on_attack_button_pressed():
-	combat_start.emit()
+	combat_start.emit(self)
 
 func _on_cancel_button_pressed():
-	close.emit()
+	close.emit(self)
 	
 func debug_setup():
 	var playableCharacters = Utils.read_json("res://Assets/json/players.json")

@@ -109,7 +109,7 @@ static func run_out_of_combat(sefName:String, caster, target, spa: int = 0) -> A
 
 static func action_surge():
 	CombatMapStatus.set_has_attacked(false)
-	return [true, "Action Surge"]
+	return [true, "Tap Speed"]
 
 static func healing_spell(caster, target, spa:int):
 	var amountHealed = caster.get_attack() + spa

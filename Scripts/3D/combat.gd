@@ -41,7 +41,6 @@ func _ready():
 	
 	damageNumber.global_position = CombatMapStatus.get_combat_spawn() + Vector3(0, 3.75, 0)
 
-	# TODO Times and UI once Map is being used
 	if GameStatus.autorunCombat:
 		await combat_round(generate_rolls(), generate_rolls())
 
