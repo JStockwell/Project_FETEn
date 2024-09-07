@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b5wshyx1md0yu"
-path="res://.godot/imported/orc_idle.png-180b5327722d5fefb6657603284cc755.ctex"
+path="res://.godot/imported/orc_sprite.png-b5e80bfed3ab497afac83928e563db19.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Characters/Enemies/Melee_Orc/orc_idle.png"
-dest_files=["res://.godot/imported/orc_idle.png-180b5327722d5fefb6657603284cc755.ctex"]
+source_file="res://Assets/Characters/Enemies/Melee_Orc/orc_sprite.png"
+dest_files=["res://.godot/imported/orc_sprite.png-b5e80bfed3ab497afac83928e563db19.ctex"]
 
 [params]
 

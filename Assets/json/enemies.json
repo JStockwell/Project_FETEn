@@ -51,7 +51,7 @@
 		"skills": [],
 		"is_ranged": false,
 		"mesh_path": "res://Assets/Characters/Enemies/Melee_Orc/orc melee idle 1.glb",
-		"sprite_path": "res://Assets/Characters/Enemies/Melee_Orc/orc_idle.png"
+		"sprite_path": "res://Assets/Characters/Enemies/Melee_Orc/orc_sprite.png"
 	},
 	"ranged_orc": {
 		"id": "ranged_orc",
@@ -69,7 +69,7 @@
 		"skills": [],
 		"is_ranged": true,
 		"mesh_path": "res://Assets/Characters/Enemies/Ranged_Orc/orc ranged idle 1.glb",
-		"sprite_path": ""
+		"sprite_path": "res://Assets/Characters/Enemies/Ranged_Orc/ranged_orc_sprite.png"
 	},
 	"mage": {
 		"id": "mage",
@@ -105,7 +105,7 @@
 		"skills": [],
 		"is_ranged": false,
 		"mesh_path": "res://Assets/Characters/Enemies/Juggernaut/Juggernaut idle 1.glb",
-		"sprite_path": ""
+		"sprite_path": "res://Assets/Characters/Enemies/Juggernaut/juggernaut_sprite.png"
 	},
 	"assassin": {
 		"id": "assassin",

@@ -456,6 +456,8 @@ func update_ane_character_card(character) -> void:
 	txt += "\nAgility: " + str(stats["agility"])
 	txt += "\nMovement: " + str(stats["movement"])
 	txt += "\nRange: " + str(stats["range"])
+	if not character.is_enemy():
+		txt += "\nHealing Cap: " + str(stats["healing_threshold"]) + "/30 HP"
 
 	aneStats.text = txt
 	aneSprite.texture = load(stats["sprite_path"])

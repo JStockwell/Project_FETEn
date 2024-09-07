@@ -1,10 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://lpali6fo0xr4"]
+[gd_scene load_steps=14 format=3 uid="uid://lpali6fo0xr4"]
 
 [ext_resource type="Script" path="res://Scripts/UI/combatPrediction.gd" id="1_q1swt"]
 [ext_resource type="FontFile" uid="uid://71blta5wlshk" path="res://Assets/Fonts/Minecraft/Minecraft.ttf" id="2_6yvfq"]
+[ext_resource type="Texture2D" uid="uid://ccdip1j1tl4n8" path="res://Assets/UI/compred_background.png" id="2_gr6a1"]
 [ext_resource type="Texture2D" uid="uid://diddol5ghcff" path="res://Assets/UI/red_arrow.png" id="3_h087o"]
 [ext_resource type="Texture2D" uid="uid://cdr8pfgua7joc" path="res://Assets/UI/attack_button.png" id="4_6tqo3"]
+[ext_resource type="Texture2D" uid="uid://c445ul26jkehf" path="res://Assets/UI/exit_button.png" id="4_ghmug"]
 [ext_resource type="Texture2D" uid="uid://c51v0recwd87v" path="res://Assets/UI/attack_button_pressed.png" id="5_f2hnw"]
+[ext_resource type="Texture2D" uid="uid://bm1p7qtqqhcpo" path="res://Assets/UI/exit_button_pressed.png" id="5_niwip"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8dssi"]
 load_path = "res://.godot/imported/hp_empty.png-282b587b056be22110a2a16afa5e3d61.ctex"
@@ -22,10 +25,6 @@ font_color = Color(0, 0, 0, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_tk4kx"]
 font = ExtResource("2_6yvfq")
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_04esk"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0yegu"]
-
 [node name="CombatPrediction" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -37,18 +36,24 @@ script = ExtResource("1_q1swt")
 metadata/_edit_lock_ = true
 
 [node name="BG" type="ColorRect" parent="."]
+visible = false
 layout_mode = 0
 offset_right = 984.0
 offset_bottom = 336.0
 color = Color(0.227451, 0.227451, 0.227451, 1)
 
+[node name="CompredBackground" type="Sprite2D" parent="."]
+position = Vector2(488, 180)
+scale = Vector2(0.953125, 1.00559)
+texture = ExtResource("2_gr6a1")
+
 [node name="Attacker" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 56.0
-offset_top = 56.0
+offset_top = 80.0
 offset_right = 328.0
-offset_bottom = 288.0
+offset_bottom = 312.0
 
 [node name="HPBar" type="TextureProgressBar" parent="Attacker"]
 layout_mode = 0
@@ -85,9 +90,9 @@ stretch_mode = 5
 layout_mode = 3
 anchors_preset = 0
 offset_left = 656.0
-offset_top = 56.0
+offset_top = 80.0
 offset_right = 928.0
-offset_bottom = 288.0
+offset_bottom = 312.0
 
 [node name="HPBar" type="TextureProgressBar" parent="Defender"]
 layout_mode = 0
@@ -123,9 +128,9 @@ stretch_mode = 5
 [node name="Attack" type="Control" parent="."]
 anchors_preset = 0
 offset_left = 328.0
-offset_top = 72.0
+offset_top = 96.0
 offset_right = 632.0
-offset_bottom = 128.0
+offset_bottom = 152.0
 
 [node name="Label" type="Label" parent="Attack"]
 layout_mode = 0
@@ -148,9 +153,9 @@ flip_h = true
 layout_mode = 3
 anchors_preset = 0
 offset_left = 344.0
-offset_top = 168.0
+offset_top = 192.0
 offset_right = 656.0
-offset_bottom = 240.0
+offset_bottom = 264.0
 
 [node name="Label" type="Label" parent="Retaliate"]
 layout_mode = 0
@@ -172,21 +177,21 @@ texture = ExtResource("3_h087o")
 
 [node name="CancelButton" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 56.0
-offset_bottom = 56.0
-texture_normal = SubResource("PlaceholderTexture2D_04esk")
-texture_pressed = SubResource("PlaceholderTexture2D_0yegu")
+offset_left = 40.0
+offset_top = 32.0
+offset_right = 88.0
+offset_bottom = 80.0
+texture_normal = ExtResource("4_ghmug")
+texture_pressed = ExtResource("5_niwip")
 ignore_texture_size = true
 stretch_mode = 5
 
 [node name="AttackButton" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 408.0
-offset_top = 272.0
+offset_top = 296.0
 offset_right = 552.0
-offset_bottom = 312.0
+offset_bottom = 336.0
 texture_normal = ExtResource("4_6tqo3")
 texture_pressed = ExtResource("5_f2hnw")
 ignore_texture_size = true
