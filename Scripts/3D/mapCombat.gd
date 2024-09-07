@@ -548,15 +548,20 @@ func setup_com_pred(skillName: String = "", skillResult: String = ""):
 	else:
 		disableUI = true
 		comPred = CombatPrediction.instantiate()
-		add_child(comPred)
+		
+		CombatMapStatus.set_attack_skill(skillName)
 		
 		comPred.position = Vector2(468, 376)
 		
 		comPred.skillName = skillName
 		comPred.skillResult = skillResult
 		
+		add_child(comPred)
+		
 		comPred.connect("combat_start", Callable(self, "attack_combat_prediction"))
 		comPred.connect("close", Callable(self, "close_combat_prediction"))
+		
+		comPred.setup()
 
 
 func attack_combat_prediction(comPred, skillName: String = "", skillResult:String = ""):
