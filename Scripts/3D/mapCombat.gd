@@ -574,7 +574,7 @@ func close_combat_prediction(comPred):
 	comPred.queue_free()
 	isCastingSkill = false
 
-# TODO Retest
+
 func phys_combat_round() -> void:
 	skillIssue2.hide()
 	var attacker = CombatMapStatus.get_selected_character()
@@ -671,7 +671,7 @@ func check_behind_cover(defender, tileArray: Array) -> int:
 
 	return mapMod
 
-# TODO Retest
+
 func _on_skill_selected(id: int):
 	skillIssue.hide()
 	skillIssue2.hide()
@@ -703,7 +703,7 @@ func _on_skill_selected(id: int):
 		else:
 			setup_com_pred(skillName, skillResult)
 
-# TODO Test
+
 func cast_skill(skillName: String, skillResult):
 	var caster = CombatMapStatus.get_selected_character() #got it out of the 3 since the character using the skill is always required
 	caster.modify_mana(-GameStatus.skillSet[skillName].get_cost())
