@@ -6,7 +6,7 @@ var battleStart: bool = false
 var characterDijkstra
 var focusedSkill: int = -1
 var mapHeightModifier = 0.25
-var isCastingSkill: bool = false
+var disableUI: bool = false
 var isPaused: bool = false
 
 var BuffParticles = load("res://Scenes/Entities/buffParticles.tscn")
@@ -544,7 +544,7 @@ func setup_com_pred(skillName: String = "", skillResult: String = ""):
 		skillIssue2.show()
 		
 	else:
-		isCastingSkill = true
+		disableUI = true
 		var comPred = CombatPrediction.instantiate()
 		add_child(comPred)
 		
@@ -560,7 +560,7 @@ func setup_com_pred(skillName: String = "", skillResult: String = ""):
 func attack_combat_prediction(comPred, skillName: String = "", skillResult:String = ""):
 	comPred.hide()
 	comPred.queue_free()
-	isCastingSkill = false
+	disableUI = false
 	
 	if CombatMapStatus.attackSkill == "":
 		phys_combat_round()
@@ -572,7 +572,7 @@ func attack_combat_prediction(comPred, skillName: String = "", skillResult:Strin
 func close_combat_prediction(comPred):
 	comPred.hide()
 	comPred.queue_free()
-	isCastingSkill = false
+	disableUI = false
 
 
 func phys_combat_round() -> void:
@@ -730,7 +730,7 @@ func cast_skill(skillName: String, skillResult):
 
 func allied_skill_handler(caster, target, distance, skillName):
 	var particleArgs: Array
-	isCastingSkill = true
+	disableUI = true
 	particleArgs = SEF.run_out_of_combat(skillName, caster, target, GameStatus.skillSet[skillName].get_spa())
 	target.cap_current_stats(target.get_stats())
 
@@ -745,7 +745,7 @@ func allied_skill_handler(caster, target, distance, skillName):
 func _on_particle_end(particleScn):
 	particleScn.queue_free()
 	set_status_bars(CombatMapStatus.get_selected_character())
-	isCastingSkill = false
+	disableUI = false
 
 func _on_end_turn_button_pressed():
 	CombatMapStatus.advance_ini()
@@ -778,7 +778,7 @@ func update_buttons() -> void:
 		update_global_button()
 
 func update_move_button() -> void:
-	if CombatMapStatus.hasMoved or CombatMapStatus.get_selected_character().is_enemy() or isCastingSkill:
+	if CombatMapStatus.hasMoved or CombatMapStatus.get_selected_character().is_enemy() or disableUI:
 		moveButton.disabled = true
 	else:
 		if CombatMapStatus.get_selected_map_tile() == null:
@@ -791,7 +791,7 @@ func update_move_button() -> void:
 			moveButton.disabled = true
 
 func update_phys_attack_button() -> void:
-	if CombatMapStatus.hasAttacked or CombatMapStatus.get_selected_character().is_enemy() or isCastingSkill:
+	if CombatMapStatus.hasAttacked or CombatMapStatus.get_selected_character().is_enemy() or disableUI:
 		physAttackButton.disabled = true
 	else:
 		if CombatMapStatus.get_selected_enemy() == null:
@@ -807,7 +807,7 @@ func update_skill_menu_button() -> void:
 		if GameStatus.skillSet[skill].is_instantaneous():
 			instantMenu = true
 
-	if isCastingSkill:
+	if disableUI:
 		baseSkillMenu.disabled = true
 	elif instantMenu:
 		baseSkillMenu.disabled = false
@@ -836,14 +836,14 @@ func handle_skill_info() -> void:
 			skillCard.show()
 
 func update_end_turn_button() -> void:
-	if CombatMapStatus.get_selected_character().is_enemy() or isCastingSkill:
+	if CombatMapStatus.get_selected_character().is_enemy() or disableUI:
 		endTurnButton.disabled = true
 	else:
 		endTurnButton.disabled = false
 
 
 func update_global_button() -> void:
-	if CombatMapStatus.get_selected_character().is_enemy() or isCastingSkill:
+	if CombatMapStatus.get_selected_character().is_enemy() or disableUI:
 		changeCameraButton.disabled = true
 		mainMenuButton.disabled = true
 	else:
