@@ -31,21 +31,25 @@ func _ready():
 	var i = 0
 	var j = 0
 	for partyMember in GameStatus.get_playable_characters():
-		var tempChar = Factory.Character.create(GameStatus.get_playable_characters()[partyMember], true)
-		add_child(tempChar)
+		if not GameStatus.get_playable_characters()[partyMember]["id"] == "adran":
+			var tempChar = Factory.Character.create(GameStatus.get_playable_characters()[partyMember], true)
+			add_child(tempChar)
+			
+			tempChar.connect("on_entry", Callable(self, "_on_character_entry"))
+			tempChar.connect("on_exit", Callable(self, "_on_character_exit"))
+			tempChar.connect("character_selected", Callable(self, "_on_character_select"))
 		
-		tempChar.connect("on_entry", Callable(self, "_on_character_entry"))
-		tempChar.connect("on_exit", Callable(self, "_on_character_exit"))
-		tempChar.connect("character_selected", Callable(self, "_on_character_select"))
-	
-		tempChar.position = Vector3(-3.35 + (2.1) * i, 2.2 * j, 0)
-		tempChar.set_gravity_scale(0)
-		
-		if i == 3:
-			i = -1
-			j = 1
-		
-		i += 1
+			tempChar.position = Vector3(-3.35 + (2.1) * i, 2.2 * j, 0)
+			tempChar.set_gravity_scale(0)
+			
+			if i == 3:
+				i = -1
+				j = 1
+			
+			i += 1
+			
+		else:
+			print("Adran sucks")
 
 func _process(delta):
 	if GameStatus.debugMode:
