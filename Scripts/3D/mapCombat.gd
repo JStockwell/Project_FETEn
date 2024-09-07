@@ -532,7 +532,7 @@ signal combat_start
 func _on_phys_attack_button_pressed():
 	setup_com_pred()
 
-# TODO Test
+
 func setup_com_pred(skillName: String = "", skillResult: String = ""):
 	skillIssue2.hide()
 	var attacker = CombatMapStatus.get_selected_character()
@@ -570,7 +570,7 @@ func attack_combat_prediction(comPred, skillName: String = "", skillResult:Strin
 	else:
 		cast_skill(skillName, skillResult)
 
-# TODO Test
+
 func close_combat_prediction(comPred):
 	comPred.hide()
 	comPred.queue_free()
