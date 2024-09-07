@@ -1138,10 +1138,174 @@ func test_update_buttons_abled():
 	assert_bool(test_mapCombat.mainMenuButton.disabled).is_false()
 
 
-	#TODO
-func test_update_buttons_disabled(do_skip=true, skip_reason="Waiting for TODOs"):
+func test_update_buttons_disabled_hasMoved():
+	var character = test_mapCombat.characterGroup.get_children()[0]
+	var mapTile = test_mapCombat.get_tile_from_coords(Vector2(0, 2))
+	var enemy = test_mapCombat.enemyGroup.get_children()[0]
+	test_mapCombat._on_start_button_pressed()
+	CombatMapStatus.set_initiative([0,1])
+	test_mapCombat.start_turn()
+	CombatMapStatus.set_selected_map_tile(mapTile)
+	CombatMapStatus.set_selected_character(character)
+	CombatMapStatus.set_selected_enemy(enemy)
+	CombatMapStatus.set_has_moved(true)
+	
 	test_mapCombat.update_buttons()
-	pass
+	
+	assert_bool(test_mapCombat.moveButton.disabled).is_true()
+	assert_bool(test_mapCombat.physAttackButton.disabled).is_false()
+	assert_bool(test_mapCombat.endTurnButton.disabled).is_false()
+	assert_bool(test_mapCombat.baseSkillMenu.disabled).is_false()
+	assert_bool(test_mapCombat.changeCameraButton.disabled).is_false()
+	assert_bool(test_mapCombat.mainMenuButton.disabled).is_false()
+
+
+func test_update_buttons_disabled_isEnemy():
+	var character = test_mapCombat.characterGroup.get_children()[0]
+	var mapTile = test_mapCombat.get_tile_from_coords(Vector2(0, 2))
+	var enemy = test_mapCombat.enemyGroup.get_children()[0]
+	test_mapCombat._on_start_button_pressed()
+	CombatMapStatus.set_initiative([1,0])
+	test_mapCombat.start_turn()
+	CombatMapStatus.set_selected_map_tile(mapTile)
+	CombatMapStatus.set_selected_character(enemy)
+	
+	test_mapCombat.update_buttons()
+	
+	assert_bool(test_mapCombat.moveButton.disabled).is_true()
+	assert_bool(test_mapCombat.physAttackButton.disabled).is_true()
+	assert_bool(test_mapCombat.endTurnButton.disabled).is_true()
+	assert_bool(test_mapCombat.baseSkillMenu.disabled).is_true()
+	assert_bool(test_mapCombat.changeCameraButton.disabled).is_true()
+	assert_bool(test_mapCombat.mainMenuButton.disabled).is_true()
+	
+	
+func test_update_buttons_disabled_disableUI():
+	var character = test_mapCombat.characterGroup.get_children()[0]
+	var mapTile = test_mapCombat.get_tile_from_coords(Vector2(0, 2))
+	var enemy = test_mapCombat.enemyGroup.get_children()[0]
+	test_mapCombat._on_start_button_pressed()
+	CombatMapStatus.set_initiative([0,1])
+	test_mapCombat.start_turn()
+	CombatMapStatus.set_selected_map_tile(mapTile)
+	CombatMapStatus.set_selected_character(character)
+	CombatMapStatus.set_selected_enemy(enemy)
+	test_mapCombat.disableUI = true
+
+	test_mapCombat.update_buttons()
+	
+	assert_bool(test_mapCombat.moveButton.disabled).is_true()
+	assert_bool(test_mapCombat.physAttackButton.disabled).is_true()
+	assert_bool(test_mapCombat.endTurnButton.disabled).is_true()
+	assert_bool(test_mapCombat.baseSkillMenu.disabled).is_true()
+	assert_bool(test_mapCombat.changeCameraButton.disabled).is_true()
+	assert_bool(test_mapCombat.mainMenuButton.disabled).is_true()
+	
+	
+func test_update_buttons_disabled_null_selected_maptile():
+	var character = test_mapCombat.characterGroup.get_children()[0]
+	var enemy = test_mapCombat.enemyGroup.get_children()[0]
+	test_mapCombat._on_start_button_pressed()
+	CombatMapStatus.set_initiative([0,1])
+	test_mapCombat.start_turn()
+	CombatMapStatus.set_selected_character(character)
+	CombatMapStatus.set_selected_enemy(enemy)
+
+	test_mapCombat.update_buttons()
+
+	assert_bool(test_mapCombat.moveButton.disabled).is_true()
+	assert_bool(test_mapCombat.physAttackButton.disabled).is_false()
+	assert_bool(test_mapCombat.endTurnButton.disabled).is_false()
+	assert_bool(test_mapCombat.baseSkillMenu.disabled).is_false()
+	assert_bool(test_mapCombat.changeCameraButton.disabled).is_false()
+	assert_bool(test_mapCombat.mainMenuButton.disabled).is_false()
+	
+	
+func test_update_buttons_disabled_hasAttacked():
+	var character = test_mapCombat.characterGroup.get_children()[0]
+	var mapTile = test_mapCombat.get_tile_from_coords(Vector2(0, 2))
+	var enemy = test_mapCombat.enemyGroup.get_children()[0]
+	test_mapCombat._on_start_button_pressed()
+	CombatMapStatus.set_initiative([0,1])
+	test_mapCombat.start_turn()
+	CombatMapStatus.set_selected_map_tile(mapTile)
+	CombatMapStatus.set_selected_character(character)
+	CombatMapStatus.set_selected_enemy(enemy)
+	CombatMapStatus.set_has_attacked(true)
+
+	test_mapCombat.update_buttons()
+
+	assert_bool(test_mapCombat.moveButton.disabled).is_false()
+	assert_bool(test_mapCombat.physAttackButton.disabled).is_true()
+	assert_bool(test_mapCombat.endTurnButton.disabled).is_false()
+	assert_bool(test_mapCombat.baseSkillMenu.disabled).is_true()
+	assert_bool(test_mapCombat.changeCameraButton.disabled).is_false()
+	assert_bool(test_mapCombat.mainMenuButton.disabled).is_false()
+	
+	
+func test_update_buttons_disabled_null_selected_enemy():
+	var character = test_mapCombat.characterGroup.get_children()[0]
+	var mapTile = test_mapCombat.get_tile_from_coords(Vector2(0, 2))
+	test_mapCombat._on_start_button_pressed()
+	CombatMapStatus.set_initiative([0,1])
+	test_mapCombat.start_turn()
+	CombatMapStatus.set_selected_map_tile(mapTile)
+	CombatMapStatus.set_selected_character(character)
+
+	test_mapCombat.update_buttons()
+
+	assert_bool(test_mapCombat.moveButton.disabled).is_false()
+	assert_bool(test_mapCombat.physAttackButton.disabled).is_true()
+	assert_bool(test_mapCombat.endTurnButton.disabled).is_false()
+	assert_bool(test_mapCombat.baseSkillMenu.disabled).is_false()
+	assert_bool(test_mapCombat.changeCameraButton.disabled).is_false()
+	assert_bool(test_mapCombat.mainMenuButton.disabled).is_false()
+
+
+func test_update_buttons_disabled_no_skills():
+	var character = test_mapCombat.characterGroup.get_children()[0]
+	var mapTile = test_mapCombat.get_tile_from_coords(Vector2(0, 2))
+	var enemy = test_mapCombat.enemyGroup.get_children()[0]
+	character.get_stats()["skills"] = []
+	test_mapCombat._on_start_button_pressed()
+	CombatMapStatus.set_initiative([0,1])
+	test_mapCombat.start_turn()
+	CombatMapStatus.set_selected_map_tile(mapTile)
+	CombatMapStatus.set_selected_character(character)
+	CombatMapStatus.set_selected_enemy(enemy)
+
+	test_mapCombat.update_buttons()
+
+	assert_bool(test_mapCombat.moveButton.disabled).is_false()
+	assert_bool(test_mapCombat.physAttackButton.disabled).is_false()
+	assert_bool(test_mapCombat.endTurnButton.disabled).is_false()
+	assert_bool(test_mapCombat.baseSkillMenu.disabled).is_true()
+	assert_bool(test_mapCombat.changeCameraButton.disabled).is_false()
+	assert_bool(test_mapCombat.mainMenuButton.disabled).is_false()
+	
+	character.get_stats()["skills"] = ["shadow_ball", "nero_nero", "bestow_life"]
+
+
+func test_update_buttons_disabled():
+	var character = test_mapCombat.characterGroup.get_children()[0]
+	var enemy = test_mapCombat.enemyGroup.get_children()[0]
+	test_mapCombat._on_start_button_pressed()
+	CombatMapStatus.set_initiative([0,1])
+	test_mapCombat.start_turn()
+	CombatMapStatus.set_selected_character(enemy)
+	
+	CombatMapStatus.set_has_moved(true)
+	test_mapCombat.disableUI = true
+	CombatMapStatus.set_has_attacked(true)
+
+	test_mapCombat.update_buttons()
+
+	assert_bool(test_mapCombat.moveButton.disabled).is_true()
+	assert_bool(test_mapCombat.physAttackButton.disabled).is_true()
+	assert_bool(test_mapCombat.endTurnButton.disabled).is_true()
+	assert_bool(test_mapCombat.baseSkillMenu.disabled).is_true()
+	assert_bool(test_mapCombat.changeCameraButton.disabled).is_true()
+	assert_bool(test_mapCombat.mainMenuButton.disabled).is_true()
 
 
 func test_update_move_button_ok():
@@ -1297,7 +1461,7 @@ func test_update_skill_menu_button_character_has_no_skills():
 
 	assert_bool(test_mapCombat.baseSkillMenu.disabled).is_true()
 
-	test_mapCombat.characterGroup.get_children()[0].get_stats()["skills"] = ["shadow_ball", "nero_nero"]
+	test_mapCombat.characterGroup.get_children()[0].get_stats()["skills"] = ["shadow_ball", "nero_nero", "bestow_life"]
 
 
 func test_update_skill_menu_button_skills_availables():
