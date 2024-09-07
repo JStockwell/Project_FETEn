@@ -65,20 +65,20 @@ static func melee_enemy_attack(map, enemy, finalTarget, dijkstra) -> bool:
 		var attackPoint
 		var furthestAP = 0
 		for dir in DIRECTIONS:
-			# TODO Validate in bounds
-			var coordsPlusDir = finalTargetCoords+dir
-			var tileDistance = distToCell[coordsPlusDir.y][coordsPlusDir.x]
-			var tileDistanceInt: int
+			if map.check_within_bounds(finalTargetCoords,dir):
+				var coordsPlusDir = finalTargetCoords+dir
+				var tileDistance = distToCell[coordsPlusDir.y][coordsPlusDir.x]
+				var tileDistanceInt: int
 
-			if typeof(tileDistance) == 28: # in case it randomly decides to make it a list or an int
-				tileDistanceInt = tileDistance[0]
-			else:
-				tileDistanceInt = tileDistance
-			
-			var tileInQuestion = map.get_tile_from_coords(finalTargetCoords+dir)
-			if moveableCells.has(finalTargetCoords+dir) and not tileInQuestion.is_populated() and furthestAP < tileDistanceInt and not tileInQuestion.get_obstacle_type() == 1:
-				attackPoint = finalTargetCoords+dir
-				furthestAP = distToCell[coordsPlusDir.y][coordsPlusDir.x]
+				if typeof(tileDistance) == 28: # in case it randomly decides to make it a list or an int
+					tileDistanceInt = tileDistance[0]
+				else:
+					tileDistanceInt = tileDistance
+				
+				var tileInQuestion = map.get_tile_from_coords(finalTargetCoords+dir)
+				if moveableCells.has(finalTargetCoords+dir) and not tileInQuestion.is_populated() and furthestAP < tileDistanceInt and not tileInQuestion.get_obstacle_type() == 1:
+					attackPoint = finalTargetCoords+dir
+					furthestAP = distToCell[coordsPlusDir.y][coordsPlusDir.x]
 			
 		CombatMapStatus.set_selected_enemy(finalTarget)
 		CombatMapStatus.set_selected_map_tile(map.get_tile_from_coords(attackPoint)) #there is no else to check for inappropriate movement since its literally impossible for the algorythm to reach this point if a tile wasnt previously valid
