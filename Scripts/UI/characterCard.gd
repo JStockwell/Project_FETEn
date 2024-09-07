@@ -23,6 +23,12 @@ func set_stats(character) -> void:
 	
 	# Max HP
 	statsText += "Max HP: " + str(statsSet["max_health"])
+	## Max Mana
+	#statsText += "\nMax Mana: " + str(statsSet["max_mana"])
+	## Initial Mana
+	#statsText += "\nInitial Mana: " + str(statsSet["ini_mana"])
+	## Mana Regen
+	#statsText += "\nMana Regen: " + str(statsSet["reg_mana"])
 	# Attack
 	statsText += "\nAttack: " + str(statsSet["attack"])
 	# Dexterity
@@ -35,11 +41,11 @@ func set_stats(character) -> void:
 	# Movement
 	match int(statsSet["movement"]):
 		4:
-			statsText += "\nMovement: Slow"
+			statsText += "\nMovement: 4 tiles"
 		5:
-			statsText += "\nMovement: Normal"
+			statsText += "\nMovement: 5 tiles"
 		6:
-			statsText += "\nMovement: Fast"
+			statsText += "\nMovement: 6 tiles"
 		_:
 			statsText += "\nMovement: invalid"
 		
