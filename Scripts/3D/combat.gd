@@ -44,6 +44,7 @@ func _ready():
 	if GameStatus.autorunCombat:
 		await combat_round(generate_rolls(), generate_rolls())
 
+# TODO Reimplement Map Mod
 # 4 types: melee, ranged, skill and mag
 func combat_round(rolls: Array, rolls_retaliate: Array) -> void:
 	# TODO implement character acc and crit modifiers
@@ -58,6 +59,11 @@ func combat_round(rolls: Array, rolls_retaliate: Array) -> void:
 	
 	if CombatMapStatus.attackRange == 1 and defender.get_stats()["current_health"] != 0:
 		# TODO check mapMod for enemy? No mapMod?
+		if attacker.is_ranged():
+			CombatMapStatus.mapMod += 25
+		if defender.is_ranged():
+			CombatMapStatus.mapMod -= 25
+			
 		await attack(defender, attacker, rolls_retaliate)
 	
 	CombatMapStatus.set_has_attacked(true)

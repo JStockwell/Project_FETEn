@@ -440,7 +440,6 @@ func set_selected_character(character, isEnemy: bool) -> void:
 		aneCharacter.show()
 		update_ane_character_card(character)
 
-
 # AnE = Allies and Enemies
 func update_ane_character_card(character) -> void:
 	var txt = ""
@@ -536,6 +535,7 @@ func _on_phys_attack_button_pressed():
 
 
 func setup_com_pred(skillName: String = "", skillResult: String = ""):
+	CombatMapStatus.mapMod = 0
 	skillIssue2.hide()
 	var attacker = CombatMapStatus.get_selected_character()
 	var defender = CombatMapStatus.get_selected_enemy()
@@ -548,6 +548,18 @@ func setup_com_pred(skillName: String = "", skillResult: String = ""):
 		skillIssue2.show()
 		
 	else:
+		if Utils.calc_distance(attackerPosition, defenderPosition) != 1:
+			CombatMapStatus.set_hit_blocked(false)
+			CombatMapStatus.mapMod -= losResult[1]
+			
+		if Utils.calc_distance(attackerPosition, defenderPosition) == 1 and attacker.is_ranged():
+			CombatMapStatus.mapMod -= 25
+
+		var attTile = get_tile_from_coords(attacker.get_map_coords())
+		var defTile = get_tile_from_coords(defender.get_map_coords())
+
+		CombatMapStatus.mapMod += 5 * (attTile.get_height() - defTile.get_height())
+		
 		disableUI = true
 		comPred = CombatPrediction.instantiate()
 		
@@ -585,6 +597,7 @@ func close_combat_prediction(comPred):
 
 
 func phys_combat_round() -> void:
+	CombatMapStatus.mapMod = 0
 	skillIssue2.hide()
 	var attacker = CombatMapStatus.get_selected_character()
 	var defender = CombatMapStatus.get_selected_enemy()
