@@ -10,6 +10,7 @@ var isCastingSkill: bool = false
 var isPaused: bool = false
 
 var BuffParticles = load("res://Scenes/Entities/buffParticles.tscn")
+var CombatPrediction = load("res://Scenes/UI/combatPrediction.tscn")
 
 @onready
 var mapTileGroup = $MapTileGroup
@@ -371,9 +372,14 @@ func purge_the_dead():
 
 	for dead in deadList:
 		if dead.is_enemy():
-			var charIds = [CombatMapStatus.get_selected_character().get_id(), CombatMapStatus.get_selected_enemy().get_id()]
-			if "samael" in charIds or "salvador" in charIds or "azrael" in charIds:
+			var selCharID = CombatMapStatus.get_selected_character().get_id()
+			var enemCharID = CombatMapStatus.get_selected_enemy().get_id()
+			
+			if "samael" == selCharID or "salvador" == selCharID or "azrael" == selCharID:
 				CombatMapStatus.get_selected_character().modify_mana(1)
+				
+			elif "samael" == enemCharID or "salvador" == enemCharID or "azrael" == enemCharID:
+				CombatMapStatus.get_selected_enemy().modify_mana(1)
 
 		CombatMapStatus.remove_character_ini(dead.get_map_id())
 		var tile = get_tile_from_coords(dead.get_map_coords())
@@ -522,8 +528,53 @@ func validate_move(character, mapTile, dijkstra) -> bool:
 signal combat_start
 
 func _on_phys_attack_button_pressed():
-	phys_combat_round()
+	setup_com_pred()
 
+# TODO Test
+func setup_com_pred(skillName: String = "", skillResult: String = ""):
+	skillIssue2.hide()
+	var attacker = CombatMapStatus.get_selected_character()
+	var defender = CombatMapStatus.get_selected_enemy()
+
+	var attackerPosition = attacker.get_map_coords()
+	var defenderPosition = defender.get_map_coords()
+	var losResult = calc_los(attackerPosition, defender)
+
+	if losResult[0] and Utils.calc_distance(attackerPosition, defenderPosition) != 1:
+		skillIssue2.show()
+		
+	else:
+		isCastingSkill = true
+		var comPred = CombatPrediction.instantiate()
+		add_child(comPred)
+		
+		comPred.position = Vector2(468, 376)
+		
+		comPred.skillName = skillName
+		comPred.skillResult = skillResult
+		
+		comPred.connect("combat_start", Callable(self, "attack_combat_prediction"))
+		comPred.connect("close", Callable(self, "close_combat_prediction"))
+
+# TODO Test
+func attack_combat_prediction(comPred, skillName: String = "", skillResult:String = ""):
+	comPred.hide()
+	comPred.queue_free()
+	isCastingSkill = false
+	
+	if CombatMapStatus.attackSkill == "":
+		phys_combat_round()
+		
+	else:
+		cast_skill(skillName, skillResult)
+
+# TODO Test
+func close_combat_prediction(comPred):
+	comPred.hide()
+	comPred.queue_free()
+	isCastingSkill = false
+
+# TODO Retest
 func phys_combat_round() -> void:
 	skillIssue2.hide()
 	var attacker = CombatMapStatus.get_selected_character()
@@ -534,15 +585,15 @@ func phys_combat_round() -> void:
 	# 0: blockedFlag, 1: mapMod
 	var losResult = calc_los(attackerPosition, defender)
 
-	if losResult[0] and Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()) != 1:
+	if losResult[0] and Utils.calc_distance(attackerPosition, defenderPosition) != 1:
 		skillIssue2.show()
 
 	else:
-		if Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()) != 1:
+		if Utils.calc_distance(attackerPosition, defenderPosition) != 1:
 			CombatMapStatus.set_hit_blocked(false)
 			CombatMapStatus.mapMod -= losResult[1]
 
-		if Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()) == 1 and attacker.is_ranged():
+		if Utils.calc_distance(attackerPosition, defenderPosition) == 1 and attacker.is_ranged():
 			CombatMapStatus.mapMod -= 25
 
 		var attTile = get_tile_from_coords(attacker.get_map_coords())
@@ -550,7 +601,7 @@ func phys_combat_round() -> void:
 
 		CombatMapStatus.mapMod += 5 * (attTile.get_height() - defTile.get_height())
 
-		CombatMapStatus.set_combat(attacker, defender, Utils.calc_distance(attacker.get_map_coords(), defender.get_map_coords()))
+		CombatMapStatus.set_combat(attacker, defender, Utils.calc_distance(attackerPosition, defenderPosition))
 
 		combat_start.emit()
 
@@ -620,6 +671,7 @@ func check_behind_cover(defender, tileArray: Array) -> int:
 
 	return mapMod
 
+# TODO Retest
 func _on_skill_selected(id: int):
 	skillIssue.hide()
 	skillIssue2.hide()
@@ -646,36 +698,34 @@ func _on_skill_selected(id: int):
 		skillIssue.show()
 
 	else:
-		var caster = CombatMapStatus.get_selected_character() #got it out of the 3 since the character using the skill is always required
-		caster.modify_mana(-GameStatus.skillSet[skillName].get_cost())
-
 		if GameStatus.skillSet[skillName].can_target_allies():
-			if CombatMapStatus.get_selected_ally() == null:
-				var target = CombatMapStatus.get_selected_character()
-				skillResult = await allied_skill_handler(caster, target, Utils.calc_distance(caster.get_map_coords(), target.get_map_coords()), skillName)
-			else:
-				var target = CombatMapStatus.get_selected_ally()
-				skillResult = await allied_skill_handler(caster, target, Utils.calc_distance(caster.get_map_coords(), target.get_map_coords()), skillName)
+			cast_skill(skillName, skillResult)
 		else:
-			var defender = CombatMapStatus.get_selected_enemy()
+			setup_com_pred(skillName, skillResult)
 
+# TODO Test
+func cast_skill(skillName: String, skillResult):
+	var caster = CombatMapStatus.get_selected_character() #got it out of the 3 since the character using the skill is always required
+	caster.modify_mana(-GameStatus.skillSet[skillName].get_cost())
 
-			CombatMapStatus.set_combat(caster, defender, Utils.calc_distance(caster.get_map_coords(), defender.get_map_coords()), skillName)
-			combat_start.emit()
+	if GameStatus.skillSet[skillName].can_target_allies():
+		if CombatMapStatus.get_selected_ally() == null:
+			var target = CombatMapStatus.get_selected_character()
+			skillResult = await allied_skill_handler(caster, target, Utils.calc_distance(caster.get_map_coords(), target.get_map_coords()), skillName)
+		else:
+			var target = CombatMapStatus.get_selected_ally()
+			skillResult = await allied_skill_handler(caster, target, Utils.calc_distance(caster.get_map_coords(), target.get_map_coords()), skillName)
+		
+		aneCharacter.hide()
+		
+	else:
+		var defender = CombatMapStatus.get_selected_enemy()
 
-			if not GameStatus.skillSet[skillName].is_instantaneous(): #handles the instantaneous flag here
-				CombatMapStatus.hasAttacked = true
+		CombatMapStatus.set_combat(caster, defender, Utils.calc_distance(caster.get_map_coords(), defender.get_map_coords()), skillName)
+		combat_start.emit()
 
-	# preparar algo similar a current health con el cap de vida, crear y setear a 0 si inexistente, en caso de mantenerse sumar. # Done
-	# bloquear todos los controles # mangar del turno enemigo. # done
-	# cura modify health # activar el SEF y probablemente deberíamos llevar aquí el control del cap de curación # done teóricamente
-	# cap stats para asegurar no ir por encima de límites por si acaso # done
-	# instanciar partículas verdes bajo el target
-	# poner un numerito de curación encima del target
-
-
-func buff_particles(target, particleColor: String, buffText: String) -> void:
-	pass
+		if not GameStatus.skillSet[skillName].is_instantaneous(): #handles the instantaneous flag here
+			CombatMapStatus.hasAttacked = true
 
 
 func allied_skill_handler(caster, target, distance, skillName):
