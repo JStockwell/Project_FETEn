@@ -358,7 +358,7 @@ func regen_mana() -> void:
 		if char.get_max_mana() != 0:
 			char.modify_mana(char.get_reg_mana())
 
-# TODO Función cambiada
+
 func purge_the_dead():
 	var deadList = []
 	for char in characterGroup.get_children():
@@ -788,11 +788,10 @@ func handle_skill_info() -> void:
 func update_end_turn_button() -> void:
 	if CombatMapStatus.get_selected_character().is_enemy() or isCastingSkill:
 		endTurnButton.disabled = true
-
 	else:
 		endTurnButton.disabled = false
 
-#TODO test
+
 func update_global_button() -> void:
 	if CombatMapStatus.get_selected_character().is_enemy() or isCastingSkill:
 		changeCameraButton.disabled = true
