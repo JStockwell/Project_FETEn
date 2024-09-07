@@ -821,6 +821,47 @@ func test__on_phys_attack_button_pressed(do_skip=true, skip_reason="under mainte
 	test_mapCombat.characterGroup.get_children()[0].get_stats()["map_coords"] = Vector2(0,0)
 
 
+func test_setup_com_pred_no_skill():
+	var character = test_mapCombat.characterGroup.get_children()[0]
+	var enemy = test_mapCombat.enemyGroup.get_children()[0]
+	test_mapCombat.battleStart = true
+	CombatMapStatus.set_initiative([0,1])
+	CombatMapStatus.set_selected_character(character)
+	character.get_stats()["map_coords"] = Vector2(1,2)
+	test_mapCombat.start_turn()
+	CombatMapStatus.set_selected_enemy(enemy)
+	
+	test_mapCombat.setup_com_pred()
+	
+	assert_that(test_mapCombat.comPred).is_not_null()
+	assert_bool(test_mapCombat.disableUI).is_true()
+	assert_str(test_mapCombat.comPred.skillName).is_empty()
+	assert_str(test_mapCombat.comPred.skillResult).is_empty()
+
+	test_mapCombat.characterGroup.get_children()[0].get_stats()["map_coords"] = Vector2(0,0)
+	
+	
+func test_setup_com_pred_skill():
+	var character = test_mapCombat.characterGroup.get_children()[0]
+	var enemy = test_mapCombat.enemyGroup.get_children()[0]
+	test_mapCombat.battleStart = true
+	CombatMapStatus.set_initiative([0,1])
+	CombatMapStatus.set_selected_character(character)
+	character.get_stats()["map_coords"] = Vector2(1,2)
+	test_mapCombat.start_turn()
+	CombatMapStatus.set_selected_enemy(enemy)
+	var character_skill = "shadow_ball"
+	
+	test_mapCombat.setup_com_pred(character_skill)
+	
+	assert_that(test_mapCombat.comPred).is_not_null()
+	assert_bool(test_mapCombat.disableUI).is_true()
+	assert_that(test_mapCombat.comPred.skillName).is_equal(character_skill)
+	assert_str(test_mapCombat.comPred.skillResult).is_empty()
+
+	test_mapCombat.characterGroup.get_children()[0].get_stats()["map_coords"] = Vector2(0,0)
+
+
 func test_attack_combat_prediction_no_skill():
 	var character = test_mapCombat.characterGroup.get_children()[0]
 	var enemy = test_mapCombat.enemyGroup.get_children()[0]
@@ -860,6 +901,27 @@ func test_attack_combat_prediction_skill():
 	assert_that(character.get_stats()).is_equal(CombatMapStatus.get_attacker_stats())
 	assert_that(enemy.get_stats()).is_equal(CombatMapStatus.get_defender_stats())
 
+	test_mapCombat.characterGroup.get_children()[0].get_stats()["map_coords"] = Vector2(0,0)
+	
+	
+func test_close_combat_prediction():
+	var character = test_mapCombat.characterGroup.get_children()[0]
+	var enemy = test_mapCombat.enemyGroup.get_children()[0]
+	test_mapCombat.battleStart = true
+	CombatMapStatus.set_initiative([0,1])
+	CombatMapStatus.set_selected_character(character)
+	character.get_stats()["map_coords"] = Vector2(1,2)
+	test_mapCombat.start_turn()
+	CombatMapStatus.set_selected_enemy(enemy)
+	test_mapCombat.setup_com_pred()
+
+	test_mapCombat.close_combat_prediction(test_mapCombat.comPred)
+	
+	assert_that(test_mapCombat.comPred).is_queued_for_deletion()
+	assert_bool(test_mapCombat.disableUI).is_false()
+	assert_dict(CombatMapStatus.get_attacker_stats()).is_empty()
+	assert_dict(CombatMapStatus.get_defender_stats()).is_empty()
+	
 	test_mapCombat.characterGroup.get_children()[0].get_stats()["map_coords"] = Vector2(0,0)
 
 
