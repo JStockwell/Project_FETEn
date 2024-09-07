@@ -50,7 +50,7 @@ static func predict_nero_nero(attacker, spa) -> String:
 	return result
 
 static func boost(Combat, rolls, attacker, defender, accMod: int, critMod: int, spa: int, imd: int, level: int):
-	accMod += 15 * level
+	accMod += 3 * level
 	
 	if Combat.calc_hit_chance(attacker.get_dexterity() + accMod, defender.get_agility(), rolls):
 		var crit = Combat.calc_crit(attacker.get_dexterity(), attacker.get_agility(), defender.get_agility(), critMod + (3 * level), rolls[3])

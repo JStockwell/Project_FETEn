@@ -133,8 +133,8 @@ func test_combat_round_boost1_acc_crit():
 	
 	defender.get_stats()["current_health"] = defender.get_stats()["max_health"]
 	
-# TODO
-func test_combat_round_boost1_miss(do_skip=true, skip_reason="Test under maintenance"):
+
+func test_combat_round_boost1_miss():
 	CombatMapStatus.attackRange = 1
 	CombatMapStatus.set_attack_skill("boost_1")
 	var barelyMiss: int = 66+attacker.get_dexterity()*5-defender.get_agility()*3 # = same chance as last test, setting 1 higher on the roll to make sure the hit chance is working properly
@@ -186,8 +186,8 @@ func test_combat_round_boost2_acc_crit():
 	defender.get_stats()["current_health"] = defender.get_stats()["max_health"]
 	
 
-# TODO
-func test_combat_round_boost2_miss(do_skip=true, skip_reason="Test under maintenance"):
+
+func test_combat_round_boost2_miss():
 	CombatMapStatus.attackRange = 1
 	CombatMapStatus.set_attack_skill("boost_2")
 	var barelyMiss: int = 81+attacker.get_dexterity()*5-defender.get_agility()*3 # = same chance as last test, setting 1 higher on the roll to make sure the hit chance is working properly

@@ -33,6 +33,10 @@
 		[
 			"ranged_orc",
 			"(2,2)"
+		],
+		[
+			"juggernaut",
+			"(3,3)"
 		]
 	],
 	"tiles": [
