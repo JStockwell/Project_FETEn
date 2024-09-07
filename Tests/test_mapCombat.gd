@@ -835,7 +835,7 @@ func test_attack_combat_prediction_no_skill():
 	test_mapCombat.attack_combat_prediction(test_mapCombat.comPred)
 
 	assert_that(test_mapCombat.comPred).is_queued_for_deletion()
-	assert_bool(test_mapCombat.isCastingSkill).is_false()
+	assert_bool(test_mapCombat.disableUI).is_false()
 	assert_that(character.get_stats()).is_equal(CombatMapStatus.get_attacker_stats())
 	assert_that(enemy.get_stats()).is_equal(CombatMapStatus.get_defender_stats())
 
@@ -856,7 +856,7 @@ func test_attack_combat_prediction_skill():
 	test_mapCombat.attack_combat_prediction(test_mapCombat.comPred, "shadow_ball")
 
 	assert_that(test_mapCombat.comPred).is_queued_for_deletion()
-	assert_bool(test_mapCombat.isCastingSkill).is_false()
+	assert_bool(test_mapCombat.disableUI).is_false()
 	assert_that(character.get_stats()).is_equal(CombatMapStatus.get_attacker_stats())
 	assert_that(enemy.get_stats()).is_equal(CombatMapStatus.get_defender_stats())
 
@@ -1176,9 +1176,9 @@ func test_update_move_button_enemy_turn():
 	assert_bool(test_mapCombat.moveButton.disabled).is_true()
 
 
-func test_update_move_button_isCastingSkill():
+func test_update_move_button_disableUI():
 	CombatMapStatus.set_initiative([0,1])
-	test_mapCombat.isCastingSkill = true
+	test_mapCombat.disableUI = true
 	var player = test_mapCombat.characterGroup.get_children()[0]
 	CombatMapStatus.set_selected_character(player)
 
@@ -1216,9 +1216,9 @@ func test_update_phys_attack_button_is_enemy():
 	assert_bool(test_mapCombat.physAttackButton.disabled).is_true()
 
 
-func test_update_phys_attack_button_isCastingSkill():
+func test_update_phys_attack_button_disableUI():
 	CombatMapStatus.set_initiative([0,1])
-	test_mapCombat.isCastingSkill = true
+	test_mapCombat.disableUI = true
 	var player = test_mapCombat.characterGroup.get_children()[0]
 	CombatMapStatus.set_selected_character(player)
 
@@ -1276,9 +1276,9 @@ func test_update_skill_menu_button_is_enemy():
 	assert_bool(test_mapCombat.baseSkillMenu.disabled).is_true()
 
 
-func test_update_skill_menu_button_isCastingSkill():
+func test_update_skill_menu_button_disableUI():
 	CombatMapStatus.set_initiative([0,1])
-	test_mapCombat.isCastingSkill = true
+	test_mapCombat.disableUI = true
 	var player = test_mapCombat.characterGroup.get_children()[0]
 	CombatMapStatus.set_selected_character(player)
 
@@ -1364,9 +1364,9 @@ func test_update_end_turn_button_is_enemy():
 	assert_bool(test_mapCombat.endTurnButton.disabled).is_true()
 
 
-func test_update_end_turn_button_isCastingSkill():
+func test_update_end_turn_button_disableUI():
 	CombatMapStatus.set_initiative([0,1])
-	test_mapCombat.isCastingSkill = true
+	test_mapCombat.disableUI = true
 	var player = test_mapCombat.characterGroup.get_children()[0]
 	CombatMapStatus.set_selected_character(player)
 
@@ -1397,11 +1397,11 @@ func test_update_global_button_isEnemy():
 	assert_bool(test_mapCombat.mainMenuButton.disabled).is_true()
 
 
-func test_update_global_button_isCastingSkill():
+func test_update_global_button_disableUI():
 	CombatMapStatus.set_initiative([0,1])
 	var player = test_mapCombat.characterGroup.get_children()[0]
 	CombatMapStatus.set_selected_character(player)
-	test_mapCombat.isCastingSkill = true
+	test_mapCombat.disableUI = true
 
 	test_mapCombat.update_global_button()
 
