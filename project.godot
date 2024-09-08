@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Project FETEn"
-config/version="0.0.1-pre-alpha"
+config/version="0.0.1-alpha"
 run/main_scene="res://Scenes/UI/bootScreen.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 run/max_fps=60
@@ -29,6 +29,7 @@ CombatMapStatus="*res://Scripts/Global/combatMapStatus.gd"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/mode=3
 window/size/resizable=false
 window/size/borderless=true
 window/stretch/mode="viewport"
@@ -46,4 +47,5 @@ ui/toolbar/run_overall=true
 
 [rendering]
 
+textures/default_filters/anisotropic_filtering_level=0
 anti_aliasing/quality/screen_space_aa=1
