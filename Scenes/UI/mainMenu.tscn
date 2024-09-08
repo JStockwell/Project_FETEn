@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ct1jdv1dd3bkl"]
+[gd_scene load_steps=8 format=3 uid="uid://ct1jdv1dd3bkl"]
 
 [ext_resource type="Script" path="res://Scripts/UI/mainMenu.gd" id="1_w2wt5"]
 [ext_resource type="FontFile" uid="uid://p6npb2mlppqj" path="res://Assets/Fonts/Micrhoma/Michroma-Regular.ttf" id="2_hxlxy"]
@@ -7,6 +7,9 @@
 font_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_1uwka"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_y33rq"]
 font_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_giric"]
@@ -63,6 +66,21 @@ label_settings = SubResource("LabelSettings_1uwka")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="ExitButton" type="Button" parent="Buttons"]
+offset_left = 1296.0
+offset_top = 832.0
+offset_right = 1520.0
+offset_bottom = 896.0
+
+[node name="Label" type="Label" parent="Buttons/ExitButton"]
+layout_mode = 0
+offset_right = 224.0
+offset_bottom = 64.0
+text = "Exit Game"
+label_settings = SubResource("LabelSettings_y33rq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Background" type="Control" parent="."]
 anchors_preset = 0
 offset_right = 40.0
@@ -90,3 +108,4 @@ label_settings = SubResource("LabelSettings_a6qk6")
 
 [connection signal="pressed" from="Buttons/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Buttons/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="Buttons/ExitButton" to="." method="_on_exit_button_pressed"]
