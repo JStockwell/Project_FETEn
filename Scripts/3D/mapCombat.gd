@@ -723,7 +723,7 @@ func _on_skill_selected(id: int):
 		else:
 			setup_com_pred(skillName, skillResult)
 
-# TODO test
+
 func cast_skill(skillName: String, skillResult):
 	var caster = CombatMapStatus.get_selected_character() #got it out of the 3 since the character using the skill is always required
 	caster.modify_mana(-GameStatus.skillSet[skillName].get_cost())
@@ -744,8 +744,8 @@ func cast_skill(skillName: String, skillResult):
 		CombatMapStatus.set_combat(caster, defender, Utils.calc_distance(caster.get_map_coords(), defender.get_map_coords()), skillName)
 		combat_start.emit()
 		
-		if not GameStatus.skillSet[skillName].is_instantaneous(): #handles the instantaneous flag here
-			CombatMapStatus.set_has_attacked(true)
+	if not GameStatus.skillSet[skillName].is_instantaneous(): #handles the instantaneous flag here
+		CombatMapStatus.set_has_attacked(true)
 
 
 func allied_skill_handler(caster, target, distance, skillName):

@@ -805,19 +805,23 @@ func test_move_character_not_validated():
 	assert_bool(test_mapCombat.get_tile_from_coords(Vector2(2,1)).isPopulated).is_false()
 	assert_bool(test_mapCombat.get_tile_from_coords(prev_coords).isPopulated).is_true()
 
-	# TODO
-func test__on_phys_attack_button_pressed(do_skip=true, skip_reason="under maintenance"):
+
+func test__on_phys_attack_button_pressed():
 	var character = test_mapCombat.characterGroup.get_children()[0]
 	var enemy = test_mapCombat.enemyGroup.get_children()[0]
+	test_mapCombat.battleStart = true
+	CombatMapStatus.set_initiative([0,1])
 	CombatMapStatus.set_selected_character(character)
-	CombatMapStatus.set_selected_enemy(enemy)
 	character.get_stats()["map_coords"] = Vector2(1,2)
-
+	test_mapCombat.start_turn()
+	CombatMapStatus.set_selected_enemy(enemy)
+	
 	test_mapCombat._on_phys_attack_button_pressed()
-
-	assert_int(CombatMapStatus.mapMod).is_zero()
-	assert_that(character.get_stats()).is_equal(CombatMapStatus.get_attacker_stats())
-	assert_that(enemy.get_stats()).is_equal(CombatMapStatus.get_defender_stats())
+	
+	assert_that(test_mapCombat.comPred).is_not_null()
+	assert_bool(test_mapCombat.disableUI).is_true()
+	assert_str(test_mapCombat.comPred.skillName).is_empty()
+	assert_str(test_mapCombat.comPred.skillResult).is_empty()
 
 	test_mapCombat.characterGroup.get_children()[0].get_stats()["map_coords"] = Vector2(0,0)
 
@@ -1098,9 +1102,11 @@ func test__on_skill_selected_target_myself():
 	assert_int(caster.get_current_health()).is_greater(1)
 
 	caster.get_stats()["current_health"] = caster.get_stats()["max_health"]
+	caster.get_stats()["current_mana"] = caster.get_stats()["ini_mana"]
+	caster.get_stats()["healing_threshold"] = 30
 
-# TODO Fix
-func test__on_skill_selected_target_allies(do_skip = true):
+
+func test__on_skill_selected_target_allies():
 	GameStatus.set_party(["attacker", "attacker2"])
 	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
 	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
@@ -1124,6 +1130,8 @@ func test__on_skill_selected_target_allies(do_skip = true):
 	assert_int(target.get_current_health()).is_greater(1)
 
 	target.get_stats()["current_health"] = target.get_stats()["max_health"]
+	caster.get_stats()["current_mana"] = caster.get_stats()["ini_mana"]
+	caster.get_stats()["healing_threshold"] = 30
 
 
 func test__on_skill_selected_target_enemies():
@@ -1138,8 +1146,84 @@ func test__on_skill_selected_target_enemies():
 
 	test_mapCombat._on_skill_selected(skill_id)
 
-	assert_int(enemy.get_current_health()).is_equal(enemy.get_max_health())
+	assert_that(test_mapCombat.comPred).is_connected("combat_start", Callable(self, "attack_combat_prediction"))
+	assert_that(test_mapCombat.comPred).is_connected("close", Callable(self, "close_combat_prediction"))
 
+	caster.get_stats()["current_mana"] = caster.get_stats()["ini_mana"]
+	enemy.get_stats()["current_health"] = enemy.get_stats()["max_health"]
+
+
+func test_cast_skill_target_myself():
+	CombatMapStatus.set_initiative([0, 1])
+	var caster = test_mapCombat.characterGroup.get_children()[0]
+	caster.get_stats()["current_health"] = 1
+	var caster_mana = caster.get_current_mana()
+	test_mapCombat.start_turn()
+	CombatMapStatus.set_selected_character(caster)
+	var skill_name = "bestow_life"
+
+	test_mapCombat.cast_skill(skill_name, "")
+
+	assert_int(caster.get_current_health()).is_greater(1)
+	assert_int(caster.get_current_mana()).is_less(caster_mana)
+	assert_bool(CombatMapStatus.hasAttacked).is_true()
+
+	caster.get_stats()["current_health"] = caster.get_stats()["max_health"]
+	caster.get_stats()["current_mana"] = caster.get_stats()["ini_mana"]
+	caster.get_stats()["healing_threshold"] = 30
+	
+	
+func test_cast_skill_target_allies():
+	GameStatus.set_party(["attacker", "attacker2"])
+	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
+	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
+	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
+	test_mapCombat.mapDict = mapDict
+	CombatMapStatus.set_is_start_combat(true)
+	test_mapCombat.initial_map_load()
+	CombatMapStatus.set_initiative([0, 1, 2, 3])
+	var caster = test_mapCombat.characterGroup.get_children()[1]
+	var target = test_mapCombat.characterGroup.get_children()[2]
+	caster.set_map_coords(Vector2(0,0))
+	target.set_map_coords(Vector2(1,0))
+	target.get_stats()["current_health"] = 1
+	var caster_mana = caster.get_current_mana()
+	test_mapCombat.start_turn()
+	CombatMapStatus.set_selected_character(caster)
+	CombatMapStatus.set_selected_ally(target)
+	var skill_name = "bestow_life"
+
+	test_mapCombat.cast_skill(skill_name, "")
+
+	assert_int(target.get_current_health()).is_greater(1)
+	assert_int(caster.get_current_mana()).is_less(caster_mana)
+	assert_bool(CombatMapStatus.hasAttacked).is_true()
+
+	target.get_stats()["current_health"] = target.get_stats()["max_health"]
+	caster.get_stats()["current_mana"] = caster.get_stats()["ini_mana"]
+	target.get_stats()["healing_threshold"] = 30
+	
+	
+func test_cast_skill_target_enemies():
+	CombatMapStatus.set_initiative([0, 1])
+	var caster = test_mapCombat.characterGroup.get_children()[0]
+	var enemy = test_mapCombat.enemyGroup.get_children()[0]
+	test_mapCombat.start_turn()
+	CombatMapStatus.set_selected_character(caster)
+	CombatMapStatus.set_selected_enemy(enemy)
+	caster.modify_mana(10)
+	var caster_mana = caster.get_current_mana()
+	var skill_name = "shadow_ball"
+
+	test_mapCombat.cast_skill(skill_name, "")
+
+	assert_int(caster.get_current_mana()).is_less(caster_mana)
+	assert_that(CombatMapStatus.get_attacker_stats()).is_equal(caster.get_stats())
+	assert_that(CombatMapStatus.get_defender_stats()).is_equal(enemy.get_stats())
+	assert_that(CombatMapStatus.attackRange).is_equal(Utils.calc_distance(caster.get_map_coords(), enemy.get_map_coords()))
+	assert_that(CombatMapStatus.attackSkill).is_equal(skill_name)
+	assert_bool(CombatMapStatus.hasAttacked).is_true()
+	
 	caster.get_stats()["current_mana"] = caster.get_stats()["ini_mana"]
 	enemy.get_stats()["current_health"] = enemy.get_stats()["max_health"]
 
@@ -1167,6 +1251,7 @@ func test_allied_skill_handler():
 	assert_int(target.get_current_health()).is_greater(1)
 
 	target.get_stats()["current_health"] = target.get_stats()["max_health"]
+	target.get_stats()["healing_threshold"] = 30
 
 
 func test__on_end_turn_button_pressed():
