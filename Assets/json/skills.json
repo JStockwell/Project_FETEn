@@ -47,7 +47,7 @@
 		"skill_name": "Rock Throw",
 		"description": "Throw a rock with _very_ ill intention\n DEBUG: HEALS 15HP TO THE TARGET RANGE 1-5",
 		"range": 5,
-		"cost": 9,
+		"cost": 8,
 		"spa": 5,
 		"imd": 1
 	},
