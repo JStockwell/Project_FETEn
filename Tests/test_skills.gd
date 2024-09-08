@@ -2,6 +2,7 @@ extends GdUnitTestSuite
 
 var Character = preload("res://Scenes/Entities/character.tscn")
 var Combat = preload("res://Scenes/3D/combat.tscn")
+#var Mapcombat = preload("res://Scenes/3D/mapCombat.tscn")
 
 var test_players = Utils.read_json("res://Assets/json/test_players.json")
 var test_enemies = Utils.read_json("res://Assets/json/test_enemies.json")
@@ -11,6 +12,7 @@ var attacker
 var defender
 var ally
 var combat 
+#var mapcombat
 
 var stats_atk
 var stats_def
@@ -43,6 +45,9 @@ func before_test():
 	CombatMapStatus.set_active_characters(attacker.get_stats(), defender.get_stats())
 	GameStatus.set_autorun_combat(false)
 	
+	#mapcombat = Mapcombat.instantiate()
+	#add_child(mapcombat)
+	
 	combat = Combat.instantiate()
 	add_child(combat)
 	
@@ -52,6 +57,7 @@ func after_test():
 	defender.free()
 	ally.free()
 	combat.free()
+	#mapcombat.free()
 	for test_skill in GameStatus.skillSet:
 		GameStatus.skillSet[test_skill].free()
 	Utils.reset_all()
@@ -246,20 +252,199 @@ func test_combat_round_anchoring_strike_dead_target():
 	assert_bool(defender.is_rooted()).is_false()
 	
 	
-#func test_combat_round_bestow_life():
-	#CombatMapStatus.set_active_characters(attacker.get_stats(), ally.get_stats())
-	#combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 4, "bestow_life")
-	#var spa = GameStatus.skillSet["bestow_life"].get_spa()
-	#assert_int(ally.get_current_health()).is_equal(ally.get_max_health()-25+(attacker.get_attack()+spa))
-#
-#func test_combat_round_creators_touch():
-	#CombatMapStatus.set_active_characters(attacker.get_stats(), ally.get_stats())
-	#combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, 1, "creators_touch")
-	#var spa = GameStatus.skillSet["creators_touch"].get_spa()
-	#assert_int(ally.get_current_health()).is_equal(ally.get_max_health()-25+(attacker.get_attack()+spa))
-#
-#func test_combat_round_mend_flesh():
-	#CombatMapStatus.set_active_characters(attacker.get_stats(), ally.get_stats())
-	#combat.combat_round([1, 1, 1, 100], [1, 1, 1, 100], 0, , "mend_flesh")
-	#var spa = GameStatus.skillSet["mend_flesh"].get_spa()
-	#assert_int(ally.get_current_health()).is_equal(ally.get_max_health()-25+(attacker.get_attack()+spa))
+func test_combat_round_bestow_life_myself():
+	attacker.get_stats()["current_health"] = 1
+	
+	var skill_name = "bestow_life"
+	var spa = GameStatus.skillSet[skill_name]["spa"]
+	var should_heal = attacker.get_attack() + spa
+	var magic_number_heal = 14
+	
+	SEF.run_out_of_combat(skill_name, attacker, attacker, spa)
+	
+	assert_int(attacker.get_current_health()).is_equal(1 + should_heal)
+	assert_int(attacker.get_current_health()).is_equal(1 + magic_number_heal)
+	
+	
+	attacker.get_stats()["current_health"] = attacker.get_stats()["max_health"]
+	attacker.get_stats()["healing_threshold"] = 30
+	
+	
+func test_combat_round_bestow_life_ally():
+	ally.get_stats()["current_health"] = 1
+	
+	var skill_name = "bestow_life"
+	var spa = GameStatus.skillSet[skill_name]["spa"]
+	var should_heal = attacker.get_attack() + spa
+	var magic_number_heal = 14
+	
+	SEF.run_out_of_combat(skill_name, attacker, ally, spa)
+	
+	assert_int(ally.get_current_health()).is_equal(1 + should_heal)
+	assert_int(ally.get_current_health()).is_equal(1 + magic_number_heal)
+	
+	ally.get_stats()["current_health"] = ally.get_stats()["max_health"]
+	ally.get_stats()["healing_threshold"] = 30
+	
+	
+func test_combat_round_bestow_life_limited_threshold():
+	attacker.get_stats()["current_health"] = 1
+	attacker.get_stats()["healing_threshold"] = 1
+	
+	var skill_name = "bestow_life"
+	var spa = GameStatus.skillSet[skill_name]["spa"]
+	var magic_number_heal = 1
+	
+	SEF.run_out_of_combat(skill_name, attacker, attacker, spa)
+	
+	assert_int(attacker.get_current_health()).is_equal(1 + magic_number_heal)
+	
+	attacker.get_stats()["current_health"] = attacker.get_stats()["max_health"]
+	attacker.get_stats()["healing_threshold"] = 30
+	
+	
+func test_combat_round_bestow_life_no_threshold():
+	attacker.get_stats()["current_health"] = 1
+	attacker.get_stats()["healing_threshold"] = 0
+	
+	var skill_name = "bestow_life"
+	var spa = GameStatus.skillSet[skill_name]["spa"]
+	
+	SEF.run_out_of_combat(skill_name, attacker, attacker, spa)
+	
+	assert_int(attacker.get_current_health()).is_equal(1)
+	
+	attacker.get_stats()["current_health"] = attacker.get_stats()["max_health"]
+	attacker.get_stats()["healing_threshold"] = 30
+	
+
+func test_combat_round_creators_touch_myself():
+	attacker.get_stats()["current_health"] = 1
+	
+	var skill_name = "creators_touch"
+	var spa = GameStatus.skillSet[skill_name]["spa"]
+	var should_heal = attacker.get_attack() + spa
+	var magic_number_heal = 21
+	
+	SEF.run_out_of_combat(skill_name, attacker, attacker, spa)
+	
+	assert_int(attacker.get_current_health()).is_equal(1 + should_heal)
+	assert_int(attacker.get_current_health()).is_equal(1 + magic_number_heal)
+	
+	
+	attacker.get_stats()["current_health"] = attacker.get_stats()["max_health"]
+	attacker.get_stats()["healing_threshold"] = 30
+	
+	
+func test_combat_round_creators_touch_ally():
+	ally.get_stats()["current_health"] = 1
+	
+	var skill_name = "creators_touch"
+	var spa = GameStatus.skillSet[skill_name]["spa"]
+	var should_heal = attacker.get_attack() + spa
+	var magic_number_heal = 21
+	
+	SEF.run_out_of_combat(skill_name, attacker, ally, spa)
+	
+	assert_int(ally.get_current_health()).is_equal(1 + should_heal)
+	assert_int(ally.get_current_health()).is_equal(1 + magic_number_heal)
+	
+	ally.get_stats()["current_health"] = ally.get_stats()["max_health"]
+	ally.get_stats()["healing_threshold"] = 30
+	
+	
+func test_combat_round_creators_touch_limited_threshold():
+	attacker.get_stats()["current_health"] = 1
+	attacker.get_stats()["healing_threshold"] = 1
+	
+	var skill_name = "creators_touch"
+	var spa = GameStatus.skillSet[skill_name]["spa"]
+	var magic_number_heal = 1
+	
+	SEF.run_out_of_combat(skill_name, attacker, attacker, spa)
+	
+	assert_int(attacker.get_current_health()).is_equal(1 + magic_number_heal)
+	
+	attacker.get_stats()["current_health"] = attacker.get_stats()["max_health"]
+	attacker.get_stats()["healing_threshold"] = 30
+	
+	
+func test_combat_round_creators_touch_no_threshold():
+	attacker.get_stats()["current_health"] = 1
+	attacker.get_stats()["healing_threshold"] = 0
+	
+	var skill_name = "creators_touch"
+	var spa = GameStatus.skillSet[skill_name]["spa"]
+	
+	SEF.run_out_of_combat(skill_name, attacker, attacker, spa)
+	
+	assert_int(attacker.get_current_health()).is_equal(1)
+	
+	attacker.get_stats()["current_health"] = attacker.get_stats()["max_health"]
+	attacker.get_stats()["healing_threshold"] = 30
+	
+	
+func test_combat_round_mend_flesh_myself():
+	attacker.get_stats()["current_health"] = 1
+	
+	var skill_name = "mend_flesh"
+	var spa = GameStatus.skillSet[skill_name]["spa"]
+	var should_heal = attacker.get_attack() + spa
+	var magic_number_heal = 18
+	
+	SEF.run_out_of_combat(skill_name, attacker, attacker, spa)
+	
+	assert_int(attacker.get_current_health()).is_equal(1 + should_heal)
+	assert_int(attacker.get_current_health()).is_equal(1 + magic_number_heal)
+	
+	
+	attacker.get_stats()["current_health"] = attacker.get_stats()["max_health"]
+	attacker.get_stats()["healing_threshold"] = 30
+	
+	
+func test_combat_round_mend_flesh_ally():
+	ally.get_stats()["current_health"] = 1
+	
+	var skill_name = "mend_flesh"
+	var spa = GameStatus.skillSet[skill_name]["spa"]
+	var should_heal = attacker.get_attack() + spa
+	var magic_number_heal = 18
+	
+	SEF.run_out_of_combat(skill_name, attacker, ally, spa)
+	
+	assert_int(ally.get_current_health()).is_equal(1 + should_heal)
+	assert_int(ally.get_current_health()).is_equal(1 + magic_number_heal)
+	
+	ally.get_stats()["current_health"] = ally.get_stats()["max_health"]
+	ally.get_stats()["healing_threshold"] = 30
+	
+	
+func test_combat_round_mend_flesh_limited_threshold():
+	attacker.get_stats()["current_health"] = 1
+	attacker.get_stats()["healing_threshold"] = 1
+	
+	var skill_name = "mend_flesh"
+	var spa = GameStatus.skillSet[skill_name]["spa"]
+	var magic_number_heal = 1
+	
+	SEF.run_out_of_combat(skill_name, attacker, attacker, spa)
+	
+	assert_int(attacker.get_current_health()).is_equal(1 + magic_number_heal)
+	
+	attacker.get_stats()["current_health"] = attacker.get_stats()["max_health"]
+	attacker.get_stats()["healing_threshold"] = 30
+	
+	
+func test_combat_round_mend_flesh_no_threshold():
+	attacker.get_stats()["current_health"] = 1
+	attacker.get_stats()["healing_threshold"] = 0
+	
+	var skill_name = "mend_flesh"
+	var spa = GameStatus.skillSet[skill_name]["spa"]
+	
+	SEF.run_out_of_combat(skill_name, attacker, attacker, spa)
+	
+	assert_int(attacker.get_current_health()).is_equal(1)
+	
+	attacker.get_stats()["current_health"] = attacker.get_stats()["max_health"]
+	attacker.get_stats()["healing_threshold"] = 30
