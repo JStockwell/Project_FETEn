@@ -1,0 +1,100 @@
+[gd_scene load_steps=4 format=3 uid="uid://wvt31gswalxh"]
+
+[ext_resource type="Script" path="res://Scripts/3D/mapCombat.gd" id="1_rhc0y"]
+[ext_resource type="PackedScene" uid="uid://c11mh4mlt8853" path="res://Assets/MapTiles/placeholder_max_map.glb" id="2_tj2i2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3uv5b"]
+font_color = Color(1, 0, 0, 1)
+
+[node name="MapCombat" type="Node3D"]
+script = ExtResource("1_rhc0y")
+
+[node name="Utility" type="Node3D" parent="."]
+
+[node name="CameraPivot" type="Marker3D" parent="Utility"]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 5, 0, 6.7)
+
+[node name="Camera3D" type="Camera3D" parent="Utility/CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, -4.76837e-07, 7.21316)
+fov = 65.0
+
+[node name="Sun" type="DirectionalLight3D" parent="Utility"]
+transform = Transform3D(0.707107, -0.612373, 0.353553, 1.49012e-08, 0.5, 0.866025, -0.707107, -0.612372, 0.353553, 0, 7, 0)
+
+[node name="CharacterGroup" type="Node3D" parent="."]
+
+[node name="EnemyGroup" type="Node3D" parent="."]
+
+[node name="MapTileGroup" type="Node3D" parent="."]
+
+[node name="Debug" type="Node3D" parent="."]
+visible = false
+
+[node name="placeholder_max_map" parent="Debug" instance=ExtResource("2_tj2i2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Debug" type="Control" parent="UI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DebugLabel" type="Label" parent="UI/Debug"]
+layout_mode = 0
+offset_right = 1912.0
+offset_bottom = 48.0
+
+[node name="MoveButton" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 768.0
+offset_right = 155.0
+offset_bottom = 799.0
+text = "Move"
+
+[node name="PhysAttackButton" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 816.0
+offset_right = 189.0
+offset_bottom = 847.0
+text = "Physical Attack"
+
+[node name="EndTurnButton" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 912.0
+offset_right = 166.0
+offset_bottom = 943.0
+text = "End Turn"
+
+[node name="SkillMenu" type="MenuButton" parent="UI"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 864.0
+offset_right = 180.0
+offset_bottom = 895.0
+text = "Use Skill
+"
+flat = false
+
+[node name="SkillError" type="Label" parent="UI"]
+visible = false
+layout_mode = 0
+offset_left = 192.0
+offset_top = 864.0
+offset_right = 384.0
+offset_bottom = 896.0
+text = "Skill out of range"
+label_settings = SubResource("LabelSettings_3uv5b")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="UI/MoveButton" to="." method="_on_move_button_pressed"]
+[connection signal="pressed" from="UI/PhysAttackButton" to="." method="_on_phys_attack_button_pressed"]
+[connection signal="pressed" from="UI/EndTurnButton" to="." method="_on_end_turn_button_pressed"]

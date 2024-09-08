@@ -1,0 +1,461 @@
+[gd_scene load_steps=37 format=3 uid="uid://wvt31gswalxh"]
+
+[ext_resource type="Script" path="res://Scripts/3D/mapCombat.gd" id="1_rhc0y"]
+[ext_resource type="Texture2D" uid="uid://cdr8pfgua7joc" path="res://Assets/UI/attack_button.png" id="3_1u004"]
+[ext_resource type="Texture2D" uid="uid://dhymjl6nk7i45" path="res://Assets/UI/move_button.png" id="3_4py7p"]
+[ext_resource type="Texture2D" uid="uid://d28sfdx38tbwj" path="res://Assets/UI/move_button_pressed.png" id="3_kpgjc"]
+[ext_resource type="Texture2D" uid="uid://c0ohyv6a50uih" path="res://Assets/UI/move_button_disabled.png" id="3_mqqmo"]
+[ext_resource type="FontFile" uid="uid://p6npb2mlppqj" path="res://Assets/Fonts/Micrhoma/Michroma-Regular.ttf" id="3_s3ban"]
+[ext_resource type="Texture2D" uid="uid://n8q5fbbo3tdn" path="res://Assets/UI/attack_button_disabled.png" id="5_bq817"]
+[ext_resource type="Texture2D" uid="uid://bsl6g8gagqiap" path="res://Assets/UI/camera_button.png" id="5_d7t6j"]
+[ext_resource type="Texture2D" uid="uid://54egr8br2bfy" path="res://Assets/UI/end_turn_button.png" id="5_rdtu0"]
+[ext_resource type="Texture2D" uid="uid://om5r8sljiwpk" path="res://Assets/UI/end_turn_button_disabled.png" id="5_wgoj2"]
+[ext_resource type="Texture2D" uid="uid://ccgvnwjnwtmy4" path="res://Assets/UI/skill_button.png" id="6_mpm3b"]
+[ext_resource type="Texture2D" uid="uid://c51v0recwd87v" path="res://Assets/UI/attack_button_pressed.png" id="6_okt15"]
+[ext_resource type="Texture2D" uid="uid://denhe6kqa3yo1" path="res://Assets/UI/skill_button_disabled.png" id="6_sp6gp"]
+[ext_resource type="Texture2D" uid="uid://bvl57g40tmc2p" path="res://Assets/UI/end_turn_button_pressed.png" id="7_ul68c"]
+[ext_resource type="Texture2D" uid="uid://bbh53o5x5olr0" path="res://Assets/UI/hp_empty.png" id="8_qrg6f"]
+[ext_resource type="Texture2D" uid="uid://tok1r52onrms" path="res://Assets/UI/hp_full.png" id="9_aeilp"]
+[ext_resource type="Texture2D" uid="uid://cfijrjclbo01q" path="res://Assets/UI/mana_empty.png" id="10_16okr"]
+[ext_resource type="Texture2D" uid="uid://bknoolonomvoe" path="res://Assets/UI/mana_full.png" id="11_ipnbs"]
+[ext_resource type="FontFile" uid="uid://71blta5wlshk" path="res://Assets/Fonts/Minecraft/Minecraft.ttf" id="12_fy7hm"]
+[ext_resource type="PackedScene" uid="uid://btrtro6xli2hs" path="res://Scenes/UI/initiative.tscn" id="13_l6mli"]
+[ext_resource type="Texture2D" uid="uid://bktpssxw1kswd" path="res://Assets/UI/sel_char_bg.png" id="13_nloq1"]
+[ext_resource type="Texture2D" uid="uid://3x4u4ibe1d7u" path="res://Assets/UI/ane_background.png" id="19_f0fty"]
+[ext_resource type="Texture2D" uid="uid://b6msnt2l58d5m" path="res://Assets/UI/camera_button_disabled.png" id="19_m8hej"]
+[ext_resource type="Texture2D" uid="uid://bk63cj60tdeno" path="res://Assets/UI/camera_button_pressed.png" id="22_7t38n"]
+[ext_resource type="Texture2D" uid="uid://4p5212j5xpax" path="res://Assets/UI/main_menu_button.png" id="24_6tr0q"]
+[ext_resource type="Texture2D" uid="uid://ui57mmxo6gs4" path="res://Assets/UI/main_menu_button_pressed.png" id="25_f0ndi"]
+[ext_resource type="Texture2D" uid="uid://ceka643agih8a" path="res://Assets/UI/main_menu_button_disabled.png" id="26_kuh5p"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3uv5b"]
+font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tngxo"]
+font = ExtResource("12_fy7hm")
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sp4do"]
+font = ExtResource("12_fy7hm")
+font_size = 32
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ifhw8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2wdrh"]
+font = ExtResource("12_fy7hm")
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ypjpi"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ebm7i"]
+font = ExtResource("3_s3ban")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_8qrx1"]
+font = ExtResource("12_fy7hm")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_mbttw"]
+font = ExtResource("12_fy7hm")
+font_size = 32
+
+[node name="MapCombat" type="Node3D"]
+script = ExtResource("1_rhc0y")
+
+[node name="CharacterGroup" type="Node3D" parent="."]
+
+[node name="EnemyGroup" type="Node3D" parent="."]
+
+[node name="MapTileGroup" type="Node3D" parent="."]
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Actions" type="Control" parent="UI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MoveButton" type="TextureButton" parent="UI/Actions"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 616.0
+offset_right = 248.0
+offset_bottom = 664.0
+texture_normal = ExtResource("3_4py7p")
+texture_pressed = ExtResource("3_kpgjc")
+texture_disabled = ExtResource("3_mqqmo")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="PhysAttackButton" type="TextureButton" parent="UI/Actions"]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 680.0
+offset_right = 273.0
+offset_bottom = 728.0
+texture_normal = ExtResource("3_1u004")
+texture_pressed = ExtResource("6_okt15")
+texture_disabled = ExtResource("5_bq817")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="EndTurnButton" type="TextureButton" parent="UI/Actions"]
+layout_mode = 0
+offset_left = 1564.0
+offset_top = 961.0
+offset_right = 1852.0
+offset_bottom = 1033.0
+texture_normal = ExtResource("5_rdtu0")
+texture_pressed = ExtResource("7_ul68c")
+texture_disabled = ExtResource("5_wgoj2")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Skills" type="Control" parent="UI/Actions"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SkillButtonDisabled" type="Sprite2D" parent="UI/Actions/Skills"]
+position = Vector2(184, 769)
+scale = Vector2(0.124514, 0.124031)
+texture = ExtResource("6_sp6gp")
+
+[node name="SkillMenu" type="MenuButton" parent="UI/Actions/Skills"]
+layout_mode = 0
+offset_left = 116.0
+offset_top = 741.0
+offset_right = 252.0
+offset_bottom = 797.0
+icon = ExtResource("6_mpm3b")
+icon_alignment = 1
+expand_icon = true
+
+[node name="SkillIssue" type="Label" parent="UI/Actions/Skills"]
+visible = false
+layout_mode = 0
+offset_left = 304.0
+offset_top = 688.0
+offset_right = 448.0
+offset_bottom = 720.0
+text = "Skill out of range"
+label_settings = SubResource("LabelSettings_3uv5b")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SkillIssue2" type="Label" parent="UI/Actions/Skills"]
+visible = false
+layout_mode = 0
+offset_left = 280.0
+offset_top = 688.0
+offset_right = 472.0
+offset_bottom = 720.0
+text = "Obstacle blocking shot!"
+label_settings = SubResource("LabelSettings_3uv5b")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SkillCard" type="Control" parent="UI/Actions/Skills"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SkillCardBGBorder" type="ColorRect" parent="UI/Actions/Skills/SkillCard"]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 560.0
+offset_right = 592.0
+offset_bottom = 800.0
+color = Color(0, 0, 0, 1)
+
+[node name="SkillCardBG" type="ColorRect" parent="UI/Actions/Skills/SkillCard"]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 568.0
+offset_right = 584.0
+offset_bottom = 792.0
+color = Color(0.623529, 0.623529, 0.623529, 1)
+
+[node name="SkillCardText" type="Label" parent="UI/Actions/Skills/SkillCard"]
+layout_mode = 0
+offset_left = 296.0
+offset_top = 576.0
+offset_right = 576.0
+offset_bottom = 784.0
+text = "Description: description,
+Range: range,
+Cost: cost,
+spa: spa,
+cta: canTargetAllies,
+imd: isMagicDamage"
+label_settings = SubResource("LabelSettings_tngxo")
+autowrap_mode = 3
+
+[node name="StatusBars" type="Control" parent="UI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HPBar" type="TextureProgressBar" parent="UI/StatusBars"]
+layout_mode = 0
+offset_left = 57.0
+offset_top = 963.0
+offset_right = 314.0
+offset_bottom = 997.0
+value = 100.0
+nine_patch_stretch = true
+texture_under = ExtResource("8_qrg6f")
+texture_progress = ExtResource("9_aeilp")
+
+[node name="ManaBar" type="TextureProgressBar" parent="UI/StatusBars"]
+layout_mode = 0
+offset_left = 57.0
+offset_top = 1002.0
+offset_right = 314.0
+offset_bottom = 1036.0
+value = 100.0
+nine_patch_stretch = true
+texture_under = ExtResource("10_16okr")
+texture_progress = ExtResource("11_ipnbs")
+
+[node name="HPText" type="Label" parent="UI/StatusBars"]
+layout_mode = 0
+offset_left = 139.0
+offset_top = 967.0
+offset_right = 229.0
+offset_bottom = 999.0
+text = "99/99"
+label_settings = SubResource("LabelSettings_sp4do")
+horizontal_alignment = 1
+
+[node name="ManaText" type="Label" parent="UI/StatusBars"]
+layout_mode = 0
+offset_left = 139.0
+offset_top = 1007.0
+offset_right = 229.0
+offset_bottom = 1039.0
+text = "99/99"
+label_settings = SubResource("LabelSettings_sp4do")
+horizontal_alignment = 1
+
+[node name="SelectedCharacter" type="Control" parent="UI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SelCharBg" type="Sprite2D" parent="UI/SelectedCharacter"]
+position = Vector2(183.5, 884.875)
+scale = Vector2(0.25, 0.243517)
+texture = ExtResource("13_nloq1")
+
+[node name="SelCharSprite" type="TextureRect" parent="UI/SelectedCharacter"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 824.0
+offset_right = 248.0
+offset_bottom = 944.0
+texture = SubResource("PlaceholderTexture2D_ifhw8")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AnECharacter" type="Control" parent="UI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="UI/AnECharacter"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 216.0
+offset_right = 310.179
+offset_bottom = 584.0
+texture = ExtResource("19_f0fty")
+expand_mode = 3
+
+[node name="AnEStats" type="Label" parent="UI/AnECharacter"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 352.0
+offset_right = 280.0
+offset_bottom = 520.0
+text = "Name:
+Health:
+Mana:
+Attack:
+Defense:
+Dexterity:
+Agility:
+Movement:
+Range:
+Health Cap:"
+label_settings = SubResource("LabelSettings_2wdrh")
+
+[node name="AnESprite" type="TextureRect" parent="UI/AnECharacter"]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 232.0
+offset_right = 248.0
+offset_bottom = 344.0
+texture = SubResource("PlaceholderTexture2D_ypjpi")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Initiative" parent="UI" instance=ExtResource("13_l6mli")]
+layout_mode = 1
+offset_left = 648.0
+offset_right = 1440.0
+offset_bottom = 104.0
+scale = Vector2(0.75, 0.75)
+
+[node name="DebugUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DebugLabel" type="Label" parent="DebugUI"]
+layout_mode = 0
+offset_right = 1912.0
+offset_bottom = 48.0
+
+[node name="DebugAllySkillButton" type="Button" parent="DebugUI"]
+visible = false
+layout_mode = 0
+offset_left = 109.0
+offset_top = 513.0
+offset_right = 258.0
+offset_bottom = 579.0
+text = "allied skill"
+
+[node name="StartUI" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StartButton" type="Button" parent="StartUI"]
+layout_mode = 0
+offset_left = 768.0
+offset_top = 448.0
+offset_right = 1152.0
+offset_bottom = 640.0
+
+[node name="StartLabel" type="Label" parent="StartUI"]
+layout_mode = 0
+offset_left = 808.0
+offset_top = 488.0
+offset_right = 1112.0
+offset_bottom = 600.0
+text = "START BATTLE"
+label_settings = SubResource("LabelSettings_ebm7i")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="GlobalButtons" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ChangeCamera" type="TextureButton" parent="GlobalButtons"]
+layout_mode = 0
+offset_left = 1744.0
+offset_top = 48.0
+offset_right = 1856.0
+offset_bottom = 152.0
+texture_normal = ExtResource("5_d7t6j")
+texture_pressed = ExtResource("22_7t38n")
+texture_disabled = ExtResource("19_m8hej")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="MainMenuButton" type="TextureButton" parent="GlobalButtons"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 48.0
+offset_right = 176.0
+offset_bottom = 149.0
+texture_normal = ExtResource("24_6tr0q")
+texture_pressed = ExtResource("25_f0ndi")
+texture_disabled = ExtResource("26_kuh5p")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="ReturnMainMenu" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Dim" type="ColorRect" parent="ReturnMainMenu"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.627451)
+
+[node name="RMM" type="Label" parent="ReturnMainMenu"]
+layout_mode = 0
+offset_left = 784.0
+offset_top = 528.0
+offset_right = 1136.0
+offset_bottom = 560.0
+text = "Return to main menu?"
+label_settings = SubResource("LabelSettings_8qrx1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RMMYes" type="Button" parent="ReturnMainMenu"]
+layout_mode = 0
+offset_left = 856.0
+offset_top = 584.0
+offset_right = 936.0
+offset_bottom = 632.0
+flat = true
+
+[node name="Label" type="Label" parent="ReturnMainMenu/RMMYes"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 72.0
+offset_bottom = 48.0
+text = "Yes"
+label_settings = SubResource("LabelSettings_mbttw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RMMNo" type="Button" parent="ReturnMainMenu"]
+layout_mode = 0
+offset_left = 984.0
+offset_top = 584.0
+offset_right = 1064.0
+offset_bottom = 632.0
+flat = true
+
+[node name="Label" type="Label" parent="ReturnMainMenu/RMMNo"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 72.0
+offset_bottom = 48.0
+text = "No"
+label_settings = SubResource("LabelSettings_mbttw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="UI/Actions/MoveButton" to="." method="_on_move_button_pressed"]
+[connection signal="pressed" from="UI/Actions/PhysAttackButton" to="." method="_on_phys_attack_button_pressed"]
+[connection signal="pressed" from="UI/Actions/EndTurnButton" to="." method="_on_end_turn_button_pressed"]
+[connection signal="pressed" from="DebugUI/DebugAllySkillButton" to="." method="_on_debug_ally_skill_button_pressed"]
+[connection signal="pressed" from="StartUI/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="GlobalButtons/ChangeCamera" to="." method="_on_change_camera_pressed"]
+[connection signal="pressed" from="GlobalButtons/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="ReturnMainMenu/RMMYes" to="." method="_on_rmm_yes_pressed"]
+[connection signal="pressed" from="ReturnMainMenu/RMMNo" to="." method="_on_main_menu_button_pressed"]

@@ -1,0 +1,97 @@
+[gd_scene load_steps=7 format=3 uid="uid://bienh7cj2hld5"]
+
+[ext_resource type="Script" path="res://Scripts/UI/credits.gd" id="1_1g8rm"]
+[ext_resource type="Texture2D" uid="uid://cimufby83m7m8" path="res://Assets/Branding/black_full_logo.png" id="1_3d8wl"]
+[ext_resource type="FontFile" uid="uid://p6npb2mlppqj" path="res://Assets/Fonts/Micrhoma/Michroma-Regular.ttf" id="2_8onm8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2x6m1"]
+font = ExtResource("2_8onm8")
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_u3r20"]
+font = ExtResource("2_8onm8")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_rgwp6"]
+font = ExtResource("2_8onm8")
+font_size = 32
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1g8rm")
+
+[node name="BlackFullLogo" type="Sprite2D" parent="."]
+position = Vector2(960, 448)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_3d8wl")
+
+[node name="CreatedBy" type="Label" parent="."]
+layout_mode = 0
+offset_left = 720.0
+offset_top = 144.0
+offset_right = 1200.0
+offset_bottom = 240.0
+text = "Created By"
+label_settings = SubResource("LabelSettings_2x6m1")
+
+[node name="JSM" type="Label" parent="."]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 704.0
+offset_right = 664.0
+offset_bottom = 816.0
+text = "Lead Developer
+James Stockwell Mendoza"
+label_settings = SubResource("LabelSettings_u3r20")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AGT" type="Label" parent="."]
+layout_mode = 0
+offset_left = 744.0
+offset_top = 704.0
+offset_right = 1176.0
+offset_bottom = 816.0
+text = "Head of Testing
+Alex Gestoso Torres"
+label_settings = SubResource("LabelSettings_u3r20")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PSV" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1256.0
+offset_top = 704.0
+offset_right = 1816.0
+offset_bottom = 816.0
+text = "Game Design and AI
+Pablo Sanchez Valenzuela"
+label_settings = SubResource("LabelSettings_u3r20")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReturnButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 824.0
+offset_top = 936.0
+offset_right = 1096.0
+offset_bottom = 1048.0
+
+[node name="Label" type="Label" parent="ReturnButton"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 264.0
+offset_bottom = 103.0
+text = "Return to Main Menu"
+label_settings = SubResource("LabelSettings_rgwp6")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]

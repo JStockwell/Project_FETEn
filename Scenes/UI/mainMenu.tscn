@@ -1,0 +1,112 @@
+[gd_scene load_steps=8 format=3 uid="uid://ct1jdv1dd3bkl"]
+
+[ext_resource type="Script" path="res://Scripts/UI/mainMenu.gd" id="1_w2wt5"]
+[ext_resource type="FontFile" uid="uid://p6npb2mlppqj" path="res://Assets/Fonts/Micrhoma/Michroma-Regular.ttf" id="2_hxlxy"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_267l2"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_1uwka"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_y33rq"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_giric"]
+font = ExtResource("2_hxlxy")
+font_size = 256
+
+[sub_resource type="LabelSettings" id="LabelSettings_a6qk6"]
+font = ExtResource("2_hxlxy")
+font_size = 128
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w2wt5")
+
+[node name="Buttons" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="StartButton" type="Button" parent="Buttons"]
+layout_mode = 0
+offset_left = 1248.0
+offset_top = 576.0
+offset_right = 1568.0
+offset_bottom = 640.0
+
+[node name="Label" type="Label" parent="Buttons/StartButton"]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 64.0
+text = "Start Game"
+label_settings = SubResource("LabelSettings_267l2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CreditsButton" type="Button" parent="Buttons"]
+layout_mode = 0
+offset_left = 1296.0
+offset_top = 704.0
+offset_right = 1520.0
+offset_bottom = 768.0
+
+[node name="Label" type="Label" parent="Buttons/CreditsButton"]
+layout_mode = 0
+offset_right = 224.0
+offset_bottom = 64.0
+text = "Credits"
+label_settings = SubResource("LabelSettings_1uwka")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExitButton" type="Button" parent="Buttons"]
+layout_mode = 0
+offset_left = 1296.0
+offset_top = 832.0
+offset_right = 1520.0
+offset_bottom = 896.0
+
+[node name="Label" type="Label" parent="Buttons/ExitButton"]
+layout_mode = 0
+offset_right = 224.0
+offset_bottom = 64.0
+text = "Exit Game"
+label_settings = SubResource("LabelSettings_y33rq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Background" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Title" type="Label" parent="Background"]
+layout_mode = 0
+offset_left = 56.0
+offset_right = 1736.0
+offset_bottom = 364.0
+text = "P r o j e c t"
+label_settings = SubResource("LabelSettings_giric")
+
+[node name="Subtitle" type="Label" parent="Background"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 320.0
+offset_right = 1152.0
+offset_bottom = 1057.0
+text = "F a n t a s y
+E m b l e m
+T a c t i c s
+E n g a g e"
+label_settings = SubResource("LabelSettings_a6qk6")
+
+[connection signal="pressed" from="Buttons/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Buttons/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="Buttons/ExitButton" to="." method="_on_exit_button_pressed"]
