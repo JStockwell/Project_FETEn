@@ -1203,9 +1203,9 @@
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": true,
+			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
+			"meshPath": "res://Assets/MapTiles/Void1.glb"
 		},
 		{
 			"coords": "(4,9)",
