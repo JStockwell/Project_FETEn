@@ -38,7 +38,7 @@
 	"attacker_skillTests": {
 		"id": "attacker_skillTests",
 		"name": "Attacker",
-		"max_health": 24,
+		"max_health": 50,
 		"attack": 9,
 		"dexterity": 9,
 		"defense": 6,
