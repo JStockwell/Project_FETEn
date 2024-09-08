@@ -149,6 +149,7 @@ func test_update_ane_character_card_with_mana():
 	char_txt += "\nAgility: " + str(stats["agility"])
 	char_txt += "\nMovement: " + str(stats["movement"])
 	char_txt += "\nRange: " + str(stats["range"])
+	char_txt += "\nHealing Cap: " + str(stats["healing_threshold"])  + "/30 HP"
 
 	assert_that(test_mapCombat.aneStats.text).is_equal(char_txt)
 
