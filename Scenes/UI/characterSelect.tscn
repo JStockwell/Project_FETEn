@@ -18,13 +18,21 @@ skeleton = NodePath("../..")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.89503, -13.5618)
-light_energy = 0.3
+visible = false
+light_energy = 0.7
 
 [node name="Camera3D" type="Camera3D" parent="World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6, 5)
 projection = 1
 current = true
 size = 5.5
+
+[node name="OmniLight3D" type="OmniLight3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.45995, 5.55536)
+light_color = Color(0.926459, 0.907226, 0.860223, 1)
+light_energy = 1.5
+omni_range = 14.0
+omni_attenuation = 0.133972
 
 [node name="CharacterCard" parent="." instance=ExtResource("2_kwgtb")]
 visible = false
