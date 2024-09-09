@@ -52,7 +52,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowRoadTop.glb"
 		},
 		{
 			"coords": "(1,0)",
@@ -61,7 +61,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowRoadTop.glb"
 		},
 		{
 			"coords": "(2,0)",
@@ -70,7 +70,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowRoadTop.glb"
 		},
 		{
 			"coords": "(3,0)",
@@ -79,7 +79,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowRoadTop.glb"
 		},
 		{
 			"coords": "(4,0)",
@@ -88,7 +88,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowRoadTop.glb"
 		},
 		{
 			"coords": "(5,0)",
@@ -97,7 +97,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowRoadTop.glb"
 		},
 		{
 			"coords": "(6,0)",
@@ -106,7 +106,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowRoadTop.glb"
 		},
 		{
 			"coords": "(7,0)",
@@ -115,7 +115,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowRoadTop.glb"
 		},
 		{
 			"coords": "(8,0)",
@@ -124,7 +124,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowRoadTop.glb"
 		},
 		{
 			"coords": "(9,0)",
@@ -133,7 +133,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowRoadTop.glb"
 		},
 		{
 			"coords": "(10,0)",
@@ -142,7 +142,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowRoadTop.glb"
 		},
 		{
 			"coords": "(11,0)",
@@ -151,7 +151,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowRoadTop.glb"
 		},
 		{
 			"coords": "(0,1)",
@@ -160,7 +160,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowRoadBottom.glb"
 		},
 		{
 			"coords": "(1,1)",
@@ -169,7 +169,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowRoadBottom.glb"
 		},
 		{
 			"coords": "(2,1)",
@@ -178,7 +178,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowDirtBL.glb"
 		},
 		{
 			"coords": "(3,1)",
@@ -187,7 +187,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Dirt.glb"
 		},
 		{
 			"coords": "(4,1)",
@@ -196,7 +196,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowDirtBR.glb"
 		},
 		{
 			"coords": "(5,1)",
@@ -205,7 +205,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowRoadBottom.glb"
 		},
 		{
 			"coords": "(6,1)",
@@ -214,7 +214,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowRoadBottom.glb"
 		},
 		{
 			"coords": "(7,1)",
@@ -223,7 +223,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowDirtBL.glb"
 		},
 		{
 			"coords": "(8,1)",
@@ -232,7 +232,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Dirt.glb"
 		},
 		{
 			"coords": "(9,1)",
@@ -241,7 +241,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowDirtBR.glb"
 		},
 		{
 			"coords": "(10,1)",
@@ -250,7 +250,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowRoadBottom.glb"
 		},
 		{
 			"coords": "(11,1)",
@@ -259,7 +259,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowRoadBottom.glb"
 		},
 		{
 			"coords": "(0,2)",
@@ -268,7 +268,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(1,2)",
@@ -277,7 +277,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(2,2)",
@@ -286,7 +286,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeLeft.glb"
 		},
 		{
 			"coords": "(3,2)",
@@ -295,7 +295,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneBrickVer_v2.glb"
 		},
 		{
 			"coords": "(4,2)",
@@ -304,7 +304,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeRight.glb"
 		},
 		{
 			"coords": "(5,2)",
@@ -313,7 +313,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(6,2)",
@@ -322,7 +322,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(7,2)",
@@ -331,7 +331,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeLeft.glb"
 		},
 		{
 			"coords": "(8,2)",
@@ -340,7 +340,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneBrickVer_v2.glb"
 		},
 		{
 			"coords": "(9,2)",
@@ -349,7 +349,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeRight.glb"
 		},
 		{
 			"coords": "(10,2)",
@@ -358,7 +358,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(11,2)",
@@ -367,7 +367,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(0,3)",
@@ -376,7 +376,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(1,3)",
@@ -385,7 +385,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(2,3)",
@@ -394,7 +394,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeLeft.glb"
 		},
 		{
 			"coords": "(3,3)",
@@ -403,7 +403,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneBrickVer_v2.glb"
 		},
 		{
 			"coords": "(4,3)",
@@ -412,7 +412,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeRight.glb"
 		},
 		{
 			"coords": "(5,3)",
@@ -421,7 +421,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(6,3)",
@@ -430,7 +430,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(7,3)",
@@ -439,7 +439,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeLeft.glb"
 		},
 		{
 			"coords": "(8,3)",
@@ -448,7 +448,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneBrickVer_v2.glb"
 		},
 		{
 			"coords": "(9,3)",
@@ -457,7 +457,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeRight.glb"
 		},
 		{
 			"coords": "(10,3)",
@@ -466,7 +466,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(11,3)",
@@ -475,7 +475,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		
 		{
@@ -485,7 +485,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(1,4)",
@@ -494,7 +494,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(2,4)",
@@ -503,7 +503,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeLeft.glb"
 		},
 		{
 			"coords": "(3,4)",
@@ -512,7 +512,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneBrickVer_v2.glb"
 		},
 		{
 			"coords": "(4,4)",
@@ -521,7 +521,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeRight.glb"
 		},
 		{
 			"coords": "(5,4)",
@@ -530,7 +530,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(6,4)",
@@ -539,7 +539,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(7,4)",
@@ -548,7 +548,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeLeft.glb"
 		},
 		{
 			"coords": "(8,4)",
@@ -557,7 +557,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneBrickVer_v2.glb"
 		},
 		{
 			"coords": "(9,4)",
@@ -566,7 +566,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeRight.glb"
 		},
 		{
 			"coords": "(10,4)",
@@ -575,7 +575,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(11,4)",
@@ -584,7 +584,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		
 		{
@@ -594,7 +594,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(1,5)",
@@ -603,7 +603,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(2,5)",
@@ -612,7 +612,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeLeft.glb"
 		},
 		{
 			"coords": "(3,5)",
@@ -621,7 +621,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneBrickVer_v2.glb"
 		},
 		{
 			"coords": "(4,5)",
@@ -630,7 +630,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeRight.glb"
 		},
 		{
 			"coords": "(5,5)",
@@ -639,7 +639,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(6,5)",
@@ -648,7 +648,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(7,5)",
@@ -657,7 +657,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeLeft.glb"
 		},
 		{
 			"coords": "(8,5)",
@@ -666,7 +666,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneBrickVer_v2.glb"
 		},
 		{
 			"coords": "(9,5)",
@@ -675,7 +675,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeRight.glb"
 		},
 		{
 			"coords": "(10,5)",
@@ -684,7 +684,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(11,5)",
@@ -693,7 +693,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		
 		{
@@ -703,7 +703,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(1,6)",
@@ -712,7 +712,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(2,6)",
@@ -721,7 +721,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeLeft.glb"
 		},
 		{
 			"coords": "(3,6)",
@@ -730,7 +730,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneBrickVer_v2.glb"
 		},
 		{
 			"coords": "(4,6)",
@@ -739,7 +739,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeRight.glb"
 		},
 		{
 			"coords": "(5,6)",
@@ -748,7 +748,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(6,6)",
@@ -757,7 +757,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(7,6)",
@@ -766,7 +766,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeLeft.glb"
 		},
 		{
 			"coords": "(8,6)",
@@ -775,7 +775,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneBrickVer_v2.glb"
 		},
 		{
 			"coords": "(9,6)",
@@ -784,7 +784,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeRight.glb"
 		},
 		{
 			"coords": "(10,6)",
@@ -793,7 +793,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(11,6)",
@@ -802,7 +802,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		
 		{
@@ -812,7 +812,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(1,7)",
@@ -821,7 +821,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(2,7)",
@@ -830,7 +830,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeLeft.glb"
 		},
 		{
 			"coords": "(3,7)",
@@ -839,7 +839,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneBrickVer_v2.glb"
 		},
 		{
 			"coords": "(4,7)",
@@ -848,7 +848,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeRight.glb"
 		},
 		{
 			"coords": "(5,7)",
@@ -857,7 +857,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(6,7)",
@@ -866,7 +866,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(7,7)",
@@ -875,7 +875,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeLeft.glb"
 		},
 		{
 			"coords": "(8,7)",
@@ -884,7 +884,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneBrickVer_v2.glb"
 		},
 		{
 			"coords": "(9,7)",
@@ -893,7 +893,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeRight.glb"
 		},
 		{
 			"coords": "(10,7)",
@@ -902,7 +902,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(11,7)",
@@ -911,7 +911,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		
 		{
@@ -921,7 +921,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(1,8)",
@@ -930,7 +930,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(2,8)",
@@ -939,7 +939,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeLeft.glb"
 		},
 		{
 			"coords": "(3,8)",
@@ -948,7 +948,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneBrickVer_v2.glb"
 		},
 		{
 			"coords": "(4,8)",
@@ -957,7 +957,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeRight.glb"
 		},
 		{
 			"coords": "(5,8)",
@@ -966,7 +966,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(6,8)",
@@ -975,7 +975,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(7,8)",
@@ -984,7 +984,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeLeft.glb"
 		},
 		{
 			"coords": "(8,8)",
@@ -993,7 +993,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneBrickVer_v2.glb"
 		},
 		{
 			"coords": "(9,8)",
@@ -1002,7 +1002,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeRight.glb"
 		},
 		{
 			"coords": "(10,8)",
@@ -1011,7 +1011,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(11,8)",
@@ -1020,7 +1020,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		
 		{
@@ -1030,7 +1030,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(1,9)",
@@ -1039,7 +1039,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(2,9)",
@@ -1048,7 +1048,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeLeft.glb"
 		},
 		{
 			"coords": "(3,9)",
@@ -1057,7 +1057,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneBrickVer_v2.glb"
 		},
 		{
 			"coords": "(4,9)",
@@ -1066,7 +1066,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeRight.glb"
 		},
 		{
 			"coords": "(5,9)",
@@ -1075,7 +1075,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(6,9)",
@@ -1084,7 +1084,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(7,9)",
@@ -1093,7 +1093,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeLeft.glb"
 		},
 		{
 			"coords": "(8,9)",
@@ -1102,7 +1102,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneBrickVer_v2.glb"
 		},
 		{
 			"coords": "(9,9)",
@@ -1111,7 +1111,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeRight.glb"
 		},
 		{
 			"coords": "(10,9)",
@@ -1120,7 +1120,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(11,9)",
@@ -1129,7 +1129,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(0,10)",
@@ -1138,7 +1138,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(1,10)",
@@ -1147,7 +1147,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(2,10)",
@@ -1156,7 +1156,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeLeft.glb"
 		},
 		{
 			"coords": "(3,10)",
@@ -1165,7 +1165,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneBrickVer_v2.glb"
 		},
 		{
 			"coords": "(4,10)",
@@ -1174,7 +1174,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeRight.glb"
 		},
 		{
 			"coords": "(5,10)",
@@ -1183,7 +1183,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(6,10)",
@@ -1192,7 +1192,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(7,10)",
@@ -1201,7 +1201,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeLeft.glb"
 		},
 		{
 			"coords": "(8,10)",
@@ -1210,7 +1210,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneBrickVer_v2.glb"
 		},
 		{
 			"coords": "(9,10)",
@@ -1219,7 +1219,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeRight.glb"
 		},
 		{
 			"coords": "(10,10)",
@@ -1228,7 +1228,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(11,10)",
@@ -1237,7 +1237,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(0,11)",
@@ -1246,7 +1246,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(1,11)",
@@ -1255,7 +1255,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(2,11)",
@@ -1264,7 +1264,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeLeft.glb"
 		},
 		{
 			"coords": "(3,11)",
@@ -1273,7 +1273,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneBrickVer_v2.glb"
 		},
 		{
 			"coords": "(4,11)",
@@ -1282,7 +1282,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeRight.glb"
 		},
 		{
 			"coords": "(5,11)",
@@ -1291,7 +1291,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(6,11)",
@@ -1300,7 +1300,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(7,11)",
@@ -1309,7 +1309,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeLeft.glb"
 		},
 		{
 			"coords": "(8,11)",
@@ -1318,7 +1318,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneBrickVer_v2.glb"
 		},
 		{
 			"coords": "(9,11)",
@@ -1327,7 +1327,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeRight.glb"
 		},
 		{
 			"coords": "(10,11)",
@@ -1336,7 +1336,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(11,11)",
@@ -1345,7 +1345,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(0,12)",
@@ -1354,7 +1354,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(1,12)",
@@ -1363,7 +1363,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(2,12)",
@@ -1372,7 +1372,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeLeft.glb"
 		},
 		{
 			"coords": "(3,12)",
@@ -1381,7 +1381,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneBrickVer_v2.glb"
 		},
 		{
 			"coords": "(4,12)",
@@ -1390,7 +1390,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeRight.glb"
 		},
 		{
 			"coords": "(5,12)",
@@ -1399,7 +1399,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(6,12)",
@@ -1408,7 +1408,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(7,12)",
@@ -1417,7 +1417,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeLeft.glb"
 		},
 		{
 			"coords": "(8,12)",
@@ -1426,7 +1426,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneBrickVer_v2.glb"
 		},
 		{
 			"coords": "(9,12)",
@@ -1435,7 +1435,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeRight.glb"
 		},
 		{
 			"coords": "(10,12)",
@@ -1444,7 +1444,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(11,12)",
@@ -1453,7 +1453,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},				
 		{
 			"coords": "(0,13)",
@@ -1462,7 +1462,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(1,13)",
@@ -1471,7 +1471,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(2,13)",
@@ -1480,7 +1480,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeLeft.glb"
 		},
 		{
 			"coords": "(3,13)",
@@ -1489,7 +1489,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneBrickVer_v2.glb"
 		},
 		{
 			"coords": "(4,13)",
@@ -1498,7 +1498,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeRight.glb"
 		},
 		{
 			"coords": "(5,13)",
@@ -1507,7 +1507,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(6,13)",
@@ -1516,7 +1516,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(7,13)",
@@ -1525,7 +1525,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeLeft.glb"
 		},
 		{
 			"coords": "(8,13)",
@@ -1534,7 +1534,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneBrickVer_v2.glb"
 		},
 		{
 			"coords": "(9,13)",
@@ -1543,7 +1543,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowBridgeRight.glb"
 		},
 		{
 			"coords": "(10,13)",
@@ -1552,7 +1552,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(11,13)",
@@ -1561,7 +1561,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Ice_v7.glb"
 		},
 		{
 			"coords": "(0,14)",
@@ -1570,7 +1570,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowRoadTop.glb"
 		},
 		{
 			"coords": "(1,14)",
@@ -1579,7 +1579,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowRoadTop.glb"
 		},
 		{
 			"coords": "(2,14)",
@@ -1588,7 +1588,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowDirtTL.glb"
 		},
 		{
 			"coords": "(3,14)",
@@ -1597,7 +1597,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Dirt.glb"
 		},
 		{
 			"coords": "(4,14)",
@@ -1606,7 +1606,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowDirtTR.glb"
 		},
 		{
 			"coords": "(5,14)",
@@ -1615,7 +1615,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowRoadTop.glb"
 		},
 		{
 			"coords": "(6,14)",
@@ -1624,7 +1624,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowRoadTop.glb"
 		},
 		{
 			"coords": "(7,14)",
@@ -1633,7 +1633,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowDirtTL.glb"
 		},
 		{
 			"coords": "(8,14)",
@@ -1642,7 +1642,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/Dirt.glb"
 		},
 		{
 			"coords": "(9,14)",
@@ -1651,7 +1651,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowDirtTR.glb"
 		},
 		{
 			"coords": "(10,14)",
@@ -1660,7 +1660,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowRoadTop.glb"
 		},
 		{
 			"coords": "(11,14)",
@@ -1669,7 +1669,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowRoadTop.glb"
 		},
 		{
 			"coords": "(0,15)",
@@ -1678,7 +1678,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowRoadBottom.glb"
 		},
 		{
 			"coords": "(1,15)",
@@ -1687,7 +1687,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowRoadBottom.glb"
 		},
 		{
 			"coords": "(2,15)",
@@ -1696,7 +1696,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowRoadBottom.glb"
 		},
 		{
 			"coords": "(3,15)",
@@ -1705,7 +1705,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowRoadBottom.glb"
 		},
 		{
 			"coords": "(4,15)",
@@ -1714,7 +1714,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowRoadBottom.glb"
 		},
 		{
 			"coords": "(5,15)",
@@ -1723,7 +1723,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowRoadBottom.glb"
 		},
 		{
 			"coords": "(6,15)",
@@ -1732,7 +1732,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowRoadBottom.glb"
 		},
 		{
 			"coords": "(7,15)",
@@ -1741,7 +1741,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowRoadBottom.glb"
 		},
 		{
 			"coords": "(8,15)",
@@ -1750,7 +1750,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowRoadBottom.glb"
 		},
 		{
 			"coords": "(9,15)",
@@ -1759,7 +1759,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowRoadBottom.glb"
 		},
 		{
 			"coords": "(10,15)",
@@ -1768,7 +1768,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowRoadBottom.glb"
 		},
 		{
 			"coords": "(11,15)",
@@ -1777,7 +1777,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+			"meshPath": "res://Assets/MapTiles/SnowRoadBottom.glb"
 		}
 	]
 }
