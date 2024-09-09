@@ -705,7 +705,7 @@ func _on_skill_selected(id: int):
 
 	var skillResult
 	if GameStatus.skillSet[skillName].can_target_allies():
-		if CombatMapStatus.get_selected_ally() != null:
+		if CombatMapStatus.get_selected_ally() != null: #add something to stop from healing at cap<=0
 			skillResult = SkillMenu.validate_skill(skillName, CombatMapStatus.get_selected_character(), CombatMapStatus.get_selected_ally())
 		else:
 			skillResult = SkillMenu.validate_skill(skillName, CombatMapStatus.get_selected_character(), CombatMapStatus.get_selected_character())

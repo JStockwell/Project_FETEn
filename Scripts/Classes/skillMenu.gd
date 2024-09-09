@@ -11,12 +11,15 @@ static func validate_skill(skillName: String, character, target) -> String:
 	#elif skill.get_range() == 0:	# unsure on why its here, there are skills that can target self
 		#return error
 	
-	#TODO cap de 30 de curación recibida por personaje
-	
 	elif target == null and not skill.can_target_allies():
 		error = "Select a target"
 		
 	elif Utils.calc_distance(character.get_map_coords(), target.get_map_coords()) > skill.get_range():
 		error = "Skill out of range"
+		
+	elif skill.can_target_allies() and target.get_healing_threshold()<=0 and skill.get_spa() != 0: # change it for a flag
+		error = "Character has reached healing threshold"
+	elif skill.can_target_allies() and target.get_current_health() == target.get_max_health() and skill.get_spa() != 0:
+		error = "Character has reached healing threshold"
 	
 	return error

@@ -114,7 +114,6 @@ static func _dijkstra(map, mapCoords: Vector2, maxRange: int) -> Array: # we cou
 			if valid_coordinates(map, coordinates, tilesOccupiedOponents): # if it is traversable and it is within the map and if occupied is by an ally, does not check if a player is in it, check later.
 				var visitedTile = visited[coordinates.y][coordinates.x]
 				var visitedTileBool: bool
-				var typeOfBullshit = typeof(visitedTile)
 				if not typeof(visitedTile)==1:
 					visitedTileBool = visitedTile[0]
 				else:
