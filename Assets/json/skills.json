@@ -94,7 +94,8 @@
 		"spa": 0,
 		"sef": true,
 		"cta": true,
-		"inst": true
+		"inst": true,
+		"buff": true
 	},
 	"icicle": {
 		"skill_name": "Icicle",

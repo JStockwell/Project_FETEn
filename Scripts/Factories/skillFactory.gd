@@ -29,6 +29,9 @@ static func create(args: Dictionary):
 		
 		if "inst" in args.keys():
 			mySkill.isInstantaneous = args["inst"]
+
+		if "buff" in args.keys():
+			mySkill.isInstantaneous = args["buff"]
 		
 		return mySkill
 			

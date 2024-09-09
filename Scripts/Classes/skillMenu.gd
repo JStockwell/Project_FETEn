@@ -17,9 +17,9 @@ static func validate_skill(skillName: String, character, target) -> String:
 	elif Utils.calc_distance(character.get_map_coords(), target.get_map_coords()) > skill.get_range():
 		error = "Skill out of range"
 		
-	elif skill.can_target_allies() and target.get_healing_threshold()<=0 and skill.get_spa() != 0: # change it for a flag
+	elif skill.can_target_allies() and target.get_healing_threshold()<=0 and not skill.is_buff():
 		error = "Character has reached healing threshold"
-	elif skill.can_target_allies() and target.get_current_health() == target.get_max_health() and skill.get_spa() != 0:
-		error = "Character has reached healing threshold"
+	elif skill.can_target_allies() and target.get_current_health() == target.get_max_health() and not skill.is_buff():
+		error = "Character is already at max health"
 	
 	return error
