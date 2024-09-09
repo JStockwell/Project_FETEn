@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://bc2dh2tjcjvw2"]
+
+[ext_resource type="Texture2D" uid="uid://dghnatoms3sxn" path="res://Assets/Reference/andalucia-map.png" id="1_pd3bg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uy7ni"]
+albedo_texture = ExtResource("1_pd3bg")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x4nem"]
+albedo_texture = ExtResource("1_pd3bg")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_38tkw"]
+material = SubResource("StandardMaterial3D_x4nem")
+size = Vector2(6, 3.575)
+
+[node name="CampaignMap" type="Node3D"]
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 26)
+fov = 40.0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="World"]
+transform = Transform3D(0.965926, 0.111392, -0.233622, -0.0642476, 0.977588, 0.200482, 0.250718, -0.178641, 0.951435, -8, 2.26333, 8)
+light_energy = 2.5
+spot_range = 17.897
+spot_attenuation = 0.683023
+spot_angle = 54.8438
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="World"]
+transform = Transform3D(0.997841, 0.0656797, -0.000493452, -0.0642476, 0.977588, 0.200482, 0.01365, -0.200018, 0.979697, 0, 2.26333, 8)
+light_energy = 2.5
+spot_range = 17.897
+spot_attenuation = 0.683023
+spot_angle = 54.8438
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="World"]
+transform = Transform3D(0.972178, 0.0165025, 0.233661, -0.0649203, 0.977422, 0.201078, -0.225067, -0.210653, 0.951299, 8, 2.26333, 8)
+light_energy = 2.5
+spot_range = 17.897
+spot_attenuation = 0.683023
+spot_angle = 54.8438
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, -2.18557e-07, -5, 0, 5, -2.18557e-07, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_uy7ni")
+mesh = SubResource("PlaneMesh_38tkw")

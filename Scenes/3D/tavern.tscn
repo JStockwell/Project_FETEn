@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dbkqbo2tbjjv7"]
+[gd_scene load_steps=26 format=3 uid="uid://dbkqbo2tbjjv7"]
 
 [ext_resource type="Script" path="res://Scripts/3D/tavern.gd" id="1_vaq4h"]
 [ext_resource type="Texture2D" uid="uid://dotpb0qnmfnfa" path="res://Assets/Textures/DiamondPlate008C/DiamondPlate008C_4K-JPG_Color.jpg" id="2_61uf5"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://d0c2b7ehpqem5" path="res://Assets/Props/door/door.glb" id="12_3m3mc"]
 [ext_resource type="PackedScene" uid="uid://47eew04eex6j" path="res://Assets/Props/whiskey/hiram_walker_whiskey_bottle.glb" id="13_2um30"]
 [ext_resource type="PackedScene" uid="uid://b0veomtxqmpbc" path="res://Assets/Props/handcuffs/simple_handcuffs.glb" id="14_0ews5"]
+[ext_resource type="PackedScene" uid="uid://bc2dh2tjcjvw2" path="res://Scenes/3D/campaignMap.tscn" id="15_oudw3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5rlju"]
 albedo_texture = ExtResource("2_61uf5")
@@ -192,3 +193,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 14.53, 0)
 [node name="MapBase" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.688, -0.5)
 mesh = SubResource("BoxMesh_0dcg8")
+
+[node name="Campaign" type="Node3D" parent="."]
+
+[node name="CampaignMap" parent="Campaign" instance=ExtResource("15_oudw3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -34.3515, 24.4577, 0)
