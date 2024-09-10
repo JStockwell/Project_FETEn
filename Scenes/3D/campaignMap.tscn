@@ -7,14 +7,13 @@
 script = ExtResource("1_x4u78")
 
 [node name="World" type="Node3D" parent="."]
-visible = false
 
 [node name="Camera3D" type="Camera3D" parent="World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 48)
 fov = 30.0
 
 [node name="SpotLight3D" type="SpotLight3D" parent="World"]
-transform = Transform3D(0.965926, 0.111392, -0.233622, -0.0642476, 0.977588, 0.200482, 0.250718, -0.178641, 0.951435, -8, 2.26333, 8)
+transform = Transform3D(0.987449, 0.13606, -0.0802024, -0.107116, 0.950096, 0.292991, 0.116064, -0.280722, 0.952746, -8, 2.26333, 8)
 light_energy = 2.5
 spot_range = 17.897
 spot_attenuation = 0.683023
@@ -28,7 +27,7 @@ spot_attenuation = 0.683023
 spot_angle = 54.8438
 
 [node name="SpotLight3D3" type="SpotLight3D" parent="World"]
-transform = Transform3D(0.972178, 0.0165025, 0.233661, -0.0649203, 0.977422, 0.201078, -0.225067, -0.210653, 0.951299, 8, 2.26333, 8)
+transform = Transform3D(0.987556, -0.135391, 0.0800215, 0.106598, 0.950345, 0.292372, -0.115632, -0.280203, 0.952951, 8, 2.26333, 8)
 light_energy = 2.5
 spot_range = 17.897
 spot_attenuation = 0.683023
@@ -39,26 +38,61 @@ spot_angle = 54.8438
 [node name="CampaignMapMesh" parent="Map" instance=ExtResource("2_4urjx")]
 transform = Transform3D(-6.31, 5.51638e-07, 2.41129e-14, 0, -2.75819e-07, 6.31, 5.51638e-07, 6.31, 2.75819e-07, 0, 0, 0)
 
-[node name="Cordoba" type="StaticBody3D" parent="Map"]
+[node name="Provinces" type="Node3D" parent="Map"]
 
-[node name="CordobaButton" type="CollisionPolygon3D" parent="Map/Cordoba"]
+[node name="Cordoba" type="StaticBody3D" parent="Map/Provinces"]
+
+[node name="CordobaButton" type="CollisionPolygon3D" parent="Map/Provinces/Cordoba"]
 polygon = PackedVector2Array(-2.68578, -0.376974, -1.92638, -2.09951, -1.42629, -3.06265, -1.8523, -4.84075, -1.55595, -5.98911, -0.185327, -7.04485, 1.37051, -8.28582, 2.31052, -8.57325, 3.55149, -7.81385, 4.73689, -6.75811, 5.10733, -4.94296, 3.68114, -2.72033, 3.6441, -2.27581, 4.03306, -1.97946, 3.68114, -1.68311, 2.292, -2.12763, 1.92156, -1.62754, 1.68078, -0.701448, 1.16673, 0.0357774, 0.758838, 0.072858, 0.235073, 0.851552, -0.390663, 0.754215, -0.821726, 0.601258, -1.08129, 0.958159, -1.52626, 0.703229, -1.88812, 0.0950881)
 
-[node name="Sevilla" type="StaticBody3D" parent="Map"]
+[node name="Sevilla" type="StaticBody3D" parent="Map/Provinces"]
 
-[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Map/Sevilla"]
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Map/Provinces/Sevilla"]
 polygon = PackedVector2Array(3.46835, 2.58085, 2.13744, 1.72027, 1.54704, 1.26996, 1.17679, 1.25995, 0.866577, 0.939734, 0.566373, 0.599503, 0.716475, 0.159203, 1.32689, -0.0209191, 1.65711, -0.621328, 1.87726, -1.40186, 2.2275, -2.01227, 2.99803, -1.91221, 3.89864, -1.612, 4.16882, -1.83215, 4.06876, -2.11234, 3.75854, -2.28246, 3.71316, -2.76363, 4.79536, -4.50998, 5.31759, -4.82626, 5.94279, -5.26758, 6.57535, -4.96601, 7.0608, -4.12751, 7.99492, -3.75239, 7.85517, -2.89917, 8.21558, -2.74471, 8.47301, -2.47256, 8.85677, -2.48949, 9.47462, -2.33503, 9.77618, -1.97462, 9.1804, -1.58479, 8.90826, -0.724221, 9.12892, -0.0328231, 9.01328, 0.342684, 9.06477, 1.18119, 9.28543, 1.67399, 9.27808, 2.45366, 8.89701, 2.84368, 7.71281, 3.13789, 6.90373, 3.13789, 6.49919, 2.82161, 5.91076, 2.70393, 5.68275, 2.54211, 5.22672, 2.85839, 4.96193, 2.73335, 4.74862, 2.49798, 4.44978, 2.61, 3.92755, 2.34521)
 
-[node name="Huelva" type="StaticBody3D" parent="Map"]
+[node name="Huelva" type="StaticBody3D" parent="Map/Provinces"]
 
-[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Map/Huelva"]
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Map/Provinces/Huelva"]
 polygon = PackedVector2Array(9.45069, 3.20053, 9.17056, 2.76867, 9.26393, 1.60147, 9.15889, 0.22418, 9.27561, -0.149323, 9.1122, -0.826296, 9.32229, -1.4916, 9.76583, -1.85343, 9.90589, -1.97015, 9.73081, -2.20359, 9.28592, -2.49352, 8.55058, -2.55188, 8.34049, -2.7503, 7.99033, -2.94872, 8.11872, -3.54399, 8.63229, -3.98753, 9.32093, -4.59447, 9.97456, -4.52444, 10.885, -5.14305, 11.8654, -5.58659, 12.7291, -4.85125, 13.4878, -4.31434, 14.4449, -2.84368, 15.0285, -1.59478, 14.5173, 0.748246, 12.8249, 0.853294, 11.2375, 1.67033)
 
-[node name="Cadiz" type="StaticBody3D" parent="Map"]
+[node name="Cadiz" type="StaticBody3D" parent="Map/Provinces"]
 
-[connection signal="input_event" from="Map/Cordoba" to="." method="_on_province_input_event"]
-[connection signal="mouse_entered" from="Map/Cordoba" to="." method="_on_cordoba_mouse_entered"]
-[connection signal="input_event" from="Map/Sevilla" to="." method="_on_province_input_event"]
-[connection signal="mouse_entered" from="Map/Sevilla" to="." method="_on_sevilla_mouse_entered"]
-[connection signal="input_event" from="Map/Huelva" to="." method="_on_province_input_event"]
-[connection signal="mouse_entered" from="Map/Huelva" to="." method="_on_huelva_mouse_entered"]
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Map/Provinces/Cadiz"]
+polygon = PackedVector2Array(5.53373, 8.5963, 4.73315, 8.20978, 4.64812, 7.72995, 4.17437, 7.73603, 3.8221, 6.86749, 4.10149, 6.2419, 4.46591, 5.62846, 4.721, 5.4341, 5.14009, 5.48876, 5.34659, 5.4341, 5.25549, 5.27618, 4.96395, 5.15471, 4.33229, 4.68096, 4.03468, 4.32869, 3.95572, 3.89138, 3.96179, 3.59377, 3.81602, 3.39334, 3.24736, 3.47702, 2.96516, 3.13694, 3.06887, 2.64972, 3.49579, 2.67143, 3.91547, 2.4423, 4.47745, 2.69555, 4.81271, 2.68349, 5.13832, 2.94881, 5.55318, 2.72932, 5.70325, 2.65781, 6.02645, 2.84835, 6.61979, 2.98825, 6.96952, 3.23909, 7.69105, 3.2567, 8.7306, 2.96485, 9.00797, 3.01309, 9.2564, 3.53166, 9.5579, 3.94892, 9.33866, 4.73327, 8.81794, 5.01446, 8.9325, 5.57163, 7.79733, 7.32646, 6.47624, 8.1641, 5.96593, 8.35156)
+
+[node name="Malaga" type="StaticBody3D" parent="Map/Provinces"]
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Map/Provinces/Malaga"]
+polygon = PackedVector2Array(0.844802, 1.23877, 1.10246, 1.3676, 1.34581, 1.32824, 1.67504, 1.52148, 1.87544, 1.7863, 2.46234, 2.14416, 2.72715, 2.24079, 2.82378, 2.52708, 2.68063, 3.05313, 3.04502, 3.54593, 3.62476, 3.47078, 3.86094, 3.6175, 3.85021, 3.76423, 3.83947, 4.02547, 3.95399, 4.47279, 4.6053, 5.04179, 5.1063, 5.23504, 5.14209, 5.43544, 4.93453, 5.43544, 4.82717, 5.40681, 4.34406, 5.40681, 3.85528, 6.52047, 3.49026, 6.67077, 3.11808, 6.19839, 1.65443, 5.59718, 0.963753, 5.68665, 0.369702, 5.52561, -0.198777, 4.9845, -0.706941, 4.35109, -2.97579, 4.25089, -3.70224, 4.10774, -3.89549, 3.74988, -3.59846, 3.36697, -2.98652, 3.15225, -2.2028, 2.80155, -1.56581, 2.18245, -1.27494, 1.41133, -1.00296, 1.15009, -0.813297, 0.749286, -0.476907, 0.770757, -0.204932, 1.04989, 0.0956724, 1.1143, 0.424905, 0.938952, 0.768452, 0.956845)
+
+[node name="Jaen" type="StaticBody3D" parent="Map/Provinces"]
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Map/Provinces/Jaen"]
+polygon = PackedVector2Array(-3.91999, -0.311604, -3.11649, -0.381138, -2.18165, -1.53231, -2.23573, -2.0654, -1.93442, -2.32036, -2.04258, -2.55214, -1.70264, -2.79937, -1.7799, -4.18232, -2.15847, -4.89311, -2.00395, -5.78159, -1.79535, -6.14471, -2.17392, -6.52329, -3.64958, -6.38422, -4.29856, -6.60055, -4.76985, -6.57737, -5.34157, -6.78597, -5.81285, -6.616, -6.27641, -6.84005, -8.40878, -6.87868, -9.13502, -7.21863, -9.95161, -7.09062, -10.5079, -6.26394, -10.6392, -5.14368, -10.2838, -4.50242, -9.97479, -4.24746, -9.8898, -3.9616, -9.27173, -3.5135, -8.58411, -2.58638, -8.56866, -2.02238, -8.16691, -1.62836, -7.69563, -1.5202, -6.84577, -1.7288, -6.54446, -1.40431, -6.02682, -1.28842, -5.486, -1.40431, -4.35028, -0.886666)
+
+[node name="Granada" type="StaticBody3D" parent="Map/Provinces"]
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Map/Provinces/Granada"]
+polygon = PackedVector2Array(-7.30081, 3.97742, -7.62851, 3.47623, -8.08151, 2.45458, -7.99476, 1.80883, -8.41884, 1.55823, -8.93931, 0.777538, -9.5947, 0.690795, -9.80674, 0.141417, -10.3561, -0.388684, -11.1754, -0.841679, -11.1079, -1.34286, -11.4163, -1.55491, -11.5705, -2.89461, -11.8693, -3.2705, -11.3392, -3.81988, -10.3551, -4.23834, -10.0068, -4.12351, -9.86134, -3.7599, -9.27191, -3.35036, -8.72841, -2.48153, -8.58679, -1.86914, -8.18424, -1.45528, -7.79001, -1.34046, -6.8408, -1.54714, -6.54226, -1.21032, -6.02555, -1.10698, -5.47823, -1.26773, -4.3453, -0.705098, -3.92367, -0.187338, -3.29596, -0.0418946, -2.58023, -0.0916515, -1.92956, 0.172443, -1.43199, 1.18672, -1.8236, 2.10007, -2.49341, 2.66654, -3.30866, 3.08373, -3.94784, 3.28658, -4.19224, 3.60878, -4.242, 3.94177, -5.04577, 4.00684, -5.75002, 4.24414, -6.62612, 4.01123)
+
+[node name="Almeria" type="StaticBody3D" parent="Map/Provinces"]
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Map/Provinces/Almeria"]
+polygon = PackedVector2Array(-13.9272, -0.55042, -13.2098, -1.70802, -13.0821, -2.90964, -12.2723, -3.15172, -11.7661, -2.90083, -11.546, -1.52756, -11.2555, -1.3471, -11.3215, -0.814511, -10.5733, -0.427177, -10.0099, 0.14062, -9.75018, 0.871273, -9.07345, 0.853951, -8.54934, 1.61424, -8.15464, 1.79541, -8.24522, 2.44246, -7.74694, 3.61392, -7.65959, 3.99244, -8.56927, 4.05975, -8.91868, 4.29916, -9.49779, 4.40269, -10.0187, 4.16328, -10.3907, 3.73946, -11.4001, 3.54535, -12.1732, 4.06757, -12.8073, 3.81198, -13.6691, 2.6233, -14.2164, 0.992778, -14.7922, 0.145142, -14.4687, -0.259265)
+
+[connection signal="input_event" from="Map/Provinces/Cordoba" to="." method="_on_province_input_event"]
+[connection signal="mouse_entered" from="Map/Provinces/Cordoba" to="." method="_on_cordoba_mouse_entered"]
+[connection signal="input_event" from="Map/Provinces/Sevilla" to="." method="_on_province_input_event"]
+[connection signal="mouse_entered" from="Map/Provinces/Sevilla" to="." method="_on_sevilla_mouse_entered"]
+[connection signal="input_event" from="Map/Provinces/Huelva" to="." method="_on_province_input_event"]
+[connection signal="mouse_entered" from="Map/Provinces/Huelva" to="." method="_on_huelva_mouse_entered"]
+[connection signal="input_event" from="Map/Provinces/Cadiz" to="." method="_on_province_input_event"]
+[connection signal="mouse_entered" from="Map/Provinces/Cadiz" to="." method="_on_cadiz_mouse_entered"]
+[connection signal="input_event" from="Map/Provinces/Malaga" to="." method="_on_province_input_event"]
+[connection signal="mouse_entered" from="Map/Provinces/Malaga" to="." method="_on_malaga_mouse_entered"]
+[connection signal="input_event" from="Map/Provinces/Jaen" to="." method="_on_province_input_event"]
+[connection signal="mouse_entered" from="Map/Provinces/Jaen" to="." method="_on_jaen_mouse_entered"]
+[connection signal="input_event" from="Map/Provinces/Granada" to="." method="_on_province_input_event"]
+[connection signal="mouse_entered" from="Map/Provinces/Granada" to="." method="_on_granada_mouse_entered"]
+[connection signal="input_event" from="Map/Provinces/Almeria" to="." method="_on_province_input_event"]
+[connection signal="mouse_entered" from="Map/Provinces/Almeria" to="." method="_on_almeria_mouse_entered"]

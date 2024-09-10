@@ -24,6 +24,9 @@ var cm
 var com
 
 func _ready():
+	pass
+	
+func start_combat():
 	var mapDict = Utils.read_json(CombatMapStatus.get_map_path())
 	var mapSize = Utils.string_to_vector2(mapDict["size"])
 	CombatMapStatus.set_map_size(mapSize)

@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://d0c2b7ehpqem5" path="res://Assets/Props/door/door.glb" id="12_3m3mc"]
 [ext_resource type="PackedScene" uid="uid://47eew04eex6j" path="res://Assets/Props/whiskey/hiram_walker_whiskey_bottle.glb" id="13_2um30"]
 [ext_resource type="PackedScene" uid="uid://b0veomtxqmpbc" path="res://Assets/Props/handcuffs/simple_handcuffs.glb" id="14_0ews5"]
-[ext_resource type="PackedScene" uid="uid://bc2dh2tjcjvw2" path="res://Scenes/3D/campaignMap.tscn" id="15_oudw3"]
+[ext_resource type="PackedScene" uid="uid://cvfuhrx117me0" path="res://Scenes/3D/campaignMap.tscn" id="15_oudw3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5rlju"]
 albedo_texture = ExtResource("2_61uf5")
@@ -197,4 +197,9 @@ mesh = SubResource("BoxMesh_0dcg8")
 [node name="Campaign" type="Node3D" parent="."]
 
 [node name="CampaignMap" parent="Campaign" instance=ExtResource("15_oudw3")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -34.3515, 24.4577, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -34.587, 27.118, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Campaign"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10, 24.515, 0)
+current = true
+fov = 52.0
