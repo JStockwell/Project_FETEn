@@ -92,7 +92,7 @@ func remove_character_ini(map_id: int) -> void:
 		hasAttacked == false
 		hasMoved == false
 	
-	elif CombatMapStatus.get_current_ini() > index:
+	if CombatMapStatus.get_current_ini() > index:
 		CombatMapStatus.set_current_ini(CombatMapStatus.get_current_ini() - 1)
 		
 	if CombatMapStatus.get_current_ini() > len(CombatMapStatus.get_initiative()) - 1:

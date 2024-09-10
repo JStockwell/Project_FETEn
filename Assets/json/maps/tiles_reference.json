@@ -74,6 +74,26 @@
 		"obstacleType": 0,
 		"meshPath": "res://Assets/MapTiles/StoneBrick_v2.glb"
 	},
+	"stoneBricksVer": {
+		"coords": "(0,0)",
+		"height": 0,
+		"idt": false,
+		"isPopulated": false,
+		"isTraversable": true,
+		"obstacleType": 0,
+		"meshPath": "res://Assets/MapTiles/StoneBrickVer_v2.glb"
+	},
+	"snowBridgeLeft": {
+		"coords": "(0,0)",
+		"height": 0,
+		"idt": false,
+		"isPopulated": false,
+		"isTraversable": true,
+		"obstacleType": 0,
+		"meshPath": "res://Assets/MapTiles/SnowBridgeLeft.glb"
+	},
+	
+	
 	"dirt": {
 		"coords": "(0,0)",
 		"height": 0,
@@ -82,6 +102,60 @@
 		"isTraversable": true,
 		"obstacleType": 0,
 		"meshPath": "res://Assets/MapTiles/Dirt.glb"
+	},
+	"snowRoadBottom": {
+		"coords": "(0,0)",
+		"height": 0,
+		"idt": false,
+		"isPopulated": false,
+		"isTraversable": true,
+		"obstacleType": 0,
+		"meshPath": "res://Assets/MapTiles/SnowRoadBottom.glb"
+	},
+	"snowRoadTop": {
+		"coords": "(0,0)",
+		"height": 0,
+		"idt": false,
+		"isPopulated": false,
+		"isTraversable": true,
+		"obstacleType": 0,
+		"meshPath": "res://Assets/MapTiles/SnowRoadTop.glb"
+	},
+	"snowDirtBL": {
+		"coords": "(0,0)",
+		"height": 0,
+		"idt": false,
+		"isPopulated": false,
+		"isTraversable": true,
+		"obstacleType": 0,
+		"meshPath": "res://Assets/MapTiles/SnowDirtBL.glb"
+	},
+	"snowDirtBR": {
+		"coords": "(0,0)",
+		"height": 0,
+		"idt": false,
+		"isPopulated": false,
+		"isTraversable": true,
+		"obstacleType": 0,
+		"meshPath": "res://Assets/MapTiles/SnowDirtBR.glb"
+	},
+	"snowDirtTL": {
+		"coords": "(0,0)",
+		"height": 0,
+		"idt": false,
+		"isPopulated": false,
+		"isTraversable": true,
+		"obstacleType": 0,
+		"meshPath": "res://Assets/MapTiles/SnowDirtTL.glb"
+	},
+	"snowDirtTR": {
+		"coords": "(0,0)",
+		"height": 0,
+		"idt": false,
+		"isPopulated": false,
+		"isTraversable": true,
+		"obstacleType": 0,
+		"meshPath": "res://Assets/MapTiles/SnowDirtTR.glb"
 	},
 	"grass_v2": {
 		"coords": "(0,0)",
@@ -235,5 +309,14 @@
 		"isTraversable": false,
 		"obstacleType": 2,
 		"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
+	},
+	"ice": {
+		"coords": "(0,0)",
+		"height": 0,
+		"idt": false,
+		"isPopulated": false,
+		"isTraversable": false,
+		"obstacleType": 0,
+		"meshPath": "res://Assets/MapTiles/Ice.glb"
 	},
 }
