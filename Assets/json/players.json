@@ -90,7 +90,7 @@
 		"defense": 4,
 		"agility": 6,
 		"movement": 5,
-		"ini_mana": 3,
+		"ini_mana": 1,
 		"max_mana": 3,
 		"reg_mana": 0,
 		"range": 7,
