@@ -31,7 +31,7 @@ static func create(args: Dictionary):
 			mySkill.isInstantaneous = args["inst"]
 
 		if "buff" in args.keys():
-			mySkill.isInstantaneous = args["buff"]
+			mySkill.isBuff = args["buff"]
 		
 		return mySkill
 			
