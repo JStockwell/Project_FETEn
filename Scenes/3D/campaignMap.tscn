@@ -1,24 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://bc2dh2tjcjvw2"]
+[gd_scene load_steps=3 format=3 uid="uid://cvfuhrx117me0"]
 
-[ext_resource type="Texture2D" uid="uid://dghnatoms3sxn" path="res://Assets/Reference/andalucia-map.png" id="1_pd3bg"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uy7ni"]
-albedo_texture = ExtResource("1_pd3bg")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x4nem"]
-albedo_texture = ExtResource("1_pd3bg")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_38tkw"]
-material = SubResource("StandardMaterial3D_x4nem")
-size = Vector2(6, 3.575)
+[ext_resource type="Script" path="res://Scripts/3D/campaignMap.gd" id="1_x4u78"]
+[ext_resource type="PackedScene" uid="uid://vmi6cdlv1g7t" path="res://Assets/Campaign/Campaign_map_no_height.glb" id="2_4urjx"]
 
 [node name="CampaignMap" type="Node3D"]
+script = ExtResource("1_x4u78")
 
 [node name="World" type="Node3D" parent="."]
+visible = false
 
 [node name="Camera3D" type="Camera3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 26)
-fov = 40.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 48)
+fov = 30.0
 
 [node name="SpotLight3D" type="SpotLight3D" parent="World"]
 transform = Transform3D(0.965926, 0.111392, -0.233622, -0.0642476, 0.977588, 0.200482, 0.250718, -0.178641, 0.951435, -8, 2.26333, 8)
@@ -41,7 +34,31 @@ spot_range = 17.897
 spot_attenuation = 0.683023
 spot_angle = 54.8438
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(5, 0, 0, 0, -2.18557e-07, -5, 0, 5, -2.18557e-07, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_uy7ni")
-mesh = SubResource("PlaneMesh_38tkw")
+[node name="Map" type="Node3D" parent="."]
+
+[node name="CampaignMapMesh" parent="Map" instance=ExtResource("2_4urjx")]
+transform = Transform3D(-6.31, 5.51638e-07, 2.41129e-14, 0, -2.75819e-07, 6.31, 5.51638e-07, 6.31, 2.75819e-07, 0, 0, 0)
+
+[node name="Cordoba" type="StaticBody3D" parent="Map"]
+
+[node name="CordobaButton" type="CollisionPolygon3D" parent="Map/Cordoba"]
+polygon = PackedVector2Array(-2.68578, -0.376974, -1.92638, -2.09951, -1.42629, -3.06265, -1.8523, -4.84075, -1.55595, -5.98911, -0.185327, -7.04485, 1.37051, -8.28582, 2.31052, -8.57325, 3.55149, -7.81385, 4.73689, -6.75811, 5.10733, -4.94296, 3.68114, -2.72033, 3.6441, -2.27581, 4.03306, -1.97946, 3.68114, -1.68311, 2.292, -2.12763, 1.92156, -1.62754, 1.68078, -0.701448, 1.16673, 0.0357774, 0.758838, 0.072858, 0.235073, 0.851552, -0.390663, 0.754215, -0.821726, 0.601258, -1.08129, 0.958159, -1.52626, 0.703229, -1.88812, 0.0950881)
+
+[node name="Sevilla" type="StaticBody3D" parent="Map"]
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Map/Sevilla"]
+polygon = PackedVector2Array(3.46835, 2.58085, 2.13744, 1.72027, 1.54704, 1.26996, 1.17679, 1.25995, 0.866577, 0.939734, 0.566373, 0.599503, 0.716475, 0.159203, 1.32689, -0.0209191, 1.65711, -0.621328, 1.87726, -1.40186, 2.2275, -2.01227, 2.99803, -1.91221, 3.89864, -1.612, 4.16882, -1.83215, 4.06876, -2.11234, 3.75854, -2.28246, 3.71316, -2.76363, 4.79536, -4.50998, 5.31759, -4.82626, 5.94279, -5.26758, 6.57535, -4.96601, 7.0608, -4.12751, 7.99492, -3.75239, 7.85517, -2.89917, 8.21558, -2.74471, 8.47301, -2.47256, 8.85677, -2.48949, 9.47462, -2.33503, 9.77618, -1.97462, 9.1804, -1.58479, 8.90826, -0.724221, 9.12892, -0.0328231, 9.01328, 0.342684, 9.06477, 1.18119, 9.28543, 1.67399, 9.27808, 2.45366, 8.89701, 2.84368, 7.71281, 3.13789, 6.90373, 3.13789, 6.49919, 2.82161, 5.91076, 2.70393, 5.68275, 2.54211, 5.22672, 2.85839, 4.96193, 2.73335, 4.74862, 2.49798, 4.44978, 2.61, 3.92755, 2.34521)
+
+[node name="Huelva" type="StaticBody3D" parent="Map"]
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Map/Huelva"]
+polygon = PackedVector2Array(9.45069, 3.20053, 9.17056, 2.76867, 9.26393, 1.60147, 9.15889, 0.22418, 9.27561, -0.149323, 9.1122, -0.826296, 9.32229, -1.4916, 9.76583, -1.85343, 9.90589, -1.97015, 9.73081, -2.20359, 9.28592, -2.49352, 8.55058, -2.55188, 8.34049, -2.7503, 7.99033, -2.94872, 8.11872, -3.54399, 8.63229, -3.98753, 9.32093, -4.59447, 9.97456, -4.52444, 10.885, -5.14305, 11.8654, -5.58659, 12.7291, -4.85125, 13.4878, -4.31434, 14.4449, -2.84368, 15.0285, -1.59478, 14.5173, 0.748246, 12.8249, 0.853294, 11.2375, 1.67033)
+
+[node name="Cadiz" type="StaticBody3D" parent="Map"]
+
+[connection signal="input_event" from="Map/Cordoba" to="." method="_on_province_input_event"]
+[connection signal="mouse_entered" from="Map/Cordoba" to="." method="_on_cordoba_mouse_entered"]
+[connection signal="input_event" from="Map/Sevilla" to="." method="_on_province_input_event"]
+[connection signal="mouse_entered" from="Map/Sevilla" to="." method="_on_sevilla_mouse_entered"]
+[connection signal="input_event" from="Map/Huelva" to="." method="_on_province_input_event"]
+[connection signal="mouse_entered" from="Map/Huelva" to="." method="_on_huelva_mouse_entered"]

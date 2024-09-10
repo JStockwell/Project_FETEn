@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bj15qgmshdht7"
 path.s3tc="res://.godot/imported/Assassin idle 1_wave 2 sprites.png-cc87977f3ad63f786332ea0925bc9734.s3tc.ctex"
+path.etc2="res://.godot/imported/Assassin idle 1_wave 2 sprites.png-cc87977f3ad63f786332ea0925bc9734.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Assets/Characters/Enemies/Assassin/Assassin idle 1_wave 2 sprites.png"
-dest_files=["res://.godot/imported/Assassin idle 1_wave 2 sprites.png-cc87977f3ad63f786332ea0925bc9734.s3tc.ctex"]
+dest_files=["res://.godot/imported/Assassin idle 1_wave 2 sprites.png-cc87977f3ad63f786332ea0925bc9734.s3tc.ctex", "res://.godot/imported/Assassin idle 1_wave 2 sprites.png-cc87977f3ad63f786332ea0925bc9734.etc2.ctex"]
 
 [params]
 

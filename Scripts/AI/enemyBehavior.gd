@@ -290,6 +290,3 @@ static func approach_enemy(map, enemy, tilesInReach): # if cant attack anyone, a
 		
 	CombatMapStatus.set_selected_map_tile(map.get_tile_from_coords(chosenTile))
 	map.move_character()
-
-
-

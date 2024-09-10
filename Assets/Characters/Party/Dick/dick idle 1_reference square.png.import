@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://busgwgkk23s3v"
 path.s3tc="res://.godot/imported/dick idle 1_reference square.png-9509031b6a5b6ca6fb20b5ff9dbaafeb.s3tc.ctex"
+path.etc2="res://.godot/imported/dick idle 1_reference square.png-9509031b6a5b6ca6fb20b5ff9dbaafeb.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Assets/Characters/Party/Dick/dick idle 1_reference square.png"
-dest_files=["res://.godot/imported/dick idle 1_reference square.png-9509031b6a5b6ca6fb20b5ff9dbaafeb.s3tc.ctex"]
+dest_files=["res://.godot/imported/dick idle 1_reference square.png-9509031b6a5b6ca6fb20b5ff9dbaafeb.s3tc.ctex", "res://.godot/imported/dick idle 1_reference square.png-9509031b6a5b6ca6fb20b5ff9dbaafeb.etc2.ctex"]
 
 [params]
 

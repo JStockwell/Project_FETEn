@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://5dhec6rvvtuf"
 path.s3tc="res://.godot/imported/ranged_gobbo_head.png-294d7f0388c62cd6b3371acb56da9135.s3tc.ctex"
+path.etc2="res://.godot/imported/ranged_gobbo_head.png-294d7f0388c62cd6b3371acb56da9135.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Characters/Enemies/Ranged_Gobbo/ranged_gobbo_head.png"
-dest_files=["res://.godot/imported/ranged_gobbo_head.png-294d7f0388c62cd6b3371acb56da9135.s3tc.ctex"]
+dest_files=["res://.godot/imported/ranged_gobbo_head.png-294d7f0388c62cd6b3371acb56da9135.s3tc.ctex", "res://.godot/imported/ranged_gobbo_head.png-294d7f0388c62cd6b3371acb56da9135.etc2.ctex"]
 
 [params]
 

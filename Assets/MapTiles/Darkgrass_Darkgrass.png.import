@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dep3n08qfknmc"
 path.s3tc="res://.godot/imported/Darkgrass_Darkgrass.png-9fc2fac5896ff97aae1d59f3b2b21bd1.s3tc.ctex"
+path.etc2="res://.godot/imported/Darkgrass_Darkgrass.png-9fc2fac5896ff97aae1d59f3b2b21bd1.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Assets/MapTiles/Darkgrass_Darkgrass.png"
-dest_files=["res://.godot/imported/Darkgrass_Darkgrass.png-9fc2fac5896ff97aae1d59f3b2b21bd1.s3tc.ctex"]
+dest_files=["res://.godot/imported/Darkgrass_Darkgrass.png-9fc2fac5896ff97aae1d59f3b2b21bd1.s3tc.ctex", "res://.godot/imported/Darkgrass_Darkgrass.png-9fc2fac5896ff97aae1d59f3b2b21bd1.etc2.ctex"]
 
 [params]
 

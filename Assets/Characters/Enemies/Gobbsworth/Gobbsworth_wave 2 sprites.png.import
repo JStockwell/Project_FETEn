@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://g38im40flqr2"
 path.s3tc="res://.godot/imported/Gobbsworth_wave 2 sprites.png-f1cd96a502a5bc45be82f08c37fbb4aa.s3tc.ctex"
+path.etc2="res://.godot/imported/Gobbsworth_wave 2 sprites.png-f1cd96a502a5bc45be82f08c37fbb4aa.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Assets/Characters/Enemies/Gobbsworth/Gobbsworth_wave 2 sprites.png"
-dest_files=["res://.godot/imported/Gobbsworth_wave 2 sprites.png-f1cd96a502a5bc45be82f08c37fbb4aa.s3tc.ctex"]
+dest_files=["res://.godot/imported/Gobbsworth_wave 2 sprites.png-f1cd96a502a5bc45be82f08c37fbb4aa.s3tc.ctex", "res://.godot/imported/Gobbsworth_wave 2 sprites.png-f1cd96a502a5bc45be82f08c37fbb4aa.etc2.ctex"]
 
 [params]
 

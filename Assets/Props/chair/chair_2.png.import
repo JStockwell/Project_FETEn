@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cu60wnv2ec0ps"
 path.s3tc="res://.godot/imported/chair_2.png-285aa09769b4890125d2c1ce4e9e8c3d.s3tc.ctex"
+path.etc2="res://.godot/imported/chair_2.png-285aa09769b4890125d2c1ce4e9e8c3d.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Assets/Props/chair/chair_2.png"
-dest_files=["res://.godot/imported/chair_2.png-285aa09769b4890125d2c1ce4e9e8c3d.s3tc.ctex"]
+dest_files=["res://.godot/imported/chair_2.png-285aa09769b4890125d2c1ce4e9e8c3d.s3tc.ctex", "res://.godot/imported/chair_2.png-285aa09769b4890125d2c1ce4e9e8c3d.etc2.ctex"]
 
 [params]
 

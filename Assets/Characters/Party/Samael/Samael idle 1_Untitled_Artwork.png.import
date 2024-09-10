@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bxcg6rnuxo6fw"
 path.s3tc="res://.godot/imported/Samael idle 1_Untitled_Artwork.png-58423bf5e9c132adf6e0da764560f955.s3tc.ctex"
+path.etc2="res://.godot/imported/Samael idle 1_Untitled_Artwork.png-58423bf5e9c132adf6e0da764560f955.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Assets/Characters/Party/Samael/Samael idle 1_Untitled_Artwork.png"
-dest_files=["res://.godot/imported/Samael idle 1_Untitled_Artwork.png-58423bf5e9c132adf6e0da764560f955.s3tc.ctex"]
+dest_files=["res://.godot/imported/Samael idle 1_Untitled_Artwork.png-58423bf5e9c132adf6e0da764560f955.s3tc.ctex", "res://.godot/imported/Samael idle 1_Untitled_Artwork.png-58423bf5e9c132adf6e0da764560f955.etc2.ctex"]
 
 [params]
 
