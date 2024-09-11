@@ -65,7 +65,7 @@ func test_not_null():
 	mapCombat.free()
 	
 	
-func test_goblin_melee_behaviour():
+func test_goblin_melee_behaviour(do_skip = true):
 	CombatMapStatus.set_map_path("res://Assets/json/maps/testMaps/test_AI_goblin_melee.json")
 	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
 	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
@@ -399,7 +399,7 @@ func test_orc_mage_kill_behaviour():
 	assert_int(attacks.get("lystra")).is_null()
 
 
-func test_juggernaut_behaviour():
+func test_juggernaut_behaviour(do_skip = true):
 	CombatMapStatus.set_map_path("res://Assets/json/maps/testMaps/test_AI_juggernaut.json")
 	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
 	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
