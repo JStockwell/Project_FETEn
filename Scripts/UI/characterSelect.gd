@@ -55,7 +55,8 @@ func _process(delta):
 	if GameStatus.debugMode:
 		debugText.text = str(tempParty)
 		
-	if tempParty.size() < 4 or mapChoice.get_selected_id() == -1:
+	#if tempParty.size() < 4 or mapChoice.get_selected_id() == -1:
+	if tempParty.size() < 4:
 		startButton.disabled = true
 		
 	else:
@@ -94,5 +95,5 @@ func _on_start_button_pressed() -> void:
 		result.append(character.get_id())
 		
 	GameStatus.set_party(result)
-	CombatMapStatus.set_map_path(MAPS[mapChoice.get_selected_id()])
+	#CombatMapStatus.set_map_path(MAPS[mapChoice.get_selected_id()])
 	get_tree().change_scene_to_file("res://Scenes/3D/tavern.tscn")

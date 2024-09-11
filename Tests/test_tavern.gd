@@ -11,7 +11,7 @@ var mapDict
 
 func before():
 	GameStatus.debugMode = false
-	GameStatus.testMode = false
+	GameStatus.testMode = true
 
 func before_test():
 	GameStatus.set_playable_characters(test_players)
@@ -56,6 +56,7 @@ func test_not_null():
 
 func test_setup_cameras():
 	#Function called in _ready() of tavern
+	test_tavern.start_map_combat()
 	assert_that(CombatMapStatus.get_map_dimensions()).is_equal(Vector2(5,5))
 	assert_bool(CombatMapStatus.is_start_combat()).is_true()
 	assert_that(test_tavern.cm).is_not_null()
@@ -65,6 +66,7 @@ func test_setup_cameras():
 	
 	
 func test__on_start_turn():
+	test_tavern.start_map_combat()
 	test_tavern._on_start_turn()
 
 	assert_bool(test_tavern.tavernCam.current).is_true()
@@ -72,6 +74,7 @@ func test__on_start_turn():
 
 
 func test__on_combat_start():
+	test_tavern.start_map_combat()
 	var attacker = test_tavern.cm.characterGroup.get_children()[0]
 	var defender = test_tavern.cm.enemyGroup.get_children()[0]
 	CombatMapStatus.set_active_characters(attacker.get_stats(), defender.get_stats())
@@ -86,6 +89,7 @@ func test__on_combat_start():
 	
 
 func test__on_combat_end():
+	test_tavern.start_map_combat()
 	var attacker = test_tavern.cm.characterGroup.get_children()[0]
 	var defender = test_tavern.cm.enemyGroup.get_children()[0]
 	CombatMapStatus.set_active_characters(attacker.get_stats(), defender.get_stats())

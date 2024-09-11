@@ -19,11 +19,16 @@ var mapCenter = $SpawnPoints/MapCenter
 var combatCenter = $SpawnPoints/CombatCenter
 @onready
 var mapBase = $MapBase
+@onready
+var campaignMap = $Campaign/Camera3D
 
 var cm
 var com
-
 func _ready():
+	campaignMap.current = true
+	
+func start_map_combat():
+	tavernCam.current = true
 	var mapDict = Utils.read_json(CombatMapStatus.get_map_path())
 	var mapSize = Utils.string_to_vector2(mapDict["size"])
 	CombatMapStatus.set_map_size(mapSize)
@@ -81,6 +86,7 @@ func _on_start_turn() -> void:
 	setCam = 1
 
 func _on_combat_start() -> void:
+	GameStatus.set_current_game_state(GameStatus.GameState.COMBAT)
 	com = Combat.instantiate()
 	add_child(com)
 	com.connect("combat_end", Callable(self, "_on_combat_end"))
@@ -90,6 +96,7 @@ func _on_combat_start() -> void:
 	cm.globalButtons.hide()
 
 func _on_combat_end() -> void:
+	GameStatus.set_current_game_state(GameStatus.GameState.MAP)
 	tavernCam.current = true
 	cm.ui.show()
 	cm.globalButtons.show()
@@ -107,3 +114,6 @@ func _on_change_camera() -> void:
 		tavernCam.make_current()
 		cm.ui.show()
 		setCam = 1
+
+func _on_campaign_map_start_map_combat() -> void:
+	start_map_combat()

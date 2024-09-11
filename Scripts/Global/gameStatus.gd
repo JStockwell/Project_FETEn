@@ -1,5 +1,10 @@
 extends Node
 
+var save: Dictionary
+
+enum GameState {CAMPAIGN = 0, MAP = 1, COMBAT = 2}
+var currentGameState = GameState.CAMPAIGN
+
 var playableCharacters: Dictionary
 var enemySet: Dictionary
 var skillSet: Dictionary
@@ -42,5 +47,14 @@ func get_party_member(charName: String):
 	else:
 		print("character {n} not in party".format({"n": charName}))
 
+func get_current_game_state() -> int:
+	return currentGameState
+	
+func set_current_game_state(state: int) -> void:
+	currentGameState = state
+
 func set_autorun_combat(value: bool) -> void:
 	autorunCombat = value
+	
+func load_save() -> void:
+	save = Utils.read_json("res://Assets/json/saves/save.json")

@@ -4,6 +4,7 @@ var playableCharacters = Utils.read_json("res://Assets/json/players.json")
 var enemySet = Utils.read_json("res://Assets/json/enemies.json")
 
 func _ready():
+	GameStatus.load_save()
 	GameStatus.set_playable_characters(playableCharacters)
 	GameStatus.set_enemy_set(enemySet)
 	GameStatus.party = {}
