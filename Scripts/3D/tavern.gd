@@ -24,7 +24,6 @@ var campaignMap = $Campaign/Camera3D
 
 var cm
 var com
-
 func _ready():
 	campaignMap.current = true
 	

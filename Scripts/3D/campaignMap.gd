@@ -63,3 +63,42 @@ func _on_murcia_mouse_entered() -> void:
 func _on_badajoz_mouse_entered() -> void:
 	highlighted_province = "Badajoz"
 	
+
+func _on_cordoba_mouse_exited() -> void:
+	pass # Replace with function body.
+
+
+func _on_sevilla_mouse_exited() -> void:
+	pass # Replace with function body.
+
+
+func _on_huelva_mouse_exited() -> void:
+	pass # Replace with function body.
+
+
+func _on_cadiz_mouse_exited() -> void:
+	pass # Replace with function body.
+
+
+func _on_malaga_mouse_exited() -> void:
+	pass # Replace with function body.
+
+
+func _on_jaen_mouse_exited() -> void:
+	pass # Replace with function body.
+
+
+func _on_granada_mouse_exited() -> void:
+	pass # Replace with function body.
+
+
+func _on_almeria_mouse_exited() -> void:
+	pass # Replace with function body.
+
+
+func _on_murcia_mouse_exited() -> void:
+	pass # Replace with function body.
+
+
+func _on_badajoz_mouse_exited() -> void:
+	pass # Replace with function body.
