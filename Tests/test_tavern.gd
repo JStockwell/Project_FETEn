@@ -19,7 +19,7 @@ func before_test():
 	
 	GameStatus.set_party(["attacker", "attacker2"])
 	
-	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
+	CombatMapStatus.set_map_path("res://Assets/json/maps/testMaps/test_map_2vs2.json")
 	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
 	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
 	
@@ -105,4 +105,3 @@ func test__on_combat_end():
 func test__on_change_camera(do_skip=true, skip_reason="TODO when camera is finished"):
 	assert_that(true).is_equal(true)
 	pass
-
