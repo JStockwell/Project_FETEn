@@ -5,6 +5,7 @@ var save: Dictionary
 enum GameState {CAMPAIGN = 0, MAP = 1, COMBAT = 2}
 var currentGameState = GameState.CAMPAIGN
 
+var stageCount: int = 4
 var playableCharacters: Dictionary
 var enemySet: Dictionary
 var skillSet: Dictionary
@@ -56,8 +57,14 @@ func set_current_game_state(state: int) -> void:
 func set_autorun_combat(value: bool) -> void:
 	autorunCombat = value
 	
+func get_stage_count() -> int:
+	return stageCount
+	
 func load_save() -> void:
 	save = Utils.read_json("res://Assets/json/saves/save.json")
 
 func save_game(tempSave: Dictionary) -> void:
 	Utils.write_json(tempSave, "res://Assets/json/saves/save.json")
+	
+func get_save() -> Dictionary:
+	return save.duplicate()

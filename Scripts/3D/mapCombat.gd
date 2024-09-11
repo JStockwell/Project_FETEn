@@ -962,11 +962,12 @@ func victory():
 	
 func save_victory():
 	var tempSave = GameStatus.save.duplicate()
-	var currentLevel = tempSave["levels"][CombatMapStatus.get_map_id()]
-	
-	if currentLevel["cleared"] == false:
-		currentLevel["cleared"] = true
-		GameStatus.save_game(tempSave)
+	if not CombatMapStatus.get_map_id() == "":
+		var currentLevel = tempSave["levels"][CombatMapStatus.get_map_id()]
+		
+		if currentLevel["cleared"] == false:
+			currentLevel["cleared"] = true
+			GameStatus.save_game(tempSave)
 	
 # TODO Test
 func defeat():

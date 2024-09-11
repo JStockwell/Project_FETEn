@@ -1,44 +1,30 @@
 {
-	"levels": {
-		"murcia": {
-			"cleared": true,
-			"unlocked": true
+	"level_clears": {
+		"stage_1": {
+			"almeria": false,
+			"murcia": false
 		},
-		"almeria": {
-			"cleared": false,
-			"unlocked": true
+		"stage_2": {
+			"cordoba": false,
+			"granada": false,
+			"jaen": false,
+			"malaga": false
 		},
-		"badajoz": {
-			"cleared": false,
-			"unlocked": false
+		"stage_3": {
+			"badajoz": false,
+			"cadiz": false,
+			"huelva": false
 		},
-		"cadiz": {
-			"cleared": false,
-			"unlocked": false
-		},
-		"cordoba": {
-			"cleared": false,
-			"unlocked": false
-		},
-		"granada": {
-			"cleared": false,
-			"unlocked": false
-		},
-		"huelva": {
-			"cleared": false,
-			"unlocked": false
-		},
-		"jaen": {
-			"cleared": false,
-			"unlocked": false
-		},
-		"malaga": {
-			"cleared": false,
-			"unlocked": false
-		},
-		"sevilla": {
-			"cleared": false,
-			"unlocked": false
+		"stage_4": {
+			"sevilla": false
+		}
+	},
+	"unlocks": {
+		"stages": {
+			"stage_1": true,
+			"stage_2": false,
+			"stage_3": false,
+			"stage_4": false
 		}
 	}
 }

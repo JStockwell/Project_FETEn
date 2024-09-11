@@ -20,9 +20,92 @@ var debugMapChoice = $Debug/MapChoice
 @onready
 var sevillaCol = $Map/Sevilla/CollisionPolygon3D
 @onready
+var sevillaText = $Map/Sevilla/Label3D
+@onready
 var sevillaDisabled = $Map/Sevilla/Disabled
 @onready
 var sevillaHighlight = $Map/Sevilla/Highlight
+
+@onready
+var cordobaCol = $Map/Cordoba/CollisionPolygon3D
+@onready
+var cordobaText = $Map/Cordoba/Label3D
+@onready
+var cordobaDisabled = $Map/Cordoba/Disabled
+@onready
+var cordobaHighlight = $Map/Cordoba/Highlight
+
+@onready
+var huelvaCol = $Map/Huelva/CollisionPolygon3D
+@onready
+var huelvaText = $Map/Huelva/Label3D
+@onready
+var huelvaDisabled = $Map/Huelva/Disabled
+@onready
+var huelvaHighlight = $Map/Huelva/Highlight
+
+@onready
+var cadizCol = $Map/Cadiz/CollisionPolygon3D
+@onready
+var cadizText = $Map/Cadiz/Label3D
+@onready
+var cadizDisabled = $Map/Cadiz/Disabled
+@onready
+var cadizHighlight = $Map/Cadiz/Highlight
+
+@onready
+var malagaCol = $Map/Malaga/CollisionPolygon3D
+@onready
+var malagaText = $Map/Malaga/Label3D
+@onready
+var malagaDisabled = $Map/Malaga/Disabled
+@onready
+var malagaHighlight = $Map/Malaga/Highlight
+
+@onready
+var jaenCol = $Map/Jaen/CollisionPolygon3D
+@onready
+var jaenText = $Map/Jaen/Label3D
+@onready
+var jaenDisabled = $Map/Jaen/Disabled
+@onready
+var jaenHighlight = $Map/Jaen/Highlight
+
+@onready
+var granadaCol = $Map/Granada/CollisionPolygon3D
+@onready
+var granadaText = $Map/Granada/Label3D
+@onready
+var granadaDisabled = $Map/Granada/Disabled
+@onready
+var granadaHighlight = $Map/Granada/Highlight
+
+@onready
+var almeriaCol = $Map/Almeria/CollisionPolygon3D
+@onready
+var almeriaText = $Map/Almeria/Label3D
+@onready
+var almeriaDisabled = $Map/Almeria/Disabled
+@onready
+var almeriaHighlight = $Map/Almeria/Highlight
+
+@onready
+var murciaCol = $Map/Murcia/CollisionPolygon3D
+@onready
+var murciaText = $Map/Murcia/Label3D
+@onready
+var murciaDisabled = $Map/Murcia/Disabled
+@onready
+var murciaHighlight = $Map/Murcia/Highlight
+
+@onready
+var badajozCol = $Map/Badajoz/CollisionPolygon3D
+@onready
+var badajozText = $Map/Badajoz/Label3D
+@onready
+var badajozDisabled = $Map/Badajoz/Disabled
+@onready
+var badajozHighlight = $Map/Badajoz/Highlight
 
 signal start_map_combat
 
@@ -30,7 +113,7 @@ var highlighted_province: String
 var save: Dictionary
 
 func _ready() -> void:
-	save = GameStatus.save.duplicate()
+	save = GameStatus.get_save()
 	# TODO Remove testMode and test once finished
 	if not GameStatus.testMode:
 		validate_levels()
@@ -41,9 +124,33 @@ func _ready() -> void:
 # TODO Test once done
 # TODO Do with rest of levels
 func validate_levels() -> void:
-	var levelProgress = save["levels"]
+	var unlocks = save["unlocks"]["stages"]
 	
-	if levelProgress["sevilla"]["unlocked"] == false:
+	if not unlocks["stage_2"]:
+		granadaCol.disabled = true
+		granadaDisabled.show()
+		
+		jaenCol.disabled = true
+		jaenDisabled.show()
+		
+		malagaCol.disabled = true
+		malagaDisabled.show()
+		
+		cordobaCol.disabled = true
+		cordobaDisabled.show()
+	
+	if not unlocks["stage_3"]:
+		cadizCol.disabled = true
+		cadizDisabled.show()
+		
+		huelvaCol.disabled = true
+		huelvaDisabled.show()
+		
+		badajozCol.disabled = true
+		badajozDisabled.show()
+		
+		
+	if not unlocks["stage_4"]:
 		sevillaCol.disabled = true
 		sevillaDisabled.show()
 
@@ -83,9 +190,11 @@ func _on_province_input_event(camera: Node, event: InputEvent, event_position: V
 					CombatMapStatus.set_map_path("res://Assets/json/maps/combatMap_lv3_3.json")
 					
 			GameStatus.set_current_game_state(GameStatus.GameState.MAP)
+			debugMapChoice.hide()
 			start_map_combat.emit()
 
 func _on_cordoba_mouse_entered() -> void:
+	cordobaHighlight.show()
 	highlighted_province = "Cordoba"
 
 func _on_sevilla_mouse_entered() -> void:
@@ -93,32 +202,40 @@ func _on_sevilla_mouse_entered() -> void:
 	highlighted_province = "Sevilla"
 	
 func _on_huelva_mouse_entered() -> void:
+	huelvaHighlight.show()
 	highlighted_province = "Huelva"
 	
 func _on_cadiz_mouse_entered() -> void:
+	cadizHighlight.show()
 	highlighted_province = "Cádiz"
 
 func _on_malaga_mouse_entered() -> void:
+	malagaHighlight.show()
 	highlighted_province = "Málaga"
 	
 func _on_jaen_mouse_entered() -> void:
+	jaenHighlight.show()
 	highlighted_province = "Jaén"
 	
 func _on_granada_mouse_entered() -> void:
+	granadaHighlight.show()
 	highlighted_province = "Granada"
 	
 func _on_almeria_mouse_entered() -> void:
+	almeriaHighlight.show()
 	highlighted_province = "Almería"
 	
 func _on_murcia_mouse_entered() -> void:
+	murciaHighlight.show()
 	highlighted_province = "Murcia"
 	
 func _on_badajoz_mouse_entered() -> void:
+	badajozHighlight.show()
 	highlighted_province = "Badajoz"
-	
+
 
 func _on_cordoba_mouse_exited() -> void:
-	pass # Replace with function body.
+	cordobaHighlight.hide()
 
 
 func _on_sevilla_mouse_exited() -> void:
@@ -126,35 +243,35 @@ func _on_sevilla_mouse_exited() -> void:
 
 
 func _on_huelva_mouse_exited() -> void:
-	pass # Replace with function body.
+	huelvaHighlight.hide()
 
 
 func _on_cadiz_mouse_exited() -> void:
-	pass # Replace with function body.
+	cadizHighlight.hide()
 
 
 func _on_malaga_mouse_exited() -> void:
-	pass # Replace with function body.
+	malagaHighlight.hide()
 
 
 func _on_jaen_mouse_exited() -> void:
-	pass # Replace with function body.
+	jaenHighlight.hide()
 
 
 func _on_granada_mouse_exited() -> void:
-	pass # Replace with function body.
+	granadaHighlight.hide()
 
 
 func _on_almeria_mouse_exited() -> void:
-	pass # Replace with function body.
+	almeriaHighlight.hide()
 
 
 func _on_murcia_mouse_exited() -> void:
-	pass # Replace with function body.
+	murciaHighlight.hide()
 
 
 func _on_badajoz_mouse_exited() -> void:
-	pass # Replace with function body.
+	badajozHighlight.hide()
 
 
 func _on_debug_map_choice_item_selected(index: int) -> void:
