@@ -45,7 +45,7 @@
 	},
 	"rock_throw":{
 		"skill_name": "Rock Throw",
-		"description": "Throw a rock with _very_ ill intention\n DEBUG: HEALS 15HP TO THE TARGET RANGE 1-5",
+		"description": "Throw a rock with _very_ ill intention\n DEBUG: DEALS 15HP TO THE TARGET RANGE 1-5",
 		"range": 5,
 		"cost": 8,
 		"spa": 5,
@@ -94,7 +94,8 @@
 		"spa": 0,
 		"sef": true,
 		"cta": true,
-		"inst": true
+		"inst": true,
+		"buff": true
 	},
 	"icicle": {
 		"skill_name": "Icicle",
