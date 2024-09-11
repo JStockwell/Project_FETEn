@@ -229,6 +229,13 @@ func sort_descending(a: float, b: float) -> bool:
 
 signal start_turn_signal
 func start_turn() -> void:
+	if characterGroup.get_child_count() == 0:
+		defeat()
+		return
+	elif enemyGroup.get_child_count() == 0:
+		victory()
+		return
+		
 	start_turn_signal.emit()
 	CombatMapStatus.attackSkill = ""
 
@@ -932,6 +939,14 @@ func remove_ally_highlights() -> void:
 func remove_enemy_highlights() -> void:
 	for enemy in enemyGroup.get_children():
 		enemy.selectedEnemy.hide()
+		
+# TODO Test
+func victory():
+	pass
+	
+# TODO Test
+func defeat():
+	pass
 
 func wait(seconds: float) -> void:
 	await get_tree().create_timer(seconds).timeout

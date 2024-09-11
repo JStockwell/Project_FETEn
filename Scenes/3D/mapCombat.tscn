@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://wvt31gswalxh"]
+[gd_scene load_steps=38 format=3 uid="uid://wvt31gswalxh"]
 
 [ext_resource type="Script" path="res://Scripts/3D/mapCombat.gd" id="1_rhc0y"]
 [ext_resource type="Texture2D" uid="uid://cdr8pfgua7joc" path="res://Assets/UI/attack_button.png" id="3_1u004"]
@@ -59,6 +59,10 @@ font_size = 32
 [sub_resource type="LabelSettings" id="LabelSettings_mbttw"]
 font = ExtResource("12_fy7hm")
 font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_6nioh"]
+font = ExtResource("12_fy7hm")
+font_size = 256
 
 [node name="MapCombat" type="Node3D"]
 script = ExtResource("1_rhc0y")
@@ -449,6 +453,21 @@ text = "No"
 label_settings = SubResource("LabelSettings_mbttw")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="EndScreen" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="EndScreen"]
+layout_mode = 0
+offset_left = 496.0
+offset_top = 256.0
+offset_right = 1728.0
+offset_bottom = 512.0
+text = "VICTORY"
+label_settings = SubResource("LabelSettings_6nioh")
 
 [connection signal="pressed" from="UI/Actions/MoveButton" to="." method="_on_move_button_pressed"]
 [connection signal="pressed" from="UI/Actions/PhysAttackButton" to="." method="_on_phys_attack_button_pressed"]
