@@ -10,6 +10,7 @@ var specialEffectFunc: bool = false
 var canTargetAllies: bool = false
 var isMagicDamage: int = 0
 var isInstantaneous: bool = false
+var isBuff: bool = false
 var skillMenuID: int
 
 func get_skill() -> Dictionary:
@@ -22,7 +23,8 @@ func get_skill() -> Dictionary:
 		"sef": specialEffectFunc,
 		"cta": canTargetAllies,
 		"imd": isMagicDamage,
-		"inst": isInstantaneous
+		"inst": isInstantaneous,
+		"buff": isBuff
 	}        
 
 func get_skill_name() -> String:
@@ -48,6 +50,9 @@ func can_target_allies() -> bool:
 
 func is_instantaneous() -> bool:
 	return isInstantaneous
+
+func is_buff() -> bool:
+	return isBuff
 
 func set_skill_menu_id(id: int) -> void:
 	skillMenuID = id

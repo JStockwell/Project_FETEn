@@ -66,8 +66,12 @@ var aneCharacter = $UI/AnECharacter
 var aneStats = $UI/AnECharacter/AnEStats
 @onready
 var aneSprite = $UI/AnECharacter/AnESprite
+@onready
+var endScreen = $EndScreen
+@onready
+var endScreenLabel = $EndScreen/Label
 
-var comPred
+var comPred # Combat Prediction
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -81,7 +85,10 @@ func _ready():
 	aneCharacter.hide()
 	globalButtons.hide()
 	returnMainMenu.hide()
+	endScreen.hide()
 	uiStart.show()
+	
+	CombatMapStatus.set_status(CombatMapStatus.Status.BATTLE)
 
 	if GameStatus.testMode:
 		await start_turn()
@@ -229,6 +236,13 @@ func sort_descending(a: float, b: float) -> bool:
 
 signal start_turn_signal
 func start_turn() -> void:
+	if characterGroup.get_child_count() == 0:
+		defeat()
+		return
+	elif enemyGroup.get_child_count() == 0:
+		victory()
+		return
+		
 	start_turn_signal.emit()
 	CombatMapStatus.attackSkill = ""
 
@@ -398,7 +412,7 @@ func _process(delta):
 
 # Set selected enemies
 func character_handler(character) -> void:
-	if battleStart and not isPaused:
+	if battleStart and not isPaused and not CombatMapStatus.get_status() == CombatMapStatus.Status.END:
 		if not CombatMapStatus.get_selected_character().is_enemy():
 			if character.is_enemy():
 				selected_checker(character, CombatMapStatus.get_selected_enemy(), character.is_enemy())
@@ -470,7 +484,7 @@ func set_tile_populated(coords: Vector2, value: bool) -> void:
 
 # Set selected MapTile
 func tile_handler(mapTile) -> void:
-	if battleStart and not isPaused:
+	if battleStart and not isPaused and not CombatMapStatus.get_status() == CombatMapStatus.Status.END:
 		if not CombatMapStatus.get_selected_character().is_enemy():
 			if CombatMapStatus.get_selected_map_tile() == mapTile:
 				remove_selected()
@@ -481,6 +495,7 @@ func tile_handler(mapTile) -> void:
 				mapTile.selected.show()
 
 func _on_start_button_pressed():
+	CombatMapStatus.set_status(CombatMapStatus.Status.BATTLE)
 	battleStart = true
 	ui.show()
 	globalButtons.show()
@@ -705,7 +720,7 @@ func _on_skill_selected(id: int):
 
 	var skillResult
 	if GameStatus.skillSet[skillName].can_target_allies():
-		if CombatMapStatus.get_selected_ally() != null:
+		if CombatMapStatus.get_selected_ally() != null: #add something to stop from healing at cap<=0
 			skillResult = SkillMenu.validate_skill(skillName, CombatMapStatus.get_selected_character(), CombatMapStatus.get_selected_ally())
 		else:
 			skillResult = SkillMenu.validate_skill(skillName, CombatMapStatus.get_selected_character(), CombatMapStatus.get_selected_character())
@@ -786,11 +801,12 @@ func _on_main_menu_button_pressed():
 			globalButtons.show()
 
 func _on_rmm_yes_pressed():
+	GameStatus.set_current_game_state(GameStatus.GameState.CAMPAIGN)
 	get_tree().change_scene_to_file("res://Scenes/UI/mainMenu.tscn")
 
 # Buttons updater
 func update_buttons() -> void:
-	if not isPaused:
+	if not isPaused and not CombatMapStatus.get_status() == CombatMapStatus.Status.END:
 		update_move_button()
 		update_phys_attack_button()
 		update_end_turn_button()
@@ -932,13 +948,42 @@ func remove_ally_highlights() -> void:
 func remove_enemy_highlights() -> void:
 	for enemy in enemyGroup.get_children():
 		enemy.selectedEnemy.hide()
-
-func wait(seconds: float) -> void:
-	await get_tree().create_timer(seconds).timeout
+		
+# TODO Test
+func victory():
+	ui.hide()
+	aneCharacter.hide()
+	globalButtons.hide()
+	returnMainMenu.hide()
+	CombatMapStatus.set_status(CombatMapStatus.Status.END)
+	endScreenLabel.text = "VICTORY"
+	save_victory()
+	endScreen.show()
+	
+func save_victory():
+	var tempSave = GameStatus.save.duplicate()
+	if not CombatMapStatus.get_map_id() == "":
+		var currentLevel = tempSave["level_clears"][CombatMapStatus.get_map_stage()][CombatMapStatus.get_map_id()]
+		if currentLevel == false:
+			tempSave["level_clears"][CombatMapStatus.get_map_stage()][CombatMapStatus.get_map_id()] = true
+			GameStatus.save_game(tempSave)
+	
+# TODO Test
+func defeat():
+	ui.hide()
+	aneCharacter.hide()
+	globalButtons.hide()
+	returnMainMenu.hide()
+	CombatMapStatus.set_status(CombatMapStatus.Status.END)
+	endScreenLabel.text = "DEFEAT"
+	endScreen.show()
 
 signal change_camera
 func _on_change_camera_pressed():
 	change_camera.emit()
+
+func wait(seconds: float) -> void:
+	await get_tree().create_timer(seconds).timeout
 
 # Debug
 @onready

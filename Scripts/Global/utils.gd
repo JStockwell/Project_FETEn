@@ -54,6 +54,13 @@ static func read_json(jsonPath: String) -> Dictionary:
 		push_error("File {path} doesn't exist!".format({"path": jsonPath}))
 		return {}
 		
+static func write_json(json: Dictionary, jsonPath: String) -> void:
+	var save_file = FileAccess.open(jsonPath, FileAccess.WRITE_READ)
+	# JSON provides a static method to serialized JSON string.
+	var json_string = JSON.stringify(json, "\t")
+	save_file.store_line(json_string)
+
+
 static func generate_rolls() -> Array:
 	# true_hit_flag, dice_1, dice_2, crit_roll
 	return [randi_range(1, 2), randi_range(1, 100), randi_range(1, 100), randi_range(1, 100)]
@@ -114,7 +121,6 @@ static func _dijkstra(map, mapCoords: Vector2, maxRange: int) -> Array: # we cou
 			if valid_coordinates(map, coordinates, tilesOccupiedOponents): # if it is traversable and it is within the map and if occupied is by an ally, does not check if a player is in it, check later.
 				var visitedTile = visited[coordinates.y][coordinates.x]
 				var visitedTileBool: bool
-				var typeOfBullshit = typeof(visitedTile)
 				if not typeof(visitedTile)==1:
 					visitedTileBool = visitedTile[0]
 				else:

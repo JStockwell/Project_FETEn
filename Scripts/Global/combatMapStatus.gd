@@ -1,5 +1,12 @@
 extends Node
 
+var stageId: String
+var mapId: String
+
+# TODO Implement properly post TFG
+enum Status {START = 0, BATTLE = 1, CASTING = 2, END = 3, PAUSED = 4}
+var currentStatus: int = Status.START
+
 var maxCameraHeight = 33.75 # 16x16
 var minCameraHeight = 20.6 # 9x9
 
@@ -35,6 +42,24 @@ var hasAttacked: bool
 var hasMoved: bool
 
 var mapTileMatrix: Array = []
+
+func set_map_stage(myMapStage: String) -> void:
+	stageId = myMapStage
+	
+func get_map_stage() -> String:
+	return stageId
+
+func set_map_id(myMapId: String) -> void:
+	mapId = myMapId
+	
+func get_map_id() -> String:
+	return mapId
+
+func set_status(myStatus: int) -> void:
+	currentStatus = myStatus
+	
+func get_status() -> int:
+	return currentStatus
 
 # Attacker and Defender
 func set_active_characters(attack: Dictionary, defend: Dictionary) -> void:
@@ -92,7 +117,7 @@ func remove_character_ini(map_id: int) -> void:
 		hasAttacked == false
 		hasMoved == false
 	
-	elif CombatMapStatus.get_current_ini() > index:
+	if CombatMapStatus.get_current_ini() > index:
 		CombatMapStatus.set_current_ini(CombatMapStatus.get_current_ini() - 1)
 		
 	if CombatMapStatus.get_current_ini() > len(CombatMapStatus.get_initiative()) - 1:
