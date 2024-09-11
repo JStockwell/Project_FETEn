@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://wvt31gswalxh"]
+[gd_scene load_steps=39 format=3 uid="uid://wvt31gswalxh"]
 
 [ext_resource type="Script" path="res://Scripts/3D/mapCombat.gd" id="1_rhc0y"]
 [ext_resource type="Texture2D" uid="uid://cdr8pfgua7joc" path="res://Assets/UI/attack_button.png" id="3_1u004"]
@@ -60,6 +60,14 @@ font_size = 32
 font = ExtResource("12_fy7hm")
 font_size = 32
 
+[sub_resource type="LabelSettings" id="LabelSettings_6nioh"]
+font = ExtResource("12_fy7hm")
+font_size = 256
+
+[sub_resource type="LabelSettings" id="LabelSettings_gs6pj"]
+font = ExtResource("12_fy7hm")
+font_size = 64
+
 [node name="MapCombat" type="Node3D"]
 script = ExtResource("1_rhc0y")
 
@@ -70,6 +78,7 @@ script = ExtResource("1_rhc0y")
 [node name="MapTileGroup" type="Node3D" parent="."]
 
 [node name="UI" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -313,6 +322,7 @@ offset_bottom = 104.0
 scale = Vector2(0.75, 0.75)
 
 [node name="DebugUI" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -359,6 +369,7 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="GlobalButtons" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -450,6 +461,48 @@ label_settings = SubResource("LabelSettings_mbttw")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="EndScreen" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Dim" type="ColorRect" parent="EndScreen"]
+offset_left = -8.0
+offset_right = 1912.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.627451)
+
+[node name="Label" type="Label" parent="EndScreen"]
+layout_mode = 0
+offset_left = 344.0
+offset_top = 352.0
+offset_right = 1576.0
+offset_bottom = 608.0
+text = "VICTORY"
+label_settings = SubResource("LabelSettings_6nioh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="EndScreen"]
+layout_mode = 0
+offset_left = 780.0
+offset_top = 640.0
+offset_right = 1140.0
+offset_bottom = 792.0
+
+[node name="Label" type="Label" parent="EndScreen/Button"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 336.0
+offset_bottom = 147.0
+text = "Return to
+Main Menu"
+label_settings = SubResource("LabelSettings_gs6pj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="pressed" from="UI/Actions/MoveButton" to="." method="_on_move_button_pressed"]
 [connection signal="pressed" from="UI/Actions/PhysAttackButton" to="." method="_on_phys_attack_button_pressed"]
 [connection signal="pressed" from="UI/Actions/EndTurnButton" to="." method="_on_end_turn_button_pressed"]
@@ -459,3 +512,4 @@ vertical_alignment = 1
 [connection signal="pressed" from="GlobalButtons/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
 [connection signal="pressed" from="ReturnMainMenu/RMMYes" to="." method="_on_rmm_yes_pressed"]
 [connection signal="pressed" from="ReturnMainMenu/RMMNo" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="EndScreen/Button" to="." method="_on_rmm_yes_pressed"]

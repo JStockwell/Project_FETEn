@@ -1,5 +1,9 @@
 extends Node
 
+# TODO Implement properly post TFG
+enum Status {START = 0, BATTLE = 1, CASTING = 2, END = 3, PAUSED = 4}
+var currentStatus: int = Status.START
+
 var maxCameraHeight = 33.75 # 16x16
 var minCameraHeight = 20.6 # 9x9
 
@@ -35,6 +39,12 @@ var hasAttacked: bool
 var hasMoved: bool
 
 var mapTileMatrix: Array = []
+
+func set_status(myStatus: int) -> void:
+	currentStatus = myStatus
+	
+func get_status() -> int:
+	return currentStatus
 
 # Attacker and Defender
 func set_active_characters(attack: Dictionary, defend: Dictionary) -> void:

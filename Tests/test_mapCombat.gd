@@ -19,7 +19,7 @@ func before_test():
 
 	GameStatus.set_party(["attacker"])
 
-	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_1vs1.json")
+	CombatMapStatus.set_map_path("res://Assets/json/maps/testMaps/test_map_1vs1.json")
 	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
 	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
 
@@ -360,7 +360,7 @@ func test_enemy_turn_end():
 func test_reset_map_status():
 	#Change the map
 	GameStatus.set_party(["attacker", "attacker2"])
-	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
+	CombatMapStatus.set_map_path("res://Assets/json/maps/testMaps/test_map_2vs2.json")
 	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
 	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
 	test_mapCombat.mapDict = mapDict
@@ -499,7 +499,7 @@ func test_character_handler_isEnemy_handled():
 
 
 func test_character_handler_other_ally_turn():
-	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
+	CombatMapStatus.set_map_path("res://Assets/json/maps/testMaps/test_map_2vs2.json")
 	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
 	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
 	test_mapCombat.mapDict = mapDict
@@ -516,7 +516,7 @@ func test_character_handler_other_ally_turn():
 
 func test_selected_checker_last_selection_null_enemy():
 	GameStatus.set_party(["attacker", "attacker2"])
-	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
+	CombatMapStatus.set_map_path("res://Assets/json/maps/testMaps/test_map_2vs2.json")
 	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
 	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
 	test_mapCombat.mapDict = mapDict
@@ -533,7 +533,7 @@ func test_selected_checker_last_selection_null_enemy():
 
 func test_selected_checker_last_selection_null_ally():
 	GameStatus.set_party(["attacker", "attacker2"])
-	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
+	CombatMapStatus.set_map_path("res://Assets/json/maps/testMaps/test_map_2vs2.json")
 	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
 	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
 	test_mapCombat.mapDict = mapDict
@@ -550,7 +550,7 @@ func test_selected_checker_last_selection_null_ally():
 
 func test_selected_checker_unselect_enemy():
 	GameStatus.set_party(["attacker", "attacker2"])
-	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
+	CombatMapStatus.set_map_path("res://Assets/json/maps/testMaps/test_map_2vs2.json")
 	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
 	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
 	test_mapCombat.mapDict = mapDict
@@ -567,7 +567,7 @@ func test_selected_checker_unselect_enemy():
 
 func test_selected_checker_unselect_ally():
 	GameStatus.set_party(["attacker", "attacker2"])
-	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
+	CombatMapStatus.set_map_path("res://Assets/json/maps/testMaps/test_map_2vs2.json")
 	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
 	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
 	test_mapCombat.mapDict = mapDict
@@ -583,7 +583,7 @@ func test_selected_checker_unselect_ally():
 
 
 func test_selected_checker_change_selection_enemy():
-	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
+	CombatMapStatus.set_map_path("res://Assets/json/maps/testMaps/test_map_2vs2.json")
 	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
 	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
 	test_mapCombat.mapDict = mapDict
@@ -599,7 +599,7 @@ func test_selected_checker_change_selection_enemy():
 
 func test_selected_checker_change_selection_ally():
 	GameStatus.set_party(["attacker", "attacker2"])
-	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
+	CombatMapStatus.set_map_path("res://Assets/json/maps/testMaps/test_map_2vs2.json")
 	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
 	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
 	test_mapCombat.mapDict = mapDict
@@ -614,7 +614,7 @@ func test_selected_checker_change_selection_ally():
 
 func test_selected_checker_alternate_selection_ally_to_enemy():
 	GameStatus.set_party(["attacker", "attacker2"])
-	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
+	CombatMapStatus.set_map_path("res://Assets/json/maps/testMaps/test_map_2vs2.json")
 	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
 	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
 	test_mapCombat.mapDict = mapDict
@@ -635,7 +635,7 @@ func test_selected_checker_alternate_selection_ally_to_enemy():
 
 func test_selected_checker_alternate_selection_enemy_to_ally():
 	GameStatus.set_party(["attacker", "attacker2"])
-	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
+	CombatMapStatus.set_map_path("res://Assets/json/maps/testMaps/test_map_2vs2.json")
 	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
 	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
 	test_mapCombat.mapDict = mapDict
@@ -1108,7 +1108,7 @@ func test__on_skill_selected_target_myself():
 
 func test__on_skill_selected_target_allies():
 	GameStatus.set_party(["attacker", "attacker2"])
-	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
+	CombatMapStatus.set_map_path("res://Assets/json/maps/testMaps/test_map_2vs2.json")
 	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
 	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
 	test_mapCombat.mapDict = mapDict
@@ -1175,7 +1175,7 @@ func test_cast_skill_target_myself():
 	
 func test_cast_skill_target_allies():
 	GameStatus.set_party(["attacker", "attacker2"])
-	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
+	CombatMapStatus.set_map_path("res://Assets/json/maps/testMaps/test_map_2vs2.json")
 	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
 	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
 	test_mapCombat.mapDict = mapDict
@@ -1230,7 +1230,7 @@ func test_cast_skill_target_enemies():
 
 func test_allied_skill_handler():
 	GameStatus.set_party(["attacker", "attacker2"])
-	CombatMapStatus.set_map_path("res://Assets/json/maps/test_map_2vs2.json")
+	CombatMapStatus.set_map_path("res://Assets/json/maps/testMaps/test_map_2vs2.json")
 	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
 	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
 	test_mapCombat.mapDict = mapDict
