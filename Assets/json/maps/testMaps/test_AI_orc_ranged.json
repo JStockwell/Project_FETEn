@@ -1,14 +1,14 @@
 {
-	"name": "test_AI_goblin",
+	"name": "test_AI_orc_ranged",
 	"size": "(3,3)",
 	"ally_spawn": [
-		"(0,2)",
-		"(1,2)",
-		"(2,2)"
+		"(0,1)",
+		"(1,1)",
+		"(2,1)"
 	],
 	"enemy_spawn": [
 		[
-			"goblin",
+			"ranged_orc",
 			"(1,0)"
 		]
 	],

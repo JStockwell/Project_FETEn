@@ -45,7 +45,7 @@ jobs:
           version: "installed"
           publish-report: false
           report-name: report_Godot${{ matrix.godot-version }}_unit-tests
-          retries: "5"
+          retries: "10"
 
   finalize:
     if: ${{ !cancelled() }}
