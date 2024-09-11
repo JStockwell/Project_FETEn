@@ -1,8 +1,27 @@
 extends Node3D
 
+@onready
+var sevillaCol = $Map/Sevilla/CollisionPolygon3D
+@onready
+var sevillaDisabled = $Map/Sevilla/Disabled
+@onready
+var sevillaHighlight = $Map/Sevilla/Highlight
+
 signal start_map_combat
 
 var highlighted_province: String
+var save = GameStatus.save.duplicate()
+
+func _ready() -> void:
+	validate_levels()
+	
+# TODO Do with rest of levels
+func validate_levels() -> void:
+	var levelProgress = save["levels"]
+	
+	if levelProgress["sevilla"]["unlocked"] == false:
+		sevillaCol.disabled = true
+		sevillaDisabled.show()
 
 func _on_province_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
 	if event is InputEventMouseButton and GameStatus.get_current_game_state() == GameStatus.GameState.CAMPAIGN:
@@ -29,7 +48,6 @@ func _on_province_input_event(camera: Node, event: InputEvent, event_position: V
 				"Badajoz":
 					CombatMapStatus.set_map_path("res://Assets/json/maps/combatMap_lv3_3.json")
 					
-			print(CombatMapStatus.get_map_path())
 			GameStatus.set_current_game_state(GameStatus.GameState.MAP)
 			start_map_combat.emit()
 
@@ -37,6 +55,7 @@ func _on_cordoba_mouse_entered() -> void:
 	highlighted_province = "Cordoba"
 
 func _on_sevilla_mouse_entered() -> void:
+	sevillaHighlight.show()
 	highlighted_province = "Sevilla"
 	
 func _on_huelva_mouse_entered() -> void:
@@ -69,7 +88,7 @@ func _on_cordoba_mouse_exited() -> void:
 
 
 func _on_sevilla_mouse_exited() -> void:
-	pass # Replace with function body.
+	sevillaHighlight.hide()
 
 
 func _on_huelva_mouse_exited() -> void:

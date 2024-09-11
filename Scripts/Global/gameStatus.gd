@@ -1,5 +1,7 @@
 extends Node
 
+var save: Dictionary
+
 enum GameState {CAMPAIGN = 0, MAP = 1, COMBAT = 2}
 var currentGameState = GameState.CAMPAIGN
 
@@ -53,3 +55,6 @@ func set_current_game_state(state: int) -> void:
 
 func set_autorun_combat(value: bool) -> void:
 	autorunCombat = value
+	
+func load_save() -> void:
+	save = Utils.read_json("res://Assets/json/saves/save.json")
