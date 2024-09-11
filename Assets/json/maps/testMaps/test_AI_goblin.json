@@ -1,0 +1,96 @@
+{
+	"name": "test_AI_goblin",
+	"size": "(3,3)",
+	"ally_spawn": [
+		"(0,2)", "(1,2)", "(2,2)" 
+	],
+	"enemy_spawn": [
+		[
+			"goblin",
+			"(1,0)"
+		],
+	],
+	"tiles": [
+		{
+			"coords": "(0,0)",
+			"height": 0,
+			"idt": false,
+			"isPopulated": false,
+			"isTraversable": true,
+			"obstacleType": 0,
+			"meshPath": "res://Assets/MapTiles/Grass1.glb",
+		},
+		{
+			"coords": "(1,0)",
+			"height": 0,
+			"idt": false,
+			"isPopulated": false,
+			"isTraversable": true,
+			"obstacleType": 0,
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+		},
+		{
+			"coords": "(2,0)",
+			"height": 0,
+			"idt": false,
+			"isPopulated": false,
+			"isTraversable": true,
+			"obstacleType": 0,
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+		},
+		{
+			"coords": "(0,1)",
+			"height": 0,
+			"idt": false,
+			"isPopulated": false,
+			"isTraversable": true,
+			"obstacleType": 0,
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+		},
+		{
+			"coords": "(1,1)",
+			"height": 0,
+			"idt": false,
+			"isPopulated": false,
+			"isTraversable": true,
+			"obstacleType": 0,
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+		},
+		{
+			"coords": "(2,1)",
+			"height": 0,
+			"idt": false,
+			"isPopulated": false,
+			"isTraversable": true,
+			"obstacleType": 0,
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+		},
+		{
+			"coords": "(0,2)",
+			"height": 0,
+			"idt": false,
+			"isPopulated": false,
+			"isTraversable": true,
+			"obstacleType": 0,
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+		},
+		{
+			"coords": "(1,2)",
+			"height": 0,
+			"idt": false,
+			"isPopulated": false,
+			"isTraversable": true,
+			"obstacleType": 0,
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+		},
+		{
+			"coords": "(2,2)",
+			"height": 0,
+			"idt": false,
+			"isPopulated": false,
+			"isTraversable": true,
+			"obstacleType": 0,
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+		},
+	]
+}
