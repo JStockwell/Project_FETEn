@@ -11,3 +11,6 @@ func test_negative_1():
 	var tamanyo = palabra.length()
 	
 	assert_that(tamanyo).is_not_equal(8)
+	
+func test_bad():
+	assert_that(true).is_equal(false)
