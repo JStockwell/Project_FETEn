@@ -4,9 +4,8 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://3nwbpe00fedd"
 path.s3tc="res://.godot/imported/simple_handcuffs_2.jpg-44b84b728395ef67df0f6dc04b3f9539.s3tc.ctex"
-path.etc2="res://.godot/imported/simple_handcuffs_2.jpg-44b84b728395ef67df0f6dc04b3f9539.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -16,7 +15,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Assets/Props/handcuffs/simple_handcuffs_2.jpg"
-dest_files=["res://.godot/imported/simple_handcuffs_2.jpg-44b84b728395ef67df0f6dc04b3f9539.s3tc.ctex", "res://.godot/imported/simple_handcuffs_2.jpg-44b84b728395ef67df0f6dc04b3f9539.etc2.ctex"]
+dest_files=["res://.godot/imported/simple_handcuffs_2.jpg-44b84b728395ef67df0f6dc04b3f9539.s3tc.ctex"]
 
 [params]
 

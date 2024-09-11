@@ -4,16 +4,15 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b56e2sxi4r1g0"
 path.s3tc="res://.godot/imported/goblin_head.png-b355f4414a40757ab358c4f74a003fe2.s3tc.ctex"
-path.etc2="res://.godot/imported/goblin_head.png-b355f4414a40757ab358c4f74a003fe2.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Characters/Enemies/Goblin/goblin_head.png"
-dest_files=["res://.godot/imported/goblin_head.png-b355f4414a40757ab358c4f74a003fe2.s3tc.ctex", "res://.godot/imported/goblin_head.png-b355f4414a40757ab358c4f74a003fe2.etc2.ctex"]
+dest_files=["res://.godot/imported/goblin_head.png-b355f4414a40757ab358c4f74a003fe2.s3tc.ctex"]
 
 [params]
 

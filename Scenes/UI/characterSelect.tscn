@@ -61,6 +61,7 @@ offset_bottom = 128.0
 text = "Start Combat"
 
 [node name="Map" type="Label" parent="UI"]
+visible = false
 layout_mode = 0
 offset_left = 80.0
 offset_top = 64.0
@@ -71,6 +72,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MapChoice" type="OptionButton" parent="UI"]
+visible = false
 layout_mode = 0
 offset_left = 56.0
 offset_top = 96.0
@@ -78,7 +80,6 @@ offset_right = 200.0
 offset_bottom = 128.0
 item_count = 11
 popup/item_0/text = "lv1_1"
-popup/item_0/id = 0
 popup/item_1/text = "lv1_2"
 popup/item_1/id = 1
 popup/item_2/text = "lv2_1"

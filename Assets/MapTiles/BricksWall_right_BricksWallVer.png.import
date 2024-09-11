@@ -4,9 +4,8 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dimioksj2wm6e"
 path.s3tc="res://.godot/imported/BricksWall_right_BricksWallVer.png-2eaf210fcad26c0e952d7ee746a43102.s3tc.ctex"
-path.etc2="res://.godot/imported/BricksWall_right_BricksWallVer.png-2eaf210fcad26c0e952d7ee746a43102.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -16,7 +15,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Assets/MapTiles/BricksWall_right_BricksWallVer.png"
-dest_files=["res://.godot/imported/BricksWall_right_BricksWallVer.png-2eaf210fcad26c0e952d7ee746a43102.s3tc.ctex", "res://.godot/imported/BricksWall_right_BricksWallVer.png-2eaf210fcad26c0e952d7ee746a43102.etc2.ctex"]
+dest_files=["res://.godot/imported/BricksWall_right_BricksWallVer.png-2eaf210fcad26c0e952d7ee746a43102.s3tc.ctex"]
 
 [params]
 

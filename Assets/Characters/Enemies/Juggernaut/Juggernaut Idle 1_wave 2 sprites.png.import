@@ -4,9 +4,8 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://do3d8bfxhna3f"
 path.s3tc="res://.godot/imported/Juggernaut Idle 1_wave 2 sprites.png-95d41996f15560a3eea34cfc19c5a42e.s3tc.ctex"
-path.etc2="res://.godot/imported/Juggernaut Idle 1_wave 2 sprites.png-95d41996f15560a3eea34cfc19c5a42e.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -16,7 +15,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Assets/Characters/Enemies/Juggernaut/Juggernaut Idle 1_wave 2 sprites.png"
-dest_files=["res://.godot/imported/Juggernaut Idle 1_wave 2 sprites.png-95d41996f15560a3eea34cfc19c5a42e.s3tc.ctex", "res://.godot/imported/Juggernaut Idle 1_wave 2 sprites.png-95d41996f15560a3eea34cfc19c5a42e.etc2.ctex"]
+dest_files=["res://.godot/imported/Juggernaut Idle 1_wave 2 sprites.png-95d41996f15560a3eea34cfc19c5a42e.s3tc.ctex"]
 
 [params]
 

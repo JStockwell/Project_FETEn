@@ -4,16 +4,15 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dlfag0nvqaqby"
 path.s3tc="res://.godot/imported/dick_head.png-f15fc3236c7f71ec79f792f7f02ae06f.s3tc.ctex"
-path.etc2="res://.godot/imported/dick_head.png-f15fc3236c7f71ec79f792f7f02ae06f.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Characters/Party/Dick/dick_head.png"
-dest_files=["res://.godot/imported/dick_head.png-f15fc3236c7f71ec79f792f7f02ae06f.s3tc.ctex", "res://.godot/imported/dick_head.png-f15fc3236c7f71ec79f792f7f02ae06f.etc2.ctex"]
+dest_files=["res://.godot/imported/dick_head.png-f15fc3236c7f71ec79f792f7f02ae06f.s3tc.ctex"]
 
 [params]
 

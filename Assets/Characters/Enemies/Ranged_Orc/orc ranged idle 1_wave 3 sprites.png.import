@@ -4,9 +4,8 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dbjuqyucvp3pf"
 path.s3tc="res://.godot/imported/orc ranged idle 1_wave 3 sprites.png-13f03b635427580e3b87343666329f16.s3tc.ctex"
-path.etc2="res://.godot/imported/orc ranged idle 1_wave 3 sprites.png-13f03b635427580e3b87343666329f16.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -16,7 +15,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Assets/Characters/Enemies/Ranged_Orc/orc ranged idle 1_wave 3 sprites.png"
-dest_files=["res://.godot/imported/orc ranged idle 1_wave 3 sprites.png-13f03b635427580e3b87343666329f16.s3tc.ctex", "res://.godot/imported/orc ranged idle 1_wave 3 sprites.png-13f03b635427580e3b87343666329f16.etc2.ctex"]
+dest_files=["res://.godot/imported/orc ranged idle 1_wave 3 sprites.png-13f03b635427580e3b87343666329f16.s3tc.ctex"]
 
 [params]
 

@@ -4,16 +4,15 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bh6vabaq8hrae"
 path.s3tc="res://.godot/imported/Default_metallicRoughness.png-7676847a2915811760980cc8d8ad0ea4.s3tc.ctex"
-path.etc2="res://.godot/imported/Default_metallicRoughness.png-7676847a2915811760980cc8d8ad0ea4.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Props/wooden_table/textures/Default_metallicRoughness.png"
-dest_files=["res://.godot/imported/Default_metallicRoughness.png-7676847a2915811760980cc8d8ad0ea4.s3tc.ctex", "res://.godot/imported/Default_metallicRoughness.png-7676847a2915811760980cc8d8ad0ea4.etc2.ctex"]
+dest_files=["res://.godot/imported/Default_metallicRoughness.png-7676847a2915811760980cc8d8ad0ea4.s3tc.ctex"]
 
 [params]
 

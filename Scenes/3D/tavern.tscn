@@ -197,9 +197,11 @@ mesh = SubResource("BoxMesh_0dcg8")
 [node name="Campaign" type="Node3D" parent="."]
 
 [node name="CampaignMap" parent="Campaign" instance=ExtResource("15_oudw3")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -34.587, 27.118, 0)
+transform = Transform3D(-3.49691e-08, 0, 0.8, 0, 0.8, 0, -0.8, 0, -3.49691e-08, -33.973, 27.178, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Campaign"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10, 24.515, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10, 27.24, 0)
 current = true
 fov = 52.0
+
+[connection signal="start_map_combat" from="Campaign/CampaignMap" to="." method="_on_campaign_map_start_map_combat"]

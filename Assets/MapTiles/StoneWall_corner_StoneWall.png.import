@@ -4,9 +4,8 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://3s0mglxayp88"
 path.s3tc="res://.godot/imported/StoneWall_corner_StoneWall.png-fc2ab31d14863fc77d41ecce1a423449.s3tc.ctex"
-path.etc2="res://.godot/imported/StoneWall_corner_StoneWall.png-fc2ab31d14863fc77d41ecce1a423449.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -16,7 +15,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Assets/MapTiles/StoneWall_corner_StoneWall.png"
-dest_files=["res://.godot/imported/StoneWall_corner_StoneWall.png-fc2ab31d14863fc77d41ecce1a423449.s3tc.ctex", "res://.godot/imported/StoneWall_corner_StoneWall.png-fc2ab31d14863fc77d41ecce1a423449.etc2.ctex"]
+dest_files=["res://.godot/imported/StoneWall_corner_StoneWall.png-fc2ab31d14863fc77d41ecce1a423449.s3tc.ctex"]
 
 [params]
 

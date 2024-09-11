@@ -4,16 +4,15 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://0700nqloekkk"
 path.s3tc="res://.godot/imported/Concrete042C_4K-JPG_Displacement.jpg-d6f99ba6d32b5206b4979ff2b7f9f627.s3tc.ctex"
-path.etc2="res://.godot/imported/Concrete042C_4K-JPG_Displacement.jpg-d6f99ba6d32b5206b4979ff2b7f9f627.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Textures/Concrete042C/Concrete042C_4K-JPG_Displacement.jpg"
-dest_files=["res://.godot/imported/Concrete042C_4K-JPG_Displacement.jpg-d6f99ba6d32b5206b4979ff2b7f9f627.s3tc.ctex", "res://.godot/imported/Concrete042C_4K-JPG_Displacement.jpg-d6f99ba6d32b5206b4979ff2b7f9f627.etc2.ctex"]
+dest_files=["res://.godot/imported/Concrete042C_4K-JPG_Displacement.jpg-d6f99ba6d32b5206b4979ff2b7f9f627.s3tc.ctex"]
 
 [params]
 

@@ -4,9 +4,8 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dxlviq88lduhf"
 path.s3tc="res://.godot/imported/phys goblin idle 1_Untitled_Artwork.png-3aecf1d5d409212ef8987e818abbe83b.s3tc.ctex"
-path.etc2="res://.godot/imported/phys goblin idle 1_Untitled_Artwork.png-3aecf1d5d409212ef8987e818abbe83b.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -16,7 +15,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Assets/Characters/Enemies/Goblin/phys goblin idle 1_Untitled_Artwork.png"
-dest_files=["res://.godot/imported/phys goblin idle 1_Untitled_Artwork.png-3aecf1d5d409212ef8987e818abbe83b.s3tc.ctex", "res://.godot/imported/phys goblin idle 1_Untitled_Artwork.png-3aecf1d5d409212ef8987e818abbe83b.etc2.ctex"]
+dest_files=["res://.godot/imported/phys goblin idle 1_Untitled_Artwork.png-3aecf1d5d409212ef8987e818abbe83b.s3tc.ctex"]
 
 [params]
 
