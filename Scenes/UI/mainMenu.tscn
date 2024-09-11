@@ -1,7 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://ct1jdv1dd3bkl"]
+[gd_scene load_steps=14 format=3 uid="uid://ct1jdv1dd3bkl"]
 
 [ext_resource type="Script" path="res://Scripts/UI/mainMenu.gd" id="1_w2wt5"]
 [ext_resource type="FontFile" uid="uid://p6npb2mlppqj" path="res://Assets/Fonts/Micrhoma/Michroma-Regular.ttf" id="2_hxlxy"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_giric"]
+font = ExtResource("2_hxlxy")
+font_size = 256
+
+[sub_resource type="LabelSettings" id="LabelSettings_a6qk6"]
+font = ExtResource("2_hxlxy")
+font_size = 128
 
 [sub_resource type="LabelSettings" id="LabelSettings_267l2"]
 font_size = 32
@@ -12,13 +20,36 @@ font_size = 32
 [sub_resource type="LabelSettings" id="LabelSettings_y33rq"]
 font_size = 32
 
-[sub_resource type="LabelSettings" id="LabelSettings_giric"]
-font = ExtResource("2_hxlxy")
-font_size = 256
+[sub_resource type="LabelSettings" id="LabelSettings_nujq1"]
+font_size = 32
 
-[sub_resource type="LabelSettings" id="LabelSettings_a6qk6"]
-font = ExtResource("2_hxlxy")
-font_size = 128
+[sub_resource type="LabelSettings" id="LabelSettings_w1b1q"]
+font_size = 64
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jilrb"]
+bg_color = Color(0.298039, 0.298039, 0.298039, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_egadb"]
+font_size = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3vnf0"]
+bg_color = Color(0.301961, 0.388235, 0.854902, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="LabelSettings" id="LabelSettings_p7arb"]
+font_size = 32
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -28,6 +59,35 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_w2wt5")
+metadata/_edit_lock_ = true
+
+[node name="Background" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_lock_ = true
+
+[node name="Title" type="Label" parent="Background"]
+layout_mode = 0
+offset_left = 56.0
+offset_right = 1736.0
+offset_bottom = 364.0
+text = "P r o j e c t"
+label_settings = SubResource("LabelSettings_giric")
+metadata/_edit_lock_ = true
+
+[node name="Subtitle" type="Label" parent="Background"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 320.0
+offset_right = 1152.0
+offset_bottom = 1057.0
+text = "F a n t a s y
+E m b l e m
+T a c t i c s
+E n g a g e"
+label_settings = SubResource("LabelSettings_a6qk6")
+metadata/_edit_lock_ = true
 
 [node name="Buttons" type="Control" parent="."]
 anchors_preset = 0
@@ -82,31 +142,82 @@ label_settings = SubResource("LabelSettings_y33rq")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Background" type="Control" parent="."]
+[node name="ResetButton" type="Button" parent="Buttons"]
+layout_mode = 0
+offset_left = 1720.0
+offset_top = 1008.0
+offset_right = 1904.0
+offset_bottom = 1064.0
+
+[node name="Label" type="Label" parent="Buttons/ResetButton"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 176.0
+offset_bottom = 56.0
+text = "Reset Save"
+label_settings = SubResource("LabelSettings_nujq1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResetConfirmation" type="Control" parent="."]
+visible = false
 anchors_preset = 0
-offset_right = 40.0
+offset_right = 24.0
+offset_bottom = 24.0
+
+[node name="Label" type="Label" parent="ResetConfirmation"]
+layout_mode = 0
+offset_left = 576.0
+offset_top = 256.0
+offset_right = 1344.0
+offset_bottom = 640.0
+text = "Are you sure you wish to delete your save? This cannot be undone."
+label_settings = SubResource("LabelSettings_w1b1q")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Yes" type="Button" parent="ResetConfirmation"]
+layout_mode = 0
+offset_left = 912.0
+offset_top = 704.0
+offset_right = 1008.0
+offset_bottom = 752.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_jilrb")
+
+[node name="Label" type="Label" parent="ResetConfirmation/Yes"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 88.0
 offset_bottom = 40.0
+text = "Yes"
+label_settings = SubResource("LabelSettings_egadb")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Title" type="Label" parent="Background"]
+[node name="No" type="Button" parent="ResetConfirmation"]
 layout_mode = 0
-offset_left = 56.0
-offset_right = 1736.0
-offset_bottom = 364.0
-text = "P r o j e c t"
-label_settings = SubResource("LabelSettings_giric")
+offset_left = 896.0
+offset_top = 608.0
+offset_right = 1024.0
+offset_bottom = 672.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_3vnf0")
 
-[node name="Subtitle" type="Label" parent="Background"]
+[node name="Label" type="Label" parent="ResetConfirmation/No"]
 layout_mode = 0
-offset_left = 64.0
-offset_top = 320.0
-offset_right = 1152.0
-offset_bottom = 1057.0
-text = "F a n t a s y
-E m b l e m
-T a c t i c s
-E n g a g e"
-label_settings = SubResource("LabelSettings_a6qk6")
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 120.0
+offset_bottom = 53.0
+text = "No"
+label_settings = SubResource("LabelSettings_p7arb")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="Buttons/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Buttons/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="Buttons/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="Buttons/ResetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="pressed" from="ResetConfirmation/Yes" to="." method="_on_reset_save_yes_pressed"]
+[connection signal="pressed" from="ResetConfirmation/No" to="." method="_on_reset_save_no_pressed"]
