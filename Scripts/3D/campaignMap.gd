@@ -52,24 +52,34 @@ func _on_province_input_event(camera: Node, event: InputEvent, event_position: V
 		if event.button_index == 1 and event.pressed:
 			match highlighted_province:
 				"Cordoba":
+					CombatMapStatus.set_map_id("cordoba")
 					CombatMapStatus.set_map_path("res://Assets/json/maps/combatMap_lv2_4.json")
 				"Sevilla":
+					CombatMapStatus.set_map_id("sevilla")
 					CombatMapStatus.set_map_path("res://Assets/json/maps/combatMap_lv4_1.json")
 				"Huelva":
+					CombatMapStatus.set_map_id("huelva")
 					CombatMapStatus.set_map_path("res://Assets/json/maps/combatMap_lv3_2.json")
 				"Cádiz":
+					CombatMapStatus.set_map_id("cadiz")
 					CombatMapStatus.set_map_path("res://Assets/json/maps/combatMap_lv3_1.json")
 				"Málaga":
+					CombatMapStatus.set_map_id("malaga")
 					CombatMapStatus.set_map_path("res://Assets/json/maps/combatMap_lv2_3.json")
 				"Jaén":
+					CombatMapStatus.set_map_id("jaen")
 					CombatMapStatus.set_map_path("res://Assets/json/maps/combatMap_lv2_2.json")
 				"Granada":
+					CombatMapStatus.set_map_id("granada")
 					CombatMapStatus.set_map_path("res://Assets/json/maps/combatMap_lv2_1.json")
 				"Almería":
+					CombatMapStatus.set_map_id("almeria")
 					CombatMapStatus.set_map_path("res://Assets/json/maps/combatMap_lv1_2.json")
 				"Murcia":
+					CombatMapStatus.set_map_id("murcia")
 					CombatMapStatus.set_map_path("res://Assets/json/maps/combatMap_lv1_1.json")
 				"Badajoz":
+					CombatMapStatus.set_map_id("badajoz")
 					CombatMapStatus.set_map_path("res://Assets/json/maps/combatMap_lv3_3.json")
 					
 			GameStatus.set_current_game_state(GameStatus.GameState.MAP)

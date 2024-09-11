@@ -58,3 +58,6 @@ func set_autorun_combat(value: bool) -> void:
 	
 func load_save() -> void:
 	save = Utils.read_json("res://Assets/json/saves/save.json")
+
+func save_game(tempSave: Dictionary) -> void:
+	Utils.write_json(tempSave, "res://Assets/json/saves/save.json")

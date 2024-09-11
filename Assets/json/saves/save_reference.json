@@ -1,30 +1,14 @@
 {
 	"levels": {
 		"murcia": {
-			"cleared": true,
+			"cleared": false,
 			"unlocked": true
 		},
 		"almeria": {
 			"cleared": false,
 			"unlocked": true
 		},
-		"badajoz": {
-			"cleared": false,
-			"unlocked": false
-		},
-		"cadiz": {
-			"cleared": false,
-			"unlocked": false
-		},
-		"cordoba": {
-			"cleared": false,
-			"unlocked": false
-		},
 		"granada": {
-			"cleared": false,
-			"unlocked": false
-		},
-		"huelva": {
 			"cleared": false,
 			"unlocked": false
 		},
@@ -33,6 +17,22 @@
 			"unlocked": false
 		},
 		"malaga": {
+			"cleared": false,
+			"unlocked": false
+		},
+		"cordoba": {
+			"cleared": false,
+			"unlocked": false
+		},
+		"cadiz": {
+			"cleared": false,
+			"unlocked": false
+		},
+		"huelva": {
+			"cleared": false,
+			"unlocked": false
+		},
+		"badajoz": {
 			"cleared": false,
 			"unlocked": false
 		},

@@ -957,7 +957,16 @@ func victory():
 	returnMainMenu.hide()
 	CombatMapStatus.set_status(CombatMapStatus.Status.END)
 	endScreenLabel.text = "VICTORY"
+	save_victory()
 	endScreen.show()
+	
+func save_victory():
+	var tempSave = GameStatus.save.duplicate()
+	var currentLevel = tempSave["levels"][CombatMapStatus.get_map_id()]
+	
+	if currentLevel["cleared"] == false:
+		currentLevel["cleared"] = true
+		GameStatus.save_game(tempSave)
 	
 # TODO Test
 func defeat():

@@ -1,5 +1,7 @@
 extends Node
 
+var mapId: String
+
 # TODO Implement properly post TFG
 enum Status {START = 0, BATTLE = 1, CASTING = 2, END = 3, PAUSED = 4}
 var currentStatus: int = Status.START
@@ -39,6 +41,12 @@ var hasAttacked: bool
 var hasMoved: bool
 
 var mapTileMatrix: Array = []
+
+func set_map_id(myMapId: String) -> void:
+	mapId = myMapId
+	
+func get_map_id() -> String:
+	return mapId
 
 func set_status(myStatus: int) -> void:
 	currentStatus = myStatus
