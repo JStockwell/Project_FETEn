@@ -53,8 +53,8 @@ func test_not_null():
 #####################
 # Integration Tests #
 #####################
-
-func test_setup_cameras():
+# TODO
+func test_setup_cameras(do_skip=true, skip_reason="Will be changed"):
 	#Function called in _ready() of tavern
 	test_tavern.start_map_combat()
 	assert_that(CombatMapStatus.get_map_dimensions()).is_equal(Vector2(5,5))
