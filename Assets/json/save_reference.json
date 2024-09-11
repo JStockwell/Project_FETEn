@@ -1,0 +1,30 @@
+{
+	"level_clears": {
+		"stage_1": {
+			"almeria": false,
+			"murcia": false
+		},
+		"stage_2": {
+			"cordoba": false,
+			"granada": false,
+			"jaen": false,
+			"malaga": false
+		},
+		"stage_3": {
+			"badajoz": false,
+			"cadiz": false,
+			"huelva": false
+		},
+		"stage_4": {
+			"sevilla": false
+		}
+	},
+	"unlocks": {
+		"stages": {
+			"stage_1": true,
+			"stage_2": false,
+			"stage_3": false,
+			"stage_4": false
+		}
+	}
+}

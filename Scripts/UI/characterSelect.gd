@@ -2,20 +2,6 @@ extends Node
 
 var tempParty = []
 
-const MAPS = [
-	"res://Assets/json/maps/combatMap_lv1_1.json",
-	"res://Assets/json/maps/combatMap_lv1_2.json",
-	"res://Assets/json/maps/combatMap_lv2_1.json",
-	"res://Assets/json/maps/combatMap_lv2_2.json",
-	"res://Assets/json/maps/combatMap_lv2_3.json",
-	"res://Assets/json/maps/combatMap_lv2_4.json",
-	"res://Assets/json/maps/combatMap_lv3_1.json",
-	"res://Assets/json/maps/combatMap_lv3_2.json",
-	"res://Assets/json/maps/combatMap_lv3_3.json",
-	"res://Assets/json/maps/combatMap_lv4_1.json",
-	"res://Assets/json/maps/test_map_no_enemies.json"
-]
-
 @onready
 var charCard = $CharacterCard
 @onready
@@ -95,5 +81,4 @@ func _on_start_button_pressed() -> void:
 		result.append(character.get_id())
 		
 	GameStatus.set_party(result)
-	#CombatMapStatus.set_map_path(MAPS[mapChoice.get_selected_id()])
 	get_tree().change_scene_to_file("res://Scenes/3D/tavern.tscn")

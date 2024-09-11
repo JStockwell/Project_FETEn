@@ -28,6 +28,7 @@ func _ready():
 	campaignMap.current = true
 	
 func start_map_combat():
+	campaignMap
 	tavernCam.current = true
 	var mapDict = Utils.read_json(CombatMapStatus.get_map_path())
 	var mapSize = Utils.string_to_vector2(mapDict["size"])
