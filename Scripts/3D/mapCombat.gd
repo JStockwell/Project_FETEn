@@ -66,8 +66,12 @@ var aneCharacter = $UI/AnECharacter
 var aneStats = $UI/AnECharacter/AnEStats
 @onready
 var aneSprite = $UI/AnECharacter/AnESprite
+@onready
+var endScreen = $EndScreen
+@onready
+var endScreenLabel = $EndScreen/Label
 
-var comPred
+var comPred # Combat Prediction
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -81,7 +85,10 @@ func _ready():
 	aneCharacter.hide()
 	globalButtons.hide()
 	returnMainMenu.hide()
+	endScreen.hide()
 	uiStart.show()
+	
+	CombatMapStatus.set_status(CombatMapStatus.Status.BATTLE)
 
 	if GameStatus.testMode:
 		await start_turn()
@@ -405,7 +412,7 @@ func _process(delta):
 
 # Set selected enemies
 func character_handler(character) -> void:
-	if battleStart and not isPaused:
+	if battleStart and not isPaused and not CombatMapStatus.get_status() == CombatMapStatus.Status.END:
 		if not CombatMapStatus.get_selected_character().is_enemy():
 			if character.is_enemy():
 				selected_checker(character, CombatMapStatus.get_selected_enemy(), character.is_enemy())
@@ -477,7 +484,7 @@ func set_tile_populated(coords: Vector2, value: bool) -> void:
 
 # Set selected MapTile
 func tile_handler(mapTile) -> void:
-	if battleStart and not isPaused:
+	if battleStart and not isPaused and not CombatMapStatus.get_status() == CombatMapStatus.Status.END:
 		if not CombatMapStatus.get_selected_character().is_enemy():
 			if CombatMapStatus.get_selected_map_tile() == mapTile:
 				remove_selected()
@@ -488,6 +495,7 @@ func tile_handler(mapTile) -> void:
 				mapTile.selected.show()
 
 func _on_start_button_pressed():
+	CombatMapStatus.set_status(CombatMapStatus.Status.BATTLE)
 	battleStart = true
 	ui.show()
 	globalButtons.show()
@@ -797,7 +805,7 @@ func _on_rmm_yes_pressed():
 
 # Buttons updater
 func update_buttons() -> void:
-	if not isPaused:
+	if not isPaused and not CombatMapStatus.get_status() == CombatMapStatus.Status.END:
 		update_move_button()
 		update_phys_attack_button()
 		update_end_turn_button()
@@ -942,11 +950,23 @@ func remove_enemy_highlights() -> void:
 		
 # TODO Test
 func victory():
-	pass
+	ui.hide()
+	aneCharacter.hide()
+	globalButtons.hide()
+	returnMainMenu.hide()
+	CombatMapStatus.set_status(CombatMapStatus.Status.END)
+	endScreenLabel.text = "VICTORY"
+	endScreen.show()
 	
 # TODO Test
 func defeat():
-	pass
+	ui.hide()
+	aneCharacter.hide()
+	globalButtons.hide()
+	returnMainMenu.hide()
+	CombatMapStatus.set_status(CombatMapStatus.Status.END)
+	endScreenLabel.text = "DEFEAT"
+	endScreen.show()
 
 func wait(seconds: float) -> void:
 	await get_tree().create_timer(seconds).timeout
