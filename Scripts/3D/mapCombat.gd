@@ -963,10 +963,9 @@ func victory():
 func save_victory():
 	var tempSave = GameStatus.save.duplicate()
 	if not CombatMapStatus.get_map_id() == "":
-		var currentLevel = tempSave["levels"][CombatMapStatus.get_map_id()]
-		
-		if currentLevel["cleared"] == false:
-			currentLevel["cleared"] = true
+		var currentLevel = tempSave["level_clears"][CombatMapStatus.get_map_stage()][CombatMapStatus.get_map_id()]
+		if currentLevel == false:
+			tempSave["level_clears"][CombatMapStatus.get_map_stage()][CombatMapStatus.get_map_id()] = true
 			GameStatus.save_game(tempSave)
 	
 # TODO Test
@@ -979,12 +978,12 @@ func defeat():
 	endScreenLabel.text = "DEFEAT"
 	endScreen.show()
 
-func wait(seconds: float) -> void:
-	await get_tree().create_timer(seconds).timeout
-
 signal change_camera
 func _on_change_camera_pressed():
 	change_camera.emit()
+
+func wait(seconds: float) -> void:
+	await get_tree().create_timer(seconds).timeout
 
 # Debug
 @onready

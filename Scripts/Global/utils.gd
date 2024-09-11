@@ -55,7 +55,7 @@ static func read_json(jsonPath: String) -> Dictionary:
 		return {}
 		
 static func write_json(json: Dictionary, jsonPath: String) -> void:
-	var save_file = FileAccess.open(jsonPath, FileAccess.WRITE)
+	var save_file = FileAccess.open(jsonPath, FileAccess.WRITE_READ)
 	# JSON provides a static method to serialized JSON string.
 	var json_string = JSON.stringify(json, "\t")
 	save_file.store_line(json_string)

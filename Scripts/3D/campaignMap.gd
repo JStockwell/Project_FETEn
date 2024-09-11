@@ -1,19 +1,5 @@
 extends Node3D
 
-const DEBUG_MAPS = [
-	"res://Assets/json/maps/combatMap_lv1_1.json",
-	"res://Assets/json/maps/combatMap_lv1_2.json",
-	"res://Assets/json/maps/combatMap_lv2_1.json",
-	"res://Assets/json/maps/combatMap_lv2_2.json",
-	"res://Assets/json/maps/combatMap_lv2_3.json",
-	"res://Assets/json/maps/combatMap_lv2_4.json",
-	"res://Assets/json/maps/combatMap_lv3_1.json",
-	"res://Assets/json/maps/combatMap_lv3_2.json",
-	"res://Assets/json/maps/combatMap_lv3_3.json",
-	"res://Assets/json/maps/combatMap_lv4_1.json",
-	"res://Assets/json/maps/testMaps/test_map_no_enemies.json"
-]
-
 @onready
 var debugMapChoice = $Debug/MapChoice
 
@@ -149,7 +135,6 @@ func validate_levels() -> void:
 		badajozCol.disabled = true
 		badajozDisabled.show()
 		
-		
 	if not unlocks["stage_4"]:
 		sevillaCol.disabled = true
 		sevillaDisabled.show()
@@ -158,36 +143,46 @@ func _on_province_input_event(camera: Node, event: InputEvent, event_position: V
 	if event is InputEventMouseButton and GameStatus.get_current_game_state() == GameStatus.GameState.CAMPAIGN:
 		if event.button_index == 1 and event.pressed:
 			match highlighted_province:
-				"Cordoba":
-					CombatMapStatus.set_map_id("cordoba")
-					CombatMapStatus.set_map_path("res://Assets/json/maps/combatMap_lv2_4.json")
-				"Sevilla":
-					CombatMapStatus.set_map_id("sevilla")
-					CombatMapStatus.set_map_path("res://Assets/json/maps/combatMap_lv4_1.json")
-				"Huelva":
-					CombatMapStatus.set_map_id("huelva")
-					CombatMapStatus.set_map_path("res://Assets/json/maps/combatMap_lv3_2.json")
-				"Cádiz":
-					CombatMapStatus.set_map_id("cadiz")
-					CombatMapStatus.set_map_path("res://Assets/json/maps/combatMap_lv3_1.json")
-				"Málaga":
-					CombatMapStatus.set_map_id("malaga")
-					CombatMapStatus.set_map_path("res://Assets/json/maps/combatMap_lv2_3.json")
-				"Jaén":
-					CombatMapStatus.set_map_id("jaen")
-					CombatMapStatus.set_map_path("res://Assets/json/maps/combatMap_lv2_2.json")
-				"Granada":
-					CombatMapStatus.set_map_id("granada")
-					CombatMapStatus.set_map_path("res://Assets/json/maps/combatMap_lv2_1.json")
 				"Almería":
+					CombatMapStatus.set_map_stage("stage_1")
 					CombatMapStatus.set_map_id("almeria")
 					CombatMapStatus.set_map_path("res://Assets/json/maps/combatMap_lv1_2.json")
 				"Murcia":
+					CombatMapStatus.set_map_stage("stage_1")
 					CombatMapStatus.set_map_id("murcia")
 					CombatMapStatus.set_map_path("res://Assets/json/maps/combatMap_lv1_1.json")
+				"Cordoba":
+					CombatMapStatus.set_map_stage("stage_2")
+					CombatMapStatus.set_map_id("cordoba")
+					CombatMapStatus.set_map_path("res://Assets/json/maps/combatMap_lv2_4.json")
+				"Málaga":
+					CombatMapStatus.set_map_stage("stage_2")
+					CombatMapStatus.set_map_id("malaga")
+					CombatMapStatus.set_map_path("res://Assets/json/maps/combatMap_lv2_3.json")
+				"Jaén":
+					CombatMapStatus.set_map_stage("stage_2")
+					CombatMapStatus.set_map_id("jaen")
+					CombatMapStatus.set_map_path("res://Assets/json/maps/combatMap_lv2_2.json")
+				"Granada":
+					CombatMapStatus.set_map_stage("stage_2")
+					CombatMapStatus.set_map_id("granada")
+					CombatMapStatus.set_map_path("res://Assets/json/maps/combatMap_lv2_1.json")
 				"Badajoz":
+					CombatMapStatus.set_map_stage("stage_3")
 					CombatMapStatus.set_map_id("badajoz")
 					CombatMapStatus.set_map_path("res://Assets/json/maps/combatMap_lv3_3.json")
+				"Huelva":
+					CombatMapStatus.set_map_stage("stage_3")
+					CombatMapStatus.set_map_id("huelva")
+					CombatMapStatus.set_map_path("res://Assets/json/maps/combatMap_lv3_2.json")
+				"Cádiz":
+					CombatMapStatus.set_map_stage("stage_3")
+					CombatMapStatus.set_map_id("cadiz")
+					CombatMapStatus.set_map_path("res://Assets/json/maps/combatMap_lv3_1.json")
+				"Sevilla":
+					CombatMapStatus.set_map_stage("stage_4")
+					CombatMapStatus.set_map_id("sevilla")
+					CombatMapStatus.set_map_path("res://Assets/json/maps/combatMap_lv4_1.json")
 					
 			GameStatus.set_current_game_state(GameStatus.GameState.MAP)
 			debugMapChoice.hide()
@@ -273,6 +268,19 @@ func _on_murcia_mouse_exited() -> void:
 func _on_badajoz_mouse_exited() -> void:
 	badajozHighlight.hide()
 
+const DEBUG_MAPS = [
+	"res://Assets/json/maps/combatMap_lv1_1.json",
+	"res://Assets/json/maps/combatMap_lv1_2.json",
+	"res://Assets/json/maps/combatMap_lv2_1.json",
+	"res://Assets/json/maps/combatMap_lv2_2.json",
+	"res://Assets/json/maps/combatMap_lv2_3.json",
+	"res://Assets/json/maps/combatMap_lv2_4.json",
+	"res://Assets/json/maps/combatMap_lv3_1.json",
+	"res://Assets/json/maps/combatMap_lv3_2.json",
+	"res://Assets/json/maps/combatMap_lv3_3.json",
+	"res://Assets/json/maps/combatMap_lv4_1.json",
+	"res://Assets/json/maps/testMaps/test_map_no_enemies.json"
+]
 
 func _on_debug_map_choice_item_selected(index: int) -> void:
 	CombatMapStatus.set_map_path(DEBUG_MAPS[index])

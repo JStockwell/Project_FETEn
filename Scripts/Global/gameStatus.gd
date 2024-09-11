@@ -1,6 +1,7 @@
 extends Node
 
 var save: Dictionary
+var settings: Dictionary
 
 enum GameState {CAMPAIGN = 0, MAP = 1, COMBAT = 2}
 var currentGameState = GameState.CAMPAIGN
@@ -60,11 +61,28 @@ func set_autorun_combat(value: bool) -> void:
 func get_stage_count() -> int:
 	return stageCount
 	
-func load_save() -> void:
-	save = Utils.read_json("res://Assets/json/saves/save.json")
-
-func save_game(tempSave: Dictionary) -> void:
-	Utils.write_json(tempSave, "res://Assets/json/saves/save.json")
+func get_settings() -> Dictionary:
+	return settings
+	
+func load_settings() -> void:
+	settings = Utils.read_json("user://settings.cfg")
+	
+func save_settings(tempSettings) -> void:
+	Utils.write_json(tempSettings, "user://settings.cfg")
 	
 func get_save() -> Dictionary:
 	return save.duplicate()
+	
+func load_save() -> void:
+	var tempSave: Dictionary
+	tempSave = Utils.read_json("user://saves/save.json")
+		
+	if tempSave.keys().size() == 0:
+		save = Utils.read_json("res://Assets/json/save_reference.json")
+		
+	else:
+		save = tempSave
+
+func save_game(tempSave: Dictionary) -> void:
+	Utils.write_json(tempSave, "user://saves/save.json")
+	

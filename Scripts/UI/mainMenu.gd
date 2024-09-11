@@ -68,7 +68,7 @@ func _on_reset_save_no_pressed() -> void:
 
 # TODO Test
 func _on_reset_save_yes_pressed() -> void:
-	GameStatus.save_game(Utils.read_json("res://Assets/json/saves/save_reference.json"))
+	GameStatus.save_game(Utils.read_json("res://Assets/json/save_reference.json"))
 	background.show()
 	buttons.show()
 	resetConfirmation.hide()

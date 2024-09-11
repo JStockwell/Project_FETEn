@@ -1,5 +1,6 @@
 extends Node
 
+var stageId: String
 var mapId: String
 
 # TODO Implement properly post TFG
@@ -41,6 +42,12 @@ var hasAttacked: bool
 var hasMoved: bool
 
 var mapTileMatrix: Array = []
+
+func set_map_stage(myMapStage: String) -> void:
+	stageId = myMapStage
+	
+func get_map_stage() -> String:
+	return stageId
 
 func set_map_id(myMapId: String) -> void:
 	mapId = myMapId
