@@ -1,5 +1,22 @@
 extends Node3D
 
+const DEBUG_MAPS = [
+	"res://Assets/json/maps/combatMap_lv1_1.json",
+	"res://Assets/json/maps/combatMap_lv1_2.json",
+	"res://Assets/json/maps/combatMap_lv2_1.json",
+	"res://Assets/json/maps/combatMap_lv2_2.json",
+	"res://Assets/json/maps/combatMap_lv2_3.json",
+	"res://Assets/json/maps/combatMap_lv2_4.json",
+	"res://Assets/json/maps/combatMap_lv3_1.json",
+	"res://Assets/json/maps/combatMap_lv3_2.json",
+	"res://Assets/json/maps/combatMap_lv3_3.json",
+	"res://Assets/json/maps/combatMap_lv4_1.json",
+	"res://Assets/json/maps/testMaps/test_map_no_enemies.json"
+]
+
+@onready
+var debugMapChoice = $Debug/MapChoice
+
 @onready
 var sevillaCol = $Map/Sevilla/CollisionPolygon3D
 @onready
@@ -10,11 +27,18 @@ var sevillaHighlight = $Map/Sevilla/Highlight
 signal start_map_combat
 
 var highlighted_province: String
-var save = GameStatus.save.duplicate()
+var save: Dictionary
 
 func _ready() -> void:
-	validate_levels()
+	save = GameStatus.save.duplicate()
+	# TODO Remove testMode and test once finished
+	if not GameStatus.testMode:
+		validate_levels()
 	
+	if GameStatus.debugMode:
+		debugMapChoice.show()
+	
+# TODO Test once done
 # TODO Do with rest of levels
 func validate_levels() -> void:
 	var levelProgress = save["levels"]
@@ -121,3 +145,10 @@ func _on_murcia_mouse_exited() -> void:
 
 func _on_badajoz_mouse_exited() -> void:
 	pass # Replace with function body.
+
+
+func _on_debug_map_choice_item_selected(index: int) -> void:
+	CombatMapStatus.set_map_path(DEBUG_MAPS[index])
+	GameStatus.set_current_game_state(GameStatus.GameState.MAP)
+	debugMapChoice.hide()
+	start_map_combat.emit()

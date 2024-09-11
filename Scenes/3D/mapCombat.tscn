@@ -468,6 +468,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Dim" type="ColorRect" parent="EndScreen"]
+layout_mode = 0
 offset_left = -8.0
 offset_right = 1912.0
 offset_bottom = 1080.0
