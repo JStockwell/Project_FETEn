@@ -1,20 +1,18 @@
-[gd_scene load_steps=11 format=3 uid="uid://bcci46nrubo1d"]
+[gd_scene load_steps=12 format=3 uid="uid://bcci46nrubo1d"]
 
 [ext_resource type="Script" path="res://Scripts/3D/tavern.gd" id="1_8d0is"]
 [ext_resource type="PackedScene" uid="uid://pg0y3jtuahtw" path="res://Assets/Rooms/new_tavern.glb" id="1_gk00k"]
+[ext_resource type="PackedScene" uid="uid://dln524otqegb7" path="res://Assets/Props/shop_window/shop_window.glb" id="3_hq178"]
 [ext_resource type="PackedScene" uid="uid://b8nha6fiyc1v7" path="res://Assets/Props/modern_table/modern_table.glb" id="3_nsh4g"]
 [ext_resource type="Texture2D" uid="uid://lhtor4py7gn" path="res://Assets/Reference/2023-11-22-PRESENTACION_WEB.jpg" id="3_q33pg"]
 [ext_resource type="PackedScene" uid="uid://o78bhy5b8m1y" path="res://Scenes/3D/campaignMap.tscn" id="4_b1lil"]
+[ext_resource type="PackedScene" uid="uid://dvarxuv1pbj7b" path="res://Assets/Props/plastic_chairs/classic_plastic_chairs.glb" id="4_omqj1"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1d4jh"]
-albedo_color = Color(0.332881, 0.332881, 0.332881, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4w2h0"]
+albedo_color = Color(0.815686, 1, 1, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_eawtc"]
-material = SubResource("StandardMaterial3D_1d4jh")
-size = Vector3(3000, 1, 3000)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_hut1s"]
-size = Vector3(3000, 1, 3000)
+[sub_resource type="BoxMesh" id="BoxMesh_gap2x"]
+material = SubResource("StandardMaterial3D_4w2h0")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8v0hr"]
 albedo_color = Color(0.0327609, 0.107014, 0.163518, 1)
@@ -27,10 +25,17 @@ size = Vector3(16, 0.35, 16)
 script = ExtResource("1_8d0is")
 
 [node name="Room" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.38024, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.23571, 0)
 
 [node name="new_tavern" parent="Room" instance=ExtResource("1_gk00k")]
 transform = Transform3D(9.25, 0, 0, 0, 9.25, 0, 0, 0, 9.25, 6.684, -15.3028, -38.024)
+
+[node name="Sketchfab_Scene" parent="Room/new_tavern" instance=ExtResource("3_hq178")]
+transform = Transform3D(-1.44248e-09, 0, -0.035, 0, 0.035, 0, 0.033, 0, -1.5299e-09, -10.9942, 0.41202, 5.58841)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/new_tavern"]
+transform = Transform3D(1, 0, 0, 0, 9.05173, 0, 0, 0, 11.6619, -12.041, 3.5514, 5.15159)
+mesh = SubResource("BoxMesh_gap2x")
 
 [node name="Furnitute" type="Node3D" parent="Room"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.92425, 0)
@@ -38,24 +43,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.92425, 0)
 [node name="Sketchfab_Scene" parent="Room/Furnitute" instance=ExtResource("3_nsh4g")]
 transform = Transform3D(26.37, 0, 0, 0, 19.1, 0, 0, 0, 19.1, 0, -12.691, -0.58)
 
-[node name="World" type="Node3D" parent="."]
+[node name="Extras" type="Node3D" parent="Room"]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
-transform = Transform3D(0.956408, 0.282224, -0.0750555, -0.0410715, 0.384446, 0.922233, 0.289131, -0.878949, 0.379279, -254.957, 24.1615, -218.761)
+[node name="Sketchfab_Scene" parent="Room/Extras" instance=ExtResource("4_omqj1")]
+transform = Transform3D(-0.204858, 0, 0.349368, 0, 0.405, 0, -0.349368, 0, -0.204858, 93.4983, 0, 67.7239)
+
+[node name="World" type="Node3D" parent="."]
 
 [node name="Reference" type="Sprite3D" parent="World"]
 transform = Transform3D(21.97, -6.55651e-07, -2.38419e-07, 1.19209e-07, 0, 21.97, 6.55651e-07, -21.97, -9.53674e-07, -22.9469, 9.53674e-07, 32.4309)
 visible = false
 texture = ExtResource("3_q33pg")
-
-[node name="Floor" type="StaticBody3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12.6333, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Floor"]
-mesh = SubResource("BoxMesh_eawtc")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Floor"]
-shape = SubResource("BoxShape3D_hut1s")
 
 [node name="Base" type="Node3D" parent="."]
 
@@ -73,7 +71,7 @@ mesh = SubResource("BoxMesh_u8ypn")
 skeleton = NodePath("../..")
 
 [node name="Campaign" type="Node3D" parent="Base"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 7)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -3.46122, 5.95801)
 
 [node name="Camera3D" type="Camera3D" parent="Base/Campaign"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10, 27.24, 0)
