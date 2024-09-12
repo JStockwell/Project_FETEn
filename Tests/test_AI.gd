@@ -8,6 +8,7 @@ var skillSet = Utils.read_json("res://Assets/json/skills.json")
 
 var mapCombat
 var mapDict
+
 var dick
 var samael
 var lystra
