@@ -6,11 +6,16 @@ var background = $Background
 var buttons = $Buttons
 @onready
 var resetConfirmation = $ResetConfirmation
+@onready
+var debugUnlockButton = $Buttons/DebugUnlock
 
 var playableCharacters = Utils.read_json("res://Assets/json/players.json")
 var enemySet = Utils.read_json("res://Assets/json/enemies.json")
 
 func _ready():
+	if GameStatus.debugMode:
+		debugUnlockButton.show()
+		
 	background.show()
 	buttons.show()
 	resetConfirmation.hide()
@@ -72,3 +77,16 @@ func _on_reset_save_yes_pressed() -> void:
 	background.show()
 	buttons.show()
 	resetConfirmation.hide()
+
+
+func _on_debug_unlock_pressed() -> void:
+	var tempSave = GameStatus.get_save()
+	
+	for stage in tempSave["level_clears"]:
+		for level in tempSave["level_clears"][stage]:
+			tempSave["level_clears"][stage][level] = true
+			
+	for stage in tempSave["unlocks"]["stages"]:
+		tempSave["unlocks"]["stages"][stage] = true
+		
+	GameStatus.save_game(tempSave)

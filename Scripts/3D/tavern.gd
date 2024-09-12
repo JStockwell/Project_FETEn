@@ -6,21 +6,21 @@ var Combat = preload("res://Scenes/3D/combat.tscn")
 var setCam = 1
 
 @onready
-var tavernCamPivot = $World/Tavern
+var tavernCamPivot = $Base/World/Tavern
 @onready
-var tavernCam = $World/Tavern/Camera3D
+var tavernCam = $Base/World/Tavern/Camera3D
 @onready
-var topTavernPivot = $World/TopDown
+var topTavernPivot = $Base/World/TopDown
 @onready
-var topTavernCam = $World/TopDown/Camera3D
+var topTavernCam = $Base/World/TopDown/Camera3D
 @onready
-var mapCenter = $SpawnPoints/MapCenter
+var mapCenter = $Base/SpawnPoints/MapCenter
 @onready
-var combatCenter = $SpawnPoints/CombatCenter
+var combatCenter = $Base/SpawnPoints/CombatCenter
 @onready
-var mapBase = $MapBase
+var mapBase = $Base/MapBase
 @onready
-var campaignMap = $Campaign/Camera3D
+var campaignMap = $Base/Campaign/Camera3D
 
 var cm
 var com
@@ -28,7 +28,6 @@ func _ready():
 	campaignMap.current = true
 	
 func start_map_combat():
-	campaignMap
 	tavernCam.current = true
 	var mapDict = Utils.read_json(CombatMapStatus.get_map_path())
 	var mapSize = Utils.string_to_vector2(mapDict["size"])
@@ -37,7 +36,7 @@ func start_map_combat():
 	CombatMapStatus.calculate_map_spawn(mapCenter.position)
 	var mapSpawn = CombatMapStatus.get_map_spawn()
 	
-	mapBase.mesh.size = Vector3(mapSize.x + 1, 0.36, mapSize.y + 1)
+	mapBase.mesh.size = Vector3(mapSize.x + 1, 0, mapSize.y + 1)
 		
 	if CombatMapStatus.get_map_y() % 2 == 0:
 		mapBase.position.z += 0.5

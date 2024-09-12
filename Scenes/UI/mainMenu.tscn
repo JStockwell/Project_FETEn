@@ -159,6 +159,15 @@ label_settings = SubResource("LabelSettings_nujq1")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="DebugUnlock" type="Button" parent="Buttons"]
+visible = false
+layout_mode = 0
+offset_left = 1772.0
+offset_top = 944.0
+offset_right = 1860.0
+offset_bottom = 976.0
+text = "Unlock All"
+
 [node name="ResetConfirmation" type="Control" parent="."]
 visible = false
 anchors_preset = 0
@@ -219,5 +228,6 @@ vertical_alignment = 1
 [connection signal="pressed" from="Buttons/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="Buttons/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="Buttons/ResetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="pressed" from="Buttons/DebugUnlock" to="." method="_on_debug_unlock_pressed"]
 [connection signal="pressed" from="ResetConfirmation/Yes" to="." method="_on_reset_save_yes_pressed"]
 [connection signal="pressed" from="ResetConfirmation/No" to="." method="_on_reset_save_no_pressed"]

@@ -14,7 +14,7 @@ var skillSet: Dictionary
 var party: Dictionary
 
 var autorunCombat: bool = true
-var debugMode: bool = false
+var debugMode: bool = true
 var testMode: bool = false
 
 func get_playable_characters() -> Dictionary:
