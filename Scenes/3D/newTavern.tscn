@@ -1,4 +1,15 @@
-[gd_scene format=3 uid="uid://bcci46nrubo1d"]
+[gd_scene load_steps=7 format=3 uid="uid://bcci46nrubo1d"]
+
+[ext_resource type="PackedScene" uid="uid://pg0y3jtuahtw" path="res://Assets/Rooms/new_tavern.glb" id="1_gk00k"]
+[ext_resource type="PackedScene" uid="uid://7mlxceeje6ma" path="res://Assets/Props/wooden_table/scene.gltf" id="2_g5drx"]
+[ext_resource type="Texture2D" uid="uid://lhtor4py7gn" path="res://Assets/Reference/2023-11-22-PRESENTACION_WEB.jpg" id="3_q33pg"]
+[ext_resource type="PackedScene" uid="uid://dhsxf6x20qv3k" path="res://Assets/Props/chair/chair.glb" id="4_t3y0r"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_eawtc"]
+size = Vector3(3000, 1, 3000)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hut1s"]
+size = Vector3(3000, 1, 3000)
 
 [node name="NewTavern" type="Node3D"]
 
@@ -6,3 +17,53 @@
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
 transform = Transform3D(0.956408, 0.282224, -0.0750556, -0.0410715, 0.384446, 0.922233, 0.289131, -0.878949, 0.379279, 0, 0, 1.43696)
+
+[node name="Reference" type="Sprite3D" parent="World"]
+transform = Transform3D(21.97, -6.55651e-07, -2.38419e-07, 1.19209e-07, 0, 21.97, 6.55651e-07, -21.97, -9.53674e-07, -22.9469, 9.53674e-07, 32.4309)
+visible = false
+texture = ExtResource("3_q33pg")
+
+[node name="Floor" type="StaticBody3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.55272, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Floor"]
+mesh = SubResource("BoxMesh_eawtc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Floor"]
+shape = SubResource("BoxShape3D_hut1s")
+
+[node name="Room" type="Node3D" parent="."]
+
+[node name="new_tavern" parent="Room" instance=ExtResource("1_gk00k")]
+transform = Transform3D(9.25, 0, 0, 0, 9.25, 0, 0, 0, 9.25, 6.684, 0, -38.024)
+
+[node name="Furnitute" type="Node3D" parent="Room"]
+
+[node name="MainTable" type="Node3D" parent="Room/Furnitute"]
+
+[node name="wooden_table" parent="Room/Furnitute/MainTable" instance=ExtResource("2_g5drx")]
+transform = Transform3D(-6.88673e-07, 0, -23.14, 0, 14.795, 0, 15.755, 0, -1.01148e-06, -2.19437, 7.20751, 0)
+
+[node name="Sketchfab_Scene" parent="Room/Furnitute/MainTable" instance=ExtResource("4_t3y0r")]
+transform = Transform3D(2.14, 0, 0, 0, 2.14, 0, 0, 0, 2.14, -17.499, 17.6169, 17.9504)
+
+[node name="Sketchfab_Scene2" parent="Room/Furnitute/MainTable" instance=ExtResource("4_t3y0r")]
+transform = Transform3D(2.14, 0, 0, 0, 2.14, 0, 0, 0, 2.14, -5.44521, 17.6169, 17.9504)
+
+[node name="Sketchfab_Scene3" parent="Room/Furnitute/MainTable" instance=ExtResource("4_t3y0r")]
+transform = Transform3D(2.14, 0, 0, 0, 2.14, 0, 0, 0, 2.14, 6.8764, 17.6169, 17.9504)
+
+[node name="Sketchfab_Scene4" parent="Room/Furnitute/MainTable" instance=ExtResource("4_t3y0r")]
+transform = Transform3D(2.14, 0, 0, 0, 2.14, 0, 0, 0, 2.14, 18.4837, 17.6169, 17.9504)
+
+[node name="Sketchfab_Scene5" parent="Room/Furnitute/MainTable" instance=ExtResource("4_t3y0r")]
+transform = Transform3D(-2.14, 0, 1.87085e-07, 0, 2.14, 0, -1.87085e-07, 0, -2.14, 18.4837, 17.6169, -18.3894)
+
+[node name="Sketchfab_Scene6" parent="Room/Furnitute/MainTable" instance=ExtResource("4_t3y0r")]
+transform = Transform3D(-2.14, 0, 1.87085e-07, 0, 2.14, 0, -1.87085e-07, 0, -2.14, 6.60854, 17.6169, -18.3894)
+
+[node name="Sketchfab_Scene7" parent="Room/Furnitute/MainTable" instance=ExtResource("4_t3y0r")]
+transform = Transform3D(-2.14, 0, 1.87085e-07, 0, 2.14, 0, -1.87085e-07, 0, -2.14, -5.62379, 17.6169, -18.3894)
+
+[node name="Sketchfab_Scene8" parent="Room/Furnitute/MainTable" instance=ExtResource("4_t3y0r")]
+transform = Transform3D(-2.14, 0, 1.87085e-07, 0, 2.14, 0, -1.87085e-07, 0, -2.14, -17.4097, 17.6169, -18.3894)
