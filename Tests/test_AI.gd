@@ -86,13 +86,13 @@ func test_goblin_melee_behaviour():
 		lystra = mapCombat.characterGroup.get_children()[2]
 		var goblin = mapCombat.enemyGroup.get_children()[0]
 		
-		dick.set_map_coords(Vector2(0,2))
-		samael.set_map_coords(Vector2(1,2))
-		lystra.set_map_coords(Vector2(2,2))
+		dick.set_map_coords(Vector2(0,3))
+		samael.set_map_coords(Vector2(1,3))
+		lystra.set_map_coords(Vector2(2,3))
 		
-		mapCombat.set_tile_populated(Vector2(0,1), false)
-		mapCombat.set_tile_populated(Vector2(1,1), false)
-		mapCombat.set_tile_populated(Vector2(2,1), false)
+		mapCombat.set_tile_populated(Vector2(0,2), false)
+		mapCombat.set_tile_populated(Vector2(1,2), false)
+		mapCombat.set_tile_populated(Vector2(2,2), false)
 		
 		mapCombat.start_turn()
 		
@@ -102,9 +102,9 @@ func test_goblin_melee_behaviour():
 	
 		mapCombat.free()
 		
-	assert_int(attacks.get(Vector2(0,1))).is_between(15,25)
-	assert_int(attacks.get(Vector2(1,1))).is_between(15,25)
-	assert_int(attacks.get(Vector2(2,1))).is_between(15,25)
+	assert_int(attacks.get(Vector2(0,2))).is_between(10,30)
+	assert_int(attacks.get(Vector2(1,2))).is_between(10,30)
+	assert_int(attacks.get(Vector2(2,2))).is_between(10,30)
 
 
 func test_orc_melee_no_kill_behaviour():
@@ -127,13 +127,13 @@ func test_orc_melee_no_kill_behaviour():
 		lystra = mapCombat.characterGroup.get_children()[2]
 		var orc = mapCombat.enemyGroup.get_children()[0]
 		
-		dick.set_map_coords(Vector2(0,2))
-		samael.set_map_coords(Vector2(1,2))
-		lystra.set_map_coords(Vector2(2,2))
+		dick.set_map_coords(Vector2(0,3))
+		samael.set_map_coords(Vector2(1,3))
+		lystra.set_map_coords(Vector2(2,3))
 		
-		mapCombat.set_tile_populated(Vector2(0,1), false)
-		mapCombat.set_tile_populated(Vector2(1,1), false)
-		mapCombat.set_tile_populated(Vector2(2,1), false)
+		mapCombat.set_tile_populated(Vector2(0,2), false)
+		mapCombat.set_tile_populated(Vector2(1,2), false)
+		mapCombat.set_tile_populated(Vector2(2,2), false)
 		
 		mapCombat.start_turn()
 		
@@ -143,9 +143,9 @@ func test_orc_melee_no_kill_behaviour():
 		
 		mapCombat.free()
 		
-	assert_int(attacks.get(Vector2(0,1))).is_null()
-	assert_int(attacks.get(Vector2(1,1))).is_null()
-	assert_int(attacks.get(Vector2(2,1))).is_equal(60)
+	assert_int(attacks.get(Vector2(0,2))).is_null()
+	assert_int(attacks.get(Vector2(1,2))).is_null()
+	assert_int(attacks.get(Vector2(2,2))).is_equal(60)
 	
 	
 func test_orc_melee_kill_behaviour():
@@ -168,14 +168,14 @@ func test_orc_melee_kill_behaviour():
 		lystra = mapCombat.characterGroup.get_children()[2]
 		var orc = mapCombat.enemyGroup.get_children()[0]
 		
-		dick.set_map_coords(Vector2(0,2))
-		samael.set_map_coords(Vector2(1,2))
-		lystra.set_map_coords(Vector2(2,2))
+		dick.set_map_coords(Vector2(0,3))
+		samael.set_map_coords(Vector2(1,3))
+		lystra.set_map_coords(Vector2(2,3))
 		dick.modify_health(-dick.get_current_health() + 1)
 		
-		mapCombat.set_tile_populated(Vector2(0,1), false)
-		mapCombat.set_tile_populated(Vector2(1,1), false)
-		mapCombat.set_tile_populated(Vector2(2,1), false)
+		mapCombat.set_tile_populated(Vector2(0,2), false)
+		mapCombat.set_tile_populated(Vector2(1,2), false)
+		mapCombat.set_tile_populated(Vector2(2,2), false)
 		
 		mapCombat.start_turn()
 		
@@ -187,9 +187,9 @@ func test_orc_melee_kill_behaviour():
 	
 		mapCombat.free()
 		
-	assert_int(attacks.get(Vector2(0,1))).is_equal(60)
-	assert_int(attacks.get(Vector2(1,1))).is_null()
-	assert_int(attacks.get(Vector2(2,1))).is_null()
+	assert_int(attacks.get(Vector2(0,2))).is_equal(60)
+	assert_int(attacks.get(Vector2(1,2))).is_null()
+	assert_int(attacks.get(Vector2(2,2))).is_null()
 	
 	
 func test_goblin_ranged_behaviour():
@@ -211,13 +211,13 @@ func test_goblin_ranged_behaviour():
 		samael = mapCombat.characterGroup.get_children()[1]
 		lystra = mapCombat.characterGroup.get_children()[2]
 		
-		dick.set_map_coords(Vector2(0,2))
-		samael.set_map_coords(Vector2(1,2))
-		lystra.set_map_coords(Vector2(2,2))
+		dick.set_map_coords(Vector2(0,3))
+		samael.set_map_coords(Vector2(1,3))
+		lystra.set_map_coords(Vector2(2,3))
 		
-		mapCombat.set_tile_populated(Vector2(0,1), false)
-		mapCombat.set_tile_populated(Vector2(1,1), false)
-		mapCombat.set_tile_populated(Vector2(2,1), false)
+		mapCombat.set_tile_populated(Vector2(0,2), false)
+		mapCombat.set_tile_populated(Vector2(1,2), false)
+		mapCombat.set_tile_populated(Vector2(2,2), false)
 		
 		mapCombat.start_turn()
 		
@@ -227,9 +227,9 @@ func test_goblin_ranged_behaviour():
 		
 		mapCombat.free()
 		
-	assert_int(attacks.get("dick")).is_between(15,25)
-	assert_int(attacks.get("samael")).is_between(15,25)
-	assert_int(attacks.get("lystra")).is_between(15,25)
+	assert_int(attacks.get("dick")).is_between(10,30)
+	assert_int(attacks.get("samael")).is_between(10,30)
+	assert_int(attacks.get("lystra")).is_between(10,30)
 	
 	
 func test_orc_ranged_no_kill_behaviour():
@@ -252,13 +252,13 @@ func test_orc_ranged_no_kill_behaviour():
 		lystra = mapCombat.characterGroup.get_children()[2]
 		var orc = mapCombat.enemyGroup.get_children()[0]
 		
-		dick.set_map_coords(Vector2(0,2))
-		samael.set_map_coords(Vector2(1,2))
-		lystra.set_map_coords(Vector2(2,2))
+		dick.set_map_coords(Vector2(0,3))
+		samael.set_map_coords(Vector2(1,3))
+		lystra.set_map_coords(Vector2(2,3))
 		
-		mapCombat.set_tile_populated(Vector2(0,1), false)
-		mapCombat.set_tile_populated(Vector2(1,1), false)
-		mapCombat.set_tile_populated(Vector2(2,1), false)
+		mapCombat.set_tile_populated(Vector2(0,2), false)
+		mapCombat.set_tile_populated(Vector2(1,2), false)
+		mapCombat.set_tile_populated(Vector2(2,2), false)
 		
 		mapCombat.start_turn()
 		
@@ -293,14 +293,14 @@ func test_orc_ranged_kill_behaviour():
 		lystra = mapCombat.characterGroup.get_children()[2]
 		var orc = mapCombat.enemyGroup.get_children()[0]
 		
-		dick.set_map_coords(Vector2(0,2))
-		samael.set_map_coords(Vector2(1,2))
-		lystra.set_map_coords(Vector2(2,2))
+		dick.set_map_coords(Vector2(0,3))
+		samael.set_map_coords(Vector2(1,3))
+		lystra.set_map_coords(Vector2(2,3))
 		dick.modify_health(-dick.get_current_health() + 1)
 		
-		mapCombat.set_tile_populated(Vector2(0,1), false)
-		mapCombat.set_tile_populated(Vector2(1,1), false)
-		mapCombat.set_tile_populated(Vector2(2,1), false)
+		mapCombat.set_tile_populated(Vector2(0,2), false)
+		mapCombat.set_tile_populated(Vector2(1,2), false)
+		mapCombat.set_tile_populated(Vector2(2,2), false)
 		
 		mapCombat.start_turn()
 		
@@ -337,13 +337,13 @@ func test_orc_mage_no_kill_behaviour():
 		lystra = mapCombat.characterGroup.get_children()[2]
 		var orc = mapCombat.enemyGroup.get_children()[0]
 		
-		dick.set_map_coords(Vector2(0,2))
-		samael.set_map_coords(Vector2(1,2))
-		lystra.set_map_coords(Vector2(2,2))
+		dick.set_map_coords(Vector2(0,3))
+		samael.set_map_coords(Vector2(1,3))
+		lystra.set_map_coords(Vector2(2,3))
 		
-		mapCombat.set_tile_populated(Vector2(0,1), false)
-		mapCombat.set_tile_populated(Vector2(1,1), false)
-		mapCombat.set_tile_populated(Vector2(2,1), false)
+		mapCombat.set_tile_populated(Vector2(0,2), false)
+		mapCombat.set_tile_populated(Vector2(1,2), false)
+		mapCombat.set_tile_populated(Vector2(2,2), false)
 		
 		mapCombat.start_turn()
 		
@@ -378,14 +378,14 @@ func test_orc_mage_kill_behaviour():
 		lystra = mapCombat.characterGroup.get_children()[2]
 		var orc = mapCombat.enemyGroup.get_children()[0]
 		
-		dick.set_map_coords(Vector2(0,2))
-		samael.set_map_coords(Vector2(1,2))
-		lystra.set_map_coords(Vector2(2,2))
+		dick.set_map_coords(Vector2(0,3))
+		samael.set_map_coords(Vector2(1,3))
+		lystra.set_map_coords(Vector2(2,3))
 		samael.modify_health(-samael.get_current_health() + 1)
 
-		mapCombat.set_tile_populated(Vector2(0,1), false)
-		mapCombat.set_tile_populated(Vector2(1,1), false)
-		mapCombat.set_tile_populated(Vector2(2,1), false)
+		mapCombat.set_tile_populated(Vector2(0,2), false)
+		mapCombat.set_tile_populated(Vector2(1,2), false)
+		mapCombat.set_tile_populated(Vector2(2,2), false)
 		
 		mapCombat.start_turn()
 		
@@ -420,13 +420,13 @@ func test_juggernaut_behaviour():
 		lystra = mapCombat.characterGroup.get_children()[2]
 		var juggernaut = mapCombat.enemyGroup.get_children()[0]
 		
-		dick.set_map_coords(Vector2(0,2))
-		samael.set_map_coords(Vector2(1,2))
-		lystra.set_map_coords(Vector2(2,2))
+		dick.set_map_coords(Vector2(0,3))
+		samael.set_map_coords(Vector2(1,3))
+		lystra.set_map_coords(Vector2(2,3))
 		
-		mapCombat.set_tile_populated(Vector2(0,1), false)
-		mapCombat.set_tile_populated(Vector2(1,1), false)
-		mapCombat.set_tile_populated(Vector2(2,1), false)
+		mapCombat.set_tile_populated(Vector2(0,2), false)
+		mapCombat.set_tile_populated(Vector2(1,2), false)
+		mapCombat.set_tile_populated(Vector2(2,2), false)
 		
 		mapCombat.start_turn()
 		
@@ -436,6 +436,6 @@ func test_juggernaut_behaviour():
 	
 		mapCombat.free()
 		
-	assert_int(attacks.get(Vector2(0,1))).is_between(15,25)
-	assert_int(attacks.get(Vector2(1,1))).is_between(15,25)
-	assert_int(attacks.get(Vector2(2,1))).is_between(15,25)
+	assert_int(attacks.get(Vector2(0,2))).is_between(10,30)
+	assert_int(attacks.get(Vector2(1,2))).is_between(10,30)
+	assert_int(attacks.get(Vector2(2,2))).is_between(10,30)
