@@ -6,6 +6,7 @@ var settings: Dictionary
 enum GameState {CAMPAIGN = 0, MAP = 1, COMBAT = 2}
 var currentGameState = GameState.CAMPAIGN
 
+var mapScale: float = 0.05
 var stageCount: int = 4
 var playableCharacters: Dictionary
 var enemySet: Dictionary

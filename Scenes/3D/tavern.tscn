@@ -56,11 +56,11 @@ size = Vector3(49, 42, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_587e4"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u6fdu"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l2tap"]
 albedo_color = Color(0.0327609, 0.107014, 0.163518, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_0dcg8"]
-material = SubResource("StandardMaterial3D_u6fdu")
+material = SubResource("StandardMaterial3D_l2tap")
 size = Vector3(16, 0.35, 16)
 
 [node name="Tavern" type="Node3D"]

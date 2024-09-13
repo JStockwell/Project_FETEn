@@ -1,6 +1,7 @@
 {
 	"name": "combatMap_lv2_1",
 	"size": "(14,13)",
+	"camera_position": 1,
 	"ally_spawn": [
 		"(0,10)", "(1,10)",
 		"(0,11)", "(1,11)", "(2,11)", 

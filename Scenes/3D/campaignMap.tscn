@@ -753,39 +753,12 @@ shadow_mesh = SubResource("ArrayMesh_6kymj")
 [node name="CampaignMap" type="Node3D"]
 script = ExtResource("1_x4u78")
 
-[node name="World" type="Node3D" parent="."]
-
-[node name="Camera3D" type="Camera3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 48)
-fov = 30.0
-
-[node name="SpotLight3D" type="SpotLight3D" parent="World"]
-transform = Transform3D(0.987449, 0.13606, -0.0802024, -0.107116, 0.950096, 0.292991, 0.116064, -0.280722, 0.952746, -8, 2.26333, 8)
-light_energy = 2.5
-spot_range = 17.897
-spot_attenuation = 0.683023
-spot_angle = 54.8438
-
-[node name="SpotLight3D2" type="SpotLight3D" parent="World"]
-transform = Transform3D(0.997841, 0.0656797, -0.000493452, -0.0642476, 0.977588, 0.200482, 0.01365, -0.200018, 0.979697, 0, 2.26333, 8)
-light_energy = 2.5
-spot_range = 17.897
-spot_attenuation = 0.683023
-spot_angle = 54.8438
-
-[node name="SpotLight3D3" type="SpotLight3D" parent="World"]
-transform = Transform3D(0.987556, -0.135391, 0.0800215, 0.106598, 0.950345, 0.292372, -0.115632, -0.280203, 0.952951, 8, 2.26333, 8)
-light_energy = 2.5
-spot_range = 17.897
-spot_attenuation = 0.683023
-spot_angle = 54.8438
-
 [node name="Back" type="MeshInstance3D" parent="."]
-transform = Transform3D(35.6025, 0, 0, 0, 23.6617, 0, 0, 0, 1, 0, 0, -0.736927)
+transform = Transform3D(10.682, 0, 0, 0, 7.099, 0, 0, 0, 0.3, 0, 0, -0.243363)
 mesh = SubResource("BoxMesh_g3uxs")
 
 [node name="Map" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.279, 2.507, 0)
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.700443, 0.796897, 0)
 
 [node name="Cordoba" type="StaticBody3D" parent="Map"]
 

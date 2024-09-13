@@ -79,6 +79,7 @@ func _ready():
 	skillMenu.connect("id_pressed", Callable(self, "_on_skill_selected"))
 
 	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
+	CombatMapStatus.set_camera_position(mapDict["camera_position"])
 	initial_map_load()
 	calculate_combat_initiative()
 	ui.hide()
@@ -115,13 +116,13 @@ func initial_map_load() -> void:
 	var positions = mapDict["ally_spawn"]
 	for character in GameStatus.get_party():
 		var partyMember = Factory.Character.create(GameStatus.get_party_member(character), false)
-		partyMember.scale *= Vector3(0.58, 0.58, 0.58)
+		partyMember.scale *= Vector3(0.58, 0.58, 0.58) * GameStatus.mapScale
 		partyMember.position = CombatMapStatus.get_map_spawn()
 
 		# TODO Possibly choose spawn, not sure if we're going to do this
 		var spawnPos = choose_random_spawn(positions)
 
-		partyMember.position += Vector3(spawnPos.x, 0.5 + (mapHeightModifier * get_tile_from_coords(spawnPos).get_height()), spawnPos.y)
+		partyMember.position += Vector3(spawnPos.x, 0.5 + (mapHeightModifier * get_tile_from_coords(spawnPos).get_height()), spawnPos.y) * GameStatus.mapScale
 		partyMember.set_map_coords(spawnPos)
 		partyMember.set_map_id(i)
 		characterGroup.add_child(partyMember)
@@ -135,10 +136,10 @@ func initial_map_load() -> void:
 	var j = 0
 	for character in mapDict["enemy_spawn"]:
 		var enemy = Factory.Character.create(GameStatus.get_enemy_from_enemy_set(character[0]), true)
-		enemy.scale *= Vector3(0.58, 0.58, 0.58)
+		enemy.scale *= Vector3(0.58, 0.58, 0.58) * GameStatus.mapScale
 		enemy.position = CombatMapStatus.get_map_spawn()
 		var spawnPos = Utils.string_to_vector2(character[1])
-		enemy.position += Vector3(spawnPos.x, 0.5 + (mapHeightModifier * get_tile_from_coords(spawnPos).get_height()), spawnPos.y)
+		enemy.position += Vector3(spawnPos.x, 0.5 + (mapHeightModifier * get_tile_from_coords(spawnPos).get_height()), spawnPos.y) * GameStatus.mapScale
 		enemy.set_map_coords(spawnPos)
 		enemy.set_map_id(i + j)
 		enemyGroup.add_child(enemy)
@@ -514,7 +515,7 @@ func move_character() -> void:
 		var old_char_coords = CombatMapStatus.get_selected_character().get_map_coords()
 
 		selChar.position = CombatMapStatus.get_map_spawn()
-		selChar.position += Vector3(tile_coords.x, 0.5 + (mapHeightModifier * CombatMapStatus.get_selected_map_tile().get_height()), tile_coords.y)
+		selChar.position += Vector3(tile_coords.x, 0.5 + (mapHeightModifier * CombatMapStatus.get_selected_map_tile().get_height()), tile_coords.y) * GameStatus.mapScale
 		selChar.set_map_coords(Vector2(tile_coords.x, tile_coords.y))
 
 		# Deselect mapTile

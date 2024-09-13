@@ -30,16 +30,18 @@ func _ready():
 	attacker = Factory.Character.create(CombatMapStatus.attackerStats, false)
 	defender = Factory.Character.create(CombatMapStatus.defenderStats, false)
 	
+	attacker.scale *= Vector3(1,1,1) * GameStatus.mapScale
+	attacker.position = attackerSpawn.position
+	attacker.position.y *= GameStatus.mapScale
+	
+	defender.scale *= Vector3(1,1,1) * GameStatus.mapScale
+	defender.position = defenderSpawn.position
+	defender.position.y *= GameStatus.mapScale
+		
 	add_child(attacker)
 	add_child(defender)
 	
-	attacker.position = CombatMapStatus.get_combat_spawn()
-	attacker.translate(attackerSpawn.get_position())
-	
-	defender.position = CombatMapStatus.get_combat_spawn()
-	defender.translate(defenderSpawn.get_position())
-	
-	damageNumber.global_position = CombatMapStatus.get_combat_spawn() + Vector3(0, 3.75, 0)
+	damageNumber.global_position = CombatMapStatus.get_combat_spawn() + Vector3(0, 3.75 * GameStatus.mapScale, 0)
 
 	if GameStatus.autorunCombat:
 		await combat_round(generate_rolls(), generate_rolls())

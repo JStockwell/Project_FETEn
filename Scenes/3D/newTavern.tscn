@@ -1,101 +1,92 @@
-[gd_scene load_steps=12 format=3 uid="uid://bcci46nrubo1d"]
+[gd_scene load_steps=8 format=3 uid="uid://dmp1dv018dj0t"]
 
 [ext_resource type="Script" path="res://Scripts/3D/tavern.gd" id="1_8d0is"]
-[ext_resource type="PackedScene" uid="uid://pg0y3jtuahtw" path="res://Assets/Rooms/new_tavern.glb" id="1_gk00k"]
-[ext_resource type="PackedScene" uid="uid://dln524otqegb7" path="res://Assets/Props/shop_window/shop_window.glb" id="3_hq178"]
-[ext_resource type="PackedScene" uid="uid://b8nha6fiyc1v7" path="res://Assets/Props/modern_table/modern_table.glb" id="3_nsh4g"]
+[ext_resource type="PackedScene" uid="uid://3wtgqdrdlt5v" path="res://Assets/Rooms/tavern/TavernLevel.tscn" id="3_k30tf"]
 [ext_resource type="Texture2D" uid="uid://lhtor4py7gn" path="res://Assets/Reference/2023-11-22-PRESENTACION_WEB.jpg" id="3_q33pg"]
 [ext_resource type="PackedScene" uid="uid://o78bhy5b8m1y" path="res://Scenes/3D/campaignMap.tscn" id="4_b1lil"]
-[ext_resource type="PackedScene" uid="uid://dvarxuv1pbj7b" path="res://Assets/Props/plastic_chairs/classic_plastic_chairs.glb" id="4_omqj1"]
+[ext_resource type="PackedScene" uid="uid://2v06yh07feet" path="res://Assets/Props/modern_table/modern_table.tscn" id="6_bqj1a"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4w2h0"]
-albedo_color = Color(0.815686, 1, 1, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_gap2x"]
-material = SubResource("StandardMaterial3D_4w2h0")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8v0hr"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iwvly"]
 albedo_color = Color(0.0327609, 0.107014, 0.163518, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_u8ypn"]
-material = SubResource("StandardMaterial3D_8v0hr")
-size = Vector3(16, 0.35, 16)
+[sub_resource type="BoxMesh" id="BoxMesh_a5ik6"]
+material = SubResource("StandardMaterial3D_iwvly")
+size = Vector3(0.8, 0.05, 0.8)
 
 [node name="NewTavern" type="Node3D"]
 script = ExtResource("1_8d0is")
-
-[node name="Room" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.23571, 0)
-
-[node name="new_tavern" parent="Room" instance=ExtResource("1_gk00k")]
-transform = Transform3D(9.25, 0, 0, 0, 9.25, 0, 0, 0, 9.25, 6.684, -15.3028, -38.024)
-
-[node name="Sketchfab_Scene" parent="Room/new_tavern" instance=ExtResource("3_hq178")]
-transform = Transform3D(-1.44248e-09, 0, -0.035, 0, 0.035, 0, 0.033, 0, -1.5299e-09, -10.9942, 0.41202, 5.58841)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/new_tavern"]
-transform = Transform3D(1, 0, 0, 0, 9.05173, 0, 0, 0, 11.6619, -12.041, 3.5514, 5.15159)
-mesh = SubResource("BoxMesh_gap2x")
-
-[node name="Furnitute" type="Node3D" parent="Room"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.92425, 0)
-
-[node name="Sketchfab_Scene" parent="Room/Furnitute" instance=ExtResource("3_nsh4g")]
-transform = Transform3D(26.37, 0, 0, 0, 19.1, 0, 0, 0, 19.1, 0, -12.691, -0.58)
-
-[node name="Extras" type="Node3D" parent="Room"]
-
-[node name="Sketchfab_Scene" parent="Room/Extras" instance=ExtResource("4_omqj1")]
-transform = Transform3D(-0.204858, 0, 0.349368, 0, 0.405, 0, -0.349368, 0, -0.204858, 93.4983, 0, 67.7239)
-
-[node name="World" type="Node3D" parent="."]
-
-[node name="Reference" type="Sprite3D" parent="World"]
-transform = Transform3D(21.97, -6.55651e-07, -2.38419e-07, 1.19209e-07, 0, 21.97, 6.55651e-07, -21.97, -9.53674e-07, -22.9469, 9.53674e-07, 32.4309)
-visible = false
-texture = ExtResource("3_q33pg")
 
 [node name="Base" type="Node3D" parent="."]
 
 [node name="SpawnPoints" type="Node3D" parent="Base"]
 
 [node name="MapCenter" type="Marker3D" parent="Base/SpawnPoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.5303, 0)
 
 [node name="CombatCenter" type="Marker3D" parent="Base/SpawnPoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 14.53, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 
 [node name="MapBase" type="MeshInstance3D" parent="Base"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.688, -0.5)
-mesh = SubResource("BoxMesh_u8ypn")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01, 0)
+mesh = SubResource("BoxMesh_a5ik6")
 skeleton = NodePath("../..")
 
+[node name="Cameras" type="Node3D" parent="Base"]
+
+[node name="MapCam" type="Marker3D" parent="Base/Cameras"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Base/Cameras/MapCam"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.1)
+fov = 42.0
+
 [node name="Campaign" type="Node3D" parent="Base"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -3.46122, 5.95801)
+transform = Transform3D(-9.57279e-09, 0, -0.219, 0, 0.219, 0, 0.219, 0, -9.57279e-09, -9.93726e-10, 0.510105, 0.0227338)
 
 [node name="Camera3D" type="Camera3D" parent="Base/Campaign"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10, 27.24, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.16, 2.974, 0)
 current = true
 fov = 52.0
 
 [node name="CampaignMap" parent="Base/Campaign" instance=ExtResource("4_b1lil")]
-transform = Transform3D(-3.49691e-08, 0, 0.8, 0, 0.8, 0, -0.8, 0, -3.49691e-08, -33.973, 27.178, 0)
+transform = Transform3D(-3.49691e-08, 0, 0.8, 0, 0.8, 0, -0.8, 0, -3.49691e-08, -6.60933, 2.96911, -1.1961e-06)
 
-[node name="World" type="Node3D" parent="Base"]
+[node name="Room" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.469, -0.811989, 1.109)
 
-[node name="Tavern" type="Marker3D" parent="Base/World"]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707106, 0, -0.707106, 0.707107, 0, 14.9142, 0)
+[node name="Sketchfab_Scene" parent="Room" instance=ExtResource("6_bqj1a")]
+transform = Transform3D(1.55, 0, 0, 0, 1, 0, 0, 0, 1, -0.480891, 0, -1.13239)
 
-[node name="Camera3D" type="Camera3D" parent="Base/World/Tavern"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20.6)
-fov = 30.0
+[node name="Tavern" parent="Room" instance=ExtResource("3_k30tf")]
+transform = Transform3D(0.504, 0, 0, 0, 0.504, 0, 0, 0, 0.504, 0, -0.686153, -3.174)
 
-[node name="TopDown" type="Marker3D" parent="Base/World"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 15, 0)
+[node name="Sprite3D" type="Sprite3D" parent="Room"]
+transform = Transform3D(1.19, 0, 0, 0, -5.20166e-08, 1.19, 0, -1.19, -5.20166e-08, -1.59418, -4.44089e-15, 0.651915)
+visible = false
+texture = ExtResource("3_q33pg")
 
-[node name="Camera3D" type="Camera3D" parent="Base/World/TopDown"]
-transform = Transform3D(-4.37114e-08, -1, -2.11758e-22, 1, -4.37114e-08, -3.55271e-15, 3.55271e-15, -2.11758e-22, 1, 0, -5.68434e-14, 11)
-projection = 1
-size = 11.0
+[node name="Debug" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 64.0
+offset_top = 666.0
+offset_right = 407.0
+offset_bottom = 706.0
+
+[node name="ProgressBar" type="HSlider" parent="Debug"]
+layout_mode = 0
+offset_right = 383.0
+offset_bottom = 27.0
+min_value = -0.15
+max_value = 0.0
+step = 0.01
+value = -0.15
+
+[node name="Label" type="Label" parent="Debug"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = -26.0
+offset_right = 46.0
+offset_bottom = -3.0
 
 [connection signal="start_map_combat" from="Base/Campaign/CampaignMap" to="." method="_on_campaign_map_start_map_combat"]
+[connection signal="value_changed" from="Debug/ProgressBar" to="." method="_on_debug_progress_bar_value_changed"]
