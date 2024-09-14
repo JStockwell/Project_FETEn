@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://ekpgdu41v6fb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lx7jd"]
+cull_mode = 2
+albedo_color = Color(0, 0, 0, 1)
+metallic = 0.3
+roughness = 0.3
+
+[sub_resource type="TorusMesh" id="TorusMesh_y3a61"]
+material = SubResource("StandardMaterial3D_lx7jd")
+inner_radius = 0.05
+outer_radius = 0.1
+rings = 8
+ring_segments = 8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ud6fi"]
+cull_mode = 2
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_n8jlj"]
+material = SubResource("StandardMaterial3D_ud6fi")
+top_radius = 0.08
+bottom_radius = 0.08
+height = 0.005
+
+[node name="CeilingLight" type="Node3D"]
+
+[node name="Light" type="Node3D" parent="."]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Light"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000466347, 0)
+light_color = Color(1, 0.956863, 0.94902, 1)
+light_energy = 0.4
+light_size = 0.05
+shadow_enabled = true
+omni_range = 8.0
+omni_attenuation = 2.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Light"]
+mesh = SubResource("TorusMesh_y3a61")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Light"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0243303, 0)
+mesh = SubResource("CylinderMesh_n8jlj")

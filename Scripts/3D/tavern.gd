@@ -32,7 +32,8 @@ func start_map_combat():
 	CombatMapStatus.calculate_map_spawn(mapCenter.position)
 	var mapSpawn = CombatMapStatus.get_map_spawn()
 	
-	mapBase.mesh.size = Vector3(mapSize.x + 1, 0.3, mapSize.y + 1) * GameStatus.mapScale
+	mapBase.mesh.size.x = (mapSize.x + 1) * GameStatus.mapScale
+	mapBase.mesh.size.z = (mapSize.y + 1) * GameStatus.mapScale
 		
 	CombatMapStatus.set_map_spawn(mapSpawn)
 	CombatMapStatus.set_combat_spawn(combatCenter.position)
@@ -56,12 +57,12 @@ func _on_start_turn() -> void:
 func _on_combat_start() -> void:
 	GameStatus.set_current_game_state(GameStatus.GameState.COMBAT)
 	com = Combat.instantiate()
-	add_child(com)
-	com.connect("combat_end", Callable(self, "_on_combat_end"))
-	com.position = combatCenter.position
-	com.camera.current = true
+	#com.position = combatCenter.position
 	cm.ui.hide()
 	cm.globalButtons.hide()
+	add_child(com)
+	com.connect("combat_end", Callable(self, "_on_combat_end"))
+	com.camera.current = true
 
 func _on_combat_end() -> void:
 	GameStatus.set_current_game_state(GameStatus.GameState.MAP)

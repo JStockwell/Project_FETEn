@@ -30,18 +30,16 @@ func _ready():
 	attacker = Factory.Character.create(CombatMapStatus.attackerStats, false)
 	defender = Factory.Character.create(CombatMapStatus.defenderStats, false)
 	
-	attacker.scale *= Vector3(1,1,1) * GameStatus.mapScale
+	attacker.scale *= Vector3(1,1,1) * 0.1
 	attacker.position = attackerSpawn.position
-	attacker.position.y *= GameStatus.mapScale
 	
-	defender.scale *= Vector3(1,1,1) * GameStatus.mapScale
+	defender.scale *= Vector3(1,1,1) * 0.1
 	defender.position = defenderSpawn.position
-	defender.position.y *= GameStatus.mapScale
 		
 	add_child(attacker)
 	add_child(defender)
 	
-	damageNumber.global_position = CombatMapStatus.get_combat_spawn() + Vector3(0, 3.75 * GameStatus.mapScale, 0)
+	#damageNumber.global_position = CombatMapStatus.get_combat_spawn() + Vector3(0, 3.75 * GameStatus.mapScale, 0)
 
 	if GameStatus.autorunCombat:
 		await combat_round(generate_rolls(), generate_rolls())
@@ -99,11 +97,11 @@ func deal_damage(dmg: int, crit: float, t_defender):
 	
 	damageNumber.show()
 	if not GameStatus.testMode:
-		await wait(0.75)
+		await wait(1)
 	
 	damageNumber.hide()
 	if not GameStatus.testMode:
-		await wait(0.3)
+		await wait(0.5)
 
 # Attack Calculations
 func calc_hit_chance(att_dex: int, def_agi: int, rolls: Array) -> bool:
@@ -130,11 +128,11 @@ func update_damage_text(text: String) -> void:
 	
 	damageNumber.show()
 	if not GameStatus.testMode:
-		await wait(0.75)
+		await wait(1)
 	
 	damageNumber.hide()
 	if not GameStatus.testMode:
-		await wait(0.3)
+		await wait(0.5)
 	
 func generate_rolls() -> Array:
 	# true_hit_flag, dice_1, dice_2, crit_roll

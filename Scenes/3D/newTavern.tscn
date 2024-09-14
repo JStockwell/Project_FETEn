@@ -1,10 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmp1dv018dj0t"]
+[gd_scene load_steps=23 format=3 uid="uid://dmp1dv018dj0t"]
 
 [ext_resource type="Script" path="res://Scripts/3D/tavern.gd" id="1_8d0is"]
 [ext_resource type="PackedScene" uid="uid://3wtgqdrdlt5v" path="res://Assets/Rooms/tavern/TavernLevel.tscn" id="3_k30tf"]
 [ext_resource type="Texture2D" uid="uid://lhtor4py7gn" path="res://Assets/Reference/2023-11-22-PRESENTACION_WEB.jpg" id="3_q33pg"]
 [ext_resource type="PackedScene" uid="uid://o78bhy5b8m1y" path="res://Scenes/3D/campaignMap.tscn" id="4_b1lil"]
+[ext_resource type="PackedScene" uid="uid://gs7eyivommkl" path="res://Assets/Props/shop_window/shop_window.tscn" id="4_qo8fu"]
+[ext_resource type="Shader" path="res://Shaders/sky.gdshader" id="6_2svct"]
 [ext_resource type="PackedScene" uid="uid://2v06yh07feet" path="res://Assets/Props/modern_table/modern_table.tscn" id="6_bqj1a"]
+[ext_resource type="PackedScene" uid="uid://ekpgdu41v6fb" path="res://Assets/Props/ceiling_light/ceiling_light.tscn" id="8_i2nn6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iwvly"]
 albedo_color = Color(0.0327609, 0.107014, 0.163518, 1)
@@ -12,6 +15,83 @@ albedo_color = Color(0.0327609, 0.107014, 0.163518, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_a5ik6"]
 material = SubResource("StandardMaterial3D_iwvly")
 size = Vector3(0.8, 0.05, 0.8)
+
+[sub_resource type="Gradient" id="Gradient_3qbc0"]
+colors = PackedColorArray(0, 0, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6n2ai"]
+frequency = 0.001
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2aca6"]
+seamless = true
+color_ramp = SubResource("Gradient_3qbc0")
+noise = SubResource("FastNoiseLite_6n2ai")
+
+[sub_resource type="Gradient" id="Gradient_slye4"]
+colors = PackedColorArray(0.10748, 0.10748, 0.10748, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ywb2r"]
+frequency = 0.0095
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_paaqd"]
+color_ramp = SubResource("Gradient_slye4")
+noise = SubResource("FastNoiseLite_ywb2r")
+
+[sub_resource type="Gradient" id="Gradient_sjj6p"]
+colors = PackedColorArray(0.408329, 0.408329, 0.408329, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fw4lh"]
+frequency = 0.0217
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lu2xv"]
+color_ramp = SubResource("Gradient_sjj6p")
+noise = SubResource("FastNoiseLite_fw4lh")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_icaid"]
+shader = ExtResource("6_2svct")
+shader_parameter/day_bottom_color = Color(0.286275, 0.705882, 0.976471, 1)
+shader_parameter/day_top_color = Color(0.262745, 0.619608, 0.882353, 1)
+shader_parameter/sunset_bottom_color = Color(0.564706, 0.305882, 0.207843, 1)
+shader_parameter/sunset_top_color = Color(0.196078, 0.2, 0.301961, 1)
+shader_parameter/night_bottom_color = Color(0.0784314, 0.0235294, 0.0901961, 1)
+shader_parameter/night_top_color = Color(0, 0, 0, 1)
+shader_parameter/horizon_color_day = Color(0, 0.862745, 0.396078, 1)
+shader_parameter/horizon_color_sunset = Color(0.968627, 0.270588, 0.247059, 1)
+shader_parameter/horizon_color_night = Color(0.12549, 0.0941176, 0.176471, 1)
+shader_parameter/horizon_falloff = 0.7
+shader_parameter/sun_col = Color(0.85, 0.833, 0.51, 1)
+shader_parameter/sun_size = 0.15
+shader_parameter/sun_blur = 0.1
+shader_parameter/moon_col = Color(1, 1, 1, 1)
+shader_parameter/moon_size = 0.15
+shader_parameter/moon_crescent_offset = -0.1
+shader_parameter/clouds_main_color = Color(0.682353, 0.682353, 0.682353, 1)
+shader_parameter/clouds_edge_color = Color(0.0156863, 0, 0.501961, 1)
+shader_parameter/clouds_speed = 0.05
+shader_parameter/clouds_scale = 0.18
+shader_parameter/clouds_cutoff = 0.05
+shader_parameter/clouds_fuzziness = 0.13
+shader_parameter/stars_cutoff = 0.925
+shader_parameter/stars_speed = 0.014
+shader_parameter/clouds_texture = SubResource("NoiseTexture2D_lu2xv")
+shader_parameter/clouds_distort_texture = SubResource("NoiseTexture2D_2aca6")
+shader_parameter/clouds_noise_texture = SubResource("NoiseTexture2D_paaqd")
+
+[sub_resource type="Sky" id="Sky_heect"]
+sky_material = SubResource("ShaderMaterial_icaid")
+
+[sub_resource type="Environment" id="Environment_0k8vp"]
+background_mode = 2
+sky = SubResource("Sky_heect")
+ambient_light_source = 3
+reflected_light_source = 2
+tonemap_mode = 2
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+adjustment_enabled = true
 
 [node name="NewTavern" type="Node3D"]
 script = ExtResource("1_8d0is")
@@ -26,7 +106,7 @@ script = ExtResource("1_8d0is")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 
 [node name="MapBase" type="MeshInstance3D" parent="Base"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0247331, 0)
 mesh = SubResource("BoxMesh_a5ik6")
 skeleton = NodePath("../..")
 
@@ -53,16 +133,23 @@ transform = Transform3D(-3.49691e-08, 0, 0.8, 0, 0.8, 0, -0.8, 0, -3.49691e-08, 
 [node name="Room" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.469, -0.811989, 1.109)
 
-[node name="Sketchfab_Scene" parent="Room" instance=ExtResource("6_bqj1a")]
+[node name="MainTable" parent="Room" instance=ExtResource("6_bqj1a")]
 transform = Transform3D(1.55, 0, 0, 0, 1, 0, 0, 0, 1, -0.480891, 0, -1.13239)
+
+[node name="Window" parent="Room" instance=ExtResource("4_qo8fu")]
+transform = Transform3D(-7.43094e-10, 0, -0.018, 0, 0.018, 0, 0.017, 0, -7.86805e-10, -5.55176, -0.505991, -0.369774)
 
 [node name="Tavern" parent="Room" instance=ExtResource("3_k30tf")]
 transform = Transform3D(0.504, 0, 0, 0, 0.504, 0, 0, 0, 0.504, 0, -0.686153, -3.174)
 
-[node name="Sprite3D" type="Sprite3D" parent="Room"]
-transform = Transform3D(1.19, 0, 0, 0, -5.20166e-08, 1.19, 0, -1.19, -5.20166e-08, -1.59418, -4.44089e-15, 0.651915)
-visible = false
-texture = ExtResource("3_q33pg")
+[node name="World" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+environment = SubResource("Environment_0k8vp")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(0.250092, 0.655572, -0.712517, -0.217119, 0.755133, 0.618574, 0.943564, -3.09208e-08, 0.33119, -9.67625, 0, 0)
+shadow_enabled = true
 
 [node name="Debug" type="Control" parent="."]
 layout_mode = 3
@@ -73,6 +160,7 @@ offset_right = 407.0
 offset_bottom = 706.0
 
 [node name="ProgressBar" type="HSlider" parent="Debug"]
+visible = false
 layout_mode = 0
 offset_right = 383.0
 offset_bottom = 27.0
@@ -82,11 +170,73 @@ step = 0.01
 value = -0.15
 
 [node name="Label" type="Label" parent="Debug"]
+visible = false
 layout_mode = 0
 offset_left = 6.0
 offset_top = -26.0
 offset_right = 46.0
 offset_bottom = -3.0
+
+[node name="Sprite3D" type="Sprite3D" parent="Debug"]
+transform = Transform3D(1.19, 0, 0, 0, -5.20166e-08, 1.19, 0, -1.19, -5.20166e-08, -1.12518, -0.811989, 1.76092)
+visible = false
+texture = ExtResource("3_q33pg")
+
+[node name="Lights" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.229, 0)
+
+[node name="CeilingLight" parent="Lights" instance=ExtResource("8_i2nn6")]
+
+[node name="CeilingLight2" parent="Lights" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.50028, 0, 0)
+
+[node name="CeilingLight3" parent="Lights" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.50028, 0, 0)
+
+[node name="CeilingLight4" parent="Lights" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="CeilingLight5" parent="Lights" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.50028, 0, 1)
+
+[node name="CeilingLight6" parent="Lights" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.50028, 0, 1)
+
+[node name="CeilingLight7" parent="Lights" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="CeilingLight8" parent="Lights" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.50028, 0, 2)
+
+[node name="CeilingLight9" parent="Lights" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.50028, 0, 2)
+
+[node name="CeilingLight10" parent="Lights" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="CeilingLight11" parent="Lights" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.50028, 0, 3)
+
+[node name="CeilingLight12" parent="Lights" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.50028, 0, 3)
+
+[node name="CeilingLight13" parent="Lights" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="CeilingLight14" parent="Lights" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.50028, 0, -1)
+
+[node name="CeilingLight15" parent="Lights" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.50028, 0, -1)
+
+[node name="CeilingLight16" parent="Lights" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -3.35401, 0, -1)
+
+[node name="CeilingLight17" parent="Lights" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -2.51538, 0, -1)
+
+[node name="CeilingLight18" parent="Lights" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -4.18735, 0, -1)
 
 [connection signal="start_map_combat" from="Base/Campaign/CampaignMap" to="." method="_on_campaign_map_start_map_combat"]
 [connection signal="value_changed" from="Debug/ProgressBar" to="." method="_on_debug_progress_bar_value_changed"]
