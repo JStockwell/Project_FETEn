@@ -10,8 +10,8 @@ roughness = 0.3
 material = SubResource("StandardMaterial3D_lx7jd")
 inner_radius = 0.05
 outer_radius = 0.1
-rings = 8
-ring_segments = 8
+rings = 16
+ring_segments = 16
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ud6fi"]
 cull_mode = 2
@@ -21,18 +21,20 @@ albedo_color = Color(0, 0, 0, 1)
 material = SubResource("StandardMaterial3D_ud6fi")
 top_radius = 0.08
 bottom_radius = 0.08
-height = 0.005
+height = 0.01
 
 [node name="CeilingLight" type="Node3D"]
 
 [node name="Light" type="Node3D" parent="."]
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Light"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000466347, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00677174, 0)
 light_color = Color(1, 0.956863, 0.94902, 1)
-light_energy = 0.4
-light_size = 0.05
+light_energy = 0.1
+light_indirect_energy = 0.5
+light_size = 0.03
 shadow_enabled = true
+shadow_reverse_cull_face = true
 omni_range = 8.0
 omni_attenuation = 2.0
 

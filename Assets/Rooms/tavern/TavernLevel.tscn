@@ -1,4 +1,11 @@
-[gd_scene load_steps=16 format=4 uid="uid://3wtgqdrdlt5v"]
+[gd_scene load_steps=23 format=4 uid="uid://3wtgqdrdlt5v"]
+
+[ext_resource type="Shader" uid="uid://ds27pwv3a3bfi" path="res://Assets/Materials/darkWood.res" id="1_3okn6"]
+[ext_resource type="Shader" uid="uid://c80mrssyqjucy" path="res://Assets/Materials/concrete.res" id="1_3xajt"]
+[ext_resource type="Shader" uid="uid://cniemyjx5vtxv" path="res://Assets/Materials/terrazo.res" id="1_di570"]
+[ext_resource type="Shader" uid="uid://dlwijlqmr8i4p" path="res://Assets/Materials/countertop.tres" id="1_u75fw"]
+[ext_resource type="Shader" uid="uid://b5v33xmq7sqji" path="res://Assets/Materials/bleachedWoodPlanks.res" id="2_m6g3k"]
+[ext_resource type="Shader" uid="uid://oxvg64ecat5q" path="res://Assets/Materials/toiletTiles.tres" id="3_l8aeq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m5f1s"]
 resource_name = "BaseMaterial"
@@ -6,29 +13,21 @@ cull_mode = 2
 albedo_color = Color(1, 0, 1, 1)
 roughness = 0.5
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q2qaq"]
-resource_name = "MainRoom"
-cull_mode = 2
-albedo_color = Color(0.409089, 0.280268, 0.188612, 1)
-roughness = 0.5
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_opy1d"]
+render_priority = 0
+shader = ExtResource("1_3okn6")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d1gya"]
-resource_name = "BackRoom"
-cull_mode = 2
-albedo_color = Color(1, 1, 0, 1)
-roughness = 0.5
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kso54"]
+render_priority = 0
+shader = ExtResource("2_m6g3k")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6i5rq"]
-resource_name = "PreToilet"
-cull_mode = 2
-albedo_color = Color(1, 0, 0, 1)
-roughness = 0.5
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g0ryx"]
+render_priority = 0
+shader = ExtResource("2_m6g3k")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qxwgl"]
-resource_name = "Toilet"
-cull_mode = 2
-albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
-roughness = 0.5
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uaqpf"]
+render_priority = 0
+shader = ExtResource("3_l8aeq")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_341yr"]
 resource_name = "Outside"
@@ -36,11 +35,9 @@ cull_mode = 2
 albedo_color = Color(0, 0, 0, 1)
 roughness = 0.5
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_imk6v"]
-resource_name = "Ceiling"
-cull_mode = 2
-albedo_color = Color(0, 1, 0, 1)
-roughness = 0.5
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r7wx6"]
+render_priority = 0
+shader = ExtResource("1_3xajt")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_ev464"]
 _surfaces = [{
@@ -137,7 +134,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 42,
 "index_data": PackedByteArray("AAAIAAEAAAAGAAgABwAFAAkABwADAAUACgAQAAwACgAOABAAGAAbABkAGAAaABsAEwAXABUAEwAWABcADwAUABEADwASABQAAgANAAQAAgALAA0A"),
-"material": SubResource("StandardMaterial3D_q2qaq"),
+"material": SubResource("ShaderMaterial_opy1d"),
 "name": "MainRoom",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -149,7 +146,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 60,
 "index_data": PackedByteArray("AAADAAEAAAACAAMABAAJAAUABAAHAAkAGwAMABoAGwAKAAwACwARAA0ACwAPABEADgAUABAADgASABQABgAZAAgABgAYABkAGAAaABkAGAAbABoAEwAfABUAEwAdAB8AFwAhABYAFwAjACEAHAAiAB4AHAAgACIA"),
-"material": SubResource("StandardMaterial3D_d1gya"),
+"material": SubResource("ShaderMaterial_kso54"),
 "name": "BackRoom",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -161,7 +158,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 54,
 "index_data": PackedByteArray("AAAFAAIAAAAEAAUADQAJAAwADQAIAAkABgALAAcABgAKAAsACgAMAAsACgANAAwADgADAA8ADgABAAMAHwATAB4AHwAVABMAFgAbABcAFgAZABsAGAAdABoAGAAcAB0AEQASABQAEQAQABIA"),
-"material": SubResource("StandardMaterial3D_6i5rq"),
+"material": SubResource("ShaderMaterial_g0ryx"),
 "name": "PreToilet",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -173,7 +170,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 156,
 "index_data": PackedByteArray("CAAHAAkACAAFAAcABAABAAYABAAAAAEACwAPAA0ACwAOAA8AFAATABUAFAARABMAFgAMABgAFgAKAAwAEAAcABIAEAAaABwAAgAhAAMAAgAfACEAGwApAB0AGwAnACkAJgAsACgAJgAqACwALwAzADEALwAyADMANAAwADYANAAuADAAXAA+AF0AXAA8AD4APQA7AD8APQA5ADsAUQBPAFMAUQBNAE8ATABLAE4ATABKAEsAWQBXAFsAWQBVAFcAVABSAFYAVABQAFIARABaAEYARABYAFoAKwBCAC0AKwBAAEIAYwBHAGIAYwBFAEcAOgBgAEgAOgA4AGAAXgBdAF8AXgBcAF0AQQA3AEMAQQA1ADcAYQBiAEkAYQBjAGIAHgAkACAAHgAiACQAIwAZACUAIwAXABkA"),
-"material": SubResource("StandardMaterial3D_qxwgl"),
+"material": SubResource("ShaderMaterial_uaqpf"),
 "name": "Toilet",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -198,7 +195,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 153,
 "index_data": PackedByteArray("AAACAF0AXQACAFwAZgBcAAIAAgABAGYAAwBmAAEABABmAAMAUwBmAAQAUwAEAFAABAAFAFAABwAjAFIAIAAiAAYAUQAhAEkAJAALAEsASgAJAEcACgAQAEgADgAVAEUAFAAcAEMAHgBDABwAGwBDAB4AGwAzAEMANABiAEYANQA3AGMAYQBgAEQARABgAE0AYAA7AE0ATwBMAFQAVABMAFYATgA9AFkAOgBYADwAVwA4AEAAQQA5AGQAZAA5AEIAGgAXADIAMgAXAC4ANgAxAD8APgAwAC0ALwAYACwALAAYACoAGQAfACsADwANABYAFgANABIAHQATACkAKAARACYAEgANACcACAAlAAwAZgBTAGUAUwBeAGUAXwBlAF4AZQBfAFoAXwBVAFoAWgBbAGUA"),
-"material": SubResource("StandardMaterial3D_imk6v"),
+"material": SubResource("ShaderMaterial_r7wx6"),
 "name": "Ceiling",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -248,11 +245,13 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_mbxdl")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ybhxx"]
-resource_name = "Counter"
-cull_mode = 2
-albedo_color = Color(0.522719, 0.522719, 0.522719, 1)
-roughness = 0.5
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m7kya"]
+render_priority = 0
+shader = ExtResource("1_di570")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i22mb"]
+render_priority = 0
+shader = ExtResource("1_u75fw")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_rdp1q"]
 _surfaces = [{
@@ -276,7 +275,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 132,
 "index_data": PackedByteArray("FQALABcAFQAIAAsABgASAAkABgAQABIADgAoAAwADgArACgADAADAA4ADAAAAAMAHgANACYAHgABAA0AIQAEACMAIQAPAAQAEwAWAAoAEwAcABYABwAZABEABwAUABkAGQA1ABEAGQA7ADUAHwAXACQAHwAVABcAAgAkAAUAAgAfACQAHAAjABYAHAAhACMAFAAmABkAFAAeACYAGgAiAB0AGgAnACIAMwAtADAAMwAqAC0AJQAuACAAJQAxAC4ADQAyACYADQApADIAIQAsAA8AIQAvACwANgA/ADkANgA8AD8AGwA6ABgAGwA9ADoAEAA3ABIAEAA0ADcAEwA+ABwAEwA4AD4A"),
-"material": SubResource("StandardMaterial3D_ybhxx"),
+"material": SubResource("ShaderMaterial_i22mb"),
 "name": "Counter",
 "primitive": 3,
 "uv_scale": Vector4(1.82947, 2, 0, 0),
@@ -295,6 +294,7 @@ skeleton = NodePath("")
 [node name="Floor" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_52785")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_m7kya")
 
 [node name="Counter" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_twdxv")

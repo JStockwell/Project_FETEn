@@ -25,6 +25,10 @@ GameStatus="*res://Scripts/Global/gameStatus.gd"
 RigidBodyAutoScaler="*res://addons/rigidbody_auto_scaler/RigidBodyAutoScaler.gd"
 CombatMapStatus="*res://Scripts/Global/combatMapStatus.gd"
 
+[debug]
+
+settings/stdout/print_fps=true
+
 [display]
 
 window/size/viewport_width=1920
