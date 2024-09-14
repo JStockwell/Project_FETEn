@@ -1,6 +1,5 @@
 class_name EnemyBehavior
 
-
 static func dumb_melee_behavior(map, dijkstra) -> bool:
 
 	var enemy = CombatMapStatus.get_selected_character()	
@@ -105,6 +104,7 @@ static func dumb_ranged_behavior(map, dijkstra) -> bool:
 		var optimalTile = find_optimal_shot(map, finalTarget, viableShootingPositions) # TODO check to include position of not only the shot but also safety of the mf taking it
 		return ranged_enemy_attack(map, enemy, finalTarget, dijkstra, optimalTile)
 
+
 static func smart_ranged_behavior(map, dijkstra) -> bool:
 	var enemy = CombatMapStatus.get_selected_character()
 	var possibleTargets = check_players_in_range_ranged(map, enemy, dijkstra[0])
@@ -181,7 +181,7 @@ static func check_players_in_range_ranged(map, enemy, tilesRange) -> Array:
 		var target = character.get_map_coords()
 		if(rooted):
 			var attackCoords = enemy.get_map_coords() # attack coordinates should only be moved in the if rooted
-			if Utils.calc_distance(attackCoords, target)<=enemy.get_range() and not map.get_los(attackCoords, character)[0]:
+			if Utils.calc_distance(attackCoords, target)<=enemy.get_range() and not map.calc_los(attackCoords, character)[0]:
 				possible_Targets.append(character)
 			
 		else:
@@ -195,12 +195,13 @@ static func check_players_in_range_ranged(map, enemy, tilesRange) -> Array:
 static func viable_ranged_target(map, enemy, target, tilesRange) -> bool: # ugly ahh function
 	var viableTarget = false
 	for tile in tilesRange: #turn to tiles in tilesRange
-		if viableTarget == false:
+		if viableTarget == false:			
 			if not map.calc_los(tile, target)[0] and Utils.calc_distance(tile, target.get_map_coords()) <= enemy.get_range() and not map.get_tile_from_coords(tile).get_obstacle_type() == 1:
 				viableTarget = true
 		else:
 			break
 	return viableTarget
+	
 
 static func viable_ranged_positions(map, enemy, target, tilesRange) -> Array: # ugly ahh function
 	var viableShootingPositions = []

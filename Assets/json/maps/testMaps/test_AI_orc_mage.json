@@ -51,7 +51,7 @@
 		},
 		{
 			"coords": "(1,1)",
-			"height": 0,
+			"height": 1,
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": true,
@@ -120,6 +120,6 @@
 			"isTraversable": true,
 			"obstacleType": 0,
 			"meshPath": "res://Assets/MapTiles/Grass1.glb"
-		},
+		}
 	]
 }
