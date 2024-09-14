@@ -1,10 +1,10 @@
 {
 	"name": "test_AI_goblin_ranged",
-	"size": "(3,3)",
+	"size": "(3,4)",
 	"ally_spawn": [
-		"(0,1)",
-		"(1,1)",
-		"(2,1)"
+		"(0,2)",
+		"(1,2)",
+		"(2,2)"
 	],
 	"enemy_spawn": [
 		[
@@ -51,7 +51,7 @@
 		},
 		{
 			"coords": "(1,1)",
-			"height": 0,
+			"height": 1,
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": true,
@@ -87,6 +87,33 @@
 		},
 		{
 			"coords": "(2,2)",
+			"height": 0,
+			"idt": false,
+			"isPopulated": false,
+			"isTraversable": true,
+			"obstacleType": 0,
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+		},
+		{
+			"coords": "(0,3)",
+			"height": 0,
+			"idt": false,
+			"isPopulated": false,
+			"isTraversable": true,
+			"obstacleType": 0,
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+		},
+		{
+			"coords": "(1,3)",
+			"height": 0,
+			"idt": false,
+			"isPopulated": false,
+			"isTraversable": true,
+			"obstacleType": 0,
+			"meshPath": "res://Assets/MapTiles/Grass1.glb"
+		},
+		{
+			"coords": "(2,3)",
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
