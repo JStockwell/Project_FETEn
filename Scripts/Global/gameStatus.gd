@@ -74,16 +74,31 @@ func save_settings(tempSettings) -> void:
 func get_save() -> Dictionary:
 	return save.duplicate()
 	
-func load_save() -> void:
+func load_s() -> void:
 	var tempSave: Dictionary
 	tempSave = Utils.read_json("user://saves/save.json")
 		
 	if tempSave.keys().size() == 0:
 		save = Utils.read_json("res://Assets/json/save_reference.json")
+		save_game(save)
 		
 	else:
 		save = tempSave
 
-func save_game(tempSave: Dictionary) -> void:
-	Utils.write_json(tempSave, "user://saves/save.json")
+func save_g(tempSave: Dictionary) -> void:
+	Utils.write_json(tempSave, "user://save.json")
 	
+func load_save() -> void:
+	if not FileAccess.file_exists("user://saves/save.json"):
+		save_game(Utils.read_json("res://Assets/json/save_reference.json"))
+		return
+	var file = FileAccess.open("user://save.json", FileAccess.READ)
+	var data = JSON.parse_string(file.get_as_text())
+	save = data
+	file.close()
+
+func save_game(tempSave: Dictionary) -> void:
+	var file = FileAccess.open("user://save.json", FileAccess.WRITE)
+	file.store_line(JSON.stringify(tempSave, "\t"))
+	file.close()
+	save = tempSave
