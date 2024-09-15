@@ -77,6 +77,12 @@ var comPred # Combat Prediction
 func _ready():
 	battleStart = false
 	skillMenu.connect("id_pressed", Callable(self, "_on_skill_selected"))
+	
+	if CombatMapStatus.get_map_stage() == "stage_1" or CombatMapStatus.get_map_stage() == "stage_2":
+		MusicPlayer.play_mapCombat_music("res://Assets/Music/CombatMap/Stages/Stage_12.mp3")
+		
+	if CombatMapStatus.get_map_stage() == "stage_3" or CombatMapStatus.get_map_stage() == "stage_4":
+		MusicPlayer.play_mapCombat_music("res://Assets/Music/CombatMap/Stages/Stage_34.mp3")
 
 	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
 	CombatMapStatus.set_camera_position(mapDict["camera_position"])
@@ -957,10 +963,12 @@ func victory():
 	globalButtons.hide()
 	returnMainMenu.hide()
 	CombatMapStatus.set_status(CombatMapStatus.Status.END)
+	MusicPlayer.play_mapCombat_music("res://Assets/Music/CombatMap/EndCombat/Victory.wav")
 	endScreenLabel.text = "VICTORY"
 	save_victory()
 	endScreen.show()
 	
+# TODO Test
 func save_victory():
 	var tempSave = GameStatus.save.duplicate()
 	if not CombatMapStatus.get_map_id() == "":
@@ -976,6 +984,7 @@ func defeat():
 	globalButtons.hide()
 	returnMainMenu.hide()
 	CombatMapStatus.set_status(CombatMapStatus.Status.END)
+	MusicPlayer.play_mapCombat_music("res://Assets/Music/CombatMap/EndCombat/Defeat.wav")
 	endScreenLabel.text = "DEFEAT"
 	endScreen.show()
 

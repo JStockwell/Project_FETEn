@@ -1,12 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://dmp1dv018dj0t"]
+[gd_scene load_steps=13 format=3 uid="uid://bcci46nrubo1d"]
 
 [ext_resource type="Script" path="res://Scripts/3D/tavern.gd" id="1_8d0is"]
 [ext_resource type="PackedScene" uid="uid://3wtgqdrdlt5v" path="res://Assets/Rooms/tavern/TavernLevel.tscn" id="3_k30tf"]
 [ext_resource type="Texture2D" uid="uid://lhtor4py7gn" path="res://Assets/Reference/2023-11-22-PRESENTACION_WEB.jpg" id="3_q33pg"]
 [ext_resource type="PackedScene" uid="uid://o78bhy5b8m1y" path="res://Scenes/3D/campaignMap.tscn" id="4_b1lil"]
 [ext_resource type="PackedScene" uid="uid://gs7eyivommkl" path="res://Assets/Props/shop_window/shop_window.tscn" id="4_qo8fu"]
+[ext_resource type="Environment" uid="uid://dgjqucyww3ewq" path="res://Assets/Materials/tavernWorldEnvironment.tres" id="6_3bo31"]
 [ext_resource type="PackedScene" uid="uid://2v06yh07feet" path="res://Assets/Props/modern_table/modern_table.tscn" id="6_bqj1a"]
-[ext_resource type="Environment" uid="uid://d0wodgxkm8k0w" path="res://Assets/Materials/tavernWorldEnvironment.tres" id="6_dnhgw"]
 [ext_resource type="PackedScene" uid="uid://ekpgdu41v6fb" path="res://Assets/Props/ceiling_light/ceiling_light.tscn" id="8_i2nn6"]
 [ext_resource type="PackedScene" uid="uid://duwqttipqh5t4" path="res://Assets/Props/hanging_light/hanging_light.tscn" id="9_rdhlb"]
 [ext_resource type="PackedScene" uid="uid://bsioxk5y8qrd5" path="res://Assets/Props/hanging_light/ConeLamp.tscn" id="10_rbqor"]
@@ -81,7 +81,7 @@ transform = Transform3D(0.504, 0, 0, 0, 0.504, 0, 0, 0, 0.504, -0.0516508, -0.71
 [node name="World" type="Node3D" parent="."]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
-environment = ExtResource("6_dnhgw")
+environment = ExtResource("6_3bo31")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
 transform = Transform3D(0.250092, 0.655572, -0.712517, -0.217119, 0.755133, 0.618574, 0.943564, -3.09208e-08, 0.33119, -9.67625, 0, 0)

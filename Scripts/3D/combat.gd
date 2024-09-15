@@ -77,7 +77,12 @@ func attack(t_attacker, t_defender, rolls: Array, spa: int = 0, imd: int = 0) ->
 	if calc_hit_chance(t_attacker.get_stats()["dexterity"], t_defender.get_stats()["agility"], rolls):
 		var crit = calc_crit(t_attacker.get_stats()["dexterity"], t_attacker.get_stats()["agility"], t_defender.get_stats()["agility"], 0, rolls[3])
 		var dmg = calc_damage(t_attacker.get_stats()["attack"], t_defender.get_stats()["defense"], spa, imd)
-			
+		
+		if crit == 1.5: 
+			MusicPlayer.play_crit()
+		else: 
+			# TODO: meter los sonidos de ataques en el json de personajes y ponerlos aqui
+			MusicPlayer.play_fx()
 		await deal_damage(dmg, crit, t_defender)
 		
 	else:
