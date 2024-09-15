@@ -14,16 +14,20 @@ config/name="Project FETEn"
 config/version="0.1.3"
 run/main_scene="res://Scenes/UI/bootScreen.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-run/max_fps=60
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
 config/icon="res://Assets/Branding/game_logo_bg.png"
+run/stdout/print_fps=true
 
 [autoload]
 
 GameStatus="*res://Scripts/Global/gameStatus.gd"
 RigidBodyAutoScaler="*res://addons/rigidbody_auto_scaler/RigidBodyAutoScaler.gd"
 CombatMapStatus="*res://Scripts/Global/combatMapStatus.gd"
+
+[debug]
+
+settings/stdout/print_fps=true
 
 [display]
 
@@ -50,4 +54,7 @@ ui/toolbar/run_overall=true
 [rendering]
 
 textures/default_filters/anisotropic_filtering_level=0
+environment/screen_space_reflection/roughness_quality=2
+environment/subsurface_scattering/subsurface_scattering_quality=2
+anti_aliasing/quality/msaa_3d=1
 anti_aliasing/quality/screen_space_aa=1

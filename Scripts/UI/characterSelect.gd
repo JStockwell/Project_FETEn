@@ -81,4 +81,4 @@ func _on_start_button_pressed() -> void:
 		result.append(character.get_id())
 		
 	GameStatus.set_party(result)
-	get_tree().change_scene_to_file("res://Scenes/3D/tavern.tscn")
+	get_tree().change_scene_to_file("res://Scenes/3D/newTavern.tscn")

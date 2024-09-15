@@ -48,7 +48,7 @@ cull_mode = 2
 albedo_texture = SubResource("CompressedTexture2D_wui7f")
 emission_enabled = true
 emission = Color(0.308384, 0.747527, 0.306917, 1)
-emission_energy_multiplier = 5.0
+emission_energy_multiplier = 20.0
 backlight = Color(4.33177e-07, 0.487055, 0.551575, 1)
 grow_amount = 3.388
 
@@ -82,7 +82,7 @@ cull_mode = 2
 albedo_texture = ExtResource("2_tie4p")
 emission_enabled = true
 emission = Color(0.174777, 0.717264, 0.764681, 1)
-emission_energy_multiplier = 5.0
+emission_energy_multiplier = 20.0
 backlight = Color(4.33177e-07, 0.487055, 0.551575, 1)
 grow_amount = 3.388
 

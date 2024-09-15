@@ -7,12 +7,13 @@ var mapId: String
 enum Status {START = 0, BATTLE = 1, CASTING = 2, END = 3, PAUSED = 4}
 var currentStatus: int = Status.START
 
-var maxCameraHeight = 33.75 # 16x16
-var minCameraHeight = 20.6 # 9x9
+var maxCameraHeight = 33.75 - 2.5 # 16x16
+var minCameraHeight = 20.6 - 2.5 # 9x9
 
 var mapPath: String
 var mapSpawn: Vector3
 var combatSpawn: Vector3
+var cameraPos: float
 var mapX
 var mapY
 const MAX_MAP_DIMENSION = 15
@@ -54,6 +55,12 @@ func set_map_id(myMapId: String) -> void:
 	
 func get_map_id() -> String:
 	return mapId
+	
+func get_camera_position() -> float:
+	return cameraPos
+
+func set_camera_position(value: float) -> void:
+	cameraPos = value
 
 func set_status(myStatus: int) -> void:
 	currentStatus = myStatus
@@ -168,7 +175,7 @@ func get_map_path() -> String:
 	return mapPath
 	
 func calculate_map_spawn(spawn: Vector3) -> void:
-	mapSpawn = Vector3(-mapX / 2 + 0.5, 0.5, -mapY / 2) + spawn
+	mapSpawn = Vector3(-mapX / 2 + 0.5, 0, -mapY / 2 + 0.5) * GameStatus.mapScale
 
 func set_map_spawn(vector: Vector3) -> void:
 	mapSpawn = vector

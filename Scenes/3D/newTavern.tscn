@@ -1,8 +1,238 @@
-[gd_scene format=3 uid="uid://bcci46nrubo1d"]
+[gd_scene load_steps=13 format=3 uid="uid://dmp1dv018dj0t"]
+
+[ext_resource type="Script" path="res://Scripts/3D/tavern.gd" id="1_8d0is"]
+[ext_resource type="PackedScene" uid="uid://3wtgqdrdlt5v" path="res://Assets/Rooms/tavern/TavernLevel.tscn" id="3_k30tf"]
+[ext_resource type="Texture2D" uid="uid://lhtor4py7gn" path="res://Assets/Reference/2023-11-22-PRESENTACION_WEB.jpg" id="3_q33pg"]
+[ext_resource type="PackedScene" uid="uid://o78bhy5b8m1y" path="res://Scenes/3D/campaignMap.tscn" id="4_b1lil"]
+[ext_resource type="PackedScene" uid="uid://gs7eyivommkl" path="res://Assets/Props/shop_window/shop_window.tscn" id="4_qo8fu"]
+[ext_resource type="PackedScene" uid="uid://2v06yh07feet" path="res://Assets/Props/modern_table/modern_table.tscn" id="6_bqj1a"]
+[ext_resource type="Environment" uid="uid://d0wodgxkm8k0w" path="res://Assets/Materials/tavernWorldEnvironment.tres" id="6_dnhgw"]
+[ext_resource type="PackedScene" uid="uid://ekpgdu41v6fb" path="res://Assets/Props/ceiling_light/ceiling_light.tscn" id="8_i2nn6"]
+[ext_resource type="PackedScene" uid="uid://duwqttipqh5t4" path="res://Assets/Props/hanging_light/hanging_light.tscn" id="9_rdhlb"]
+[ext_resource type="PackedScene" uid="uid://bsioxk5y8qrd5" path="res://Assets/Props/hanging_light/ConeLamp.tscn" id="10_rbqor"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iwvly"]
+albedo_color = Color(0.0327609, 0.107014, 0.163518, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_a5ik6"]
+material = SubResource("StandardMaterial3D_iwvly")
+size = Vector3(0.8, 0.05, 0.8)
 
 [node name="NewTavern" type="Node3D"]
+script = ExtResource("1_8d0is")
+
+[node name="Base" type="Node3D" parent="."]
+
+[node name="SpawnPoints" type="Node3D" parent="Base"]
+
+[node name="MapCenter" type="Marker3D" parent="Base/SpawnPoints"]
+
+[node name="CombatCenter" type="Marker3D" parent="Base/SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="MapBase" type="MeshInstance3D" parent="Base"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0247331, 0)
+mesh = SubResource("BoxMesh_a5ik6")
+skeleton = NodePath("../..")
+
+[node name="Cameras" type="Node3D" parent="Base"]
+
+[node name="MapCam" type="Marker3D" parent="Base/Cameras"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Base/Cameras/MapCam"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.1)
+fov = 42.0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Base/Cameras/MapCam"]
+transform = Transform3D(1, 0, 0, 0, 0.986856, 0.161604, 0, -0.161604, 0.986856, 0, 0.152087, 0.931438)
+shadow_enabled = true
+spot_range = 1.44495
+spot_angle = 26.7454
+
+[node name="Campaign" type="Node3D" parent="Base"]
+transform = Transform3D(-9.57279e-09, 0, -0.219, 0, 0.219, 0, 0.219, 0, -9.57279e-09, -9.93726e-10, 0.510105, 0.0227338)
+
+[node name="Camera3D" type="Camera3D" parent="Base/Campaign"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.472, 2.974, 0)
+current = true
+fov = 52.0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Base/Campaign/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 0.992204, 0.124623, 0, -0.124623, 0.992204, 0, 0.298055, -0.157716)
+spot_range = 1.77268
+spot_angle = 33.354
+
+[node name="CampaignMap" parent="Base/Campaign" instance=ExtResource("4_b1lil")]
+transform = Transform3D(-3.49691e-08, 0, 0.8, 0, 0.8, 0, -0.8, 0, -3.49691e-08, -6.60933, 2.96911, -1.1961e-06)
+
+[node name="Room" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.469, -0.811989, 1.109)
+
+[node name="MainTable" parent="Room" instance=ExtResource("6_bqj1a")]
+transform = Transform3D(1.55, 0, 0, 0, 1, 0, 0, 0, 1, -0.480891, 0, -1.13239)
+
+[node name="Window" parent="Room" instance=ExtResource("4_qo8fu")]
+transform = Transform3D(-7.43094e-10, 0, -0.018, 0, 0.018, 0, 0.017, 0, -7.86805e-10, -5.55176, -0.505991, -0.369774)
+
+[node name="Tavern" parent="Room" instance=ExtResource("3_k30tf")]
+transform = Transform3D(0.504, 0, 0, 0, 0.504, 0, 0, 0, 0.504, -0.0516508, -0.719768, -3.19404)
 
 [node name="World" type="Node3D" parent="."]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+environment = ExtResource("6_dnhgw")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
-transform = Transform3D(0.956408, 0.282224, -0.0750556, -0.0410715, 0.384446, 0.922233, 0.289131, -0.878949, 0.379279, 0, 0, 1.43696)
+transform = Transform3D(0.250092, 0.655572, -0.712517, -0.217119, 0.755133, 0.618574, 0.943564, -3.09208e-08, 0.33119, -9.67625, 0, 0)
+shadow_enabled = true
+
+[node name="Debug" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 64.0
+offset_top = 666.0
+offset_right = 407.0
+offset_bottom = 706.0
+
+[node name="ProgressBar" type="HSlider" parent="Debug"]
+visible = false
+layout_mode = 0
+offset_right = 383.0
+offset_bottom = 27.0
+min_value = -0.15
+max_value = 0.0
+step = 0.01
+value = -0.15
+
+[node name="Label" type="Label" parent="Debug"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = -26.0
+offset_right = 46.0
+offset_bottom = -3.0
+
+[node name="Sprite3D" type="Sprite3D" parent="Debug"]
+transform = Transform3D(1.19, 0, 0, 0, -5.20166e-08, 1.19, 0, -1.19, -5.20166e-08, -1.12518, -0.811989, 1.76092)
+visible = false
+texture = ExtResource("3_q33pg")
+
+[node name="Lights" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.20235, 0)
+
+[node name="Dots" type="Node3D" parent="Lights"]
+
+[node name="CeilingLight" parent="Lights/Dots" instance=ExtResource("8_i2nn6")]
+visible = false
+
+[node name="CeilingLight2" parent="Lights/Dots" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.50028, 0, 0)
+
+[node name="CeilingLight3" parent="Lights/Dots" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.50028, 0, 0)
+
+[node name="CeilingLight4" parent="Lights/Dots" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="CeilingLight5" parent="Lights/Dots" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.50028, 0, 1)
+
+[node name="CeilingLight6" parent="Lights/Dots" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.50028, 0, 1)
+
+[node name="CeilingLight7" parent="Lights/Dots" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="CeilingLight8" parent="Lights/Dots" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.50028, 0, 2)
+
+[node name="CeilingLight9" parent="Lights/Dots" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.50028, 0, 2)
+
+[node name="CeilingLight10" parent="Lights/Dots" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="CeilingLight11" parent="Lights/Dots" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.50028, 0, 3)
+
+[node name="CeilingLight36" parent="Lights/Dots" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.50028, 0, 1)
+
+[node name="CeilingLight37" parent="Lights/Dots" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.50028, 0, 2)
+
+[node name="CeilingLight38" parent="Lights/Dots" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.50028, 0, 3)
+
+[node name="CeilingLight12" parent="Lights/Dots" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.50028, 0, 3)
+
+[node name="CeilingLight13" parent="Lights/Dots" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="CeilingLight14" parent="Lights/Dots" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.50028, 0, -1)
+
+[node name="CeilingLight15" parent="Lights/Dots" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.50028, 0, -1)
+
+[node name="CeilingLight16" parent="Lights/Dots" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -3.35401, 0, -1)
+
+[node name="CeilingLight17" parent="Lights/Dots" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -2.51538, 0, -1)
+
+[node name="CeilingLight18" parent="Lights/Dots" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -4.18735, 0, -1)
+
+[node name="CeilingLight19" parent="Lights/Dots" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -0.319695)
+
+[node name="CeilingLight20" parent="Lights/Dots" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -1.31969)
+
+[node name="CeilingLight21" parent="Lights/Dots" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0.680305)
+
+[node name="CeilingLight22" parent="Lights/Dots" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, -0.319695)
+
+[node name="CeilingLight23" parent="Lights/Dots" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, -1.31969)
+
+[node name="CeilingLight24" parent="Lights/Dots" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, 0.680305)
+
+[node name="CeilingLight25" parent="Lights/Dots" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 0, -1.31969)
+
+[node name="CeilingLight26" parent="Lights/Dots" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 0, 0.680305)
+
+[node name="CeilingLight27" parent="Lights/Dots" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 2.24987)
+
+[node name="CeilingLight29" parent="Lights/Dots" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.15, 0, 3.9)
+
+[node name="CeilingLight30" parent="Lights/Dots" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1, 0, 3.9)
+
+[node name="CeilingLight28" parent="Lights/Dots" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 0, 2.24987)
+
+[node name="CeilingLight31" parent="Lights/Dots" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.48504, 0, 2.24987)
+
+[node name="CeilingLight32" parent="Lights/Dots" instance=ExtResource("8_i2nn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.48504, 0, 3.24987)
+
+[node name="HangingLight" parent="Lights" instance=ExtResource("9_rdhlb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.273, 0)
+
+[node name="ConeLamp" parent="Lights" instance=ExtResource("10_rbqor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25397, -0.392311, -0.316123)
+visible = false
+
+[connection signal="start_map_combat" from="Base/Campaign/CampaignMap" to="." method="_on_campaign_map_start_map_combat"]
+[connection signal="value_changed" from="Debug/ProgressBar" to="." method="_on_debug_progress_bar_value_changed"]
