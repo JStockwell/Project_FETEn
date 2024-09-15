@@ -1,0 +1,371 @@
+[gd_scene load_steps=28 format=3 uid="uid://beu2530ly3xjn"]
+
+[ext_resource type="Script" path="res://Scripts/3D/character_select.gd" id="1_uef3s"]
+[ext_resource type="PackedScene" uid="uid://dg3xlkc77cfxh" path="res://Scenes/3D/characterSelectCard.tscn" id="3_0hu4e"]
+[ext_resource type="PackedScene" uid="uid://ffwbxniuuwcy" path="res://Assets/Props/dm_screen/dm_screen.tscn" id="3_42k54"]
+[ext_resource type="PackedScene" uid="uid://ihdl8id2v178" path="res://Assets/Characters/Party/Dick/dick idle 1.glb" id="3_bdhdr"]
+[ext_resource type="Shader" uid="uid://0h62265iduim" path="res://Assets/Materials/brownPaper.tres" id="4_vu7ui"]
+[ext_resource type="Texture2D" uid="uid://casr4o6vrg88j" path="res://Assets/Characters/Party/Lystra/lystra_head.png" id="5_dwt2l"]
+[ext_resource type="PackedScene" uid="uid://cqvrn8nijmsb3" path="res://Assets/Props/dm_screen/dick_stats.glb" id="6_avn68"]
+[ext_resource type="Texture2D" uid="uid://dlfag0nvqaqby" path="res://Assets/Characters/Party/Dick/dick_head.png" id="6_op8jc"]
+[ext_resource type="PackedScene" uid="uid://cjke0ytcck8yo" path="res://Assets/Characters/Party/Samael/Samael idle 1.glb" id="7_3vdfb"]
+[ext_resource type="Texture2D" uid="uid://cowjb5nk0abp" path="res://Assets/Characters/Party/Samael/samael_head.png" id="8_x06do"]
+[ext_resource type="PackedScene" uid="uid://cyoem5ci3md3f" path="res://Assets/Characters/Party/Salvador/Salva Idle 1.glb" id="9_ornva"]
+[ext_resource type="PackedScene" uid="uid://djdrr05025xqk" path="res://Assets/Props/dm_screen/samael_stats.glb" id="9_plnk5"]
+[ext_resource type="PackedScene" uid="uid://bwf33v0wagr8w" path="res://Assets/Props/dm_screen/salvador_stats.glb" id="10_i25h4"]
+[ext_resource type="Texture2D" uid="uid://cg7pila7s8m00" path="res://Assets/Characters/Party/Salvador/salvador_head.png" id="10_pxxyj"]
+[ext_resource type="PackedScene" uid="uid://gkfbrg1l2vd1" path="res://Assets/Characters/Party/Edgar/Edgar.glb" id="11_px6ad"]
+[ext_resource type="Texture2D" uid="uid://be5indwbdjyqn" path="res://Assets/Characters/Party/Edgar/edgar_head.png" id="12_0eajn"]
+[ext_resource type="PackedScene" uid="uid://ctaag0u0i5ths" path="res://Assets/Characters/Party/Adran/Adran idle 1.glb" id="13_kl8w5"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_y63c2"]
+dof_blur_far_enabled = true
+dof_blur_far_distance = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s2gb3"]
+render_priority = 0
+shader = ExtResource("4_vu7ui")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s0mgu"]
+render_priority = 0
+shader = ExtResource("4_vu7ui")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wjhdv"]
+render_priority = 0
+shader = ExtResource("4_vu7ui")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gbjjt"]
+render_priority = 0
+shader = ExtResource("4_vu7ui")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o444b"]
+render_priority = 0
+shader = ExtResource("4_vu7ui")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x8jm8"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wa7a"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7pvkm"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5snqo"]
+render_priority = 0
+shader = ExtResource("4_vu7ui")
+
+[node name="CharacterSelect" type="Node3D"]
+script = ExtResource("1_uef3s")
+metadata/_edit_lock_ = true
+
+[node name="dm_screen" parent="." instance=ExtResource("3_42k54")]
+transform = Transform3D(1.2, 0, 0, 0, 1, 0, 0, 0, 1.2, 0, 0, 0)
+
+[node name="SelectPivot" type="Marker3D" parent="."]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 0, 0.06, 0)
+
+[node name="Camera3D" type="Camera3D" parent="SelectPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
+attributes = SubResource("CameraAttributesPractical_y63c2")
+fov = 24.0
+metadata/_edit_lock_ = true
+
+[node name="Characters" type="Marker3D" parent="."]
+
+[node name="Lystra" parent="Characters" instance=ExtResource("3_0hu4e")]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 0, 0, 0)
+
+[node name="Character" parent="Characters/Lystra" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0397763, 0, -0.390921)
+
+[node name="CharacterMesh" parent="Characters/Lystra/Character" index="0"]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -0.00316053, 0, -0.00234865)
+
+[node name="scroll" parent="Characters/Lystra" index="2"]
+transform = Transform3D(0.00676148, 0, -0.00181173, 0, 0.007, 0, 0.00181173, 0, 0.00676148, 0.00737621, 0, -0.0887474)
+
+[node name="lystra_stats" parent="Characters/Lystra" index="3"]
+transform = Transform3D(0.00676148, 0, -0.00181173, 0, 0.007, 0, 0.00181173, 0, 0.00676148, 0.00737619, 0, -0.0887474)
+
+[node name="Stat sheet Samael" parent="Characters/Lystra/lystra_stats" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_s2gb3")
+
+[node name="stats_text" parent="Characters/Lystra" index="4"]
+transform = Transform3D(0.003, 0, 0, 0, 0.003, 0, 0, 0, 0.003, -0.0482453, 0.108616, -0.429913)
+text = "Lystra
+Health: 24
+Attack: 10
+Defense: 2
+Dexterity: 9
+Agility: 10"
+
+[node name="scroll_text" parent="Characters/Lystra" index="5"]
+transform = Transform3D(0.003, 0, 0, 0, 0.003, 0, 0, 0, 0.003, 0.0243419, 0.100081, -0.428783)
+text = "- Healer
+- Uses magic
+- Regenerates magic at the end of turn
+- Tiny lady"
+
+[node name="Sprite3D" parent="Characters/Lystra" index="6"]
+transform = Transform3D(0.002, 0, 0, 0, 0.002, 0, 0, 0, 0.002, -0.0619548, 0.099576, -0.431026)
+texture = ExtResource("5_dwt2l")
+
+[node name="Dick" parent="Characters" instance=ExtResource("3_0hu4e")]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 0, 0, 0)
+
+[node name="Character" parent="Characters/Dick" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0397763, 0, -0.390921)
+
+[node name="CharacterMesh" parent="Characters/Dick/Character" index="0"]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -0.00316053, 0, -0.00234865)
+visible = false
+
+[node name="dick idle 1" parent="Characters/Dick/Character" index="1" instance=ExtResource("3_bdhdr")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -0.00314315, 0, -0.00215208)
+
+[node name="scroll" parent="Characters/Dick" index="2"]
+transform = Transform3D(0.00676148, 0, -0.00181173, 0, 0.007, 0, 0.00181173, 0, 0.00676148, 0.00737621, 0, -0.0887474)
+
+[node name="lystra_stats" parent="Characters/Dick" index="3"]
+transform = Transform3D(0.00676148, 0, -0.00181173, 0, 0.007, 0, 0.00181173, 0, 0.00676148, 0.00737619, 0, -0.0887474)
+visible = false
+
+[node name="stats_text" parent="Characters/Dick" index="4"]
+transform = Transform3D(0.003, 0, 0, 0, 0.003, 0, 0, 0, 0.003, -0.0482453, 0.108616, -0.429913)
+text = "Dick
+Health: 50
+Attack: 14
+Defense: 7
+Dexterity: 10
+Agility: 2"
+
+[node name="scroll_text" parent="Characters/Dick" index="5"]
+transform = Transform3D(0.003, 0, 0, 0, 0.003, 0, 0, 0, 0.003, 0.0243419, 0.100081, -0.428783)
+text = "- Physical tank
+- As resistant as they get
+- Just a big man"
+
+[node name="Sprite3D" parent="Characters/Dick" index="6"]
+transform = Transform3D(0.002, 0, 0, 0, 0.002, 0, 0, 0, 0.002, -0.0619548, 0.099576, -0.431026)
+texture = ExtResource("6_op8jc")
+
+[node name="dick_stats" parent="Characters/Dick" instance=ExtResource("6_avn68")]
+transform = Transform3D(0.00676148, 0, -0.00181173, 0, 0.007, 0, 0.00181173, 0, 0.00676148, 0.00720196, 0, -0.0891154)
+
+[node name="Stat sheet dick" parent="Characters/Dick/dick_stats" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_s0mgu")
+
+[node name="Samael" parent="Characters" instance=ExtResource("3_0hu4e")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
+
+[node name="Character" parent="Characters/Samael" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0397763, 0, -0.390921)
+
+[node name="CharacterMesh" parent="Characters/Samael/Character" index="0"]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -0.00316053, 0, -0.00234865)
+visible = false
+
+[node name="Samael idle 1" parent="Characters/Samael/Character" index="1" instance=ExtResource("7_3vdfb")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -0.00321376, 0, -0.00233725)
+
+[node name="Sword" parent="Characters/Samael/Character/Samael idle 1" index="2"]
+visible = false
+
+[node name="scroll" parent="Characters/Samael" index="2"]
+transform = Transform3D(0.00676148, 0, -0.00181173, 0, 0.007, 0, 0.00181173, 0, 0.00676148, 0.00737621, 0, -0.0887474)
+
+[node name="lystra_stats" parent="Characters/Samael" index="3"]
+transform = Transform3D(0.00676148, 0, -0.00181173, 0, 0.007, 0, 0.00181173, 0, 0.00676148, 0.00737619, 0, -0.0887474)
+visible = false
+
+[node name="stats_text" parent="Characters/Samael" index="4"]
+transform = Transform3D(0.003, 0, 0, 0, 0.003, 0, 0, 0, 0.003, -0.0482453, 0.108616, -0.429913)
+text = "Samael
+Health: 38
+Attack: 18
+Defense: 5
+Dexterity: 9
+Agility: 5"
+
+[node name="scroll_text" parent="Characters/Samael" index="5"]
+transform = Transform3D(0.003, 0, 0, 0, 0.003, 0, 0, 0, 0.003, 0.0243419, 0.100081, -0.428783)
+text = "- Physical attacker
+- Regenerates mana when he defeats an enemy
+- Can boost his attacks for more damage
+- One with the kebab"
+
+[node name="Sprite3D" parent="Characters/Samael" index="6"]
+transform = Transform3D(0.002, 0, 0, 0, 0.002, 0, 0, 0, 0.002, -0.0619548, 0.099576, -0.431026)
+texture = ExtResource("8_x06do")
+
+[node name="samael_stats" parent="Characters/Samael" instance=ExtResource("9_plnk5")]
+transform = Transform3D(0.00676148, 0, -0.00181173, 0, 0.007, 0, 0.00181173, 0, 0.00676148, 0.007, 0, -0.089)
+
+[node name="Stat sheet_001" parent="Characters/Samael/samael_stats" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_wjhdv")
+
+[node name="Salvador" parent="Characters" instance=ExtResource("3_0hu4e")]
+transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 0, 0, 0)
+
+[node name="Character" parent="Characters/Salvador" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0397763, 0, -0.390921)
+
+[node name="CharacterMesh" parent="Characters/Salvador/Character" index="0"]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -0.00316053, 0, -0.00234865)
+visible = false
+
+[node name="Salva Idle 1" parent="Characters/Salvador/Character" index="1" instance=ExtResource("9_ornva")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -0.0029293, 0, -0.00255114)
+
+[node name="scroll" parent="Characters/Salvador" index="2"]
+transform = Transform3D(0.00676148, 0, -0.00181173, 0, 0.007, 0, 0.00181173, 0, 0.00676148, 0.00737621, 0, -0.0887474)
+
+[node name="lystra_stats" parent="Characters/Salvador" index="3"]
+transform = Transform3D(0.00676148, 0, -0.00181173, 0, 0.007, 0, 0.00181173, 0, 0.00676148, 0.00737619, 0, -0.0887474)
+visible = false
+
+[node name="stats_text" parent="Characters/Salvador" index="4"]
+transform = Transform3D(0.003, 0, 0, 0, 0.003, 0, 0, 0, 0.003, -0.0482453, 0.108616, -0.429913)
+text = "Salvador
+Health: 28
+Attack: 18
+Defense: 4
+Dexterity: 12
+Agility: 6"
+
+[node name="scroll_text" parent="Characters/Salvador" index="5"]
+transform = Transform3D(0.003, 0, 0, 0, 0.003, 0, 0, 0, 0.003, 0.0243419, 0.100081, -0.428783)
+text = "- Devastating attacks from afar
+- Regenerates mana when he defeats an enemy
+- Can attack twice in a turn
+- Legally doesn't own a gun"
+
+[node name="Sprite3D" parent="Characters/Salvador" index="6"]
+transform = Transform3D(0.002, 0, 0, 0, 0.002, 0, 0, 0, 0.002, -0.0619548, 0.099576, -0.431026)
+texture = ExtResource("10_pxxyj")
+
+[node name="salvador_stats" parent="Characters/Salvador" instance=ExtResource("10_i25h4")]
+transform = Transform3D(0.00676148, 0, -0.00181173, 0, 0.007, 0, 0.00181173, 0, 0.00676148, 0.007, 0, -0.089)
+
+[node name="Stat sheet salvador" parent="Characters/Salvador/salvador_stats" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_gbjjt")
+
+[node name="Edgar" parent="Characters" instance=ExtResource("3_0hu4e")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, 0)
+
+[node name="Character" parent="Characters/Edgar" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0397763, 0, -0.390921)
+
+[node name="CharacterMesh" parent="Characters/Edgar/Character" index="0"]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -0.00316053, 0, -0.00234865)
+visible = false
+
+[node name="Edgar" parent="Characters/Edgar/Character" index="1" instance=ExtResource("11_px6ad")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -0.00292164, 0, -0.00233732)
+
+[node name="scroll" parent="Characters/Edgar" index="2"]
+transform = Transform3D(0.00676148, 0, -0.00181173, 0, 0.007, 0, 0.00181173, 0, 0.00676148, 0.00737621, 0, -0.0887474)
+
+[node name="lystra_stats" parent="Characters/Edgar" index="3"]
+transform = Transform3D(0.00676148, 0, -0.00181173, 0, 0.007, 0, 0.00181173, 0, 0.00676148, 0.00737619, 0, -0.0887474)
+
+[node name="Stat sheet Samael" parent="Characters/Edgar/lystra_stats" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_o444b")
+
+[node name="Cube" parent="Characters/Edgar/lystra_stats" index="1"]
+visible = false
+
+[node name="Cube_001" parent="Characters/Edgar/lystra_stats" index="2"]
+visible = false
+
+[node name="stats_text" parent="Characters/Edgar" index="4"]
+transform = Transform3D(0.003, 0, 0, 0, 0.003, 0, 0, 0, 0.003, -0.0482453, 0.108616, -0.429913)
+text = "Edgar
+Health: 32
+Attack: 9
+Defense: 3
+Dexterity: 10
+Agility: 7"
+
+[node name="scroll_text" parent="Characters/Edgar" index="5"]
+transform = Transform3D(0.003, 0, 0, 0, 0.003, 0, 0, 0, 0.003, 0.0243419, 0.100081, -0.428783)
+text = "- Desintegrates enemies with magic
+- Very weak
+- Will chase dead chimeras if left unattended"
+
+[node name="Sprite3D" parent="Characters/Edgar" index="6"]
+transform = Transform3D(0.002, 0, 0, 0, 0.002, 0, 0, 0, 0.002, -0.0619548, 0.099576, -0.431026)
+texture = ExtResource("12_0eajn")
+
+[node name="Adran" parent="Characters" instance=ExtResource("3_0hu4e")]
+transform = Transform3D(0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, 0, 0, 0)
+
+[node name="Character" parent="Characters/Adran" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0397763, 0, -0.390921)
+
+[node name="CharacterMesh" parent="Characters/Adran/Character" index="0"]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -0.00316053, 0, -0.00234865)
+visible = false
+
+[node name="Adran idle 1" parent="Characters/Adran/Character" index="1" instance=ExtResource("13_kl8w5")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -0.00311451, 0, -0.00255888)
+
+[node name="Plane_001" parent="Characters/Adran/Character/Adran idle 1" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_x8jm8")
+surface_material_override/1 = SubResource("StandardMaterial3D_0wa7a")
+surface_material_override/2 = SubResource("StandardMaterial3D_7pvkm")
+
+[node name="scroll" parent="Characters/Adran" index="2"]
+transform = Transform3D(0.00676148, 0, -0.00181173, 0, 0.007, 0, 0.00181173, 0, 0.00676148, 0.00737621, 0, -0.0887474)
+
+[node name="lystra_stats" parent="Characters/Adran" index="3"]
+transform = Transform3D(0.00676148, 0, -0.00181173, 0, 0.007, 0, 0.00181173, 0, 0.00676148, 0.00737619, 0, -0.0887474)
+
+[node name="Stat sheet Samael" parent="Characters/Adran/lystra_stats" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_5snqo")
+
+[node name="Cube" parent="Characters/Adran/lystra_stats" index="1"]
+visible = false
+
+[node name="Cube_001" parent="Characters/Adran/lystra_stats" index="2"]
+visible = false
+
+[node name="stats_text" parent="Characters/Adran" index="4"]
+transform = Transform3D(0.003, 0, 0, 0, 0.003, 0, 0, 0, 0.003, -0.0482453, 0.108616, -0.429913)
+text = "???
+Health: ???
+Attack: ???
+Defense: ???
+Dexterity: ???
+Agility: ???"
+
+[node name="scroll_text" parent="Characters/Adran" index="5"]
+transform = Transform3D(0.003, 0, 0, 0, 0.003, 0, 0, 0, 0.003, 0.0243419, 0.100081, -0.428783)
+text = "- Who am I?
+- Where am I?"
+
+[node name="Sprite3D" parent="Characters/Adran" index="6"]
+transform = Transform3D(0.002, 0, 0, 0, 0.002, 0, 0, 0, 0.002, -0.0619548, 0.099576, -0.431026)
+visible = false
+
+[editable path="Characters/Lystra"]
+[editable path="Characters/Lystra/scroll"]
+[editable path="Characters/Lystra/lystra_stats"]
+[editable path="Characters/Dick"]
+[editable path="Characters/Dick/scroll"]
+[editable path="Characters/Dick/dick_stats"]
+[editable path="Characters/Samael"]
+[editable path="Characters/Samael/Character/Samael idle 1"]
+[editable path="Characters/Samael/scroll"]
+[editable path="Characters/Samael/samael_stats"]
+[editable path="Characters/Salvador"]
+[editable path="Characters/Salvador/scroll"]
+[editable path="Characters/Salvador/salvador_stats"]
+[editable path="Characters/Edgar"]
+[editable path="Characters/Edgar/scroll"]
+[editable path="Characters/Edgar/lystra_stats"]
+[editable path="Characters/Adran"]
+[editable path="Characters/Adran/Character/Adran idle 1"]
+[editable path="Characters/Adran/scroll"]
+[editable path="Characters/Adran/lystra_stats"]

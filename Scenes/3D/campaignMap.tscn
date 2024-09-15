@@ -1,10 +1,26 @@
-[gd_scene load_steps=49 format=4 uid="uid://o78bhy5b8m1y"]
+[gd_scene load_steps=54 format=4 uid="uid://o78bhy5b8m1y"]
 
 [ext_resource type="Script" path="res://Scripts/3D/campaignMap.gd" id="1_x4u78"]
+[ext_resource type="Shader" uid="uid://cy64ia52457td" path="res://Assets/Materials/cork.tres" id="2_bhb03"]
 [ext_resource type="Material" uid="uid://dq6284rydra7n" path="res://Assets/Materials/campaignMapHighlight.tres" id="2_erbqf"]
 [ext_resource type="Material" uid="uid://bqt1m2sx7tqk3" path="res://Assets/Materials/campaignMapDisabled.tres" id="3_3hb7y"]
+[ext_resource type="Shader" uid="uid://beeuvue688nry" path="res://Assets/Materials/wood.tres" id="3_xbth1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qq8wn"]
+render_priority = 0
+shader = ExtResource("2_bhb03")
 
 [sub_resource type="BoxMesh" id="BoxMesh_g3uxs"]
+material = SubResource("ShaderMaterial_qq8wn")
+size = Vector3(10.682, 7.099, 0.3)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2nres"]
+render_priority = 0
+shader = ExtResource("3_xbth1")
+
+[sub_resource type="BoxMesh" id="BoxMesh_mvxda"]
+material = SubResource("ShaderMaterial_2nres")
+size = Vector3(10.682, 7.099, 0.1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pfkjh"]
 resource_name = "Material.003"
@@ -754,8 +770,12 @@ shadow_mesh = SubResource("ArrayMesh_6kymj")
 script = ExtResource("1_x4u78")
 
 [node name="Back" type="MeshInstance3D" parent="."]
-transform = Transform3D(10.682, 0, 0, 0, 7.099, 0, 0, 0, 0.3, 0, 0, -0.243363)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.243363)
 mesh = SubResource("BoxMesh_g3uxs")
+
+[node name="Frame" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1, 0, 0, -0.2)
+mesh = SubResource("BoxMesh_mvxda")
 
 [node name="Map" type="Node3D" parent="."]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.700443, 0.796897, 0)
