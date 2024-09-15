@@ -14,10 +14,10 @@ config/name="Project FETEn"
 config/version="0.1.3"
 run/main_scene="res://Scenes/UI/bootScreen.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-run/max_fps=60
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
 config/icon="res://Assets/Branding/game_logo_bg.png"
+run/stdout/print_fps=true
 
 [autoload]
 

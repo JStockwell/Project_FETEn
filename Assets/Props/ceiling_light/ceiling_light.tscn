@@ -34,7 +34,6 @@ light_energy = 0.1
 light_indirect_energy = 0.5
 light_size = 0.03
 shadow_enabled = true
-shadow_reverse_cull_face = true
 omni_range = 8.0
 omni_attenuation = 2.0
 
