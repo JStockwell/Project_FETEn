@@ -1,6 +1,7 @@
 {
 	"name": "test_AI_goblin_melee",
 	"size": "(3,4)",
+	"camera_position": 0.8,
 	"ally_spawn": [
 		"(0,2)",
 		"(1,2)",
