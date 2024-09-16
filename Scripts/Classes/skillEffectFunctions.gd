@@ -38,6 +38,7 @@ static func hello_world():
 
 static func nero_nero(Combat, attacker, defender, spa: int, imd: int):
 	var dmg = Combat.calc_damage(attacker.get_stats()["attack"], defender.get_stats()["defense"], spa, imd)
+	MusicPlayer.play_fx("res://Assets/Music/Combat/Skills/Edgar - Nero Nero.mp3")
 	await Combat.deal_damage(dmg, 1, defender)
 
 static func predict_nero_nero(attacker, spa) -> String:
@@ -56,9 +57,16 @@ static func boost(Combat, rolls, attacker, defender, accMod: int, critMod: int, 
 		var crit = Combat.calc_crit(attacker.get_dexterity(), attacker.get_agility(), defender.get_agility(), critMod + (3 * level), rolls[3])
 		var dmg = Combat.calc_damage(attacker.get_attack(), defender.get_defense(), spa, imd)
 		
+		if level == 1:
+			MusicPlayer.play_fx("res://Assets/Music/Combat/Skills/AzSam - Boost lv1.mp3")
+		else:
+			MusicPlayer.play_fx("res://Assets/Music/Combat/Skills/AzSam - Boost lv2.mp3")
 		await Combat.deal_damage(dmg, crit, defender)
-		
 	else:
+		if level == 1:
+			MusicPlayer.play_fx("res://Assets/Music/Combat/Miss/Phys miss.mp3")
+		else:
+			MusicPlayer.play_fx("res://Assets/Music/Combat/Miss/Magic miss.mp3")
 		await Combat.update_damage_text("MISS")
 		
 static func predict_boost(attacker, defender, accMod, critMod, spa, imd, level) -> String:
@@ -85,26 +93,31 @@ static func anchoring_strike(Combat, rolls, attacker, defender, accMod: int, cri
 		var crit = Combat.calc_crit(attacker.get_dexterity(), attacker.get_agility(), defender.get_agility(), critMod, rolls[3])
 		var dmg = Combat.calc_damage(attacker.get_attack(), defender.get_defense(), spa, imd)
 		
+		MusicPlayer.play_fx("res://Assets/Music/Combat/Skills/Adran - Anchoring Strike.mp3")
 		await Combat.deal_damage(dmg, crit, defender)
 		if defender.get_current_health() > 0:
 			defender.set_is_rooted(true)
 		
 	else:
+		MusicPlayer.play_fx("res://Assets/Music/Combat/Miss/Magic miss.mp3")
 		await Combat.update_damage_text("MISS")
-
+		
 
 static func run_out_of_combat(sefName:String, caster, target, spa: int = 0) -> Array:
 	var result: Array
 	match sefName:
 		"mend_flesh":
+			MusicPlayer.play_fx("res://Assets/Music/Combat/Skills/Edgar - Mend Flesh.mp3")
 			result = healing_spell(caster, target, spa)
 		"bestow_life":
+			MusicPlayer.play_fx("res://Assets/Music/Combat/Skills/Lystra - Bestow Life.mp3")
 			result = healing_spell(caster, target, spa)
 		"creators_touch":
+			MusicPlayer.play_fx("res://Assets/Music/Combat/Skills/Lystra - Creators Touch.mp3")
 			result = healing_spell(caster, target, spa)
 		"action_surge":
+			MusicPlayer.play_fx("res://Assets/Music/Combat/Skills/Salvador - Action Surge.mp3")
 			result = action_surge()
-			
 	return result
 
 static func action_surge():
