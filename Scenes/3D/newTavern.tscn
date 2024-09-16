@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://dmp1dv018dj0t"]
+[gd_scene load_steps=13 format=3 uid="uid://bcci46nrubo1d"]
 
 [ext_resource type="Script" path="res://Scripts/3D/tavern.gd" id="1_8d0is"]
 [ext_resource type="Shader" uid="uid://pf57hfl4dtyi" path="res://Assets/Materials/blackLeather.tres" id="2_i0cfn"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://beu2530ly3xjn" path="res://Scenes/3D/characterSelect.tscn" id="3_y25de"]
 [ext_resource type="PackedScene" uid="uid://o78bhy5b8m1y" path="res://Scenes/3D/campaignMap.tscn" id="4_b1lil"]
 [ext_resource type="PackedScene" uid="uid://gs7eyivommkl" path="res://Assets/Props/shop_window/shop_window.tscn" id="4_qo8fu"]
+[ext_resource type="Environment" uid="uid://dgjqucyww3ewq" path="res://Assets/Materials/tavernWorldEnvironment.tres" id="6_3bo31"]
 [ext_resource type="PackedScene" uid="uid://2v06yh07feet" path="res://Assets/Props/modern_table/modern_table.tscn" id="6_bqj1a"]
 [ext_resource type="Environment" uid="uid://d0wodgxkm8k0w" path="res://Assets/Materials/tavernWorldEnvironment.tres" id="6_dnhgw"]
 [ext_resource type="PackedScene" uid="uid://bao3biydpb8r1" path="res://Assets/Props/modern_chair/chair (1).glb" id="6_eejs1"]
@@ -177,6 +178,8 @@ surface_material_override/9 = SubResource("ShaderMaterial_rl0s5")
 
 [node name="shelf" parent="Room/new_tavern" instance=ExtResource("8_171u3")]
 transform = Transform3D(1.08, 0, 0, 0, 1, 0, 0, 0, 1, -0.216307, -0.000633001, -7.96318e-05)
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+environment = ExtResource("6_3bo31")
 
 [node name="Cube" parent="Room/new_tavern/shelf" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_5vl2p")

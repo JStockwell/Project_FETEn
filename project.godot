@@ -25,6 +25,7 @@ GameStatus="*res://Scripts/Global/gameStatus.gd"
 RigidBodyAutoScaler="*res://addons/rigidbody_auto_scaler/RigidBodyAutoScaler.gd"
 CombatMapStatus="*res://Scripts/Global/combatMapStatus.gd"
 DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
+MusicPlayer="*res://Scenes/Global/MusicPlayer.tscn"
 
 [debug]
 

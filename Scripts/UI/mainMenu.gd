@@ -10,6 +10,8 @@ var resetConfirmation = $ResetConfirmation
 var debugUnlockButton = $Buttons/DebugUnlock
 
 func _ready():
+	MusicPlayer.play_main_cafe_music()
+	
 	if GameStatus.debugMode:
 		debugUnlockButton.show()
 		

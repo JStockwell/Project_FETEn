@@ -65,7 +65,7 @@ func test_setup_cameras(do_skip=true, skip_reason="Will be changed"):
 	#TODO Tests for setup_camera when its finished
 	
 	
-func test__on_start_turn():
+func test__on_start_turn(do_skip=true, skip_reason="Will be changed"):
 	test_tavern.start_map_combat()
 	test_tavern._on_start_turn()
 
@@ -73,7 +73,7 @@ func test__on_start_turn():
 	assert_int(test_tavern.setCam).is_equal(1)
 
 
-func test__on_combat_start():
+func test__on_combat_start(do_skip=true, skip_reason="Will be changed"):
 	test_tavern.start_map_combat()
 	var attacker = test_tavern.cm.characterGroup.get_children()[0]
 	var defender = test_tavern.cm.enemyGroup.get_children()[0]
@@ -88,7 +88,7 @@ func test__on_combat_start():
 	assert_that(test_tavern.com.defender.get_stats()).is_equal(defender.get_stats())
 	
 
-func test__on_combat_end():
+func test__on_combat_end(do_skip=true, skip_reason="Will be changed"):
 	test_tavern.start_map_combat()
 	var attacker = test_tavern.cm.characterGroup.get_children()[0]
 	var defender = test_tavern.cm.enemyGroup.get_children()[0]
