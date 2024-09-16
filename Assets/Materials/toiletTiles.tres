@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=14 format=3 uid="uid://oxvg64ecat5q"]
+[gd_resource type="VisualShader" load_steps=14 format=3 uid="uid://cmc58q1ynhohd"]
 
 [ext_resource type="Texture2D" uid="uid://es1180y283g3" path="res://Assets/Textures/Tiles010/Tiles010_2K-JPG_Roughness.jpg" id="1_i6j8e"]
 [ext_resource type="Texture2D" uid="uid://b3yturvm6bu11" path="res://Assets/Textures/Tiles010/Tiles010_2K-JPG_NormalDX.jpg" id="2_3m0mf"]

@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://u1sxkpt12wqo"
+uid="uid://b8yvypwk5y38i"
 path.s3tc="res://.godot/imported/classic_plastic_chairs_4.jpg-20a48a8318d54380554dea2c8c9b6876.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "7b24745d9df333cbe59ec9b2829e3a1c"
 }
 
 [deps]
