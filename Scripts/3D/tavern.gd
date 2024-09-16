@@ -12,6 +12,8 @@ var combatCenter = $Base/SpawnPoints/CombatCenter
 @onready
 var mapBase = $Base/MapBase
 @onready
+var characterSelect = $Base/CharSelect/CharacterSelect
+@onready
 var campaignCam = $Base/Campaign/Camera3D
 @onready
 var mapCam = $Base/Cameras/MapCam/Camera3D
@@ -22,6 +24,9 @@ var debugLabel = $Debug/Label
 var cm
 var com
 func _ready():
+	characterSelect.camera.current = true
+
+func _on_campaign_start() -> void:
 	campaignCam.current = true
 	
 func start_map_combat():

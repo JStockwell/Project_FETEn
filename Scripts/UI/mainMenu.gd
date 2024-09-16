@@ -9,9 +9,6 @@ var resetConfirmation = $ResetConfirmation
 @onready
 var debugUnlockButton = $Buttons/DebugUnlock
 
-var playableCharacters = Utils.read_json("res://Assets/json/players.json")
-var enemySet = Utils.read_json("res://Assets/json/enemies.json")
-
 func _ready():
 	if GameStatus.debugMode:
 		debugUnlockButton.show()
@@ -21,8 +18,6 @@ func _ready():
 	resetConfirmation.hide()
 	GameStatus.load_save()
 	update_unlocks()
-	GameStatus.set_playable_characters(playableCharacters)
-	GameStatus.set_enemy_set(enemySet)
 	GameStatus.party = {}
 	CombatMapStatus.isStartCombat = true
 
@@ -51,7 +46,7 @@ func verify_unlock(stage: String, previousStage: String, tempSave: Dictionary) -
 	return tempSave
 
 func _on_start_button_pressed():
-	get_tree().change_scene_to_file("res://Scenes/UI/characterSelect.tscn")
+	get_tree().change_scene_to_file("res://Scenes/3D/newTavern.tscn")
 
 func _on_credits_button_pressed():
 	get_tree().change_scene_to_file("res://Scenes/UI/credits.tscn")

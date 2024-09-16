@@ -1,0 +1,33 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=5 format=3 uid="uid://3sca8b57cwuy"]
+
+[sub_resource type="Curve" id="Curve_8a7cb"]
+min_value = -10.0
+max_value = 10.0
+_data = [Vector2(0, -10), 0.0, 0.0, 0, 0, Vector2(1, 10), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_uibaw"]
+curve = SubResource("Curve_8a7cb")
+
+[sub_resource type="Curve" id="Curve_pgo16"]
+_data = [Vector2(0, 1), 0.0, -0.41125, 0, 1, Vector2(0.855072, 0.648352), -1.27385, -1.27385, 0, 0, Vector2(1, 0.00652373), -4.42861, 0.0, 1, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_5umdv"]
+curve = SubResource("Curve_pgo16")
+
+[resource]
+lifetime_randomness = 0.2
+emission_shape_scale = Vector3(0.4, 0.1, 0.4)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.7
+angle_min = -10.0
+angle_max = 10.0
+angle_curve = SubResource("CurveTexture_uibaw")
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, 0.2, 0)
+scale_min = 0.0
+scale_curve = SubResource("CurveTexture_5umdv")
