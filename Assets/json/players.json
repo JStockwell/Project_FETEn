@@ -39,7 +39,7 @@
 		"is_ranged": false,
 		"mesh_path": "res://Assets/Characters/Party/Dick/dick idle 1.glb",
 		"sprite_path": "res://Assets/Characters/Party/Dick/dick_sprite.png",
-		"attack_sfx_path": "res://Assets/Music/Combat/Weapons/Sword Melee.wav"
+		"attack_sfx_path": "res://Assets/Music/Combat/Weapons/Sword Melee.mp3"
 	},
 	"samael": {
 		"id": "samael",
@@ -61,7 +61,7 @@
 		"is_ranged": false,
 		"mesh_path": "res://Assets/Characters/Party/Samael/Samael idle 1.glb",
 		"sprite_path": "res://Assets/Characters/Party/Samael/samael_sprite.png",
-		"attack_sfx_path": "res://Assets/Music/Combat/Weapons/Sword Melee.wav"
+		"attack_sfx_path": "res://Assets/Music/Combat/Weapons/Sword Melee.mp3"
 	},
 	"adran": {
 		"id": "adran",

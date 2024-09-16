@@ -19,7 +19,7 @@ func play_music(music_path, volume = 0.0):
 		_play(music, volume)
 		
 
-func play_fx(fx_path, volume = -5.0):
+func play_fx(fx_path, volume = 5.0):
 	if GameStatus.testMode == false:
 		if fx_path == "crit":
 			var r = randi_range(1,10)

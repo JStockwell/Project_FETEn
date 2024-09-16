@@ -13,7 +13,7 @@ var playableCharacters = Utils.read_json("res://Assets/json/players.json")
 var enemySet = Utils.read_json("res://Assets/json/enemies.json")
 
 func _ready():
-	MusicPlayer.play_main_cafe_music()
+	MusicPlayer.play_music("main_music")
 	
 	if GameStatus.debugMode:
 		debugUnlockButton.show()

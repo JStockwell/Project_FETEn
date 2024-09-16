@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://t5kpo7yt1fhd"
+path="res://.godot/imported/Salvador - Action Surge.mp3-4f593418b5df15038bea2b10af28a1e1.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/Combat/Skills/Salvador - Action Surge.mp3"
+dest_files=["res://.godot/imported/Salvador - Action Surge.mp3-4f593418b5df15038bea2b10af28a1e1.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

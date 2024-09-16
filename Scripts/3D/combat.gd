@@ -84,16 +84,17 @@ func attack(t_attacker, t_defender, rolls: Array, spa: int = 0, imd: int = 0) ->
 			# TODO: meter los sonidos de ataques en el json de personajes y ponerlos aqui
 			if CombatMapStatus.attackSkill == "": # Mete aqui los ataques basicos
 				MusicPlayer.play_fx(t_attacker.get_stats()["attack_sfx_path"])
-			#else: # Mete aqui las skills
-				#MusicPlayer.play_fx()
+			else: # Mete aqui las skills
+				var attackSkill = GameStatus.skillSet[CombatMapStatus.attackSkill].get_skill()
+				MusicPlayer.play_fx(attackSkill["skill_sfx_path"])
 				
 		await deal_damage(dmg, crit, t_defender)
 		
 	else:
 		if CombatMapStatus.attackSkill == "":
-			MusicPlayer.play_fx("res://Assets/Music/Combat/Miss/Magic miss.wav")
+			MusicPlayer.play_fx("res://Assets/Music/Combat/Miss/Phys miss.mp3")
 		else:
-			MusicPlayer.play_fx("res://Assets/Music/Combat/Miss/Phys miss.wav")
+			MusicPlayer.play_fx("res://Assets/Music/Combat/Miss/Magic miss.mp3")
 		await update_damage_text("MISS")
 		
 func deal_damage(dmg: int, crit: float, t_defender):
