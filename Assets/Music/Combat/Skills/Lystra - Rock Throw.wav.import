@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cwbc3gmoj7rlo"
+path="res://.godot/imported/Lystra - Rock Throw.wav-bc0f4a8cf07bd9c76377e2c34b95884b.sample"
+
+[deps]
+
+source_file="res://Assets/Music/Combat/Skills/Lystra - Rock Throw.wav"
+dest_files=["res://.godot/imported/Lystra - Rock Throw.wav-bc0f4a8cf07bd9c76377e2c34b95884b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -9,8 +9,8 @@ var resetConfirmation = $ResetConfirmation
 @onready
 var debugUnlockButton = $Buttons/DebugUnlock
 
-func _ready():
-	MusicPlayer.play_main_cafe_music()
+func start():
+	#MusicPlayer.play_main_cafe_music()
 	
 	if GameStatus.debugMode:
 		debugUnlockButton.show()
@@ -47,8 +47,11 @@ func verify_unlock(stage: String, previousStage: String, tempSave: Dictionary) -
 			
 	return tempSave
 
+signal game_start
+
 func _on_start_button_pressed():
-	get_tree().change_scene_to_file("res://Scenes/3D/newTavern.tscn")
+	game_start.emit()
+	#get_tree().change_scene_to_file("res://Scenes/3D/newTavern.tscn")
 
 func _on_credits_button_pressed():
 	get_tree().change_scene_to_file("res://Scenes/UI/credits.tscn")

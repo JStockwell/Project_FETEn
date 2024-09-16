@@ -3,7 +3,14 @@ extends Node3D
 var CombatMap = preload("res://Scenes/3D/mapCombat.tscn")
 var Combat = preload("res://Scenes/3D/combat.tscn")
 
-var setCam = 1
+var setCam: int = 1
+
+@onready
+var characterSelect = $Base/CharSelect/CharacterSelect
+@onready
+var campaign = $Base/Campaign/CampaignMap
+@onready
+var mainMenu = $MainMenu
 
 @onready
 var mapCenter = $Base/SpawnPoints/MapCenter
@@ -12,21 +19,78 @@ var combatCenter = $Base/SpawnPoints/CombatCenter
 @onready
 var mapBase = $Base/MapBase
 @onready
-var characterSelect = $Base/CharSelect/CharacterSelect
-@onready
 var campaignCam = $Base/Campaign/Camera3D
 @onready
 var mapCam = $Base/Cameras/MapCam/Camera3D
+
+@onready
+var cam1 = $MainMenuCameras/Camera1/Camera3D
+@onready
+var cam1Pivot = $MainMenuCameras/Camera1
+@onready
+var cam2 = $MainMenuCameras/Camera2/Camera3D
+@onready
+var cam2Pivot = $MainMenuCameras/Camera2
+@onready
+var cam3 = $MainMenuCameras/Camera3/Camera3D
+@onready
+var cam3Pivot = $MainMenuCameras/Camera3
+
+var mainMenuCams: Array
+var camPointer: int = 0
 
 @onready
 var debugLabel = $Debug/Label
 
 var cm
 var com
+
 func _ready():
+	mainMenuCams = [cam1, cam2, cam3]
+	GameStatus.set_current_game_state(GameStatus.GameState.MAIN_MENU)
+	choose_main_menu_camera()
+	
+func _process(delta):
+	if GameStatus.currentGameState == GameStatus.GameState.MAIN_MENU:
+		match camPointer:
+			0:
+				cam1Pivot.rotation_degrees.y += 0.2
+				if cam1Pivot.rotation_degrees.y >= 75:
+					reset_cameras()
+					
+			1:
+				cam2Pivot.position.z += 0.001
+				if cam2Pivot.position.z >= 0.3:
+					reset_cameras()
+			2:
+				cam3.position.z -= 0.006
+				if cam3.position.z <= 0.9:
+					reset_cameras()
+
+func reset_cameras() -> void:
+	camPointer += 1
+	
+	if camPointer >= mainMenuCams.size():
+		camPointer = 0
+		
+	cam1Pivot.rotation_degrees.y = -75
+	cam2Pivot.position.z = -0.325
+	cam3.position.z = 5.2
+	
+	mainMenuCams[camPointer].current = true
+
+func choose_main_menu_camera() -> void:
+	camPointer = randi_range(0, mainMenuCams.size() - 1)
+	reset_cameras()
+	
+func _on_game_start() -> void:
+	GameStatus.set_current_game_state(GameStatus.GameState.CHAR_SELECT)
 	characterSelect.camera.current = true
+	characterSelect.ui.show()
 
 func _on_campaign_start() -> void:
+	GameStatus.set_current_game_state(GameStatus.GameState.CAMPAIGN)
+	campaign.setup()
 	campaignCam.current = true
 	
 func start_map_combat():

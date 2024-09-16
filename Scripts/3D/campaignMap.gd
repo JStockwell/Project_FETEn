@@ -98,7 +98,7 @@ signal start_map_combat
 var highlighted_province: String
 var save: Dictionary
 
-func _ready() -> void:
+func setup() -> void:
 	save = GameStatus.get_save()
 	# TODO Remove testMode and test once finished
 	if not GameStatus.testMode:

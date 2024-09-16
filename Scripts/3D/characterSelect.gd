@@ -35,7 +35,10 @@ var pointer: int = 3
 
 var tempParty: Array = []
 
-func _ready() -> void:
+func _ready():
+	ui.hide()
+
+func setup() -> void:
 	GameStatus.set_playable_characters(Utils.read_json("res://Assets/json/players.json"))
 	GameStatus.set_enemy_set(Utils.read_json("res://Assets/json/enemies.json"))
 	var skillSet = Utils.read_json("res://Assets/json/skills.json")
