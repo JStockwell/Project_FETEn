@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://biqdj0a2bgm6b"
+path="res://.godot/imported/Magic miss.wav-f8dabc2c39d852c7ac96b7eeb9abbef7.sample"
+
+[deps]
+
+source_file="res://Assets/Music/Combat/Miss/Magic miss.wav"
+dest_files=["res://.godot/imported/Magic miss.wav-f8dabc2c39d852c7ac96b7eeb9abbef7.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
