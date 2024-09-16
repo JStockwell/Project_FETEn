@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bivi70coutfjy"
+path="res://.godot/imported/Dagger Melee.mp3-2fe5af62c9d597e99b0ed78e0b1b1357.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/Combat/Weapons/Dagger Melee.mp3"
+dest_files=["res://.godot/imported/Dagger Melee.mp3-2fe5af62c9d597e99b0ed78e0b1b1357.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
