@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://dg3xlkc77cfxh"]
 
+[ext_resource type="PackedScene" uid="uid://dkyxpsg43vt3h" path="res://Assets/Characters/Party/Lystra/Lystra idle 1.glb" id="1_hekow"]
 [ext_resource type="Shader" uid="uid://0h62265iduim" path="res://Assets/Materials/brownPaper.tres" id="3_8vwac"]
 [ext_resource type="PackedScene" uid="uid://cj1mrmiy1d8j" path="res://Assets/Props/dm_screen/scroll.glb" id="3_25f22"]
 [ext_resource type="FontFile" uid="uid://71blta5wlshk" path="res://Assets/Fonts/Minecraft/Minecraft.ttf" id="4_8nfa0"]
 [ext_resource type="PackedScene" uid="uid://dcafxqnw4qwr4" path="res://Assets/Props/dm_screen/stats.tscn" id="4_h2kjb"]
-[ext_resource type="PackedScene" uid="uid://dkyxpsg43vt3h" path="res://Assets/Characters/Party/Lystra/Lystra idle 1.glb" id="4_tio25"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j6a0f"]
 render_priority = 0
@@ -26,8 +26,8 @@ spot_angle_attenuation = 3.0
 [node name="Character" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0397763, 0, -0.390921)
 
-[node name="CharacterMesh" parent="Character" instance=ExtResource("4_tio25")]
-transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -0.00316053, 0, -0.00234865)
+[node name="Lystra idle 1" parent="Character" instance=ExtResource("1_hekow")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -0.003, 0, -0.002)
 
 [node name="scroll" parent="." instance=ExtResource("3_25f22")]
 transform = Transform3D(0.00676148, 0, -0.00181173, 0, 0.007, 0, 0.00181173, 0, 0.00676148, 0.00737621, 0, -0.0887474)

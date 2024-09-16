@@ -32,7 +32,7 @@
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_y63c2"]
 dof_blur_far_enabled = true
-dof_blur_far_distance = 1.0
+dof_blur_far_distance = 0.2
 dof_blur_amount = 0.3
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s2gb3"]
@@ -114,7 +114,7 @@ texture = ExtResource("5_dwt2l")
 [node name="Dick" parent="Characters" instance=ExtResource("3_0hu4e")]
 transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 0, 0, 0)
 
-[node name="CharacterMesh" parent="Characters/Dick/Character" index="0"]
+[node name="Lystra idle 1" parent="Characters/Dick/Character" index="0"]
 visible = false
 
 [node name="dick idle 1" parent="Characters/Dick/Character" index="1" instance=ExtResource("3_bdhdr")]
@@ -148,7 +148,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_s0mgu")
 [node name="Samael" parent="Characters" instance=ExtResource("3_0hu4e")]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
 
-[node name="CharacterMesh" parent="Characters/Samael/Character" index="0"]
+[node name="Lystra idle 1" parent="Characters/Samael/Character" index="0"]
 visible = false
 
 [node name="Samael idle 1" parent="Characters/Samael/Character" index="1" instance=ExtResource("7_3vdfb")]
@@ -186,7 +186,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_wjhdv")
 [node name="Salvador" parent="Characters" instance=ExtResource("3_0hu4e")]
 transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 0, 0, 0)
 
-[node name="CharacterMesh" parent="Characters/Salvador/Character" index="0"]
+[node name="Lystra idle 1" parent="Characters/Salvador/Character" index="0"]
 visible = false
 
 [node name="Salva Idle 1" parent="Characters/Salvador/Character" index="1" instance=ExtResource("9_ornva")]
@@ -221,7 +221,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_gbjjt")
 [node name="Edgar" parent="Characters" instance=ExtResource("3_0hu4e")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, 0)
 
-[node name="CharacterMesh" parent="Characters/Edgar/Character" index="0"]
+[node name="Lystra idle 1" parent="Characters/Edgar/Character" index="0"]
 visible = false
 
 [node name="Edgar" parent="Characters/Edgar/Character" index="1" instance=ExtResource("11_px6ad")]
@@ -255,7 +255,7 @@ texture = ExtResource("12_0eajn")
 [node name="Adran" parent="Characters" instance=ExtResource("3_0hu4e")]
 transform = Transform3D(0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, 0, 0, 0)
 
-[node name="CharacterMesh" parent="Characters/Adran/Character" index="0"]
+[node name="Lystra idle 1" parent="Characters/Adran/Character" index="0"]
 visible = false
 
 [node name="Adran idle 1" parent="Characters/Adran/Character" index="1" instance=ExtResource("13_kl8w5")]

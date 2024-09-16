@@ -1,8 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://dmp1dv018dj0t"]
+[gd_scene load_steps=45 format=3 uid="uid://dmp1dv018dj0t"]
 
 [ext_resource type="Script" path="res://Scripts/3D/tavern.gd" id="1_8d0is"]
 [ext_resource type="Shader" uid="uid://pf57hfl4dtyi" path="res://Assets/Materials/blackLeather.tres" id="2_i0cfn"]
-[ext_resource type="PackedScene" uid="uid://3wtgqdrdlt5v" path="res://Assets/Rooms/tavern/TavernLevel.tscn" id="3_k30tf"]
 [ext_resource type="Texture2D" uid="uid://lhtor4py7gn" path="res://Assets/Reference/2023-11-22-PRESENTACION_WEB.jpg" id="3_q33pg"]
 [ext_resource type="PackedScene" uid="uid://beu2530ly3xjn" path="res://Scenes/3D/characterSelect.tscn" id="3_y25de"]
 [ext_resource type="PackedScene" uid="uid://o78bhy5b8m1y" path="res://Scenes/3D/campaignMap.tscn" id="4_b1lil"]
@@ -10,9 +9,24 @@
 [ext_resource type="PackedScene" uid="uid://2v06yh07feet" path="res://Assets/Props/modern_table/modern_table.tscn" id="6_bqj1a"]
 [ext_resource type="Environment" uid="uid://d0wodgxkm8k0w" path="res://Assets/Materials/tavernWorldEnvironment.tres" id="6_dnhgw"]
 [ext_resource type="PackedScene" uid="uid://bao3biydpb8r1" path="res://Assets/Props/modern_chair/chair (1).glb" id="6_eejs1"]
+[ext_resource type="PackedScene" uid="uid://c7rr5xovtjuox" path="res://Assets/Rooms/new_tavern.glb" id="7_masc0"]
+[ext_resource type="Shader" uid="uid://ds27pwv3a3bfi" path="res://Assets/Materials/darkWood.res" id="8_2ktl8"]
+[ext_resource type="Shader" uid="uid://cniemyjx5vtxv" path="res://Assets/Materials/terrazo.res" id="8_2lk8m"]
+[ext_resource type="PackedScene" uid="uid://vo1n4sskam8f" path="res://Assets/Props/shelf/shelf.glb" id="8_171u3"]
 [ext_resource type="PackedScene" uid="uid://ekpgdu41v6fb" path="res://Assets/Props/ceiling_light/ceiling_light.tscn" id="8_i2nn6"]
+[ext_resource type="Shader" uid="uid://bq32svokrqlt3" path="res://Assets/Materials/counterDarkWood.tres" id="8_svpgk"]
+[ext_resource type="Shader" uid="uid://boqo6pj7oul6c" path="res://Assets/Materials/rawConcrete.res" id="9_1of1g"]
+[ext_resource type="Shader" uid="uid://b5v33xmq7sqji" path="res://Assets/Materials/bleachedWoodPlanks.res" id="9_1uj3l"]
 [ext_resource type="PackedScene" uid="uid://duwqttipqh5t4" path="res://Assets/Props/hanging_light/hanging_light.tscn" id="9_rdhlb"]
+[ext_resource type="Shader" uid="uid://dlwijlqmr8i4p" path="res://Assets/Materials/countertop.tres" id="9_x1swg"]
+[ext_resource type="Shader" uid="uid://oxvg64ecat5q" path="res://Assets/Materials/toiletTiles.tres" id="10_kxlm1"]
 [ext_resource type="PackedScene" uid="uid://bsioxk5y8qrd5" path="res://Assets/Props/hanging_light/ConeLamp.tscn" id="10_rbqor"]
+[ext_resource type="PackedScene" uid="uid://cwgsrw6lb4xhw" path="res://Assets/Props/modern_bar_table/modern_wooden_bar_table.glb" id="12_a0qtk"]
+[ext_resource type="Shader" uid="uid://ifncmu3uphj" path="res://Assets/Materials/concreteCeiling.res" id="12_mqpxc"]
+[ext_resource type="PackedScene" uid="uid://eqmehmoabfrg" path="res://Assets/Props/armchair/fauteuil_moderne_design_-_modern_armchair.glb" id="13_cx1c3"]
+[ext_resource type="Shader" uid="uid://c80mrssyqjucy" path="res://Assets/Materials/concrete.res" id="14_ummxb"]
+[ext_resource type="PackedScene" uid="uid://cokwbjujmkoer" path="res://Assets/Props/white_door/door_with_frame.glb" id="15_l6mbp"]
+[ext_resource type="Shader" path="res://Assets/Materials/frostedGlass.gdshader" id="16_6bmyu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jrryn"]
 render_priority = 0
@@ -21,6 +35,70 @@ shader = ExtResource("2_i0cfn")
 [sub_resource type="BoxMesh" id="BoxMesh_a5ik6"]
 material = SubResource("ShaderMaterial_jrryn")
 size = Vector3(0.8, 0.05, 0.8)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2jcgk"]
+render_priority = 0
+shader = ExtResource("8_svpgk")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_utopr"]
+render_priority = 0
+shader = ExtResource("9_x1swg")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u5qu8"]
+render_priority = 0
+shader = ExtResource("8_2ktl8")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_656gs"]
+render_priority = 0
+shader = ExtResource("9_1uj3l")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_462sm"]
+render_priority = 0
+shader = ExtResource("9_1uj3l")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dgy5x"]
+render_priority = 0
+shader = ExtResource("10_kxlm1")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_34b21"]
+render_priority = 0
+shader = ExtResource("12_mqpxc")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rl0s5"]
+render_priority = 0
+shader = ExtResource("8_2lk8m")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5vl2p"]
+render_priority = 0
+shader = ExtResource("9_1of1g")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vccg2"]
+render_priority = 0
+shader = ExtResource("14_ummxb")
+
+[sub_resource type="BoxMesh" id="BoxMesh_fbsmq"]
+lightmap_size_hint = Vector2i(20, 22)
+material = SubResource("ShaderMaterial_vccg2")
+add_uv2 = true
+size = Vector3(2.465, 0.45, 0.87)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_afm67"]
+frequency = 0.2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5d6td"]
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_afm67")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rsr14"]
+render_priority = 0
+shader = ExtResource("16_6bmyu")
+shader_parameter/distortion_size = 0.4
+shader_parameter/glass = SubResource("NoiseTexture2D_5d6td")
+
+[sub_resource type="BoxMesh" id="BoxMesh_uyxy4"]
+material = SubResource("ShaderMaterial_rsr14")
+size = Vector3(0.8, 1, 0.1)
 
 [node name="NewTavern" type="Node3D"]
 script = ExtResource("1_8d0is")
@@ -68,7 +146,7 @@ spot_range = 1.77268
 spot_angle = 33.354
 
 [node name="CampaignMap" parent="Base/Campaign" instance=ExtResource("4_b1lil")]
-transform = Transform3D(-3.49691e-08, 0, 0.8, 0, 0.8, 0, -0.8, 0, -3.49691e-08, -6.60933, 2.96911, -1.1961e-06)
+transform = Transform3D(-3.49691e-08, 0, 0.8, 0, 0.8, 0, -0.8, 0, -3.49691e-08, -6.91488, 2.96911, -1.18274e-06)
 
 [node name="CharSelect" type="Node3D" parent="Base"]
 
@@ -82,12 +160,29 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.469, -0.811989, 1.109)
 transform = Transform3D(1.55, 0, 0, 0, 1, 0, 0, 0, 1.03, -0.481, 0, -1.115)
 
 [node name="Window" parent="Room" instance=ExtResource("4_qo8fu")]
-transform = Transform3D(-7.43094e-10, 0, -0.018, 0, 0.018, 0, 0.017, 0, -7.86805e-10, -5.55176, -0.505991, -0.369774)
+transform = Transform3D(-7.43094e-10, 0, -0.018, 0, 0.018, 0, 0.017, 0, -7.86805e-10, -5.55176, -0.504511, -0.369774)
 
-[node name="Tavern" parent="Room" instance=ExtResource("3_k30tf")]
-transform = Transform3D(0.504, 0, 0, 0, 0.504, 0, 0, 0, 0.504, -0.0516508, -0.719768, -3.19404)
+[node name="new_tavern" parent="Room" instance=ExtResource("7_masc0")]
+transform = Transform3D(0.504, 0, 0, 0, 0.504, 0, 0, 0, 0.504, -0.052, -0.678, -3.194)
+
+[node name="Room_001" parent="Room/new_tavern" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_2jcgk")
+surface_material_override/1 = SubResource("ShaderMaterial_utopr")
+surface_material_override/3 = SubResource("ShaderMaterial_u5qu8")
+surface_material_override/4 = SubResource("ShaderMaterial_656gs")
+surface_material_override/5 = SubResource("ShaderMaterial_462sm")
+surface_material_override/6 = SubResource("ShaderMaterial_dgy5x")
+surface_material_override/8 = SubResource("ShaderMaterial_34b21")
+surface_material_override/9 = SubResource("ShaderMaterial_rl0s5")
+
+[node name="shelf" parent="Room/new_tavern" instance=ExtResource("8_171u3")]
+transform = Transform3D(1.08, 0, 0, 0, 1, 0, 0, 0, 1, -0.216307, -0.000633001, -7.96318e-05)
+
+[node name="Cube" parent="Room/new_tavern/shelf" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_5vl2p")
 
 [node name="Chairs" type="Node3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0116076, 0)
 
 [node name="Sketchfab_Scene" parent="Room/Chairs" instance=ExtResource("6_eejs1")]
 transform = Transform3D(-0.987879, 0, -0.155228, 0, 1, 0, 0.155228, 0, -0.987879, 0.0337267, 0, -0.303538)
@@ -103,6 +198,15 @@ transform = Transform3D(0.272532, 0, 0.962147, 0, 1, 0, -0.962147, 0, 0.272532, 
 
 [node name="Sketchfab_Scene3" parent="Room/Chairs" instance=ExtResource("6_eejs1")]
 transform = Transform3D(-0.987743, 0, -0.15609, 0, 1, 0, 0.15609, 0, -0.987743, 0.775708, 0, -0.303538)
+
+[node name="Sketchfab_Scene6" parent="Room/Chairs" instance=ExtResource("6_eejs1")]
+transform = Transform3D(0.982852, 0, 0.184398, 0, 1, 0, -0.184398, 0, 0.982852, -2.80242, 0, 0.885677)
+
+[node name="Sketchfab_Scene7" parent="Room/Chairs" instance=ExtResource("6_eejs1")]
+transform = Transform3D(0.999933, 0, 0.0115716, 0, 1, 0, -0.0115716, 0, 0.999933, -2.07282, 0, 0.902184)
+
+[node name="Sketchfab_Scene8" parent="Room/Chairs" instance=ExtResource("6_eejs1")]
+transform = Transform3D(0.998147, 0, -0.0608566, 0, 1, 0, 0.0608566, 0, 0.998147, -0.988377, 0, 0.886468)
 
 [node name="Lights" type="Node3D" parent="Room"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.469, 3.01434, -1.109)
@@ -132,6 +236,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 
 [node name="CeilingLight8" parent="Room/Lights/Dots" instance=ExtResource("8_i2nn6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.50028, 0, 2)
+visible = false
 
 [node name="CeilingLight9" parent="Room/Lights/Dots" instance=ExtResource("8_i2nn6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.50028, 0, 2)
@@ -141,6 +246,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
 
 [node name="CeilingLight11" parent="Room/Lights/Dots" instance=ExtResource("8_i2nn6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.50028, 0, 3)
+visible = false
 
 [node name="CeilingLight36" parent="Room/Lights/Dots" instance=ExtResource("8_i2nn6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.50028, 0, 1)
@@ -153,6 +259,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.50028, 0, 3)
 
 [node name="CeilingLight12" parent="Room/Lights/Dots" instance=ExtResource("8_i2nn6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.50028, 0, 3)
+visible = false
 
 [node name="CeilingLight13" parent="Room/Lights/Dots" instance=ExtResource("8_i2nn6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
@@ -217,18 +324,88 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.48504, 0, 3.24987)
 [node name="HangingLight" parent="Room/Lights" instance=ExtResource("9_rdhlb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.273, 0)
 
+[node name="HangingLight2" parent="Room/Lights" instance=ExtResource("9_rdhlb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.31001, -1.273, 2.67537)
+
+[node name="HangingLight3" parent="Room/Lights" instance=ExtResource("9_rdhlb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.13973, -1.273, 3.33286)
+
 [node name="ConeLamp" parent="Room/Lights" instance=ExtResource("10_rbqor")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25397, -0.392311, -0.316123)
 visible = false
 
-[node name="World" type="Node3D" parent="."]
+[node name="Lights" type="Node3D" parent="Room/Lights"]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
-environment = ExtResource("6_dnhgw")
+[node name="Main" type="OmniLight3D" parent="Room/Lights/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00993705, -0.273898, -0.00016427)
+light_color = Color(1, 0.956863, 0.94902, 1)
+light_energy = 0.2
+light_indirect_energy = 0.1
+omni_range = 7.5
+omni_attenuation = 0.7
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
-transform = Transform3D(0.250092, 0.655572, -0.712517, -0.217119, 0.755133, 0.618574, 0.943564, -3.09208e-08, 0.33119, -9.67625, 0, 0)
-shadow_enabled = true
+[node name="OmniLight3D" type="OmniLight3D" parent="Room/Lights/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.61797, -0.2535, 2.23037)
+light_color = Color(1, 0.956863, 0.94902, 1)
+light_energy = 0.1
+light_indirect_energy = 0.05
+omni_range = 2.62435
+
+[node name="Tables" type="Node3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0412834, 0)
+
+[node name="SmallBarTable" parent="Room/Tables" instance=ExtResource("12_a0qtk")]
+transform = Transform3D(0.22, 0, 0, 0, 0.22, 0, 0, 0, 0.22, -0.984686, 0.00143117, 1.56701)
+
+[node name="LongBarTable" parent="Room/Tables" instance=ExtResource("12_a0qtk")]
+transform = Transform3D(0.445, 0, 0, 0, 0.22, 0, 0, 0, 0.22, -2.40797, 0.00143117, 1.57755)
+
+[node name="LongBarTable2" parent="Room/Tables" instance=ExtResource("12_a0qtk")]
+transform = Transform3D(0.445, 0, 0, 0, 0.22, 0, 0, 0, 0.22, 0.670107, 0.00143117, 2.22581)
+
+[node name="Armchairs" type="Node3D" parent="Room"]
+
+[node name="Sketchfab_Scene" parent="Room/Armchairs" instance=ExtResource("13_cx1c3")]
+transform = Transform3D(-0.9, 0, -7.86805e-08, 0, 0.9, 0, 7.86805e-08, 0, -0.9, -2.80679, 0, 2.30434)
+
+[node name="Sketchfab_Scene2" parent="Room/Armchairs" instance=ExtResource("13_cx1c3")]
+transform = Transform3D(-0.9, 0, -7.86805e-08, 0, 0.9, 0, 7.86805e-08, 0, -0.9, -2.04855, 0, 2.30434)
+
+[node name="Sketchfab_Scene3" parent="Room/Armchairs" instance=ExtResource("13_cx1c3")]
+transform = Transform3D(-0.9, 0, -7.86805e-08, 0, 0.9, 0, 7.86805e-08, 0, -0.9, -0.987886, 0, 2.30434)
+
+[node name="Sketchfab_Scene4" parent="Room/Armchairs" instance=ExtResource("13_cx1c3")]
+transform = Transform3D(0.9, 0, 1.57361e-07, 0, 0.9, 0, -1.57361e-07, 0, 0.9, 0.248321, 0, 1.40486)
+
+[node name="Sketchfab_Scene5" parent="Room/Armchairs" instance=ExtResource("13_cx1c3")]
+transform = Transform3D(0.9, 0, 1.57361e-07, 0, 0.9, 0, -1.57361e-07, 0, 0.9, 1.10629, 0, 1.40486)
+
+[node name="Bench" type="MeshInstance3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.841699, 0.215264, 3.19276)
+mesh = SubResource("BoxMesh_fbsmq")
+
+[node name="Doors" type="Node3D" parent="Room"]
+
+[node name="Sketchfab_Scene" parent="Room/Doors" instance=ExtResource("15_l6mbp")]
+transform = Transform3D(0.008, 0, 0, 0, 0.01, 0, 0, 0, 0.006, 2.59285, -0.00198388, 2.01911)
+
+[node name="Sketchfab_Scene2" parent="Room/Doors" instance=ExtResource("15_l6mbp")]
+transform = Transform3D(0.008, 0, 0, 0, 0.01, 0, 0, 0, 0.006, 3.64896, -0.00198388, 2.01911)
+
+[node name="Sketchfab_Scene3" parent="Room/Doors" instance=ExtResource("15_l6mbp")]
+transform = Transform3D(-3.49691e-10, 0, 0.006, 0, 0.01, 0, -0.008, 0, -2.62268e-10, 4.3137, -0.00198388, 1.2229)
+
+[node name="FrostedGlass" type="MeshInstance3D" parent="Room/Doors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5948, 2.54415, 2.02271)
+mesh = SubResource("BoxMesh_uyxy4")
+
+[node name="FrostedGlass2" type="MeshInstance3D" parent="Room/Doors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.66331, 2.54415, 2.02271)
+mesh = SubResource("BoxMesh_uyxy4")
+
+[node name="FrostedGlass3" type="MeshInstance3D" parent="Room/Doors"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.30221, 2.54415, 1.22609)
+mesh = SubResource("BoxMesh_uyxy4")
 
 [node name="Debug" type="Control" parent="."]
 layout_mode = 3
@@ -260,6 +437,16 @@ transform = Transform3D(1.19, 0, 0, 0, -5.20166e-08, 1.19, 0, -1.19, -5.20166e-0
 visible = false
 texture = ExtResource("3_q33pg")
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("6_dnhgw")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(0.250092, 0.655572, -0.712516, -0.217119, 0.755133, 0.618574, 0.943564, 3.76234e-07, 0.33119, -9.67625, 0, 0)
+shadow_enabled = true
+
 [connection signal="start_map_combat" from="Base/Campaign/CampaignMap" to="." method="_on_campaign_map_start_map_combat"]
 [connection signal="start_campaign" from="Base/CharSelect/CharacterSelect" to="." method="_on_campaign_start"]
 [connection signal="value_changed" from="Debug/ProgressBar" to="." method="_on_debug_progress_bar_value_changed"]
+
+[editable path="Room/new_tavern"]
+[editable path="Room/new_tavern/shelf"]

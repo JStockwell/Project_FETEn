@@ -24,6 +24,7 @@ run/stdout/print_fps=true
 GameStatus="*res://Scripts/Global/gameStatus.gd"
 RigidBodyAutoScaler="*res://addons/rigidbody_auto_scaler/RigidBodyAutoScaler.gd"
 CombatMapStatus="*res://Scripts/Global/combatMapStatus.gd"
+DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
 
 [debug]
 
@@ -42,7 +43,7 @@ naming/scene_name_casing=0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/copilot/plugin.cfg", "res://addons/gdUnit4/plugin.cfg", "res://addons/rigidbody_auto_scaler/plugin.cfg")
+enabled=PackedStringArray("res://addons/copilot/plugin.cfg", "res://addons/debug_menu/plugin.cfg", "res://addons/gdUnit4/plugin.cfg", "res://addons/rigidbody_auto_scaler/plugin.cfg")
 
 [gdunit4]
 
