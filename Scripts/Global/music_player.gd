@@ -30,6 +30,9 @@ func play_fx(fx_path, volume = 5.0):
 				
 		if fx_path == "click":
 			fx_path = "res://Assets/Music/UI/Click.mp3"
+			
+		if fx_path == "start_battle":
+			fx_path = "res://Assets/Music/UI/Start Battle.mp3"
 		
 		var fx = AudioStreamPlayer.new()
 		fx.stream = load(fx_path)
