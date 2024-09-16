@@ -96,6 +96,7 @@ func _on_attack_button_pressed():
 	combat_start.emit(self, skillName, skillResult)
 
 func _on_cancel_button_pressed():
+	MusicPlayer.play_fx("click")
 	close.emit(self)
 	
 func debug_setup():

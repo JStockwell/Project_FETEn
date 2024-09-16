@@ -53,28 +53,34 @@ func verify_unlock(stage: String, previousStage: String, tempSave: Dictionary) -
 	return tempSave
 
 func _on_start_button_pressed():
+	MusicPlayer.play_fx("click")
 	get_tree().change_scene_to_file("res://Scenes/UI/characterSelect.tscn")
 
 func _on_credits_button_pressed():
+	MusicPlayer.play_fx("click")
 	get_tree().change_scene_to_file("res://Scenes/UI/credits.tscn")
 
 func _on_exit_button_pressed():
+	MusicPlayer.play_fx("click")
 	get_tree().quit()
 
 # TODO Test
 func _on_reset_button_pressed() -> void:
+	MusicPlayer.play_fx("click")
 	background.hide()
 	buttons.hide()
 	resetConfirmation.show()
 
 # TODO Test
 func _on_reset_save_no_pressed() -> void:
+	MusicPlayer.play_fx("click")
 	background.show()
 	buttons.show()
 	resetConfirmation.hide()
 
 # TODO Test
 func _on_reset_save_yes_pressed() -> void:
+	MusicPlayer.play_fx("click")
 	GameStatus.save_game(Utils.read_json("res://Assets/json/save_reference.json"))
 	background.show()
 	buttons.show()
