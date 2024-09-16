@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://db5avpaet7ich"
+path="res://.godot/imported/Adran - Flaming Daggers.mp3-fe8019562c4ee0e40fc3c1efcfda1387.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/Combat/Skills/Adran - Flaming Daggers.mp3"
+dest_files=["res://.godot/imported/Adran - Flaming Daggers.mp3-fe8019562c4ee0e40fc3c1efcfda1387.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

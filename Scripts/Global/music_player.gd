@@ -2,6 +2,16 @@ extends AudioStreamPlayer
 
 var music
 
+enum SOUNDS {
+	MAIN_MENU = 0,
+	VICTORY = 1
+}
+
+const soundArray = [
+	"res://Assets/Music/Menu/Cafe and music v1.mp3",
+	"res://Assets/Music/CombatMap/EndCombat/Victory.mp3"
+]
+
 func _play(music: AudioStream, volume):
 	if stream == music: return
 	
@@ -9,17 +19,20 @@ func _play(music: AudioStream, volume):
 	volume_db = volume
 	play()
 	
-	
+# Implementation: MusicPlayer.play_music(MusicPlayer.SOUNDS.VICTORY, -20)
 func play_music(music_path, volume = 0.0):
 	if GameStatus.testMode == false:
-		if music_path == "main_music":
-			music_path = "res://Assets/Music/Menu/Cafe and music v1.mp3"
-		
-		var music = load(music_path)
+		var music
+		if music_path is int:
+			music = load(soundArray[music_path])
+			
+		else:
+			music = load(music_path)
+			
 		_play(music, volume)
 		
 
-func play_fx(fx_path, volume = -5.0):
+func play_fx(fx_path, volume = 5.0):
 	if GameStatus.testMode == false:
 		if fx_path == "crit":
 			var r = randi_range(1,10)

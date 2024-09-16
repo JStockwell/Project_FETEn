@@ -30,27 +30,27 @@ void vertex() {
 
 
 void fragment() {
-	
-	
+
+
 	vec3 normx = NORMAL;
 	NORMAL = norm;
-	
-	
+
+
 	vec2 displacement = vec2(offset);
 	displacement.x *= -normx.x*2.0;
 	displacement.y *= -normx.y*2.0;
 	vec4 alpha = vec4(1.0);
 	alpha = texture(SCREEN_TEXTURE ,SCREEN_UV + displacement );
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
 	ALBEDO = mix(alpha.rgb,albedo.rgb,albedo.a);
 	SPECULAR = specular;
 	ALPHA = opacity;
-	
-	
-	
+
+
+
 }

@@ -46,10 +46,11 @@ var cm
 var com
 
 func _ready():
+	MusicPlayer.play_music(MusicPlayer.SOUNDS.MAIN_MENU, -20)
 	mainMenuCams = [cam1, cam2, cam3]
 	GameStatus.set_current_game_state(GameStatus.GameState.MAIN_MENU)
 	choose_main_menu_camera()
-	
+
 func _process(delta):
 	if GameStatus.currentGameState == GameStatus.GameState.MAIN_MENU:
 		match camPointer:
@@ -63,7 +64,7 @@ func _process(delta):
 				if cam2Pivot.position.z >= 0.3:
 					reset_cameras()
 			2:
-				cam3.position.z -= 0.006
+				cam3.position.z -= 0.009
 				if cam3.position.z <= 0.9:
 					reset_cameras()
 
@@ -83,6 +84,15 @@ func choose_main_menu_camera() -> void:
 	camPointer = randi_range(0, mainMenuCams.size() - 1)
 	reset_cameras()
 	
+func _input(event):
+	if event is InputEventMouseButton and event.button_index == 1:
+		if GameStatus.get_current_game_state() == GameStatus.GameState.MAIN_MENU:
+			_on_main_menu_start()
+			print("hello")
+	
+func _on_main_menu_start() -> void:
+	GameStatus.set_current_game_state(GameStatus.GameState.MAIN_MENU)
+
 func _on_game_start() -> void:
 	GameStatus.set_current_game_state(GameStatus.GameState.CHAR_SELECT)
 	characterSelect.camera.current = true

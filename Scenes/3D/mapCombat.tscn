@@ -78,7 +78,6 @@ script = ExtResource("1_rhc0y")
 [node name="MapTileGroup" type="Node3D" parent="."]
 
 [node name="UI" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -462,6 +461,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="EndScreen" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0

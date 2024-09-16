@@ -9,8 +9,11 @@ var resetConfirmation = $ResetConfirmation
 @onready
 var debugUnlockButton = $Buttons/DebugUnlock
 
+var playableCharacters = Utils.read_json("res://Assets/json/players.json")
+var enemySet = Utils.read_json("res://Assets/json/enemies.json")
+
 func start():
-	#MusicPlayer.play_main_cafe_music()
+	MusicPlayer.play_music("res://Assets/Music/Menu/Cafe and music v1.mp3")
 	
 	if GameStatus.debugMode:
 		debugUnlockButton.show()
