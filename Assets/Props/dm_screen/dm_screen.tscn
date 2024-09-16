@@ -1,12 +1,10 @@
-[gd_scene load_steps=6 format=4 uid="uid://ffwbxniuuwcy"]
+[gd_scene load_steps=5 format=4 uid="uid://ffwbxniuuwcy"]
 
-[ext_resource type="Shader" uid="uid://pf57hfl4dtyi" path="res://Assets/Materials/blackLeather.tres" id="1_yqaw7"]
+[ext_resource type="Shader" uid="uid://biennfdh5w4v4" path="res://Assets/Materials/brownLeather.tres" id="1_16tpl"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ifcn"]
-resource_name = "Material.003"
-cull_mode = 2
-albedo_color = Color(0.408472, 0.847896, 0.907102, 1)
-roughness = 0.5
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_obqtv"]
+render_priority = 0
+shader = ExtResource("1_16tpl")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_sjmmm"]
 _surfaces = [{
@@ -32,7 +30,7 @@ _surfaces = [{
 "index_count": 156,
 "index_data": PackedByteArray("FAAlABAAFAApACUACgAdAAgACgAfAB0AAgAoABMAAgAXACgAEQAjAA4AEQAmACMAHAAFAAcAHAAaAAUAGQABAAQAGQAWAAEAPgBPAFMAPgA6AE8ANQBHAEoANQAyAEcAKwBSAEAAKwA9AFIAOwBNAFAAOwA4AE0ARgAvAEQARgAxAC8AQwAsAEEAQwAuACwABgAzAAkABgAwADMADAA5AA8ADAA2ADkADwA8ABIADwA5ADwAEgAqAAAAEgA8ACoAGAA/ABUAGABCAD8AGwBCABgAGwBFAEIAHgBFABsAHgBIAEUAJABLACEAJABOAEsAJwBOACQAJwBRAE4AFQBRACcAFQA/AFEACwBJACAACwA0AEkAAAAtAAMAAAAqAC0AIgA3AA0AIgBMADcAAwAwAAYAAwAtADAA"),
 "lods": [0.543816, PackedByteArray("CgAZAAEACgAfABkAAQAZACgAAQAoACMAAQAjAA4AKwBPAFIAKwBNAE8AKwA4AE0AKwBSAEMANQArAEMANQBDAEoAAAAzAAkAAAAqADMADAAqAAAADAA2ACoAHgBCABgAHgBIAEIAGABCAFEAGABRACcAJwBRAE4AJwBOAEsAJwBLACEACwBJACAACwA0AEkAIgA3AA0AIgBMADcA")],
-"material": SubResource("StandardMaterial3D_1ifcn"),
+"material": SubResource("ShaderMaterial_obqtv"),
 "name": "Material.003",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -42,14 +40,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_sjmmm")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_eh273"]
-render_priority = 0
-shader = ExtResource("1_yqaw7")
-
 [node name="dm_screen" type="Node3D"]
 
 [node name="Pantalla" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.38, 0, 0, 0, 0.38, 0, 0, 0, 0.38, 0, 0, 0)
 mesh = SubResource("ArrayMesh_7ky71")
 skeleton = NodePath("")
-surface_material_override/0 = SubResource("ShaderMaterial_eh273")

@@ -33,6 +33,7 @@
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_y63c2"]
 dof_blur_far_enabled = true
 dof_blur_far_distance = 1.0
+dof_blur_amount = 0.3
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s2gb3"]
 render_priority = 0
