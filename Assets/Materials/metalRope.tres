@@ -20,6 +20,7 @@ texture = ExtResource("1_2fl1v")
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_ppx8d"]
 texture = ExtResource("2_8mhwc")
+texture_type = 1
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_s6ucq"]
 texture = ExtResource("3_kswdq")
@@ -34,7 +35,7 @@ texture = ExtResource("5_bxi1y")
 code = "shader_type spatial;
 render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
 
-uniform sampler2D tex_frg_6;
+uniform sampler2D tex_frg_6 : source_color;
 uniform sampler2D tex_frg_5;
 uniform sampler2D tex_frg_7;
 uniform sampler2D tex_frg_8;

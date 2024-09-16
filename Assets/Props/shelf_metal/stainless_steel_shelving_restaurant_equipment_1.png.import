@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://5xdvgbw582w6"
+path.s3tc="res://.godot/imported/stainless_steel_shelving_restaurant_equipment_1.png-fe136785a58f6f7f5887263ea8ed63c5.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "4f9085399e88701c5d8e9c085e6ad7ee"
+}
+
+[deps]
+
+source_file="res://Assets/Props/shelf_metal/stainless_steel_shelving_restaurant_equipment_1.png"
+dest_files=["res://.godot/imported/stainless_steel_shelving_restaurant_equipment_1.png-fe136785a58f6f7f5887263ea8ed63c5.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0
