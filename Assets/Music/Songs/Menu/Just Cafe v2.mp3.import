@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ba2ubuocl7kgg"
+path="res://.godot/imported/Just Cafe v2.mp3-51bcef3ae20e933704d1b012514b0124.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/Songs/Menu/Just Cafe v2.mp3"
+dest_files=["res://.godot/imported/Just Cafe v2.mp3-51bcef3ae20e933704d1b012514b0124.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

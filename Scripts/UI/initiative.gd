@@ -82,13 +82,13 @@ func character_death(character) -> void:
 	modify_initiative()
 
 func _on_left_button_pressed():
-	MusicPlayer.play_fx("click")
+	MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
 	pointer -= 1
 	modify_initiative()
 	update_buttons()
 
 func _on_right_button_pressed():
-	MusicPlayer.play_fx("click")
+	MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
 	pointer += 1
 	modify_initiative()
 	update_buttons()
