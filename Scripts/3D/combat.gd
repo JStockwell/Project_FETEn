@@ -92,9 +92,9 @@ func attack(t_attacker, t_defender, rolls: Array, spa: int = 0, imd: int = 0) ->
 		
 	else:
 		if CombatMapStatus.attackSkill == "":
-			MusicPlayer.play_fx("res://Assets/Music/Combat/Miss/Phys miss.mp3")
+			MusicPlayer.play_fx(MusicPlayer.SOUNDS.PHYS_MISS)
 		else:
-			MusicPlayer.play_fx("res://Assets/Music/Combat/Miss/Magic miss.mp3")
+			MusicPlayer.play_fx(MusicPlayer.SOUNDS.MAGIC_MISS)
 		await update_damage_text("MISS")
 		
 func deal_damage(dmg: int, crit: float, t_defender):

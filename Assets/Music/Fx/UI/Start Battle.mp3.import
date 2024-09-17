@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dn4k412gti15b"
+path="res://.godot/imported/Start Battle.mp3-bf0d2c8d75060f9389308e081b0079d7.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/Fx/UI/Start Battle.mp3"
+dest_files=["res://.godot/imported/Start Battle.mp3-bf0d2c8d75060f9389308e081b0079d7.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

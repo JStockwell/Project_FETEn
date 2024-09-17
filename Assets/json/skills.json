@@ -6,7 +6,7 @@
 		"cost": 6,
 		"spa": 7,
 		"imd": 1,
-		"skill_sfx_path": "res://Assets/Music/Combat/Skills/Edgar - Shadow Ball.mp3"
+		"skill_sfx_path": "res://Assets/Music/Fx/Combat/Skills/Edgar - Shadow Ball.mp3"
 	},
 	"nero_nero": {
 		"skill_name": "Death Beam",
@@ -16,7 +16,7 @@
 		"spa": 11,
 		"sef": true,
 		"imd": 1,
-		"skill_sfx_path": "res://Assets/Music/Combat/Skills/Edgar - Nero Nero.mp3"
+		"skill_sfx_path": "res://Assets/Music/Fx/Combat/Skills/Edgar - Nero Nero.mp3"
 	},
 	"mend_flesh":{
 		"skill_name": "Mend Flesh",
@@ -26,7 +26,7 @@
 		"spa": 9,
 		"sef": true,
 		"cta": true,
-		"skill_sfx_path": "res://Assets/Music/Combat/Skills/Edgar - Mend Flesh.mp3"
+		"skill_sfx_path": "res://Assets/Music/Fx/Combat/Skills/Edgar - Mend Flesh.mp3"
 	},
 	"boost_1": {
 		"skill_name": "Boost Lv 1",
@@ -36,7 +36,7 @@
 		"spa": 4,
 		"sef": true,
 		"imd": 0,
-		"skill_sfx_path": "res://Assets/Music/Combat/Skills/Edgar - Mend Flesh.mp3"
+		"skill_sfx_path": "res://Assets/Music/Fx/Combat/Skills/Edgar - Mend Flesh.mp3"
 	},
 	"boost_2": {
 		"skill_name": "Boost Lv 2",
@@ -46,7 +46,7 @@
 		"spa": 4,
 		"sef": true,
 		"imd": 1,
-		"skill_sfx_path": "res://Assets/Music/Combat/Skills/AzSam - Boost lv2.mp3"
+		"skill_sfx_path": "res://Assets/Music/Fx/Combat/Skills/AzSam - Boost lv2.mp3"
 	},
 	"rock_throw":{
 		"skill_name": "Rock Throw",
@@ -55,7 +55,7 @@
 		"cost": 8,
 		"spa": 5,
 		"imd": 1,
-		"skill_sfx_path": "res://Assets/Music/Combat/Skills/Lystra - Rock Throw.mp3"
+		"skill_sfx_path": "res://Assets/Music/Fx/Combat/Skills/Lystra - Rock Throw.mp3"
 	},
 	"bestow_life":{
 		"skill_name": "Bestow Life",
@@ -65,7 +65,7 @@
 		"spa": 5,
 		"sef": true,
 		"cta": true,
-		"skill_sfx_path": "res://Assets/Music/Combat/Skills/Lystra - Bestow Life.mp3"
+		"skill_sfx_path": "res://Assets/Music/Fx/Combat/Skills/Lystra - Bestow Life.mp3"
 	},
 	"creators_touch":{
 		"skill_name": "Touch of the Creator",
@@ -75,7 +75,7 @@
 		"spa": 12,
 		"sef": true,
 		"cta": true,
-		"skill_sfx_path": "res://Assets/Music/Combat/Skills/Lystra - Creators Touch.mp3"
+		"skill_sfx_path": "res://Assets/Music/Fx/Combat/Skills/Lystra - Creators Touch.mp3"
 	},
 	"anchoring_strike":{
 		"skill_name": "Anchoring Strike",
@@ -85,7 +85,7 @@
 		"spa": 0,
 		"sef": true,
 		"imd": 0,
-		"skill_sfx_path": "res://Assets/Music/Combat/Skills/Adran - Anchoring Strike.mp3"
+		"skill_sfx_path": "res://Assets/Music/Fx/Combat/Skills/Adran - Anchoring Strike.mp3"
 	},
 	"flaming_daggers":{
 		"skill_name": "Flaming Daggers",
@@ -94,7 +94,7 @@
 		"cost": 4,
 		"spa": -3,
 		"imd": 1,
-		"skill_sfx_path": "res://Assets/Music/Combat/Skills/Adran - Flaming Daggers.mp3"
+		"skill_sfx_path": "res://Assets/Music/Fx/Combat/Skills/Adran - Flaming Daggers.mp3"
 	},
 	"action_surge":{
 		"skill_name": "Tap Speed",
@@ -106,7 +106,7 @@
 		"cta": true,
 		"inst": true,
 		"buff": true,
-		"skill_sfx_path": "res://Assets/Music/Combat/Skills/Salvador - Action Surge.mp3"
+		"skill_sfx_path": "res://Assets/Music/Fx/Combat/Skills/Salvador - Action Surge.mp3"
 	},
 	"icicle": {
 		"skill_name": "Icicle",
@@ -115,6 +115,6 @@
 		"cost": 1,
 		"spa": 7,
 		"imd": 1,
-		"skill_sfx_path": "res://Assets/Music/Combat/Skills/Mage Orc - Icicle.mp3"
+		"skill_sfx_path": "res://Assets/Music/Fx/Combat/Skills/Mage Orc - Icicle.mp3"
 	}
 }

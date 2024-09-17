@@ -16,7 +16,7 @@
 		"is_ranged": false,
 		"mesh_path": "res://Assets/Characters/Enemies/Goblin/phys goblin idle 1.glb",
 		"sprite_path": "res://Assets/Characters/Enemies/Goblin/goblin_sprite.png",
-		"attack_sfx_path": "res://Assets/Music/Combat/Weapons/Dagger Melee.mp3"
+		"attack_sfx_path": "res://Assets/Music/Fx/Combat/Weapons/Dagger Melee.mp3"
 	},
 	"sling_gobbo": {
 		"id": "sling_gobbo",
@@ -35,7 +35,7 @@
 		"is_ranged": true,
 		"mesh_path": "res://Assets/Characters/Enemies/Ranged_Gobbo/ranged goblin idle 1.glb",
 		"sprite_path": "res://Assets/Characters/Enemies/Ranged_Gobbo/ranged_gobbo_sprite.png",
-		"attack_sfx_path": "res://Assets/Music/Combat/Weapons/Goblin Ranged.mp3"
+		"attack_sfx_path": "res://Assets/Music/Fx/Combat/Weapons/Goblin Ranged.mp3"
 	},
 	"orc": {
 		"id": "orc",
@@ -54,7 +54,7 @@
 		"is_ranged": false,
 		"mesh_path": "res://Assets/Characters/Enemies/Melee_Orc/orc melee idle 1.glb",
 		"sprite_path": "res://Assets/Characters/Enemies/Melee_Orc/orc_sprite.png",
-		"attack_sfx_path": "res://Assets/Music/Combat/Weapons/Sword Melee.mp3"
+		"attack_sfx_path": "res://Assets/Music/Fx/Combat/Weapons/Sword Melee.mp3"
 	},
 	"ranged_orc": {
 		"id": "ranged_orc",
@@ -73,7 +73,7 @@
 		"is_ranged": true,
 		"mesh_path": "res://Assets/Characters/Enemies/Ranged_Orc/orc ranged idle 1.glb",
 		"sprite_path": "res://Assets/Characters/Enemies/Ranged_Orc/ranged_orc_sprite.png",
-		"attack_sfx_path": "res://Assets/Music/Combat/Weapons/Elite Ranged.mp3"
+		"attack_sfx_path": "res://Assets/Music/Fx/Combat/Weapons/Orc Ranged.mp3"
 	},
 	"mage": {
 		"id": "mage",
@@ -92,7 +92,7 @@
 		"is_ranged": true,
 		"mesh_path": "",
 		"sprite_path": "",
-		"attack_sfx_path": "res://Assets/Music/Combat/Weapons/Dagger Melee.mp3"
+		"attack_sfx_path": "res://Assets/Music/Fx/Combat/Weapons/Dagger Melee.mp3"
 	},
 	"juggernaut": {
 		"id": "juggernaut",
@@ -111,7 +111,7 @@
 		"is_ranged": false,
 		"mesh_path": "res://Assets/Characters/Enemies/Juggernaut/Juggernaut Idle 1.glb",
 		"sprite_path": "res://Assets/Characters/Enemies/Juggernaut/juggernaut_sprite.png",
-		"attack_sfx_path": "res://Assets/Music/Combat/Weapons/Elite Ranged.mp3"
+		"attack_sfx_path": "res://Assets/Music/Fx/Combat/Weapons/Orc Ranged.mp3"
 	},
 	"assassin": {
 		"id": "assassin",
@@ -130,6 +130,6 @@
 		"is_ranged": false,
 		"mesh_path": "res://Assets/Characters/Enemies/Assassin/ranged goblin idle 1.glb",
 		"sprite_path": "",
-		"attack_sfx_path": "res://Assets/Music/Combat/Weapons/Dagger Melee.mp3"
+		"attack_sfx_path": "res://Assets/Music/Fx/Combat/Weapons/Dagger Melee.mp3"
 	}
 }
