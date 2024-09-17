@@ -1,30 +1,28 @@
-extends Control
+extends Node
+
+signal game_start
 
 @onready
-var background = $Background
+var background = $OldUI/Background
 @onready
-var buttons = $Buttons
+var buttons = $OldUI/Buttons
 @onready
-var resetConfirmation = $ResetConfirmation
+var resetConfirmation = $OldUI/ResetConfirmation
 @onready
-var debugUnlockButton = $Buttons/DebugUnlock
+var debugUnlockButton = $OldUI/Buttons/DebugUnlock
 
 var playableCharacters = Utils.read_json("res://Assets/json/players.json")
 var enemySet = Utils.read_json("res://Assets/json/enemies.json")
 
-func _ready():
+func start():
 	MusicPlayer.play_music(MusicPlayer.SOUNDS.CAFE_MUSIC)
 	
 	if GameStatus.debugMode:
 		debugUnlockButton.show()
 		
-	background.show()
-	buttons.show()
 	resetConfirmation.hide()
 	GameStatus.load_save()
 	update_unlocks()
-	GameStatus.set_playable_characters(playableCharacters)
-	GameStatus.set_enemy_set(enemySet)
 	GameStatus.party = {}
 	CombatMapStatus.isStartCombat = true
 
@@ -52,17 +50,19 @@ func verify_unlock(stage: String, previousStage: String, tempSave: Dictionary) -
 			
 	return tempSave
 
-func _on_start_button_pressed():
-	MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
-	get_tree().change_scene_to_file("res://Scenes/UI/characterSelect.tscn")
+func verify_click(event: InputEvent) -> bool:
+	if event is InputEventMouseButton:
+		return verify_game_status() and event is InputEventMouseButton and event.button_index == 1 and event.pressed
+	else:
+		return false
 
-func _on_credits_button_pressed():
-	MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
-	get_tree().change_scene_to_file("res://Scenes/UI/credits.tscn")
+func verify_game_status() -> bool:
+	return GameStatus.get_current_game_state() == GameStatus.GameState.MAIN_MENU
 
-func _on_exit_button_pressed():
-	MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
-	get_tree().quit()
+func _on_credits_button_pressed(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
+	if verify_click(event):
+		MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
+		get_tree().change_scene_to_file("res://Scenes/UI/credits.tscn")
 
 # TODO Test
 func _on_reset_button_pressed() -> void:
@@ -98,3 +98,48 @@ func _on_debug_unlock_pressed() -> void:
 		tempSave["unlocks"]["stages"][stage] = true
 		
 	GameStatus.save_game(tempSave)
+
+@onready
+var startGameHighlight = $Buttons/StartGame/Highlighted
+func _on_start_button_pressed(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
+	if verify_click(event):
+		MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
+		game_start.emit()
+
+func _on_start_game_mouse_entered() -> void:
+	if verify_game_status():
+		startGameHighlight.show()
+
+func _on_start_game_mouse_exited() -> void:
+	if verify_game_status():
+		startGameHighlight.hide()
+
+@onready
+var exitGameHighlight = $Buttons/ExitGame/Highlighted
+func _on_exit_button_pressed(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
+	if verify_click(event):
+		MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
+		get_tree().quit()
+
+func _on_exit_game_mouse_entered() -> void:
+	if verify_game_status():
+		exitGameHighlight.show()
+
+func _on_exit_game_mouse_exited() -> void:
+	if verify_game_status():
+		exitGameHighlight.hide()
+
+@onready
+var resetDataHighlight = $Buttons/ResetData/Highlighted
+# TODO Test
+#func _on_reset_button_pressed(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
+	#if verify_click(event):
+		#resetConfirmation.show()
+#
+#func _on_reset_data_mouse_entered() -> void:
+	#if verify_game_status():
+		#resetDataHighlight.show()
+#
+#func _on_reset_data_mouse_exited() -> void:
+	#if verify_game_status():
+		#resetDataHighlight.hide()

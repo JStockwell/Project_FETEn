@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://cav33b0uhfo1k"
+path.s3tc="res://.godot/imported/3d_ludo_adventure_roll_into_a_vibrant_world_0.jpg-d83947cca6cecec99e760a8778704753.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "2e594d18c5fd352584929a0062fc9c8b"
+}
+
+[deps]
+
+source_file="res://Assets/Props/parchis/3d_ludo_adventure_roll_into_a_vibrant_world_0.jpg"
+dest_files=["res://.godot/imported/3d_ludo_adventure_roll_into_a_vibrant_world_0.jpg-d83947cca6cecec99e760a8778704753.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

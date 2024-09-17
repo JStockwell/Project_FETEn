@@ -3,8 +3,11 @@ extends Node
 var save: Dictionary
 var settings: Dictionary
 
-enum GameState {CAMPAIGN = 0, MAP = 1, COMBAT = 2}
-var currentGameState = GameState.CAMPAIGN
+enum GameState {
+	CAMPAIGN = 0, MAP = 1, COMBAT = 2, 
+	MAIN_MENU = 3, CHAR_SELECT = 4, PRE_MAIN_MENU = 5
+}
+var currentGameState = GameState.MAIN_MENU
 
 var mapScale: float = 0.05
 var stageCount: int = 4
@@ -17,6 +20,10 @@ var party: Dictionary
 var autorunCombat: bool = true
 var debugMode: bool = true
 var testMode: bool = false
+
+func reset_game() -> void:
+	party = {}
+	currentGameState = GameState.PRE_MAIN_MENU
 
 func get_playable_characters() -> Dictionary:
 	return playableCharacters
