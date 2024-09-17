@@ -44,6 +44,11 @@ var hasMoved: bool
 
 var mapTileMatrix: Array = []
 
+func reset_game():
+	currentStatus = Status.START
+	initiative = []
+	mapTileMatrix = []
+
 func set_map_stage(myMapStage: String) -> void:
 	stageId = myMapStage
 	

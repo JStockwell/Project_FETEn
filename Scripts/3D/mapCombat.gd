@@ -807,9 +807,10 @@ func _on_main_menu_button_pressed():
 			ui.show()
 			globalButtons.show()
 
+signal reset_game
 func _on_rmm_yes_pressed():
 	GameStatus.set_current_game_state(GameStatus.GameState.CAMPAIGN)
-	get_tree().change_scene_to_file("res://Scenes/UI/mainMenu.tscn")
+	reset_game.emit()
 
 # Buttons updater
 func update_buttons() -> void:

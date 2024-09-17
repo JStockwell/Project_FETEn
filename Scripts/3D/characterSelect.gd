@@ -35,18 +35,10 @@ var pointer: int = 3
 
 var tempParty: Array = []
 
-func _ready():
-	ui.hide()
-
 func setup() -> void:
-	GameStatus.set_playable_characters(Utils.read_json("res://Assets/json/players.json"))
-	GameStatus.set_enemy_set(Utils.read_json("res://Assets/json/enemies.json"))
-	var skillSet = Utils.read_json("res://Assets/json/skills.json")
-	var i = 0
-	for skillName in skillSet:
-		GameStatus.skillSet[skillName] = Factory.Skill.create(skillSet[skillName])
-		GameStatus.skillSet[skillName].set_skill_menu_id(i)
-		i += 1
+	cameraPivot.rotation_degrees.y = 15
+	pointer = 3
+	tempParty = []
 	ui.show()
 	modify_status()
 

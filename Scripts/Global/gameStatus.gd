@@ -21,6 +21,10 @@ var autorunCombat: bool = true
 var debugMode: bool = true
 var testMode: bool = false
 
+func reset_game() -> void:
+	party = {}
+	currentGameState = GameState.PRE_MAIN_MENU
+
 func get_playable_characters() -> Dictionary:
 	return playableCharacters
 

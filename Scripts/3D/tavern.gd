@@ -36,8 +36,14 @@ var cam3 = $MainMenuCameras/Camera3/Camera3D
 @onready
 var cam3Pivot = $MainMenuCameras/Camera3
 
+@onready
+var mainMenuCam = $MainMenu/CamPivot/Camera3D
+
 var mainMenuCams: Array
 var camPointer: int = 0
+
+@onready
+var preMainMenuLabel = $PreMainMenuLabel
 
 @onready
 var debugLabel = $Debug/Label
@@ -46,13 +52,40 @@ var cm
 var com
 
 func _ready():
+	GameStatus.set_playable_characters(Utils.read_json("res://Assets/json/players.json"))
+	GameStatus.set_enemy_set(Utils.read_json("res://Assets/json/enemies.json"))
+	
+	var skillSet = Utils.read_json("res://Assets/json/skills.json")
+	var i = 0
+	for skillName in skillSet:
+		GameStatus.skillSet[skillName] = Factory.Skill.create(skillSet[skillName])
+		GameStatus.skillSet[skillName].set_skill_menu_id(i)
+		i += 1
+		
+	reset_game()
+
+func reset_game():
 	MusicPlayer.play_music(MusicPlayer.SOUNDS.MAIN_MENU, -20)
+	
+	GameStatus.reset_game()
+	CombatMapStatus.reset_game()
+	
+	preMainMenuLabel.show()
 	mainMenuCams = [cam1, cam2, cam3]
-	GameStatus.set_current_game_state(GameStatus.GameState.MAIN_MENU)
+	
 	choose_main_menu_camera()
+	
+	if not cm == null:
+		cm.queue_free()
+
+func _input(event):
+	if event is InputEventMouseButton and event.button_index == 1:
+		if GameStatus.get_current_game_state() == GameStatus.GameState.PRE_MAIN_MENU:
+			_on_main_menu_start()
+			mainMenuCam.current = true
 
 func _process(delta):
-	if GameStatus.currentGameState == GameStatus.GameState.MAIN_MENU:
+	if GameStatus.currentGameState == GameStatus.GameState.PRE_MAIN_MENU:
 		match camPointer:
 			0:
 				cam1Pivot.rotation_degrees.y += 0.2
@@ -83,18 +116,15 @@ func reset_cameras() -> void:
 func choose_main_menu_camera() -> void:
 	camPointer = randi_range(0, mainMenuCams.size() - 1)
 	reset_cameras()
-	
-func _input(event):
-	if event is InputEventMouseButton and event.button_index == 1:
-		if GameStatus.get_current_game_state() == GameStatus.GameState.MAIN_MENU:
-			_on_main_menu_start()
-			print("hello")
-	
+
 func _on_main_menu_start() -> void:
+	preMainMenuLabel.hide()
 	GameStatus.set_current_game_state(GameStatus.GameState.MAIN_MENU)
+	mainMenu.start()
 
 func _on_game_start() -> void:
 	GameStatus.set_current_game_state(GameStatus.GameState.CHAR_SELECT)
+	characterSelect.setup()
 	characterSelect.camera.current = true
 	characterSelect.ui.show()
 
@@ -128,6 +158,7 @@ func start_map_combat():
 	cm.connect("start_turn_signal", Callable(self, "_on_start_turn"))
 	cm.connect("combat_start", Callable(self, "_on_combat_start"))
 	cm.connect("change_camera", Callable(self, "_on_change_camera"))
+	cm.connect("reset_game", Callable(self, "reset_game"))
 	
 
 func _on_start_turn() -> void:
@@ -158,11 +189,9 @@ func _on_change_camera() -> void:
 func _on_campaign_map_start_map_combat() -> void:
 	start_map_combat()
 
-
 func _on_debug_h_scroll_bar_value_changed(value: float) -> void:
 	mapCam.position.z = value
 	debugLabel.text = str(value)
-
 
 func _on_debug_progress_bar_value_changed(value: float) -> void:
 	mapBase.position.y = value

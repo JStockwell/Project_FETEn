@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://bcci46nrubo1d"]
+[gd_scene load_steps=68 format=3 uid="uid://bcci46nrubo1d"]
 
 [ext_resource type="Script" path="res://Scripts/3D/tavern.gd" id="1_8d0is"]
 [ext_resource type="Shader" uid="uid://pf57hfl4dtyi" path="res://Assets/Materials/blackLeather.tres" id="2_i0cfn"]
@@ -42,6 +42,7 @@
 [ext_resource type="PackedScene" uid="uid://cnn2abhm08xg3" path="res://Assets/Props/donut/donut_tutorial.glb" id="36_gwhhe"]
 [ext_resource type="Texture2D" uid="uid://d4e65abnd2q6x" path="res://Assets/Props/donut/donut_tutorial_donut.png" id="37_f3qbu"]
 [ext_resource type="PackedScene" uid="uid://ct1jdv1dd3bkl" path="res://Scenes/UI/mainMenu.tscn" id="41_if0lf"]
+[ext_resource type="FontFile" uid="uid://71blta5wlshk" path="res://Assets/Fonts/Minecraft/Minecraft.ttf" id="43_admbl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jrryn"]
 render_priority = 0
@@ -139,6 +140,10 @@ height = 0.03
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xcwar"]
 albedo_texture = ExtResource("37_f3qbu")
 
+[sub_resource type="LabelSettings" id="LabelSettings_mo36t"]
+font = ExtResource("43_admbl")
+font_size = 64
+
 [node name="NewTavern" type="Node3D"]
 script = ExtResource("1_8d0is")
 
@@ -210,9 +215,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000911713, 0)
 
 [node name="SpotLight3D" parent="Base/CharSelect/CharacterSelect/Characters/Lystra" index="0"]
 light_color = Color(1, 0.956863, 0.898039, 1)
-
-[node name="UI" parent="Base/CharSelect/CharacterSelect" index="3"]
-visible = false
 
 [node name="Room" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.469, -0.811989, 1.109)
@@ -520,7 +522,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.31305, 2.13629, -3.00532)
 transform = Transform3D(-0.4, 0, 6.03983e-08, 0, 0.4, 0, -6.03983e-08, 0, -0.4, -4.42918, 1.08687, -1.17245)
 
 [node name="CardReader" parent="Room/KnickKnacks" instance=ExtResource("31_lsxw0")]
-transform = Transform3D(0.773486, 0, 1.84437, 0, 2, 0, -1.84437, 0, 0.773486, -3.96493, 0.826314, -1.07314)
+transform = Transform3D(0.773486, 0, 1.84437, 0, 2, 0, -1.84437, 0, 0.773486, -3.9117, 0.826314, -1.00287)
 
 [node name="EspressoMachine" parent="Room/KnickKnacks" instance=ExtResource("31_xvbut")]
 transform = Transform3D(-4.37114e-09, 0, -0.1, 0, 0.1, 0, 0.1, 0, -4.37114e-09, -4.11736, 0.790166, -2.8702)
@@ -589,6 +591,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.2)
 current = true
 
 [node name="MainMenu" parent="." instance=ExtResource("41_if0lf")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -3.03113, 0.0160297, -0.0167039)
 
 [node name="Debug" type="Control" parent="."]
 layout_mode = 3
@@ -619,6 +622,16 @@ offset_bottom = -3.0
 transform = Transform3D(1.19, 0, 0, 0, -5.20166e-08, 1.19, 0, -1.19, -5.20166e-08, -1.12518, -0.811989, 1.76092)
 visible = false
 texture = ExtResource("3_q33pg")
+
+[node name="PreMainMenuLabel" type="Label" parent="."]
+offset_left = 1304.0
+offset_top = 960.0
+offset_right = 1856.0
+offset_bottom = 1024.0
+text = "Click to continue..."
+label_settings = SubResource("LabelSettings_mo36t")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="start_map_combat" from="Base/Campaign/CampaignMap" to="." method="_on_campaign_map_start_map_combat"]
 [connection signal="start_campaign" from="Base/CharSelect/CharacterSelect" to="." method="_on_campaign_start"]
