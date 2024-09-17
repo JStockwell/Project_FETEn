@@ -472,12 +472,12 @@
 		},
 		{
 			"coords": "(6,3)",
-			"height": 0,
+			"height": -1,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
+			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/Dirt.glb"
 		},
 		{
 			"coords": "(7,3)",
@@ -583,9 +583,9 @@
 			"height": -1,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": true,
+			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
+			"meshPath": "res://Assets/MapTiles/SteepInclineLeft.glb"
 		},
 		{
 			"coords": "(5,4)",
@@ -706,12 +706,12 @@
 		},
 		{
 			"coords": "(4,5)",
-			"height": 0,
+			"height": -1,
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/SteepInclineLeft.glb"
 		},
 		{
 			"coords": "(5,5)",
@@ -841,12 +841,12 @@
 		},
 		{
 			"coords": "(5,6)",
-			"height": 0,
+			"height": -1,
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/SteepInclineLeft.glb"
 		},
 		{
 			"coords": "(6,6)",
@@ -931,12 +931,12 @@
 		},
 		{
 			"coords": "(1,7)",
-			"height": 0,
+			"height": -1,
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/SteepIncline.glb"
 		},
 		{
 			"coords": "(2,7)",
@@ -945,11 +945,11 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Grass_v2.glb"
+			"meshPath": "res://Assets/MapTiles/Stone_v2.glb"
 		},
 		{
 			"coords": "(3,7)",
-			"height": 0,
+			"height": 1,
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": true,
@@ -958,7 +958,7 @@
 		},
 		{
 			"coords": "(4,7)",
-			"height": 0,
+			"height": 1,
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": true,
@@ -967,12 +967,12 @@
 		},
 		{
 			"coords": "(5,7)",
-			"height": 0,
+			"height": -1,
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/SteepInclineLeft.glb"
 		},
 		{
 			"coords": "(6,7)",
@@ -1048,12 +1048,12 @@
 		},
 		{
 			"coords": "(0,8)",
-			"height": 0,
+			"height": -1,
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/SteepIncline.glb"
 		},
 		{
 			"coords": "(1,8)",
@@ -1066,16 +1066,16 @@
 		},
 		{
 			"coords": "(2,8)",
-			"height": 0,
+			"height": -1,
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/SteepIncline.glb"
 		},
 		{
 			"coords": "(3,8)",
-			"height": 0,
+			"height": 1,
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": true,
@@ -1084,7 +1084,7 @@
 		},
 		{
 			"coords": "(4,8)",
-			"height": -1,
+			"height": 0,
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": true,
@@ -1201,12 +1201,12 @@
 		},
 		{
 			"coords": "(3,9)",
-			"height": 0,
+			"height": -1,
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Void1.glb"
+			"meshPath": "res://Assets/MapTiles/SteepIncline.glb"
 		},
 		{
 			"coords": "(4,9)",

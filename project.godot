@@ -44,6 +44,10 @@ naming/scene_name_casing=0
 
 enabled=PackedStringArray("res://addons/copilot/plugin.cfg", "res://addons/gdUnit4/plugin.cfg", "res://addons/rigidbody_auto_scaler/plugin.cfg")
 
+[filesystem]
+
+import/blender/enabled=false
+
 [gdunit4]
 
 settings/test/test_lookup_folder="Tests"

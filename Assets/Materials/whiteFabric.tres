@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=14 format=3 uid="uid://cdnfuc00veff"]
+[gd_resource type="VisualShader" load_steps=14 format=3 uid="uid://hayi13515jix"]
 
 [ext_resource type="Texture2D" uid="uid://c7kcq8ssxsavh" path="res://Assets/Textures/Fabric019/Fabric019_2K-JPG_Color.jpg" id="1_hny7j"]
 [ext_resource type="Texture2D" uid="uid://it14gr7e12fj" path="res://Assets/Textures/Fabric019/Fabric019_2K-JPG_Opacity.jpg" id="2_3keph"]

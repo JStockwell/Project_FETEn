@@ -390,7 +390,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 1,
-			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
+			"meshPath": "res://Assets/MapTiles/WallBrokenCrystalNorth.glb"
 		},
 		{
 			"coords": "(6,2)",
@@ -399,7 +399,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 1,
-			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
+			"meshPath": "res://Assets/MapTiles/WallBrokenCrystalNorth.glb"
 		},
 		{
 			"coords": "(7,2)",
@@ -426,7 +426,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 1,
-			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
+			"meshPath": "res://Assets/MapTiles/WallBrokenCrystalNorth.glb"
 		},
 		{
 			"coords": "(10,2)",
@@ -435,7 +435,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 1,
-			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
+			"meshPath": "res://Assets/MapTiles/WallBrokenCrystalNorth.glb"
 		},
 		{
 			"coords": "(11,2)",
@@ -534,7 +534,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 1,
-			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneBrick_v2.glb"
 		},
 		{
 			"coords": "(6,3)",
@@ -552,7 +552,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 1,
-			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneBrick_v2.glb"
 		},
 		{
 			"coords": "(8,3)",
@@ -570,7 +570,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Water1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneBrick_v2.glb"
 		},
 		{
 			"coords": "(10,3)",
@@ -678,7 +678,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 1,
-			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
+			"meshPath": "res://Assets/MapTiles/SimpleBench.glb"
 		},
 		{
 			"coords": "(6,4)",
@@ -696,7 +696,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 1,
-			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
+			"meshPath": "res://Assets/MapTiles/SimpleBench.glb"
 		},
 		{
 			"coords": "(8,4)",
@@ -714,7 +714,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Water1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneBrick_v2.glb"
 		},
 		{
 			"coords": "(10,4)",
@@ -750,7 +750,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 1,
-			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
+			"meshPath": "res://Assets/MapTiles/WallBrokenCrystalEast.glb"
 		},
 		{
 			"coords": "(14,4)",
@@ -858,7 +858,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Water1.glb"
+			"meshPath": "res://Assets/MapTiles/BrokenBench.glb"
 		},
 		{
 			"coords": "(10,5)",
@@ -876,7 +876,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Obstacle1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneBrick_v2.glb"
 		},
 		{
 			"coords": "(12,5)",
@@ -894,7 +894,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 1,
-			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
+			"meshPath": "res://Assets/MapTiles/WallBrokenCrystalEast.glb"
 		},
 		{
 			"coords": "(14,5)",
@@ -1020,7 +1020,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Obstacle1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneBrick_v2.glb"
 		},
 		{
 			"coords": "(12,6)",
@@ -1038,7 +1038,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 1,
-			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
+			"meshPath": "res://Assets/MapTiles/WallBrokenCrystalEast.glb"
 		},
 		{
 			"coords": "(14,6)",
@@ -1119,7 +1119,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Water1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneBrick_v2.glb"
 		},
 		{
 			"coords": "(7,7)",
@@ -1164,7 +1164,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Obstacle1.glb"
+			"meshPath": "res://Assets/MapTiles/Altar.glb"
 		},
 		{
 			"coords": "(12,7)",
@@ -1182,7 +1182,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 1,
-			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
+			"meshPath": "res://Assets/MapTiles/WallBrokenCrystalEast.glb"
 		},
 		{
 			"coords": "(14,7)",
@@ -1263,7 +1263,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Water1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneBrick_v2.glb"
 		},
 		{
 			"coords": "(7,8)",
@@ -1281,7 +1281,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 1,
-			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneBrick_v2.glb"
 		},
 		{
 			"coords": "(9,8)",
@@ -1326,7 +1326,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 1,
-			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
+			"meshPath": "res://Assets/MapTiles/WallBrokenCrystalEast.glb"
 		},
 		{
 			"coords": "(14,8)",
@@ -1407,7 +1407,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Water1.glb"
+			"meshPath": "res://Assets/MapTiles/BrokenBench.glb"
 		},
 		{
 			"coords": "(7,9)",
@@ -1425,7 +1425,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 1,
-			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
+			"meshPath": "res://Assets/MapTiles/SimpleBench.glb"
 		},
 		{
 			"coords": "(9,9)",
@@ -1542,7 +1542,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 1,
-			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
+			"meshPath": "res://Assets/MapTiles/WallBrokenCrystalSouth.glb"
 		},
 		{
 			"coords": "(6,10)",
@@ -1551,7 +1551,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 1,
-			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
+			"meshPath": "res://Assets/MapTiles/WallBrokenCrystalSouth.glb"
 		},
 		{
 			"coords": "(7,10)",
@@ -1578,7 +1578,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 1,
-			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
+			"meshPath": "res://Assets/MapTiles/WallBrokenCrystalSouth.glb"
 		},
 		{
 			"coords": "(10,10)",
@@ -1587,7 +1587,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 1,
-			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
+			"meshPath": "res://Assets/MapTiles/WallBrokenCrystalSouth.glb"
 		},
 		{
 			"coords": "(11,10)",

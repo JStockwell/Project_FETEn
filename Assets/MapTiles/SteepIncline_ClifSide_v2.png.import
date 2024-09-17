@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://k5f1om6qcfm6"
+path.s3tc="res://.godot/imported/SteepIncline_ClifSide_v2.png-dfee2092f751057d7fa1206dafdf2bae.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "3df0e10e5fcce795cf7728cf55d96a46"
+}
+
+[deps]
+
+source_file="res://Assets/MapTiles/SteepIncline_ClifSide_v2.png"
+dest_files=["res://.godot/imported/SteepIncline_ClifSide_v2.png-dfee2092f751057d7fa1206dafdf2bae.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

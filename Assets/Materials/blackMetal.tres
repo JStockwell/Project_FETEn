@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=14 format=3 uid="uid://d5k560iih4h2"]
+[gd_resource type="VisualShader" load_steps=14 format=3 uid="uid://tbtlrw7q62lu"]
 
 [ext_resource type="Texture2D" uid="uid://dn8mpaeavhski" path="res://Assets/Textures/Metal029/Metal029_2K-JPG_Roughness.jpg" id="1_6xv7p"]
 [ext_resource type="Texture2D" uid="uid://c13eat4lvcpjk" path="res://Assets/Textures/Metal029/Metal029_2K-JPG_NormalDX.jpg" id="2_mv83v"]
