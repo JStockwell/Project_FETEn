@@ -74,36 +74,36 @@
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": true,
+			"isTraversable": false,
 			"obstacleType": 0,
 			"meshPath": "res://Assets/MapTiles/Stone_v2.glb"
 		},
 		{
 			"coords": "(5,0)",
-			"height": 0,
+			"height": 1,
 			"idt": false,
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone_v2.glb"
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
 			"coords": "(6,0)",
-			"height": 0,
+			"height": 1,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": true,
-			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone_v2.glb"
+			"isTraversable": false,
+			"obstacleType": 2,
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
 			"coords": "(7,0)",
-			"height": 0,
+			"height": 1,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": true,
-			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Stone_v2.glb"
+			"isTraversable": false,
+			"obstacleType": 2,
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
 			"coords": "(8,0)",
@@ -193,7 +193,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Obstacle1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
 			"coords": "(7,1)",
@@ -202,7 +202,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Obstacle1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
 			"coords": "(8,1)",
@@ -292,7 +292,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Obstacle1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
 			"coords": "(7,2)",
@@ -364,7 +364,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 1,
-			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
+			"meshPath": "res://Assets/MapTiles/Rock2TileStone.glb"
 		},
 		{
 			"coords": "(4,3)",
@@ -373,7 +373,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 1,
-			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
+			"meshPath": "res://Assets/MapTiles/Stone_v2.glb"
 		},
 		{
 			"coords": "(5,3)",
@@ -391,7 +391,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Obstacle1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneWall_top.glb"
 		},
 		{
 			"coords": "(7,3)",
@@ -670,7 +670,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 1,
-			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
+			"meshPath": "res://Assets/MapTiles/RockHigh2Stone.glb"
 		},
 		{
 			"coords": "(5,6)",

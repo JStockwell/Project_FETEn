@@ -342,7 +342,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 1,
-			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
+			"meshPath": "res://Assets/MapTiles/HighRock2.glb"
 		},
 		{
 			"coords": "(6,2)",
@@ -819,7 +819,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 1,
-			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
+			"meshPath": "res://Assets/MapTiles/HighRock.glb"
 		},
 		{
 			"coords": "(3,6)",
@@ -1035,7 +1035,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 1,
-			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
+			"meshPath": "res://Assets/MapTiles/TreeStump1.glb"
 		},
 		{
 			"coords": "(13,7)",
@@ -1296,7 +1296,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Obstacle1.glb"
+			"meshPath": "res://Assets/MapTiles/BushBig1.glb"
 		},
 		{
 			"coords": "(0,10)",
@@ -1323,7 +1323,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 1,
-			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
+			"meshPath": "res://Assets/MapTiles/FlatRock.glb"
 		},
 		{
 			"coords": "(3,10)",
@@ -1386,7 +1386,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 1,
-			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
+			"meshPath": "res://Assets/MapTiles/ThickRock.glb"
 		},
 		{
 			"coords": "(10,10)",
@@ -1404,7 +1404,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Obstacle1.glb"
+			"meshPath": "res://Assets/MapTiles/BushBig2.glb"
 		},
 		{
 			"coords": "(12,10)",
@@ -1548,7 +1548,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Obstacle1.glb"
+			"meshPath": "res://Assets/MapTiles/TreeMedium2.glb"
 		},
 		{
 			"coords": "(0,12)",
@@ -1647,7 +1647,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Obstacle1.glb"
+			"meshPath": "res://Assets/MapTiles/BushBig4.glb"
 		},
 		{
 			"coords": "(11,12)",
