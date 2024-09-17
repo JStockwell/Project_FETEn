@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bg2mrgou4mi8x"
+path="res://.godot/imported/Edgar - Mend Flesh.mp3-36f038733edad61ad7fe99c848cfb0ab.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/Fx/Combat/Skills/Edgar - Mend Flesh.mp3"
+dest_files=["res://.godot/imported/Edgar - Mend Flesh.mp3-36f038733edad61ad7fe99c848cfb0ab.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

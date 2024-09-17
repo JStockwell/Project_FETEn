@@ -65,7 +65,7 @@ func _ready():
 	reset_game()
 
 func reset_game():
-	MusicPlayer.play_music(MusicPlayer.SOUNDS.MAIN_MENU, -20)
+	MusicPlayer.play_music(MusicPlayer.SOUNDS.CAFE, -20)
 	
 	GameStatus.reset_game()
 	CombatMapStatus.reset_game()

@@ -20,7 +20,7 @@
 		"is_ranged": false,
 		"mesh_path": "res://Assets/Characters/Party/Edgar/Edgar.glb",
 		"sprite_path": "res://Assets/Characters/Party/Edgar/Edgar_sprite.png",
-		"attack_sfx_path": "res://Assets/Music/Combat/Weapons/Dagger Melee.mp3"
+		"attack_sfx_path": "res://Assets/Music/Fx/Combat/Weapons/Dagger Melee.mp3"
 	},
 	"dick": {
 		"id": "dick",
@@ -39,7 +39,7 @@
 		"is_ranged": false,
 		"mesh_path": "res://Assets/Characters/Party/Dick/dick idle 1.glb",
 		"sprite_path": "res://Assets/Characters/Party/Dick/dick_sprite.png",
-		"attack_sfx_path": "res://Assets/Music/Combat/Weapons/Sword Melee.mp3"
+		"attack_sfx_path": "res://Assets/Music/Fx/Combat/Weapons/Sword Melee.mp3"
 	},
 	"samael": {
 		"id": "samael",
@@ -61,7 +61,7 @@
 		"is_ranged": false,
 		"mesh_path": "res://Assets/Characters/Party/Samael/Samael idle 1.glb",
 		"sprite_path": "res://Assets/Characters/Party/Samael/samael_sprite.png",
-		"attack_sfx_path": "res://Assets/Music/Combat/Weapons/Sword Melee.mp3"
+		"attack_sfx_path": "res://Assets/Music/Fx/Combat/Weapons/Sword Melee.mp3"
 	},
 	"adran": {
 		"id": "adran",
@@ -83,7 +83,7 @@
 		"is_ranged": false,
 		"mesh_path": "res://Assets/Characters/Party/Adran/Adran idle 1.glb",
 		"sprite_path": "",
-		"attack_sfx_path": "res://Assets/Music/Combat/Weapons/Dagger Melee.mp3"
+		"attack_sfx_path": "res://Assets/Music/Fx/Combat/Weapons/Dagger Melee.mp3"
 	},
 	"salvador": {
 		"id": "salvador",
@@ -104,7 +104,7 @@
 		"is_ranged": true,
 		"mesh_path": "res://Assets/Characters/Party/Salvador/Salva Idle 1.glb",
 		"sprite_path": "res://Assets/Characters/Party/Salvador/salvador_sprite.png",
-		"attack_sfx_path": "res://Assets/Music/Combat/Weapons/Salvador Ranged.mp3"
+		"attack_sfx_path": "res://Assets/Music/Fx/Combat/Weapons/Salvador Ranged.mp3"
 	},
 	"lystra": {
 		"id": "lystra",
@@ -127,6 +127,6 @@
 		"is_ranged": false,
 		"mesh_path": "res://Assets/Characters/Party/Lystra/Lystra idle 1.glb",
 		"sprite_path": "res://Assets/Characters/Party/Lystra/lystra_sprite.png",
-		"attack_sfx_path": "res://Assets/Music/Combat/Weapons/Dagger Melee.mp3"
+		"attack_sfx_path": "res://Assets/Music/Fx/Combat/Weapons/Dagger Melee.mp3"
 	}
 }

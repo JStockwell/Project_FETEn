@@ -105,10 +105,12 @@ func modify_party_ui() -> void:
 		i += 1
 
 func _on_left_button_pressed() -> void:
+	MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
 	pointer -= 1
 	modify_status()
 
 func _on_right_button_pressed() -> void:
+	MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
 	pointer += 1
 	modify_status()
 
@@ -119,6 +121,7 @@ func _on_sel_char_button_pressed() -> void:
 	elif CHARACTERS[pointer] in tempParty:
 		tempParty.remove_at(tempParty.find(CHARACTERS[pointer]))
 		
+	MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
 	modify_status()
 
 
@@ -129,4 +132,5 @@ func _on_start_button_pressed() -> void:
 		result.append(character)
 		
 	GameStatus.set_party(result)
+	MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
 	start_campaign.emit()

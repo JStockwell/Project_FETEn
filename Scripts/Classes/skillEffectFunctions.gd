@@ -38,7 +38,7 @@ static func hello_world():
 
 static func nero_nero(Combat, attacker, defender, spa: int, imd: int):
 	var dmg = Combat.calc_damage(attacker.get_stats()["attack"], defender.get_stats()["defense"], spa, imd)
-	MusicPlayer.play_fx("res://Assets/Music/Combat/Skills/Edgar - Nero Nero.mp3")
+	MusicPlayer.play_fx(MusicPlayer.SOUNDS.EDGAR__NERO_NERO)
 	await Combat.deal_damage(dmg, 1, defender)
 
 static func predict_nero_nero(attacker, spa) -> String:
@@ -58,15 +58,15 @@ static func boost(Combat, rolls, attacker, defender, accMod: int, critMod: int, 
 		var dmg = Combat.calc_damage(attacker.get_attack(), defender.get_defense(), spa, imd)
 		
 		if level == 1:
-			MusicPlayer.play_fx("res://Assets/Music/Combat/Skills/AzSam - Boost lv1.mp3")
+			MusicPlayer.play_fx(MusicPlayer.SOUNDS.AZ_SAM__BOOST_LV1)
 		else:
-			MusicPlayer.play_fx("res://Assets/Music/Combat/Skills/AzSam - Boost lv2.mp3")
+			MusicPlayer.play_fx(MusicPlayer.SOUNDS.AZ_SAM__BOOST_LV2)
 		await Combat.deal_damage(dmg, crit, defender)
 	else:
 		if level == 1:
-			MusicPlayer.play_fx("res://Assets/Music/Combat/Miss/Phys miss.mp3")
+			MusicPlayer.play_fx(MusicPlayer.SOUNDS.PHYS_MISS)
 		else:
-			MusicPlayer.play_fx("res://Assets/Music/Combat/Miss/Magic miss.mp3")
+			MusicPlayer.play_fx(MusicPlayer.SOUNDS.MAGIC_MISS)
 		await Combat.update_damage_text("MISS")
 		
 static func predict_boost(attacker, defender, accMod, critMod, spa, imd, level) -> String:
@@ -93,13 +93,13 @@ static func anchoring_strike(Combat, rolls, attacker, defender, accMod: int, cri
 		var crit = Combat.calc_crit(attacker.get_dexterity(), attacker.get_agility(), defender.get_agility(), critMod, rolls[3])
 		var dmg = Combat.calc_damage(attacker.get_attack(), defender.get_defense(), spa, imd)
 		
-		MusicPlayer.play_fx("res://Assets/Music/Combat/Skills/Adran - Anchoring Strike.mp3")
+		MusicPlayer.play_fx(MusicPlayer.SOUNDS.ADRAN__ANCHORING_STRIKE)
 		await Combat.deal_damage(dmg, crit, defender)
 		if defender.get_current_health() > 0:
 			defender.set_is_rooted(true)
 		
 	else:
-		MusicPlayer.play_fx("res://Assets/Music/Combat/Miss/Magic miss.mp3")
+		MusicPlayer.play_fx(MusicPlayer.SOUNDS.MAGIC_MISS)
 		await Combat.update_damage_text("MISS")
 		
 
@@ -107,16 +107,16 @@ static func run_out_of_combat(sefName:String, caster, target, spa: int = 0) -> A
 	var result: Array
 	match sefName:
 		"mend_flesh":
-			MusicPlayer.play_fx("res://Assets/Music/Combat/Skills/Edgar - Mend Flesh.mp3")
+			MusicPlayer.play_fx(MusicPlayer.SOUNDS.EDGAR__MEND_FLESH)
 			result = healing_spell(caster, target, spa)
 		"bestow_life":
-			MusicPlayer.play_fx("res://Assets/Music/Combat/Skills/Lystra - Bestow Life.mp3")
+			MusicPlayer.play_fx(MusicPlayer.SOUNDS.LYSTRA__BESTOW_LIFE)
 			result = healing_spell(caster, target, spa)
 		"creators_touch":
-			MusicPlayer.play_fx("res://Assets/Music/Combat/Skills/Lystra - Creators Touch.mp3")
+			MusicPlayer.play_fx(MusicPlayer.SOUNDS.LYSTRA__CREATORS_TOUCH)
 			result = healing_spell(caster, target, spa)
 		"action_surge":
-			MusicPlayer.play_fx("res://Assets/Music/Combat/Skills/Salvador - Action Surge.mp3")
+			MusicPlayer.play_fx(MusicPlayer.SOUNDS.SALVADOR__ACTION_SURGE)
 			result = action_surge()
 	return result
 

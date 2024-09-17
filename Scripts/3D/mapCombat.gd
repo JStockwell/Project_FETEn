@@ -79,10 +79,10 @@ func _ready():
 	skillMenu.connect("id_pressed", Callable(self, "_on_skill_selected"))
 	
 	if CombatMapStatus.get_map_stage() == "stage_1" or CombatMapStatus.get_map_stage() == "stage_2":
-		MusicPlayer.play_music("res://Assets/Music/CombatMap/Stages/Stage_12.mp3")
+		MusicPlayer.play_music(MusicPlayer.SOUNDS.STAGE_1_2)
 		
 	if CombatMapStatus.get_map_stage() == "stage_3" or CombatMapStatus.get_map_stage() == "stage_4":
-		MusicPlayer.play_music("res://Assets/Music/CombatMap/Stages/Stage_34.mp3")
+		MusicPlayer.play_music(MusicPlayer.SOUNDS.STAGE_3_4)
 
 	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
 	CombatMapStatus.set_camera_position(mapDict["camera_position"])
@@ -502,6 +502,7 @@ func tile_handler(mapTile) -> void:
 				mapTile.selected.show()
 
 func _on_start_button_pressed():
+	MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__START_BATTLE)
 	CombatMapStatus.set_status(CombatMapStatus.Status.BATTLE)
 	battleStart = true
 	ui.show()
@@ -511,6 +512,7 @@ func _on_start_button_pressed():
 
 # Player movement
 func _on_move_button_pressed():
+	MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
 	move_character()
 
 
@@ -551,6 +553,7 @@ func validate_move(character, mapTile, dijkstra) -> bool:
 signal combat_start
 
 func _on_phys_attack_button_pressed():
+	MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
 	setup_com_pred()
 
 
@@ -713,6 +716,8 @@ func check_behind_cover(defender, tileArray: Array) -> int:
 
 	return mapMod
 
+func _on_skill_menu_pressed() -> void:
+		MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
 
 func _on_skill_selected(id: int):
 	skillIssue.hide()
@@ -734,7 +739,7 @@ func _on_skill_selected(id: int):
 	else:
 		skillResult = SkillMenu.validate_skill(skillName, CombatMapStatus.get_selected_character(), CombatMapStatus.get_selected_enemy())
 
-	#TODO revisar -> skillMenu
+	MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
 	if skillResult != "":
 		skillIssue.text = skillResult
 		skillIssue.show()
@@ -744,7 +749,6 @@ func _on_skill_selected(id: int):
 			cast_skill(skillName, skillResult)
 		else:
 			setup_com_pred(skillName, skillResult)
-
 
 func cast_skill(skillName: String, skillResult):
 	var caster = CombatMapStatus.get_selected_character() #got it out of the 3 since the character using the skill is always required
@@ -790,10 +794,12 @@ func _on_particle_end(particleScn):
 	disableUI = false
 
 func _on_end_turn_button_pressed():
+	MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
 	CombatMapStatus.advance_ini()
 	await start_turn()
 
 func _on_main_menu_button_pressed():
+	MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
 	if not CombatMapStatus.selectedCharacter.is_enemy():
 		isPaused = !isPaused
 
@@ -809,6 +815,7 @@ func _on_main_menu_button_pressed():
 
 signal reset_game
 func _on_rmm_yes_pressed():
+	MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
 	GameStatus.set_current_game_state(GameStatus.GameState.CAMPAIGN)
 	reset_game.emit()
 
@@ -964,7 +971,7 @@ func victory():
 	globalButtons.hide()
 	returnMainMenu.hide()
 	CombatMapStatus.set_status(CombatMapStatus.Status.END)
-	MusicPlayer.play_music("res://Assets/Music/CombatMap/EndCombat/Victory.mp3")
+	MusicPlayer.play_music(MusicPlayer.SOUNDS.END_COMBAT__VICTORY)
 	endScreenLabel.text = "VICTORY"
 	save_victory()
 	endScreen.show()
@@ -985,12 +992,13 @@ func defeat():
 	globalButtons.hide()
 	returnMainMenu.hide()
 	CombatMapStatus.set_status(CombatMapStatus.Status.END)
-	MusicPlayer.play_music("res://Assets/Music/CombatMap/EndCombat/Defeat.mp3")
+	MusicPlayer.play_music(MusicPlayer.SOUNDS.END_COMBAT__DEFEAT)
 	endScreenLabel.text = "DEFEAT"
 	endScreen.show()
 
 signal change_camera
 func _on_change_camera_pressed():
+	MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
 	change_camera.emit()
 
 func wait(seconds: float) -> void:

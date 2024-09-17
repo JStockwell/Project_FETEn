@@ -507,6 +507,7 @@ vertical_alignment = 1
 [connection signal="pressed" from="UI/Actions/MoveButton" to="." method="_on_move_button_pressed"]
 [connection signal="pressed" from="UI/Actions/PhysAttackButton" to="." method="_on_phys_attack_button_pressed"]
 [connection signal="pressed" from="UI/Actions/EndTurnButton" to="." method="_on_end_turn_button_pressed"]
+[connection signal="pressed" from="UI/Actions/Skills/SkillMenu" to="." method="_on_skill_menu_pressed"]
 [connection signal="pressed" from="DebugUI/DebugAllySkillButton" to="." method="_on_debug_ally_skill_button_pressed"]
 [connection signal="pressed" from="StartUI/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="GlobalButtons/ChangeCamera" to="." method="_on_change_camera_pressed"]

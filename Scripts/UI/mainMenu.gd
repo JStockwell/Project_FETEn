@@ -15,7 +15,7 @@ var playableCharacters = Utils.read_json("res://Assets/json/players.json")
 var enemySet = Utils.read_json("res://Assets/json/enemies.json")
 
 func start():
-	MusicPlayer.play_music("res://Assets/Music/Menu/Cafe and music v1.mp3")
+	MusicPlayer.play_music(MusicPlayer.SOUNDS.CAFE_MUSIC)
 	
 	if GameStatus.debugMode:
 		debugUnlockButton.show()
@@ -61,20 +61,31 @@ func verify_game_status() -> bool:
 
 func _on_credits_button_pressed(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
 	if verify_click(event):
+		MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
 		get_tree().change_scene_to_file("res://Scenes/UI/credits.tscn")
 
 # TODO Test
+func _on_reset_button_pressed() -> void:
+	MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
+	background.hide()
+	buttons.hide()
+	resetConfirmation.show()
+
+# TODO Test
 func _on_reset_save_no_pressed() -> void:
-	if verify_game_status():
-		resetConfirmation.hide()
+	MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
+	background.show()
+	buttons.show()
+	resetConfirmation.hide()
 
 # TODO Test
 func _on_reset_save_yes_pressed() -> void:
-	if verify_game_status():
-		GameStatus.save_game(Utils.read_json("res://Assets/json/save_reference.json"))
-		background.show()
-		buttons.show()
-		resetConfirmation.hide()
+	MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
+	GameStatus.save_game(Utils.read_json("res://Assets/json/save_reference.json"))
+	background.show()
+	buttons.show()
+	resetConfirmation.hide()
+
 
 func _on_debug_unlock_pressed() -> void:
 	var tempSave = GameStatus.get_save()
@@ -92,6 +103,7 @@ func _on_debug_unlock_pressed() -> void:
 var startGameHighlight = $Buttons/StartGame/Highlighted
 func _on_start_button_pressed(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
 	if verify_click(event):
+		MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
 		game_start.emit()
 
 func _on_start_game_mouse_entered() -> void:
@@ -106,6 +118,7 @@ func _on_start_game_mouse_exited() -> void:
 var exitGameHighlight = $Buttons/ExitGame/Highlighted
 func _on_exit_button_pressed(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
 	if verify_click(event):
+		MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
 		get_tree().quit()
 
 func _on_exit_game_mouse_entered() -> void:
