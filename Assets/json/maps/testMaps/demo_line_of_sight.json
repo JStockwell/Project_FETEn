@@ -1,6 +1,7 @@
 {
 	"name": "demo_los",
 	"size": "(4,3)",
+	"camera_position": 0.8,
 	"ally_spawn": [
 		"(3,0)",
 		"(3,1)",

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cqf1kwcw8m20w"
+path="res://.godot/imported/Cafe and music v1.mp3-0e42435ed60b07d64de7ab9f79fdb5a0.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/Songs/Menu/Cafe and music v1.mp3"
+dest_files=["res://.godot/imported/Cafe and music v1.mp3-0e42435ed60b07d64de7ab9f79fdb5a0.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

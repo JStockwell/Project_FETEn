@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bobxag2ay2cp1"
+path="res://.godot/imported/Goblin Ranged.mp3-01c9d2ee5e64010ac07a0b312a9fdf26.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/Fx/Combat/Weapons/Goblin Ranged.mp3"
+dest_files=["res://.godot/imported/Goblin Ranged.mp3-01c9d2ee5e64010ac07a0b312a9fdf26.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -77,8 +77,15 @@ var comPred # Combat Prediction
 func _ready():
 	battleStart = false
 	skillMenu.connect("id_pressed", Callable(self, "_on_skill_selected"))
+	
+	if CombatMapStatus.get_map_stage() == "stage_1" or CombatMapStatus.get_map_stage() == "stage_2":
+		MusicPlayer.play_music(MusicPlayer.SOUNDS.STAGE_1_2)
+		
+	if CombatMapStatus.get_map_stage() == "stage_3" or CombatMapStatus.get_map_stage() == "stage_4":
+		MusicPlayer.play_music(MusicPlayer.SOUNDS.STAGE_3_4)
 
 	mapDict = Utils.read_json(CombatMapStatus.get_map_path())
+	CombatMapStatus.set_camera_position(mapDict["camera_position"])
 	initial_map_load()
 	calculate_combat_initiative()
 	ui.hide()
@@ -115,13 +122,13 @@ func initial_map_load() -> void:
 	var positions = mapDict["ally_spawn"]
 	for character in GameStatus.get_party():
 		var partyMember = Factory.Character.create(GameStatus.get_party_member(character), false)
-		partyMember.scale *= Vector3(0.5, 0.5, 0.5)
+		partyMember.scale *= Vector3(0.58, 0.58, 0.58) * GameStatus.mapScale
 		partyMember.position = CombatMapStatus.get_map_spawn()
 
 		# TODO Possibly choose spawn, not sure if we're going to do this
 		var spawnPos = choose_random_spawn(positions)
 
-		partyMember.position += Vector3(spawnPos.x, 0.5 + (mapHeightModifier * get_tile_from_coords(spawnPos).get_height()), spawnPos.y)
+		partyMember.position += Vector3(spawnPos.x, 0.5 + (mapHeightModifier * get_tile_from_coords(spawnPos).get_height()), spawnPos.y) * GameStatus.mapScale
 		partyMember.set_map_coords(spawnPos)
 		partyMember.set_map_id(i)
 		characterGroup.add_child(partyMember)
@@ -135,10 +142,10 @@ func initial_map_load() -> void:
 	var j = 0
 	for character in mapDict["enemy_spawn"]:
 		var enemy = Factory.Character.create(GameStatus.get_enemy_from_enemy_set(character[0]), true)
-		enemy.scale *= Vector3(0.5, 0.5, 0.5)
+		enemy.scale *= Vector3(0.58, 0.58, 0.58) * GameStatus.mapScale
 		enemy.position = CombatMapStatus.get_map_spawn()
 		var spawnPos = Utils.string_to_vector2(character[1])
-		enemy.position += Vector3(spawnPos.x, 0.5 + (mapHeightModifier * get_tile_from_coords(spawnPos).get_height()), spawnPos.y)
+		enemy.position += Vector3(spawnPos.x, 0.5 + (mapHeightModifier * get_tile_from_coords(spawnPos).get_height()), spawnPos.y) * GameStatus.mapScale
 		enemy.set_map_coords(spawnPos)
 		enemy.set_map_id(i + j)
 		enemyGroup.add_child(enemy)
@@ -495,6 +502,7 @@ func tile_handler(mapTile) -> void:
 				mapTile.selected.show()
 
 func _on_start_button_pressed():
+	MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__START_BATTLE)
 	CombatMapStatus.set_status(CombatMapStatus.Status.BATTLE)
 	battleStart = true
 	ui.show()
@@ -504,6 +512,7 @@ func _on_start_button_pressed():
 
 # Player movement
 func _on_move_button_pressed():
+	MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
 	move_character()
 
 
@@ -514,7 +523,7 @@ func move_character() -> void:
 		var old_char_coords = CombatMapStatus.get_selected_character().get_map_coords()
 
 		selChar.position = CombatMapStatus.get_map_spawn()
-		selChar.position += Vector3(tile_coords.x, 0.5 + (mapHeightModifier * CombatMapStatus.get_selected_map_tile().get_height()), tile_coords.y)
+		selChar.position += Vector3(tile_coords.x, 0.5 + (mapHeightModifier * CombatMapStatus.get_selected_map_tile().get_height()), tile_coords.y) * GameStatus.mapScale
 		selChar.set_map_coords(Vector2(tile_coords.x, tile_coords.y))
 
 		# Deselect mapTile
@@ -544,6 +553,7 @@ func validate_move(character, mapTile, dijkstra) -> bool:
 signal combat_start
 
 func _on_phys_attack_button_pressed():
+	MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
 	setup_com_pred()
 
 
@@ -706,6 +716,8 @@ func check_behind_cover(defender, tileArray: Array) -> int:
 
 	return mapMod
 
+func _on_skill_menu_pressed() -> void:
+		MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
 
 func _on_skill_selected(id: int):
 	skillIssue.hide()
@@ -727,7 +739,7 @@ func _on_skill_selected(id: int):
 	else:
 		skillResult = SkillMenu.validate_skill(skillName, CombatMapStatus.get_selected_character(), CombatMapStatus.get_selected_enemy())
 
-	#TODO revisar -> skillMenu
+	MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
 	if skillResult != "":
 		skillIssue.text = skillResult
 		skillIssue.show()
@@ -737,7 +749,6 @@ func _on_skill_selected(id: int):
 			cast_skill(skillName, skillResult)
 		else:
 			setup_com_pred(skillName, skillResult)
-
 
 func cast_skill(skillName: String, skillResult):
 	var caster = CombatMapStatus.get_selected_character() #got it out of the 3 since the character using the skill is always required
@@ -783,10 +794,12 @@ func _on_particle_end(particleScn):
 	disableUI = false
 
 func _on_end_turn_button_pressed():
+	MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
 	CombatMapStatus.advance_ini()
 	await start_turn()
 
 func _on_main_menu_button_pressed():
+	MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
 	if not CombatMapStatus.selectedCharacter.is_enemy():
 		isPaused = !isPaused
 
@@ -800,9 +813,11 @@ func _on_main_menu_button_pressed():
 			ui.show()
 			globalButtons.show()
 
+signal reset_game
 func _on_rmm_yes_pressed():
+	MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
 	GameStatus.set_current_game_state(GameStatus.GameState.CAMPAIGN)
-	get_tree().change_scene_to_file("res://Scenes/UI/mainMenu.tscn")
+	reset_game.emit()
 
 # Buttons updater
 func update_buttons() -> void:
@@ -956,10 +971,12 @@ func victory():
 	globalButtons.hide()
 	returnMainMenu.hide()
 	CombatMapStatus.set_status(CombatMapStatus.Status.END)
+	MusicPlayer.play_music(MusicPlayer.SOUNDS.END_COMBAT__VICTORY)
 	endScreenLabel.text = "VICTORY"
 	save_victory()
 	endScreen.show()
 	
+# TODO Test
 func save_victory():
 	var tempSave = GameStatus.save.duplicate()
 	if not CombatMapStatus.get_map_id() == "":
@@ -975,11 +992,13 @@ func defeat():
 	globalButtons.hide()
 	returnMainMenu.hide()
 	CombatMapStatus.set_status(CombatMapStatus.Status.END)
+	MusicPlayer.play_music(MusicPlayer.SOUNDS.END_COMBAT__DEFEAT)
 	endScreenLabel.text = "DEFEAT"
 	endScreen.show()
 
 signal change_camera
 func _on_change_camera_pressed():
+	MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
 	change_camera.emit()
 
 func wait(seconds: float) -> void:

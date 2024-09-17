@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bbn3ojtr6b64b"
+path="res://.godot/imported/Magic miss.mp3-5bb59cb438789b95670d58d583aeb595.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/Fx/Combat/Miss/Magic miss.mp3"
+dest_files=["res://.godot/imported/Magic miss.mp3-5bb59cb438789b95670d58d583aeb595.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

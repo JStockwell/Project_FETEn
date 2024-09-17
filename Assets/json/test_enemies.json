@@ -15,7 +15,8 @@
 		"skills": [], 
 		"is_ranged": false,
 		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb",
-		"sprite_path": ""
+		"sprite_path": "",
+		"attack_sfx_path": null
 	},
 	"defender_skillTests": {
 		"id": "defender_skillTests",
@@ -36,5 +37,6 @@
 		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb",
 		"sprite_path": "",
 		"is_enemy": true,
+		"attack_sfx_path": null
 	}
 }

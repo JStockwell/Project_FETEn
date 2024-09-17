@@ -3,9 +3,13 @@ extends Node
 var save: Dictionary
 var settings: Dictionary
 
-enum GameState {CAMPAIGN = 0, MAP = 1, COMBAT = 2}
-var currentGameState = GameState.CAMPAIGN
+enum GameState {
+	CAMPAIGN = 0, MAP = 1, COMBAT = 2, 
+	MAIN_MENU = 3, CHAR_SELECT = 4, PRE_MAIN_MENU = 5
+}
+var currentGameState = GameState.MAIN_MENU
 
+var mapScale: float = 0.05
 var stageCount: int = 4
 var playableCharacters: Dictionary
 var enemySet: Dictionary
@@ -14,8 +18,12 @@ var skillSet: Dictionary
 var party: Dictionary
 
 var autorunCombat: bool = true
-var debugMode: bool = false
+var debugMode: bool = true
 var testMode: bool = false
+
+func reset_game() -> void:
+	party = {}
+	currentGameState = GameState.PRE_MAIN_MENU
 
 func get_playable_characters() -> Dictionary:
 	return playableCharacters
@@ -65,24 +73,42 @@ func get_settings() -> Dictionary:
 	return settings
 	
 func load_settings() -> void:
-	settings = Utils.read_json("user://settings.cfg")
+	if not FileAccess.file_exists("user://settings.json"):
+		save_settings(Utils.read_json("res://Assets/json/settings_reference.json"))
+		return
+		
+	var file = FileAccess.open("user://settings.json", FileAccess.READ)
+	var data = JSON.parse_string(file.get_as_text())
 	
-func save_settings(tempSettings) -> void:
-	Utils.write_json(tempSettings, "user://settings.cfg")
+	settings = data
+	file.close()
+	
+func save_settings(tempSettings: Dictionary) -> void:
+	var file = FileAccess.open("user://settings.json", FileAccess.WRITE)
+	
+	file.store_line(JSON.stringify(tempSettings, "\t"))
+	file.close()
+	
+	settings = tempSettings
 	
 func get_save() -> Dictionary:
 	return save.duplicate()
 	
 func load_save() -> void:
-	var tempSave: Dictionary
-	tempSave = Utils.read_json("user://saves/save.json")
+	if not FileAccess.file_exists("user://save.json"):
+		save_game(Utils.read_json("res://Assets/json/save_reference.json"))
+		return
 		
-	if tempSave.keys().size() == 0:
-		save = Utils.read_json("res://Assets/json/save_reference.json")
-		
-	else:
-		save = tempSave
+	var file = FileAccess.open("user://save.json", FileAccess.READ)
+	var data = JSON.parse_string(file.get_as_text())
+	
+	save = data
+	file.close()
 
 func save_game(tempSave: Dictionary) -> void:
-	Utils.write_json(tempSave, "user://saves/save.json")
+	var file = FileAccess.open("user://save.json", FileAccess.WRITE)
 	
+	file.store_line(JSON.stringify(tempSave, "\t"))
+	file.close()
+	
+	save = tempSave

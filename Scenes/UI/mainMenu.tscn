@@ -1,7 +1,16 @@
-[gd_scene load_steps=14 format=3 uid="uid://ct1jdv1dd3bkl"]
+[gd_scene load_steps=18 format=3 uid="uid://ct1jdv1dd3bkl"]
 
 [ext_resource type="Script" path="res://Scripts/UI/mainMenu.gd" id="1_w2wt5"]
 [ext_resource type="FontFile" uid="uid://p6npb2mlppqj" path="res://Assets/Fonts/Micrhoma/Michroma-Regular.ttf" id="2_hxlxy"]
+[ext_resource type="PackedScene" uid="uid://duk61b6ewm5y7" path="res://Assets/Props/main_menu/mainMenu.glb" id="3_ms7pq"]
+[ext_resource type="Material" uid="uid://bqt1m2sx7tqk3" path="res://Assets/Materials/campaignMapDisabled.tres" id="4_tkcys"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3ptfe"]
+size = Vector3(0.137661, 0.0106583, 0.0345325)
+
+[sub_resource type="BoxMesh" id="BoxMesh_am4ln"]
+material = ExtResource("4_tkcys")
+size = Vector3(0.138, 0.011, 0.035)
 
 [sub_resource type="LabelSettings" id="LabelSettings_giric"]
 font = ExtResource("2_hxlxy")
@@ -51,23 +60,107 @@ corner_radius_bottom_left = 6
 [sub_resource type="LabelSettings" id="LabelSettings_p7arb"]
 font_size = 32
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Node3D"]
+script = ExtResource("1_w2wt5")
+
+[node name="Buttons" type="Node3D" parent="."]
+
+[node name="StartGame" type="StaticBody3D" parent="Buttons"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0442651, 0, -0.104972)
+
+[node name="Options" type="CollisionShape3D" parent="Buttons/StartGame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000349045, 0, 0.00017643)
+shape = SubResource("BoxShape3D_3ptfe")
+
+[node name="Highlighted" type="MeshInstance3D" parent="Buttons/StartGame"]
+visible = false
+mesh = SubResource("BoxMesh_am4ln")
+
+[node name="Options" type="StaticBody3D" parent="Buttons"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0442651, 0, -0.0607065)
+
+[node name="Options" type="CollisionShape3D" parent="Buttons/Options"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000349045, 0, 0.00017643)
+shape = SubResource("BoxShape3D_3ptfe")
+
+[node name="Highlighted" type="MeshInstance3D" parent="Buttons/Options"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.00088162)
+visible = false
+mesh = SubResource("BoxMesh_am4ln")
+
+[node name="Achievements" type="StaticBody3D" parent="Buttons"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0442651, 0, -0.0205517)
+
+[node name="Options" type="CollisionShape3D" parent="Buttons/Achievements"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000349045, 0, 0.00017643)
+shape = SubResource("BoxShape3D_3ptfe")
+
+[node name="Highlighted" type="MeshInstance3D" parent="Buttons/Achievements"]
+visible = false
+mesh = SubResource("BoxMesh_am4ln")
+
+[node name="Glossary" type="StaticBody3D" parent="Buttons"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0442651, 0, 0.0201059)
+
+[node name="Options" type="CollisionShape3D" parent="Buttons/Glossary"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000349045, 0, 0.00017643)
+shape = SubResource("BoxShape3D_3ptfe")
+
+[node name="Highlighted" type="MeshInstance3D" parent="Buttons/Glossary"]
+visible = false
+mesh = SubResource("BoxMesh_am4ln")
+
+[node name="ResetData" type="StaticBody3D" parent="Buttons"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0442651, 0, 0.0902996)
+
+[node name="Options" type="CollisionShape3D" parent="Buttons/ResetData"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000349045, 0, 0.00017643)
+shape = SubResource("BoxShape3D_3ptfe")
+
+[node name="Highlighted" type="MeshInstance3D" parent="Buttons/ResetData"]
+visible = false
+mesh = SubResource("BoxMesh_am4ln")
+
+[node name="Credits" type="StaticBody3D" parent="Buttons"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0442651, 0, 0.130923)
+
+[node name="Options" type="CollisionShape3D" parent="Buttons/Credits"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000349045, 0, 0.00017643)
+shape = SubResource("BoxShape3D_3ptfe")
+
+[node name="Highlighted" type="MeshInstance3D" parent="Buttons/Credits"]
+visible = false
+mesh = SubResource("BoxMesh_am4ln")
+
+[node name="ExitGame" type="StaticBody3D" parent="Buttons"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0442651, 0, 0.171901)
+
+[node name="Options" type="CollisionShape3D" parent="Buttons/ExitGame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000349045, 0, 0.00017643)
+shape = SubResource("BoxShape3D_3ptfe")
+
+[node name="Highlighted" type="MeshInstance3D" parent="Buttons/ExitGame"]
+visible = false
+mesh = SubResource("BoxMesh_am4ln")
+
+[node name="OldUI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -1920.0
+offset_bottom = -1080.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_w2wt5")
-metadata/_edit_lock_ = true
 
-[node name="Background" type="Control" parent="."]
+[node name="Background" type="Control" parent="OldUI"]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 metadata/_edit_lock_ = true
 
-[node name="Title" type="Label" parent="Background"]
+[node name="Title" type="Label" parent="OldUI/Background"]
 layout_mode = 0
 offset_left = 56.0
 offset_right = 1736.0
@@ -76,7 +169,7 @@ text = "P r o j e c t"
 label_settings = SubResource("LabelSettings_giric")
 metadata/_edit_lock_ = true
 
-[node name="Subtitle" type="Label" parent="Background"]
+[node name="Subtitle" type="Label" parent="OldUI/Background"]
 layout_mode = 0
 offset_left = 64.0
 offset_top = 320.0
@@ -89,19 +182,20 @@ E n g a g e"
 label_settings = SubResource("LabelSettings_a6qk6")
 metadata/_edit_lock_ = true
 
-[node name="Buttons" type="Control" parent="."]
+[node name="Buttons" type="Control" parent="OldUI"]
+visible = false
 anchors_preset = 0
 offset_right = 8.0
 offset_bottom = 8.0
 
-[node name="StartButton" type="Button" parent="Buttons"]
+[node name="StartButton" type="Button" parent="OldUI/Buttons"]
 layout_mode = 0
 offset_left = 1248.0
 offset_top = 576.0
 offset_right = 1568.0
 offset_bottom = 640.0
 
-[node name="Label" type="Label" parent="Buttons/StartButton"]
+[node name="Label" type="Label" parent="OldUI/Buttons/StartButton"]
 layout_mode = 0
 offset_right = 320.0
 offset_bottom = 64.0
@@ -110,14 +204,14 @@ label_settings = SubResource("LabelSettings_267l2")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CreditsButton" type="Button" parent="Buttons"]
+[node name="CreditsButton" type="Button" parent="OldUI/Buttons"]
 layout_mode = 0
 offset_left = 1296.0
 offset_top = 704.0
 offset_right = 1520.0
 offset_bottom = 768.0
 
-[node name="Label" type="Label" parent="Buttons/CreditsButton"]
+[node name="Label" type="Label" parent="OldUI/Buttons/CreditsButton"]
 layout_mode = 0
 offset_right = 224.0
 offset_bottom = 64.0
@@ -126,14 +220,14 @@ label_settings = SubResource("LabelSettings_1uwka")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ExitButton" type="Button" parent="Buttons"]
+[node name="ExitButton" type="Button" parent="OldUI/Buttons"]
 layout_mode = 0
 offset_left = 1296.0
 offset_top = 832.0
 offset_right = 1520.0
 offset_bottom = 896.0
 
-[node name="Label" type="Label" parent="Buttons/ExitButton"]
+[node name="Label" type="Label" parent="OldUI/Buttons/ExitButton"]
 layout_mode = 0
 offset_right = 224.0
 offset_bottom = 64.0
@@ -142,14 +236,14 @@ label_settings = SubResource("LabelSettings_y33rq")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ResetButton" type="Button" parent="Buttons"]
+[node name="ResetButton" type="Button" parent="OldUI/Buttons"]
 layout_mode = 0
 offset_left = 1720.0
 offset_top = 1008.0
 offset_right = 1904.0
 offset_bottom = 1064.0
 
-[node name="Label" type="Label" parent="Buttons/ResetButton"]
+[node name="Label" type="Label" parent="OldUI/Buttons/ResetButton"]
 layout_mode = 0
 offset_left = 8.0
 offset_right = 176.0
@@ -159,13 +253,22 @@ label_settings = SubResource("LabelSettings_nujq1")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ResetConfirmation" type="Control" parent="."]
+[node name="DebugUnlock" type="Button" parent="OldUI/Buttons"]
+visible = false
+layout_mode = 0
+offset_left = 1772.0
+offset_top = 944.0
+offset_right = 1860.0
+offset_bottom = 976.0
+text = "Unlock All"
+
+[node name="ResetConfirmation" type="Control" parent="OldUI"]
 visible = false
 anchors_preset = 0
 offset_right = 24.0
 offset_bottom = 24.0
 
-[node name="Label" type="Label" parent="ResetConfirmation"]
+[node name="Label" type="Label" parent="OldUI/ResetConfirmation"]
 layout_mode = 0
 offset_left = 576.0
 offset_top = 256.0
@@ -177,7 +280,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Yes" type="Button" parent="ResetConfirmation"]
+[node name="Yes" type="Button" parent="OldUI/ResetConfirmation"]
 layout_mode = 0
 offset_left = 912.0
 offset_top = 704.0
@@ -185,7 +288,7 @@ offset_right = 1008.0
 offset_bottom = 752.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_jilrb")
 
-[node name="Label" type="Label" parent="ResetConfirmation/Yes"]
+[node name="Label" type="Label" parent="OldUI/ResetConfirmation/Yes"]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 8.0
@@ -196,7 +299,7 @@ label_settings = SubResource("LabelSettings_egadb")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="No" type="Button" parent="ResetConfirmation"]
+[node name="No" type="Button" parent="OldUI/ResetConfirmation"]
 layout_mode = 0
 offset_left = 896.0
 offset_top = 608.0
@@ -204,7 +307,7 @@ offset_right = 1024.0
 offset_bottom = 672.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_3vnf0")
 
-[node name="Label" type="Label" parent="ResetConfirmation/No"]
+[node name="Label" type="Label" parent="OldUI/ResetConfirmation/No"]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 8.0
@@ -215,9 +318,29 @@ label_settings = SubResource("LabelSettings_p7arb")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="pressed" from="Buttons/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="Buttons/CreditsButton" to="." method="_on_credits_button_pressed"]
-[connection signal="pressed" from="Buttons/ExitButton" to="." method="_on_exit_button_pressed"]
-[connection signal="pressed" from="Buttons/ResetButton" to="." method="_on_reset_button_pressed"]
-[connection signal="pressed" from="ResetConfirmation/Yes" to="." method="_on_reset_save_yes_pressed"]
-[connection signal="pressed" from="ResetConfirmation/No" to="." method="_on_reset_save_no_pressed"]
+[node name="CamPivot" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CamPivot"]
+transform = Transform3D(1, 3.34075e-22, -3.82137e-15, -5.01112e-22, -1, 0, -3.82137e-15, 0, -1, 0, 0, -0.82)
+fov = 30.0
+
+[node name="mainMenu" parent="." instance=ExtResource("3_ms7pq")]
+transform = Transform3D(-0.5, 0, 4.37114e-08, 0, 0.5, 0, -4.37114e-08, 0, -0.5, 0, 0, 0)
+
+[connection signal="input_event" from="Buttons/StartGame" to="." method="_on_start_button_pressed"]
+[connection signal="mouse_entered" from="Buttons/StartGame" to="." method="_on_start_game_mouse_entered"]
+[connection signal="mouse_exited" from="Buttons/StartGame" to="." method="_on_start_game_mouse_exited"]
+[connection signal="input_event" from="Buttons/ResetData" to="." method="_on_reset_button_pressed"]
+[connection signal="mouse_entered" from="Buttons/ResetData" to="." method="_on_reset_data_mouse_entered"]
+[connection signal="mouse_exited" from="Buttons/ResetData" to="." method="_on_reset_data_mouse_exited"]
+[connection signal="input_event" from="Buttons/ExitGame" to="." method="_on_exit_button_pressed"]
+[connection signal="mouse_entered" from="Buttons/ExitGame" to="." method="_on_exit_game_mouse_entered"]
+[connection signal="mouse_exited" from="Buttons/ExitGame" to="." method="_on_exit_game_mouse_exited"]
+[connection signal="pressed" from="OldUI/Buttons/StartButton" to="." method="_on_start_button_pressed2"]
+[connection signal="pressed" from="OldUI/Buttons/CreditsButton" to="OldUI" method="_on_credits_button_pressed"]
+[connection signal="pressed" from="OldUI/Buttons/ExitButton" to="OldUI" method="_on_exit_button_pressed"]
+[connection signal="pressed" from="OldUI/Buttons/ResetButton" to="OldUI" method="_on_reset_button_pressed"]
+[connection signal="pressed" from="OldUI/Buttons/DebugUnlock" to="OldUI" method="_on_debug_unlock_pressed"]
+[connection signal="pressed" from="OldUI/ResetConfirmation/Yes" to="OldUI" method="_on_reset_save_yes_pressed"]
+[connection signal="pressed" from="OldUI/ResetConfirmation/No" to="OldUI" method="_on_reset_save_no_pressed"]

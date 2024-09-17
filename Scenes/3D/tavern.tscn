@@ -1,6 +1,5 @@
-[gd_scene load_steps=26 format=3 uid="uid://dbkqbo2tbjjv7"]
+[gd_scene load_steps=25 format=3 uid="uid://dbkqbo2tbjjv7"]
 
-[ext_resource type="Script" path="res://Scripts/3D/tavern.gd" id="1_vaq4h"]
 [ext_resource type="Texture2D" uid="uid://dotpb0qnmfnfa" path="res://Assets/Textures/DiamondPlate008C/DiamondPlate008C_4K-JPG_Color.jpg" id="2_61uf5"]
 [ext_resource type="Texture2D" uid="uid://b2mx5we4e0mi3" path="res://Assets/Textures/DiamondPlate008C/DiamondPlate008C_4K-JPG_AmbientOcclusion.jpg" id="3_bltli"]
 [ext_resource type="Texture2D" uid="uid://dfsw56xmlsmdh" path="res://Assets/Textures/DiamondPlate008C/DiamondPlate008C_4K-JPG_Displacement.jpg" id="4_jy4xj"]
@@ -57,15 +56,14 @@ size = Vector3(49, 42, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_587e4"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_35suf"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l2tap"]
 albedo_color = Color(0.0327609, 0.107014, 0.163518, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_0dcg8"]
-material = SubResource("StandardMaterial3D_35suf")
+material = SubResource("StandardMaterial3D_l2tap")
 size = Vector3(16, 0.35, 16)
 
 [node name="Tavern" type="Node3D"]
-script = ExtResource("1_vaq4h")
 
 [node name="Room" type="Node3D" parent="."]
 
@@ -150,6 +148,10 @@ light_indirect_energy = 7.5
 omni_range = 35.0
 omni_attenuation = 0.75
 
+[node name="Sun" type="DirectionalLight3D" parent="Room"]
+transform = Transform3D(0.707107, 0.353553, -0.612373, 0, 0.866026, 0.5, 0.707107, -0.353553, 0.612373, 0, 5.02738, 0)
+visible = false
+
 [node name="Debug" type="Node3D" parent="."]
 
 [node name="ReferenceCube" type="MeshInstance3D" parent="Debug"]
@@ -161,47 +163,46 @@ mesh = SubResource("BoxMesh_587e4")
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5, 12.807, -5)
 visible = false
 
-[node name="World" type="Node3D" parent="."]
+[node name="Base" type="Node3D" parent="."]
 
-[node name="Sun" type="DirectionalLight3D" parent="World"]
-transform = Transform3D(0.707107, 0.353553, -0.612372, 0, 0.866025, 0.5, 0.707107, -0.353553, 0.612372, 0, 5.02738, 0)
-visible = false
+[node name="SpawnPoints" type="Node3D" parent="Base"]
 
-[node name="Tavern" type="Marker3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 14.9142, 0)
-
-[node name="Camera3D" type="Camera3D" parent="World/Tavern"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20.6)
-fov = 30.0
-
-[node name="TopDown" type="Marker3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 15, 0)
-
-[node name="Camera3D" type="Camera3D" parent="World/TopDown"]
-transform = Transform3D(-4.37114e-08, -1, -2.11758e-22, 1, -4.37114e-08, -3.55271e-15, 3.55271e-15, -2.11758e-22, 1, 0, -5.68434e-14, 11)
-projection = 1
-size = 11.0
-
-[node name="SpawnPoints" type="Node3D" parent="."]
-
-[node name="MapCenter" type="Marker3D" parent="SpawnPoints"]
+[node name="MapCenter" type="Marker3D" parent="Base/SpawnPoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.5303, 0)
 
-[node name="CombatCenter" type="Marker3D" parent="SpawnPoints"]
+[node name="CombatCenter" type="Marker3D" parent="Base/SpawnPoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 14.53, 0)
 
-[node name="MapBase" type="MeshInstance3D" parent="."]
+[node name="MapBase" type="MeshInstance3D" parent="Base"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.688, -0.5)
 mesh = SubResource("BoxMesh_0dcg8")
+skeleton = NodePath("../..")
 
-[node name="Campaign" type="Node3D" parent="."]
+[node name="Campaign" type="Node3D" parent="Base"]
 
-[node name="Camera3D" type="Camera3D" parent="Campaign"]
+[node name="Camera3D" type="Camera3D" parent="Base/Campaign"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10, 27.24, 0)
 current = true
 fov = 52.0
 
-[node name="CampaignMap" parent="Campaign" instance=ExtResource("16_a3u0y")]
+[node name="CampaignMap" parent="Base/Campaign" instance=ExtResource("16_a3u0y")]
 transform = Transform3D(-3.49691e-08, 0, 0.8, 0, 0.8, 0, -0.8, 0, -3.49691e-08, -33.973, 27.178, 0)
 
-[connection signal="start_map_combat" from="Campaign/CampaignMap" to="." method="_on_campaign_map_start_map_combat"]
+[node name="World" type="Node3D" parent="Base"]
+
+[node name="Tavern" type="Marker3D" parent="Base/World"]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 14.9142, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Base/World/Tavern"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20.6)
+fov = 30.0
+
+[node name="TopDown" type="Marker3D" parent="Base/World"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 15, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Base/World/TopDown"]
+transform = Transform3D(-4.37114e-08, -1, -2.11758e-22, 1, -4.37114e-08, -3.55271e-15, 3.55271e-15, -2.11758e-22, 1, 0, -5.68434e-14, 11)
+projection = 1
+size = 11.0
+
+[connection signal="start_map_combat" from="Base/Campaign/CampaignMap" to="." method="_on_campaign_map_start_map_combat"]

@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dl6udi1v6lirf"
+uid="uid://4dc8r225124w"
 path.s3tc="res://.godot/imported/SnowBridgeLeft_SnowBridgeLeft.png-a6614baa9d989b3aabda269d602eb55e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "55f3cdde56340625230b1a2b4460bb9f"
 }
 
 [deps]

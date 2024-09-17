@@ -14,6 +14,7 @@ static func create(args: Dictionary):
 		mySkill.description = args["description"]
 		mySkill.range = args["range"]
 		mySkill.cost = args["cost"]
+		mySkill.skill_sfx_path = args["skill_sfx_path"]
 	  
 		if "spa" in args.keys():
 			mySkill.spa = args["spa"]
@@ -32,6 +33,9 @@ static func create(args: Dictionary):
 
 		if "buff" in args.keys():
 			mySkill.isBuff = args["buff"]
+			
+		if "skill_sfx_path" in args.keys():
+			mySkill.skill_sfx_path = args["skill_sfx_path"]
 		
 		return mySkill
 			

@@ -1,6 +1,7 @@
 {
 	"name": "test_map_2vs2",
 	"size": "(5,5)",
+	"camera_position": 0.8,
 	"ally_spawn": [
 		"(0,0)",
 		"(0,1)"

@@ -15,7 +15,8 @@
 		"skills": ["shadow_ball", "nero_nero", "bestow_life"], 
 		"is_ranged": false,
 		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb",
-		"sprite_path": ""
+		"sprite_path": "",
+		"attack_sfx_path": null
 	},
 	"attacker2": {
 		"id": "attacker2",
@@ -33,7 +34,8 @@
 		"skills": [], 
 		"is_ranged": false,
 		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb",
-		"sprite_path": ""
+		"sprite_path": "",
+		"attack_sfx_path": null
 	},
 	"attacker_skillTests": {
 		"id": "attacker_skillTests",
@@ -54,6 +56,7 @@
 		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb",
 		"sprite_path": "",
 		"is_enemy": false,
+		"attack_sfx_path": null
 	},
 	"ally_skillTests": {
 		"id": "ally_skillTests",
@@ -74,5 +77,6 @@
 		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb",
 		"sprite_path": "",
 		"is_enemy": false,
+		"attack_sfx_path": null
 	}
 }
