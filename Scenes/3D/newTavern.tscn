@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://bcci46nrubo1d"]
+[gd_scene load_steps=67 format=3 uid="uid://bcci46nrubo1d"]
 
 [ext_resource type="Script" path="res://Scripts/3D/tavern.gd" id="1_8d0is"]
 [ext_resource type="Shader" uid="uid://pf57hfl4dtyi" path="res://Assets/Materials/blackLeather.tres" id="2_i0cfn"]
@@ -40,7 +40,7 @@
 [ext_resource type="PackedScene" uid="uid://df3davhbd58b8" path="res://Assets/Props/cinnamon_pastries/cinnamon_pastry.glb" id="34_vdus4"]
 [ext_resource type="PackedScene" uid="uid://ckoxts04hoec" path="res://Assets/Props/display_counter/display_counter.glb" id="35_7vdsr"]
 [ext_resource type="PackedScene" uid="uid://cnn2abhm08xg3" path="res://Assets/Props/donut/donut_tutorial.glb" id="36_gwhhe"]
-[ext_resource type="Texture2D" uid="uid://d4e65abnd2q6x" path="res://Assets/Props/donut/donut_tutorial_donut.png" id="37_f3qbu"]
+[ext_resource type="PackedScene" uid="uid://bienh7cj2hld5" path="res://Scenes/UI/credits.tscn" id="40_2vskd"]
 [ext_resource type="PackedScene" uid="uid://ct1jdv1dd3bkl" path="res://Scenes/UI/mainMenu.tscn" id="41_if0lf"]
 [ext_resource type="FontFile" uid="uid://71blta5wlshk" path="res://Assets/Fonts/Minecraft/Minecraft.ttf" id="43_admbl"]
 
@@ -136,9 +136,6 @@ height = 0.17
 top_radius = 0.046
 bottom_radius = 0.046
 height = 0.03
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xcwar"]
-albedo_texture = ExtResource("37_f3qbu")
 
 [sub_resource type="LabelSettings" id="LabelSettings_mo36t"]
 font = ExtResource("43_admbl")
@@ -562,11 +559,11 @@ transform = Transform3D(-4.37114e-06, 0, -100, 0, 100, 0, 100, 0, -4.37114e-06, 
 [node name="donut_tutorial" parent="Room/Furniture/Display" instance=ExtResource("36_gwhhe")]
 transform = Transform3D(0.01, 0, 1.38778e-16, 0, 0.01, 0, -1.38778e-16, 0, 0.01, -0.000424539, -0.000344311, 0.00393293)
 
-[node name="Export" parent="Room/Furniture/Display/donut_tutorial" index="0"]
-surface_material_override/1 = SubResource("StandardMaterial3D_xcwar")
-
 [node name="Display2" parent="Room/Furniture" instance=ExtResource("35_7vdsr")]
 transform = Transform3D(-4.37114e-06, 0, -100, 0, 100, 0, 100, 0, -4.37114e-06, -4.8355, 1.14801, -1.81969)
+
+[node name="Credits" parent="Room" instance=ExtResource("40_2vskd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.79457, 1.91464, 2.70891)
 
 [node name="MainMenuCameras" type="Node3D" parent="."]
 
