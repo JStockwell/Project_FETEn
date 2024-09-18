@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/Cafe and music v1.mp3-0e42435ed60b07d64de7ab9
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0
