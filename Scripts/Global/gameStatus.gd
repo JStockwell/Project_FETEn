@@ -7,6 +7,7 @@ enum GameState {
 	CAMPAIGN = 0, MAP = 1, COMBAT = 2, 
 	MAIN_MENU = 3, CHAR_SELECT = 4, PRE_MAIN_MENU = 5
 }
+
 var currentGameState = GameState.MAIN_MENU
 
 var mapScale: float = 0.05
@@ -18,7 +19,7 @@ var skillSet: Dictionary
 var party: Dictionary
 
 var autorunCombat: bool = true
-var debugMode: bool = true
+var debugMode: bool = false
 var testMode: bool = false
 
 func reset_game() -> void:

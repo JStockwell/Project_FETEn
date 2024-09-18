@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mtxr0tk0syj6"
-path.s3tc="res://.godot/imported/cinnamon_pastry_1.png-b5ace2c28a5d157d08f69566108a79bc.s3tc.ctex"
+uid="uid://d2era6inyo8cp"
+path.s3tc="res://.godot/imported/Character selection_reference square.png-4f63a7790ebb84eff510c4f27f5722ce.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "350e9fca8f445202aa66a3af3361ce29"
+}
 
 [deps]
 
-source_file="res://Assets/Props/cinnamon_pastries/cinnamon_pastry_1.png"
-dest_files=["res://.godot/imported/cinnamon_pastry_1.png-b5ace2c28a5d157d08f69566108a79bc.s3tc.ctex"]
+source_file="res://Assets/Props/dm_screen/Character selection_reference square.png"
+dest_files=["res://.godot/imported/Character selection_reference square.png-4f63a7790ebb84eff510c4f27f5722ce.s3tc.ctex"]
 
 [params]
 

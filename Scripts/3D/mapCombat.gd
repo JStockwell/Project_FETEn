@@ -411,8 +411,8 @@ func purge_the_dead():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if GameStatus.debugMode:
-		update_debug_label()
+	#if GameStatus.debugMode:
+		#update_debug_label()
 	
 	if battleStart:
 		update_buttons()

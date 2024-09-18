@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mtxr0tk0syj6"
-path.s3tc="res://.godot/imported/cinnamon_pastry_1.png-b5ace2c28a5d157d08f69566108a79bc.s3tc.ctex"
+uid="uid://cywmj7bh5l2s0"
+path.s3tc="res://.godot/imported/Character selection_Edgar sprite sheet.png-501d83fc99636d1fc66e5e643762de3c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "2220c3a1d0836431828dac195625b2c5"
+}
 
 [deps]
 
-source_file="res://Assets/Props/cinnamon_pastries/cinnamon_pastry_1.png"
-dest_files=["res://.godot/imported/cinnamon_pastry_1.png-b5ace2c28a5d157d08f69566108a79bc.s3tc.ctex"]
+source_file="res://Assets/Props/dm_screen/Character selection_Edgar sprite sheet.png"
+dest_files=["res://.godot/imported/Character selection_Edgar sprite sheet.png-501d83fc99636d1fc66e5e643762de3c.s3tc.ctex"]
 
 [params]
 
