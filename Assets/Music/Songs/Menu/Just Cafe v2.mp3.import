@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/Just Cafe v2.mp3-51bcef3ae20e933704d1b012514b
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

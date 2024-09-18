@@ -411,8 +411,8 @@ func purge_the_dead():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if GameStatus.debugMode:
-		update_debug_label()
+	#if GameStatus.debugMode:
+		#update_debug_label()
 	
 	if battleStart:
 		update_buttons()
@@ -817,6 +817,7 @@ signal reset_game
 func _on_rmm_yes_pressed():
 	MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
 	GameStatus.set_current_game_state(GameStatus.GameState.CAMPAIGN)
+	returnMainMenu.hide()
 	reset_game.emit()
 
 # Buttons updater

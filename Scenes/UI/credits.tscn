@@ -1,8 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://bienh7cj2hld5"]
+[gd_scene load_steps=16 format=3 uid="uid://bienh7cj2hld5"]
 
 [ext_resource type="Script" path="res://Scripts/UI/credits.gd" id="1_1g8rm"]
 [ext_resource type="Texture2D" uid="uid://cimufby83m7m8" path="res://Assets/Branding/black_full_logo.png" id="1_3d8wl"]
 [ext_resource type="FontFile" uid="uid://p6npb2mlppqj" path="res://Assets/Fonts/Micrhoma/Michroma-Regular.ttf" id="2_8onm8"]
+[ext_resource type="PackedScene" uid="uid://cbft80c151gti" path="res://Assets/Props/credits/Credits.glb" id="4_dtroa"]
+[ext_resource type="Shader" uid="uid://ffpmo7ra03ip" path="res://Assets/Materials/darkWood.res" id="5_3emad"]
+[ext_resource type="Texture2D" uid="uid://c70fv6e5bhh8" path="res://Assets/Props/credits/Credits.png" id="5_tulqu"]
+[ext_resource type="Texture2D" uid="uid://c445ul26jkehf" path="res://Assets/UI/exit_button.png" id="6_vjk3q"]
+[ext_resource type="Texture2D" uid="uid://bm1p7qtqqhcpo" path="res://Assets/UI/exit_button_pressed.png" id="7_wtyws"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2x6m1"]
 font = ExtResource("2_8onm8")
@@ -16,21 +21,41 @@ font_size = 32
 font = ExtResource("2_8onm8")
 font_size = 32
 
-[node name="Credits" type="Control"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mx1na"]
+frequency = 0.25
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xyk30"]
+noise = SubResource("FastNoiseLite_mx1na")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w41gl"]
+albedo_color = Color(0.144063, 0.144063, 0.144063, 1)
+normal_enabled = true
+normal_scale = 0.1
+normal_texture = SubResource("NoiseTexture2D_xyk30")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nq1c7"]
+render_priority = 0
+shader = ExtResource("5_3emad")
+
+[node name="Credits" type="Node3D"]
+script = ExtResource("1_1g8rm")
+
+[node name="OldCredits" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_1g8rm")
 
-[node name="BlackFullLogo" type="Sprite2D" parent="."]
+[node name="BlackFullLogo" type="Sprite2D" parent="OldCredits"]
 position = Vector2(960, 448)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_3d8wl")
 
-[node name="CreatedBy" type="Label" parent="."]
+[node name="CreatedBy" type="Label" parent="OldCredits"]
+visible = false
 layout_mode = 0
 offset_left = 720.0
 offset_top = 144.0
@@ -39,7 +64,8 @@ offset_bottom = 240.0
 text = "Created By"
 label_settings = SubResource("LabelSettings_2x6m1")
 
-[node name="JSM" type="Label" parent="."]
+[node name="JSM" type="Label" parent="OldCredits"]
+visible = false
 layout_mode = 0
 offset_left = 104.0
 offset_top = 704.0
@@ -51,7 +77,8 @@ label_settings = SubResource("LabelSettings_u3r20")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AGT" type="Label" parent="."]
+[node name="AGT" type="Label" parent="OldCredits"]
+visible = false
 layout_mode = 0
 offset_left = 744.0
 offset_top = 704.0
@@ -63,7 +90,8 @@ label_settings = SubResource("LabelSettings_u3r20")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PSV" type="Label" parent="."]
+[node name="PSV" type="Label" parent="OldCredits"]
+visible = false
 layout_mode = 0
 offset_left = 1256.0
 offset_top = 704.0
@@ -75,14 +103,14 @@ label_settings = SubResource("LabelSettings_u3r20")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ReturnButton" type="Button" parent="."]
+[node name="ReturnButton" type="Button" parent="OldCredits"]
 layout_mode = 0
 offset_left = 824.0
 offset_top = 936.0
 offset_right = 1096.0
 offset_bottom = 1048.0
 
-[node name="Label" type="Label" parent="ReturnButton"]
+[node name="Label" type="Label" parent="OldCredits/ReturnButton"]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 8.0
@@ -94,4 +122,57 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]
+[node name="Credits" parent="." instance=ExtResource("4_dtroa")]
+
+[node name="Back" parent="Credits" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_w41gl")
+
+[node name="Border" parent="Credits" index="1"]
+surface_material_override/0 = SubResource("ShaderMaterial_nq1c7")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0.11)
+texture = ExtResource("5_tulqu")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.86254)
+fov = 40.0
+metadata/_edit_lock_ = true
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(0.965926, 0.0669873, -0.25, 0, 0.965926, 0.258819, 0.258819, -0.25, 0.933013, -2, 1, 2.99467)
+light_energy = 0.2
+spot_angle = 36.0363
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="."]
+transform = Transform3D(0.965926, -0.0669873, 0.25, 0, 0.965926, 0.258819, -0.258819, -0.25, 0.933013, 2, 1, 2.99467)
+light_energy = 0.2
+spot_angle = 36.0363
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, -1.49012e-08, -7.19671e-09, 0.965926, 0.258819, -1.49012e-08, -0.258819, 0.965926, 0, 1, 2.99467)
+light_energy = 0.2
+spot_angle = 36.0363
+
+[node name="UI" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ReturnButton" type="TextureButton" parent="UI"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 55.0
+offset_right = 128.0
+offset_bottom = 156.0
+texture_normal = ExtResource("6_vjk3q")
+texture_pressed = ExtResource("7_wtyws")
+ignore_texture_size = true
+stretch_mode = 5
+
+[connection signal="pressed" from="OldCredits/ReturnButton" to="OldCredits" method="_on_return_button_pressed"]
+[connection signal="pressed" from="UI/ReturnButton" to="." method="_on_return_button_pressed"]
+
+[editable path="Credits"]

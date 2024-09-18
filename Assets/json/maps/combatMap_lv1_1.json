@@ -323,7 +323,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Water1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneBrick_v2.glb"
 		},
 		{
 			"coords": "(8,2)",
@@ -396,7 +396,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 1,
-			"meshPath": "res://Assets/MapTiles/WoodenBench.glb"
+			"meshPath": "res://Assets/MapTiles/SimpleBench.glb"
 		},
 		{
 			"coords": "(4,3)",
@@ -414,7 +414,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 1,
-			"meshPath": "res://Assets/MapTiles/WoodenBench.glb"
+			"meshPath": "res://Assets/MapTiles/SimpleBench.glb"
 		},
 		{
 			"coords": "(6,3)",
@@ -432,7 +432,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Water1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneBrick_v2.glb"
 		},
 		{
 			"coords": "(8,3)",
@@ -541,7 +541,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Water1.glb"
+			"meshPath": "res://Assets/MapTiles/BrokenBench.glb"
 		},
 		{
 			"coords": "(8,4)",
@@ -568,7 +568,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Obstacle1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneBrick_v2.glb"
 		},
 		{
 			"coords": "(11,4)",
@@ -646,11 +646,11 @@
 		{
 			"coords": "(7,5)",
 			"height": 0,
-			"idt": true,
+			"idt": false,
 			"isPopulated": false,
-			"isTraversable": true,
+			"isTraversable": false,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Water1.glb"
+			"meshPath": "res://Assets/MapTiles/BonfireStoneBrick.glb"
 		},
 		{
 			"coords": "(8,5)",
@@ -677,7 +677,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Obstacle1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneBrick_v2.glb"
 		},
 		{
 			"coords": "(11,5)",
@@ -732,7 +732,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Water1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneBrick_v2.glb"
 		},
 		{
 			"coords": "(5,6)",
@@ -786,7 +786,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Obstacle1.glb"
+			"meshPath": "res://Assets/MapTiles/Altar.glb"
 		},
 		{
 			"coords": "(11,6)",
@@ -841,7 +841,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Water1.glb"
+			"meshPath": "res://Assets/MapTiles/StoneBrick_v2.glb"
 		},
 		{
 			"coords": "(5,7)",
@@ -950,7 +950,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Water1.glb"
+			"meshPath": "res://Assets/MapTiles/BrokenBench.glb"
 		},
 		{
 			"coords": "(5,8)",
@@ -968,7 +968,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 1,
-			"meshPath": "res://Assets/MapTiles/WoodenBench.glb"
+			"meshPath": "res://Assets/MapTiles/SimpleBench.glb"
 		},
 		{
 			"coords": "(7,8)",

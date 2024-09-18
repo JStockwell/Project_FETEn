@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Project FETEn"
-config/version="0.1.4"
+config/name="The Fools we Got"
+config/version="0.2.0"
 run/main_scene="res://Scenes/UI/bootScreen.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 run/max_fps=30
@@ -47,6 +47,10 @@ naming/scene_name_casing=0
 
 enabled=PackedStringArray("res://addons/copilot/plugin.cfg", "res://addons/debug_menu/plugin.cfg", "res://addons/gdUnit4/plugin.cfg", "res://addons/rigidbody_auto_scaler/plugin.cfg")
 
+[filesystem]
+
+import/blender/enabled=false
+
 [gdunit4]
 
 settings/test/test_lookup_folder="Tests"
@@ -59,5 +63,6 @@ ui/toolbar/run_overall=true
 textures/default_filters/anisotropic_filtering_level=0
 environment/screen_space_reflection/roughness_quality=2
 environment/subsurface_scattering/subsurface_scattering_quality=2
+anti_aliasing/quality/msaa_2d=1
 anti_aliasing/quality/msaa_3d=1
 anti_aliasing/quality/screen_space_aa=1

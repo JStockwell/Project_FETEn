@@ -1,4 +1,8 @@
-[gd_resource type="VisualShader" load_steps=8 format=3 uid="uid://beeuvue688nry"]
+[gd_resource type="VisualShader" load_steps=11 format=3 uid="uid://beeuvue688nry"]
+
+[ext_resource type="Texture2D" uid="uid://c2fs7sqtasl5p" path="res://Assets/Textures/Wood048/Wood048_2K-JPG_Color.jpg" id="1_xklfx"]
+[ext_resource type="Texture2D" uid="uid://b1gveqo31bl3j" path="res://Assets/Textures/Wood048/Wood048_2K-JPG_NormalDX.jpg" id="3_avy4y"]
+[ext_resource type="Texture2D" uid="uid://ix16sk2j4i1r" path="res://Assets/Textures/Wood048/Wood048_2K-JPG_Displacement.jpg" id="4_y2tdj"]
 
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_3vq8j"]
 constant = 5.0
@@ -7,6 +11,7 @@ constant = 5.0
 op_type = 0
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_kvmvr"]
+texture = ExtResource("1_xklfx")
 texture_type = 1
 
 [sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_j3g34"]
@@ -15,8 +20,10 @@ function = 1
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_shoch"]
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_x3a5f"]
+texture = ExtResource("3_avy4y")
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_b70l7"]
+texture = ExtResource("4_y2tdj")
 
 [resource]
 code = "shader_type spatial;
@@ -68,7 +75,6 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-433, -157)
 nodes/fragment/2/node = SubResource("VisualShaderNodeFloatConstant_3vq8j")
 nodes/fragment/2/position = Vector2(-1220, 400)
 nodes/fragment/3/node = SubResource("VisualShaderNodeVectorCompose_d7rwi")
