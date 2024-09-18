@@ -1,0 +1,700 @@
+[gd_scene load_steps=41 format=3 uid="uid://beu2530ly3xjn"]
+
+[ext_resource type="Script" path="res://Scripts/3D/characterSelect.gd" id="1_uef3s"]
+[ext_resource type="PackedScene" uid="uid://dg3xlkc77cfxh" path="res://Scenes/3D/characterSelectCard.tscn" id="3_0hu4e"]
+[ext_resource type="PackedScene" uid="uid://ffwbxniuuwcy" path="res://Assets/Props/dm_screen/dm_screen.tscn" id="3_42k54"]
+[ext_resource type="PackedScene" uid="uid://ihdl8id2v178" path="res://Assets/Characters/Party/Dick/dick idle 1.glb" id="3_bdhdr"]
+[ext_resource type="Shader" uid="uid://0h62265iduim" path="res://Assets/Materials/brownPaper.tres" id="4_vu7ui"]
+[ext_resource type="Texture2D" uid="uid://casr4o6vrg88j" path="res://Assets/Characters/Party/Lystra/lystra_head.png" id="5_dwt2l"]
+[ext_resource type="Texture2D" uid="uid://dlfag0nvqaqby" path="res://Assets/Characters/Party/Dick/dick_head.png" id="6_op8jc"]
+[ext_resource type="PackedScene" uid="uid://cjke0ytcck8yo" path="res://Assets/Characters/Party/Samael/Samael idle 1.glb" id="7_3vdfb"]
+[ext_resource type="Texture2D" uid="uid://cowjb5nk0abp" path="res://Assets/Characters/Party/Samael/samael_head.png" id="8_x06do"]
+[ext_resource type="PackedScene" uid="uid://cyoem5ci3md3f" path="res://Assets/Characters/Party/Salvador/Salva Idle 1.glb" id="9_ornva"]
+[ext_resource type="PackedScene" uid="uid://c0x0023kjffwh" path="res://Assets/Props/dm_screen/Character selection.glb" id="9_y8u5e"]
+[ext_resource type="PackedScene" uid="uid://bwf33v0wagr8w" path="res://Assets/Props/dm_screen/salvador_stats.glb" id="10_i25h4"]
+[ext_resource type="Texture2D" uid="uid://cg7pila7s8m00" path="res://Assets/Characters/Party/Salvador/salvador_head.png" id="10_pxxyj"]
+[ext_resource type="PackedScene" uid="uid://gkfbrg1l2vd1" path="res://Assets/Characters/Party/Edgar/Edgar.glb" id="11_px6ad"]
+[ext_resource type="Texture2D" uid="uid://be5indwbdjyqn" path="res://Assets/Characters/Party/Edgar/edgar_head.png" id="12_0eajn"]
+[ext_resource type="PackedScene" uid="uid://ctaag0u0i5ths" path="res://Assets/Characters/Party/Adran/Adran idle 1.glb" id="13_kl8w5"]
+[ext_resource type="Texture2D" uid="uid://d01lp37s2204e" path="res://Assets/UI/side_arrow.png" id="18_r8twg"]
+[ext_resource type="Texture2D" uid="uid://hgd3w0eqpylf" path="res://Assets/UI/side_arrow_pressed.png" id="19_cufok"]
+[ext_resource type="Texture2D" uid="uid://ci5t12m5cn5a3" path="res://Assets/UI/select_character_button.png" id="20_alhor"]
+[ext_resource type="Texture2D" uid="uid://dc08s6jtud04c" path="res://Assets/UI/side_arrow_disabled.png" id="20_m8wrh"]
+[ext_resource type="Texture2D" uid="uid://6q57ei5asw0m" path="res://Assets/UI/select_character_button_pressed.png" id="21_0jo5f"]
+[ext_resource type="Texture2D" uid="uid://71v67fdlpic7" path="res://Assets/UI/select_character_button_disabled.png" id="22_t278b"]
+[ext_resource type="Texture2D" uid="uid://d0qps18rx3rs2" path="res://Assets/UI/remove_chararacter_button.png" id="24_c6gjp"]
+[ext_resource type="Texture2D" uid="uid://c2sn61ytooi84" path="res://Assets/UI/remove_chararacter_button_pressed.png" id="25_rni7u"]
+[ext_resource type="Texture2D" uid="uid://i24iwyyn782d" path="res://Assets/UI/char_ini_bg.png" id="26_aqxap"]
+[ext_resource type="Texture2D" uid="uid://dfmsdehttfkyv" path="res://Assets/UI/start_button.png" id="26_klopx"]
+[ext_resource type="Texture2D" uid="uid://b4pna25eh2n2x" path="res://Assets/UI/start_button_pressed.png" id="27_hc1ec"]
+[ext_resource type="Texture2D" uid="uid://dx5x0ubqn7sen" path="res://Assets/UI/start_button_disabled.png" id="28_h3ek5"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_y63c2"]
+dof_blur_far_enabled = true
+dof_blur_far_distance = 0.2
+dof_blur_amount = 0.3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s2gb3"]
+render_priority = 0
+shader = ExtResource("4_vu7ui")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v0tg2"]
+render_priority = 0
+shader = ExtResource("4_vu7ui")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mijat"]
+render_priority = 0
+shader = ExtResource("4_vu7ui")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gbjjt"]
+render_priority = 0
+shader = ExtResource("4_vu7ui")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o444b"]
+render_priority = 0
+shader = ExtResource("4_vu7ui")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_472a3"]
+render_priority = 0
+shader = ExtResource("4_vu7ui")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x8jm8"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wa7a"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7pvkm"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5snqo"]
+render_priority = 0
+shader = ExtResource("4_vu7ui")
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2nvwb"]
+
+[node name="CharacterSelect" type="Node3D"]
+script = ExtResource("1_uef3s")
+metadata/_edit_lock_ = true
+metadata/_edit_horizontal_guides_ = [0.0]
+
+[node name="dm_screen" parent="." instance=ExtResource("3_42k54")]
+transform = Transform3D(1.2, 0, 0, 0, 1, 0, 0, 0, 1.2, 0, 0, 0)
+
+[node name="SelectPivot" type="Marker3D" parent="."]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 0, 0.06, 0)
+
+[node name="Camera3D" type="Camera3D" parent="SelectPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
+attributes = SubResource("CameraAttributesPractical_y63c2")
+fov = 24.0
+metadata/_edit_lock_ = true
+
+[node name="Characters" type="Marker3D" parent="."]
+
+[node name="Lystra" parent="Characters" instance=ExtResource("3_0hu4e")]
+
+[node name="Stat sheet Samael" parent="Characters/Lystra/lystra_stats" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_s2gb3")
+
+[node name="stats_text" parent="Characters/Lystra" index="4"]
+text = "Lystra
+Health: 24
+Attack: 10
+Defense: 2
+Dexterity: 9
+Agility: 10"
+
+[node name="scroll_text" parent="Characters/Lystra" index="5"]
+text = "- Healer
+- Uses magic
+- Regenerates magic at the end of turn
+- Tiny lady"
+
+[node name="Sprite3D" parent="Characters/Lystra" index="6"]
+texture = ExtResource("5_dwt2l")
+
+[node name="Dick" parent="Characters" instance=ExtResource("3_0hu4e")]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 0, 0, 0)
+
+[node name="Lystra idle 1" parent="Characters/Dick/Character" index="0"]
+visible = false
+
+[node name="dick idle 1" parent="Characters/Dick/Character" index="1" instance=ExtResource("3_bdhdr")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -0.00314315, 0, -0.00215208)
+
+[node name="lystra_stats" parent="Characters/Dick" index="3"]
+visible = false
+
+[node name="stats_text" parent="Characters/Dick" index="4"]
+text = "Dick
+Health: 50
+Attack: 14
+Defense: 7
+Dexterity: 10
+Agility: 2"
+
+[node name="scroll_text" parent="Characters/Dick" index="5"]
+text = "- Physical tank
+- As resistant as they get
+- Just a big man"
+
+[node name="Sprite3D" parent="Characters/Dick" index="6"]
+texture = ExtResource("6_op8jc")
+
+[node name="Character selection" parent="Characters/Dick" instance=ExtResource("9_y8u5e")]
+transform = Transform3D(0.00676148, 0, -0.00181173, 0, 0.007, 0, 0.00181173, 0, 0.00676148, 0.007, -0.659, -0.089)
+
+[node name="Pantalla" parent="Characters/Dick/Character selection" index="0"]
+visible = false
+
+[node name="Scroll" parent="Characters/Dick/Character selection" index="1"]
+visible = false
+
+[node name="Floor" parent="Characters/Dick/Character selection" index="2"]
+visible = false
+
+[node name="Stat sheet_001" parent="Characters/Dick/Character selection" index="3"]
+visible = false
+
+[node name="Stat sheet dick" parent="Characters/Dick/Character selection" index="4"]
+surface_material_override/0 = SubResource("ShaderMaterial_v0tg2")
+
+[node name="Salvador" parent="Characters/Dick/Character selection" index="5"]
+visible = false
+
+[node name="Edgar" parent="Characters/Dick/Character selection" index="6"]
+visible = false
+
+[node name="Shovel" parent="Characters/Dick/Character selection" index="7"]
+visible = false
+
+[node name="Stat sheet salvador" parent="Characters/Dick/Character selection" index="8"]
+visible = false
+
+[node name="Lystra" parent="Characters/Dick/Character selection" index="9"]
+visible = false
+
+[node name="Dick" parent="Characters/Dick/Character selection" index="10"]
+visible = false
+
+[node name="Stat sheet Edgar" parent="Characters/Dick/Character selection" index="11"]
+visible = false
+
+[node name="Samael" parent="Characters/Dick/Character selection" index="12"]
+visible = false
+
+[node name="Stat sheet Samael" parent="Characters/Dick/Character selection" index="13"]
+visible = false
+
+[node name="Img placeholder" parent="Characters/Dick/Character selection" index="14"]
+visible = false
+
+[node name="Img placeholder 1_001" parent="Characters/Dick/Character selection" index="15"]
+visible = false
+
+[node name="Img placeholder 1_002" parent="Characters/Dick/Character selection" index="16"]
+visible = false
+
+[node name="Img placeholder 1" parent="Characters/Dick/Character selection" index="17"]
+visible = false
+
+[node name="Img placeholder 1_003" parent="Characters/Dick/Character selection" index="18"]
+visible = false
+
+[node name="Dick_001" parent="Characters/Dick/Character selection" index="19"]
+visible = false
+
+[node name="Cube" parent="Characters/Dick/Character selection" index="20"]
+visible = false
+
+[node name="Cylinder" parent="Characters/Dick/Character selection" index="21"]
+visible = false
+
+[node name="Cube_001" parent="Characters/Dick/Character selection" index="22"]
+visible = false
+
+[node name="Samael" parent="Characters" instance=ExtResource("3_0hu4e")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
+
+[node name="Lystra idle 1" parent="Characters/Samael/Character" index="0"]
+visible = false
+
+[node name="Samael idle 1" parent="Characters/Samael/Character" index="1" instance=ExtResource("7_3vdfb")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -0.00321376, 0, -0.00233725)
+
+[node name="Sword" parent="Characters/Samael/Character/Samael idle 1" index="2"]
+visible = false
+
+[node name="lystra_stats" parent="Characters/Samael" index="3"]
+visible = false
+
+[node name="stats_text" parent="Characters/Samael" index="4"]
+text = "Samael
+Health: 38
+Attack: 18
+Defense: 5
+Dexterity: 9
+Agility: 5"
+
+[node name="scroll_text" parent="Characters/Samael" index="5"]
+text = "- Physical attacker
+- Regenerates mana when he defeats an enemy
+- Can boost his attacks for more damage
+- One with the kebab"
+
+[node name="Sprite3D" parent="Characters/Samael" index="6"]
+texture = ExtResource("8_x06do")
+
+[node name="Character selection2" parent="Characters/Samael" instance=ExtResource("9_y8u5e")]
+transform = Transform3D(0.00676148, 0, -0.00181173, 0, 0.007, 0, 0.00181173, 0, 0.00676148, 0.007, -0.249, -0.089)
+
+[node name="Pantalla" parent="Characters/Samael/Character selection2" index="0"]
+visible = false
+
+[node name="Scroll" parent="Characters/Samael/Character selection2" index="1"]
+visible = false
+
+[node name="Floor" parent="Characters/Samael/Character selection2" index="2"]
+visible = false
+
+[node name="Stat sheet_001" parent="Characters/Samael/Character selection2" index="3"]
+surface_material_override/0 = SubResource("ShaderMaterial_mijat")
+
+[node name="Stat sheet dick" parent="Characters/Samael/Character selection2" index="4"]
+visible = false
+surface_material_override/0 = SubResource("ShaderMaterial_v0tg2")
+
+[node name="Salvador" parent="Characters/Samael/Character selection2" index="5"]
+visible = false
+
+[node name="Edgar" parent="Characters/Samael/Character selection2" index="6"]
+visible = false
+
+[node name="Shovel" parent="Characters/Samael/Character selection2" index="7"]
+visible = false
+
+[node name="Stat sheet salvador" parent="Characters/Samael/Character selection2" index="8"]
+visible = false
+
+[node name="Lystra" parent="Characters/Samael/Character selection2" index="9"]
+visible = false
+
+[node name="Dick" parent="Characters/Samael/Character selection2" index="10"]
+visible = false
+
+[node name="Stat sheet Edgar" parent="Characters/Samael/Character selection2" index="11"]
+visible = false
+
+[node name="Samael" parent="Characters/Samael/Character selection2" index="12"]
+visible = false
+
+[node name="Stat sheet Samael" parent="Characters/Samael/Character selection2" index="13"]
+visible = false
+
+[node name="Img placeholder" parent="Characters/Samael/Character selection2" index="14"]
+visible = false
+
+[node name="Img placeholder 1_001" parent="Characters/Samael/Character selection2" index="15"]
+visible = false
+
+[node name="Img placeholder 1_002" parent="Characters/Samael/Character selection2" index="16"]
+visible = false
+
+[node name="Img placeholder 1" parent="Characters/Samael/Character selection2" index="17"]
+visible = false
+
+[node name="Img placeholder 1_003" parent="Characters/Samael/Character selection2" index="18"]
+visible = false
+
+[node name="Dick_001" parent="Characters/Samael/Character selection2" index="19"]
+visible = false
+
+[node name="Cube" parent="Characters/Samael/Character selection2" index="20"]
+visible = false
+
+[node name="Cylinder" parent="Characters/Samael/Character selection2" index="21"]
+visible = false
+
+[node name="Cube_001" parent="Characters/Samael/Character selection2" index="22"]
+visible = false
+
+[node name="Salvador" parent="Characters" instance=ExtResource("3_0hu4e")]
+transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 0, 0, 0)
+
+[node name="Lystra idle 1" parent="Characters/Salvador/Character" index="0"]
+visible = false
+
+[node name="Salva Idle 1" parent="Characters/Salvador/Character" index="1" instance=ExtResource("9_ornva")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -0.0029293, 0, -0.00255114)
+
+[node name="lystra_stats" parent="Characters/Salvador" index="3"]
+visible = false
+
+[node name="stats_text" parent="Characters/Salvador" index="4"]
+text = "Salvador
+Health: 28
+Attack: 18
+Defense: 4
+Dexterity: 12
+Agility: 6"
+
+[node name="scroll_text" parent="Characters/Salvador" index="5"]
+text = "- Devastating attacks from afar
+- Regenerates mana on kill
+- Can attack twice in a turn
+- Legally doesn't own a gun"
+
+[node name="Sprite3D" parent="Characters/Salvador" index="6"]
+texture = ExtResource("10_pxxyj")
+
+[node name="salvador_stats" parent="Characters/Salvador" instance=ExtResource("10_i25h4")]
+transform = Transform3D(0.00676148, 0, -0.00181173, 0, 0.007, 0, 0.00181173, 0, 0.00676148, 0.007, 0, -0.089)
+
+[node name="Stat sheet salvador" parent="Characters/Salvador/salvador_stats" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_gbjjt")
+
+[node name="Edgar" parent="Characters" instance=ExtResource("3_0hu4e")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, 0)
+
+[node name="Lystra idle 1" parent="Characters/Edgar/Character" index="0"]
+visible = false
+
+[node name="Edgar" parent="Characters/Edgar/Character" index="1" instance=ExtResource("11_px6ad")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -0.00292164, 0, -0.00233732)
+
+[node name="lystra_stats" parent="Characters/Edgar" index="3"]
+visible = false
+
+[node name="Stat sheet Samael" parent="Characters/Edgar/lystra_stats" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_o444b")
+
+[node name="Cube" parent="Characters/Edgar/lystra_stats" index="1"]
+visible = false
+
+[node name="Cube_001" parent="Characters/Edgar/lystra_stats" index="2"]
+visible = false
+
+[node name="stats_text" parent="Characters/Edgar" index="4"]
+text = "Edgar
+Health: 32
+Attack: 9
+Defense: 3
+Dexterity: 10
+Agility: 7"
+
+[node name="scroll_text" parent="Characters/Edgar" index="5"]
+text = "- Desintegrates enemies with magic
+- Very weak
+- Will chase dead chimeras if left unattended"
+
+[node name="Sprite3D" parent="Characters/Edgar" index="6"]
+texture = ExtResource("12_0eajn")
+
+[node name="Character selection2" parent="Characters/Edgar" instance=ExtResource("9_y8u5e")]
+transform = Transform3D(0.00676148, 0, -0.00181173, 0, 0.007, 0, 0.00181173, 0, 0.00676148, 0.007, -0.392, -0.089)
+
+[node name="Pantalla" parent="Characters/Edgar/Character selection2" index="0"]
+visible = false
+
+[node name="Scroll" parent="Characters/Edgar/Character selection2" index="1"]
+visible = false
+
+[node name="Floor" parent="Characters/Edgar/Character selection2" index="2"]
+visible = false
+
+[node name="Stat sheet_001" parent="Characters/Edgar/Character selection2" index="3"]
+visible = false
+
+[node name="Stat sheet dick" parent="Characters/Edgar/Character selection2" index="4"]
+visible = false
+surface_material_override/0 = SubResource("ShaderMaterial_v0tg2")
+
+[node name="Salvador" parent="Characters/Edgar/Character selection2" index="5"]
+visible = false
+
+[node name="Edgar" parent="Characters/Edgar/Character selection2" index="6"]
+visible = false
+
+[node name="Stat sheet salvador" parent="Characters/Edgar/Character selection2" index="8"]
+visible = false
+
+[node name="Lystra" parent="Characters/Edgar/Character selection2" index="9"]
+visible = false
+
+[node name="Dick" parent="Characters/Edgar/Character selection2" index="10"]
+visible = false
+
+[node name="Stat sheet Edgar" parent="Characters/Edgar/Character selection2" index="11"]
+surface_material_override/0 = SubResource("ShaderMaterial_472a3")
+
+[node name="Samael" parent="Characters/Edgar/Character selection2" index="12"]
+visible = false
+
+[node name="Stat sheet Samael" parent="Characters/Edgar/Character selection2" index="13"]
+visible = false
+
+[node name="Img placeholder" parent="Characters/Edgar/Character selection2" index="14"]
+visible = false
+
+[node name="Img placeholder 1_001" parent="Characters/Edgar/Character selection2" index="15"]
+visible = false
+
+[node name="Img placeholder 1_002" parent="Characters/Edgar/Character selection2" index="16"]
+visible = false
+
+[node name="Img placeholder 1" parent="Characters/Edgar/Character selection2" index="17"]
+visible = false
+
+[node name="Img placeholder 1_003" parent="Characters/Edgar/Character selection2" index="18"]
+visible = false
+
+[node name="Dick_001" parent="Characters/Edgar/Character selection2" index="19"]
+visible = false
+
+[node name="Cube" parent="Characters/Edgar/Character selection2" index="20"]
+visible = false
+
+[node name="Cylinder" parent="Characters/Edgar/Character selection2" index="21"]
+visible = false
+
+[node name="Cube_001" parent="Characters/Edgar/Character selection2" index="22"]
+visible = false
+
+[node name="Adran" parent="Characters" instance=ExtResource("3_0hu4e")]
+transform = Transform3D(0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, 0, 0, 0)
+
+[node name="Lystra idle 1" parent="Characters/Adran/Character" index="0"]
+visible = false
+
+[node name="Adran idle 1" parent="Characters/Adran/Character" index="1" instance=ExtResource("13_kl8w5")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -0.00311451, 0, -0.00255888)
+
+[node name="Plane_001" parent="Characters/Adran/Character/Adran idle 1" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_x8jm8")
+surface_material_override/1 = SubResource("StandardMaterial3D_0wa7a")
+surface_material_override/2 = SubResource("StandardMaterial3D_7pvkm")
+
+[node name="Stat sheet Samael" parent="Characters/Adran/lystra_stats" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_5snqo")
+
+[node name="Cube" parent="Characters/Adran/lystra_stats" index="1"]
+visible = false
+
+[node name="Cube_001" parent="Characters/Adran/lystra_stats" index="2"]
+visible = false
+
+[node name="stats_text" parent="Characters/Adran" index="4"]
+text = "???
+Health: ???
+Attack: ???
+Defense: ???
+Dexterity: ???
+Agility: ???"
+
+[node name="scroll_text" parent="Characters/Adran" index="5"]
+text = "- Who am I?
+- Where am I?"
+
+[node name="Sprite3D" parent="Characters/Adran" index="6"]
+visible = false
+
+[node name="UI" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LeftButton" type="TextureButton" parent="UI"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 392.0
+offset_right = 256.0
+offset_bottom = 632.0
+texture_normal = ExtResource("18_r8twg")
+texture_pressed = ExtResource("19_cufok")
+texture_disabled = ExtResource("20_m8wrh")
+ignore_texture_size = true
+stretch_mode = 5
+flip_v = true
+
+[node name="RightButton" type="TextureButton" parent="UI"]
+layout_mode = 0
+offset_left = 1664.0
+offset_top = 392.0
+offset_right = 1792.0
+offset_bottom = 632.0
+texture_normal = ExtResource("18_r8twg")
+texture_pressed = ExtResource("19_cufok")
+texture_disabled = ExtResource("20_m8wrh")
+ignore_texture_size = true
+stretch_mode = 5
+flip_h = true
+flip_v = true
+
+[node name="SelCharButton" type="TextureButton" parent="UI"]
+layout_mode = 0
+offset_left = 1112.0
+offset_top = 720.0
+offset_right = 1408.0
+offset_bottom = 832.0
+texture_normal = ExtResource("20_alhor")
+texture_pressed = ExtResource("21_0jo5f")
+texture_disabled = ExtResource("22_t278b")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="RemCharButton" type="TextureButton" parent="UI"]
+layout_mode = 0
+offset_left = 1112.0
+offset_top = 720.0
+offset_right = 1408.0
+offset_bottom = 832.0
+texture_normal = ExtResource("24_c6gjp")
+texture_pressed = ExtResource("25_rni7u")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="StartButton" type="TextureButton" parent="UI"]
+layout_mode = 0
+offset_left = 888.0
+offset_top = 146.0
+offset_right = 1032.0
+offset_bottom = 194.0
+disabled = true
+texture_normal = ExtResource("26_klopx")
+texture_pressed = ExtResource("27_hc1ec")
+texture_disabled = ExtResource("28_h3ek5")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Party" type="Control" parent="UI"]
+anchors_preset = 0
+offset_left = 592.0
+offset_right = 1328.0
+offset_bottom = 160.0
+
+[node name="BG" type="ColorRect" parent="UI/Party"]
+layout_mode = 0
+offset_right = 736.0
+offset_bottom = 144.0
+color = Color(0.114897, 0.114897, 0.114897, 1)
+
+[node name="InitativeIcons" type="Control" parent="UI/Party"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -592.0
+offset_top = -936.0
+offset_right = -552.0
+offset_bottom = -896.0
+
+[node name="Ini1" type="Control" parent="UI/Party/InitativeIcons"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CharIniBg" type="Sprite2D" parent="UI/Party/InitativeIcons/Ini1"]
+position = Vector2(672, 1008)
+scale = Vector2(0.124514, 0.124514)
+texture = ExtResource("26_aqxap")
+
+[node name="TextureRect" type="TextureRect" parent="UI/Party/InitativeIcons/Ini1"]
+layout_mode = 0
+offset_left = 626.0
+offset_top = 962.0
+offset_right = 718.0
+offset_bottom = 1054.0
+texture = SubResource("PlaceholderTexture2D_2nvwb")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Ini2" type="Control" parent="UI/Party/InitativeIcons"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CharIniBg" type="Sprite2D" parent="UI/Party/InitativeIcons/Ini2"]
+position = Vector2(864, 1008)
+scale = Vector2(0.124514, 0.124514)
+texture = ExtResource("26_aqxap")
+
+[node name="TextureRect" type="TextureRect" parent="UI/Party/InitativeIcons/Ini2"]
+layout_mode = 0
+offset_left = 818.0
+offset_top = 962.0
+offset_right = 910.0
+offset_bottom = 1054.0
+texture = SubResource("PlaceholderTexture2D_2nvwb")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Ini3" type="Control" parent="UI/Party/InitativeIcons"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CharIniBg" type="Sprite2D" parent="UI/Party/InitativeIcons/Ini3"]
+position = Vector2(1056, 1008)
+scale = Vector2(0.124514, 0.124514)
+texture = ExtResource("26_aqxap")
+
+[node name="TextureRect" type="TextureRect" parent="UI/Party/InitativeIcons/Ini3"]
+layout_mode = 0
+offset_left = 1010.0
+offset_top = 962.0
+offset_right = 1102.0
+offset_bottom = 1054.0
+texture = SubResource("PlaceholderTexture2D_2nvwb")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Ini4" type="Control" parent="UI/Party/InitativeIcons"]
+anchors_preset = 0
+offset_left = 544.0
+offset_top = 936.0
+offset_right = 584.0
+offset_bottom = 976.0
+
+[node name="CharIniBg" type="Sprite2D" parent="UI/Party/InitativeIcons/Ini4"]
+position = Vector2(704.064, 72.0002)
+scale = Vector2(0.124514, 0.124514)
+texture = ExtResource("26_aqxap")
+
+[node name="TextureRect" type="TextureRect" parent="UI/Party/InitativeIcons/Ini4"]
+layout_mode = 0
+offset_left = 658.064
+offset_top = 26.0001
+offset_right = 750.064
+offset_bottom = 118.0
+texture = SubResource("PlaceholderTexture2D_2nvwb")
+expand_mode = 1
+stretch_mode = 5
+
+[connection signal="pressed" from="UI/LeftButton" to="." method="_on_left_button_pressed"]
+[connection signal="pressed" from="UI/RightButton" to="." method="_on_right_button_pressed"]
+[connection signal="pressed" from="UI/SelCharButton" to="." method="_on_sel_char_button_pressed"]
+[connection signal="pressed" from="UI/RemCharButton" to="." method="_on_sel_char_button_pressed"]
+[connection signal="pressed" from="UI/StartButton" to="." method="_on_start_button_pressed"]
+
+[editable path="Characters/Lystra"]
+[editable path="Characters/Lystra/scroll"]
+[editable path="Characters/Lystra/lystra_stats"]
+[editable path="Characters/Dick"]
+[editable path="Characters/Dick/scroll"]
+[editable path="Characters/Dick/Character selection"]
+[editable path="Characters/Samael"]
+[editable path="Characters/Samael/Character/Samael idle 1"]
+[editable path="Characters/Samael/scroll"]
+[editable path="Characters/Samael/Character selection2"]
+[editable path="Characters/Salvador"]
+[editable path="Characters/Salvador/scroll"]
+[editable path="Characters/Salvador/salvador_stats"]
+[editable path="Characters/Edgar"]
+[editable path="Characters/Edgar/scroll"]
+[editable path="Characters/Edgar/lystra_stats"]
+[editable path="Characters/Edgar/Character selection2"]
+[editable path="Characters/Adran"]
+[editable path="Characters/Adran/Character/Adran idle 1"]
+[editable path="Characters/Adran/scroll"]
+[editable path="Characters/Adran/lystra_stats"]

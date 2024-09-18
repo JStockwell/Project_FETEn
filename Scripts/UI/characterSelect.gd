@@ -60,6 +60,7 @@ func setup_status() -> void:
 		i += 1
 
 func _on_character_select(character) -> void:
+	MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
 	if character not in tempParty and tempParty.size() < 4:
 		character.selectedAlly.show()
 		tempParty.append(character)
@@ -76,6 +77,7 @@ func _on_character_exit(character) -> void:
 	charCard.hide()
 
 func _on_start_button_pressed() -> void:
+	MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
 	var result = []
 	for character in tempParty:
 		result.append(character.get_id())

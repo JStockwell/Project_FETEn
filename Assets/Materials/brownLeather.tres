@@ -1,0 +1,95 @@
+[gd_resource type="VisualShader" load_steps=12 format=3 uid="uid://biennfdh5w4v4"]
+
+[ext_resource type="Texture2D" uid="uid://d0r2ocpj0prgc" path="res://Assets/Textures/Leather030/Leather030_2K-JPG_Color.jpg" id="1_fr44u"]
+[ext_resource type="Texture2D" uid="uid://dk61ew3j11ems" path="res://Assets/Textures/Leather027/Leather027_2K-JPG_NormalDX.jpg" id="2_uj6py"]
+[ext_resource type="Texture2D" uid="uid://cq76u6eurpbvx" path="res://Assets/Textures/Leather027/Leather027_2K-JPG_Roughness.jpg" id="3_k50fn"]
+[ext_resource type="Texture2D" uid="uid://c2302drn4j8wj" path="res://Assets/Textures/Leather027/Leather027_2K-JPG_Displacement.jpg" id="4_y3833"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_8yv6e"]
+texture = ExtResource("1_fr44u")
+texture_type = 1
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_u4g5k"]
+texture = ExtResource("2_uj6py")
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_u8lh6"]
+texture = ExtResource("3_k50fn")
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_6gksd"]
+texture = ExtResource("4_y3833")
+
+[sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_jfg61"]
+function = 1
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_b4qjt"]
+constant = 1.0
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_a36pc"]
+op_type = 0
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+uniform sampler2D tex_frg_2 : source_color;
+uniform sampler2D tex_frg_4;
+uniform sampler2D tex_frg_3;
+uniform sampler2D tex_frg_5;
+
+
+
+void fragment() {
+// FloatConstant:7
+	float n_out7p0 = 1.000000;
+
+
+// VectorCompose:8
+	vec2 n_out8p0 = vec2(n_out7p0, n_out7p0);
+
+
+// UVFunc:6
+	vec2 n_in6p2 = vec2(0.00000, 0.00000);
+	vec2 n_out6p0 = (UV - n_in6p2) * n_out8p0 + n_in6p2;
+
+
+// Texture2D:2
+	vec4 n_out2p0 = texture(tex_frg_2, n_out6p0);
+
+
+// Texture2D:4
+	vec4 n_out4p0 = texture(tex_frg_4, n_out6p0);
+
+
+// Texture2D:3
+	vec4 n_out3p0 = texture(tex_frg_3, n_out6p0);
+
+
+// Texture2D:5
+	vec4 n_out5p0 = texture(tex_frg_5, n_out6p0);
+
+
+// Output:0
+	ALBEDO = vec3(n_out2p0.xyz);
+	ROUGHNESS = n_out4p0.x;
+	NORMAL_MAP = vec3(n_out3p0.xyz);
+	NORMAL_MAP_DEPTH = n_out5p0.x;
+
+
+}
+"
+graph_offset = Vector2(-286, -13)
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_8yv6e")
+nodes/fragment/2/position = Vector2(-20, 140)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_u4g5k")
+nodes/fragment/3/position = Vector2(-20, 700)
+nodes/fragment/4/node = SubResource("VisualShaderNodeTexture_u8lh6")
+nodes/fragment/4/position = Vector2(-20, 420)
+nodes/fragment/5/node = SubResource("VisualShaderNodeTexture_6gksd")
+nodes/fragment/5/position = Vector2(-20, 980)
+nodes/fragment/6/node = SubResource("VisualShaderNodeUVFunc_jfg61")
+nodes/fragment/6/position = Vector2(-680, 580)
+nodes/fragment/7/node = SubResource("VisualShaderNodeFloatConstant_b4qjt")
+nodes/fragment/7/position = Vector2(-1120, 600)
+nodes/fragment/8/node = SubResource("VisualShaderNodeVectorCompose_a36pc")
+nodes/fragment/8/position = Vector2(-920, 580)
+nodes/fragment/connections = PackedInt32Array(6, 0, 2, 0, 6, 0, 4, 0, 6, 0, 3, 0, 6, 0, 5, 0, 7, 0, 8, 0, 7, 0, 8, 1, 8, 0, 6, 1, 2, 0, 0, 0, 4, 0, 0, 3, 3, 0, 0, 9, 5, 0, 0, 10)

@@ -5,7 +5,7 @@
 [node name="HangingLight" type="Node3D"]
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-light_color = Color(1, 0.956863, 0.94902, 1)
+light_color = Color(1, 0.956863, 0.898039, 1)
 light_energy = 0.08
 light_indirect_energy = 0.5
 light_size = 0.05
@@ -14,7 +14,7 @@ omni_attenuation = 2.0
 
 [node name="OmniLight3D3" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.435, 0, 0)
-light_color = Color(1, 0.956863, 0.94902, 1)
+light_color = Color(1, 0.956863, 0.898039, 1)
 light_energy = 0.08
 light_indirect_energy = 0.5
 light_size = 0.05
@@ -23,7 +23,7 @@ omni_attenuation = 2.0
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.435, 0, 0)
-light_color = Color(1, 0.956863, 0.94902, 1)
+light_color = Color(1, 0.956863, 0.898039, 1)
 light_energy = 0.08
 light_indirect_energy = 0.5
 light_size = 0.05

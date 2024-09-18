@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c5ihhejv3l046"
+path="res://.godot/imported/Salvador Ranged.mp3-6ec02556798cbcea697fd398f6ee5e31.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/Fx/Combat/Weapons/Salvador Ranged.mp3"
+dest_files=["res://.godot/imported/Salvador Ranged.mp3-6ec02556798cbcea697fd398f6ee5e31.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

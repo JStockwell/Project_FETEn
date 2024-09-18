@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://06w8gsrwbn4m"
+path="res://.godot/imported/Phys miss.mp3-4106896a76c462395afcb1227c80d22b.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/Fx/Combat/Miss/Phys miss.mp3"
+dest_files=["res://.godot/imported/Phys miss.mp3-4106896a76c462395afcb1227c80d22b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

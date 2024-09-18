@@ -12,6 +12,7 @@ var isMagicDamage: int = 0
 var isInstantaneous: bool = false
 var isBuff: bool = false
 var skillMenuID: int
+var skill_sfx_path: String
 
 func get_skill() -> Dictionary:
 	return {
@@ -24,7 +25,8 @@ func get_skill() -> Dictionary:
 		"cta": canTargetAllies,
 		"imd": isMagicDamage,
 		"inst": isInstantaneous,
-		"buff": isBuff
+		"buff": isBuff,
+		"skill_sfx_path": skill_sfx_path
 	}        
 
 func get_skill_name() -> String:

@@ -98,7 +98,7 @@ signal start_map_combat
 var highlighted_province: String
 var save: Dictionary
 
-func _ready() -> void:
+func setup() -> void:
 	save = GameStatus.get_save()
 	# TODO Remove testMode and test once finished
 	if not GameStatus.testMode:
@@ -184,6 +184,7 @@ func _on_province_input_event(camera: Node, event: InputEvent, event_position: V
 					CombatMapStatus.set_map_id("sevilla")
 					CombatMapStatus.set_map_path("res://Assets/json/maps/combatMap_lv4_1.json")
 					
+			MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
 			GameStatus.set_current_game_state(GameStatus.GameState.MAP)
 			debugMapChoice.hide()
 			start_map_combat.emit()

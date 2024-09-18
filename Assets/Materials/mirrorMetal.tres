@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=14 format=3 uid="uid://chxyi5d2a6y03"]
+[gd_resource type="VisualShader" load_steps=14 format=3 uid="uid://bu2xufj18kbyt"]
 
 [ext_resource type="Texture2D" uid="uid://cwjswuy1rbhrt" path="res://Assets/Textures/Metal012/Metal012_2K-JPG_Roughness.jpg" id="1_27yuw"]
 [ext_resource type="Texture2D" uid="uid://sesokwjf2s8u" path="res://Assets/Textures/Metal012/Metal012_2K-JPG_NormalDX.jpg" id="2_bimfn"]
@@ -23,6 +23,7 @@ texture = ExtResource("3_woea5")
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_o07gh"]
 texture = ExtResource("4_t2kg5")
+texture_type = 1
 
 [sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_svx8s"]
 function = 1
@@ -34,7 +35,7 @@ texture = ExtResource("5_xi73o")
 code = "shader_type spatial;
 render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
 
-uniform sampler2D tex_frg_7;
+uniform sampler2D tex_frg_7 : source_color;
 uniform sampler2D tex_frg_9;
 uniform sampler2D tex_frg_5;
 uniform sampler2D tex_frg_6;
@@ -80,7 +81,7 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-725.264, 33.1862)
+graph_offset = Vector2(-542, -120)
 nodes/fragment/2/node = SubResource("VisualShaderNodeFloatConstant_q6jh8")
 nodes/fragment/2/position = Vector2(-1420, 660)
 nodes/fragment/3/node = SubResource("VisualShaderNodeVectorCompose_7hmqx")

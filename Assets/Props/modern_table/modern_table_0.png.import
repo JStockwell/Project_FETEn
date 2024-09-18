@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://got5by3urm4e"
+uid="uid://cla25d74qkqcf"
 path.s3tc="res://.godot/imported/modern_table_0.png-5c3d68f6645c804d49e7c9e1b6d52e85.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "adc73f494fec3b400586df8af6866eae"
 }
 
 [deps]

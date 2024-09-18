@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://bd7p80nyorbl5"
+path.s3tc="res://.godot/imported/coffee_cup_1.png-ef300469afd3d566ec91763d2b45801e.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "64fbd40032e110835a93d97e9307d844"
+}
+
+[deps]
+
+source_file="res://Assets/Props/coffee_cup/coffee_cup_1.png"
+dest_files=["res://.godot/imported/coffee_cup_1.png-ef300469afd3d566ec91763d2b45801e.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=8
+roughness/src_normal="res://Assets/Props/coffee_cup/coffee_cup_2.png"
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

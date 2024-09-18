@@ -78,7 +78,6 @@ script = ExtResource("1_rhc0y")
 [node name="MapTileGroup" type="Node3D" parent="."]
 
 [node name="UI" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -470,8 +469,9 @@ offset_bottom = 40.0
 [node name="Dim" type="ColorRect" parent="EndScreen"]
 layout_mode = 0
 offset_left = -8.0
-offset_right = 1912.0
-offset_bottom = 1080.0
+offset_top = -8.0
+offset_right = 1930.0
+offset_bottom = 1090.0
 color = Color(0, 0, 0, 0.627451)
 
 [node name="Label" type="Label" parent="EndScreen"]
@@ -507,6 +507,7 @@ vertical_alignment = 1
 [connection signal="pressed" from="UI/Actions/MoveButton" to="." method="_on_move_button_pressed"]
 [connection signal="pressed" from="UI/Actions/PhysAttackButton" to="." method="_on_phys_attack_button_pressed"]
 [connection signal="pressed" from="UI/Actions/EndTurnButton" to="." method="_on_end_turn_button_pressed"]
+[connection signal="pressed" from="UI/Actions/Skills/SkillMenu" to="." method="_on_skill_menu_pressed"]
 [connection signal="pressed" from="DebugUI/DebugAllySkillButton" to="." method="_on_debug_ally_skill_button_pressed"]
 [connection signal="pressed" from="StartUI/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="GlobalButtons/ChangeCamera" to="." method="_on_change_camera_pressed"]
