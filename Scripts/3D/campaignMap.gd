@@ -125,6 +125,19 @@ func validate_levels() -> void:
 		cordobaCol.disabled = true
 		cordobaDisabled.show()
 	
+	else:
+		granadaCol.disabled = false
+		granadaDisabled.hide()
+		
+		jaenCol.disabled = false
+		jaenDisabled.hide()
+		
+		malagaCol.disabled = false
+		malagaDisabled.hide()
+		
+		cordobaCol.disabled = false
+		cordobaDisabled.hide()
+	
 	if not unlocks["stage_3"]:
 		cadizCol.disabled = true
 		cadizDisabled.show()
@@ -135,9 +148,23 @@ func validate_levels() -> void:
 		badajozCol.disabled = true
 		badajozDisabled.show()
 		
+	else:
+		cadizCol.disabled = false
+		cadizDisabled.hide()
+		
+		huelvaCol.disabled = false
+		huelvaDisabled.hide()
+		
+		badajozCol.disabled = false
+		badajozDisabled.hide()
+		
 	if not unlocks["stage_4"]:
 		sevillaCol.disabled = true
 		sevillaDisabled.show()
+		
+	else:
+		sevillaCol.disabled = false
+		sevillaDisabled.hide()
 
 func _on_province_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
 	if event is InputEventMouseButton and GameStatus.get_current_game_state() == GameStatus.GameState.CAMPAIGN:

@@ -25,6 +25,7 @@ var testMode: bool = false
 func reset_game() -> void:
 	party = {}
 	currentGameState = GameState.PRE_MAIN_MENU
+	load_save()
 
 func get_playable_characters() -> Dictionary:
 	return playableCharacters

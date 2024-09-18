@@ -61,7 +61,7 @@ draw_pass_1 = SubResource("QuadMesh_1vkk7")
 [node name="BuffParticles" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.195, 0)
 emitting = false
-amount = 128
+amount = 32
 one_shot = true
 preprocess = 0.2
 visibility_aabb = AABB(-1, -1, -1, 2, 2, 2)

@@ -60,34 +60,6 @@ func verify_click(event: InputEvent) -> bool:
 func verify_game_status() -> bool:
 	return GameStatus.get_current_game_state() == GameStatus.GameState.MAIN_MENU
 
-func _on_credits_button_pressed(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
-	if verify_click(event):
-		MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
-		get_tree().change_scene_to_file("res://Scenes/UI/credits.tscn")
-
-# TODO Test
-func _on_reset_button_pressed() -> void:
-	MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
-	background.hide()
-	buttons.hide()
-	resetConfirmation.show()
-
-# TODO Test
-func _on_reset_save_no_pressed() -> void:
-	MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
-	background.show()
-	buttons.show()
-	resetConfirmation.hide()
-
-# TODO Test
-func _on_reset_save_yes_pressed() -> void:
-	MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
-	GameStatus.save_game(Utils.read_json("res://Assets/json/save_reference.json"))
-	background.show()
-	buttons.show()
-	resetConfirmation.hide()
-
-
 func _on_debug_unlock_pressed() -> void:
 	var tempSave = GameStatus.get_save()
 	
@@ -138,14 +110,40 @@ func _on_exit_game_mouse_exited() -> void:
 @onready
 var resetDataHighlight = $Buttons/ResetData/Highlighted
 # TODO Test
-#func _on_reset_button_pressed(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
-	#if verify_click(event):
-		#resetConfirmation.show()
-#
-#func _on_reset_data_mouse_entered() -> void:
-	#if verify_game_status():
-		#resetDataHighlight.show()
-#
-#func _on_reset_data_mouse_exited() -> void:
-	#if verify_game_status():
-		#resetDataHighlight.hide()
+func _on_reset_button_pressed(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
+	if verify_click(event):
+		MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
+		resetConfirmation.show()
+
+func _on_reset_data_mouse_entered() -> void:
+	if verify_game_status():
+		resetDataHighlight.show()
+
+func _on_reset_data_mouse_exited() -> void:
+	if verify_game_status():
+		resetDataHighlight.hide()
+
+# TODO Test
+func _on_reset_save_no_pressed() -> void:
+	MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
+	resetConfirmation.hide()
+
+# TODO Test
+func _on_reset_save_yes_pressed() -> void:
+	MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
+	GameStatus.save_game(Utils.read_json("res://Assets/json/save_reference.json"))
+	resetConfirmation.hide()
+
+@onready
+var creditsHighlight = $Buttons/Credits/Highlighted
+signal switch_to_credits
+func _on_credits_button_pressed(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
+	if verify_click(event):
+		MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
+		switch_to_credits.emit()
+
+func _on_credits_mouse_entered() -> void:
+	creditsHighlight.show()
+
+func _on_credits_mouse_exited() -> void:
+	creditsHighlight.hide()
