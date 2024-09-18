@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clvunnlrvmhmo"
+uid="uid://b7ey8n70yi523"
 path.s3tc="res://.godot/imported/coffee_machine_2.png-6963567b2b768c1532d7c415031d8d24.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "be8908e1f212d6a3ef0f8125c9201fc9"
 }
 
 [deps]

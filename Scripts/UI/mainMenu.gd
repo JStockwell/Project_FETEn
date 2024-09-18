@@ -25,6 +25,7 @@ func start():
 	update_unlocks()
 	GameStatus.party = {}
 	CombatMapStatus.isStartCombat = true
+	reset_highlights()
 
 # TODO Test
 func update_unlocks() -> void:
@@ -98,6 +99,11 @@ func _on_debug_unlock_pressed() -> void:
 		tempSave["unlocks"]["stages"][stage] = true
 		
 	GameStatus.save_game(tempSave)
+
+func reset_highlights() -> void:
+	startGameHighlight.hide()
+	exitGameHighlight.hide()
+	resetDataHighlight.hide()
 
 @onready
 var startGameHighlight = $Buttons/StartGame/Highlighted

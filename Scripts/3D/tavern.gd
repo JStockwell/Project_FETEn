@@ -65,6 +65,16 @@ func _ready():
 	reset_game()
 
 func reset_game():
+	GameStatus.set_playable_characters(Utils.read_json("res://Assets/json/players.json"))
+	GameStatus.set_enemy_set(Utils.read_json("res://Assets/json/enemies.json"))
+	
+	var skillSet = Utils.read_json("res://Assets/json/skills.json")
+	var i = 0
+	for skillName in skillSet:
+		GameStatus.skillSet[skillName] = Factory.Skill.create(skillSet[skillName])
+		GameStatus.skillSet[skillName].set_skill_menu_id(i)
+		i += 1
+	
 	MusicPlayer.play_music(MusicPlayer.SOUNDS.CAFE, -20)
 	
 	GameStatus.reset_game()
@@ -76,7 +86,7 @@ func reset_game():
 	choose_main_menu_camera()
 	
 	if not cm == null:
-		cm.queue_free()
+		cm.endScreen.hide()
 
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == 1:
@@ -127,6 +137,9 @@ func _on_game_start() -> void:
 	characterSelect.setup()
 	characterSelect.camera.current = true
 	characterSelect.ui.show()
+	
+	if not cm == null:
+		cm.free()
 
 func _on_campaign_start() -> void:
 	GameStatus.set_current_game_state(GameStatus.GameState.CAMPAIGN)
