@@ -817,6 +817,7 @@ signal reset_game
 func _on_rmm_yes_pressed():
 	MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
 	GameStatus.set_current_game_state(GameStatus.GameState.CAMPAIGN)
+	returnMainMenu.hide()
 	reset_game.emit()
 
 # Buttons updater
