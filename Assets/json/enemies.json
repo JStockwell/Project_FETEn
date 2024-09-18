@@ -90,7 +90,7 @@
 		"range": 5,
 		"skills": ["icicle"],
 		"is_ranged": true,
-		"mesh_path": "",
+		"mesh_path": "res://Assets/Characters/Enemies/Mage/Mage idle 1.glb",
 		"sprite_path": "",
 		"attack_sfx_path": "res://Assets/Music/Fx/Combat/Weapons/Dagger Melee.mp3"
 	},

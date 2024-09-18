@@ -102,7 +102,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Obstacle1.glb"
+			"meshPath": "res://Assets/MapTiles/TreeMassiveMarsh.glb"
 		},
 		{
 			"coords": "(7,0)",
@@ -111,7 +111,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Obstacle1.glb"
+			"meshPath": "res://Assets/MapTiles/Darkgrass.glb"
 		},
 		{
 			"coords": "(8,0)",
@@ -246,7 +246,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Obstacle1.glb"
+			"meshPath": "res://Assets/MapTiles/TreeMarsh1.glb"
 		},
 		{
 			"coords": "(1,2)",
@@ -289,9 +289,9 @@
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": false,
-			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Obstacle1.glb"
+			"isTraversable": true,
+			"obstacleType": 0,
+			"meshPath": "res://Assets/MapTiles/Darkgrass.glb"
 		},
 		{
 			"coords": "(6,2)",
@@ -325,9 +325,9 @@
 			"height": 0,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": true,
-			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Darkgrass.glb"
+			"isTraversable": false,
+			"obstacleType": 2,
+			"meshPath": "res://Assets/MapTiles/TreeMarsh2.glb"
 		},
 		{
 			"coords": "(10,2)",
@@ -377,11 +377,11 @@
 		{
 			"coords": "(4,3)",
 			"height": 0,
-			"idt": false,
+			"idt": true,
 			"isPopulated": false,
 			"isTraversable": true,
-			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Darkgrass.glb"
+			"obstacleType": 1,
+			"meshPath": "res://Assets/MapTiles/TreeStumpMarsh1.glb"
 		},
 		{
 			"coords": "(5,3)",
@@ -615,7 +615,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 1,
-			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
+			"meshPath": "res://Assets/MapTiles/RockMossy1.glb"
 		},
 		{
 			"coords": "(9,5)",
@@ -849,7 +849,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 1,
-			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
+			"meshPath": "res://Assets/MapTiles/TreeStumpMarsh3.glb"
 		},
 		{
 			"coords": "(2,8)",
@@ -867,7 +867,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 1,
-			"meshPath": "res://Assets/MapTiles/ObstacleMid1.glb"
+			"meshPath": "res://Assets/MapTiles/RockMossy2.glb"
 		},
 		{
 			"coords": "(4,8)",
@@ -881,11 +881,11 @@
 		{
 			"coords": "(5,8)",
 			"height": 0,
-			"idt": false,
+			"idt": true,
 			"isPopulated": false,
 			"isTraversable": true,
-			"obstacleType": 0,
-			"meshPath": "res://Assets/MapTiles/Darkgrass.glb"
+			"obstacleType": 1,
+			"meshPath": "res://Assets/MapTiles/TreeStumpMarsh2.glb"
 		},
 		{
 			"coords": "(6,8)",
@@ -894,7 +894,7 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Obstacle1.glb"
+			"meshPath": "res://Assets/MapTiles/TreeMarsh3.glb"
 		},
 		{
 			"coords": "(7,8)",
@@ -1074,15 +1074,15 @@
 			"isPopulated": false,
 			"isTraversable": false,
 			"obstacleType": 2,
-			"meshPath": "res://Assets/MapTiles/Obstacle1.glb"
+			"meshPath": "res://Assets/MapTiles/TreeCutMarsh.glb"
 		},
 		{
 			"coords": "(5,10)",
 			"height": 0,
-			"idt": false,
+			"idt": true,
 			"isPopulated": false,
 			"isTraversable": true,
-			"obstacleType": 0,
+			"obstacleType": 1,
 			"meshPath": "res://Assets/MapTiles/Darkgrass.glb"
 		},
 		{
