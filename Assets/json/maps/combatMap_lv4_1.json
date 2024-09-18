@@ -1615,8 +1615,8 @@
 			"height": 0,
 			"idt": true,
 			"isPopulated": false,
-			"isTraversable": true,
-			"obstacleType": 0,
+			"isTraversable": false,
+			"obstacleType": 1,
 			"meshPath": "res://Assets/MapTiles/TreeStump1.glb"
 		},
 		{

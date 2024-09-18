@@ -390,7 +390,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 1,
-			"meshPath": "res://Assets/MapTiles/WallBrokenCrystalNorth.glb"
+			"meshPath": "res://Assets/MapTiles/WallBrokenCrystalSouth.glb"
 		},
 		{
 			"coords": "(6,2)",
@@ -399,7 +399,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 1,
-			"meshPath": "res://Assets/MapTiles/WallBrokenCrystalNorth.glb"
+			"meshPath": "res://Assets/MapTiles/WallBrokenCrystalSouth.glb"
 		},
 		{
 			"coords": "(7,2)",
@@ -426,7 +426,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 1,
-			"meshPath": "res://Assets/MapTiles/WallBrokenCrystalNorth.glb"
+			"meshPath": "res://Assets/MapTiles/WallBrokenCrystalSouth.glb"
 		},
 		{
 			"coords": "(10,2)",
@@ -435,7 +435,7 @@
 			"isPopulated": false,
 			"isTraversable": true,
 			"obstacleType": 1,
-			"meshPath": "res://Assets/MapTiles/WallBrokenCrystalNorth.glb"
+			"meshPath": "res://Assets/MapTiles/WallBrokenCrystalSouth.glb"
 		},
 		{
 			"coords": "(11,2)",

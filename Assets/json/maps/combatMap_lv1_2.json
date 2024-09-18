@@ -83,8 +83,8 @@
 			"height": 1,
 			"idt": false,
 			"isPopulated": false,
-			"isTraversable": true,
-			"obstacleType": 0,
+			"isTraversable": false,
+			"obstacleType": 2,
 			"meshPath": "res://Assets/MapTiles/StoneWall_corner.glb"
 		},
 		{
