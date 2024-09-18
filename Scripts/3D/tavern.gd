@@ -11,6 +11,8 @@ var characterSelect = $Base/CharSelect/CharacterSelect
 var campaign = $Base/Campaign/CampaignMap
 @onready
 var mainMenu = $MainMenu
+@onready
+var credits = $Room/Credits
 
 @onready
 var mapCenter = $Base/SpawnPoints/MapCenter
@@ -82,7 +84,6 @@ func _input(event):
 	if event is InputEventMouseButton and event.button_index == 1:
 		if GameStatus.get_current_game_state() == GameStatus.GameState.PRE_MAIN_MENU:
 			_on_main_menu_start()
-			mainMenuCam.current = true
 
 func _process(delta):
 	if GameStatus.currentGameState == GameStatus.GameState.PRE_MAIN_MENU:
@@ -118,6 +119,7 @@ func choose_main_menu_camera() -> void:
 	reset_cameras()
 
 func _on_main_menu_start() -> void:
+	mainMenuCam.current = true
 	preMainMenuLabel.hide()
 	GameStatus.set_current_game_state(GameStatus.GameState.MAIN_MENU)
 	mainMenu.start()
@@ -199,3 +201,14 @@ func _on_debug_h_scroll_bar_value_changed(value: float) -> void:
 func _on_debug_progress_bar_value_changed(value: float) -> void:
 	mapBase.position.y = value
 	debugLabel.text = str(value)
+
+@onready
+var creditsHangingLight = $Room/Lights/HangingLights/HangingLight2
+func _on_main_menu_switch_to_credits() -> void:
+	creditsHangingLight.hide()
+	credits.camera.current = true
+	credits.ui.show()
+
+func _on_credits_return_to_tavern() -> void:
+	creditsHangingLight.show()
+	_on_main_menu_start()

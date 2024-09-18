@@ -136,10 +136,11 @@ func _on_reset_save_yes_pressed() -> void:
 
 @onready
 var creditsHighlight = $Buttons/Credits/Highlighted
+signal switch_to_credits
 func _on_credits_button_pressed(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
 	if verify_click(event):
 		MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
-		get_tree().change_scene_to_file("res://Scenes/UI/credits.tscn")
+		switch_to_credits.emit()
 
 func _on_credits_mouse_entered() -> void:
 	creditsHighlight.show()

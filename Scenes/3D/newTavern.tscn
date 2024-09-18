@@ -563,7 +563,7 @@ transform = Transform3D(0.01, 0, 1.38778e-16, 0, 0.01, 0, -1.38778e-16, 0, 0.01,
 transform = Transform3D(-4.37114e-06, 0, -100, 0, 100, 0, 100, 0, -4.37114e-06, -4.8355, 1.14801, -1.81969)
 
 [node name="Credits" parent="Room" instance=ExtResource("40_2vskd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.79457, 1.91464, 2.70891)
+transform = Transform3D(-0.4, 0, -6.03983e-08, 0, 0.4, 0, 6.03983e-08, 0, -0.4, -2.79457, 1.91464, 2.67664)
 
 [node name="MainMenuCameras" type="Node3D" parent="."]
 
@@ -632,7 +632,9 @@ vertical_alignment = 1
 
 [connection signal="start_map_combat" from="Base/Campaign/CampaignMap" to="." method="_on_campaign_map_start_map_combat"]
 [connection signal="start_campaign" from="Base/CharSelect/CharacterSelect" to="." method="_on_campaign_start"]
+[connection signal="return_to_tavern" from="Room/Credits" to="." method="_on_credits_return_to_tavern"]
 [connection signal="game_start" from="MainMenu" to="." method="_on_game_start"]
+[connection signal="switch_to_credits" from="MainMenu" to="." method="_on_main_menu_switch_to_credits"]
 [connection signal="value_changed" from="Debug/ProgressBar" to="." method="_on_debug_progress_bar_value_changed"]
 
 [editable path="Base/CharSelect/CharacterSelect"]
