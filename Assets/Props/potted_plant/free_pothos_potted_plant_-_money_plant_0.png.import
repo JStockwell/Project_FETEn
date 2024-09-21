@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ct7hbfgojkul6"
+uid="uid://f80hxf4wjexm"
 path.s3tc="res://.godot/imported/free_pothos_potted_plant_-_money_plant_0.png-ef73b2972116355499d18d8145b5bbd5.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "0c9ebb4fa9fc38ac661a841d6e8ea4dd"
 }
 
 [deps]
