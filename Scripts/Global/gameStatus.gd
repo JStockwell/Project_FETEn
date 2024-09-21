@@ -22,6 +22,17 @@ var autorunCombat: bool = true
 var debugMode: bool = false
 var testMode: bool = false
 
+var fullscreen: bool = true
+
+func _input(event):
+	if event.is_action_pressed("fullscreen"):
+		if not fullscreen:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		else:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			
+		fullscreen = not fullscreen
+
 func reset_game() -> void:
 	party = {}
 	currentGameState = GameState.PRE_MAIN_MENU
