@@ -11,7 +11,7 @@ var mapDict
 
 func before():
 	GameStatus.debugMode = false
-	GameStatus.testMode = true
+	GameStatus.testMode = false
 
 func before_test():
 	GameStatus.set_playable_characters(test_players)
