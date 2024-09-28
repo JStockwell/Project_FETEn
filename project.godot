@@ -30,6 +30,7 @@ MusicPlayer="*res://Scenes/Global/MusicPlayer.tscn"
 
 [debug]
 
+file_logging/enable_file_logging=true
 settings/stdout/print_fps=true
 
 [display]
@@ -56,6 +57,8 @@ import/blender/enabled=false
 settings/test/test_lookup_folder="Tests"
 settings/test/test_discovery=true
 ui/toolbar/run_overall=true
+settings/test/flaky_check_enable=true
+settings/test/flaky_max_retries=10
 
 [input]
 
