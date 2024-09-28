@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2o5v8iefotld"
+uid="uid://0g4wtc5gwnjk"
 path.s3tc="res://.godot/imported/3d_ludo_adventure_roll_into_a_vibrant_world_5.png-1eac65df3d8b32f5778824461c62beb7.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "9d015fa2eb867783e74c4072dc79125f"
 }
 
 [deps]
