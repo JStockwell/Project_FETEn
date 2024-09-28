@@ -29,8 +29,9 @@ func before_test():
 	
 	GameStatus.set_autorun_combat(true)
 	
-	#test_tavern = Tavern.instantiate()
-	#add_child(test_tavern)
+	if !skip_bc_orphans:
+		test_tavern = Tavern.instantiate()
+		add_child(test_tavern)
 	
 	GameStatus.set_playable_characters(test_players)
 	GameStatus.set_enemy_set(test_enemies)
@@ -40,7 +41,8 @@ func before_test():
 	
 #TODO Repair orphans generated
 func after_test():
-	#test_tavern.free()
+	if !skip_bc_orphans:
+		test_tavern.free()
 	for test_skill in GameStatus.skillSet:
 		GameStatus.skillSet[test_skill].free()
 	Utils.reset_all()
