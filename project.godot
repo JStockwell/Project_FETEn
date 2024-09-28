@@ -55,7 +55,6 @@ import/blender/enabled=false
 
 settings/test/test_lookup_folder="Tests"
 settings/test/test_discovery=true
-ui/inspector/node_collapse=false
 ui/toolbar/run_overall=true
 
 [input]

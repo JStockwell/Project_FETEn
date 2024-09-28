@@ -1,0 +1,599 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites id="2024-09-28" name="report_2" tests="241" failures="3" skipped="20" flaky="0" time="212.149">
+	<testsuite id="0" name="test_AI" package="Tests" timestamp="2024-09-28T10:30:27" hostname="localhost" tests="10" failures="0" errors="0" skipped="0" flaky="0" time="125.865">
+		<testcase name="test_not_null" classname="test_AI" time="0.370">
+		</testcase>
+		<testcase name="test_goblin_melee_behaviour" classname="test_AI" time="14.302">
+		</testcase>
+		<testcase name="test_orc_melee_no_kill_behaviour" classname="test_AI" time="13.441">
+		</testcase>
+		<testcase name="test_orc_melee_kill_behaviour" classname="test_AI" time="14.865">
+		</testcase>
+		<testcase name="test_goblin_ranged_behaviour" classname="test_AI" time="15.214">
+		</testcase>
+		<testcase name="test_orc_ranged_no_kill_behaviour" classname="test_AI" time="13.424">
+		</testcase>
+		<testcase name="test_orc_ranged_kill_behaviour" classname="test_AI" time="13.301">
+		</testcase>
+		<testcase name="test_orc_mage_no_kill_behaviour" classname="test_AI" time="13.463">
+		</testcase>
+		<testcase name="test_orc_mage_kill_behaviour" classname="test_AI" time="13.324">
+		</testcase>
+		<testcase name="test_juggernaut_behaviour" classname="test_AI" time="13.812">
+		</testcase>
+	</testsuite>
+	<testsuite id="1" name="test_character" package="Tests" timestamp="2024-09-28T10:32:33" hostname="localhost" tests="18" failures="0" errors="0" skipped="0" flaky="0" time="1.842">
+		<testcase name="test_not_null" classname="test_character" time="0.090">
+		</testcase>
+		<testcase name="test_character_factory" classname="test_character" time="0.056">
+		</testcase>
+		<testcase name="test_set_is_enemy" classname="test_character" time="0.056">
+		</testcase>
+		<testcase name="test_calculate_initiative" classname="test_character" time="0.054">
+		</testcase>
+		<testcase name="test_cap_current_stats_max" classname="test_character" time="0.056">
+		</testcase>
+		<testcase name="test_cap_current_stats_no_negatives" classname="test_character" time="0.055">
+		</testcase>
+		<testcase name="test_set_stats" classname="test_character" time="0.056">
+		</testcase>
+		<testcase name="test_set_map_coords_ok" classname="test_character" time="0.056">
+		</testcase>
+		<testcase name="test_set_map_coords_x_out_of_range" classname="test_character" time="0.066">
+		</testcase>
+		<testcase name="test_set_map_coords_y_out_of_range" classname="test_character" time="0.067">
+		</testcase>
+		<testcase name="test_modify_health_damage_non_lethal" classname="test_character" time="0.058">
+		</testcase>
+		<testcase name="test_modify_health_damage_lethal" classname="test_character" time="0.057">
+		</testcase>
+		<testcase name="test_modify_health_heal_under_cap" classname="test_character" time="0.057">
+		</testcase>
+		<testcase name="test_modify_health_heal_over_cap" classname="test_character" time="0.057">
+		</testcase>
+		<testcase name="test_modify_mana_increase_under_cap" classname="test_character" time="0.056">
+		</testcase>
+		<testcase name="test_modify_mana_increase_over_cap" classname="test_character" time="0.056">
+		</testcase>
+		<testcase name="test_modify_mana_decrease_under_cap" classname="test_character" time="0.057">
+		</testcase>
+		<testcase name="test_modify_mana_decrease_over_cap" classname="test_character" time="0.056">
+		</testcase>
+	</testsuite>
+	<testsuite id="2" name="test_combat" package="Tests" timestamp="2024-09-28T10:32:35" hostname="localhost" tests="26" failures="0" errors="0" skipped="0" flaky="0" time="2.649">
+		<testcase name="test_not_null" classname="test_combat" time="0.089">
+		</testcase>
+		<testcase name="test_calc_hit_chance_true_hit" classname="test_combat" time="0.056">
+		</testcase>
+		<testcase name="test_calc_hit_chance_true_hit_fail" classname="test_combat" time="0.057">
+		</testcase>
+		<testcase name="test_calc_hit_chance_bloated_hit" classname="test_combat" time="0.055">
+		</testcase>
+		<testcase name="test_calc_hit_chance_bloated_hit_fail" classname="test_combat" time="0.057">
+		</testcase>
+		<testcase name="test_calc_crit" classname="test_combat" time="0.058">
+		</testcase>
+		<testcase name="test_calc_crit_no" classname="test_combat" time="0.056">
+		</testcase>
+		<testcase name="test_calc_damage_no_magic" classname="test_combat" time="0.056">
+		</testcase>
+		<testcase name="test_calc_damage_magic" classname="test_combat" time="0.056">
+		</testcase>
+		<testcase name="test_calc_damage_no_magic_SPA" classname="test_combat" time="0.058">
+		</testcase>
+		<testcase name="test_calc_damage_magic_no_SPA" classname="test_combat" time="0.057">
+		</testcase>
+		<testcase name="test_generate_rolls_1_2_and_1_100" classname="test_combat" time="0.061">
+		</testcase>
+		<testcase name="test_generate_rolls_random" classname="test_combat" time="0.062">
+		</testcase>
+		<testcase name="test_combat_round_melee" classname="test_combat" time="0.058">
+		</testcase>
+		<testcase name="test_combat_round_ranged" classname="test_combat" time="0.059">
+		</testcase>
+		<testcase name="test_combat_round_skill_no_SEF_retaliation" classname="test_combat" time="0.057">
+		</testcase>
+		<testcase name="test_combat_round_skill_no_SEF_no_retaliation" classname="test_combat" time="0.067">
+		</testcase>
+		<testcase name="test_combat_round_skill_SEF_retaliation" classname="test_combat" time="0.056">
+		</testcase>
+		<testcase name="test_combat_round_skill_SEF_no_retaliation" classname="test_combat" time="0.066">
+		</testcase>
+		<testcase name="test_combat_round_kill_no_retaliation" classname="test_combat" time="0.065">
+		</testcase>
+		<testcase name="test_attack_hit" classname="test_combat" time="0.065">
+		</testcase>
+		<testcase name="test_attack_miss" classname="test_combat" time="0.057">
+		</testcase>
+		<testcase name="test_deal_damage_positive_no_crit" classname="test_combat" time="0.057">
+		</testcase>
+		<testcase name="test_deal_damage_positive_crit" classname="test_combat" time="0.057">
+		</testcase>
+		<testcase name="test_deal_damage_0" classname="test_combat" time="0.056">
+		</testcase>
+		<testcase name="test_deal_damage_negative" classname="test_combat" time="0.056">
+		</testcase>
+	</testsuite>
+	<testsuite id="3" name="test_enemy_behaviour" package="Tests" timestamp="2024-09-28T10:32:37" hostname="localhost" tests="28" failures="3" errors="0" skipped="3" flaky="0" time="56.178">
+		<testcase name="test_not_null" classname="test_enemy_behaviour" time="0.295">
+		</testcase>
+		<testcase name="test_dumb_melee_behavior_possible_targets_isEmpty" classname="test_enemy_behaviour" time="0.000">
+			<skipped message="SKIPPED: res://Tests/test_enemy_behaviour.gd:73">
+<![CDATA[
+This test is skipped!
+  Reason: '"Test fails due to check closest player needs repair"'
+]]>
+			</skipped>
+		</testcase>
+		<testcase name="test_dumb_melee_behavior_ok" classname="test_enemy_behaviour" time="0.269">
+		</testcase>
+		<testcase name="test_smart_melee_behavior_possible_targets_isEmpty" classname="test_enemy_behaviour" time="0.000">
+			<skipped message="SKIPPED: res://Tests/test_enemy_behaviour.gd:155">
+<![CDATA[
+This test is skipped!
+  Reason: '"Test fails due to check closest player needs repair"'
+]]>
+			</skipped>
+		</testcase>
+		<testcase name="test_smart_melee_behavior_ok" classname="test_enemy_behaviour" time="0.252">
+		</testcase>
+		<testcase name="test_check_players_in_range_isRooted" classname="test_enemy_behaviour" time="0.000">
+			<skipped message="SKIPPED: res://Tests/test_enemy_behaviour.gd:237">
+<![CDATA[
+This test is skipped!
+  Reason: '"Test needs repair"'
+]]>
+			</skipped>
+		</testcase>
+		<testcase name="test_check_players_in_range_ok" classname="test_enemy_behaviour" time="0.240">
+		</testcase>
+		<testcase name="test_melee_enemy_attack_isRooted" classname="test_enemy_behaviour" time="54.716">
+			<failure message="FAILED: res://Tests/test_enemy_behaviour.gd:354" type="FAILURE">
+<![CDATA[
+Expecting:
+ <RigidBody3D>
+ but was
+ <RigidBody3D>
+]]>
+			</failure>
+			<failure message="FAILED: res://Tests/test_enemy_behaviour.gd:355" type="FAILURE">
+<![CDATA[
+Expecting: 'false' but is 'true'
+]]>
+			</failure>
+			<failure message="FAILED: res://Tests/test_enemy_behaviour.gd:356" type="FAILURE">
+<![CDATA[
+Expecting: 'true' but is 'false'
+]]>
+			</failure>
+		</testcase>
+	</testsuite>
+	<testsuite id="4" name="test_mapCombat" package="Tests" timestamp="2024-09-28T10:33:33" hostname="localhost" tests="124" failures="0" errors="0" skipped="12" flaky="0" time="22.011">
+		<testcase name="test_not_null" classname="test_mapCombat" time="0.140">
+		</testcase>
+		<testcase name="test_sort_descending_case_a_bigger_b" classname="test_mapCombat" time="0.128">
+		</testcase>
+		<testcase name="test_sort_descending_case_a_less_b" classname="test_mapCombat" time="0.108">
+		</testcase>
+		<testcase name="test_sort_descending_case_a_equal_b" classname="test_mapCombat" time="0.108">
+		</testcase>
+		<testcase name="test__on_start_button_pressed" classname="test_mapCombat" time="0.130">
+		</testcase>
+		<testcase name="test_choose_random_spawn" classname="test_mapCombat" time="1.555">
+		</testcase>
+		<testcase name="test_validate_move_ok" classname="test_mapCombat" time="0.115">
+		</testcase>
+		<testcase name="test_validate_move_not_dijkstra" classname="test_mapCombat" time="0.122">
+		</testcase>
+		<testcase name="test_validate_move_tile_populated" classname="test_mapCombat" time="0.110">
+		</testcase>
+		<testcase name="test_validate_move_tile_not_traversable" classname="test_mapCombat" time="0.108">
+		</testcase>
+		<testcase name="test_update_ane_character_card_with_mana" classname="test_mapCombat" time="0.118">
+		</testcase>
+		<testcase name="test_update_ane_character_card_with_no_mana" classname="test_mapCombat" time="0.119">
+		</testcase>
+		<testcase name="test_initial_map_load" classname="test_mapCombat" time="0.111">
+		</testcase>
+		<testcase name="test_calculate_combat_initiative" classname="test_mapCombat" time="0.124">
+		</testcase>
+		<testcase name="test_setup_skill_menu" classname="test_mapCombat" time="0.132">
+		</testcase>
+		<testcase name="test_reset_to_tavern_selected_character_enemy" classname="test_mapCombat" time="0.135">
+		</testcase>
+		<testcase name="test_reset_to_tavern_selected_character_ally_has_moved" classname="test_mapCombat" time="0.128">
+		</testcase>
+		<testcase name="test_reset_to_tavern_selected_character_ally_has_not_moved" classname="test_mapCombat" time="0.000">
+			<skipped message="SKIPPED: res://Tests/test_mapCombat.gd:240">
+<![CDATA[
+This test is skipped!
+  Reason: '"Tests fails, need for acceptance testing"'
+]]>
+			</skipped>
+		</testcase>
+		<testcase name="test_start_turn_party" classname="test_mapCombat" time="0.131">
+		</testcase>
+		<testcase name="test_start_turn_enemy" classname="test_mapCombat" time="0.120">
+		</testcase>
+		<testcase name="test_generate_dijkstra" classname="test_mapCombat" time="0.108">
+		</testcase>
+		<testcase name="test_set_status_bars" classname="test_mapCombat" time="0.109">
+		</testcase>
+		<testcase name="test_set_status_bars_no_mana" classname="test_mapCombat" time="0.123">
+		</testcase>
+		<testcase name="test_enemy_turn_end" classname="test_mapCombat" time="0.134">
+		</testcase>
+		<testcase name="test_reset_map_status" classname="test_mapCombat" time="0.203">
+		</testcase>
+		<testcase name="test_regen_mana" classname="test_mapCombat" time="0.106">
+		</testcase>
+		<testcase name="test_purge_the_dead_ally" classname="test_mapCombat" time="0.152">
+		</testcase>
+		<testcase name="test_purge_the_dead_enemy" classname="test_mapCombat" time="0.158">
+		</testcase>
+		<testcase name="test_purge_the_dead_no_one_dies" classname="test_mapCombat" time="0.110">
+		</testcase>
+		<testcase name="test_purge_the_dead_mana_regen_on_kill" classname="test_mapCombat" time="0.156">
+		</testcase>
+		<testcase name="test_character_handler_enemy_turn" classname="test_mapCombat" time="0.106">
+		</testcase>
+		<testcase name="test_character_handler_isEnemy_handled" classname="test_mapCombat" time="0.118">
+		</testcase>
+		<testcase name="test_character_handler_other_ally_turn" classname="test_mapCombat" time="0.194">
+		</testcase>
+		<testcase name="test_selected_checker_last_selection_null_enemy" classname="test_mapCombat" time="0.187">
+		</testcase>
+		<testcase name="test_selected_checker_last_selection_null_ally" classname="test_mapCombat" time="0.186">
+		</testcase>
+		<testcase name="test_selected_checker_unselect_enemy" classname="test_mapCombat" time="0.174">
+		</testcase>
+		<testcase name="test_selected_checker_unselect_ally" classname="test_mapCombat" time="0.173">
+		</testcase>
+		<testcase name="test_selected_checker_change_selection_enemy" classname="test_mapCombat" time="0.178">
+		</testcase>
+		<testcase name="test_selected_checker_change_selection_ally" classname="test_mapCombat" time="0.197">
+		</testcase>
+		<testcase name="test_selected_checker_alternate_selection_ally_to_enemy" classname="test_mapCombat" time="0.184">
+		</testcase>
+		<testcase name="test_selected_checker_alternate_selection_enemy_to_ally" classname="test_mapCombat" time="0.185">
+		</testcase>
+		<testcase name="test_set_selected_character_enemy" classname="test_mapCombat" time="0.116">
+		</testcase>
+		<testcase name="test_set_selected_character_ally" classname="test_mapCombat" time="0.117">
+		</testcase>
+		<testcase name="test_set_selected_character_enemy_to_ally" classname="test_mapCombat" time="0.118">
+		</testcase>
+		<testcase name="test_set_selected_character_ally_to_enemy" classname="test_mapCombat" time="0.131">
+		</testcase>
+		<testcase name="test_get_tile_from_coords_exist" classname="test_mapCombat" time="0.112">
+		</testcase>
+		<testcase name="test_get_tile_from_coords_not_exist" classname="test_mapCombat" time="0.110">
+		</testcase>
+		<testcase name="test_set_tile_populated_false_to_true" classname="test_mapCombat" time="0.104">
+		</testcase>
+		<testcase name="test_set_tile_populated_true_to_false" classname="test_mapCombat" time="0.106">
+		</testcase>
+		<testcase name="test_tile_handler_tile_selected" classname="test_mapCombat" time="0.108">
+		</testcase>
+		<testcase name="test_tile_handler_tile_not_selected" classname="test_mapCombat" time="0.163">
+		</testcase>
+		<testcase name="test_tile_handler_null_selected" classname="test_mapCombat" time="0.111">
+		</testcase>
+		<testcase name="test__on_move_button_pressed" classname="test_mapCombat" time="0.138">
+		</testcase>
+		<testcase name="test_move_character_validated" classname="test_mapCombat" time="0.135">
+		</testcase>
+		<testcase name="test_move_character_not_validated" classname="test_mapCombat" time="0.157">
+		</testcase>
+		<testcase name="test__on_phys_attack_button_pressed" classname="test_mapCombat" time="0.142">
+		</testcase>
+		<testcase name="test_setup_com_pred_no_skill" classname="test_mapCombat" time="0.145">
+		</testcase>
+		<testcase name="test_setup_com_pred_skill" classname="test_mapCombat" time="0.144">
+		</testcase>
+		<testcase name="test_attack_combat_prediction_no_skill" classname="test_mapCombat" time="0.155">
+		</testcase>
+		<testcase name="test_attack_combat_prediction_skill" classname="test_mapCombat" time="0.143">
+		</testcase>
+		<testcase name="test_close_combat_prediction" classname="test_mapCombat" time="0.140">
+		</testcase>
+		<testcase name="test_phys_combat_round_melee" classname="test_mapCombat" time="0.110">
+		</testcase>
+		<testcase name="test_phys_combat_round_ranged" classname="test_mapCombat" time="0.118">
+		</testcase>
+		<testcase name="test_phys_combat_round_ranged_melee" classname="test_mapCombat" time="0.121">
+		</testcase>
+		<testcase name="test_phys_combat_round_melee_mapMod_positive_height" classname="test_mapCombat" time="0.110">
+		</testcase>
+		<testcase name="test_phys_combat_round_melee_mapMod_negative_height" classname="test_mapCombat" time="0.111">
+		</testcase>
+		<testcase name="test_calc_los" classname="test_mapCombat" time="0.000">
+			<skipped message="SKIPPED: res://Tests/test_mapCombat.gd:1011">
+<![CDATA[
+This test is skipped!
+  Reason: '"Not possible, raycast fails in testing"'
+]]>
+			</skipped>
+		</testcase>
+		<testcase name="test_collision_loop_collision_full_cover" classname="test_mapCombat" time="0.000">
+			<skipped message="SKIPPED: res://Tests/test_mapCombat.gd:1017">
+<![CDATA[
+This test is skipped!
+  Reason: '"Not possible, raycast fails in testing"'
+]]>
+			</skipped>
+		</testcase>
+		<testcase name="test_collision_loop_collision_partial_cover" classname="test_mapCombat" time="0.000">
+			<skipped message="SKIPPED: res://Tests/test_mapCombat.gd:1022">
+<![CDATA[
+This test is skipped!
+  Reason: '"Not possible, raycast fails in testing"'
+]]>
+			</skipped>
+		</testcase>
+		<testcase name="test_collision_loop_collision_no_cover" classname="test_mapCombat" time="0.000">
+			<skipped message="SKIPPED: res://Tests/test_mapCombat.gd:1055">
+<![CDATA[
+This test is skipped!
+  Reason: '"Not possible, raycast fails in testing"'
+]]>
+			</skipped>
+		</testcase>
+		<testcase name="test_check_behind_cover" classname="test_mapCombat" time="0.105">
+		</testcase>
+		<testcase name="test_check_behind_cover_not" classname="test_mapCombat" time="0.106">
+		</testcase>
+		<testcase name="test__on_skill_selected_target_myself" classname="test_mapCombat" time="0.131">
+		</testcase>
+		<testcase name="test__on_skill_selected_target_allies" classname="test_mapCombat" time="0.194">
+		</testcase>
+		<testcase name="test__on_skill_selected_target_enemies" classname="test_mapCombat" time="0.153">
+		</testcase>
+		<testcase name="test_cast_skill_target_myself" classname="test_mapCombat" time="0.137">
+		</testcase>
+		<testcase name="test_cast_skill_target_allies" classname="test_mapCombat" time="0.197">
+		</testcase>
+		<testcase name="test_cast_skill_target_enemies" classname="test_mapCombat" time="0.130">
+		</testcase>
+		<testcase name="test_allied_skill_handler" classname="test_mapCombat" time="0.208">
+		</testcase>
+		<testcase name="test__on_end_turn_button_pressed" classname="test_mapCombat" time="0.126">
+		</testcase>
+		<testcase name="test_update_buttons_abled" classname="test_mapCombat" time="0.148">
+		</testcase>
+		<testcase name="test_update_buttons_disabled_hasMoved" classname="test_mapCombat" time="0.136">
+		</testcase>
+		<testcase name="test_update_buttons_disabled_isEnemy" classname="test_mapCombat" time="0.138">
+		</testcase>
+		<testcase name="test_update_buttons_disabled_disableUI" classname="test_mapCombat" time="0.132">
+		</testcase>
+		<testcase name="test_update_buttons_disabled_null_selected_maptile" classname="test_mapCombat" time="0.137">
+		</testcase>
+		<testcase name="test_update_buttons_disabled_hasAttacked" classname="test_mapCombat" time="0.137">
+		</testcase>
+		<testcase name="test_update_buttons_disabled_null_selected_enemy" classname="test_mapCombat" time="0.155">
+		</testcase>
+		<testcase name="test_update_buttons_disabled_no_skills" classname="test_mapCombat" time="0.131">
+		</testcase>
+		<testcase name="test_update_buttons_disabled" classname="test_mapCombat" time="0.130">
+		</testcase>
+		<testcase name="test_update_move_button_ok" classname="test_mapCombat" time="0.125">
+		</testcase>
+		<testcase name="test_update_move_button_ally_hasMoved" classname="test_mapCombat" time="0.120">
+		</testcase>
+		<testcase name="test_update_move_button_enemy_turn" classname="test_mapCombat" time="0.125">
+		</testcase>
+		<testcase name="test_update_move_button_disableUI" classname="test_mapCombat" time="0.105">
+		</testcase>
+		<testcase name="test_update_move_button_not_selected_maptile" classname="test_mapCombat" time="0.123">
+		</testcase>
+		<testcase name="test_update_phys_attack_button_after_attack" classname="test_mapCombat" time="0.105">
+		</testcase>
+		<testcase name="test_update_phys_attack_button_is_enemy" classname="test_mapCombat" time="0.130">
+		</testcase>
+		<testcase name="test_update_phys_attack_button_disableUI" classname="test_mapCombat" time="0.105">
+		</testcase>
+		<testcase name="test_update_phys_attack_button_no_selected_enemy" classname="test_mapCombat" time="0.123">
+		</testcase>
+		<testcase name="test_update_phys_attack_button_enemy_at_range" classname="test_mapCombat" time="0.126">
+		</testcase>
+		<testcase name="test_update_phys_attack_button_disabled" classname="test_mapCombat" time="0.123">
+		</testcase>
+		<testcase name="test_update_skill_menu_button_after_attack" classname="test_mapCombat" time="0.147">
+		</testcase>
+		<testcase name="test_update_skill_menu_button_is_enemy" classname="test_mapCombat" time="0.108">
+		</testcase>
+		<testcase name="test_update_skill_menu_button_disableUI" classname="test_mapCombat" time="0.111">
+		</testcase>
+		<testcase name="test_update_skill_menu_button_character_has_no_skills" classname="test_mapCombat" time="0.126">
+		</testcase>
+		<testcase name="test_update_skill_menu_button_skills_availables" classname="test_mapCombat" time="0.120">
+		</testcase>
+		<testcase name="test_handle_skill_info_no_skill_hover" classname="test_mapCombat" time="0.123">
+		</testcase>
+		<testcase name="test_handle_skill_info_skill_hover" classname="test_mapCombat" time="0.136">
+		</testcase>
+		<testcase name="test_update_end_turn_button_is_player" classname="test_mapCombat" time="0.113">
+		</testcase>
+		<testcase name="test_update_end_turn_button_is_enemy" classname="test_mapCombat" time="0.108">
+		</testcase>
+		<testcase name="test_update_end_turn_button_disableUI" classname="test_mapCombat" time="0.107">
+		</testcase>
+		<testcase name="test_update_global_button_ok" classname="test_mapCombat" time="0.134">
+		</testcase>
+		<testcase name="test_update_global_button_isEnemy" classname="test_mapCombat" time="0.115">
+		</testcase>
+		<testcase name="test_update_global_button_disableUI" classname="test_mapCombat" time="0.109">
+		</testcase>
+		<testcase name="test_highlight_movement" classname="test_mapCombat" time="0.000">
+			<skipped message="SKIPPED: res://Tests/test_mapCombat.gd:1724">
+<![CDATA[
+This test is skipped!
+  Reason: '"Test is giving false negatives"'
+]]>
+			</skipped>
+		</testcase>
+		<testcase name="test_highlight_control_zones" classname="test_mapCombat" time="0.000">
+			<skipped message="SKIPPED: res://Tests/test_mapCombat.gd:1751">
+<![CDATA[
+This test is skipped!
+  Reason: '"Test is giving false negatives"'
+]]>
+			</skipped>
+		</testcase>
+		<testcase name="test_check_within_bounds_ok" classname="test_mapCombat" time="0.114">
+		</testcase>
+		<testcase name="test_check_within_bounds_out_of_bounds" classname="test_mapCombat" time="0.122">
+		</testcase>
+		<testcase name="test_check_within_bounds_enemy_tile" classname="test_mapCombat" time="0.117">
+		</testcase>
+		<testcase name="test_remove_highlights" classname="test_mapCombat" time="0.120">
+		</testcase>
+		<testcase name="test_remove_control_zones" classname="test_mapCombat" time="0.000">
+			<skipped message="SKIPPED: res://Tests/test_mapCombat.gd:1834">
+<![CDATA[
+This test is skipped!
+  Reason: '"Test is giving false negatives"'
+]]>
+			</skipped>
+		</testcase>
+		<testcase name="test_remove_selected" classname="test_mapCombat" time="0.000">
+			<skipped message="SKIPPED: res://Tests/test_mapCombat.gd:1849">
+<![CDATA[
+This test is skipped!
+  Reason: '"Test is giving false negatives"'
+]]>
+			</skipped>
+		</testcase>
+		<testcase name="test_remove_char_highlights" classname="test_mapCombat" time="0.000">
+			<skipped message="SKIPPED: res://Tests/test_mapCombat.gd:1863">
+<![CDATA[
+This test is skipped!
+  Reason: '"Test is giving false negatives"'
+]]>
+			</skipped>
+		</testcase>
+		<testcase name="test_remove_ally_highlights" classname="test_mapCombat" time="0.000">
+			<skipped message="SKIPPED: res://Tests/test_mapCombat.gd:1876">
+<![CDATA[
+This test is skipped!
+  Reason: '"Test is giving false negatives"'
+]]>
+			</skipped>
+		</testcase>
+		<testcase name="test_remove_enemy_highlights" classname="test_mapCombat" time="0.000">
+			<skipped message="SKIPPED: res://Tests/test_mapCombat.gd:1889">
+<![CDATA[
+This test is skipped!
+  Reason: '"Test is giving false negatives"'
+]]>
+			</skipped>
+		</testcase>
+	</testsuite>
+	<testsuite id="5" name="test_prueba" package="Tests" timestamp="2024-09-28T10:33:55" hostname="localhost" tests="2" failures="0" errors="0" skipped="0" flaky="0" time="0.244">
+		<testcase name="test_positive_1" classname="test_prueba" time="0.090">
+		</testcase>
+		<testcase name="test_negative_1" classname="test_prueba" time="0.066">
+		</testcase>
+	</testsuite>
+	<testsuite id="6" name="test_skills" package="Tests" timestamp="2024-09-28T10:33:56" hostname="localhost" tests="27" failures="0" errors="0" skipped="0" flaky="0" time="2.803">
+		<testcase name="test_not_null" classname="test_skills" time="0.090">
+		</testcase>
+		<testcase name="test_combat_round_shadow_ball" classname="test_skills" time="0.066">
+		</testcase>
+		<testcase name="test_combat_round_flaming_daggers" classname="test_skills" time="0.056">
+		</testcase>
+		<testcase name="test_combat_round_nero_nero" classname="test_skills" time="0.066">
+		</testcase>
+		<testcase name="test_combat_round_boost1" classname="test_skills" time="0.057">
+		</testcase>
+		<testcase name="test_combat_round_boost1_acc_crit" classname="test_skills" time="0.055">
+		</testcase>
+		<testcase name="test_combat_round_boost1_miss" classname="test_skills" time="0.057">
+		</testcase>
+		<testcase name="test_combat_round_boost1_not_crit" classname="test_skills" time="0.058">
+		</testcase>
+		<testcase name="test_combat_round_boost2" classname="test_skills" time="0.068">
+		</testcase>
+		<testcase name="test_combat_round_boost2_acc_crit" classname="test_skills" time="0.057">
+		</testcase>
+		<testcase name="test_combat_round_boost2_miss" classname="test_skills" time="0.075">
+		</testcase>
+		<testcase name="test_combat_round_boost2_not_crit" classname="test_skills" time="0.046">
+		</testcase>
+		<testcase name="test_combat_round_anchoring_strike" classname="test_skills" time="0.057">
+		</testcase>
+		<testcase name="test_combat_round_anchoring_strike_miss" classname="test_skills" time="0.059">
+		</testcase>
+		<testcase name="test_combat_round_anchoring_strike_dead_target" classname="test_skills" time="0.057">
+		</testcase>
+		<testcase name="test_combat_round_bestow_life_myself" classname="test_skills" time="0.054">
+		</testcase>
+		<testcase name="test_combat_round_bestow_life_ally" classname="test_skills" time="0.056">
+		</testcase>
+		<testcase name="test_combat_round_bestow_life_limited_threshold" classname="test_skills" time="0.056">
+		</testcase>
+		<testcase name="test_combat_round_bestow_life_no_threshold" classname="test_skills" time="0.062">
+		</testcase>
+		<testcase name="test_combat_round_creators_touch_myself" classname="test_skills" time="0.058">
+		</testcase>
+		<testcase name="test_combat_round_creators_touch_ally" classname="test_skills" time="0.056">
+		</testcase>
+		<testcase name="test_combat_round_creators_touch_limited_threshold" classname="test_skills" time="0.054">
+		</testcase>
+		<testcase name="test_combat_round_creators_touch_no_threshold" classname="test_skills" time="0.057">
+		</testcase>
+		<testcase name="test_combat_round_mend_flesh_myself" classname="test_skills" time="0.057">
+		</testcase>
+		<testcase name="test_combat_round_mend_flesh_ally" classname="test_skills" time="0.056">
+		</testcase>
+		<testcase name="test_combat_round_mend_flesh_limited_threshold" classname="test_skills" time="0.057">
+		</testcase>
+		<testcase name="test_combat_round_mend_flesh_no_threshold" classname="test_skills" time="0.055">
+		</testcase>
+	</testsuite>
+	<testsuite id="7" name="test_tavern" package="Tests" timestamp="2024-09-28T10:33:59" hostname="localhost" tests="6" failures="0" errors="0" skipped="5" flaky="0" time="0.503">
+		<testcase name="test_not_null" classname="test_tavern" time="0.125">
+		</testcase>
+		<testcase name="test_setup_cameras" classname="test_tavern" time="0.000">
+			<skipped message="SKIPPED: res://Tests/test_tavern.gd:57">
+<![CDATA[
+This test is skipped!
+  Reason: '"Will be changed"'
+]]>
+			</skipped>
+		</testcase>
+		<testcase name="test__on_start_turn" classname="test_tavern" time="0.000">
+			<skipped message="SKIPPED: res://Tests/test_tavern.gd:68">
+<![CDATA[
+This test is skipped!
+  Reason: '"Will be changed"'
+]]>
+			</skipped>
+		</testcase>
+		<testcase name="test__on_combat_start" classname="test_tavern" time="0.000">
+			<skipped message="SKIPPED: res://Tests/test_tavern.gd:76">
+<![CDATA[
+This test is skipped!
+  Reason: '"Will be changed"'
+]]>
+			</skipped>
+		</testcase>
+		<testcase name="test__on_combat_end" classname="test_tavern" time="0.000">
+			<skipped message="SKIPPED: res://Tests/test_tavern.gd:91">
+<![CDATA[
+This test is skipped!
+  Reason: '"Will be changed"'
+]]>
+			</skipped>
+		</testcase>
+		<testcase name="test__on_change_camera" classname="test_tavern" time="0.000">
+			<skipped message="SKIPPED: res://Tests/test_tavern.gd:109">
+<![CDATA[
+This test is skipped!
+  Reason: '"TODO when camera is finished"'
+]]>
+			</skipped>
+		</testcase>
+	</testsuite>
+</testsuites>
