@@ -156,7 +156,7 @@ func test_calc_damage_no_magic_SPA():
 	assert_that(test_res).is_equal(int(should_dmg))
 	
 	
-func test_calc_damage_magic_no_SPA():
+func test_calc_damage_magic_SPA():
 	var should_dmg = stats_atk.get("attack") + 5
 	var attack = CombatMapStatus.get_attacker_stats().get("attack")
 	var defense = CombatMapStatus.get_defender_stats().get("defense")
