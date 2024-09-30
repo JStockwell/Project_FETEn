@@ -1,6 +1,6 @@
 extends Node3D
 
-var mapDict = Utils.read_json("res://Assets/json/maps/demo_line_of_sight.json")
+var mapDict = Utils.read_json("res://Assets/json/maps/testMaps/demo_line_of_sight.json")
 var selectedTile
 var setCam = 1
 
@@ -19,6 +19,7 @@ var forwardCam = $World/Forward/Camera3D
 var debugText = $DebugText
 
 func _ready():
+	GameStatus.debugMode = true
 	CombatMapStatus.set_map_size(Utils.string_to_vector2(mapDict["size"]))
 	CombatMapStatus.set_is_start_combat(true)
 	
