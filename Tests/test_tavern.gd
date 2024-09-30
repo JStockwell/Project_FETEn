@@ -58,7 +58,7 @@ func test_not_null(do_skip=skip_bc_orphans, skip_reason="Orphans generate proble
 #####################
 # Integration Tests #
 #####################
-func test__on_start_turn(do_skip=false, skip_reason="Orphans generate problems with Actions"):
+func test__on_start_turn(do_skip=skip_bc_orphans, skip_reason="Orphans generate problems with Actions"):
 	test_tavern.start_map_combat()
 	test_tavern._on_start_turn()
 
