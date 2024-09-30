@@ -58,16 +58,19 @@ func test_not_null(do_skip=skip_bc_orphans, skip_reason="Orphans generate proble
 #####################
 # Integration Tests #
 #####################
-func test_setup_cameras(do_skip=skip_bc_orphans, skip_reason="Orphans generate problems with Actions"):
+func test_reset_game(do_skip=skip_bc_orphans, skip_reason="Orphans generate problems with Actions"):
 	#Function called in _ready() of tavern
 	test_tavern.start_map_combat()
 	
 	assert_that(CombatMapStatus.get_map_dimensions()).is_equal(Vector2(5,5))
 	assert_that(test_tavern.cm).is_not_null()
 	assert_that(test_tavern.cm.mapDict["name"]).is_equal("test_map_2vs2")
-	assert_that(test_tavern.mapCam.position).is_equal(Vector3(0,0,0.8))
+	assert_that(test_tavern.mapCam.position).is_equal(Vector3(0,0,0.8))	
 	
 	
+################
+# System Tests #
+################
 func test__on_start_turn(do_skip=skip_bc_orphans, skip_reason="Orphans generate problems with Actions"):
 	test_tavern.start_map_combat()
 	test_tavern._on_start_turn()
@@ -105,8 +108,3 @@ func test__on_combat_end(do_skip=skip_bc_orphans, skip_reason="Orphans generate 
 	assert_bool(test_tavern.mapCam.current).is_true()
 	assert_that(test_tavern.com).is_queued_for_deletion()
 	
-
-	#TODO Tests for setup_camera when its finished
-func test__on_change_camera(do_skip=true, skip_reason="TODO when change_camera is done"):
-	assert_that(true).is_equal(true)
-	pass
