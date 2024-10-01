@@ -10,7 +10,7 @@ var mapCombat
 var mapDict
 
 var dick
-var samael
+var azrael
 var lystra
 
 func before():
@@ -22,7 +22,7 @@ func before_test():
 	GameStatus.set_playable_characters(players)
 	GameStatus.set_enemy_set(enemies)
 
-	GameStatus.set_party(["dick", "samael", "lystra"])
+	GameStatus.set_party(["dick", "azrael", "lystra"])
 
 	var i = 0
 	for skillName in skillSet:
@@ -51,16 +51,16 @@ func test_not_null():
 	add_child(mapCombat)
 	
 	dick = mapCombat.characterGroup.get_children()[0]
-	samael = mapCombat.characterGroup.get_children()[1]
+	azrael = mapCombat.characterGroup.get_children()[1]
 	lystra = mapCombat.characterGroup.get_children()[2]
 	
 	dick.set_map_coords(Vector2(0,2))
-	samael.set_map_coords(Vector2(1,2))
+	azrael.set_map_coords(Vector2(1,2))
 	lystra.set_map_coords(Vector2(2,2))
 	
 	assert_that(mapCombat).is_not_null()
 	assert_that(dick.get_map_coords()).is_equal(Vector2(0,2))
-	assert_that(samael.get_map_coords()).is_equal(Vector2(1,2))
+	assert_that(azrael.get_map_coords()).is_equal(Vector2(1,2))
 	assert_that(lystra.get_map_coords()).is_equal(Vector2(2,2))
 	
 	mapCombat.free()
@@ -82,12 +82,12 @@ func test_goblin_melee_behaviour():
 		CombatMapStatus.set_initiative([3,0,1,2])
 		
 		dick = mapCombat.characterGroup.get_children()[0]
-		samael = mapCombat.characterGroup.get_children()[1]
+		azrael = mapCombat.characterGroup.get_children()[1]
 		lystra = mapCombat.characterGroup.get_children()[2]
 		var goblin = mapCombat.enemyGroup.get_children()[0]
 		
 		dick.set_map_coords(Vector2(0,3))
-		samael.set_map_coords(Vector2(1,3))
+		azrael.set_map_coords(Vector2(1,3))
 		lystra.set_map_coords(Vector2(2,3))
 		
 		mapCombat.set_tile_populated(Vector2(0,2), false)
@@ -123,12 +123,12 @@ func test_orc_melee_no_kill_behaviour():
 		CombatMapStatus.set_initiative([3,0,1,2])
 		
 		dick = mapCombat.characterGroup.get_children()[0]
-		samael = mapCombat.characterGroup.get_children()[1]
+		azrael = mapCombat.characterGroup.get_children()[1]
 		lystra = mapCombat.characterGroup.get_children()[2]
 		var orc = mapCombat.enemyGroup.get_children()[0]
 		
 		dick.set_map_coords(Vector2(0,3))
-		samael.set_map_coords(Vector2(1,3))
+		azrael.set_map_coords(Vector2(1,3))
 		lystra.set_map_coords(Vector2(2,3))
 		
 		mapCombat.set_tile_populated(Vector2(0,2), false)
@@ -164,12 +164,12 @@ func test_orc_melee_kill_behaviour():
 		CombatMapStatus.set_initiative([3,0,1,2])
 		
 		dick = mapCombat.characterGroup.get_children()[0]
-		samael = mapCombat.characterGroup.get_children()[1]
+		azrael = mapCombat.characterGroup.get_children()[1]
 		lystra = mapCombat.characterGroup.get_children()[2]
 		var orc = mapCombat.enemyGroup.get_children()[0]
 		
 		dick.set_map_coords(Vector2(0,3))
-		samael.set_map_coords(Vector2(1,3))
+		azrael.set_map_coords(Vector2(1,3))
 		lystra.set_map_coords(Vector2(2,3))
 		dick.modify_health(-dick.get_current_health() + 1)
 		
@@ -208,11 +208,11 @@ func test_goblin_ranged_behaviour():
 		CombatMapStatus.set_initiative([3,0,1,2])
 		
 		dick = mapCombat.characterGroup.get_children()[0]
-		samael = mapCombat.characterGroup.get_children()[1]
+		azrael = mapCombat.characterGroup.get_children()[1]
 		lystra = mapCombat.characterGroup.get_children()[2]
 		
 		dick.set_map_coords(Vector2(0,3))
-		samael.set_map_coords(Vector2(1,3))
+		azrael.set_map_coords(Vector2(1,3))
 		lystra.set_map_coords(Vector2(2,3))
 		
 		mapCombat.set_tile_populated(Vector2(0,2), false)
@@ -228,7 +228,7 @@ func test_goblin_ranged_behaviour():
 		mapCombat.free()
 		
 	assert_int(attacks.get("dick")).is_between(15,25)
-	assert_int(attacks.get("samael")).is_between(15,25)
+	assert_int(attacks.get("azrael")).is_between(15,25)
 	assert_int(attacks.get("lystra")).is_between(15,25)
 	
 	
@@ -248,12 +248,12 @@ func test_orc_ranged_no_kill_behaviour():
 		CombatMapStatus.set_initiative([3,0,1,2])
 		
 		dick = mapCombat.characterGroup.get_children()[0]
-		samael = mapCombat.characterGroup.get_children()[1]
+		azrael = mapCombat.characterGroup.get_children()[1]
 		lystra = mapCombat.characterGroup.get_children()[2]
 		var orc = mapCombat.enemyGroup.get_children()[0]
 		
 		dick.set_map_coords(Vector2(0,3))
-		samael.set_map_coords(Vector2(1,3))
+		azrael.set_map_coords(Vector2(1,3))
 		lystra.set_map_coords(Vector2(2,3))
 		
 		mapCombat.set_tile_populated(Vector2(0,2), false)
@@ -269,7 +269,7 @@ func test_orc_ranged_no_kill_behaviour():
 		mapCombat.free()
 		
 	assert_int(attacks.get("dick")).is_null()
-	assert_int(attacks.get("samael")).is_null()
+	assert_int(attacks.get("azrael")).is_null()
 	assert_int(attacks.get("lystra")).is_equal(60)
 	
 	
@@ -289,12 +289,12 @@ func test_orc_ranged_kill_behaviour():
 		CombatMapStatus.set_initiative([3,0,1,2])
 		
 		dick = mapCombat.characterGroup.get_children()[0]
-		samael = mapCombat.characterGroup.get_children()[1]
+		azrael = mapCombat.characterGroup.get_children()[1]
 		lystra = mapCombat.characterGroup.get_children()[2]
 		var orc = mapCombat.enemyGroup.get_children()[0]
 		
 		dick.set_map_coords(Vector2(0,3))
-		samael.set_map_coords(Vector2(1,3))
+		azrael.set_map_coords(Vector2(1,3))
 		lystra.set_map_coords(Vector2(2,3))
 		dick.modify_health(-dick.get_current_health() + 1)
 		
@@ -313,7 +313,7 @@ func test_orc_ranged_kill_behaviour():
 		mapCombat.free()
 		
 	assert_int(attacks.get("dick")).is_equal(60)
-	assert_int(attacks.get("samael")).is_null()
+	assert_int(attacks.get("azrael")).is_null()
 	assert_int(attacks.get("lystra")).is_null()
 
 
@@ -333,12 +333,12 @@ func test_orc_mage_no_kill_behaviour():
 		CombatMapStatus.set_initiative([3,0,1,2])
 		
 		dick = mapCombat.characterGroup.get_children()[0]
-		samael = mapCombat.characterGroup.get_children()[1]
+		azrael = mapCombat.characterGroup.get_children()[1]
 		lystra = mapCombat.characterGroup.get_children()[2]
 		var orc = mapCombat.enemyGroup.get_children()[0]
 		
 		dick.set_map_coords(Vector2(0,3))
-		samael.set_map_coords(Vector2(1,3))
+		azrael.set_map_coords(Vector2(1,3))
 		lystra.set_map_coords(Vector2(2,3))
 		
 		mapCombat.set_tile_populated(Vector2(0,2), false)
@@ -354,7 +354,7 @@ func test_orc_mage_no_kill_behaviour():
 		mapCombat.free()
 		
 	assert_int(attacks.get("dick")).is_equal(60)
-	assert_int(attacks.get("samael")).is_null()
+	assert_int(attacks.get("azrael")).is_null()
 	assert_int(attacks.get("lystra")).is_null()
 	
 	
@@ -374,14 +374,14 @@ func test_orc_mage_kill_behaviour():
 		CombatMapStatus.set_initiative([3,0,1,2])
 		
 		dick = mapCombat.characterGroup.get_children()[0]
-		samael = mapCombat.characterGroup.get_children()[1]
+		azrael = mapCombat.characterGroup.get_children()[1]
 		lystra = mapCombat.characterGroup.get_children()[2]
 		var orc = mapCombat.enemyGroup.get_children()[0]
 		
 		dick.set_map_coords(Vector2(0,3))
-		samael.set_map_coords(Vector2(1,3))
+		azrael.set_map_coords(Vector2(1,3))
 		lystra.set_map_coords(Vector2(2,3))
-		samael.modify_health(-samael.get_current_health() + 1)
+		azrael.modify_health(-azrael.get_current_health() + 1)
 
 		mapCombat.set_tile_populated(Vector2(0,2), false)
 		mapCombat.set_tile_populated(Vector2(1,2), false)
@@ -396,7 +396,7 @@ func test_orc_mage_kill_behaviour():
 		mapCombat.free()
 		
 	assert_int(attacks.get("dick")).is_null()
-	assert_int(attacks.get("samael")).is_equal(60)
+	assert_int(attacks.get("azrael")).is_equal(60)
 	assert_int(attacks.get("lystra")).is_null()
 
 
@@ -416,12 +416,12 @@ func test_juggernaut_behaviour():
 		CombatMapStatus.set_initiative([3,0,1,2])
 		
 		dick = mapCombat.characterGroup.get_children()[0]
-		samael = mapCombat.characterGroup.get_children()[1]
+		azrael = mapCombat.characterGroup.get_children()[1]
 		lystra = mapCombat.characterGroup.get_children()[2]
 		var juggernaut = mapCombat.enemyGroup.get_children()[0]
 		
 		dick.set_map_coords(Vector2(0,3))
-		samael.set_map_coords(Vector2(1,3))
+		azrael.set_map_coords(Vector2(1,3))
 		lystra.set_map_coords(Vector2(2,3))
 		
 		mapCombat.set_tile_populated(Vector2(0,2), false)

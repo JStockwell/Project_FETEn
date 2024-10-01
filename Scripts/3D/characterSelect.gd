@@ -30,7 +30,7 @@ var char3 = $UI/Party/InitativeIcons/Ini3/TextureRect
 @onready
 var char4 = $UI/Party/InitativeIcons/Ini4/TextureRect
 
-const CHARACTERS = ["salvador", "samael", "lystra", "dick", "edgar", "adran"]
+const CHARACTERS = ["salvador", "azrael", "lystra", "dick", "edgar", "adran"]
 var pointer: int = 3
 
 var tempParty: Array = []
