@@ -102,9 +102,9 @@ func test_goblin_melee_behaviour():
 	
 		mapCombat.free()
 		
-	assert_int(attacks.get(Vector2(0,2))).is_between(10,30)
-	assert_int(attacks.get(Vector2(1,2))).is_between(10,30)
-	assert_int(attacks.get(Vector2(2,2))).is_between(10,30)
+	assert_int(attacks.get(Vector2(0,2))).is_between(15,25)
+	assert_int(attacks.get(Vector2(1,2))).is_between(15,25)
+	assert_int(attacks.get(Vector2(2,2))).is_between(15,25)
 
 
 func test_orc_melee_no_kill_behaviour():
@@ -227,9 +227,9 @@ func test_goblin_ranged_behaviour():
 		
 		mapCombat.free()
 		
-	assert_int(attacks.get("dick")).is_between(10,30)
-	assert_int(attacks.get("samael")).is_between(10,30)
-	assert_int(attacks.get("lystra")).is_between(10,30)
+	assert_int(attacks.get("dick")).is_between(15,25)
+	assert_int(attacks.get("samael")).is_between(15,25)
+	assert_int(attacks.get("lystra")).is_between(15,25)
 	
 	
 func test_orc_ranged_no_kill_behaviour():
@@ -436,6 +436,6 @@ func test_juggernaut_behaviour():
 	
 		mapCombat.free()
 		
-	assert_int(attacks.get(Vector2(0,2))).is_between(10,30)
-	assert_int(attacks.get(Vector2(1,2))).is_between(10,30)
-	assert_int(attacks.get(Vector2(2,2))).is_between(10,30)
+	assert_int(attacks.get(Vector2(0,2))).is_between(15,25)
+	assert_int(attacks.get(Vector2(1,2))).is_between(15,25)
+	assert_int(attacks.get(Vector2(2,2))).is_between(15,25)
