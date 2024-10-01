@@ -1,0 +1,1623 @@
+
+<!DOCTYPE html>
+<html style="display: inline-grid;">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Godot Logging</title>
+	<link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body style="background-color: #eee;">
+	<div class="godot-report-frame"">
+<pre>Godot Engine v4.3.stable.official.77dcf97d8 - https://godotengine.org
+TextServer: Added interface "Dummy"
+TextServer: Added interface "ICU / HarfBuzz / Graphite (Built-in)"
+USER WARNING: GENERAL - Message Id Number: 0 | Message Id Name: Loader Message
+	Layer name GalaxyOverlayVkLayer does not conform to naming standard (Policy #LLP_LAYER_3)
+	Objects - 1
+		Object[0] - VK_OBJECT_TYPE_INSTANCE, Handle 2028989147728
+   at: _debug_messenger_callback (drivers/vulkan/rendering_context_driver_vulkan.cpp:305)
+USER WARNING: GENERAL - Message Id Number: 0 | Message Id Name: Loader Message
+	Layer name GalaxyOverlayVkLayer_VERBOSE does not conform to naming standard (Policy #LLP_LAYER_3)
+	Objects - 1
+		Object[0] - VK_OBJECT_TYPE_INSTANCE, Handle 2028989147728
+   at: _debug_messenger_callback (drivers/vulkan/rendering_context_driver_vulkan.cpp:305)
+USER WARNING: GENERAL - Message Id Number: 0 | Message Id Name: Loader Message
+	Layer name GalaxyOverlayVkLayer_DEBUG does not conform to naming standard (Policy #LLP_LAYER_3)
+	Objects - 1
+		Object[0] - VK_OBJECT_TYPE_INSTANCE, Handle 2028989147728
+   at: _debug_messenger_callback (drivers/vulkan/rendering_context_driver_vulkan.cpp:305)
+USER WARNING: GENERAL - Message Id Number: 0 | Message Id Name: Loader Message
+	windows_read_data_files_in_registry: Registry lookup failed to get layer manifest files.
+	Objects - 1
+		Object[0] - VK_OBJECT_TYPE_INSTANCE, Handle 2028989147728
+   at: _debug_messenger_callback (drivers/vulkan/rendering_context_driver_vulkan.cpp:305)
+Devices:
+  #0: NVIDIA NVIDIA GeForce GTX 1660 SUPER - Supported, Discrete
+- Vulkan Variable Rate Shading supported:
+  Pipeline fragment shading rate
+  Primitive fragment shading rate
+  Attachment fragment shading rate, min texel size: (16, 16), max texel size: (16, 16), max fragment size: (4, 4)
+- Vulkan multiview supported:
+  max view count: 32
+  max instances: 134217727
+- Vulkan subgroup:
+  size: 32
+  min size: 32
+  max size: 32
+  stages: STAGE_VERTEX, STAGE_TESSELLATION_CONTROL, STAGE_TESSELLATION_EVALUATION, STAGE_GEOMETRY, STAGE_FRAGMENT, STAGE_COMPUTE, STAGE_RAYGEN_KHR, STAGE_ANY_HIT_KHR, STAGE_CLOSEST_HIT_KHR, STAGE_MISS_KHR, STAGE_INTERSECTION_KHR, STAGE_CALLABLE_KHR, STAGE_TASK_NV, STAGE_MESH_NV
+  supported ops: FEATURE_BASIC, FEATURE_VOTE, FEATURE_ARITHMETIC, FEATURE_BALLOT, FEATURE_SHUFFLE, FEATURE_SHUFFLE_RELATIVE, FEATURE_CLUSTERED, FEATURE_QUAD, FEATURE_PARTITIONED_NV
+  quad operations in all stages
+Vulkan 1.3.280 - Forward+ - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1660 SUPER
+Startup PSO cache (14.0 MiB)
+Requested V-Sync mode: Enabled - FPS will likely be capped to the monitor refresh rate.
+USER WARNING: The Multi-Threaded rendering thread model is experimental. Feel free to try it since it will eventually become a stable feature.
+However, bear in mind that at the moment it can lead to project crashes or instability.
+So, unless you want to test the engine, use the Single-Safe option in the project settings instead.
+   at: setup2 (main/main.cpp:2795)
+Using "winink" pen tablet driver...
+RenderingServerWrapMT: Starting render thread
+Creating VMA small objects pool for memory type index 1
+Shader 'CanvasSdfShaderRD' (group 0) SHA256: f65579ae334cdfb6901aee2527afd18ed626d1067a35c91f12fb632b45ce7f21
+Shader 'SkeletonShaderRD' (group 0) SHA256: 4964fd59acf4406110ae7bca4b716f23ae52cc19864e21a8a35aee53e141e17e
+Shader 'SortShaderRD' (group 0) SHA256: 0b1e36114ab5330dc340cc740b0b946ed2dbf43098119b8d29cfa0222da18b7a
+Shader 'ParticlesShaderRD' (group 0) SHA256: 47fcf57848349fdf54197e5c1f64750a69c8d54787d3509ade4781c9faa31654
+Shader 'ParticlesCopyShaderRD' (group 0) SHA256: 69566a7b0235d75ec40f504cd5555856aace22b5273899269166fde57287d26e
+Shader 'CanvasShaderRD' (group 0) SHA256: 165f6964cfc63fea91c4221f04e7b8a54b5dc39d76b5a57aed5f99b20050b148
+Shader 'CanvasOcclusionShaderRD' (group 0) SHA256: 42f2245b35206bcace1cda9e39e9282519e9967978ba6d5956472809525b1150
+Shader 'ClusterRenderShaderRD' (group 0) SHA256: e138dfa55627ca222eda3daa0739d50014770edfb2a8fbab0fa51e2130af04e8
+Shader 'ClusterStoreShaderRD' (group 0) SHA256: 44efe54fdfa0811178ad2a7a0207ebc98532c6ae316489503cdc7c5c843a564e
+Shader 'ClusterDebugShaderRD' (group 0) SHA256: 2546937b6acfcec18164bde1022dd572463c5dc6a8dfb2db860e93b1f8cb6cf1
+Shader 'SceneForwardClusteredShaderRD' (group 0) SHA256: 29edc2f36233c2e08b9662507bec9ae15ecd3ff18670dd6a9d9e3c22bb80d2b9
+Shader 'SceneForwardClusteredShaderRD' (group 1) SHA256: ff6c4ae20e3f8b8dd34fcdb417869f52a4530caf5116e770d0297554ac18fc6f
+Shader 'SceneForwardClusteredShaderRD' (group 2) SHA256: 6598af838acb7313ff626d40126e27c0f884aa1a40a7cf5a1dd2311b2b83f39f
+Shader 'SceneForwardClusteredShaderRD' (group 3) SHA256: 8d5d67c6d3310219a88106e8336290f6e7be7d1cc12a536cef74b57ba697d3dd
+Shader 'BestFitNormalShaderRD' (group 0) SHA256: da50b1ee325fa09e8a9d2278e44bfbc4e716c11aa4475ca5323315d9d3e84d70
+Shader 'ResolveShaderRD' (group 0) SHA256: 4eed9a584e94b3db5e08b3dd178112267127e5cb55e97790e3791fff9eb617f7
+Shader 'TaaResolveShaderRD' (group 0) SHA256: 66482a84ae3398a2cbd07e92185df239a902d24d388424e0dff9fe998af3c0b4
+Shader 'Fsr2DepthClipPassShaderRD' (group 0) SHA256: f3a7731ebdc135b5cd0910085daa9440b9adba2dccae0797e528638f485437ca
+Shader 'Fsr2ReconstructPreviousDepthPassShaderRD' (group 0) SHA256: b56b046186e0886ebe0df89f96476a1b6cdd80243d937b9fa3808f57e20326ae
+Shader 'Fsr2LockPassShaderRD' (group 0) SHA256: fd7270679041c16c1c160152344dc333e0d4d01a9ea61f5ab1a97a4f148ae642
+Shader 'Fsr2AccumulatePassShaderRD' (group 0) SHA256: 160fedb5d3ef5cf63f06d76d8bf08e8739978139204922b5f9e4d50a873eef55
+Shader 'Fsr2RcasPassShaderRD' (group 0) SHA256: 1c81d789b4d2bd0f51f75c03bdd7834fc8ce0050500ea90e2fb5b4973a5c507e
+Shader 'Fsr2ComputeLuminancePyramidPassShaderRD' (group 0) SHA256: 91b43885fedcca5ed604c06712cb9ebd6b2e3d2df8e9185e01069bdabda408ab
+Shader 'Fsr2AutogenReactivePassShaderRD' (group 0) SHA256: dd661f6230e50b82cb23ca149e6f15401a0151912d074fd0bad085910647aeaa
+Shader 'Fsr2TcrAutogenPassShaderRD' (group 0) SHA256: 51c41e3962f077bfbb9a7b6dd127c0d38925ace2350a44c93a1cf5e7bb7d9a13
+Shader 'SsEffectsDownsampleShaderRD' (group 0) SHA256: d85ba7758123b2364d96690db4594bb43feabce176805e46abc91aa54c5874d4
+Shader 'SsilShaderRD' (group 0) SHA256: 20c3a95a7a0528ebb5844939feeb8fe446ac0dcde9d011e24c2fc54af67e6c6d
+Shader 'SsilImportanceMapShaderRD' (group 0) SHA256: abbec59f40ae844d9bbca6d058972ef757a0baf48cdf91ef5836a8960f11569e
+Shader 'SsilBlurShaderRD' (group 0) SHA256: dc4c027d65e080b2b5b1af257e3733c6bc35899ce02c3f333249db264836bd41
+Shader 'SsilInterleaveShaderRD' (group 0) SHA256: 76868dec9e116ecbddcf9a480d808d2509e42cf65d5f7182e4f4cad2e24c9c70
+Shader 'SsaoShaderRD' (group 0) SHA256: 10348af53d51e568e9a1574f4be3c4bc66eb9b2b464c8e4f061d051e1a6c4de9
+Shader 'SsaoImportanceMapShaderRD' (group 0) SHA256: 6d680b1500cda48a2de67225a98a208373d657c0f128c9e34a1528b50b3c2c5b
+Shader 'SsaoBlurShaderRD' (group 0) SHA256: 32baf23e3ccb90d5c6840258a705d953d950a779d125df3b5bb979bd1309f4d4
+Shader 'SsaoInterleaveShaderRD' (group 0) SHA256: d3d5b300acaef6d08dcd3d033f393c424ad653c5ab554883703c29ee6eedf528
+Shader 'ScreenSpaceReflectionScaleShaderRD' (group 0) SHA256: e5b92b2248f95dfc9534e9d5ec71a9d1fedfe58dd8fbbb2e903d8606c1ed8e0c
+Shader 'ScreenSpaceReflectionShaderRD' (group 0) SHA256: 722d4571bebbe24c59b13360d89825ac27099da739a27f42e20a004e5e92da73
+Shader 'ScreenSpaceReflectionFilterShaderRD' (group 0) SHA256: dbd56507c7ba6e4548ad94d4267e97184ea703036185204db88001c82b622120
+Shader 'SubsurfaceScatteringShaderRD' (group 0) SHA256: 43df2517be4d76d26d345b88762bb6d272983e54f79d503331a085ec082a97da
+Shader 'SkyShaderRD' (group 0) SHA256: 4bc541bfde1c30032df77bb4c98974909ad0368d22557f44e6cf095b26c0490a
+Shader 'VoxelGiShaderRD' (group 0) SHA256: 8bfb40cf41510d02f432927249e4d6d6708843a0953b4faf61a2f2e3786d4fd0
+Shader 'VoxelGiDebugShaderRD' (group 0) SHA256: 83ec08f78c119345f086a6cbcb0da5d67f664d19fd7ba3259c4948638b76fb8c
+Shader 'SdfgiPreprocessShaderRD' (group 0) SHA256: 42b3acb8f8f580e0ad8624239eada43680eb33d7a90e0279cf34b99bad80ffc9
+Shader 'SdfgiDirectLightShaderRD' (group 0) SHA256: 803c48e266e0d9c1590d25424071a668b88abc76bcda6fdde74b8524f298683c
+Shader 'SdfgiIntegrateShaderRD' (group 0) SHA256: 4647045d5ae8023ab209178c191d003ce94a58384c2bf158dfd5d1b256a1feb2
+Shader 'GiShaderRD' (group 0) SHA256: 2b51ba5b3e4e6be7fc223f7517a8a8b80c61234f3fbd4ffa229da05d747f020a
+Shader 'SdfgiDebugShaderRD' (group 0) SHA256: 372719c6eef32a8635d4db9b69f2f8b01b907642dbac0cc26f37ea2a76eeb95d
+Shader 'SdfgiDebugProbesShaderRD' (group 0) SHA256: 41af92f24cfffd1d870ed50e96e7ae1bfd6c2cc11f728d520ef0a827972a1438
+Shader 'VolumetricFogShaderRD' (group 0) SHA256: 22de546a38a6b3caaa1d02360e0e62d85133e560e5667f2f3f5e34e3145679af
+Shader 'VolumetricFogProcessShaderRD' (group 0) SHA256: 2c2d7b3b51e66f06069290afb842fc1ee9ee4f60f06a5168b0cee5bd380366bc
+Shader 'BokehDofShaderRD' (group 0) SHA256: 39f32133b5111c9c24ab7cd9b202ca96bb3aeb73e0c73ebd7b7a5dae08cb759f
+Shader 'CopyShaderRD' (group 0) SHA256: 4a43f34799f84bc5a387aff816d36330149d91299172af9be2d3ab05cc0c4e9d
+Shader 'CopyToFbShaderRD' (group 0) SHA256: 8668028c5ceed89276611359329de4a0f5d40702546caecc31456f63f6f9ffe8
+Shader 'CubeToDpShaderRD' (group 0) SHA256: e3db5adc31b15e80112f4d7497dc8563c39b7d64675a53dcce7f9511c5ca9f80
+Shader 'CubemapDownsamplerShaderRD' (group 0) SHA256: 6376d8aae8d25aa5fed14d9e78a76a69c5566f021773d2b38defa77a573b20f1
+Shader 'CubemapFilterShaderRD' (group 0) SHA256: 96fd6d20ed52761601cf4665fa909c5a27f13aeaa25940cf720f4e331158ef8e
+Shader 'CubemapRoughnessShaderRD' (group 0) SHA256: 1d72ea29a087908b2262137858ecb047ac60acf75d2e625661f01be4ce0d3ce2
+Shader 'SpecularMergeShaderRD' (group 0) SHA256: a119881bb41d0ec2f36a7f060866ec38b88afa6d0e484a431c65b35b5a2e820b
+Shader 'ShadowFrustumShaderRD' (group 0) SHA256: c9c1b6421f8f6625effc9ddfa4bb2c09cafda0942b62fb8e1414e90820e18fa0
+Shader 'MotionVectorsShaderRD' (group 0) SHA256: cbf3cbdcba0d0a2026c9fbf248556f1acd11beacc38a2e8c5ce7009ee49a1560
+Shader 'LuminanceReduceShaderRD' (group 0) SHA256: 2687da76c0ac04fe197e7093fd065958200b5a2e8e378e0f61c445212a1a0ac4
+Shader 'TonemapShaderRD' (group 0) SHA256: 1c4748b3de350503048a1f9eca4f1dc2b308086460692ea0a81bababfd80542a
+Shader 'VrsShaderRD' (group 0) SHA256: def705023965d273a669c1ac6acfd7494138bde25b3e3bde0969c3c7a32c3aae
+Shader 'FsrUpscaleShaderRD' (group 0) SHA256: 362fc0b19d06cf68dc6f6f2d99e1f9ccfd8afaef2a65e38a931df5dd9e183d7d
+Shader 'BlitShaderRD' (group 0) SHA256: 09b63e5347ccb6779fd79e54b093cfc915ec80510efa1f613c9ada9ff2e0f70d
+WASAPI: Activated output_device using IAudioClient3 interface
+WASAPI: wFormatTag = 65534
+WASAPI: nChannels = 2
+WASAPI: nSamplesPerSec = 192000
+WASAPI: nAvgBytesPerSec = 1536000
+WASAPI: nBlockAlign = 8
+WASAPI: wBitsPerSample = 32
+WASAPI: cbSize = 22
+WASAPI: mix_rate = 192000
+WASAPI: fundamental_period_frames = 1920
+WASAPI: min_period_frames = 1920
+WASAPI: max_period_frames = 1920
+WASAPI: selected a period frame size of 1920
+WASAPI: detected 2 channels
+WASAPI: audio buffer frames: 1920 calculated latency: 10ms
+
+Using present mode: Enabled
+TextServer: Primary interface set to: "ICU / HarfBuzz / Graphite (Built-in)".
+CORE API HASH: 966092234
+EDITOR API HASH: 444927587
+ERROR: 'The function parameter "char" has the same name as a built-in function.'
+ERROR: 'Standalone expression (the line may have no effect).'
+ERROR: 'Standalone expression (the line may have no effect).'
+ERROR: 'The parameter "spawn" is never used in the function "calculate_map_spawn()". If this is intended, prefix it with an underscore: "_spawn".'
+ERROR: 'The local variable "activeCharacter" is declared but never used in the block. If this is intended, prefix it with an underscore: "_activeCharacter".'
+ERROR: 'Integer used when an enum value is expected. If this is intended cast the integer to the enum type.'
+ERROR: 'The local function parameter "music" is shadowing an already-declared variable at line 3.'
+ERROR: 'The local variable "music" is shadowing an already-declared variable at line 3.'
+Loaded system CA certificates
+
+--------------------------------------------------------------------------------------------------
+GdUnit4 Comandline Tool
+--------------------------------------------------------------------------------------------------
+
+Scanning for test suites in: C:/Games/Godot/Workspace/Project_FETEn/Tests
+ERROR: 'The variable "range" has the same name as a built-in function.'
+ERROR: 'The parameter "camera" is never used in the function "_on_input_event()". If this is intended, prefix it with an underscore: "_camera".'
+ERROR: 'The parameter "position" is never used in the function "_on_input_event()". If this is intended, prefix it with an underscore: "_position".'
+ERROR: 'The local function parameter "position" is shadowing an already-declared property at the base class "Node3D".'
+ERROR: 'The parameter "normal" is never used in the function "_on_input_event()". If this is intended, prefix it with an underscore: "_normal".'
+ERROR: 'The parameter "shape_idx" is never used in the function "_on_input_event()". If this is intended, prefix it with an underscore: "_shape_idx".'
+ERROR: 'The parameter "area" is never used in the function "_on_hit_detection_area_entered()". If this is intended, prefix it with an underscore: "_area".'
+ERROR: 'The parameter "camera" is never used in the function "_on_input_event()". If this is intended, prefix it with an underscore: "_camera".'
+ERROR: 'The parameter "position" is never used in the function "_on_input_event()". If this is intended, prefix it with an underscore: "_position".'
+ERROR: 'The local function parameter "position" is shadowing an already-declared property at the base class "Node3D".'
+ERROR: 'The parameter "normal" is never used in the function "_on_input_event()". If this is intended, prefix it with an underscore: "_normal".'
+ERROR: 'The parameter "shape_idx" is never used in the function "_on_input_event()". If this is intended, prefix it with an underscore: "_shape_idx".'
+ERROR: 'The local variable "sprite_path" is declared but never used in the block. If this is intended, prefix it with an underscore: "_sprite_path".'
+ERROR: 'The constant "SkillFactory" has the same name as a global class defined in "skillFactory.gd".'
+ERROR: 'The constant "MapTileFactory" has the same name as a global class defined in "mapTileFactory.gd".'
+ERROR: 'The constant "CharacterFactory" has the same name as a global class defined in "characterFactory.gd".'
+ERROR: 'The local variable "orc" is declared but never used in the block. If this is intended, prefix it with an underscore: "_orc".'
+ERROR: 'The local variable "orc" is declared but never used in the block. If this is intended, prefix it with an underscore: "_orc".'
+ERROR: 'The local variable "orc" is declared but never used in the block. If this is intended, prefix it with an underscore: "_orc".'
+ERROR: 'The local variable "orc" is declared but never used in the block. If this is intended, prefix it with an underscore: "_orc".'
+ERROR: 'The parameter "dijkstra" is never used in the function "ranged_enemy_attack()". If this is intended, prefix it with an underscore: "_dijkstra".'
+ERROR: 'The local variable "finalTargetCoords" is declared but never used in the block. If this is intended, prefix it with an underscore: "_finalTargetCoords".'
+ERROR: 'The local constant "DIRECTIONS" is declared but never used in the block. If this is intended, prefix it with an underscore: "_DIRECTIONS".'
+ERROR: 'The local variable "missingHp" is declared but never used in the block. If this is intended, prefix it with an underscore: "_missingHp".'
+ERROR: 'The local variable "players" is declared but never used in the block. If this is intended, prefix it with an underscore: "_players".'
+ERROR: 'The local variable "closestTarget" is declared but never used in the block. If this is intended, prefix it with an underscore: "_closestTarget".'
+ERROR: 'The variable "skill" has the same name as a global class defined in "skill.gd".'
+ERROR: 'The parameter "accMod" is never used in the function "predict_anchoring_strike()". If this is intended, prefix it with an underscore: "_accMod".'
+ERROR: 'The parameter "critMod" is never used in the function "predict_anchoring_strike()". If this is intended, prefix it with an underscore: "_critMod".'
+ERROR: 'The parameter "accMod" is never used in the function "anchoring_strike()". If this is intended, prefix it with an underscore: "_accMod".'
+ERROR: 'The "for" iterator variable "char" has the same name as a built-in function.'
+ERROR: 'The variable "char" has the same name as a built-in function.'
+ERROR: 'The local variable "myCharacter" is declared but never used in the block. If this is intended, prefix it with an underscore: "_myCharacter".'
+ERROR: 'The "for" iterator variable "skill" has the same name as a global class defined in "skill.gd".'
+ERROR: 'The "for" iterator variable "char" has the same name as a built-in function.'
+ERROR: 'The "for" iterator variable "char" has the same name as a built-in function.'
+ERROR: 'The parameter "delta" is never used in the function "_process()". If this is intended, prefix it with an underscore: "_delta".'
+ERROR: 'The parameter "character" is never used in the function "validate_move()". If this is intended, prefix it with an underscore: "_character".'
+ERROR: 'The local function parameter "comPred" is shadowing an already-declared variable at line 74.'
+ERROR: 'The local function parameter "comPred" is shadowing an already-declared variable at line 74.'
+ERROR: 'The local variable "cover" is declared but never used in the block. If this is intended, prefix it with an underscore: "_cover".'
+ERROR: 'The local variable "tile_test" is declared but never used in the block. If this is intended, prefix it with an underscore: "_tile_test".'
+ERROR: 'The "for" iterator variable "skill" has the same name as a global class defined in "skill.gd".'
+ERROR: 'The parameter "skillResult" is never used in the function "cast_skill()". If this is intended, prefix it with an underscore: "_skillResult".'
+ERROR: 'The parameter "distance" is never used in the function "allied_skill_handler()". If this is intended, prefix it with an underscore: "_distance".'
+ERROR: 'The "for" iterator variable "skill" has the same name as a global class defined in "skill.gd".'
+ERROR: 'The parameter "character" is never used in the function "highlight_movement()". If this is intended, prefix it with an underscore: "_character".'
+USER WARNING: Scanning of test-suite 'C:/Games/Godot/Workspace/Project_FETEn/Tests/test_AI.gd' took more than 300ms: 725ms
+   at: push_warning (core/variant/variant_utility.cpp:1112)
+ERROR: 'Integer division, decimal part will be discarded.'
+ERROR: 'The parameter "do_skip" is never used in the function "test_dumb_melee_behavior_possible_targets_isEmpty()". If this is intended, prefix it with an underscore: "_do_skip".'
+ERROR: 'The parameter "skip_reason" is never used in the function "test_dumb_melee_behavior_possible_targets_isEmpty()". If this is intended, prefix it with an underscore: "_skip_reason".'
+ERROR: 'The parameter "do_skip" is never used in the function "test_smart_melee_behavior_possible_targets_isEmpty()". If this is intended, prefix it with an underscore: "_do_skip".'
+ERROR: 'The parameter "skip_reason" is never used in the function "test_smart_melee_behavior_possible_targets_isEmpty()". If this is intended, prefix it with an underscore: "_skip_reason".'
+ERROR: 'The parameter "do_skip" is never used in the function "test_check_players_in_range_isRooted()". If this is intended, prefix it with an underscore: "_do_skip".'
+ERROR: 'The parameter "skip_reason" is never used in the function "test_check_players_in_range_isRooted()". If this is intended, prefix it with an underscore: "_skip_reason".'
+ERROR: 'The parameter "do_skip" is never used in the function "test_ranged_enemy_attack_best_position_already()". If this is intended, prefix it with an underscore: "_do_skip".'
+ERROR: 'The parameter "skip_reason" is never used in the function "test_ranged_enemy_attack_best_position_already()". If this is intended, prefix it with an underscore: "_skip_reason".'
+ERROR: 'The parameter "do_skip" is never used in the function "test_check_players_in_range_ranged_isRooted()". If this is intended, prefix it with an underscore: "_do_skip".'
+ERROR: 'The parameter "skip_reason" is never used in the function "test_check_players_in_range_ranged_isRooted()". If this is intended, prefix it with an underscore: "_skip_reason".'
+ERROR: 'The parameter "do_skip" is never used in the function "test_check_closest_player()". If this is intended, prefix it with an underscore: "_do_skip".'
+ERROR: 'The parameter "skip_reason" is never used in the function "test_check_closest_player()". If this is intended, prefix it with an underscore: "_skip_reason".'
+ERROR: 'The parameter "do_skip" is never used in the function "test_approach_enemy()". If this is intended, prefix it with an underscore: "_do_skip".'
+ERROR: 'The parameter "skip_reason" is never used in the function "test_approach_enemy()". If this is intended, prefix it with an underscore: "_skip_reason".'
+Register singleton 'GdUnitDefaultValueDecoders:<Object#159450662756>'
+USER WARNING: Scanning of test-suite 'C:/Games/Godot/Workspace/Project_FETEn/Tests/test_enemy_behaviour.gd' took more than 300ms: 2s 365ms
+   at: push_warning (core/variant/variant_utility.cpp:1112)
+ERROR: 'The parameter "do_skip" is never used in the function "test_reset_to_tavern_selected_character_ally_has_not_moved()". If this is intended, prefix it with an underscore: "_do_skip".'
+ERROR: 'The parameter "skip_reason" is never used in the function "test_reset_to_tavern_selected_character_ally_has_not_moved()". If this is intended, prefix it with an underscore: "_skip_reason".'
+ERROR: 'The local variable "tile_right_bool" is declared but never used in the block. If this is intended, prefix it with an underscore: "_tile_right_bool".'
+ERROR: 'The local variable "tile_12_cz" is declared but never used in the block. If this is intended, prefix it with an underscore: "_tile_12_cz".'
+ERROR: 'The local variable "tile_12_h" is declared but never used in the block. If this is intended, prefix it with an underscore: "_tile_12_h".'
+ERROR: 'The local variable "tile_right" is declared but never used in the block. If this is intended, prefix it with an underscore: "_tile_right".'
+ERROR: 'The variable "char" has the same name as a built-in function.'
+ERROR: 'The variable "char" has the same name as a built-in function.'
+ERROR: 'The local variable "char" is declared but never used in the block. If this is intended, prefix it with an underscore: "_char".'
+ERROR: 'The variable "char" has the same name as a built-in function.'
+ERROR: 'The parameter "do_skip" is never used in the function "test_calc_los()". If this is intended, prefix it with an underscore: "_do_skip".'
+ERROR: 'The parameter "skip_reason" is never used in the function "test_calc_los()". If this is intended, prefix it with an underscore: "_skip_reason".'
+ERROR: 'The parameter "do_skip" is never used in the function "test_collision_loop_collision_full_cover()". If this is intended, prefix it with an underscore: "_do_skip".'
+ERROR: 'The parameter "skip_reason" is never used in the function "test_collision_loop_collision_full_cover()". If this is intended, prefix it with an underscore: "_skip_reason".'
+ERROR: 'The parameter "do_skip" is never used in the function "test_collision_loop_collision_partial_cover()". If this is intended, prefix it with an underscore: "_do_skip".'
+ERROR: 'The parameter "skip_reason" is never used in the function "test_collision_loop_collision_partial_cover()". If this is intended, prefix it with an underscore: "_skip_reason".'
+ERROR: 'The parameter "do_skip" is never used in the function "test_collision_loop_collision_no_cover()". If this is intended, prefix it with an underscore: "_do_skip".'
+ERROR: 'The parameter "skip_reason" is never used in the function "test_collision_loop_collision_no_cover()". If this is intended, prefix it with an underscore: "_skip_reason".'
+ERROR: 'The local variable "prev_coords" is declared but never used in the block. If this is intended, prefix it with an underscore: "_prev_coords".'
+ERROR: 'The local variable "character" is declared but never used in the block. If this is intended, prefix it with an underscore: "_character".'
+ERROR: 'The local variable "character" is declared but never used in the block. If this is intended, prefix it with an underscore: "_character".'
+ERROR: 'The local variable "prev_coords" is declared but never used in the block. If this is intended, prefix it with an underscore: "_prev_coords".'
+ERROR: 'The local variable "prev_coords" is declared but never used in the block. If this is intended, prefix it with an underscore: "_prev_coords".'
+ERROR: 'The local variable "checker1" is declared but never used in the block. If this is intended, prefix it with an underscore: "_checker1".'
+ERROR: 'The local variable "checker2" is declared but never used in the block. If this is intended, prefix it with an underscore: "_checker2".'
+ERROR: 'The parameter "do_skip" is never used in the function "test_highlight_movement()". If this is intended, prefix it with an underscore: "_do_skip".'
+ERROR: 'The parameter "skip_reason" is never used in the function "test_highlight_movement()". If this is intended, prefix it with an underscore: "_skip_reason".'
+ERROR: 'The parameter "do_skip" is never used in the function "test_highlight_control_zones()". If this is intended, prefix it with an underscore: "_do_skip".'
+ERROR: 'The parameter "skip_reason" is never used in the function "test_highlight_control_zones()". If this is intended, prefix it with an underscore: "_skip_reason".'
+ERROR: 'The parameter "do_skip" is never used in the function "test_remove_control_zones()". If this is intended, prefix it with an underscore: "_do_skip".'
+ERROR: 'The parameter "skip_reason" is never used in the function "test_remove_control_zones()". If this is intended, prefix it with an underscore: "_skip_reason".'
+ERROR: 'The parameter "do_skip" is never used in the function "test_remove_selected()". If this is intended, prefix it with an underscore: "_do_skip".'
+ERROR: 'The parameter "skip_reason" is never used in the function "test_remove_selected()". If this is intended, prefix it with an underscore: "_skip_reason".'
+ERROR: 'The parameter "do_skip" is never used in the function "test_remove_char_highlights()". If this is intended, prefix it with an underscore: "_do_skip".'
+ERROR: 'The parameter "skip_reason" is never used in the function "test_remove_char_highlights()". If this is intended, prefix it with an underscore: "_skip_reason".'
+ERROR: 'The local variable "tile" is declared but never used in the block. If this is intended, prefix it with an underscore: "_tile".'
+ERROR: 'The parameter "do_skip" is never used in the function "test_remove_ally_highlights()". If this is intended, prefix it with an underscore: "_do_skip".'
+ERROR: 'The parameter "skip_reason" is never used in the function "test_remove_ally_highlights()". If this is intended, prefix it with an underscore: "_skip_reason".'
+ERROR: 'The local variable "tile" is declared but never used in the block. If this is intended, prefix it with an underscore: "_tile".'
+ERROR: 'The parameter "do_skip" is never used in the function "test_remove_enemy_highlights()". If this is intended, prefix it with an underscore: "_do_skip".'
+ERROR: 'The parameter "skip_reason" is never used in the function "test_remove_enemy_highlights()". If this is intended, prefix it with an underscore: "_skip_reason".'
+ERROR: 'The local variable "tile" is declared but never used in the block. If this is intended, prefix it with an underscore: "_tile".'
+USER WARNING: Scanning of test-suite 'C:/Games/Godot/Workspace/Project_FETEn/Tests/test_mapCombat.gd' took more than 300ms: 5s 340ms
+   at: push_warning (core/variant/variant_utility.cpp:1112)
+ERROR: 'The local variable "spa" is declared but never used in the block. If this is intended, prefix it with an underscore: "_spa".'
+ERROR: 'The local variable "spa" is declared but never used in the block. If this is intended, prefix it with an underscore: "_spa".'
+ERROR: 'The parameter "delta" is never used in the function "_process()". If this is intended, prefix it with an underscore: "_delta".'
+USER WARNING: res://Scenes/3D/characterSelectCard.tscn:4 - ext_resource, invalid UID: uid://0h62265iduim - using text path instead: res://Assets/Materials/brownPaper.tres
+   at: load (scene/resources/resource_format_text.cpp:453)
+USER WARNING: res://Assets/Props/dm_screen/dm_screen.tscn:3 - ext_resource, invalid UID: uid://biennfdh5w4v4 - using text path instead: res://Assets/Materials/brownLeather.tres
+   at: load (scene/resources/resource_format_text.cpp:453)
+USER WARNING: res://Scenes/3D/characterSelect.tscn:7 - ext_resource, invalid UID: uid://0h62265iduim - using text path instead: res://Assets/Materials/brownPaper.tres
+   at: load (scene/resources/resource_format_text.cpp:453)
+ERROR: 'The parameter "camera" is never used in the function "_on_province_input_event()". If this is intended, prefix it with an underscore: "_camera".'
+ERROR: 'The parameter "event_position" is never used in the function "_on_province_input_event()". If this is intended, prefix it with an underscore: "_event_position".'
+ERROR: 'The parameter "normal" is never used in the function "_on_province_input_event()". If this is intended, prefix it with an underscore: "_normal".'
+ERROR: 'The parameter "shape_idx" is never used in the function "_on_province_input_event()". If this is intended, prefix it with an underscore: "_shape_idx".'
+USER WARNING: res://Scenes/3D/campaignMap.tscn:4 - ext_resource, invalid UID: uid://cy64ia52457td - using text path instead: res://Assets/Materials/cork.tres
+   at: load (scene/resources/resource_format_text.cpp:453)
+USER WARNING: res://Scenes/3D/campaignMap.tscn:7 - ext_resource, invalid UID: uid://beeuvue688nry - using text path instead: res://Assets/Materials/wood.tres
+   at: load (scene/resources/resource_format_text.cpp:453)
+USER WARNING: res://Assets/Props/modern_table/modern_table.tscn:3 - ext_resource, invalid UID: uid://got5by3urm4e - using text path instead: res://Assets/Props/modern_table/modern_table_0.png
+   at: load (scene/resources/resource_format_text.cpp:453)
+USER WARNING: res://Assets/Props/hanging_light/hanging_light_mesh.tscn:3 - ext_resource, invalid UID: uid://d5k560iih4h2 - using text path instead: res://Assets/Materials/blackMetal.tres
+   at: load (scene/resources/resource_format_text.cpp:453)
+USER WARNING: res://Assets/Props/hanging_light/hanging_light_mesh.tscn:4 - ext_resource, invalid UID: uid://dhclswrexx6lh - using text path instead: res://Assets/Materials/mirrorMetal.tres
+   at: load (scene/resources/resource_format_text.cpp:453)
+USER WARNING: res://Assets/Props/hanging_light/hanging_light_mesh.tscn:5 - ext_resource, invalid UID: uid://cp21a65umlu0g - using text path instead: res://Assets/Materials/metalRope.tres
+   at: load (scene/resources/resource_format_text.cpp:453)
+ERROR: 'The parameter "camera" is never used in the function "_on_start_button_pressed()". If this is intended, prefix it with an underscore: "_camera".'
+ERROR: 'The parameter "event_position" is never used in the function "_on_start_button_pressed()". If this is intended, prefix it with an underscore: "_event_position".'
+ERROR: 'The parameter "normal" is never used in the function "_on_start_button_pressed()". If this is intended, prefix it with an underscore: "_normal".'
+ERROR: 'The parameter "shape_idx" is never used in the function "_on_start_button_pressed()". If this is intended, prefix it with an underscore: "_shape_idx".'
+ERROR: 'The parameter "camera" is never used in the function "_on_exit_button_pressed()". If this is intended, prefix it with an underscore: "_camera".'
+ERROR: 'The parameter "event_position" is never used in the function "_on_exit_button_pressed()". If this is intended, prefix it with an underscore: "_event_position".'
+ERROR: 'The parameter "normal" is never used in the function "_on_exit_button_pressed()". If this is intended, prefix it with an underscore: "_normal".'
+ERROR: 'The parameter "shape_idx" is never used in the function "_on_exit_button_pressed()". If this is intended, prefix it with an underscore: "_shape_idx".'
+ERROR: 'The parameter "camera" is never used in the function "_on_reset_button_pressed()". If this is intended, prefix it with an underscore: "_camera".'
+ERROR: 'The parameter "event_position" is never used in the function "_on_reset_button_pressed()". If this is intended, prefix it with an underscore: "_event_position".'
+ERROR: 'The parameter "normal" is never used in the function "_on_reset_button_pressed()". If this is intended, prefix it with an underscore: "_normal".'
+ERROR: 'The parameter "shape_idx" is never used in the function "_on_reset_button_pressed()". If this is intended, prefix it with an underscore: "_shape_idx".'
+ERROR: 'The parameter "camera" is never used in the function "_on_credits_button_pressed()". If this is intended, prefix it with an underscore: "_camera".'
+ERROR: 'The parameter "event_position" is never used in the function "_on_credits_button_pressed()". If this is intended, prefix it with an underscore: "_event_position".'
+ERROR: 'The parameter "normal" is never used in the function "_on_credits_button_pressed()". If this is intended, prefix it with an underscore: "_normal".'
+ERROR: 'The parameter "shape_idx" is never used in the function "_on_credits_button_pressed()". If this is intended, prefix it with an underscore: "_shape_idx".'
+ERROR: 'The parameter "do_skip" is never used in the function "test_not_null()". If this is intended, prefix it with an underscore: "_do_skip".'
+ERROR: 'The parameter "skip_reason" is never used in the function "test_not_null()". If this is intended, prefix it with an underscore: "_skip_reason".'
+ERROR: 'The parameter "do_skip" is never used in the function "test__on_start_turn()". If this is intended, prefix it with an underscore: "_do_skip".'
+ERROR: 'The parameter "skip_reason" is never used in the function "test__on_start_turn()". If this is intended, prefix it with an underscore: "_skip_reason".'
+ERROR: 'The parameter "do_skip" is never used in the function "test_start_map_combat()". If this is intended, prefix it with an underscore: "_do_skip".'
+ERROR: 'The parameter "skip_reason" is never used in the function "test_start_map_combat()". If this is intended, prefix it with an underscore: "_skip_reason".'
+ERROR: 'The parameter "do_skip" is never used in the function "test__on_combat_start()". If this is intended, prefix it with an underscore: "_do_skip".'
+ERROR: 'The parameter "skip_reason" is never used in the function "test__on_combat_start()". If this is intended, prefix it with an underscore: "_skip_reason".'
+ERROR: 'The parameter "do_skip" is never used in the function "test__on_combat_end()". If this is intended, prefix it with an underscore: "_do_skip".'
+ERROR: 'The parameter "skip_reason" is never used in the function "test__on_combat_end()". If this is intended, prefix it with an underscore: "_skip_reason".'
+USER WARNING: Scanning of test-suite 'C:/Games/Godot/Workspace/Project_FETEn/Tests/test_tavern.gd' took more than 300ms: 2s 682ms
+   at: push_warning (core/variant/variant_utility.cpp:1112)
+Register singleton 'GdUnitThreadManager:<Object#575928273300>'
+Run Test Suite res://Tests/test_AI.gd 
+	Run Test: res://Tests/test_AI.gd > test_not_null :STARTED
+ERROR: 'The local "for" iterator variable "skillName" is shadowing an already-declared variable at line 6.'
+	Run Test: res://Tests/test_AI.gd > test_not_null :PASSED 305ms
+
+	Run Test: res://Tests/test_AI.gd > test_goblin_melee_behaviour :STARTED
+Project FPS: 4 (250.00 mspf)
+	Run Test: res://Tests/test_AI.gd > test_goblin_melee_behaviour :PASSED 11s 323ms
+
+	Run Test: res://Tests/test_AI.gd > test_orc_melee_no_kill_behaviour :STARTED
+Project FPS: 3 (333.33 mspf)
+	Run Test: res://Tests/test_AI.gd > test_orc_melee_no_kill_behaviour :PASSED 10s 805ms
+
+	Run Test: res://Tests/test_AI.gd > test_orc_melee_kill_behaviour :STARTED
+Project FPS: 4 (250.00 mspf)
+	Run Test: res://Tests/test_AI.gd > test_orc_melee_kill_behaviour :PASSED 10s 626ms
+
+	Run Test: res://Tests/test_AI.gd > test_goblin_ranged_behaviour :STARTED
+Project FPS: 2 (500.00 mspf)
+Project FPS: 1 (1000.00 mspf)
+	Run Test: res://Tests/test_AI.gd > test_goblin_ranged_behaviour :FAILED 11s 374ms
+	Report:
+		line 232: Expecting:
+		 '14'
+		 in range between
+		 '15' <> '25'
+
+	Run Test: res://Tests/test_AI.gd > test_goblin_ranged_behaviour :STARTED
+Project FPS: 3 (333.33 mspf)
+	Run Test: res://Tests/test_AI.gd > test_goblin_ranged_behaviour :FLAKY (2 retries) 11s 371ms
+
+	Run Test: res://Tests/test_AI.gd > test_orc_ranged_no_kill_behaviour :STARTED
+Project FPS: 4 (250.00 mspf)
+	Run Test: res://Tests/test_AI.gd > test_orc_ranged_no_kill_behaviour :PASSED 10s 624ms
+
+	Run Test: res://Tests/test_AI.gd > test_orc_ranged_kill_behaviour :STARTED
+Project FPS: 3 (333.33 mspf)
+	Run Test: res://Tests/test_AI.gd > test_orc_ranged_kill_behaviour :PASSED 10s 748ms
+
+	Run Test: res://Tests/test_AI.gd > test_orc_mage_no_kill_behaviour :STARTED
+Project FPS: 3 (333.33 mspf)
+	Run Test: res://Tests/test_AI.gd > test_orc_mage_no_kill_behaviour :PASSED 11s 58ms
+
+	Run Test: res://Tests/test_AI.gd > test_orc_mage_kill_behaviour :STARTED
+Project FPS: 4 (250.00 mspf)
+	Run Test: res://Tests/test_AI.gd > test_orc_mage_kill_behaviour :PASSED 11s 29ms
+
+	Run Test: res://Tests/test_AI.gd > test_juggernaut_behaviour :STARTED
+Project FPS: 4 (250.00 mspf)
+	Run Test: res://Tests/test_AI.gd > test_juggernaut_behaviour :PASSED 11s 159ms
+
+
+FLAKY (0 retries) 1min 50s 777ms
+Statistics: | 10 tests cases | 0 error | 0 failed | 1 flaky | 0 skipped | 0 orphans |
+
+Run Test Suite res://Tests/test_character.gd 
+	Run Test: res://Tests/test_character.gd > test_not_null :STARTED
+	Run Test: res://Tests/test_character.gd > test_not_null :PASSED 87ms
+
+	Run Test: res://Tests/test_character.gd > test_character_factory :STARTED
+	Run Test: res://Tests/test_character.gd > test_character_factory :PASSED 53ms
+
+	Run Test: res://Tests/test_character.gd > test_set_is_enemy :STARTED
+	Run Test: res://Tests/test_character.gd > test_set_is_enemy :PASSED 53ms
+
+	Run Test: res://Tests/test_character.gd > test_calculate_initiative :STARTED
+	Run Test: res://Tests/test_character.gd > test_calculate_initiative :PASSED 52ms
+
+Project FPS: 15 (66.66 mspf)
+	Run Test: res://Tests/test_character.gd > test_cap_current_stats_max :STARTED
+	Run Test: res://Tests/test_character.gd > test_cap_current_stats_max :PASSED 54ms
+
+	Run Test: res://Tests/test_character.gd > test_cap_current_stats_no_negatives :STARTED
+	Run Test: res://Tests/test_character.gd > test_cap_current_stats_no_negatives :PASSED 52ms
+
+	Run Test: res://Tests/test_character.gd > test_set_stats :STARTED
+	Run Test: res://Tests/test_character.gd > test_set_stats :PASSED 52ms
+
+	Run Test: res://Tests/test_character.gd > test_set_map_coords_ok :STARTED
+	Run Test: res://Tests/test_character.gd > test_set_map_coords_ok :PASSED 51ms
+
+	Run Test: res://Tests/test_character.gd > test_set_map_coords_x_out_of_range :STARTED
+invalid coords (4, 3)
+	Run Test: res://Tests/test_character.gd > test_set_map_coords_x_out_of_range :PASSED 66ms
+
+	Run Test: res://Tests/test_character.gd > test_set_map_coords_y_out_of_range :STARTED
+invalid coords (3, 4)
+	Run Test: res://Tests/test_character.gd > test_set_map_coords_y_out_of_range :PASSED 66ms
+
+	Run Test: res://Tests/test_character.gd > test_modify_health_damage_non_lethal :STARTED
+	Run Test: res://Tests/test_character.gd > test_modify_health_damage_non_lethal :PASSED 53ms
+
+	Run Test: res://Tests/test_character.gd > test_modify_health_damage_lethal :STARTED
+	Run Test: res://Tests/test_character.gd > test_modify_health_damage_lethal :PASSED 54ms
+
+	Run Test: res://Tests/test_character.gd > test_modify_health_heal_under_cap :STARTED
+	Run Test: res://Tests/test_character.gd > test_modify_health_heal_under_cap :PASSED 54ms
+
+	Run Test: res://Tests/test_character.gd > test_modify_health_heal_over_cap :STARTED
+	Run Test: res://Tests/test_character.gd > test_modify_health_heal_over_cap :PASSED 53ms
+
+Project FPS: 30 (33.33 mspf)
+	Run Test: res://Tests/test_character.gd > test_modify_mana_increase_under_cap :STARTED
+	Run Test: res://Tests/test_character.gd > test_modify_mana_increase_under_cap :PASSED 54ms
+
+	Run Test: res://Tests/test_character.gd > test_modify_mana_increase_over_cap :STARTED
+	Run Test: res://Tests/test_character.gd > test_modify_mana_increase_over_cap :PASSED 54ms
+
+	Run Test: res://Tests/test_character.gd > test_modify_mana_decrease_under_cap :STARTED
+	Run Test: res://Tests/test_character.gd > test_modify_mana_decrease_under_cap :PASSED 55ms
+
+	Run Test: res://Tests/test_character.gd > test_modify_mana_decrease_over_cap :STARTED
+	Run Test: res://Tests/test_character.gd > test_modify_mana_decrease_over_cap :PASSED 58ms
+
+
+PASSED 1s 842ms
+Statistics: | 28 tests cases | 0 error | 0 failed | 1 flaky | 0 skipped | 0 orphans |
+
+Run Test Suite res://Tests/test_combat.gd 
+	Run Test: res://Tests/test_combat.gd > test_not_null :STARTED
+	Run Test: res://Tests/test_combat.gd > test_not_null :PASSED 90ms
+
+	Run Test: res://Tests/test_combat.gd > test_calc_hit_chance_true_hit :STARTED
+	Run Test: res://Tests/test_combat.gd > test_calc_hit_chance_true_hit :PASSED 58ms
+
+	Run Test: res://Tests/test_combat.gd > test_calc_hit_chance_true_hit_fail :STARTED
+	Run Test: res://Tests/test_combat.gd > test_calc_hit_chance_true_hit_fail :PASSED 58ms
+
+	Run Test: res://Tests/test_combat.gd > test_calc_hit_chance_bloated_hit :STARTED
+	Run Test: res://Tests/test_combat.gd > test_calc_hit_chance_bloated_hit :PASSED 57ms
+
+	Run Test: res://Tests/test_combat.gd > test_calc_hit_chance_bloated_hit_fail :STARTED
+	Run Test: res://Tests/test_combat.gd > test_calc_hit_chance_bloated_hit_fail :PASSED 58ms
+
+	Run Test: res://Tests/test_combat.gd > test_calc_crit :STARTED
+Project FPS: 30 (33.33 mspf)
+	Run Test: res://Tests/test_combat.gd > test_calc_crit :PASSED 67ms
+
+	Run Test: res://Tests/test_combat.gd > test_calc_crit_no :STARTED
+	Run Test: res://Tests/test_combat.gd > test_calc_crit_no :PASSED 59ms
+
+	Run Test: res://Tests/test_combat.gd > test_calc_damage_no_magic :STARTED
+	Run Test: res://Tests/test_combat.gd > test_calc_damage_no_magic :PASSED 57ms
+
+	Run Test: res://Tests/test_combat.gd > test_calc_damage_magic :STARTED
+	Run Test: res://Tests/test_combat.gd > test_calc_damage_magic :PASSED 58ms
+
+	Run Test: res://Tests/test_combat.gd > test_calc_damage_no_magic_SPA :STARTED
+	Run Test: res://Tests/test_combat.gd > test_calc_damage_no_magic_SPA :PASSED 57ms
+
+	Run Test: res://Tests/test_combat.gd > test_calc_damage_magic_SPA :STARTED
+	Run Test: res://Tests/test_combat.gd > test_calc_damage_magic_SPA :PASSED 59ms
+
+	Run Test: res://Tests/test_combat.gd > test_generate_rolls_1_2_and_1_100 :STARTED
+	Run Test: res://Tests/test_combat.gd > test_generate_rolls_1_2_and_1_100 :PASSED 61ms
+
+	Run Test: res://Tests/test_combat.gd > test_generate_rolls_random :STARTED
+	Run Test: res://Tests/test_combat.gd > test_generate_rolls_random :PASSED 62ms
+
+	Run Test: res://Tests/test_combat.gd > test_combat_round_melee :STARTED
+	Run Test: res://Tests/test_combat.gd > test_combat_round_melee :PASSED 56ms
+
+	Run Test: res://Tests/test_combat.gd > test_combat_round_ranged :STARTED
+	Run Test: res://Tests/test_combat.gd > test_combat_round_ranged :PASSED 57ms
+
+	Run Test: res://Tests/test_combat.gd > test_combat_round_skill_no_SEF_retaliation :STARTED
+Project FPS: 30 (33.33 mspf)
+	Run Test: res://Tests/test_combat.gd > test_combat_round_skill_no_SEF_retaliation :PASSED 65ms
+
+	Run Test: res://Tests/test_combat.gd > test_combat_round_skill_no_SEF_no_retaliation :STARTED
+turbohit found -23
+	Run Test: res://Tests/test_combat.gd > test_combat_round_skill_no_SEF_no_retaliation :PASSED 65ms
+
+	Run Test: res://Tests/test_combat.gd > test_combat_round_skill_SEF_retaliation :STARTED
+	Run Test: res://Tests/test_combat.gd > test_combat_round_skill_SEF_retaliation :PASSED 58ms
+
+	Run Test: res://Tests/test_combat.gd > test_combat_round_skill_SEF_no_retaliation :STARTED
+turbohit found -27
+	Run Test: res://Tests/test_combat.gd > test_combat_round_skill_SEF_no_retaliation :PASSED 67ms
+
+	Run Test: res://Tests/test_combat.gd > test_combat_round_kill_no_retaliation :STARTED
+turbohit found -44
+	Run Test: res://Tests/test_combat.gd > test_combat_round_kill_no_retaliation :PASSED 66ms
+
+	Run Test: res://Tests/test_combat.gd > test_attack_hit :STARTED
+	Run Test: res://Tests/test_combat.gd > test_attack_hit :PASSED 58ms
+
+	Run Test: res://Tests/test_combat.gd > test_attack_miss :STARTED
+	Run Test: res://Tests/test_combat.gd > test_attack_miss :PASSED 55ms
+
+	Run Test: res://Tests/test_combat.gd > test_deal_damage_positive_no_crit :STARTED
+	Run Test: res://Tests/test_combat.gd > test_deal_damage_positive_no_crit :PASSED 57ms
+
+	Run Test: res://Tests/test_combat.gd > test_deal_damage_positive_crit :STARTED
+	Run Test: res://Tests/test_combat.gd > test_deal_damage_positive_crit :PASSED 57ms
+
+	Run Test: res://Tests/test_combat.gd > test_deal_damage_0 :STARTED
+	Run Test: res://Tests/test_combat.gd > test_deal_damage_0 :PASSED 58ms
+
+	Run Test: res://Tests/test_combat.gd > test_deal_damage_negative :STARTED
+Project FPS: 30 (33.33 mspf)
+	Run Test: res://Tests/test_combat.gd > test_deal_damage_negative :PASSED 67ms
+
+
+PASSED 2s 645ms
+Statistics: | 54 tests cases | 0 error | 0 failed | 1 flaky | 0 skipped | 0 orphans |
+
+Run Test Suite res://Tests/test_enemy_behaviour.gd 
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_not_null :STARTED
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_not_null :PASSED 264ms
+
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_dumb_melee_behavior_possible_targets_isEmpty :STARTED
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_dumb_melee_behavior_possible_targets_isEmpty :SKIPPED 0ms
+	Report:
+		line 73: This test is skipped!
+		  Reason: '"Test fails due to check closest player needs repair"'
+		
+
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_dumb_melee_behavior_ok :STARTED
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_dumb_melee_behavior_ok :PASSED 221ms
+
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_smart_melee_behavior_possible_targets_isEmpty :STARTED
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_smart_melee_behavior_possible_targets_isEmpty :SKIPPED 0ms
+	Report:
+		line 155: This test is skipped!
+		  Reason: '"Test fails due to check closest player needs repair"'
+		
+
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_smart_melee_behavior_ok :STARTED
+Project FPS: 16 (62.50 mspf)
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_smart_melee_behavior_ok :PASSED 215ms
+
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_check_players_in_range_isRooted :STARTED
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_check_players_in_range_isRooted :SKIPPED 0ms
+	Report:
+		line 237: This test is skipped!
+		  Reason: '"Test needs repair"'
+		
+
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_check_players_in_range_ok :STARTED
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_check_players_in_range_ok :PASSED 187ms
+
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_melee_enemy_attack_isRooted :STARTED
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_melee_enemy_attack_isRooted :PASSED 204ms
+
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_melee_enemy_attack_no_move_needed :STARTED
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_melee_enemy_attack_no_move_needed :PASSED 186ms
+
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_melee_enemy_attack_move_needed :STARTED
+Project FPS: 14 (71.42 mspf)
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_melee_enemy_attack_move_needed :PASSED 228ms
+
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_dumb_ranged_behavior_target_isEmpty :STARTED
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_dumb_ranged_behavior_target_isEmpty :PASSED 214ms
+
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_dumb_ranged_behavior_target_ok :STARTED
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_dumb_ranged_behavior_target_ok :PASSED 234ms
+
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_smart_ranged_behavior_target_isEmpty :STARTED
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_smart_ranged_behavior_target_isEmpty :PASSED 200ms
+
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_smart_ranged_behavior_target_ok :STARTED
+Project FPS: 12 (83.33 mspf)
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_smart_ranged_behavior_target_ok :PASSED 218ms
+
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_find_optimal_shot :STARTED
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_find_optimal_shot :PASSED 191ms
+
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_ranged_enemy_attack_isRooted :STARTED
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_ranged_enemy_attack_isRooted :PASSED 197ms
+
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_ranged_enemy_attack_best_position_already :STARTED
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_ranged_enemy_attack_best_position_already :SKIPPED 0ms
+	Report:
+		line 712: This test is skipped!
+		  Reason: '"Test needs repair"'
+		
+
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_ranged_enemy_attack_with_movement :STARTED
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_ranged_enemy_attack_with_movement :PASSED 193ms
+
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_check_players_in_range_ranged_isRooted :STARTED
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_check_players_in_range_ranged_isRooted :SKIPPED 0ms
+	Report:
+		line 805: This test is skipped!
+		  Reason: '"Test needs repair"'
+		
+
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_check_players_in_range_ranged_ok :STARTED
+Project FPS: 15 (66.66 mspf)
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_check_players_in_range_ranged_ok :PASSED 209ms
+
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_viable_ranged_target :STARTED
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_viable_ranged_target :PASSED 207ms
+
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_viable_ranged_positions :STARTED
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_viable_ranged_positions :PASSED 190ms
+
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_smart_enemy_target_choice_ranged_no_kill :STARTED
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_smart_enemy_target_choice_ranged_no_kill :PASSED 195ms
+
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_smart_enemy_target_choice_ranged_kill :STARTED
+Project FPS: 13 (76.92 mspf)
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_smart_enemy_target_choice_ranged_kill :PASSED 201ms
+
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_smart_enemy_target_choice_mage_no_kill :STARTED
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_smart_enemy_target_choice_mage_no_kill :PASSED 207ms
+
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_smart_enemy_target_choice_mage_kill :STARTED
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_smart_enemy_target_choice_mage_kill :PASSED 201ms
+
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_check_closest_player :STARTED
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_check_closest_player :SKIPPED 0ms
+	Report:
+		line 1141: This test is skipped!
+		  Reason: '"Test fail due to the original func is not ok"'
+		
+
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_approach_enemy :STARTED
+	Run Test: res://Tests/test_enemy_behaviour.gd > test_approach_enemy :SKIPPED 0ms
+	Report:
+		line 1186: This test is skipped!
+		  Reason: '"Test fails due to check closest player needs repair"'
+		
+
+
+PASSED 5s 688ms
+Statistics: | 82 tests cases | 0 error | 0 failed | 1 flaky | 7 skipped | 0 orphans |
+
+Run Test Suite res://Tests/test_mapCombat.gd 
+	Run Test: res://Tests/test_mapCombat.gd > test_not_null :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_not_null :PASSED 123ms
+
+Project FPS: 16 (62.50 mspf)
+	Run Test: res://Tests/test_mapCombat.gd > test_sort_descending_case_a_bigger_b :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_sort_descending_case_a_bigger_b :PASSED 95ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_sort_descending_case_a_less_b :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_sort_descending_case_a_less_b :PASSED 94ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_sort_descending_case_a_equal_b :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_sort_descending_case_a_equal_b :PASSED 95ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test__on_start_button_pressed :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test__on_start_button_pressed :PASSED 111ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_choose_random_spawn :STARTED
+Project FPS: 14 (71.42 mspf)
+	Run Test: res://Tests/test_mapCombat.gd > test_choose_random_spawn :PASSED 1s 654ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_validate_move_ok :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_validate_move_ok :PASSED 97ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_validate_move_not_dijkstra :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_validate_move_not_dijkstra :PASSED 95ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_validate_move_tile_populated :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_validate_move_tile_populated :PASSED 106ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_validate_move_tile_not_traversable :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_validate_move_tile_not_traversable :PASSED 93ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_update_ane_character_card_with_mana :STARTED
+USER ERROR: Resource file not found: res:// (expected type: )
+   at: _load (core/io/resource_loader.cpp:288)
+	Run Test: res://Tests/test_mapCombat.gd > test_update_ane_character_card_with_mana :PASSED 103ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_update_ane_character_card_with_no_mana :STARTED
+USER ERROR: Resource file not found: res:// (expected type: )
+   at: _load (core/io/resource_loader.cpp:288)
+Project FPS: 18 (55.55 mspf)
+	Run Test: res://Tests/test_mapCombat.gd > test_update_ane_character_card_with_no_mana :PASSED 105ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_initial_map_load :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_initial_map_load :PASSED 101ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_calculate_combat_initiative :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_calculate_combat_initiative :PASSED 95ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_setup_skill_menu :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_setup_skill_menu :PASSED 117ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_reset_to_tavern_selected_character_enemy :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_reset_to_tavern_selected_character_enemy :PASSED 131ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_reset_to_tavern_selected_character_ally_has_moved :STARTED
+USER ERROR: Resource file not found: res:// (expected type: )
+   at: _load (core/io/resource_loader.cpp:288)
+	Run Test: res://Tests/test_mapCombat.gd > test_reset_to_tavern_selected_character_ally_has_moved :PASSED 123ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_reset_to_tavern_selected_character_ally_has_not_moved :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_reset_to_tavern_selected_character_ally_has_not_moved :SKIPPED 0ms
+	Report:
+		line 240: This test is skipped!
+		  Reason: '"Tests fails, need for acceptance testing"'
+		
+
+	Run Test: res://Tests/test_mapCombat.gd > test_start_turn_party :STARTED
+Project FPS: 20 (50.00 mspf)
+	Run Test: res://Tests/test_mapCombat.gd > test_start_turn_party :PASSED 126ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_start_turn_enemy :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_start_turn_enemy :PASSED 106ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_generate_dijkstra :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_generate_dijkstra :PASSED 94ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_set_status_bars :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_set_status_bars :PASSED 97ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_set_status_bars_no_mana :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_set_status_bars_no_mana :PASSED 107ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_enemy_turn_end :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_enemy_turn_end :PASSED 111ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_reset_map_status :STARTED
+Project FPS: 18 (55.55 mspf)
+	Run Test: res://Tests/test_mapCombat.gd > test_reset_map_status :PASSED 198ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_regen_mana :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_regen_mana :PASSED 94ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_purge_the_dead_ally :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_purge_the_dead_ally :PASSED 140ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_purge_the_dead_enemy :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_purge_the_dead_enemy :PASSED 133ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_purge_the_dead_no_one_dies :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_purge_the_dead_no_one_dies :PASSED 96ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_purge_the_dead_mana_regen_on_kill :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_purge_the_dead_mana_regen_on_kill :PASSED 149ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_character_handler_enemy_turn :STARTED
+Project FPS: 18 (55.55 mspf)
+	Run Test: res://Tests/test_mapCombat.gd > test_character_handler_enemy_turn :PASSED 105ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_character_handler_isEnemy_handled :STARTED
+USER ERROR: Resource file not found: res:// (expected type: )
+   at: _load (core/io/resource_loader.cpp:288)
+	Run Test: res://Tests/test_mapCombat.gd > test_character_handler_isEnemy_handled :PASSED 108ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_character_handler_other_ally_turn :STARTED
+USER ERROR: Resource file not found: res:// (expected type: )
+   at: _load (core/io/resource_loader.cpp:288)
+	Run Test: res://Tests/test_mapCombat.gd > test_character_handler_other_ally_turn :PASSED 175ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_selected_checker_last_selection_null_enemy :STARTED
+USER ERROR: Resource file not found: res:// (expected type: )
+   at: _load (core/io/resource_loader.cpp:288)
+	Run Test: res://Tests/test_mapCombat.gd > test_selected_checker_last_selection_null_enemy :PASSED 172ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_selected_checker_last_selection_null_ally :STARTED
+USER ERROR: Resource file not found: res:// (expected type: )
+   at: _load (core/io/resource_loader.cpp:288)
+	Run Test: res://Tests/test_mapCombat.gd > test_selected_checker_last_selection_null_ally :PASSED 172ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_selected_checker_unselect_enemy :STARTED
+Project FPS: 15 (66.66 mspf)
+	Run Test: res://Tests/test_mapCombat.gd > test_selected_checker_unselect_enemy :PASSED 171ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_selected_checker_unselect_ally :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_selected_checker_unselect_ally :PASSED 160ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_selected_checker_change_selection_enemy :STARTED
+USER ERROR: Resource file not found: res:// (expected type: )
+   at: _load (core/io/resource_loader.cpp:288)
+	Run Test: res://Tests/test_mapCombat.gd > test_selected_checker_change_selection_enemy :PASSED 179ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_selected_checker_change_selection_ally :STARTED
+USER ERROR: Resource file not found: res:// (expected type: )
+   at: _load (core/io/resource_loader.cpp:288)
+	Run Test: res://Tests/test_mapCombat.gd > test_selected_checker_change_selection_ally :PASSED 173ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_selected_checker_alternate_selection_ally_to_enemy :STARTED
+USER ERROR: Resource file not found: res:// (expected type: )
+   at: _load (core/io/resource_loader.cpp:288)
+	Run Test: res://Tests/test_mapCombat.gd > test_selected_checker_alternate_selection_ally_to_enemy :PASSED 172ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_selected_checker_alternate_selection_enemy_to_ally :STARTED
+USER ERROR: Resource file not found: res:// (expected type: )
+   at: _load (core/io/resource_loader.cpp:288)
+Project FPS: 15 (66.66 mspf)
+	Run Test: res://Tests/test_mapCombat.gd > test_selected_checker_alternate_selection_enemy_to_ally :PASSED 174ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_set_selected_character_enemy :STARTED
+USER ERROR: Resource file not found: res:// (expected type: )
+   at: _load (core/io/resource_loader.cpp:288)
+	Run Test: res://Tests/test_mapCombat.gd > test_set_selected_character_enemy :PASSED 105ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_set_selected_character_ally :STARTED
+USER ERROR: Resource file not found: res:// (expected type: )
+   at: _load (core/io/resource_loader.cpp:288)
+	Run Test: res://Tests/test_mapCombat.gd > test_set_selected_character_ally :PASSED 104ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_set_selected_character_enemy_to_ally :STARTED
+USER ERROR: Resource file not found: res:// (expected type: )
+   at: _load (core/io/resource_loader.cpp:288)
+	Run Test: res://Tests/test_mapCombat.gd > test_set_selected_character_enemy_to_ally :PASSED 104ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_set_selected_character_ally_to_enemy :STARTED
+USER ERROR: Resource file not found: res:// (expected type: )
+   at: _load (core/io/resource_loader.cpp:288)
+	Run Test: res://Tests/test_mapCombat.gd > test_set_selected_character_ally_to_enemy :PASSED 106ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_get_tile_from_coords_exist :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_get_tile_from_coords_exist :PASSED 100ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_get_tile_from_coords_not_exist :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_get_tile_from_coords_not_exist :PASSED 106ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_set_tile_populated_false_to_true :STARTED
+Project FPS: 21 (47.61 mspf)
+	Run Test: res://Tests/test_mapCombat.gd > test_set_tile_populated_false_to_true :PASSED 104ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_set_tile_populated_true_to_false :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_set_tile_populated_true_to_false :PASSED 98ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_tile_handler_tile_selected :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_tile_handler_tile_selected :PASSED 94ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_tile_handler_tile_not_selected :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_tile_handler_tile_not_selected :PASSED 102ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_tile_handler_null_selected :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_tile_handler_null_selected :PASSED 94ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test__on_move_button_pressed :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test__on_move_button_pressed :PASSED 114ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_move_character_validated :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_move_character_validated :PASSED 126ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_move_character_not_validated :STARTED
+Project FPS: 21 (47.61 mspf)
+	Run Test: res://Tests/test_mapCombat.gd > test_move_character_not_validated :PASSED 125ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test__on_phys_attack_button_pressed :STARTED
+USER ERROR: Resource file not found: res:// (expected type: )
+   at: _load (core/io/resource_loader.cpp:288)
+USER ERROR: Resource file not found: res:// (expected type: )
+   at: _load (core/io/resource_loader.cpp:288)
+	Run Test: res://Tests/test_mapCombat.gd > test__on_phys_attack_button_pressed :PASSED 133ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_setup_com_pred_no_skill :STARTED
+USER ERROR: Resource file not found: res:// (expected type: )
+   at: _load (core/io/resource_loader.cpp:288)
+USER ERROR: Resource file not found: res:// (expected type: )
+   at: _load (core/io/resource_loader.cpp:288)
+	Run Test: res://Tests/test_mapCombat.gd > test_setup_com_pred_no_skill :PASSED 132ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_setup_com_pred_skill :STARTED
+USER ERROR: Resource file not found: res:// (expected type: )
+   at: _load (core/io/resource_loader.cpp:288)
+USER ERROR: Resource file not found: res:// (expected type: )
+   at: _load (core/io/resource_loader.cpp:288)
+	Run Test: res://Tests/test_mapCombat.gd > test_setup_com_pred_skill :PASSED 128ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_attack_combat_prediction_no_skill :STARTED
+USER ERROR: Resource file not found: res:// (expected type: )
+   at: _load (core/io/resource_loader.cpp:288)
+USER ERROR: Resource file not found: res:// (expected type: )
+   at: _load (core/io/resource_loader.cpp:288)
+	Run Test: res://Tests/test_mapCombat.gd > test_attack_combat_prediction_no_skill :PASSED 130ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_attack_combat_prediction_skill :STARTED
+USER ERROR: Resource file not found: res:// (expected type: )
+   at: _load (core/io/resource_loader.cpp:288)
+USER ERROR: Resource file not found: res:// (expected type: )
+   at: _load (core/io/resource_loader.cpp:288)
+	Run Test: res://Tests/test_mapCombat.gd > test_attack_combat_prediction_skill :PASSED 143ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_close_combat_prediction :STARTED
+USER ERROR: Resource file not found: res:// (expected type: )
+   at: _load (core/io/resource_loader.cpp:288)
+USER ERROR: Resource file not found: res:// (expected type: )
+   at: _load (core/io/resource_loader.cpp:288)
+Project FPS: 18 (55.55 mspf)
+	Run Test: res://Tests/test_mapCombat.gd > test_close_combat_prediction :PASSED 128ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_phys_combat_round_melee :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_phys_combat_round_melee :PASSED 96ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_phys_combat_round_ranged :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_phys_combat_round_ranged :PASSED 97ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_phys_combat_round_ranged_melee :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_phys_combat_round_ranged_melee :PASSED 98ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_phys_combat_round_melee_mapMod_positive_height :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_phys_combat_round_melee_mapMod_positive_height :PASSED 100ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_phys_combat_round_melee_mapMod_negative_height :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_phys_combat_round_melee_mapMod_negative_height :PASSED 96ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_calc_los :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_calc_los :SKIPPED 0ms
+	Report:
+		line 1011: This test is skipped!
+		  Reason: '"Not possible, raycast fails in testing"'
+		
+
+	Run Test: res://Tests/test_mapCombat.gd > test_collision_loop_collision_full_cover :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_collision_loop_collision_full_cover :SKIPPED 0ms
+	Report:
+		line 1017: This test is skipped!
+		  Reason: '"Not possible, raycast fails in testing"'
+		
+
+	Run Test: res://Tests/test_mapCombat.gd > test_collision_loop_collision_partial_cover :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_collision_loop_collision_partial_cover :SKIPPED 0ms
+	Report:
+		line 1022: This test is skipped!
+		  Reason: '"Not possible, raycast fails in testing"'
+		
+
+Project FPS: 22 (45.45 mspf)
+	Run Test: res://Tests/test_mapCombat.gd > test_collision_loop_collision_no_cover :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_collision_loop_collision_no_cover :SKIPPED 0ms
+	Report:
+		line 1055: This test is skipped!
+		  Reason: '"Not possible, raycast fails in testing"'
+		
+
+	Run Test: res://Tests/test_mapCombat.gd > test_check_behind_cover :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_check_behind_cover :PASSED 94ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_check_behind_cover_not :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_check_behind_cover_not :PASSED 95ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test__on_skill_selected_target_myself :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test__on_skill_selected_target_myself :PASSED 117ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test__on_skill_selected_target_allies :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test__on_skill_selected_target_allies :PASSED 182ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test__on_skill_selected_target_enemies :STARTED
+USER ERROR: Resource file not found: res:// (expected type: )
+   at: _load (core/io/resource_loader.cpp:288)
+USER ERROR: Resource file not found: res:// (expected type: )
+   at: _load (core/io/resource_loader.cpp:288)
+USER ERROR: Nonexistent signal: combat_start.
+   at: is_connected (core/object/object.cpp:1441)
+USER ERROR: Nonexistent signal: close.
+   at: is_connected (core/object/object.cpp:1441)
+	Run Test: res://Tests/test_mapCombat.gd > test__on_skill_selected_target_enemies :PASSED 140ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_cast_skill_target_myself :STARTED
+Project FPS: 18 (55.55 mspf)
+	Run Test: res://Tests/test_mapCombat.gd > test_cast_skill_target_myself :PASSED 125ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_cast_skill_target_allies :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_cast_skill_target_allies :PASSED 184ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_cast_skill_target_enemies :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_cast_skill_target_enemies :PASSED 114ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_allied_skill_handler :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_allied_skill_handler :PASSED 184ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test__on_end_turn_button_pressed :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test__on_end_turn_button_pressed :PASSED 116ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_update_buttons_abled :STARTED
+Project FPS: 16 (62.50 mspf)
+	Run Test: res://Tests/test_mapCombat.gd > test_update_buttons_abled :PASSED 128ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_update_buttons_disabled_hasMoved :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_update_buttons_disabled_hasMoved :PASSED 125ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_update_buttons_disabled_isEnemy :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_update_buttons_disabled_isEnemy :PASSED 111ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_update_buttons_disabled_disableUI :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_update_buttons_disabled_disableUI :PASSED 129ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_update_buttons_disabled_null_selected_maptile :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_update_buttons_disabled_null_selected_maptile :PASSED 125ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_update_buttons_disabled_hasAttacked :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_update_buttons_disabled_hasAttacked :PASSED 136ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_update_buttons_disabled_null_selected_enemy :STARTED
+Project FPS: 18 (55.55 mspf)
+	Run Test: res://Tests/test_mapCombat.gd > test_update_buttons_disabled_null_selected_enemy :PASSED 129ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_update_buttons_disabled_no_skills :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_update_buttons_disabled_no_skills :PASSED 143ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_update_buttons_disabled :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_update_buttons_disabled :PASSED 135ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_update_move_button_ok :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_update_move_button_ok :PASSED 118ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_update_move_button_ally_hasMoved :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_update_move_button_ally_hasMoved :PASSED 109ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_update_move_button_enemy_turn :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_update_move_button_enemy_turn :PASSED 114ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_update_move_button_disableUI :STARTED
+Project FPS: 18 (55.55 mspf)
+	Run Test: res://Tests/test_mapCombat.gd > test_update_move_button_disableUI :PASSED 110ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_update_move_button_not_selected_maptile :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_update_move_button_not_selected_maptile :PASSED 117ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_update_phys_attack_button_after_attack :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_update_phys_attack_button_after_attack :PASSED 109ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_update_phys_attack_button_is_enemy :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_update_phys_attack_button_is_enemy :PASSED 116ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_update_phys_attack_button_disableUI :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_update_phys_attack_button_disableUI :PASSED 98ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_update_phys_attack_button_no_selected_enemy :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_update_phys_attack_button_no_selected_enemy :PASSED 127ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_update_phys_attack_button_enemy_at_range :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_update_phys_attack_button_enemy_at_range :PASSED 117ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_update_phys_attack_button_disabled :STARTED
+Project FPS: 20 (50.00 mspf)
+	Run Test: res://Tests/test_mapCombat.gd > test_update_phys_attack_button_disabled :PASSED 130ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_update_skill_menu_button_after_attack :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_update_skill_menu_button_after_attack :PASSED 145ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_update_skill_menu_button_is_enemy :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_update_skill_menu_button_is_enemy :PASSED 96ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_update_skill_menu_button_disableUI :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_update_skill_menu_button_disableUI :PASSED 96ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_update_skill_menu_button_character_has_no_skills :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_update_skill_menu_button_character_has_no_skills :PASSED 119ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_update_skill_menu_button_skills_availables :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_update_skill_menu_button_skills_availables :PASSED 100ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_handle_skill_info_no_skill_hover :STARTED
+Project FPS: 19 (52.63 mspf)
+	Run Test: res://Tests/test_mapCombat.gd > test_handle_skill_info_no_skill_hover :PASSED 103ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_handle_skill_info_skill_hover :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_handle_skill_info_skill_hover :PASSED 120ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_update_end_turn_button_is_player :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_update_end_turn_button_is_player :PASSED 97ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_update_end_turn_button_is_enemy :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_update_end_turn_button_is_enemy :PASSED 103ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_update_end_turn_button_disableUI :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_update_end_turn_button_disableUI :PASSED 94ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_update_global_button_ok :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_update_global_button_ok :PASSED 97ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_update_global_button_isEnemy :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_update_global_button_isEnemy :PASSED 111ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_update_global_button_disableUI :STARTED
+Project FPS: 21 (47.61 mspf)
+	Run Test: res://Tests/test_mapCombat.gd > test_update_global_button_disableUI :PASSED 105ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_highlight_movement :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_highlight_movement :SKIPPED 0ms
+	Report:
+		line 1724: This test is skipped!
+		  Reason: '"Test is giving false negatives"'
+		
+
+	Run Test: res://Tests/test_mapCombat.gd > test_highlight_control_zones :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_highlight_control_zones :SKIPPED 0ms
+	Report:
+		line 1751: This test is skipped!
+		  Reason: '"Test is giving false negatives"'
+		
+
+	Run Test: res://Tests/test_mapCombat.gd > test_check_within_bounds_ok :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_check_within_bounds_ok :PASSED 94ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_check_within_bounds_out_of_bounds :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_check_within_bounds_out_of_bounds :PASSED 96ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_check_within_bounds_enemy_tile :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_check_within_bounds_enemy_tile :PASSED 95ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_remove_highlights :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_remove_highlights :PASSED 104ms
+
+	Run Test: res://Tests/test_mapCombat.gd > test_remove_control_zones :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_remove_control_zones :SKIPPED 0ms
+	Report:
+		line 1834: This test is skipped!
+		  Reason: '"Test is giving false negatives"'
+		
+
+	Run Test: res://Tests/test_mapCombat.gd > test_remove_selected :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_remove_selected :SKIPPED 0ms
+	Report:
+		line 1849: This test is skipped!
+		  Reason: '"Test is giving false negatives"'
+		
+
+Project FPS: 21 (47.61 mspf)
+	Run Test: res://Tests/test_mapCombat.gd > test_remove_char_highlights :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_remove_char_highlights :SKIPPED 0ms
+	Report:
+		line 1863: This test is skipped!
+		  Reason: '"Test is giving false negatives"'
+		
+
+	Run Test: res://Tests/test_mapCombat.gd > test_remove_ally_highlights :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_remove_ally_highlights :SKIPPED 0ms
+	Report:
+		line 1876: This test is skipped!
+		  Reason: '"Test is giving false negatives"'
+		
+
+	Run Test: res://Tests/test_mapCombat.gd > test_remove_enemy_highlights :STARTED
+	Run Test: res://Tests/test_mapCombat.gd > test_remove_enemy_highlights :SKIPPED 0ms
+	Report:
+		line 1889: This test is skipped!
+		  Reason: '"Test is giving false negatives"'
+		
+
+
+PASSED 20s 469ms
+Statistics: | 206 tests cases | 0 error | 0 failed | 1 flaky | 19 skipped | 0 orphans |
+
+Run Test Suite res://Tests/test_prueba.gd 
+	Run Test: res://Tests/test_prueba.gd > test_positive_1 :STARTED
+	Run Test: res://Tests/test_prueba.gd > test_positive_1 :PASSED 91ms
+
+	Run Test: res://Tests/test_prueba.gd > test_negative_1 :STARTED
+	Run Test: res://Tests/test_prueba.gd > test_negative_1 :PASSED 57ms
+
+
+PASSED 242ms
+Statistics: | 208 tests cases | 0 error | 0 failed | 1 flaky | 19 skipped | 0 orphans |
+
+Run Test Suite res://Tests/test_skills.gd 
+	Run Test: res://Tests/test_skills.gd > test_not_null :STARTED
+	Run Test: res://Tests/test_skills.gd > test_not_null :PASSED 90ms
+
+	Run Test: res://Tests/test_skills.gd > test_combat_round_shadow_ball :STARTED
+turbohit found -16
+	Run Test: res://Tests/test_skills.gd > test_combat_round_shadow_ball :PASSED 66ms
+
+	Run Test: res://Tests/test_skills.gd > test_combat_round_flaming_daggers :STARTED
+	Run Test: res://Tests/test_skills.gd > test_combat_round_flaming_daggers :PASSED 58ms
+
+	Run Test: res://Tests/test_skills.gd > test_combat_round_nero_nero :STARTED
+turbohit found -20
+Project FPS: 27 (37.03 mspf)
+	Run Test: res://Tests/test_skills.gd > test_combat_round_nero_nero :PASSED 66ms
+
+	Run Test: res://Tests/test_skills.gd > test_combat_round_boost1 :STARTED
+	Run Test: res://Tests/test_skills.gd > test_combat_round_boost1 :PASSED 58ms
+
+	Run Test: res://Tests/test_skills.gd > test_combat_round_boost1_acc_crit :STARTED
+	Run Test: res://Tests/test_skills.gd > test_combat_round_boost1_acc_crit :PASSED 58ms
+
+	Run Test: res://Tests/test_skills.gd > test_combat_round_boost1_miss :STARTED
+	Run Test: res://Tests/test_skills.gd > test_combat_round_boost1_miss :PASSED 59ms
+
+	Run Test: res://Tests/test_skills.gd > test_combat_round_boost1_not_crit :STARTED
+	Run Test: res://Tests/test_skills.gd > test_combat_round_boost1_not_crit :PASSED 58ms
+
+	Run Test: res://Tests/test_skills.gd > test_combat_round_boost2 :STARTED
+	Run Test: res://Tests/test_skills.gd > test_combat_round_boost2 :PASSED 58ms
+
+	Run Test: res://Tests/test_skills.gd > test_combat_round_boost2_acc_crit :STARTED
+	Run Test: res://Tests/test_skills.gd > test_combat_round_boost2_acc_crit :PASSED 60ms
+
+	Run Test: res://Tests/test_skills.gd > test_combat_round_boost2_miss :STARTED
+	Run Test: res://Tests/test_skills.gd > test_combat_round_boost2_miss :PASSED 60ms
+
+	Run Test: res://Tests/test_skills.gd > test_combat_round_boost2_not_crit :STARTED
+	Run Test: res://Tests/test_skills.gd > test_combat_round_boost2_not_crit :PASSED 56ms
+
+	Run Test: res://Tests/test_skills.gd > test_combat_round_anchoring_strike :STARTED
+	Run Test: res://Tests/test_skills.gd > test_combat_round_anchoring_strike :PASSED 58ms
+
+	Run Test: res://Tests/test_skills.gd > test_combat_round_anchoring_strike_miss :STARTED
+Project FPS: 30 (33.33 mspf)
+	Run Test: res://Tests/test_skills.gd > test_combat_round_anchoring_strike_miss :PASSED 65ms
+
+	Run Test: res://Tests/test_skills.gd > test_combat_round_anchoring_strike_dead_target :STARTED
+	Run Test: res://Tests/test_skills.gd > test_combat_round_anchoring_strike_dead_target :PASSED 57ms
+
+	Run Test: res://Tests/test_skills.gd > test_combat_round_bestow_life_myself :STARTED
+	Run Test: res://Tests/test_skills.gd > test_combat_round_bestow_life_myself :PASSED 57ms
+
+	Run Test: res://Tests/test_skills.gd > test_combat_round_bestow_life_ally :STARTED
+	Run Test: res://Tests/test_skills.gd > test_combat_round_bestow_life_ally :PASSED 59ms
+
+	Run Test: res://Tests/test_skills.gd > test_combat_round_bestow_life_limited_threshold :STARTED
+	Run Test: res://Tests/test_skills.gd > test_combat_round_bestow_life_limited_threshold :PASSED 57ms
+
+	Run Test: res://Tests/test_skills.gd > test_combat_round_bestow_life_no_threshold :STARTED
+	Run Test: res://Tests/test_skills.gd > test_combat_round_bestow_life_no_threshold :PASSED 59ms
+
+	Run Test: res://Tests/test_skills.gd > test_combat_round_creators_touch_myself :STARTED
+	Run Test: res://Tests/test_skills.gd > test_combat_round_creators_touch_myself :PASSED 58ms
+
+	Run Test: res://Tests/test_skills.gd > test_combat_round_creators_touch_ally :STARTED
+	Run Test: res://Tests/test_skills.gd > test_combat_round_creators_touch_ally :PASSED 57ms
+
+	Run Test: res://Tests/test_skills.gd > test_combat_round_creators_touch_limited_threshold :STARTED
+	Run Test: res://Tests/test_skills.gd > test_combat_round_creators_touch_limited_threshold :PASSED 59ms
+
+	Run Test: res://Tests/test_skills.gd > test_combat_round_creators_touch_no_threshold :STARTED
+	Run Test: res://Tests/test_skills.gd > test_combat_round_creators_touch_no_threshold :PASSED 57ms
+
+	Run Test: res://Tests/test_skills.gd > test_combat_round_mend_flesh_myself :STARTED
+Project FPS: 30 (33.33 mspf)
+	Run Test: res://Tests/test_skills.gd > test_combat_round_mend_flesh_myself :PASSED 66ms
+
+	Run Test: res://Tests/test_skills.gd > test_combat_round_mend_flesh_ally :STARTED
+	Run Test: res://Tests/test_skills.gd > test_combat_round_mend_flesh_ally :PASSED 57ms
+
+	Run Test: res://Tests/test_skills.gd > test_combat_round_mend_flesh_limited_threshold :STARTED
+	Run Test: res://Tests/test_skills.gd > test_combat_round_mend_flesh_limited_threshold :PASSED 58ms
+
+	Run Test: res://Tests/test_skills.gd > test_combat_round_mend_flesh_no_threshold :STARTED
+	Run Test: res://Tests/test_skills.gd > test_combat_round_mend_flesh_no_threshold :PASSED 57ms
+
+
+PASSED 2s 744ms
+Statistics: | 235 tests cases | 0 error | 0 failed | 1 flaky | 19 skipped | 0 orphans |
+
+Run Test Suite res://Tests/test_tavern.gd 
+	Run Test: res://Tests/test_tavern.gd > test_not_null :STARTED
+	Run Test: res://Tests/test_tavern.gd > test_not_null :WARNING 241ms
+	Report:
+		line 54: WARNING:
+		 Detected <12> orphan nodes during test setup! Check before_test() and after_test()!
+
+	Run Test: res://Tests/test_tavern.gd > test__on_start_turn :STARTED
+	Run Test: res://Tests/test_tavern.gd > test__on_start_turn :WARNING 217ms
+	Report:
+		line 61: WARNING:
+		 Detected <12> orphan nodes during test setup! Check before_test() and after_test()!
+
+	Run Test: res://Tests/test_tavern.gd > test_start_map_combat :STARTED
+Project FPS: 20 (50.00 mspf)
+	Run Test: res://Tests/test_tavern.gd > test_start_map_combat :WARNING 230ms
+	Report:
+		line 71: WARNING:
+		 Detected <12> orphan nodes during test setup! Check before_test() and after_test()!
+
+	Run Test: res://Tests/test_tavern.gd > test__on_combat_start :STARTED
+	Run Test: res://Tests/test_tavern.gd > test__on_combat_start :WARNING 248ms
+	Report:
+		line 81: WARNING:
+		 Detected <12> orphan nodes during test setup! Check before_test() and after_test()!
+
+	Run Test: res://Tests/test_tavern.gd > test__on_combat_end :STARTED
+USER ERROR: Resource file not found: res:// (expected type: )
+   at: _load (core/io/resource_loader.cpp:288)
+	Run Test: res://Tests/test_tavern.gd > test__on_combat_end :FAILED 255ms
+	Report:
+		line 96: WARNING:
+		 Detected <12> orphan nodes during test setup! Check before_test() and after_test()!
+	Report:
+		line 108: Expecting: 'true' but is 'false'
+
+	Run Test: res://Tests/test_tavern.gd > test__on_combat_end :STARTED
+USER ERROR: Resource file not found: res:// (expected type: )
+   at: _load (core/io/resource_loader.cpp:288)
+Project FPS: 8 (125.00 mspf)
+	Run Test: res://Tests/test_tavern.gd > test__on_combat_end :FAILED (retry 2) 255ms
+	Report:
+		line 96: WARNING:
+		 Detected <12> orphan nodes during test setup! Check before_test() and after_test()!
+	Report:
+		line 108: Expecting: 'true' but is 'false'
+
+	Run Test: res://Tests/test_tavern.gd > test__on_combat_end :STARTED
+USER ERROR: Resource file not found: res:// (expected type: )
+   at: _load (core/io/resource_loader.cpp:288)
+	Run Test: res://Tests/test_tavern.gd > test__on_combat_end :FAILED (retry 3) 282ms
+	Report:
+		line 96: WARNING:
+		 Detected <12> orphan nodes during test setup! Check before_test() and after_test()!
+	Report:
+		line 108: Expecting: 'true' but is 'false'
+
+	Run Test: res://Tests/test_tavern.gd > test__on_combat_end :STARTED
+	Run Test: res://Tests/test_tavern.gd > test__on_combat_end :WARNING 278ms
+	Report:
+		line 96: WARNING:
+		 Detected <12> orphan nodes during test setup! Check before_test() and after_test()!
+
+
+WARNING 2s 232ms
+Statistics: | 240 tests cases | 0 error | 0 failed | 2 flaky | 19 skipped | 60 orphans |
+
+Executed test suites: (8/8)
+Executed test cases: (221/240), 19 skipped
+Total time:        2min 26s 639ms
+Open Report at: file://C:/Games/Godot/Workspace/Project_FETEn/reports/report_8/index.html
+Exit code: 101
+----------------------------------------------------------------
+Cleanup singletons ["GdUnitDefaultValueDecoders", "GdUnitThreadManager"]
+
+	Unregister singleton 'GdUnitDefaultValueDecoders'
+	Free singleton instance 'GdUnitDefaultValueDecoders:<Object#159450662756>'
+	Successfully freed 'GdUnitDefaultValueDecoders'
+
+	Unregister singleton 'GdUnitThreadManager'
+	Free singleton instance 'GdUnitThreadManager:<Object#575928273300>'
+	Successfully freed 'GdUnitThreadManager'
+----------------------------------------------------------------
+Finallize .. done
+Finallize ..
+-Orphan nodes report-----------------------
+9823127078624 - Stray Node:  (Type: Node)
+10040341694231 - Stray Node:  (Type: Node)
+10135334291377 - Stray Node:  (Type: Node)
+10135233628085 - Stray Node:  (Type: Node)
+10135300736982 - Stray Node:  (Type: Node)
+10135267182553 - Stray Node:  (Type: Node)
+10087552780263 - Stray Node:  (Type: Node)
+10087485671404 - Stray Node:  (Type: Node)
+10087502448627 - Stray Node:  (Type: Node)
+10087569557517 - Stray Node:  (Type: Node)
+10087536003094 - Stray Node:  (Type: Node)
+9854785685615 - Stray Node:  (Type: Node)
+10135317514361 - Stray Node:  (Type: Node)
+10135250405515 - Stray Node:  (Type: Node)
+10087519226008 - Stray Node:  (Type: Node)
+10135283960014 - Stray Node:  (Type: Node)
+9993097054689 - Stray Node:  (Type: Node)
+10135216851440 - Stray Node:  (Type: Node)
+9945047108501 - Stray Node:  (Type: Node)
+9993130609681 - Stray Node:  (Type: Node)
+9823177411909 - Stray Node:  (Type: Node)
+9854869573338 - Stray Node:  (Type: Node)
+9945013555195 - Stray Node:  (Type: Node)
+9899731849234 - Stray Node:  (Type: Node)
+10087435341924 - Stray Node:  (Type: Node)
+10087401787517 - Stray Node:  (Type: Node)
+9899765403799 - Stray Node:  (Type: Node)
+10040173924585 - Stray Node:  (Type: Node)
+9944963223804 - Stray Node:  (Type: Node)
+9993063502123 - Stray Node:  (Type: Node)
+9945130996014 - Stray Node:  (Type: Node)
+9854768910646 - Stray Node:  (Type: Node)
+9944996778328 - Stray Node:  (Type: Node)
+9899748626777 - Stray Node:  (Type: Node)
+9854852796764 - Stray Node:  (Type: Node)
+9992962838891 - Stray Node:  (Type: Node)
+9854802465205 - Stray Node:  (Type: Node)
+9854886351294 - Stray Node:  (Type: Node)
+9899715072465 - Stray Node:  (Type: Node)
+9854836019674 - Stray Node:  (Type: Node)
+10087452119553 - Stray Node:  (Type: Node)
+10040274588189 - Stray Node:  (Type: Node)
+9945063887390 - Stray Node:  (Type: Node)
+9945097441823 - Stray Node:  (Type: Node)
+9945114219040 - Stray Node:  (Type: Node)
+9945030332961 - Stray Node:  (Type: Node)
+10040291365456 - Stray Node:  (Type: Node)
+10135149744725 - Stray Node:  (Type: Node)
+10087418565220 - Stray Node:  (Type: Node)
+9899798958721 - Stray Node:  (Type: Node)
+9899832513198 - Stray Node:  (Type: Node)
+9992979616441 - Stray Node:  (Type: Node)
+9823093527238 - Stray Node:  (Type: Node)
+9993046725324 - Stray Node:  (Type: Node)
+10087468897006 - Stray Node:  (Type: Node)
+9899782181649 - Stray Node:  (Type: Node)
+9899849290546 - Stray Node:  (Type: Node)
+9944980001605 - Stray Node:  (Type: Node)
+10087385011046 - Stray Node:  (Type: Node)
+9854919906157 - Stray Node:  (Type: Node)
+10135200076737 - Stray Node:  (Type: Node)
+10040190702531 - Stray Node:  (Type: Node)
+9992946062280 - Stray Node:  (Type: Node)
+9993029948387 - Stray Node:  (Type: Node)
+9823143859181 - Stray Node:  (Type: Node)
+10040207479793 - Stray Node:  (Type: Node)
+9993113834508 - Stray Node:  (Type: Node)
+10040241034290 - Stray Node:  (Type: Node)
+10135166522420 - Stray Node:  (Type: Node)
+9993013171255 - Stray Node:  (Type: Node)
+9945080665217 - Stray Node:  (Type: Node)
+10040157148321 - Stray Node:  (Type: Node)
+9899882845351 - Stray Node:  (Type: Node)
+9992996394152 - Stray Node:  (Type: Node)
+9854936683750 - Stray Node:  (Type: Node)
+10135183299826 - Stray Node:  (Type: Node)
+9823160636659 - Stray Node:  (Type: Node)
+10040257811719 - Stray Node:  (Type: Node)
+9854903129360 - Stray Node:  (Type: Node)
+9944946447675 - Stray Node:  (Type: Node)
+9899866068305 - Stray Node:  (Type: Node)
+9899815736669 - Stray Node:  (Type: Node)
+9854819243360 - Stray Node:  (Type: Node)
+9993080280471 - Stray Node:  (Type: Node)
+10040224257457 - Stray Node:  (Type: Node)
+10040324920766 - Stray Node:  (Type: Node)
+9823059973651 - Stray Node:  (Type: Node)
+9823009642299 - Stray Node:  (Type: Node)
+9823026419816 - Stray Node:  (Type: Node)
+10040308144245 - Stray Node:  (Type: Node)
+9823076751568 - Stray Node:  (Type: Node)
+9823110306298 - Stray Node:  (Type: Node)
+9854752135775 - Stray Node:  (Type: Node)
+9823043198053 - Stray Node:  (Type: Node)
+9823194193199 - Stray Node:  (Type: Node)
+9899899625256 - Stray Node:  (Type: Node)
+Finallize .. done
+XR: Clearing primary interface
+XR: Removed interface "Native mobile"
+XR: Removed interface "OpenXR"
+USER WARNING: ObjectDB instances leaked at exit (run with --verbose for details).
+   at: cleanup (core/object/object.cpp:2284)
+Leaked instance: GDScriptNativeClass:9223372050393989768
+Leaked instance: GDScriptFunctionState:9223380691415205446
+Leaked instance: GDScriptFunctionState:9223381336901813852
+Leaked instance: GDScript:9223372144799385208 - Resource path: res://Scripts/Classes/skill.gd
+Leaked instance: Node:9823127078624 - Node name: 
+Leaked instance: Node:10040341694231 - Node name: 
+Leaked instance: GDScriptFunctionState:9223380532249757467
+Leaked instance: SceneTreeTimer:9223381557253769041
+Leaked instance: Node:10135334291377 - Node name: 
+Leaked instance: Node:10135233628085 - Node name: 
+Leaked instance: Node:10135300736982 - Node name: 
+Leaked instance: Node:10135267182553 - Node name: 
+Leaked instance: Node:10087552780263 - Node name: 
+Leaked instance: Node:10087485671404 - Node name: 
+Leaked instance: Node:10087502448627 - Node name: 
+Leaked instance: Node:10087569557517 - Node name: 
+Leaked instance: Node:10087536003094 - Node name: 
+Leaked instance: Node:9854785685615 - Node name: 
+Leaked instance: Node:10135317514361 - Node name: 
+Leaked instance: Node:10135250405515 - Node name: 
+Leaked instance: Node:10087519226008 - Node name: 
+Leaked instance: GDScriptFunctionState:9223380283493976228
+Leaked instance: Node:10135283960014 - Node name: 
+Leaked instance: Node:9993097054689 - Node name: 
+Leaked instance: Node:10135216851440 - Node name: 
+Leaked instance: Node:9945047108501 - Node name: 
+Leaked instance: Node:9993130609681 - Node name: 
+Leaked instance: Node:9823177411909 - Node name: 
+Leaked instance: Node:9854869573338 - Node name: 
+Leaked instance: SceneTreeTimer:9223381394045014005
+Leaked instance: Node:9945013555195 - Node name: 
+Leaked instance: Node:9899731849234 - Node name: 
+Leaked instance: Node:10087435341924 - Node name: 
+Leaked instance: Node:10087401787517 - Node name: 
+Leaked instance: Node:9899765403799 - Node name: 
+Leaked instance: SceneTreeTimer:9223381371009896630
+Leaked instance: Node:10040173924585 - Node name: 
+Leaked instance: Node:9944963223804 - Node name: 
+Leaked instance: Node:9993063502123 - Node name: 
+Leaked instance: Node:9945130996014 - Node name: 
+Leaked instance: Node:9854768910646 - Node name: 
+Leaked instance: Node:9944996778328 - Node name: 
+Leaked instance: Node:9899748626777 - Node name: 
+Leaked instance: Node:9854852796764 - Node name: 
+Leaked instance: Node:9992962838891 - Node name: 
+Leaked instance: Node:9854802465205 - Node name: 
+Leaked instance: Node:9854886351294 - Node name: 
+Leaked instance: Node:9899715072465 - Node name: 
+Leaked instance: Node:9854836019674 - Node name: 
+Leaked instance: Node:10087452119553 - Node name: 
+Leaked instance: Node:10040274588189 - Node name: 
+Leaked instance: Node:9945063887390 - Node name: 
+Leaked instance: Node:9945097441823 - Node name: 
+Leaked instance: Node:9945114219040 - Node name: 
+Leaked instance: Node:9945030332961 - Node name: 
+Leaked instance: Node:10040291365456 - Node name: 
+Leaked instance: Node:10135149744725 - Node name: 
+Leaked instance: Node:10087418565220 - Node name: 
+Leaked instance: Node:9899798958721 - Node name: 
+Leaked instance: Node:9899832513198 - Node name: 
+Leaked instance: Node:9992979616441 - Node name: 
+Leaked instance: Node:9823093527238 - Node name: 
+Leaked instance: Node:9993046725324 - Node name: 
+Leaked instance: Node:10087468897006 - Node name: 
+Leaked instance: Node:9899782181649 - Node name: 
+Leaked instance: Node:9899849290546 - Node name: 
+Leaked instance: Node:9944980001605 - Node name: 
+Leaked instance: Node:10087385011046 - Node name: 
+Leaked instance: Node:9854919906157 - Node name: 
+Leaked instance: GDScriptFunctionState:9223381347941225392
+Leaked instance: SceneTreeTimer:9223381325291983793
+Leaked instance: SceneTreeTimer:9223380283460424630
+Leaked instance: Node:10135200076737 - Node name: 
+Leaked instance: Node:10040190702531 - Node name: 
+Leaked instance: Node:9992946062280 - Node name: 
+Leaked instance: Node:9993029948387 - Node name: 
+Leaked instance: Node:9823143859181 - Node name: 
+Leaked instance: Node:10040207479793 - Node name: 
+Leaked instance: Node:9993113834508 - Node name: 
+Leaked instance: Node:10040241034290 - Node name: 
+Leaked instance: Node:10135166522420 - Node name: 
+Leaked instance: Node:9993013171255 - Node name: 
+Leaked instance: Node:9945080665217 - Node name: 
+Leaked instance: Node:10040157148321 - Node name: 
+Leaked instance: Node:9899882845351 - Node name: 
+Leaked instance: Node:9992996394152 - Node name: 
+Leaked instance: GDScriptFunctionState:9223381371043452097
+Leaked instance: GDScriptFunctionState:9223380667625116875
+Leaked instance: Node:9854936683750 - Node name: 
+Leaked instance: Node:10135183299826 - Node name: 
+Leaked instance: Node:9823160636659 - Node name: 
+Leaked instance: GDScriptFunctionState:9223381303380940036
+Leaked instance: Node:10040257811719 - Node name: 
+Leaked instance: Node:9854903129360 - Node name: 
+Leaked instance: Node:9944946447675 - Node name: 
+Leaked instance: Node:9899866068305 - Node name: 
+Leaked instance: Node:9899815736669 - Node name: 
+Leaked instance: Node:9854819243360 - Node name: 
+Leaked instance: Node:9993080280471 - Node name: 
+Leaked instance: Node:10040224257457 - Node name: 
+Leaked instance: GDScriptFunctionState:9223380573672707515
+Leaked instance: Node:10040324920766 - Node name: 
+Leaked instance: SceneTreeTimer:9223381336868263432
+Leaked instance: Node:9823059973651 - Node name: 
+Leaked instance: GDScriptFunctionState:9223381337254139508
+Leaked instance: GDScriptFunctionState:9223381394078570203
+Leaked instance: Node:9823009642299 - Node name: 
+Leaked instance: Node:9823026419816 - Node name: 
+Leaked instance: Node:10040308144245 - Node name: 
+Leaked instance: Node:9823076751568 - Node name: 
+Leaked instance: GDScriptFunctionState:9223381325325539545
+Leaked instance: SceneTreeTimer:9223381303347386673
+Leaked instance: GDScriptFunctionState:9223381557287328053
+Leaked instance: Node:9823110306298 - Node name: 
+Leaked instance: Node:9854752135775 - Node name: 
+Leaked instance: SceneTreeTimer:9223380667591563883
+Leaked instance: SceneTreeTimer:9223381527558101701
+Leaked instance: GDScriptFunctionState:9223381527591656538
+Leaked instance: Node:9823043198053 - Node name: 
+Leaked instance: SceneTreeTimer:9223380532216208574
+Leaked instance: Node:9823194193199 - Node name: 
+Leaked instance: SceneTreeTimer:9223380691381657171
+Leaked instance: Node:9899899625256 - Node name: 
+Leaked instance: SceneTreeTimer:9223381347907673989
+Hint: Leaked instances typically happen when nodes are removed from the scene tree (with `remove_child()`) but not freed (with `free()` or `queue_free()`).
+USER ERROR: 1 resources still in use at exit.
+   at: clear (core/io/resource.cpp:599)
+Resource still in use: res://Scripts/Classes/skill.gd (GDScript)
+Orphan StringName: _enter_tree (static: 0, total: 96)
+Orphan StringName: get_description (static: 0, total: 1)
+Orphan StringName: _unhandled_input (static: 0, total: 96)
+Orphan StringName: _ready (static: 0, total: 96)
+Orphan StringName: _exit_tree (static: 0, total: 96)
+Orphan StringName: get_skill_name (static: 0, total: 1)
+Orphan StringName: get_skill (static: 0, total: 1)
+Orphan StringName: start_turn (static: 0, total: 12)
+Orphan StringName: skillName (static: 0, total: 99)
+Orphan StringName: get_skill_menu_id (static: 0, total: 1)
+Orphan StringName: isInstantaneous (static: 0, total: 100)
+Orphan StringName: _setup_local_to_scene (static: 0, total: 1)
+Orphan StringName: canTargetAllies (static: 0, total: 100)
+Orphan StringName: cost (static: 0, total: 99)
+Orphan StringName: get_spa (static: 0, total: 1)
+Orphan StringName: _input (static: 0, total: 96)
+Orphan StringName: isMagicDamage (static: 0, total: 100)
+Orphan StringName: skill (static: 0, total: 2)
+Orphan StringName: _shortcut_input (static: 0, total: 96)
+Orphan StringName: timeout (static: 1, total: 13)
+Orphan StringName: get_range (static: 0, total: 1)
+Orphan StringName: get_cost (static: 0, total: 1)
+Orphan StringName: _process (static: 0, total: 96)
+Orphan StringName: is_buff (static: 0, total: 1)
+Orphan StringName: spa (static: 0, total: 100)
+Orphan StringName: set_skill_menu_id (static: 0, total: 1)
+Orphan StringName: Node (static: 7, total: 8)
+Orphan StringName: _unhandled_key_input (static: 0, total: 96)
+Orphan StringName: description (static: 0, total: 99)
+Orphan StringName: can_target_allies (static: 0, total: 1)
+Orphan StringName: _get_configuration_warnings (static: 0, total: 96)
+Orphan StringName: skill_sfx_path (static: 0, total: 99)
+Orphan StringName: skillMenuID (static: 0, total: 99)
+Orphan StringName: isBuff (static: 0, total: 100)
+Orphan StringName: specialEffectFunc (static: 0, total: 100)
+Orphan StringName: is_instantaneous (static: 0, total: 1)
+Orphan StringName: _physics_process (static: 0, total: 96)
+Orphan StringName: wait (static: 0, total: 2)
+Orphan StringName: range (static: 0, total: 99)
+StringName: 39 unclaimed string names at exit.
+</pre>
+	</div>
+</body>
+</html>
