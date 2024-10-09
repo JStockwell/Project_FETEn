@@ -77,7 +77,7 @@ func set_important_stats(character) -> void:
 			statsText += "Frontline Tank"
 		"Edgar":
 			statsText += "Backline Mage"
-		"Samael":
+		"Azrael":
 			statsText += "Frontline DPR"
 		"Lystra":
 			statsText += "Backline healer"

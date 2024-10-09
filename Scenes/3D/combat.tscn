@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://mj0ie3u0h1su"]
+[gd_scene load_steps=8 format=3 uid="uid://mj0ie3u0h1su"]
 
 [ext_resource type="Script" path="res://Scripts/3D/combat.gd" id="1_xktgj"]
+[ext_resource type="PackedScene" uid="uid://6enkcckabbso" path="res://Assets/MapTiles/Grass_v2.glb" id="2_xjm7d"]
+[ext_resource type="Shader" uid="uid://b8dalgr1j458a" path="res://Assets/Materials/blackLeather.tres" id="3_8pwl8"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_lunpg"]
 top_radius = 0.112
@@ -10,6 +12,14 @@ height = 0.07
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_r5dn5"]
 height = 0.0759573
 radius = 0.139353
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p0687"]
+render_priority = 0
+shader = ExtResource("3_8pwl8")
+
+[sub_resource type="BoxMesh" id="BoxMesh_ut2xj"]
+material = SubResource("ShaderMaterial_p0687")
+size = Vector3(0.25, 0.1, 0.25)
 
 [node name="Combat" type="Node3D"]
 transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 1, 0, 0)
@@ -21,21 +31,37 @@ script = ExtResource("1_xktgj")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Background/Pillar"]
+visible = false
 mesh = SubResource("CylinderMesh_lunpg")
 skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Background/Pillar"]
 shape = SubResource("CylinderShape3D_r5dn5")
 
+[node name="Grass_v2" parent="Background/Pillar" instance=ExtResource("2_xjm7d")]
+transform = Transform3D(1.88745e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, 1.88745e-08, 0, -0.0898677, 0)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Background/Pillar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.07, 0)
+mesh = SubResource("BoxMesh_ut2xj")
+
 [node name="Pillar2" type="StaticBody3D" parent="Background"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Background/Pillar2"]
+visible = false
 mesh = SubResource("CylinderMesh_lunpg")
 skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Background/Pillar2"]
 shape = SubResource("CylinderShape3D_r5dn5")
+
+[node name="Grass_v2" parent="Background/Pillar2" instance=ExtResource("2_xjm7d")]
+transform = Transform3D(1.88745e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, 1.88745e-08, 0, -0.09, 0)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Background/Pillar2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.07, 0)
+mesh = SubResource("BoxMesh_ut2xj")
 
 [node name="Characters" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.149967, 0)
