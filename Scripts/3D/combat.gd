@@ -30,9 +30,13 @@ func _ready():
 	attacker = Factory.Character.create(CombatMapStatus.attackerStats, false)
 	defender = Factory.Character.create(CombatMapStatus.defenderStats, false)
 	
+	if attacker.is_enemy():
+		attacker.global_rotation = Vector3(0,PI,0)
 	attacker.scale *= Vector3(1,1,1) * 0.1
 	attacker.position = attackerSpawn.position
 	
+	if not defender.is_enemy():
+		defender.global_rotation = Vector3(0,PI,0)
 	defender.scale *= Vector3(1,1,1) * 0.1
 	defender.position = defenderSpawn.position
 		

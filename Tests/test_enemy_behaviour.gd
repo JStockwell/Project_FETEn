@@ -11,7 +11,7 @@ var mapDict
 var res
 
 var dick
-var samael
+var azrael
 var lystra
 var enemy
 var dijkstra
@@ -25,7 +25,7 @@ func before_test():
 	GameStatus.set_playable_characters(players)
 	GameStatus.set_enemy_set(enemies)
 
-	GameStatus.set_party(["dick", "samael", "lystra"])
+	GameStatus.set_party(["dick", "azrael", "lystra"])
 
 	var i = 0
 	for skillName in skillSet:
@@ -52,11 +52,11 @@ func test_not_null():
 	add_child(mapCombat)
 	
 	dick = mapCombat.characterGroup.get_children()[0]
-	samael = mapCombat.characterGroup.get_children()[1]
+	azrael = mapCombat.characterGroup.get_children()[1]
 	lystra = mapCombat.characterGroup.get_children()[2]
 	
 	dick.set_map_coords(Vector2(0,3))
-	samael.set_map_coords(Vector2(1,3))
+	azrael.set_map_coords(Vector2(1,3))
 	lystra.set_map_coords(Vector2(2,3))
 	
 	mapCombat.get_tile_from_coords(Vector2(0,1)).set_is_control_zone(false)
@@ -65,7 +65,7 @@ func test_not_null():
 	
 	assert_that(mapCombat).is_not_null()
 	assert_that(dick.get_map_coords()).is_equal(Vector2(0,3))
-	assert_that(samael.get_map_coords()).is_equal(Vector2(1,3))
+	assert_that(azrael.get_map_coords()).is_equal(Vector2(1,3))
 	assert_that(lystra.get_map_coords()).is_equal(Vector2(2,3))
 	
 
@@ -83,12 +83,12 @@ func test_dumb_melee_behavior_possible_targets_isEmpty(do_skip=true, skip_reason
 	CombatMapStatus.set_initiative([3,0,1,2])
 	
 	dick = mapCombat.characterGroup.get_children()[0]
-	samael = mapCombat.characterGroup.get_children()[1]
+	azrael = mapCombat.characterGroup.get_children()[1]
 	lystra = mapCombat.characterGroup.get_children()[2]
 	enemy = mapCombat.enemyGroup.get_children()[0]
 	
 	dick.set_map_coords(Vector2(0,3))
-	samael.set_map_coords(Vector2(1,3))
+	azrael.set_map_coords(Vector2(1,3))
 	lystra.set_map_coords(Vector2(2,3))
 	enemy.get_stats()["movement"] = 0
 	
@@ -124,12 +124,12 @@ func test_dumb_melee_behavior_ok():
 	CombatMapStatus.set_initiative([3,0,1,2])
 	
 	dick = mapCombat.characterGroup.get_children()[0]
-	samael = mapCombat.characterGroup.get_children()[1]
+	azrael = mapCombat.characterGroup.get_children()[1]
 	lystra = mapCombat.characterGroup.get_children()[2]
 	enemy = mapCombat.enemyGroup.get_children()[0]
 	
 	dick.set_map_coords(Vector2(0,3))
-	samael.set_map_coords(Vector2(1,3))
+	azrael.set_map_coords(Vector2(1,3))
 	lystra.set_map_coords(Vector2(2,3))
 	
 	mapCombat.set_tile_populated(Vector2(0,2), false)
@@ -165,12 +165,12 @@ func test_smart_melee_behavior_possible_targets_isEmpty(do_skip=true, skip_reaso
 	CombatMapStatus.set_initiative([3,0,1,2])
 	
 	dick = mapCombat.characterGroup.get_children()[0]
-	samael = mapCombat.characterGroup.get_children()[1]
+	azrael = mapCombat.characterGroup.get_children()[1]
 	lystra = mapCombat.characterGroup.get_children()[2]
 	enemy = mapCombat.enemyGroup.get_children()[0]
 	
 	dick.set_map_coords(Vector2(0,3))
-	samael.set_map_coords(Vector2(1,3))
+	azrael.set_map_coords(Vector2(1,3))
 	lystra.set_map_coords(Vector2(2,3))
 	enemy.get_stats()["movement"] = 0
 	
@@ -206,12 +206,12 @@ func test_smart_melee_behavior_ok():
 	CombatMapStatus.set_initiative([3,0,1,2])
 	
 	dick = mapCombat.characterGroup.get_children()[0]
-	samael = mapCombat.characterGroup.get_children()[1]
+	azrael = mapCombat.characterGroup.get_children()[1]
 	lystra = mapCombat.characterGroup.get_children()[2]
 	enemy = mapCombat.enemyGroup.get_children()[0]
 	
 	dick.set_map_coords(Vector2(0,3))
-	samael.set_map_coords(Vector2(1,3))
+	azrael.set_map_coords(Vector2(1,3))
 	lystra.set_map_coords(Vector2(2,3))
 	
 	mapCombat.set_tile_populated(Vector2(0,2), false)
@@ -247,12 +247,12 @@ func test_check_players_in_range_isRooted(do_skip=true, skip_reason="Test needs 
 	CombatMapStatus.set_initiative([3,0,1,2])
 	
 	dick = mapCombat.characterGroup.get_children()[0]
-	samael = mapCombat.characterGroup.get_children()[1]
+	azrael = mapCombat.characterGroup.get_children()[1]
 	lystra = mapCombat.characterGroup.get_children()[2]
 	enemy = mapCombat.enemyGroup.get_children()[0]
 	
 	dick.set_map_coords(Vector2(0,0))
-	samael.set_map_coords(Vector2(1,3))
+	azrael.set_map_coords(Vector2(1,3))
 	lystra.set_map_coords(Vector2(2,3))
 	enemy.set_is_rooted(true)
 	
@@ -288,12 +288,12 @@ func test_check_players_in_range_ok():
 	CombatMapStatus.set_initiative([3,0,1,2])
 	
 	dick = mapCombat.characterGroup.get_children()[0]
-	samael = mapCombat.characterGroup.get_children()[1]
+	azrael = mapCombat.characterGroup.get_children()[1]
 	lystra = mapCombat.characterGroup.get_children()[2]
 	enemy = mapCombat.enemyGroup.get_children()[0]
 	
 	dick.set_map_coords(Vector2(0,0))
-	samael.set_map_coords(Vector2(1,3))
+	azrael.set_map_coords(Vector2(1,3))
 	lystra.set_map_coords(Vector2(2,3))
 	
 	mapCombat.set_tile_populated(Vector2(0,2), false)
@@ -310,7 +310,7 @@ func test_check_players_in_range_ok():
 	
 	res = EnemyBehavior.check_players_in_range(mapCombat, enemy, dijkstra[0])
 	
-	assert_array(res).contains_exactly([dick, samael, lystra])
+	assert_array(res).contains_exactly([dick, azrael, lystra])
 
 
 func test_melee_enemy_attack_isRooted():
@@ -326,12 +326,12 @@ func test_melee_enemy_attack_isRooted():
 	CombatMapStatus.set_initiative([3,0,1,2])
 	
 	dick = mapCombat.characterGroup.get_children()[0]
-	samael = mapCombat.characterGroup.get_children()[1]
+	azrael = mapCombat.characterGroup.get_children()[1]
 	lystra = mapCombat.characterGroup.get_children()[2]
 	enemy = mapCombat.enemyGroup.get_children()[0]
 	
 	dick.set_map_coords(Vector2(0,0))
-	samael.set_map_coords(Vector2(1,3))
+	azrael.set_map_coords(Vector2(1,3))
 	lystra.set_map_coords(Vector2(2,3))
 	enemy.set_is_rooted(true)
 	
@@ -369,12 +369,12 @@ func test_melee_enemy_attack_no_move_needed():
 	CombatMapStatus.set_initiative([3,0,1,2])
 	
 	dick = mapCombat.characterGroup.get_children()[0]
-	samael = mapCombat.characterGroup.get_children()[1]
+	azrael = mapCombat.characterGroup.get_children()[1]
 	lystra = mapCombat.characterGroup.get_children()[2]
 	enemy = mapCombat.enemyGroup.get_children()[0]
 	
 	dick.set_map_coords(Vector2(0,3))
-	samael.set_map_coords(Vector2(1,3))
+	azrael.set_map_coords(Vector2(1,3))
 	lystra.set_map_coords(Vector2(0,0))
 	
 	mapCombat.set_tile_populated(Vector2(0,2), false)
@@ -410,12 +410,12 @@ func test_melee_enemy_attack_move_needed():
 	CombatMapStatus.set_initiative([3,0,1,2])
 	
 	dick = mapCombat.characterGroup.get_children()[0]
-	samael = mapCombat.characterGroup.get_children()[1]
+	azrael = mapCombat.characterGroup.get_children()[1]
 	lystra = mapCombat.characterGroup.get_children()[2]
 	enemy = mapCombat.enemyGroup.get_children()[0]
 	
 	dick.set_map_coords(Vector2(0,3))
-	samael.set_map_coords(Vector2(1,3))
+	azrael.set_map_coords(Vector2(1,3))
 	lystra.set_map_coords(Vector2(2,3))
 	
 	mapCombat.set_tile_populated(Vector2(0,2), false)
@@ -453,12 +453,12 @@ func test_dumb_ranged_behavior_target_isEmpty():
 	CombatMapStatus.set_initiative([3,0,1,2])
 	
 	dick = mapCombat.characterGroup.get_children()[0]
-	samael = mapCombat.characterGroup.get_children()[1]
+	azrael = mapCombat.characterGroup.get_children()[1]
 	lystra = mapCombat.characterGroup.get_children()[2]
 	enemy = mapCombat.enemyGroup.get_children()[0]
 	
 	dick.set_map_coords(Vector2(0,3))
-	samael.set_map_coords(Vector2(1,3))
+	azrael.set_map_coords(Vector2(1,3))
 	lystra.set_map_coords(Vector2(2,3))
 	enemy.get_stats()["movement"] = 1
 	enemy.get_stats()["range"] = 1
@@ -499,12 +499,12 @@ func test_dumb_ranged_behavior_target_ok():
 	CombatMapStatus.set_initiative([3,0,1,2])
 	
 	dick = mapCombat.characterGroup.get_children()[0]
-	samael = mapCombat.characterGroup.get_children()[1]
+	azrael = mapCombat.characterGroup.get_children()[1]
 	lystra = mapCombat.characterGroup.get_children()[2]
 	enemy = mapCombat.enemyGroup.get_children()[0]
 	
 	dick.set_map_coords(Vector2(0,3))
-	samael.set_map_coords(Vector2(1,3))
+	azrael.set_map_coords(Vector2(1,3))
 	lystra.set_map_coords(Vector2(2,3))
 	
 	mapCombat.set_tile_populated(Vector2(0,2), false)
@@ -524,7 +524,7 @@ func test_dumb_ranged_behavior_target_ok():
 	
 	res = EnemyBehavior.dumb_ranged_behavior(mapCombat, dijkstra)
 	
-	assert_array([dick, samael, lystra]).contains([CombatMapStatus.get_selected_enemy()])
+	assert_array([dick, azrael, lystra]).contains([CombatMapStatus.get_selected_enemy()])
 	assert_vector(enemy.get_map_coords()).is_equal(Vector2(1,1))
 	assert_bool(CombatMapStatus.hasMoved).is_true()
 	assert_bool(res).is_true()
@@ -542,12 +542,12 @@ func test_smart_ranged_behavior_target_isEmpty():
 	CombatMapStatus.set_initiative([3,0,1,2])
 	
 	dick = mapCombat.characterGroup.get_children()[0]
-	samael = mapCombat.characterGroup.get_children()[1]
+	azrael = mapCombat.characterGroup.get_children()[1]
 	lystra = mapCombat.characterGroup.get_children()[2]
 	enemy = mapCombat.enemyGroup.get_children()[0]
 	
 	dick.set_map_coords(Vector2(0,3))
-	samael.set_map_coords(Vector2(1,3))
+	azrael.set_map_coords(Vector2(1,3))
 	lystra.set_map_coords(Vector2(2,3))
 	enemy.get_stats()["movement"] = 1
 	enemy.get_stats()["range"] = 1
@@ -588,12 +588,12 @@ func test_smart_ranged_behavior_target_ok():
 	CombatMapStatus.set_initiative([3,0,1,2])
 	
 	dick = mapCombat.characterGroup.get_children()[0]
-	samael = mapCombat.characterGroup.get_children()[1]
+	azrael = mapCombat.characterGroup.get_children()[1]
 	lystra = mapCombat.characterGroup.get_children()[2]
 	enemy = mapCombat.enemyGroup.get_children()[0]
 	
 	dick.set_map_coords(Vector2(0,3))
-	samael.set_map_coords(Vector2(1,3))
+	azrael.set_map_coords(Vector2(1,3))
 	lystra.set_map_coords(Vector2(2,3))
 	
 	mapCombat.set_tile_populated(Vector2(0,2), false)
@@ -631,12 +631,12 @@ func test_find_optimal_shot():
 	CombatMapStatus.set_initiative([3,0,1,2])
 	
 	dick = mapCombat.characterGroup.get_children()[0]
-	samael = mapCombat.characterGroup.get_children()[1]
+	azrael = mapCombat.characterGroup.get_children()[1]
 	lystra = mapCombat.characterGroup.get_children()[2]
 	enemy = mapCombat.enemyGroup.get_children()[0]
 	
 	dick.set_map_coords(Vector2(0,3))
-	samael.set_map_coords(Vector2(1,3))
+	azrael.set_map_coords(Vector2(1,3))
 	lystra.set_map_coords(Vector2(2,3))
 	
 	mapCombat.set_tile_populated(Vector2(0,2), false)
@@ -675,12 +675,12 @@ func test_ranged_enemy_attack_isRooted():
 	CombatMapStatus.set_initiative([3,0,1,2])
 	
 	dick = mapCombat.characterGroup.get_children()[0]
-	samael = mapCombat.characterGroup.get_children()[1]
+	azrael = mapCombat.characterGroup.get_children()[1]
 	lystra = mapCombat.characterGroup.get_children()[2]
 	enemy = mapCombat.enemyGroup.get_children()[0]
 	
 	dick.set_map_coords(Vector2(0,3))
-	samael.set_map_coords(Vector2(1,3))
+	azrael.set_map_coords(Vector2(1,3))
 	lystra.set_map_coords(Vector2(2,3))
 	enemy.set_is_rooted(true)
 	
@@ -722,12 +722,12 @@ func test_ranged_enemy_attack_best_position_already(do_skip=true, skip_reason="T
 	CombatMapStatus.set_initiative([3,0,1,2])
 	
 	dick = mapCombat.characterGroup.get_children()[0]
-	samael = mapCombat.characterGroup.get_children()[1]
+	azrael = mapCombat.characterGroup.get_children()[1]
 	lystra = mapCombat.characterGroup.get_children()[2]
 	enemy = mapCombat.enemyGroup.get_children()[0]
 	
 	dick.set_map_coords(Vector2(0,3))
-	samael.set_map_coords(Vector2(1,3))
+	azrael.set_map_coords(Vector2(1,3))
 	lystra.set_map_coords(Vector2(2,3))
 	enemy.set_map_coords(Vector2(1,1))
 	
@@ -769,12 +769,12 @@ func test_ranged_enemy_attack_with_movement():
 	CombatMapStatus.set_initiative([3,0,1,2])
 	
 	dick = mapCombat.characterGroup.get_children()[0]
-	samael = mapCombat.characterGroup.get_children()[1]
+	azrael = mapCombat.characterGroup.get_children()[1]
 	lystra = mapCombat.characterGroup.get_children()[2]
 	enemy = mapCombat.enemyGroup.get_children()[0]
 	
 	dick.set_map_coords(Vector2(0,3))
-	samael.set_map_coords(Vector2(1,3))
+	azrael.set_map_coords(Vector2(1,3))
 	lystra.set_map_coords(Vector2(2,3))
 	
 	mapCombat.set_tile_populated(Vector2(0,2), false)
@@ -815,12 +815,12 @@ func test_check_players_in_range_ranged_isRooted(do_skip=true, skip_reason="Test
 	CombatMapStatus.set_initiative([3,0,1,2])
 	
 	dick = mapCombat.characterGroup.get_children()[0]
-	samael = mapCombat.characterGroup.get_children()[1]
+	azrael = mapCombat.characterGroup.get_children()[1]
 	lystra = mapCombat.characterGroup.get_children()[2]
 	enemy = mapCombat.enemyGroup.get_children()[0]
 	
 	dick.set_map_coords(Vector2(0,3))
-	samael.set_map_coords(Vector2(0,1))
+	azrael.set_map_coords(Vector2(0,1))
 	lystra.set_map_coords(Vector2(2,3))
 	enemy.set_is_rooted(true)
 	enemy.get_stats()["range"] = 2
@@ -839,7 +839,7 @@ func test_check_players_in_range_ranged_isRooted(do_skip=true, skip_reason="Test
 	
 	res = EnemyBehavior.check_players_in_range_ranged(mapCombat, enemy, dijkstra[0])
 	
-	assert_array(res).is_equal([samael])
+	assert_array(res).is_equal([azrael])
 	
 	enemy.get_stats()["range"] = 7
 	enemy.set_is_rooted(false)
@@ -858,12 +858,12 @@ func test_check_players_in_range_ranged_ok():
 	CombatMapStatus.set_initiative([3,0,1,2])
 	
 	dick = mapCombat.characterGroup.get_children()[0]
-	samael = mapCombat.characterGroup.get_children()[1]
+	azrael = mapCombat.characterGroup.get_children()[1]
 	lystra = mapCombat.characterGroup.get_children()[2]
 	enemy = mapCombat.enemyGroup.get_children()[0]
 	
 	dick.set_map_coords(Vector2(0,3))
-	samael.set_map_coords(Vector2(1,3))
+	azrael.set_map_coords(Vector2(1,3))
 	lystra.set_map_coords(Vector2(2,3))
 	
 	mapCombat.set_tile_populated(Vector2(0,2), false)
@@ -880,7 +880,7 @@ func test_check_players_in_range_ranged_ok():
 	
 	res = EnemyBehavior.check_players_in_range_ranged(mapCombat, enemy, dijkstra[0])
 	
-	assert_array(res).is_equal([dick, samael, lystra])
+	assert_array(res).is_equal([dick, azrael, lystra])
 
 
 func test_viable_ranged_target():
@@ -896,17 +896,17 @@ func test_viable_ranged_target():
 	CombatMapStatus.set_initiative([3,0,1,2])
 	
 	dick = mapCombat.characterGroup.get_children()[0]
-	samael = mapCombat.characterGroup.get_children()[1]
+	azrael = mapCombat.characterGroup.get_children()[1]
 	lystra = mapCombat.characterGroup.get_children()[2]
 	enemy = mapCombat.enemyGroup.get_children()[0]
 	
 	dick.set_map_coords(Vector2(0,3))
-	samael.set_map_coords(Vector2(1,3))
+	azrael.set_map_coords(Vector2(1,3))
 	lystra.set_map_coords(Vector2(2,3))
 	
 	dick.set_map_coords(Vector2(1,2))
 	lystra.set_map_coords(Vector2(0,2))
-	samael.set_map_coords(Vector2(2,3))
+	azrael.set_map_coords(Vector2(2,3))
 	enemy.get_stats()["range"] = 2
 	
 	mapCombat.get_tile_from_coords(Vector2(0,1)).obstacleType = 1
@@ -939,17 +939,17 @@ func test_viable_ranged_positions():
 	CombatMapStatus.set_initiative([3,0,1,2])
 	
 	dick = mapCombat.characterGroup.get_children()[0]
-	samael = mapCombat.characterGroup.get_children()[1]
+	azrael = mapCombat.characterGroup.get_children()[1]
 	lystra = mapCombat.characterGroup.get_children()[2]
 	enemy = mapCombat.enemyGroup.get_children()[0]
 	
 	dick.set_map_coords(Vector2(0,3))
-	samael.set_map_coords(Vector2(1,3))
+	azrael.set_map_coords(Vector2(1,3))
 	lystra.set_map_coords(Vector2(2,3))
 	
 	dick.set_map_coords(Vector2(1,2))
 	lystra.set_map_coords(Vector2(0,2))
-	samael.set_map_coords(Vector2(2,3))
+	azrael.set_map_coords(Vector2(2,3))
 	enemy.get_stats()["range"] = 2
 	
 	mapCombat.get_tile_from_coords(Vector2(0,1)).obstacleType = 1
@@ -988,12 +988,12 @@ func test_smart_enemy_target_choice_ranged_no_kill():
 	CombatMapStatus.set_initiative([3,0,1,2])
 	
 	dick = mapCombat.characterGroup.get_children()[0]
-	samael = mapCombat.characterGroup.get_children()[1]
+	azrael = mapCombat.characterGroup.get_children()[1]
 	lystra = mapCombat.characterGroup.get_children()[2]
 	enemy = mapCombat.enemyGroup.get_children()[0]
 	
 	dick.set_map_coords(Vector2(0,3))
-	samael.set_map_coords(Vector2(1,3))
+	azrael.set_map_coords(Vector2(1,3))
 	lystra.set_map_coords(Vector2(2,3))
 	
 	mapCombat.set_tile_populated(Vector2(0,2), false)
@@ -1027,12 +1027,12 @@ func test_smart_enemy_target_choice_ranged_kill():
 	CombatMapStatus.set_initiative([3,0,1,2])
 	
 	dick = mapCombat.characterGroup.get_children()[0]
-	samael = mapCombat.characterGroup.get_children()[1]
+	azrael = mapCombat.characterGroup.get_children()[1]
 	lystra = mapCombat.characterGroup.get_children()[2]
 	enemy = mapCombat.enemyGroup.get_children()[0]
 	
 	dick.set_map_coords(Vector2(0,3))
-	samael.set_map_coords(Vector2(1,3))
+	azrael.set_map_coords(Vector2(1,3))
 	lystra.set_map_coords(Vector2(2,3))
 	dick.modify_health(-dick.get_current_health() + 1)
 	
@@ -1069,12 +1069,12 @@ func test_smart_enemy_target_choice_mage_no_kill():
 	CombatMapStatus.set_initiative([3,0,1,2])
 	
 	dick = mapCombat.characterGroup.get_children()[0]
-	samael = mapCombat.characterGroup.get_children()[1]
+	azrael = mapCombat.characterGroup.get_children()[1]
 	lystra = mapCombat.characterGroup.get_children()[2]
 	enemy = mapCombat.enemyGroup.get_children()[0]
 	
 	dick.set_map_coords(Vector2(0,3))
-	samael.set_map_coords(Vector2(1,3))
+	azrael.set_map_coords(Vector2(1,3))
 	lystra.set_map_coords(Vector2(2,3))
 	
 	mapCombat.set_tile_populated(Vector2(0,2), false)
@@ -1108,14 +1108,14 @@ func test_smart_enemy_target_choice_mage_kill():
 	CombatMapStatus.set_initiative([3,0,1,2])
 	
 	dick = mapCombat.characterGroup.get_children()[0]
-	samael = mapCombat.characterGroup.get_children()[1]
+	azrael = mapCombat.characterGroup.get_children()[1]
 	lystra = mapCombat.characterGroup.get_children()[2]
 	enemy = mapCombat.enemyGroup.get_children()[0]
 	
 	dick.set_map_coords(Vector2(0,3))
-	samael.set_map_coords(Vector2(1,3))
+	azrael.set_map_coords(Vector2(1,3))
 	lystra.set_map_coords(Vector2(2,3))
-	samael.modify_health(-samael.get_current_health() + 1)
+	azrael.modify_health(-azrael.get_current_health() + 1)
 	
 	mapCombat.set_tile_populated(Vector2(0,2), false)
 	mapCombat.set_tile_populated(Vector2(1,2), false)
@@ -1132,9 +1132,9 @@ func test_smart_enemy_target_choice_mage_kill():
 	
 	res = EnemyBehavior.smart_enemy_target_choice(mapCombat, enemy, possible_targets, "")
 	
-	assert_that(res).is_equal(samael)
+	assert_that(res).is_equal(azrael)
 	
-	samael.modify_health(8000)
+	azrael.modify_health(8000)
 
 # generic across ranged and melee
 # TODO fix with Pablo
@@ -1151,15 +1151,15 @@ func test_check_closest_player(do_skip=true, skip_reason="Test fail due to the o
 	CombatMapStatus.set_initiative([3,0,1,2])
 	
 	dick = mapCombat.characterGroup.get_children()[0]
-	samael = mapCombat.characterGroup.get_children()[1]
+	azrael = mapCombat.characterGroup.get_children()[1]
 	lystra = mapCombat.characterGroup.get_children()[2]
 	enemy = mapCombat.enemyGroup.get_children()[0]
 	
 	dick.set_map_coords(Vector2(0,3))
-	samael.set_map_coords(Vector2(1,3))
+	azrael.set_map_coords(Vector2(1,3))
 	lystra.set_map_coords(Vector2(2,3))
 	
-	samael.set_map_coords(Vector2(1,2))
+	azrael.set_map_coords(Vector2(1,2))
 	
 	mapCombat.set_tile_populated(Vector2(0,2), false)
 	mapCombat.set_tile_populated(Vector2(1,2), false)
@@ -1180,7 +1180,7 @@ func test_check_closest_player(do_skip=true, skip_reason="Test fail due to the o
 	
 	res = EnemyBehavior.check_closest_player(mapCombat, enemy)
 	
-	assert_that(res[0]).is_equal(samael)
+	assert_that(res[0]).is_equal(azrael)
 
 # TODO fix with Pablo
 func test_approach_enemy(do_skip=true, skip_reason="Test fails due to check closest player needs repair"):

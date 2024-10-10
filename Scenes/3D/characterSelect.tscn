@@ -1,19 +1,20 @@
-[gd_scene load_steps=41 format=3 uid="uid://beu2530ly3xjn"]
+[gd_scene load_steps=42 format=3 uid="uid://beu2530ly3xjn"]
 
 [ext_resource type="Script" path="res://Scripts/3D/characterSelect.gd" id="1_uef3s"]
 [ext_resource type="PackedScene" uid="uid://dg3xlkc77cfxh" path="res://Scenes/3D/characterSelectCard.tscn" id="3_0hu4e"]
 [ext_resource type="PackedScene" uid="uid://ffwbxniuuwcy" path="res://Assets/Props/dm_screen/dm_screen.tscn" id="3_42k54"]
 [ext_resource type="PackedScene" uid="uid://ihdl8id2v178" path="res://Assets/Characters/Party/Dick/dick idle 1.glb" id="3_bdhdr"]
-[ext_resource type="Shader" uid="uid://0h62265iduim" path="res://Assets/Materials/brownPaper.tres" id="4_vu7ui"]
+[ext_resource type="Shader" uid="uid://df17h6o4vlpet" path="res://Assets/Materials/brownPaper.tres" id="4_vu7ui"]
 [ext_resource type="Texture2D" uid="uid://casr4o6vrg88j" path="res://Assets/Characters/Party/Lystra/lystra_head.png" id="5_dwt2l"]
 [ext_resource type="Texture2D" uid="uid://dlfag0nvqaqby" path="res://Assets/Characters/Party/Dick/dick_head.png" id="6_op8jc"]
 [ext_resource type="PackedScene" uid="uid://cjke0ytcck8yo" path="res://Assets/Characters/Party/Samael/Samael idle 1.glb" id="7_3vdfb"]
-[ext_resource type="Texture2D" uid="uid://cowjb5nk0abp" path="res://Assets/Characters/Party/Samael/samael_head.png" id="8_x06do"]
 [ext_resource type="PackedScene" uid="uid://cyoem5ci3md3f" path="res://Assets/Characters/Party/Salvador/Salva Idle 1.glb" id="9_ornva"]
 [ext_resource type="PackedScene" uid="uid://c0x0023kjffwh" path="res://Assets/Props/dm_screen/Character selection.glb" id="9_y8u5e"]
+[ext_resource type="PackedScene" uid="uid://c20gsffabuhk6" path="res://Assets/Characters/Party/Azrael/Azrael idle 1.glb" id="10_070xe"]
 [ext_resource type="PackedScene" uid="uid://bwf33v0wagr8w" path="res://Assets/Props/dm_screen/salvador_stats.glb" id="10_i25h4"]
 [ext_resource type="Texture2D" uid="uid://cg7pila7s8m00" path="res://Assets/Characters/Party/Salvador/salvador_head.png" id="10_pxxyj"]
 [ext_resource type="PackedScene" uid="uid://gkfbrg1l2vd1" path="res://Assets/Characters/Party/Edgar/Edgar.glb" id="11_px6ad"]
+[ext_resource type="Texture2D" uid="uid://bhe66g8g2t5ok" path="res://Assets/Characters/Party/Azrael/azrael_head.png" id="11_wdi0w"]
 [ext_resource type="Texture2D" uid="uid://be5indwbdjyqn" path="res://Assets/Characters/Party/Edgar/edgar_head.png" id="12_0eajn"]
 [ext_resource type="PackedScene" uid="uid://ctaag0u0i5ths" path="res://Assets/Characters/Party/Adran/Adran idle 1.glb" id="13_kl8w5"]
 [ext_resource type="Texture2D" uid="uid://d01lp37s2204e" path="res://Assets/UI/side_arrow.png" id="18_r8twg"]
@@ -222,15 +223,19 @@ visible = false
 
 [node name="Samael idle 1" parent="Characters/Samael/Character" index="1" instance=ExtResource("7_3vdfb")]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -0.00321376, 0, -0.00233725)
+visible = false
 
 [node name="Sword" parent="Characters/Samael/Character/Samael idle 1" index="2"]
 visible = false
+
+[node name="Azrael idle 1" parent="Characters/Samael/Character" index="2" instance=ExtResource("10_070xe")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -0.003, 0, -0.002)
 
 [node name="lystra_stats" parent="Characters/Samael" index="3"]
 visible = false
 
 [node name="stats_text" parent="Characters/Samael" index="4"]
-text = "Samael
+text = "Azrael
 Health: 38
 Attack: 18
 Defense: 5
@@ -241,10 +246,10 @@ Agility: 5"
 text = "- Physical attacker
 - Regenerates mana when he defeats an enemy
 - Can boost his attacks for more damage
-- One with the kebab"
+- Hates bald vampires"
 
 [node name="Sprite3D" parent="Characters/Samael" index="6"]
-texture = ExtResource("8_x06do")
+texture = ExtResource("11_wdi0w")
 
 [node name="Character selection2" parent="Characters/Samael" instance=ExtResource("9_y8u5e")]
 transform = Transform3D(0.00676148, 0, -0.00181173, 0, 0.007, 0, 0.00181173, 0, 0.00676148, 0.007, -0.249, -0.089)

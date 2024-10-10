@@ -16,6 +16,7 @@
 		"is_ranged": false,
 		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb",
 		"sprite_path": "",
+		"is_enemy": false,
 		"attack_sfx_path": null
 	},
 	"attacker2": {
@@ -35,6 +36,7 @@
 		"is_ranged": false,
 		"mesh_path": "res://Assets/Characters/Placeholder/Placeholder_Char.glb",
 		"sprite_path": "",
+		"is_enemy": false,
 		"attack_sfx_path": null
 	},
 	"attacker_skillTests": {
