@@ -24,6 +24,8 @@ var mapBase = $Base/MapBase
 var campaignCam = $Base/Campaign/Camera3D
 @onready
 var mapCam = $Base/Cameras/MapCam/Camera3D
+@onready
+var mapCamPivot = $Base/Cameras/MapCam
 
 @onready
 var cam1 = $MainMenuCameras/Camera1/Camera3D
@@ -72,7 +74,7 @@ func reset_game():
 	GameStatus.reset_game()
 	CombatMapStatus.reset_game()
 	
-	preMainMenuLabel.show()
+	#preMainMenuLabel.show()
 	mainMenuCams = [cam1, cam2, cam3]
 	
 	choose_main_menu_camera()
@@ -84,6 +86,18 @@ func _input(event):
 	if event is InputEventMouseButton and event.button_index == 1:
 		if GameStatus.get_current_game_state() == GameStatus.GameState.PRE_MAIN_MENU:
 			_on_main_menu_start()
+	if not cm == null:
+		if event.is_action_pressed("ui_up"):
+			mapCam.rotation_degrees.x += 5
+				
+		elif event.is_action_pressed("ui_down"):
+			mapCam.rotation_degrees.x -= 5
+			
+		if event.is_action_pressed("ui_left"):
+			mapCamPivot.rotation_degrees.y +=5
+			
+		elif event.is_action_pressed("ui_right"):
+			mapCamPivot.rotation_degrees.y -=5
 
 func _process(delta):
 	if GameStatus.currentGameState == GameStatus.GameState.PRE_MAIN_MENU:

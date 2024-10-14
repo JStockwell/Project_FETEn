@@ -798,20 +798,27 @@ func _on_end_turn_button_pressed():
 	CombatMapStatus.advance_ini()
 	await start_turn()
 
+func _input(event):
+	if event.is_action_pressed("pause"):
+		_on_main_menu_button_pressed()
+		
+	elif event.is_action_pressed("ui_accept"):
+		_on_rmm_yes_pressed()
+
 func _on_main_menu_button_pressed():
 	MusicPlayer.play_fx(MusicPlayer.SOUNDS.UI__CLICK)
-	if not CombatMapStatus.selectedCharacter.is_enemy():
-		isPaused = !isPaused
+	#if not CombatMapStatus.selectedCharacter.is_enemy():
+	isPaused = !isPaused
 
-		if isPaused:
-			returnMainMenu.show()
-			ui.hide()
-			globalButtons.hide()
+	if isPaused:
+		#returnMainMenu.show()
+		ui.hide()
+		globalButtons.hide()
 
-		else:
-			returnMainMenu.hide()
-			ui.show()
-			globalButtons.show()
+	else:
+		returnMainMenu.hide()
+		ui.show()
+		globalButtons.show()
 
 signal reset_game
 func _on_rmm_yes_pressed():

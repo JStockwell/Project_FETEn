@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://bcci46nrubo1d"]
+[gd_scene load_steps=68 format=3 uid="uid://bcci46nrubo1d"]
 
 [ext_resource type="Script" path="res://Scripts/3D/tavern.gd" id="1_8d0is"]
 [ext_resource type="Shader" uid="uid://b8dalgr1j458a" path="res://Assets/Materials/blackLeather.tres" id="2_i0cfn"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://beu2530ly3xjn" path="res://Scenes/3D/characterSelect.tscn" id="3_y25de"]
 [ext_resource type="PackedScene" uid="uid://o78bhy5b8m1y" path="res://Scenes/3D/campaignMap.tscn" id="4_b1lil"]
 [ext_resource type="PackedScene" uid="uid://gs7eyivommkl" path="res://Assets/Props/shop_window/shop_window.tscn" id="4_qo8fu"]
+[ext_resource type="Script" path="res://addons/camera.gd" id="4_wnpgv"]
 [ext_resource type="PackedScene" uid="uid://2v06yh07feet" path="res://Assets/Props/modern_table/modern_table.tscn" id="6_bqj1a"]
 [ext_resource type="Environment" uid="uid://dgjqucyww3ewq" path="res://Assets/Materials/tavernWorldEnvironment.tres" id="6_dnhgw"]
 [ext_resource type="PackedScene" uid="uid://bao3biydpb8r1" path="res://Assets/Props/modern_chair/chair (1).glb" id="6_eejs1"]
@@ -173,6 +174,7 @@ transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 
 [node name="Camera3D" type="Camera3D" parent="Base/Cameras/MapCam"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.1)
 fov = 42.0
+script = ExtResource("4_wnpgv")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Base/Cameras/MapCam"]
 transform = Transform3D(1, 0, 0, 0, 0.986856, 0.161604, 0, -0.161604, 0.986856, 0, 0.152087, 0.931438)
@@ -212,6 +214,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000911713, 0)
 
 [node name="SpotLight3D" parent="Base/CharSelect/CharacterSelect/Characters/Lystra" index="0"]
 light_color = Color(1, 0.956863, 0.898039, 1)
+
+[node name="Sprite3D" parent="Base/CharSelect/CharacterSelect/Characters/Samael" index="6"]
+texture = null
 
 [node name="Room" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.469, -0.811989, 1.109)
